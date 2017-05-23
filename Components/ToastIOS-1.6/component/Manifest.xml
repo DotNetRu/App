@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<component format="1" id="ToastIOS">
+  <name>Toast for iOS</name>
+  <publisher>Pranart Dechpokket</publisher>
+  <publisher-url>http://crossdev.in.th/toastios.html</publisher-url>
+  <version>1.6</version>
+  <summary>Toast for iOS (Easiest to use notifications) (same as Android)</summary>
+  <screenshots>
+    <img src="screenshots/screenshot1.png" title="screenshot1" />
+    <img src="screenshots/screenshot2.png" title="screenshot2" />
+    <img src="screenshots/screenshot3.png" title="screenshot3" />
+  </screenshots>
+  <samples>
+    <sample id="ToastSample">
+      <name>iOS Sample</name>
+      <summary>iOS Sample</summary>
+    </sample>
+  </samples>
+</component>

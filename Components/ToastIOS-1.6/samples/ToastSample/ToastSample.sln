@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToastSample", "ToastSample\ToastSample.csproj", "{CF2C87F1-580A-440A-9035-3CD7F9474152}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CF2C87F1-580A-440A-9035-3CD7F9474152}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{CF2C87F1-580A-440A-9035-3CD7F9474152}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{CF2C87F1-580A-440A-9035-3CD7F9474152}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{CF2C87F1-580A-440A-9035-3CD7F9474152}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{CF2C87F1-580A-440A-9035-3CD7F9474152}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{CF2C87F1-580A-440A-9035-3CD7F9474152}.Debug|iPhone.Build.0 = Debug|iPhone
+		{CF2C87F1-580A-440A-9035-3CD7F9474152}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{CF2C87F1-580A-440A-9035-3CD7F9474152}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{CF2C87F1-580A-440A-9035-3CD7F9474152}.Release|iPhone.ActiveCfg = Release|iPhone
+		{CF2C87F1-580A-440A-9035-3CD7F9474152}.Release|iPhone.Build.0 = Release|iPhone
+		{CF2C87F1-580A-440A-9035-3CD7F9474152}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{CF2C87F1-580A-440A-9035-3CD7F9474152}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+EndGlobal

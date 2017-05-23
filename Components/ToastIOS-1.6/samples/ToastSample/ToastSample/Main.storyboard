@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3" translatesAutoresizingMaskIntoConstraints="NO" customClass="UIButton" placeholderIntrinsicWidth="46" placeholderIntrinsicHeight="30">
+                                <rect key="frame" x="214" y="516" width="172" height="64"/>
+                                <state key="normal" title="Android Toast">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="ButtonAndroidToast_TouchUpInside:" destination="BYZ-38-t0r" id="64" eventType="touchUpInside"/>
+                                </connections>
+                                <constraints>
+                                    <constraint id="71" firstItem="3" firstAttribute="width" constant="172"/>
+                                    <constraint id="96" firstItem="3" firstAttribute="height" constant="64"/>
+                                </constraints>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="45" translatesAutoresizingMaskIntoConstraints="NO" customClass="UIButton" placeholderIntrinsicWidth="46" placeholderIntrinsicHeight="30">
+                                <rect key="frame" x="200" y="268" width="200" height="64"/>
+                                <state key="normal" title="Custom Toast with Image">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="ButtonOK_TouchUpInside:" destination="47" id="46" eventType="touchUpInside"/>
+                                    <action selector="ButtonCustomToast_TouchUpInside:" destination="BYZ-38-t0r" id="65" eventType="touchUpInside"/>
+                                </connections>
+                                <constraints>
+                                    <constraint id="144" firstItem="45" firstAttribute="height" constant="64"/>
+                                    <constraint id="145" firstItem="45" firstAttribute="width" constant="200"/>
+                                </constraints>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="105" translatesAutoresizingMaskIntoConstraints="NO" customClass="UIButton" placeholderIntrinsicWidth="46" placeholderIntrinsicHeight="30">
+                                <rect key="frame" x="15" y="79" width="172" height="64"/>
+                                <state key="normal" title="Simplest Toast">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="ButtonOK_TouchUpInside:" destination="107" id="106" eventType="touchUpInside"/>
+                                    <action selector="ButtonCustomToast_TouchUpInside:" destination="109" id="108" eventType="touchUpInside"/>
+                                    <action selector="ButtonSimplestToast_TouchUpInside:" destination="BYZ-38-t0r" id="122" eventType="touchUpInside"/>
+                                </connections>
+                                <constraints>
+                                    <constraint id="191" firstItem="105" firstAttribute="height" constant="64"/>
+                                    <constraint id="192" firstItem="105" firstAttribute="width" constant="172"/>
+                                </constraints>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="130" translatesAutoresizingMaskIntoConstraints="NO" customClass="UIButton" placeholderIntrinsicWidth="46" placeholderIntrinsicHeight="30">
+                                <rect key="frame" x="413" y="79" width="172" height="64"/>
+                                <state key="normal" title="Image Toast">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="ButtonOK_TouchUpInside:" destination="132" id="131" eventType="touchUpInside"/>
+                                    <action selector="ButtonCustomToast_TouchUpInside:" destination="134" id="133" eventType="touchUpInside"/>
+                                    <action selector="ButtonSimplestToast_TouchUpInside:" destination="136" id="135" eventType="touchUpInside"/>
+                                    <action selector="ButtonSimplestImageToast_TouchUpInside:" destination="BYZ-38-t0r" id="147" eventType="touchUpInside"/>
+                                </connections>
+                                <constraints>
+                                    <constraint id="137" firstItem="130" firstAttribute="height" constant="64"/>
+                                    <constraint id="138" firstItem="130" firstAttribute="width" constant="172"/>
+                                </constraints>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="0.0" id="98"/>
+                            <constraint firstItem="8bC-Xf-vdC" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" constant="20" id="100"/>
+                            <constraint firstItem="3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="0.0" id="116"/>
+                            <constraint firstItem="3" firstAttribute="top" secondItem="45" secondAttribute="bottom" constant="184" id="141"/>
+                            <constraint firstItem="45" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="0.0" id="142"/>
+                            <constraint firstItem="45" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="0.0" id="143"/>
+                            <constraint firstItem="105" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="15" id="188"/>
+                            <constraint firstItem="105" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="59" id="189"/>
+                            <constraint firstItem="130" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="59" id="190"/>
+                            <constraint firstItem="8bC-Xf-vdC" firstAttribute="trailing" secondItem="130" secondAttribute="trailing" constant="15" id="193"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="ButtonAndroidToast" destination="3" id="name-outlet-3"/>
+                        <outlet property="ButtonCustomToast" destination="45" id="name-outlet-45"/>
+                        <outlet property="ButtonSimplestToast" destination="105" id="name-outlet-105"/>
+                        <outlet property="ButtonSimplestImageToast" destination="130" id="name-outlet-130"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="0.0" y="0.0"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="error.png" width="64" height="64"/>
+        <image name="info.png" width="64" height="64"/>
+        <image name="notice.png" width="64" height="64"/>
+        <image name="warning.png" width="64" height="64"/>
+    </resources>
+</document>

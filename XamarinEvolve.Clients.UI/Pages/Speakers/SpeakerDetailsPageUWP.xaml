@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<local:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:XamarinEvolve.Clients.UI;assembly=XamarinEvolve.Clients.UI"
+             xmlns:toolkit="clr-namespace:FormsToolkit;assembly=FormsToolkit"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+	           xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:imagecircle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
+             x:Class="XamarinEvolve.Clients.UI.SpeakerDetailsPageUWP"
+             Title="Speaker Info"
+             x:Name="SpeakerInfo"
+             NavigationPage.BackButtonTitle="Back"
+             BackgroundColor="{DynamicResource WindowBackgroundTable}">
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <local:SpeakerImageConverter x:Key="SpeakerImageConverter" />
+      <toolkit:HasDataConverter x:Key="GenericIsVisibleConverter"/>
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  <ScrollView x:Name="MainScroll">
+      <StackLayout Spacing="0" VerticalOptions="FillAndExpand">
+        <!--<ffimageloading:CachedImage HorizontalOptions="FillAndExpand" 
+                                    VerticalOptions="Center"
+                                    Aspect="AspectFill"
+                                    Source="{Binding Speaker.PhotoUrl}"
+                                    x:Name="HeroImage">
+          <ffimageloading:CachedImage.Transformations>
+            <fftransformations:CropTransformation CropWidthRatio="3" CropHeightRatio="2" />
+          </ffimageloading:CachedImage.Transformations>
+        </ffimageloading:CachedImage>-->
+
+        <StackLayout BackgroundColor="{DynamicResource WindowBackgroundTable}"
+                      Spacing="{DynamicResource CardSpacing}"
+                      Padding="{DynamicResource CardPadding}">
+          <!--Name and Title-->
+          <local:CardView x:Name="SpeakerDetails">
+              <StackLayout Spacing="0" HorizontalOptions="FillAndExpand">
+                <local:LabelSection Text="Details"/>
+                <local:HeaderDivider/>
+                <imagecircle:CircleImage FillColor="{DynamicResource Primary}" 
+                                          Source="{Binding Speaker.PhotoUrl, Converter={StaticResource SpeakerImageConverter}}"
+                                          VerticalOptions="Center"
+                                          Aspect="AspectFill"
+                                          WidthRequest="200" HeightRequest="200" Margin="5" HorizontalOptions="Center">
+                </imagecircle:CircleImage>
+                <local:FooterDivider/>
+                <StackLayout Padding="{StaticResource StandardPadding}" BackgroundColor="White" HorizontalOptions="FillAndExpand">
+                  <Label Text="{Binding Speaker.FullName}" Style="{DynamicResource EvolveListItemTextStyle}" />
+                  <Label Text="{Binding Speaker.Title}" Style="{DynamicResource EvolveDetailTextStyle}" LineBreakMode="WordWrap" />
+                </StackLayout>
+                <local:FooterDivider/>
+            </StackLayout>
+          </local:CardView>
+
+          <!--Biography-->
+          <local:CardView>
+            <StackLayout Spacing="0">
+              <local:LabelSection Text="Biography"/>
+              <local:HeaderDivider/>
+              <StackLayout Padding="{StaticResource StandardPadding}" BackgroundColor="White">
+                <Label Text="{Binding Speaker.Biography}" Style="{DynamicResource EvolveListItemTextStyle}"/>
+              </StackLayout>
+              <local:FooterDivider/>
+            </StackLayout>
+          </local:CardView>
+
+          <local:CardView IsVisible="{Binding FollowItems, Converter={StaticResource GenericIsVisibleConverter}}">
+            <StackLayout Spacing="0">
+              <!--Follow-->
+              <local:LabelSection Text="Follow"/>
+              <local:HeaderDivider/>
+              <local:NonScrollableListView
+                  ItemsSource="{Binding FollowItems}"
+                  VerticalOptions="Start"
+                  x:Name="ListViewFollow"
+                  SelectedItem="{Binding SelectedFollowItem, Mode=TwoWay}"
+                  RowHeight="44">
+                <local:NonScrollableListView.SeparatorColor>
+                  <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ListSeparator}"/>
+                </local:NonScrollableListView.SeparatorColor>
+                <local:NonScrollableListView.ItemTemplate>
+                  <DataTemplate>
+                    <ViewCell StyleId="disclosure">
+                      <Grid ColumnSpacing="{StaticResource StandardSpacing}">
+                        <Grid.Padding>
+                          <OnPlatform x:TypeArguments="Thickness" iOS="16,12" Android="16,8"/>
+                        </Grid.Padding>
+                        <Grid.ColumnDefinitions>
+                          <ColumnDefinition Width="Auto"/>
+                          <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image VerticalOptions="Center" Source="{Binding Icon}">
+                        </Image>
+                        <Label Grid.Column="1" VerticalOptions="Center" Style="{DynamicResource EvolveListItemTextStyle}" Text="{Binding Name}">
+                        </Label>
+                      </Grid>
+                    </ViewCell>
+                  </DataTemplate>
+                </local:NonScrollableListView.ItemTemplate>
+              </local:NonScrollableListView>
+              <local:FooterDivider/>
+            </StackLayout>
+          </local:CardView>
+
+          <local:CardView IsVisible="{Binding HasAdditionalSessions}">
+            <!--Sessions-->
+            <StackLayout Spacing="0">
+              <local:LabelSection Text="Sessions" StyleId="MoreSessionsSection"/>
+              <local:HeaderDivider/>
+              <StackLayout IsVisible="{Binding IsBusy}"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="Center"
+                            BackgroundColor="White"
+                            Padding="{StaticResource StandardPadding}">
+                <ActivityIndicator IsRunning="{Binding IsBusy}" >
+                  <ActivityIndicator.Color>
+                    <OnPlatform x:TypeArguments="Color" Android="{StaticResource Accent}"/>
+                  </ActivityIndicator.Color>
+                </ActivityIndicator>
+                <Label Text="Loading Sessions..."
+                        HorizontalOptions="Center"
+                        Style="{DynamicResource EvolveListItemTextStyle}"/>
+              </StackLayout>
+              <local:NonScrollableListView
+                  x:Name="ListViewSessions"
+                  ItemsSource="{Binding Sessions}"
+                  RowHeight="110">
+                <local:NonScrollableListView.SeparatorColor>
+                  <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ListSeparator}"/>
+                </local:NonScrollableListView.SeparatorColor>
+                <local:NonScrollableListView.ItemTemplate>
+                  <DataTemplate>
+                    <ViewCell>
+                      <local:SessionCellView  FavoriteCommand="{Binding Path=BindingContext.FavoriteCommand, Source={x:Reference SpeakerInfo}}"/>
+                    </ViewCell>
+                  </DataTemplate>
+                </local:NonScrollableListView.ItemTemplate>
+              </local:NonScrollableListView>
+              <local:FooterDivider/>
+            </StackLayout>
+          </local:CardView>
+        </StackLayout>
+      </StackLayout>
+    <!--    </Grid>-->
+  </ScrollView>
+</local:BasePage>
