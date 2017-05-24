@@ -74,9 +74,6 @@ namespace XamarinEvolve.Clients.UI
                         case "code-of-conduct":
                             page = new CodeOfConductPage();
                             break;
-                        case "wi-fi":
-                            page = new WiFiInformationPage();
-                            break;
                         case "sponsors":
                             page = new SponsorsPage();
                             break;

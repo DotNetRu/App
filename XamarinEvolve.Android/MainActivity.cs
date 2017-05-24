@@ -55,7 +55,6 @@ namespace XamarinEvolve.Droid
             Android.Content.Intent.CategoryBrowsable
         },
         DataScheme = "http",
-	    DataPathPrefix = "/" + XamarinEvolve.Utils.AboutThisApp.MiniHacksSiteSubdirectory + "/",
         DataHost = XamarinEvolve.Utils.AboutThisApp.AppLinksBaseDomain)]
 	[IntentFilter(new[] { Intent.ActionView },
 		Categories = new[]
@@ -64,7 +63,6 @@ namespace XamarinEvolve.Droid
 			Android.Content.Intent.CategoryBrowsable
 		},
 		DataScheme = "https",
-		DataPathPrefix = "/" + XamarinEvolve.Utils.AboutThisApp.MiniHacksSiteSubdirectory + "/",
 		DataHost = XamarinEvolve.Utils.AboutThisApp.AppLinksBaseDomain)]
     [IntentFilter(new []{ Intent.ActionView },
         Categories = new []

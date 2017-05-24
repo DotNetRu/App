@@ -59,7 +59,6 @@
     <Compile Include="StoreManager.cs" />
     <Compile Include="Stores\EventStore.cs" />
     <Compile Include="Stores\NotificationStore.cs" />
-    <Compile Include="Stores\MiniHacksStore.cs" />
     <Compile Include="Stores\ConferenceFeedbackStore.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

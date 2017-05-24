@@ -52,9 +52,6 @@ namespace XamarinEvolve.Clients.UI
 					case (int)AppPage.Events://events
                         pages.Add(menuId, new EvolveNavigationPage(new EventsPage()));
                         break;
-                    case (int)AppPage.MiniHacks://Mini-Hacks
-                        newPage = new EvolveNavigationPage(new MiniHacksPage());
-                        break;
                     case (int)AppPage.Sponsors://sponsors
                         newPage = new EvolveNavigationPage(new SponsorsPage());
                         break;
@@ -123,13 +120,6 @@ namespace XamarinEvolve.Clients.UI
                         break;
                     await Detail.Navigation.PushAsync(new SessionDetailsPage(session));
                     break;
-				case AppPage.MiniHack:
-					await NavigateAsync((int)AppPage.MiniHacks);
-					var hack = await DependencyService.Get<IMiniHacksStore>().GetAppIndexMiniHack(id);
-					if (hack == null)
-						break;
-					await Detail.Navigation.PushAsync(new MiniHacksDetailsPage(hack));
-					break;
 				case AppPage.Speaker:
 					await NavigateAsync((int) AppPage.Speakers);
 					var speaker = await DependencyService.Get<ISpeakerStore>().GetAppIndexSpeaker(id);

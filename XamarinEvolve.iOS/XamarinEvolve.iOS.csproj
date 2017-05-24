@@ -486,7 +486,6 @@
       <DependentUpon>ViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="PlatformFeatures\Extensions\FavoritesHandler.cs" />
-    <Compile Include="PlatformFeatures\ProActiveSuggestions\MiniHackUserActivity.cs" />
     <Compile Include="PlatformFeatures\ProActiveSuggestions\SessionUserActivity.cs" />
     <Compile Include="PlatformFeatures\ProActiveSuggestions\SpeakerUserActivity.cs" />
     <Compile Include="PlatformFeatures\Social\TweetService.cs" />

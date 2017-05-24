@@ -15,11 +15,9 @@ namespace XamarinEvolve.DataStore.Abstractions
         ISpeakerStore SpeakerStore { get; }
         ISponsorStore SponsorStore { get; }
         IEventStore EventStore { get; }
-        IMiniHacksStore MiniHacksStore { get; }
         INotificationStore NotificationStore { get; }
 
         Task<bool> SyncAllAsync(bool syncUserSpecific);
-        Task DropEverythingAsync();
     }
 }
 

@@ -33,7 +33,6 @@ namespace XamarinEvolve.DataStore.Azure
             
             var taskList = new List<Task<bool>>();
             taskList.Add(CategoryStore.SyncAsync());
-            taskList.Add(MiniHacksStore.SyncAsync());
             taskList.Add(NotificationStore.SyncAsync());
             taskList.Add(SpeakerStore.SyncAsync());
             taskList.Add(SessionStore.SyncAsync());
@@ -51,34 +50,13 @@ namespace XamarinEvolve.DataStore.Azure
             return successes.Any(x => !x);//if any were a failure.
         }
 
-        /// <summary>
-        /// Drops all tables from the database and updated DB Id
-        /// </summary>
-        /// <returns>The everything async.</returns>
-        public Task DropEverythingAsync()
-        {
-            Settings.UpdateDatabaseId();
-            CategoryStore.DropTable();
-            EventStore.DropTable();
-            MiniHacksStore.DropTable();
-            NotificationStore.DropTable();
-            SessionStore.DropTable();
-            SpeakerStore.DropTable();
-            SponsorStore.DropTable();
-            FeedbackStore.DropTable();
-            FavoriteStore.DropTable();
-			ConferenceFeedbackStore.DropTable();
-            IsInitialized = false;
-            return Task.FromResult(true);
-        }
-
         public bool IsInitialized { get; private set; }
         #region IStoreManager implementation
-        object locker = new object ();
+        object _locker = new object ();
         public async Task InitializeAsync()
         {
             MobileServiceSQLiteStore store;
-            lock(locker) 
+            lock(_locker) 
             {
 
                 if (IsInitialized)
@@ -100,7 +78,6 @@ namespace XamarinEvolve.DataStore.Azure
                 store.DefineTable<Sponsor> ();
                 store.DefineTable<SponsorLevel> ();
                 store.DefineTable<StoreSettings> ();
-                store.DefineTable<MiniHack> ();
 				store.DefineTable<ConferenceFeedback>();
             }
             try
@@ -111,41 +88,36 @@ namespace XamarinEvolve.DataStore.Azure
             {
                 Debugger.Break();
             }
-            await LoadCachedTokenAsync ().ConfigureAwait (false);
-
         }
-
-        IMiniHacksStore miniHacksStore;
-        public IMiniHacksStore MiniHacksStore => miniHacksStore ?? (miniHacksStore  = DependencyService.Get<IMiniHacksStore>());
        
-        INotificationStore notificationStore;
-        public INotificationStore NotificationStore => notificationStore ?? (notificationStore  = DependencyService.Get<INotificationStore>());
+        INotificationStore _notificationStore;
+        public INotificationStore NotificationStore => _notificationStore ?? (_notificationStore  = DependencyService.Get<INotificationStore>());
 
 
-        ICategoryStore categoryStore;
-        public ICategoryStore CategoryStore => categoryStore ?? (categoryStore  = DependencyService.Get<ICategoryStore>());
+        ICategoryStore _categoryStore;
+        public ICategoryStore CategoryStore => _categoryStore ?? (_categoryStore  = DependencyService.Get<ICategoryStore>());
 
-        IFavoriteStore favoriteStore;
-        public IFavoriteStore FavoriteStore => favoriteStore ?? (favoriteStore  = DependencyService.Get<IFavoriteStore>());
+        IFavoriteStore _favoriteStore;
+        public IFavoriteStore FavoriteStore => _favoriteStore ?? (_favoriteStore  = DependencyService.Get<IFavoriteStore>());
 
-        IFeedbackStore feedbackStore;
-        public IFeedbackStore FeedbackStore => feedbackStore ?? (feedbackStore  = DependencyService.Get<IFeedbackStore>());
+        IFeedbackStore _feedbackStore;
+        public IFeedbackStore FeedbackStore => _feedbackStore ?? (_feedbackStore  = DependencyService.Get<IFeedbackStore>());
 
-		IConferenceFeedbackStore conferenceFeedbackStore;
-		public IConferenceFeedbackStore ConferenceFeedbackStore => conferenceFeedbackStore ?? (conferenceFeedbackStore = DependencyService.Get<IConferenceFeedbackStore>());
+		IConferenceFeedbackStore _conferenceFeedbackStore;
+		public IConferenceFeedbackStore ConferenceFeedbackStore => _conferenceFeedbackStore ?? (_conferenceFeedbackStore = DependencyService.Get<IConferenceFeedbackStore>());
 
-        ISessionStore sessionStore;
-        public ISessionStore SessionStore => sessionStore ?? (sessionStore  = DependencyService.Get<ISessionStore>());
+        ISessionStore _sessionStore;
+        public ISessionStore SessionStore => _sessionStore ?? (_sessionStore  = DependencyService.Get<ISessionStore>());
      
 
-        ISpeakerStore speakerStore;
-        public ISpeakerStore SpeakerStore => speakerStore ?? (speakerStore  = DependencyService.Get<ISpeakerStore>());
+        ISpeakerStore _speakerStore;
+        public ISpeakerStore SpeakerStore => _speakerStore ?? (_speakerStore  = DependencyService.Get<ISpeakerStore>());
 
-        IEventStore eventStore;
-        public IEventStore EventStore => eventStore ?? (eventStore = DependencyService.Get<IEventStore>());
+        IEventStore _eventStore;
+        public IEventStore EventStore => _eventStore ?? (_eventStore = DependencyService.Get<IEventStore>());
 
-        ISponsorStore sponsorStore;
-        public ISponsorStore SponsorStore => sponsorStore ?? (sponsorStore  = DependencyService.Get<ISponsorStore>());
+        ISponsorStore _sponsorStore;
+        public ISponsorStore SponsorStore => _sponsorStore ?? (_sponsorStore  = DependencyService.Get<ISponsorStore>());
 
 
 		#endregion
@@ -232,33 +204,6 @@ namespace XamarinEvolve.DataStore.Azure
             
         }
 
-        async Task LoadCachedTokenAsync()
-        {
-            StoreSettings settings = await ReadSettingsAsync();
-
-            if (settings != null)
-            {
-                try
-                {
-					if (!string.IsNullOrEmpty(settings.AuthToken)
-						&& JwtUtility.GetTokenExpiration(settings.AuthToken) > DateTime.UtcNow
-						&& JwtUtility.IsIntendedForAudience(settings.AuthToken, ApiKeys.ApiUrl))
-					{
-						MobileService.CurrentUser = new MobileServiceUser(settings.UserId);
-						MobileService.CurrentUser.MobileServiceAuthenticationToken = settings.AuthToken;
-					}
-					else
-					{
-						await ClearOldCredentials(settings);
-					}
-                }
-                catch (InvalidTokenException)
-				{
-					await ClearOldCredentials(settings);
-				}
-			}
-		}
-
 		public class StoreSettings
         {
             public const string StoreSettingsId = "store_settings";
@@ -274,20 +219,6 @@ namespace XamarinEvolve.DataStore.Azure
 
             public string AuthToken { get; set; }
         }
-
-		async Task ClearOldCredentials(StoreSettings settings)
-		{
-			if (FeatureFlags.LoginEnabled)
-			{
-				// if anonymous login is used, we must keep original user ID around to be used later
-				// when using non-anonymous login, the user will provide their user ID via login
-				settings.UserId = string.Empty;
-			}
-			settings.AuthToken = string.Empty;
-			Settings.Current.UserIdentifier = string.Empty; // triggers a new login once we hit an authenticated API
-
-			await SaveSettingsAsync(settings);
-		}
     }
 }
 

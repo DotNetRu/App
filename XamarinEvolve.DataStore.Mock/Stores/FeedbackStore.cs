@@ -1,8 +1,5 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using XamarinEvolve.DataObjects;
-
-using XamarinEvolve.DataStore.Mock;
 using XamarinEvolve.DataStore.Abstractions;
 
 namespace XamarinEvolve.DataStore.Mock

@@ -111,23 +111,14 @@
     <Compile Include="Pages\Events\EventsPage.xaml.cs">
       <DependentUpon>EventsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Info\LoginPage.xaml.cs">
-      <DependentUpon>LoginPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Pages\Info\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Info\WiFiInformationPage.xaml.cs">
-      <DependentUpon>WiFiInformationPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Info\CodeOfConductPage.xaml.cs">
       <DependentUpon>CodeOfConductPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Info\VenuePage.xaml.cs">
       <DependentUpon>VenuePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\MiniHacks\MiniHacksPage.xaml.cs">
-      <DependentUpon>MiniHacksPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Events\EventDetailsPage.xaml.cs">
       <DependentUpon>EventDetailsPage.xaml</DependentUpon>
@@ -179,12 +170,6 @@
     <Compile Include="Helpers\NavigationService.cs" />
     <Compile Include="Pages\Sessions\FeedbackPage.xaml.cs">
       <DependentUpon>FeedbackPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Cells\MiniHackCell.xaml.cs">
-      <DependentUpon>MiniHackCell.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\MiniHacks\MiniHacksDetailsPage.xaml.cs">
-      <DependentUpon>MiniHacksDetailsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\AlwaysScrollView.cs" />
     <Compile Include="Controls\FavoriteImage.cs" />
@@ -414,17 +399,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <LogicalName>EventsPage.xaml</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pages\Info\LoginPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <LogicalName>LoginPage.xaml</LogicalName>
-    </EmbeddedResource>
     <EmbeddedResource Include="Pages\Info\SettingsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <LogicalName>SettingsPage.xaml</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Pages\Info\WiFiInformationPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <LogicalName>WiFiInformationPage.xaml</LogicalName>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\Info\CodeOfConductPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
@@ -433,10 +410,6 @@
     <EmbeddedResource Include="Pages\Info\VenuePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <LogicalName>VenuePage.xaml</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Pages\MiniHacks\MiniHacksPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <LogicalName>MiniHacksPage.xaml</LogicalName>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\Events\EventDetailsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
@@ -497,14 +470,6 @@
     <EmbeddedResource Include="Pages\Sessions\FeedbackPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <LogicalName>FeedbackPage.xaml</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Cells\MiniHackCell.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <LogicalName>MiniHackCell.xaml</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Pages\MiniHacks\MiniHacksDetailsPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <LogicalName>MiniHacksDetailsPage.xaml</LogicalName>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\Sessions\EvaluationsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>

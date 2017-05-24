@@ -9,37 +9,37 @@ namespace XamarinEvolve.DataStore.Mock
 {
 	public class SpeakerStore : BaseStore<Speaker>, ISpeakerStore
     {        
-        IEnumerable<Speaker> speakers;
+        IEnumerable<Speaker> _speakers;
 
         #region ISpeakerStore implementation
 
         public async override Task<Speaker> GetItemAsync(string id)
         {
-            if(!initialized)
+            if(!_initialized)
                 await InitializeStore();
-            return speakers.FirstOrDefault(s => s.Id == id);
+            return _speakers.FirstOrDefault(s => s.Id == id);
         }
 
         public async override Task<IEnumerable<Speaker>> GetItemsAsync(bool forceRefresh = false)
         {
-            if(!initialized)
+            if(!_initialized)
                 await InitializeStore();
             
-            return speakers;
+            return _speakers;
         }
 
         #endregion
 
         #region IBaseStore implementation
 
-        bool initialized;
+        bool _initialized;
         public override Task InitializeStore()
         {
-            if (initialized)
+            if (_initialized)
                 return Task.FromResult(true);
 
-            initialized = true;
-            speakers = SampleData.GetSpeakers();
+            _initialized = true;
+            _speakers = SampleData.GetSpeakers();
 
             return Task.FromResult(true);
         }
@@ -56,24 +56,24 @@ namespace XamarinEvolve.DataStore.Mock
 
     static class SampleData
     {
-        static Random random = new Random();
+        static Random _random = new Random();
 
         enum Gender { Man, Woman }
 
 
-        static string[] mensNames = {
+        static string[] _mensNames = {
                 "Joseph", "Charles", "Bryan", "Joshua", "Nate",
                 "Kai", "Ian", "Greg", "Sean", "Derek",
                 "Breck", "James", "Cormac", "Michael", "Andrew"
             };
 
-        static string[] womensNames = {
+        static string[] _womensNames = {
                 "Julia", "Kim", "Laura", "Tammy", "Anya",
                 "Claudia", "Jo Ann", "Brianne", "Sheena", "Ashley",
                 "Allison", "Nina", "Arwa", "Samantha", "Antonia"
             };
 
-        static Dictionary<string, IList<string>> titlesByTeam = new Dictionary<string, IList<string>>
+        static Dictionary<string, IList<string>> _titlesByTeam = new Dictionary<string, IList<string>>
         {
             { "HR", Titles(department: "HR").ToArray() },
             { "Design", Titles("Designer", "Design").ToArray() },
@@ -112,10 +112,10 @@ namespace XamarinEvolve.DataStore.Mock
         }
             
 
-        static T Random<T> (this IList<T> This) => This[random.Next(This.Count)];
-        static bool Obtains (double chance) => random.NextDouble() <= chance;
+        static T Random<T> (this IList<T> This) => This[_random.Next(This.Count)];
+        static bool Obtains (double chance) => _random.NextDouble() <= chance;
         static T Obtains<T> (double chance, T value) => Obtains(chance) ? value : default(T);
-        static bool FlipCoin () => random.Next(2) == 0;
+        static bool FlipCoin () => _random.Next(2) == 0;
         static T FlipCoin<T> (T heads, T tails) => FlipCoin() ? heads : tails;
 
         struct PhotoUrls { public string SmallPhotoUrl, PhotoUrl; }
@@ -123,7 +123,7 @@ namespace XamarinEvolve.DataStore.Mock
         static PhotoUrls GetRandomUserPhotoUrls(Gender gender)
         {
             var men = gender == Gender.Man ? "men" : "women";
-            var i = random.Next (1, 11);
+            var i = _random.Next (1, 11);
             return new PhotoUrls {
                 PhotoUrl = $"https://xamarin.github.io/app-employee-directory/images/{men}/{i}.jpg",
                 SmallPhotoUrl = $"https://xamarin.github.io/app-employee-directory/images/{men}/{i}.thumb.jpg",
@@ -134,24 +134,24 @@ namespace XamarinEvolve.DataStore.Mock
 
         static IEnumerable<Speaker> Generate()
         {
-            random = new Random(0);
+            _random = new Random(0);
 
-            string[] teams = titlesByTeam.Keys.ToArray();
+            string[] teams = _titlesByTeam.Keys.ToArray();
             for (int i = 0; i < 50; i++)
             {
                 Gender gender = FlipCoin(Gender.Man, Gender.Woman);
                 string team = teams.Random();
 
 
-                var title = ChooseWithDecreasingLikelyhood(titlesByTeam[team]);
+                var title = ChooseWithDecreasingLikelyhood(_titlesByTeam[team]);
 
-                string firstName = (gender == Gender.Man ? mensNames : womensNames).Random();
+                string firstName = (gender == Gender.Man ? _mensNames : _womensNames).Random();
                 string lastName = Names[i].Substring(0,1).ToUpper() + Names[i].Substring(1).ToLower();
 
                 var photos = GetRandomUserPhotoUrls(gender);
 
                
-               var company = Companies[random.Next(0, Companies.Length - 1)];
+               var company = Companies[_random.Next(0, Companies.Length - 1)];
                 var domain = $"{company.ToLower()}.com";
                
                 var speaker = new Speaker
@@ -188,7 +188,7 @@ namespace XamarinEvolve.DataStore.Mock
 
         static string RandomPhoneNumber()
         {
-            Func<int,string> digits = n => String.Join("", from _ in Enumerable.Range(0, n) select random.Next(10));
+            Func<int,string> digits = n => String.Join("", from _ in Enumerable.Range(0, n) select _random.Next(10));
             return $"({digits(3)}) 555-{digits(4)}";
         }
 

@@ -44,32 +44,6 @@ namespace XamarinEvolve.Clients.Portable
 			_platformSettings = DependencyService.Get<IPlatformSpecificSettings>();
 		}
 
-        const string WiFiSSIDKey = "ssid_key";
-        public string WiFiSSID 
-        {
-            get { return AppSettings.GetValueOrDefault<string> (WiFiSSIDKey, EventInfo.WiFiSSIDDefault); }
-            set 
-            {
-                if (AppSettings.AddOrUpdateValue (WiFiSSIDKey, value)) 
-                {
-                    OnPropertyChanged ();
-                }
-            }
-        }
-
-        const string WiFiPassKey = "wifi_pass_key";
-        public string WiFiPass 
-        {
-            get { return AppSettings.GetValueOrDefault<string> (WiFiPassKey, EventInfo.WiFiPassDefault); }
-            set 
-            {
-                if (AppSettings.AddOrUpdateValue (WiFiPassKey, value)) 
-                {
-                    OnPropertyChanged ();
-                }
-            }
-        }
-
         public void SaveReminderId(string id, string calId)
         {
             AppSettings.AddOrUpdateValue<string>(GetReminderId(id), calId);
@@ -103,11 +77,6 @@ namespace XamarinEvolve.Clients.Portable
 		public bool IsHackFinished(string id)
         {
             return AppSettings.GetValueOrDefault("minihack_" + id, false);
-        }
-
-        public void FinishHack(string id)
-        {
-            AppSettings.AddOrUpdateValue("minihack_" + id, true);
         }
 
         const string LastFavoriteTimeKey = "last_favorite_time";

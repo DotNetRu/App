@@ -11,11 +11,11 @@ namespace XamarinEvolve.DataStore.Mock
     public class EventStore : BaseStore<FeaturedEvent>, IEventStore
     {
         List<FeaturedEvent> Events { get; }
-        ISponsorStore sponsors;
+        ISponsorStore _sponsors;
         public EventStore()
         {
             Events = new List<FeaturedEvent>();
-            sponsors = DependencyService.Get<ISponsorStore>();
+            _sponsors = DependencyService.Get<ISponsorStore>();
         }
 
         public override async Task InitializeStore()
@@ -23,7 +23,7 @@ namespace XamarinEvolve.DataStore.Mock
             if (Events.Count != 0)
                 return;
 
-            var sponsorList = await sponsors.GetItemsAsync();
+            var sponsorList = await _sponsors.GetItemsAsync();
 
             
             Events.Add(new FeaturedEvent

@@ -42,10 +42,6 @@ namespace XamarinEvolve.Clients.Portable
 			{
 				InfoItems.Add(new MenuItem { Name = AboutThisApp.CodeOfConductPageTitle, Icon = "icon_code_of_conduct.png", Parameter = "code-of-conduct" });
 			}
-			if (FeatureFlags.WifiEnabled)
-			{
-				InfoItems.Add(new MenuItem { Name = "Wi-Fi Information", Icon = "icon_wifi.png", Parameter = "wi-fi" });
-			}
 			accountItem = new MenuItem
                 {
                     Name = "Logged in as:"
@@ -93,18 +89,8 @@ namespace XamarinEvolve.Clients.Portable
 
             UpdateItems();
 
-			if (FeatureFlags.LoginEnabled)
-			{
-				AccountItems.Add(accountItem);
-			}
             AccountItems.Add(syncItem);
             AccountItems.Add(pushItem);
-
-			if (!FeatureFlags.LoginEnabled && FeatureFlags.AppToWebLinkingEnabled)
-			{
-				AccountItems.Add(new MenuItem { Name = "Link app data to website", Icon = "icon_linkapptoweb.png", Parameter = "mobiletowebsync" });
-				AccountItems.Add(new MenuItem { Name = "Link website data to app", Icon = "icon_linkapptoweb.png", Parameter = "webtomobilesync" });
-			}
 
 			//This will be triggered wen 
 			Settings.PropertyChanged += (sender, e) => 
@@ -120,15 +106,8 @@ namespace XamarinEvolve.Clients.Portable
         public void UpdateItems()
         {
             syncItem.Subtitle = LastSyncDisplay;
-			if (FeatureFlags.LoginEnabled)
-			{
-				accountItem.Subtitle = Settings.Current.IsLoggedIn ? Settings.Current.UserDisplayName : "Not signed in";
-			}
-			else
-			{
-				accountItem.Subtitle = "";
-			}
-           
+            accountItem.Subtitle = "";
+
             pushItem.Name = push.IsRegistered ? "Push notifications enabled" : "Enable push notifications";
         }
 

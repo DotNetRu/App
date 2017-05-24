@@ -56,7 +56,6 @@
     <Compile Include="IStoreManager.cs" />
     <Compile Include="IEventStore.cs" />
     <Compile Include="INotificationStore.cs" />
-    <Compile Include="IMiniHacksStore.cs" />
     <Compile Include="IConferenceFeedbackStore.cs" />
   </ItemGroup>
   <Import Project="..\XamarinEvolve.DataObjects\XamarinEvolve.Backend.Shared.projitems" Label="Shared" Condition="Exists('..\XamarinEvolve.DataObjects\XamarinEvolve.Backend.Shared.projitems')" />

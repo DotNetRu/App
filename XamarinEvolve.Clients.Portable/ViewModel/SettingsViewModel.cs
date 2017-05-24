@@ -14,9 +14,6 @@ namespace XamarinEvolve.Clients.Portable
 	{
 		public ObservableRangeCollection<MenuItem> AboutItems { get; } = new ObservableRangeCollection<MenuItem>();
 		public ObservableRangeCollection<MenuItem> TechnologyItems { get; } = new ObservableRangeCollection<MenuItem>();
-		public bool LoginEnabled => FeatureFlags.LoginEnabled;
-		public string LoginText => FeatureFlags.LoginEnabled ? (Settings.IsLoggedIn ? "Sign Out" : "Sign In") : string.Empty;
-		public string MyAccountTitle => FeatureFlags.LoginEnabled ? "My Account" : "Status";
 		public string Copyright => AboutThisApp.Copyright;
 		public bool AppToWebLinkingEnabled => FeatureFlags.AppToWebLinkingEnabled;
 
@@ -116,77 +113,6 @@ namespace XamarinEvolve.Clients.Portable
 			MessagingService.Current.SendMessage(MessageKeys.NavigateToSyncWebToMobileViewModel);
 		}
 
-		ICommand loginCommand;
-		public ICommand LoginCommand =>
-			loginCommand ?? (loginCommand = new Command(ExecuteLoginCommand));
-
-		void ExecuteLoginCommand()
-		{
-
-			if (!CrossConnectivity.Current.IsConnected)
-			{
-				MessagingUtils.SendOfflineMessage();
-				return;
-			}
-
-			if (IsBusy)
-				return;
-
-			if (Settings.IsLoggedIn)
-			{
-
-				MessagingService.Current.SendMessage(MessageKeys.Question, new MessagingServiceQuestion
-				{
-					Title = "Logout?",
-					Question = "Are you sure you want to logout?" + (FeatureFlags.LoginEnabled ? "You can only save favorites and leave feedback when logged in." : ""),
-					Positive = "Yes, Logout",
-					Negative = "Cancel",
-					OnCompleted = async (result) =>
-						{
-							if (!result)
-								return;
-
-							await Logout();
-						}
-				});
-
-				return;
-			}
-
-			MessagingService.Current.SendMessage(MessageKeys.NavigateLogin);
-		}
-
-		async Task Logout()
-		{
-			Logger.Track(EvolveLoggerKeys.Logout);
-
-			try
-			{
-				ISSOClient ssoClient = DependencyService.Get<ISSOClient>();
-				if (ssoClient != null)
-				{
-					await ssoClient.LogoutAsync();
-				}
-
-				Settings.FirstName = string.Empty;
-				Settings.LastName = string.Empty;
-				Settings.UserIdentifier = string.Empty; //this triggers login text changed!
-
-				//drop favorites and feedback because we logged out.
-				await StoreManager.FavoriteStore.DropFavorites();
-				await StoreManager.FeedbackStore.DropFeedback();
-				await StoreManager.ConferenceFeedbackStore.DropConferenceFeedback();
-				await StoreManager.DropEverythingAsync();
-				await ExecuteSyncCommandAsync();
-			}
-			catch (Exception ex)
-			{
-				ex.Data["method"] = "Logout";
-				//TODO validate here.
-				Logger.Report(ex);
-			}
-		}
-
 #if DEBUG
 		public bool IsDebug => true;
 #else
@@ -200,27 +126,6 @@ namespace XamarinEvolve.Clients.Portable
 		async Task ExecuteForceResetCommandAsync()
 		{
 			var userId = Settings.UserIdentifier;
-
-			await Logout();
-
-			if (!FeatureFlags.LoginEnabled)
-			{
-				// automatically log in again with the same userID as before
-				var ssoClient = DependencyService.Get<ISSOClient>();
-
-				var account = await ssoClient.LoginAnonymouslyAsync(userId);
-				if (account != null)
-				{
-					Settings.Current.UserIdentifier = account.User.Email;
-
-					MessagingService.Current.SendMessage(MessageKeys.LoggedIn);
-					Logger.Track(EvolveLoggerKeys.LoginSuccess);
-
-					Settings.Current.FirstRun = false;
-				}
-
-				await ExecuteSyncCommandAsync();
-			}
 		}
 
 		static readonly string defaultSyncText = Device.OS == TargetPlatform.iOS ? "Sync Now" : "Last Sync";
@@ -264,15 +169,6 @@ namespace XamarinEvolve.Clients.Portable
 				OnPropertyChanged("LastSyncDisplay");
 
 				await StoreManager.SyncAllAsync(Settings.Current.IsLoggedIn);
-				if (!Settings.Current.IsLoggedIn && FeatureFlags.LoginEnabled)
-				{
-					MessagingService.Current.SendMessage(MessageKeys.Message, new MessagingServiceAlert
-					{
-						Title = $"{EventInfo.EventName} Data Synced",
-						Message = "You now have the latest conference data, however to sync your favorites and feedback you must sign in.",
-						Cancel = "OK"
-					});
-				}
 			}
 			catch (Exception ex)
 			{

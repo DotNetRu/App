@@ -1,16 +1,14 @@
 ﻿using XamarinEvolve.DataStore.Abstractions;
 using XamarinEvolve.DataObjects;
-using XamarinEvolve.DataStore.Mock;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System;
 
 namespace XamarinEvolve.DataStore.Mock
 {
     public class SponsorStore : BaseStore<Sponsor>, ISponsorStore
     {
-        List<Sponsor> Sponsors;
+        List<Sponsor> _sponsors;
         readonly static string [] Companies =
             {
                 "Airwatch",
@@ -229,29 +227,29 @@ namespace XamarinEvolve.DataStore.Mock
         public override async  Task<Sponsor> GetItemAsync(string id)
         {
             await InitializeStore();
-            return Sponsors.FirstOrDefault(s => s.Id == id);
+            return _sponsors.FirstOrDefault(s => s.Id == id);
         }
 
         public override async Task<IEnumerable<Sponsor>> GetItemsAsync(bool forceRefresh = false)
         {
             await InitializeStore();
 
-            var json = Newtonsoft.Json.JsonConvert.SerializeObject (Sponsors);
-            return Sponsors as IEnumerable<Sponsor>;
+            var json = Newtonsoft.Json.JsonConvert.SerializeObject (_sponsors);
+            return _sponsors as IEnumerable<Sponsor>;
         }
 
-        bool initialized;
+        bool _initialized;
         public override Task InitializeStore()
         {
-            if (initialized)
+            if (_initialized)
                 return Task.FromResult(true);
 
-            initialized = true;
+            _initialized = true;
 
-            Sponsors = new List<Sponsor>();
+            _sponsors = new List<Sponsor>();
             for (int i = 0; i < Companies.Length; i++)
             {
-                Sponsors.Add(new Sponsor
+                _sponsors.Add(new Sponsor
                     {
                         Name = Companies[i],
                         ImageUrl = Logos[i],
@@ -265,22 +263,22 @@ namespace XamarinEvolve.DataStore.Mock
             return Task.FromResult(true);
 
         }
-        List<SponsorLevel> sponsorLevels;
+        List<SponsorLevel> _sponsorLevels;
         SponsorLevel GetLevel(int level)
         {
-            if (sponsorLevels == null) {
-                    sponsorLevels = new List<SponsorLevel> {
+            if (_sponsorLevels == null) {
+                    _sponsorLevels = new List<SponsorLevel> {
                     new SponsorLevel { Name = "Platinum", Rank = 0 },
                     new SponsorLevel { Name = "Gold", Rank = 1 },
                     new SponsorLevel{ Name = "Silver", Rank = 2 },
                     new SponsorLevel { Name = "Exhibitor", Rank = 3 }
                 };
-                var json = Newtonsoft.Json.JsonConvert.SerializeObject (sponsorLevels);
+                var json = Newtonsoft.Json.JsonConvert.SerializeObject (_sponsorLevels);
             }
 
 
 
-            return sponsorLevels[level];
+            return _sponsorLevels[level];
         }
     }
 }

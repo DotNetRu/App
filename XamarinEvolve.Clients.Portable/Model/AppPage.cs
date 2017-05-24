@@ -1,8 +1,4 @@
-﻿
-
-using System;
-
-namespace XamarinEvolve.Clients.Portable
+﻿namespace XamarinEvolve.Clients.Portable
 {
     public class DeepLinkPage
     {
@@ -16,7 +12,6 @@ namespace XamarinEvolve.Clients.Portable
 		Sessions,
 		Speakers,
 		Events,
-		MiniHacks,
 		Sponsors,
 		Venue,
 		FloorMap,
@@ -25,11 +20,9 @@ namespace XamarinEvolve.Clients.Portable
 		Session,
 		Speaker,
 		Sponsor,
-		Login,
 		Event,
 		Notification,
 		TweetImage,
-		WiFi,
 		CodeOfConduct,
 		Filter,
 		Information,
@@ -38,7 +31,6 @@ namespace XamarinEvolve.Clients.Portable
 		SyncMobileToWeb,
 		SyncWebToMobile,
 		Feedback,
-		MiniHack,
 		ConferenceFeedback,
 	}
 }

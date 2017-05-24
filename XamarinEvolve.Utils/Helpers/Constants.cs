@@ -14,12 +14,6 @@ namespace XamarinEvolve.Utils
 		public const double Longitude = 4.889541d;
 		public const string TimeZoneName = "Europe/Amsterdam"; //https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 		public const string HashTag = "#TechDaysNL";
-		public const string WiFiSSIDDefault = "TechDaysNL";
-		public const string WiFiPassDefault = "";
-		public const string WifiUrl = AboutThisApp.CdnUrl + "wifi.json";
-
-		public const string MiniHackStaffMemberName = "Mini-Hack coach";
-		public const string MiniHackUnlockTag = "techdays";
 
 		public const string TicketUrl = "https://techdays.msnlevents.net/techdays2016";
 		public static readonly DateTime StartOfConference = new DateTime(2016, 10, 04, 6, 0, 0, DateTimeKind.Utc);
@@ -44,7 +38,6 @@ namespace XamarinEvolve.Utils
 		public const string SessionsSiteSubdirectory = "Sessies";
 		public const string SpeakersSiteSubdirectory = "Sprekers";
 		public const string SponsorsSiteSubdirectory = "Sponsors";
-		public const string MiniHacksSiteSubdirectory = "MiniHacks";
 		public const string Copyright = "Copyright 2016 - TechDays";
 		public const string CodeOfConductPageTitle = "Permission to be filmed";
 

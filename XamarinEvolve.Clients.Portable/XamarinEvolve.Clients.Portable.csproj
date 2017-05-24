@@ -46,14 +46,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Interfaces\ISSOClient.cs" />
-    <Compile Include="Services\Azure\AzureXamarinSSOClient.cs" />
     <Compile Include="ViewModel\SessionsViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
-    <Compile Include="Services\XamarinSSOClient.cs" />
     <Compile Include="Model\SSOUser.cs" />
     <Compile Include="Model\Extensions\SessionExtensions.cs" />
-    <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\FilterSessionsViewModel.cs" />
     <Compile Include="Services\FavoriteService.cs" />
     <Compile Include="ViewModel\AboutViewModel.cs" />
@@ -70,7 +66,6 @@
     <Compile Include="ViewModel\FeedViewModel.cs" />
     <Compile Include="Model\Tweet.cs" />
     <Compile Include="ViewModel\VenueViewModel.cs" />
-    <Compile Include="Interfaces\IWiFIConfig.cs" />
     <Compile Include="ViewModel\ConferenceInfoViewModel.cs" />
     <Compile Include="Model\AppPage.cs" />
     <Compile Include="Interfaces\IToast.cs" />
@@ -78,8 +73,6 @@
     <Compile Include="Interfaces\IPushNotifications.cs" />
     <Compile Include="Services\ReminderService.cs" />
     <Compile Include="ViewModel\FeedbackViewModel.cs" />
-    <Compile Include="ViewModel\MiniHacksViewModel.cs" />
-    <Compile Include="ViewModel\MiniHackDetailsViewModel.cs" />
     <Compile Include="Interfaces\ILaunchTwitter.cs" />
     <Compile Include="ViewModel\EvaluationsViewModel.cs" />
     <Compile Include="ViewModel\CodeOfConductViewModel.cs" />
@@ -92,7 +85,6 @@
     <Compile Include="Model\Extensions\SpeakerExtensions.cs" />
     <Compile Include="Interfaces\IAppVersionProvider.cs" />
     <Compile Include="Interfaces\IPlatformSpecificExtension.cs" />
-    <Compile Include="Model\Extensions\MiniHackExtensions.cs" />
     <Compile Include="Interfaces\ITweetService.cs" />
     <Compile Include="Interfaces\IPlatformActionWrapper.cs" />
     <Compile Include="ViewModel\ConferenceFeedbackViewModel.cs" />

@@ -27,7 +27,6 @@ namespace XamarinEvolve.Clients.Portable
         public const string Logout = "Logout";
 		public const string GetSyncCode = "GetSyncCode";
 		public const string SyncWebToMobile = "SyncWebToMobile";
-        public const string FinishMiniHack = "FinishMiniHack";
     }
 
     public enum Severity

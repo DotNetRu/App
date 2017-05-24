@@ -13,20 +13,20 @@ namespace XamarinEvolve.DataStore.Azure
 {
     public class BaseStore<T> : IBaseStore<T> where T : class, IBaseDataObject, new()
     {
-        IStoreManager storeManager;
+        IStoreManager _storeManager;
 
         public virtual string Identifier => "Items";
 
-        IMobileServiceSyncTable<T> table;
+        IMobileServiceSyncTable<T> _table;
         protected IMobileServiceSyncTable<T> Table
         {
-            get { return table ?? (table = StoreManager.MobileService.GetSyncTable<T>()); }
+            get { return _table ?? (_table = StoreManager.MobileService.GetSyncTable<T>()); }
           
         }
 
         public void DropTable()
         {
-            table = null;
+            _table = null;
         }
 
         public BaseStore()
@@ -38,11 +38,11 @@ namespace XamarinEvolve.DataStore.Azure
 
         public async Task InitializeStore()
         {
-            if (storeManager == null)
-                storeManager = DependencyService.Get<IStoreManager>();
+            if (_storeManager == null)
+                _storeManager = DependencyService.Get<IStoreManager>();
 
-            if (!storeManager.IsInitialized)
-                await storeManager.InitializeAsync().ConfigureAwait(false);
+            if (!_storeManager.IsInitialized)
+                await _storeManager.InitializeAsync().ConfigureAwait(false);
         }
 
         public virtual async Task<IEnumerable<T>> GetItemsAsync(bool forceRefresh = false)

@@ -21,7 +21,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)SponsorLevel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FeaturedEvent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Notification.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)MiniHack.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ConferenceFeedback.cs" />
   </ItemGroup>
 </Project>

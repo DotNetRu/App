@@ -31,10 +31,6 @@ namespace XamarinEvolve.Clients.UI
 			{
 				items.Add(new MenuItem { Name = "Events", Icon = "menu_events.png", Page = AppPage.Events });
 			}
-			if (FeatureFlags.MiniHacksEnabled)
-			{
-				items.Add(new MenuItem { Name = "Mini-Hacks", Icon = "menu_hacks.png", Page = AppPage.MiniHacks });
-			}
 			if (FeatureFlags.SponsorsOnTabPage)
 			{
 				items.Add(new MenuItem { Name = "Sponsors", Icon = "menu_sponsors.png", Page = AppPage.Sponsors });
@@ -99,9 +95,6 @@ namespace XamarinEvolve.Clients.UI
                         break;
                     case AppPage.Events://events
                         pages.Add(menuId, new EvolveNavigationPage(new EventsPage()));
-                        break;
-                    case AppPage.MiniHacks://Mini-Hacks
-                        newPage = new EvolveNavigationPage(new MiniHacksPage());
                         break;
                     case AppPage.Sponsors://sponsors
                         newPage = new EvolveNavigationPage(new SponsorsPage());

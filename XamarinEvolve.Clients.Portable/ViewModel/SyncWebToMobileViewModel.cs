@@ -3,7 +3,6 @@ using Xamarin.Forms;
 using System.Threading.Tasks;
 using Plugin.Connectivity;
 using XamarinEvolve.DataStore.Abstractions;
-using FormsToolkit;
 using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.Clients.Portable
@@ -35,21 +34,6 @@ namespace XamarinEvolve.Clients.Portable
 			try
 			{
 				Logger.Track(EvolveLoggerKeys.SyncWebToMobile);
-
-				var ssoClient = DependencyService.Get<ISSOClient>();
-				await ssoClient.LogoutAsync();
-
-				// login with the new user Id obtained via the QR code scan
-				var account = await ssoClient.LoginAnonymouslyAsync(userId);
-				if (account != null)
-				{
-					Settings.Current.UserIdentifier = account.User.Email;
-
-					MessagingService.Current.SendMessage(MessageKeys.LoggedIn);
-					Logger.Track(EvolveLoggerKeys.LoginSuccess);
-
-					Settings.Current.FirstRun = false;
-				}
 
 				try
 				{

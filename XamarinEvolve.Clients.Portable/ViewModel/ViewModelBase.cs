@@ -38,33 +38,29 @@ namespace XamarinEvolve.Clients.Portable
 #else
             if (FeatureFlags.UseMocks) 
             {
-                DependencyService.Register<ISessionStore, XamarinEvolve.DataStore.Mock.SessionStore> ();
-                DependencyService.Register<IFavoriteStore, XamarinEvolve.DataStore.Mock.FavoriteStore> ();
-                DependencyService.Register<IFeedbackStore, XamarinEvolve.DataStore.Mock.FeedbackStore> ();
-				DependencyService.Register<IConferenceFeedbackStore, XamarinEvolve.DataStore.Mock.ConferenceFeedbackStore>();
-				DependencyService.Register<ISpeakerStore, XamarinEvolve.DataStore.Mock.SpeakerStore> ();
-                DependencyService.Register<ISponsorStore, XamarinEvolve.DataStore.Mock.SponsorStore> ();
-                DependencyService.Register<ICategoryStore, XamarinEvolve.DataStore.Mock.CategoryStore> ();
-                DependencyService.Register<IEventStore, XamarinEvolve.DataStore.Mock.EventStore> ();
-                DependencyService.Register<INotificationStore, XamarinEvolve.DataStore.Mock.NotificationStore> ();
-                DependencyService.Register<IMiniHacksStore, XamarinEvolve.DataStore.Mock.MiniHacksStore> ();
-                DependencyService.Register<ISSOClient, XamarinEvolve.Clients.Portable.Auth.XamarinSSOClient> ();
-                DependencyService.Register<IStoreManager, XamarinEvolve.DataStore.Mock.StoreManager> ();
+                DependencyService.Register<ISessionStore, DataStore.Mock.SessionStore> ();
+                DependencyService.Register<IFavoriteStore, DataStore.Mock.FavoriteStore> ();
+                DependencyService.Register<IFeedbackStore, DataStore.Mock.FeedbackStore> ();
+				DependencyService.Register<IConferenceFeedbackStore, DataStore.Mock.ConferenceFeedbackStore>();
+				DependencyService.Register<ISpeakerStore, DataStore.Mock.SpeakerStore> ();
+                DependencyService.Register<ISponsorStore, DataStore.Mock.SponsorStore> ();
+                DependencyService.Register<ICategoryStore, DataStore.Mock.CategoryStore> ();
+                DependencyService.Register<IEventStore, DataStore.Mock.EventStore> ();
+                DependencyService.Register<INotificationStore, DataStore.Mock.NotificationStore> ();
+                DependencyService.Register<IStoreManager, DataStore.Mock.StoreManager> ();
             } 
             else 
             {
-                DependencyService.Register<ISessionStore, XamarinEvolve.DataStore.Azure.SessionStore> ();
-                DependencyService.Register<IFavoriteStore, XamarinEvolve.DataStore.Azure.FavoriteStore> ();
-                DependencyService.Register<IFeedbackStore, XamarinEvolve.DataStore.Azure.FeedbackStore> ();
-				DependencyService.Register<IConferenceFeedbackStore, XamarinEvolve.DataStore.Azure.ConferenceFeedbackStore>();
-                DependencyService.Register<ISpeakerStore, XamarinEvolve.DataStore.Azure.SpeakerStore> ();
-                DependencyService.Register<ISponsorStore, XamarinEvolve.DataStore.Azure.SponsorStore> ();
-                DependencyService.Register<ICategoryStore, XamarinEvolve.DataStore.Azure.CategoryStore> ();
-                DependencyService.Register<IEventStore, XamarinEvolve.DataStore.Azure.EventStore> ();
-                DependencyService.Register<INotificationStore, XamarinEvolve.DataStore.Azure.NotificationStore> ();
-                DependencyService.Register<IMiniHacksStore, XamarinEvolve.DataStore.Azure.MiniHacksStore> ();
-                DependencyService.Register<ISSOClient, XamarinEvolve.Clients.Portable.Auth.Azure.XamarinSSOClient> ();
-                DependencyService.Register<IStoreManager, XamarinEvolve.DataStore.Azure.StoreManager> ();
+                DependencyService.Register<ISessionStore, DataStore.Azure.SessionStore> ();
+                DependencyService.Register<IFavoriteStore, DataStore.Azure.FavoriteStore> ();
+                DependencyService.Register<IFeedbackStore, DataStore.Azure.FeedbackStore> ();
+				DependencyService.Register<IConferenceFeedbackStore, DataStore.Azure.ConferenceFeedbackStore>();
+                DependencyService.Register<ISpeakerStore, DataStore.Azure.SpeakerStore> ();
+                DependencyService.Register<ISponsorStore, DataStore.Azure.SponsorStore> ();
+                DependencyService.Register<ICategoryStore, DataStore.Azure.CategoryStore> ();
+                DependencyService.Register<IEventStore, DataStore.Azure.EventStore> ();
+                DependencyService.Register<INotificationStore, DataStore.Azure.NotificationStore> ();
+                DependencyService.Register<IStoreManager, DataStore.Azure.StoreManager> ();
             }
 
 

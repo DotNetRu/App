@@ -94,61 +94,27 @@ namespace XamarinEvolve.Clients.UI
 					q?.OnCompleted?.Invoke(result);
 				});
 
-			MessagingService.Current.Subscribe(MessageKeys.NavigateLogin, async m =>
-				{
-					if (!FeatureFlags.LoginEnabled)
-					{
-						if (Device.OS == TargetPlatform.Android)
-						{
-							((RootPageAndroid)MainPage).IsPresented = false;
-						}
+		    MessagingService.Current.Subscribe(MessageKeys.NavigateLogin, async m =>
+		    {
+		        MessagingService.Current.SendMessage(MessageKeys.LoggedIn);
+		        Logger.Track(EvolveLoggerKeys.LoginSuccess);
 
-						Page page = null;
-						if (Settings.Current.FirstRun && Device.OS == TargetPlatform.Android)
-							page = new LoginPage();
-						else
-							page = new EvolveNavigationPage(new LoginPage());
+		        Settings.Current.FirstRun = false;
 
-
-						var nav = Application.Current?.MainPage?.Navigation;
-						if (nav == null)
-							return;
-
-						await NavigationService.PushModalAsync(nav, page);
-					}
-					else
-					{
-						var ssoClient = DependencyService.Get<ISSOClient>();
-
-						if (ssoClient != null)
-						{
-							var account = await ssoClient.LoginAnonymouslyAsync(null);
-							if (account != null)
-							{
-								Settings.Current.UserIdentifier = account.User.Email;
-
-								MessagingService.Current.SendMessage(MessageKeys.LoggedIn);
-								Logger.Track(EvolveLoggerKeys.LoginSuccess);
-
-								Settings.Current.FirstRun = false;
-							}
-
-							try
-							{
-								var storeManager = DependencyService.Get<IStoreManager>();
-								await storeManager.SyncAllAsync(Settings.Current.IsLoggedIn);
-								Settings.Current.LastSync = DateTime.UtcNow;
-								Settings.Current.HasSyncedData = true;
-							}
-							catch (Exception ex)
-							{
-								//if sync doesn't work don't worry it is alright we can recover later
-								Logger.Report(ex);
-							}
-							await Finish();
-						}
-					}
-				});
+		        try
+		        {
+		            var storeManager = DependencyService.Get<IStoreManager>();
+		            await storeManager.SyncAllAsync(Settings.Current.IsLoggedIn);
+		            Settings.Current.LastSync = DateTime.UtcNow;
+		            Settings.Current.HasSyncedData = true;
+		        }
+		        catch (Exception ex)
+		        {
+		            //if sync doesn't work don't worry it is alright we can recover later
+		            Logger.Report(ex);
+		        }
+		        await Finish();
+		    });
 
 			try
 			{
@@ -236,8 +202,7 @@ namespace XamarinEvolve.Clients.UI
 
 			//only if deep linking
 			if (!data.Contains($"/{AboutThisApp.SessionsSiteSubdirectory.ToLowerInvariant()}/") 
-			    && !data.Contains($"/{AboutThisApp.SpeakersSiteSubdirectory.ToLowerInvariant()}/")
-			    && !data.Contains($"/{AboutThisApp.MiniHacksSiteSubdirectory.ToLowerInvariant()}/"))
+			    && !data.Contains($"/{AboutThisApp.SpeakersSiteSubdirectory.ToLowerInvariant()}/"))
 				return;
 
 			var id = data.Substring(data.LastIndexOf("/", StringComparison.Ordinal) + 1);
@@ -248,10 +213,6 @@ namespace XamarinEvolve.Clients.UI
 				if (data.Contains($"/{AboutThisApp.SpeakersSiteSubdirectory.ToLowerInvariant()}/"))
 				{
 					destination = AppPage.Speaker;
-				}
-				if (data.Contains($"/{AboutThisApp.MiniHacksSiteSubdirectory.ToLowerInvariant()}/"))
-				{
-					destination = AppPage.MiniHack;
 				}
 				MessagingService.Current.SendMessage("DeepLinkPage", new DeepLinkPage
 				{

@@ -39,10 +39,6 @@ namespace XamarinEvolve.Clients.UI
 			{
 				Children.Add(new EvolveNavigationPage(new SponsorsPage()));
 			}
-			if (FeatureFlags.MiniHacksEnabled)
-			{
-				Children.Add(new EvolveNavigationPage(new MiniHacksPage()));
-			}
             Children.Add(new EvolveNavigationPage(new AboutPage()));
 
             MessagingService.Current.Subscribe<DeepLinkPage>("DeepLinkPage", async (m, p) =>
@@ -59,20 +55,6 @@ namespace XamarinEvolve.Clients.UI
                             Navigate(AppPage.Events);
                             await CurrentPage.Navigation.PopToRootAsync();
                             break;
-                        case AppPage.MiniHacks:
-                            Navigate(AppPage.MiniHacks);
-                            await CurrentPage.Navigation.PopToRootAsync();
-                            break;
-						case AppPage.MiniHack:
-							Navigate(AppPage.MiniHacks);
-							await CurrentPage.Navigation.PopToRootAsync();
-
-							var hack = await DependencyService.Get<IMiniHacksStore>().GetAppIndexMiniHack(p.Id);
-							if (hack == null)
-								break;
-
-							await CurrentPage.Navigation.PushAsync(new MiniHacksDetailsPage(hack));
-							break;
 						case AppPage.Session:
                             Navigate(AppPage.Sessions);
 							await CurrentPage.Navigation.PopToRootAsync();

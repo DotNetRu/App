@@ -32,7 +32,6 @@ namespace XamarinEvolve.iOS
 			public const string Tweet = AboutThisApp.PackageName + ".tweet";
             public const string Announcements = AboutThisApp.PackageName + ".announcements";
             public const string Events = AboutThisApp.PackageName + ".events";
-            public const string MiniHacks = AboutThisApp.PackageName + ".minihacks";
         }
 
 		internal static UIColor PrimaryColor = null;
@@ -334,11 +333,6 @@ namespace XamarinEvolve.iOS
                 case ShortcutIdentifier.Announcements:
                     Console.WriteLine("QUICKACTION: Accouncements");
                     ContinueNavigation(AppPage.Notification);
-                    handled = true;
-                    break;
-                case ShortcutIdentifier.MiniHacks:
-                    Console.WriteLine("QUICKACTION: MiniHacks");
-                    ContinueNavigation(AppPage.MiniHacks);
                     handled = true;
                     break;
                 case ShortcutIdentifier.Events:

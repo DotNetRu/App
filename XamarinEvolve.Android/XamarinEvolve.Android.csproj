@@ -382,7 +382,6 @@
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Renderers\ImageCellEx.cs" />
     <Compile Include="Renderers\SwitchCellEx.cs" />
-    <Compile Include="Helpers\WifiConfig.cs" />
     <Compile Include="Helpers\Toaster.cs" />
     <Compile Include="Notifications\GcmBroadcastReceiver.cs" />
     <Compile Include="Notifications\GcmService.cs" />

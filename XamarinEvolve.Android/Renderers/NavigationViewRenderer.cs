@@ -26,7 +26,6 @@ namespace XamarinEvolve.Droid
 			navView.Menu.FindItem(Resource.Id.nav_feed).SetTitle($"{EventInfo.EventName}");
 			navView.Menu.FindItem(Resource.Id.nav_speakers).SetVisible(FeatureFlags.SpeakersEnabled);
 			navView.Menu.FindItem(Resource.Id.nav_events).SetVisible(FeatureFlags.EventsEnabled);
-			navView.Menu.FindItem(Resource.Id.nav_mini_hacks).SetVisible(FeatureFlags.MiniHacksEnabled);
 			navView.Menu.FindItem(Resource.Id.nav_evals).SetVisible(FeatureFlags.EvalEnabled);
 			navView.Menu.FindItem(Resource.Id.nav_floor_map).SetVisible(FeatureFlags.FloormapEnabled);
 			navView.Menu.FindItem(Resource.Id.nav_conference_info).SetVisible(FeatureFlags.ConferenceInformationEnabled || FeatureFlags.CodeOfConductEnabled);
@@ -53,30 +52,10 @@ namespace XamarinEvolve.Droid
             profileImage = header.FindViewById<ImageView>(Resource.Id.profile_image);
             profileName = header.FindViewById<TextView>(Resource.Id.profile_name);
 
-			if (FeatureFlags.LoginEnabled)
-			{
-				profileImage.Click += (sender, e2) => NavigateToLogin();
-				profileName.Click += (sender, e2) => NavigateToLogin();
-
-				UpdateName();
-				UpdateImage();
-			}
-			else
-			{
-				profileImage.Visibility = ViewStates.Gone;
-				profileName.Visibility = ViewStates.Gone;
-			}
+			profileImage.Visibility = ViewStates.Gone;
+			profileName.Visibility = ViewStates.Gone;
 
             navView.SetCheckedItem(Resource.Id.nav_feed);
-        }
-
-        void NavigateToLogin()
-        {
-            if (Settings.Current.IsLoggedIn)
-                return;
-
-            XamarinEvolve.Clients.UI.App.Logger.TrackPage(AppPage.Login.ToString(), "navigation");
-            MessagingService.Current.SendMessage(MessageKeys.NavigateLogin);
         }
 
         void SettingsPropertyChanged (object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -144,9 +123,6 @@ namespace XamarinEvolve.Droid
                     break;
                 case Resource.Id.nav_conference_info:
                     id = (int)AppPage.ConferenceInfo;
-                    break;
-                case Resource.Id.nav_mini_hacks:
-                    id = (int)AppPage.MiniHacks;
                     break;
                 case Resource.Id.nav_settings:
                     id = (int)AppPage.Settings;

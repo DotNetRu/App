@@ -1,5 +1,4 @@
-﻿using System;
-using XamarinEvolve.DataStore.Abstractions;
+﻿using XamarinEvolve.DataStore.Abstractions;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -27,36 +26,32 @@ namespace XamarinEvolve.DataStore.Mock
             return Task.FromResult(true);
         }
 
-        INotificationStore notificationStore;
-        public INotificationStore NotificationStore => notificationStore ?? (notificationStore  = DependencyService.Get<INotificationStore>());
+        INotificationStore _notificationStore;
+        public INotificationStore NotificationStore => _notificationStore ?? (_notificationStore  = DependencyService.Get<INotificationStore>());
 
-        IMiniHacksStore miniHacksStore;
-        public IMiniHacksStore MiniHacksStore => miniHacksStore ?? (miniHacksStore  = DependencyService.Get<IMiniHacksStore>());
+        ICategoryStore _categoryStore;
+        public ICategoryStore CategoryStore => _categoryStore ?? (_categoryStore  = DependencyService.Get<ICategoryStore>());
 
+        IFavoriteStore _favoriteStore;
+        public IFavoriteStore FavoriteStore => _favoriteStore ?? (_favoriteStore  = DependencyService.Get<IFavoriteStore>());
 
-        ICategoryStore categoryStore;
-        public ICategoryStore CategoryStore => categoryStore ?? (categoryStore  = DependencyService.Get<ICategoryStore>());
+        IFeedbackStore _feedbackStore;
+        public IFeedbackStore FeedbackStore => _feedbackStore ?? (_feedbackStore  = DependencyService.Get<IFeedbackStore>());
 
-        IFavoriteStore favoriteStore;
-        public IFavoriteStore FavoriteStore => favoriteStore ?? (favoriteStore  = DependencyService.Get<IFavoriteStore>());
+		IConferenceFeedbackStore _conferenceFeedbackStore;
+		public IConferenceFeedbackStore ConferenceFeedbackStore => _conferenceFeedbackStore ?? (_conferenceFeedbackStore = DependencyService.Get<IConferenceFeedbackStore>());
 
-        IFeedbackStore feedbackStore;
-        public IFeedbackStore FeedbackStore => feedbackStore ?? (feedbackStore  = DependencyService.Get<IFeedbackStore>());
+        ISessionStore _sessionStore;
+        public ISessionStore SessionStore => _sessionStore ?? (_sessionStore  = DependencyService.Get<ISessionStore>());
 
-		IConferenceFeedbackStore conferenceFeedbackStore;
-		public IConferenceFeedbackStore ConferenceFeedbackStore => conferenceFeedbackStore ?? (conferenceFeedbackStore = DependencyService.Get<IConferenceFeedbackStore>());
+        ISpeakerStore _speakerStore;
+        public ISpeakerStore SpeakerStore => _speakerStore ?? (_speakerStore  = DependencyService.Get<ISpeakerStore>());
 
-        ISessionStore sessionStore;
-        public ISessionStore SessionStore => sessionStore ?? (sessionStore  = DependencyService.Get<ISessionStore>());
+        IEventStore _eventStore;
+        public IEventStore EventStore => _eventStore ?? (_eventStore = DependencyService.Get<IEventStore>());
 
-        ISpeakerStore speakerStore;
-        public ISpeakerStore SpeakerStore => speakerStore ?? (speakerStore  = DependencyService.Get<ISpeakerStore>());
-
-        IEventStore eventStore;
-        public IEventStore EventStore => eventStore ?? (eventStore = DependencyService.Get<IEventStore>());
-
-        ISponsorStore sponsorStore;
-        public ISponsorStore SponsorStore => sponsorStore ?? (sponsorStore  = DependencyService.Get<ISponsorStore>());
+        ISponsorStore _sponsorStore;
+        public ISponsorStore SponsorStore => _sponsorStore ?? (_sponsorStore  = DependencyService.Get<ISponsorStore>());
 
     }
 }
