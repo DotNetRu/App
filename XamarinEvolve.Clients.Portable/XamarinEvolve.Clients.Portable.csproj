@@ -65,8 +65,6 @@
     <Compile Include="Model\Extensions\EventExtensions.cs" />
     <Compile Include="ViewModel\FeedViewModel.cs" />
     <Compile Include="Model\Tweet.cs" />
-    <Compile Include="ViewModel\VenueViewModel.cs" />
-    <Compile Include="ViewModel\ConferenceInfoViewModel.cs" />
     <Compile Include="Model\AppPage.cs" />
     <Compile Include="Interfaces\IToast.cs" />
     <Compile Include="ViewModel\NotificationsViewModel.cs" />
@@ -75,7 +73,6 @@
     <Compile Include="ViewModel\FeedbackViewModel.cs" />
     <Compile Include="Interfaces\ILaunchTwitter.cs" />
     <Compile Include="ViewModel\EvaluationsViewModel.cs" />
-    <Compile Include="ViewModel\CodeOfConductViewModel.cs" />
     <Compile Include="Helpers\ColorConversion.cs" />
     <Compile Include="ViewModel\SyncMobileToWebViewModel.cs" />
     <Compile Include="ViewModel\SyncWebToMobileViewModel.cs" />
@@ -267,9 +264,6 @@
   <ItemGroup>
     <EmbeddedResource Include="sampletweets.txt">
       <LogicalName>sampletweets.txt</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="codeofconduct.txt">
-      <LogicalName>codeofconduct.txt</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

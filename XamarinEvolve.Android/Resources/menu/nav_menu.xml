@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
     <group android:id="@+id/nav_section_main"
         android:checkableBehavior="single">
         <item
@@ -39,19 +38,9 @@
                 android:title="Evaluations"
                 android:checkable="true" />
             <item
-                android:id="@+id/nav_venue"
-                android:icon="@drawable/menu_venue"
-                android:title="Venue"
-                android:checkable="true" />
-            <item
                 android:id="@+id/nav_floor_map"
                 android:icon="@drawable/menu_plan"
                 android:title="Floor Maps"
-                android:checkable="true" />
-            <item
-                android:id="@+id/nav_conference_info"
-                android:icon="@drawable/menu_info"
-                android:title="Conference Info"
                 android:checkable="true" />
             <item
                 android:title="Settings"

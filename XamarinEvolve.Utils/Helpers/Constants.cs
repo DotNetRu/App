@@ -8,8 +8,6 @@ namespace XamarinEvolve.Utils
 		public const string EventName = "TechDays";
 		public const string Address1 = "Europaplein 22";
 		public const string Address2 = "1078 GZ Amsterdam";
-		public const string VenueName = "RAI Amsterdam";
-		public const string VenuePhoneNumber = "+31 20 549 1212";
 		public const double Latitude = 52.340681d;
 		public const double Longitude = 4.889541d;
 		public const string TimeZoneName = "Europe/Amsterdam"; //https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
@@ -39,7 +37,6 @@ namespace XamarinEvolve.Utils
 		public const string SpeakersSiteSubdirectory = "Sprekers";
 		public const string SponsorsSiteSubdirectory = "Sponsors";
 		public const string Copyright = "Copyright 2016 - TechDays";
-		public const string CodeOfConductPageTitle = "Permission to be filmed";
 
 		public const string Credits = "The TechDays 2016 mobile apps were handcrafted by Xpirit, based on the great work done by Xamarin.\n\n" +
 			"Xpirit Team:\n" +

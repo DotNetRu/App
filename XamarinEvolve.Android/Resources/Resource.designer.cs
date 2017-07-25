@@ -3294,9 +3294,6 @@ namespace XamarinEvolve.Droid
 			// aapt resource value: 0x7f0b0021
 			public const int multiply = 2131427361;
 			
-			// aapt resource value: 0x7f0b00cf
-			public const int nav_conference_info = 2131427535;
-			
 			// aapt resource value: 0x7f0b00cc
 			public const int nav_evals = 2131427532;
 			
@@ -3306,8 +3303,8 @@ namespace XamarinEvolve.Droid
 			// aapt resource value: 0x7f0b00c6
 			public const int nav_feed = 2131427526;
 			
-			// aapt resource value: 0x7f0b00ce
-			public const int nav_floor_map = 2131427534;
+			// aapt resource value: 0x7f0b00cd
+			public const int nav_floor_map = 2131427533;
 			
 			// aapt resource value: 0x7f0b00ca
 			public const int nav_mini_hacks = 2131427530;
@@ -3318,17 +3315,14 @@ namespace XamarinEvolve.Droid
 			// aapt resource value: 0x7f0b00c7
 			public const int nav_sessions = 2131427527;
 			
-			// aapt resource value: 0x7f0b00d0
-			public const int nav_settings = 2131427536;
+			// aapt resource value: 0x7f0b00ce
+			public const int nav_settings = 2131427534;
 			
 			// aapt resource value: 0x7f0b00c8
 			public const int nav_speakers = 2131427528;
 			
 			// aapt resource value: 0x7f0b00cb
 			public const int nav_sponsors = 2131427531;
-			
-			// aapt resource value: 0x7f0b00cd
-			public const int nav_venue = 2131427533;
 			
 			// aapt resource value: 0x7f0b00b4
 			public const int nav_view = 2131427508;

@@ -114,12 +114,6 @@
     <Compile Include="Pages\Info\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Info\CodeOfConductPage.xaml.cs">
-      <DependentUpon>CodeOfConductPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Info\VenuePage.xaml.cs">
-      <DependentUpon>VenuePage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Pages\Events\EventDetailsPage.xaml.cs">
       <DependentUpon>EventDetailsPage.xaml</DependentUpon>
     </Compile>
@@ -157,9 +151,6 @@
     </Compile>
     <Compile Include="Pages\Home\NotificationsPage.xaml.cs">
       <DependentUpon>NotificationsPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Info\ConferenceInformationPage.xaml.cs">
-      <DependentUpon>ConferenceInformationPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Cells\SponsorCell.xaml.cs">
       <DependentUpon>SponsorCell.xaml</DependentUpon>
@@ -403,14 +394,6 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <LogicalName>SettingsPage.xaml</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pages\Info\CodeOfConductPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <LogicalName>CodeOfConductPage.xaml</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Pages\Info\VenuePage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <LogicalName>VenuePage.xaml</LogicalName>
-    </EmbeddedResource>
     <EmbeddedResource Include="Pages\Events\EventDetailsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <LogicalName>EventDetailsPage.xaml</LogicalName>
@@ -454,10 +437,6 @@
     <EmbeddedResource Include="Pages\Home\NotificationsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <LogicalName>NotificationsPage.xaml</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Pages\Info\ConferenceInformationPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <LogicalName>ConferenceInformationPage.xaml</LogicalName>
     </EmbeddedResource>
     <EmbeddedResource Include="Cells\SponsorCell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
