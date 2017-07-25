@@ -36,21 +36,11 @@ namespace XamarinEvolve.Clients.UI
       {
         items.Add(new MenuItem {Name = "Sponsors", Icon = "menu_sponsors.png", Page = AppPage.Sponsors});
       }
-      if (FeatureFlags.EvalEnabled)
-      {
-        items.Add(new MenuItem {Name = "Evaluations", Icon = "menu_evals.png", Page = AppPage.Evals});
-      }
 
-      if (FeatureFlags.FloormapEnabled)
-      {
-        items.Add(new MenuItem {Name = "Floor Maps", Icon = "menu_plan.png", Page = AppPage.FloorMap});
-      }
       items.Add(new MenuItem {Name = "Settings", Icon = "menu_settings.png", Page = AppPage.Settings});
-
 
       menu = new MenuPageUWP();
       menu.MenuList.ItemsSource = items;
-
 
       menu.MenuList.ItemSelected += (sender, args) =>
       {
@@ -94,12 +84,6 @@ namespace XamarinEvolve.Clients.UI
             break;
           case AppPage.Sponsors: //sponsors
             newPage = new EvolveNavigationPage(new SponsorsPage());
-            break;
-          case AppPage.Evals: //venue
-            newPage = new EvolveNavigationPage(new EvaluationsPage());
-            break;
-          case AppPage.FloorMap: //Floor Maps
-            newPage = new EvolveNavigationPage(new FloorMapsCarouselPage());
             break;
           case AppPage.Settings: //Settings
             newPage = new EvolveNavigationPage(new SettingsPage());

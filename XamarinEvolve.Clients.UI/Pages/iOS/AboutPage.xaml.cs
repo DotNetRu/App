@@ -21,28 +21,6 @@ namespace XamarinEvolve.Clients.UI
       ListViewInfo.HeightRequest = (vm.InfoItems.Count * ListViewInfo.RowHeight) - adjust;
 
       ListViewAccount.HeightRequest = (vm.AccountItems.Count * ListViewAccount.RowHeight) - adjust;
-      ListViewAccount.ItemSelected += async (sender, e) =>
-      {
-        var item = ListViewAccount.SelectedItem as XamarinEvolve.Clients.Portable.MenuItem;
-        if (item == null)
-          return;
-        Page page = null;
-        switch (item.Parameter)
-        {
-          case "mobiletowebsync":
-            page = new SyncMobileToWebPage();
-            break;
-          case "webtomobilesync":
-            page = new SyncWebToMobilePage();
-            break;
-        }
-        ListViewAccount.SelectedItem = null;
-
-        if (page == null)
-          return;
-
-        await NavigationService.PushAsync(Navigation, page);
-      };
 
       ListViewAbout.ItemSelected += async (sender, e) =>
       {
@@ -62,15 +40,8 @@ namespace XamarinEvolve.Clients.UI
         Page page = null;
         switch (item.Parameter)
         {
-          case "evaluations":
-            page = new EvaluationsPage();
-            break;
           case "sponsors":
             page = new SponsorsPage();
-            break;
-          case "floor-maps":
-            App.Logger.TrackPage(AppPage.FloorMap.ToString());
-            page = new FloorMapsCarouselPage();
             break;
         }
 

@@ -27,8 +27,6 @@ namespace XamarinEvolve.Droid
       navView.Menu.FindItem(Resource.Id.nav_feed).SetTitle($"{EventInfo.EventName}");
       navView.Menu.FindItem(Resource.Id.nav_speakers).SetVisible(FeatureFlags.SpeakersEnabled);
       navView.Menu.FindItem(Resource.Id.nav_events).SetVisible(FeatureFlags.EventsEnabled);
-      navView.Menu.FindItem(Resource.Id.nav_evals).SetVisible(FeatureFlags.EvalEnabled);
-      navView.Menu.FindItem(Resource.Id.nav_floor_map).SetVisible(FeatureFlags.FloormapEnabled);
     }
 
     protected override void OnElementChanged(ElementChangedEventArgs<XamarinEvolve.Clients.UI.NavigationView> e)
@@ -116,14 +114,8 @@ namespace XamarinEvolve.Droid
         case Resource.Id.nav_sponsors:
           id = (int) AppPage.Sponsors;
           break;
-        case Resource.Id.nav_floor_map:
-          id = (int) AppPage.FloorMap;
-          break;
         case Resource.Id.nav_settings:
           id = (int) AppPage.Settings;
-          break;
-        case Resource.Id.nav_evals:
-          id = (int) AppPage.Evals;
           break;
       }
       this.Element.OnNavigationItemSelected(new XamarinEvolve.Clients.UI.NavigationItemSelectedEventArgs

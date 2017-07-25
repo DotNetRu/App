@@ -45,18 +45,12 @@
     <DefineConstants>MOBILE;ENABLE_TEST_CLOUD</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Cells\FloorMapCell.xaml.cs">
-      <DependentUpon>FloorMapCell.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\RatingControl.xaml.cs">
       <DependentUpon>RatingControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Effects\ShadowEffect.cs" />
     <Compile Include="Pages\Home\ConferenceFeedbackPage.xaml.cs">
       <DependentUpon>ConferenceFeedbackPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Info\FloorMapsCarouselPage.xaml.cs">
-      <DependentUpon>FloorMapsCarouselPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Speakers\SpeakerDetailsPageUWP.xaml.cs">
       <DependentUpon>SpeakerDetailsPageUWP.xaml</DependentUpon>
@@ -165,19 +159,7 @@
     <Compile Include="Controls\AlwaysScrollView.cs" />
     <Compile Include="Controls\FavoriteImage.cs" />
     <Compile Include="Controls\PinchToZoomContainer.cs" />
-    <Compile Include="Pages\Sessions\EvaluationsPage.xaml.cs">
-      <DependentUpon>EvaluationsPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Info\FloorMapPage.xaml.cs">
-      <DependentUpon>FloorMapPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\WrapLayout.cs" />
-    <Compile Include="Pages\Info\SyncMobileToWebPage.xaml.cs">
-      <DependentUpon>SyncMobileToWebPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Info\SyncWebToMobilePage.xaml.cs">
-      <DependentUpon>SyncWebToMobilePage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Pages\Speakers\SpeakersPage.xaml.cs">
       <DependentUpon>SpeakersPage.xaml</DependentUpon>
     </Compile>
@@ -450,22 +432,6 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <LogicalName>FeedbackPage.xaml</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pages\Sessions\EvaluationsPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <LogicalName>EvaluationsPage.xaml</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Pages\Info\FloorMapPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <LogicalName>FloorMapPage.xaml</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Pages\Info\SyncMobileToWebPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <LogicalName>SyncMobileToWebPage.xaml</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Pages\Info\SyncWebToMobilePage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <LogicalName>SyncWebToMobilePage.xaml</LogicalName>
-    </EmbeddedResource>
     <EmbeddedResource Include="Pages\Speakers\SpeakersPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <LogicalName>SpeakersPage.xaml</LogicalName>
@@ -481,20 +447,6 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
       <LogicalName>MenuPageUWP.xaml</LogicalName>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Cells\FloorMapCell.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-      <LogicalName>FloorMapCell.xaml</LogicalName>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Pages\Info\FloorMapsCarouselPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-      <LogicalName>FloorMapsCarouselPage.xaml</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -26,17 +26,7 @@ namespace XamarinEvolve.Clients.Portable
       {
         InfoItems.Add(new MenuItem {Name = "Sponsors", Icon = "icon_venue.png", Parameter = "sponsors"});
       }
-      if (FeatureFlags.EvalEnabled)
-      {
-        InfoItems.Add(new MenuItem {Name = "Evaluations", Icon = "icon_venue.png", Parameter = "evaluations"});
-      }
 
-      InfoItems.Add(new MenuItem {Name = "Venue", Icon = "icon_venue.png", Parameter = "venue"});
-
-      if (FeatureFlags.FloormapEnabled)
-      {
-        InfoItems.Add(new MenuItem {Name = "Conference Floor Maps", Icon = "icon_venue.png", Parameter = "floor-maps"});
-      }
       accountItem = new MenuItem
       {
         Name = "Logged in as:"

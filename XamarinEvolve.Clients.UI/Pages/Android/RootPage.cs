@@ -56,14 +56,8 @@ namespace XamarinEvolve.Clients.UI
           case (int) AppPage.Sponsors: //sponsors
             newPage = new EvolveNavigationPage(new SponsorsPage());
             break;
-          case (int) AppPage.FloorMap: //Floor Maps
-            newPage = new EvolveNavigationPage(new FloorMapsCarouselPage());
-            break;
           case (int) AppPage.Settings: //Settings
             newPage = new EvolveNavigationPage(new SettingsPage());
-            break;
-          case (int) AppPage.Evals:
-            newPage = new EvolveNavigationPage(new EvaluationsPage());
             break;
         }
       }

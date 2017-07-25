@@ -72,10 +72,7 @@
     <Compile Include="Services\ReminderService.cs" />
     <Compile Include="ViewModel\FeedbackViewModel.cs" />
     <Compile Include="Interfaces\ILaunchTwitter.cs" />
-    <Compile Include="ViewModel\EvaluationsViewModel.cs" />
     <Compile Include="Helpers\ColorConversion.cs" />
-    <Compile Include="ViewModel\SyncMobileToWebViewModel.cs" />
-    <Compile Include="ViewModel\SyncWebToMobileViewModel.cs" />
     <Compile Include="ViewModel\SpeakersViewModel.cs" />
     <Compile Include="Interfaces\ILaunchFacebook.cs" />
     <Compile Include="Interfaces\IProvidePageInfo.cs" />

@@ -26,21 +26,10 @@
 
      <item android:title="Information" >
         <menu>
-
             <item
                 android:id="@+id/nav_sponsors"
                 android:icon="@drawable/menu_sponsors"
                 android:title="Sponsors"
-                android:checkable="true" />
-            <item
-                android:id="@+id/nav_evals"
-                android:icon="@drawable/menu_evals"
-                android:title="Evaluations"
-                android:checkable="true" />
-            <item
-                android:id="@+id/nav_floor_map"
-                android:icon="@drawable/menu_plan"
-                android:title="Floor Maps"
                 android:checkable="true" />
             <item
                 android:title="Settings"

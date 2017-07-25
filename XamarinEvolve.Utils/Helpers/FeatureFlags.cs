@@ -8,8 +8,6 @@
 		public static bool SpeakersEnabled => true;
 		public static bool SponsorsOnTabPage => false;
 
-		public static bool EvalEnabled => false;
-		public static bool FloormapEnabled => true;
 		public static bool AppLinksEnabled => true;
 		public static bool AppToWebLinkingEnabled => true;
 		public static bool ShowLocationInSessionCell => true;
