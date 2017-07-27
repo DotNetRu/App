@@ -45,7 +45,6 @@
         <image name="profile_pic_shadow.png" width="375" height="170"/>
         <image name="quickaction_announcements.png" width="34.6666679" height="34.6666679"/>
         <image name="quickaction_events.png" width="34.6666679" height="34.6666679"/>
-        <image name="quickaction_mini-hacks.png" width="34.6666679" height="34.6666679"/>
         <image name="quickaction_tweet.png" width="34.6666679" height="34.6666679"/>
         <image name="tab_about.png" width="32" height="30"/>
         <image name="tab_about_selected.png" width="32" height="30"/>
@@ -53,8 +52,6 @@
         <image name="tab_events_selected.png" width="32" height="30"/>
         <image name="tab_feed.png" width="32" height="30"/>
         <image name="tab_feed_selected.png" width="32" height="30"/>
-        <image name="tab_minihacks.png" width="32" height="30"/>
-        <image name="tab_minihacks_selected.png" width="32" height="30"/>
         <image name="tab_sessions.png" width="32" height="30"/>
         <image name="tab_sessions_selected.png" width="32" height="30"/>
         <image name="toolbar_overflow.png" width="20" height="26"/>

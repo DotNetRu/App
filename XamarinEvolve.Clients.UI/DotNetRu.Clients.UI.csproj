@@ -172,9 +172,9 @@
   <Import Project="..\packages\Xamarin.Forms.2.1.0.6508-pre3\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.1.0.6508-pre3\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
   <Import Project="..\packages\Xamarin.Forms.2.3.0.34-pre1\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.0.34-pre1\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
   <ItemGroup>
-    <ProjectReference Include="..\XamarinEvolve.Clients.Portable\XamarinEvolve.Clients.Portable.csproj">
+    <ProjectReference Include="..\XamarinEvolve.Clients.Portable\DotNetRu.Clients.Portable.csproj">
       <Project>{434442F3-9AF2-4A19-9151-EFBD731BD367}</Project>
-      <Name>XamarinEvolve.Clients.Portable</Name>
+      <Name>DotNetRu.Clients.Portable</Name>
     </ProjectReference>
     <ProjectReference Include="..\XamarinEvolve.DataStore.Abstractions\XamarinEvolve.DataStore.Abstractions.csproj">
       <Project>{50542AC8-CD37-4E51-B946-B85049D6EC11}</Project>
@@ -188,9 +188,9 @@
       <Project>{4DF18ED7-0E19-4866-8D9B-B1CB5C86A366}</Project>
       <Name>XamarinEvolve.DataStore.Mock</Name>
     </ProjectReference>
-    <ProjectReference Include="..\XamarinEvolve.Utils\XamarinEvolve.Utils.csproj">
+    <ProjectReference Include="..\XamarinEvolve.Utils\DotNetRu.Utils.csproj">
       <Project>{dfa0f0f6-c396-412e-86a9-e9095f71cc36}</Project>
-      <Name>XamarinEvolve.Utils</Name>
+      <Name>DotNetRu.Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

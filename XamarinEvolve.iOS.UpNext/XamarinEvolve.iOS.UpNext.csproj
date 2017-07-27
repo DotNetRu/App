@@ -29,7 +29,8 @@
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
     <MtouchTlsProvider>Default</MtouchTlsProvider>
     <DeviceSpecificBuild>false</DeviceSpecificBuild>
-    <CodesignProvision></CodesignProvision>
+    <CodesignProvision>
+    </CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>pdbonly</DebugType>
@@ -131,9 +132,9 @@
     <Compile Include="Helpers\UIColorExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\XamarinEvolve.Utils\XamarinEvolve.Utils.csproj">
+    <ProjectReference Include="..\XamarinEvolve.Utils\DotNetRu.Utils.csproj">
       <Project>{DFA0F0F6-C396-412E-86A9-E9095F71CC36}</Project>
-      <Name>XamarinEvolve.Utils</Name>
+      <Name>DotNetRu.Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="..\XamarinEvolve.DataObjects\XamarinEvolve.Backend.Shared.projitems" Label="Shared" />

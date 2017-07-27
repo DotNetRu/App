@@ -18,10 +18,6 @@
             android:id="@+id/nav_events"
             android:icon="@drawable/menu_events"
             android:title="Events" />
-        <item
-            android:title="Mini-hacks"
-            android:icon="@drawable/menu_hacks"
-            android:id="@+id/nav_mini_hacks" />
     </group>
 
      <item android:title="Information" >

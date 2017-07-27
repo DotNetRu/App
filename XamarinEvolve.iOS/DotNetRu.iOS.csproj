@@ -7,9 +7,9 @@
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <ProjectGuid>{22F77CDE-8816-45D7-A7A1-CA9282145F0A}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>XamarinEvolve.iOS</RootNamespace>
+    <RootNamespace>DotNetRu.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>XamarinEvolveiOS</AssemblyName>
+    <AssemblyName>DotNetRu.iOS</AssemblyName>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
   </PropertyGroup>
@@ -131,7 +131,7 @@
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\XamarinEvolveiOS.XML</DocumentationFile>
+    <DocumentationFile>bin\Debug\DotNetRu.iOS.xml</DocumentationFile>
     <OutputPath>bin\Debug</OutputPath>
     <WarningLevel>4</WarningLevel>
     <Optimize>false</Optimize>
@@ -558,21 +558,21 @@
     </ImageAsset>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\XamarinEvolve.Clients.Portable\XamarinEvolve.Clients.Portable.csproj">
+    <ProjectReference Include="..\XamarinEvolve.Clients.Portable\DotNetRu.Clients.Portable.csproj">
       <Project>{434442F3-9AF2-4A19-9151-EFBD731BD367}</Project>
-      <Name>XamarinEvolve.Clients.Portable</Name>
+      <Name>DotNetRu.Clients.Portable</Name>
     </ProjectReference>
-    <ProjectReference Include="..\XamarinEvolve.Clients.UI\XamarinEvolve.Clients.UI.csproj">
+    <ProjectReference Include="..\XamarinEvolve.Clients.UI\DotNetRu.Clients.UI.csproj">
       <Project>{CD2623BD-3609-4BE9-80EF-0974F3A1A27D}</Project>
-      <Name>XamarinEvolve.Clients.UI</Name>
+      <Name>DotNetRu.Clients.UI</Name>
     </ProjectReference>
     <ProjectReference Include="..\XamarinEvolve.DataStore.Abstractions\XamarinEvolve.DataStore.Abstractions.csproj">
       <Project>{50542AC8-CD37-4E51-B946-B85049D6EC11}</Project>
       <Name>XamarinEvolve.DataStore.Abstractions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\XamarinEvolve.Utils\XamarinEvolve.Utils.csproj">
+    <ProjectReference Include="..\XamarinEvolve.Utils\DotNetRu.Utils.csproj">
       <Project>{dfa0f0f6-c396-412e-86a9-e9095f71cc36}</Project>
-      <Name>XamarinEvolve.Utils</Name>
+      <Name>DotNetRu.Utils</Name>
     </ProjectReference>
     <ProjectReference Include="..\XamarinEvolve.iOS.UpNext\XamarinEvolve.iOS.UpNext.csproj">
       <IsAppExtension>true</IsAppExtension>

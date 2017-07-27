@@ -12,7 +12,7 @@ using XamarinEvolve.Utils;
 
 [assembly: ExportRenderer(typeof(XamarinEvolve.Clients.UI.NavigationView), typeof(NavigationViewRenderer))]
 
-namespace XamarinEvolve.Droid
+namespace DotNetRu.Droid
 {
   public class NavigationViewRenderer : ViewRenderer<XamarinEvolve.Clients.UI.NavigationView, NavigationView>
   {
@@ -101,9 +101,6 @@ namespace XamarinEvolve.Droid
       {
         case Resource.Id.nav_feed:
           id = (int) AppPage.Feed;
-          break;
-        case Resource.Id.nav_sessions:
-          id = (int) AppPage.Sessions;
           break;
         case Resource.Id.nav_speakers:
           id = (int) AppPage.Speakers;

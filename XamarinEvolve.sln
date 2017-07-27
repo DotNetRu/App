@@ -1,19 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26403.7
+VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Targets", "Targets", "{B3B306B8-9A3D-4CD6-81FD-9C9EAB3C5788}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamarinEvolve.Android", "XamarinEvolve.Android\XamarinEvolve.Android.csproj", "{C4B4592F-6AC4-4FE6-B63E-5D2DE47FD340}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetRu.Android", "XamarinEvolve.Android\DotNetRu.Android.csproj", "{C4B4592F-6AC4-4FE6-B63E-5D2DE47FD340}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamarinEvolve.iOS", "XamarinEvolve.iOS\XamarinEvolve.iOS.csproj", "{22F77CDE-8816-45D7-A7A1-CA9282145F0A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetRu.iOS", "XamarinEvolve.iOS\DotNetRu.iOS.csproj", "{22F77CDE-8816-45D7-A7A1-CA9282145F0A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend", "Backend", "{8D118106-3CF2-4674-978C-C9133AD91F39}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamarinEvolve.Clients.Portable", "XamarinEvolve.Clients.Portable\XamarinEvolve.Clients.Portable.csproj", "{434442F3-9AF2-4A19-9151-EFBD731BD367}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetRu.Clients.Portable", "XamarinEvolve.Clients.Portable\DotNetRu.Clients.Portable.csproj", "{434442F3-9AF2-4A19-9151-EFBD731BD367}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamarinEvolve.Clients.UI", "XamarinEvolve.Clients.UI\XamarinEvolve.Clients.UI.csproj", "{CD2623BD-3609-4BE9-80EF-0974F3A1A27D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetRu.Clients.UI", "XamarinEvolve.Clients.UI\DotNetRu.Clients.UI.csproj", "{CD2623BD-3609-4BE9-80EF-0974F3A1A27D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamarinEvolve.DataStore.Abstractions", "XamarinEvolve.DataStore.Abstractions\XamarinEvolve.DataStore.Abstractions.csproj", "{50542AC8-CD37-4E51-B946-B85049D6EC11}"
 EndProject
@@ -25,9 +25,9 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "XamarinEvolve.DataObjects",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{DC9BA4C6-1267-449A-95F2-AB7A8B53F65D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamarinEvolve.Utils", "XamarinEvolve.Utils\XamarinEvolve.Utils.csproj", "{DFA0F0F6-C396-412E-86A9-E9095F71CC36}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetRu.Utils", "XamarinEvolve.Utils\DotNetRu.Utils.csproj", "{DFA0F0F6-C396-412E-86A9-E9095F71CC36}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "XamarinEvolve.Shared", "XamarinEvolve.Shared\XamarinEvolve.Shared.shproj", "{B994592A-84E5-4595-B02D-D2FE99116852}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "DotNetRu.Shared", "XamarinEvolve.Shared\DotNetRu.Shared.shproj", "{B994592A-84E5-4595-B02D-D2FE99116852}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "iOS Extensions", "iOS Extensions", "{A5CD4234-9303-494B-B975-C005713A885F}"
 EndProject

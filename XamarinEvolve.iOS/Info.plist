@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleIdentifier</key>
-	<string>com.yourcompany.conference</string>
+	<string>com.dotnetru.ios</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0.0</string>
 	<key>CFBundleVersion</key>
@@ -61,14 +61,6 @@
 			<string>com.xpirit.techdays.announcements</string>
 			<key>UIApplicationShortcutItemIconFile</key>
 			<string>quickaction_announcements</string>
-		</dict>
-		<dict>
-			<key>UIApplicationShortcutItemTitle</key>
-			<string>Mini-Hacks</string>
-			<key>UIApplicationShortcutItemType</key>
-			<string>com.xpirit.techdays.minihacks</string>
-			<key>UIApplicationShortcutItemIconFile</key>
-			<string>quickaction_mini-hacks</string>
 		</dict>
 	</array>
 	<key>UILaunchImages</key>
@@ -142,8 +134,6 @@
 		<string>fetch</string>
 		<string>remote-notification</string>
 	</array>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>This app uses bar code scanning to unlock Mini-Hacks or sync data with the website, so it needs access to your device&apos;s photo capabilities.</string>
 	<key>NSCalendarsUsageDescription</key>
 	<string>This app allows you to add/remove conference sessions in your calendar.</string>
 	<key>NSUserActivityTypes</key>
@@ -153,13 +143,9 @@
 		<string>com.xpirit.techdays.speaker</string>
 		<string>com.xpirit.techdays.sessions</string>
 		<string>com.xpirit.techdays.speakers</string>
-		<string>com.xpirit.techdays.minihacks</string>
-		<string>com.xpirit.techdays.minihack</string>
 	</array>
 	<key>CFBundleDisplayName</key>
-	<string>TechDays 16</string>
-	<key>NSCameraUsageDescription</key>
-	<string>This app uses bar code scanning to unlock Mini-Hacks or sync data with the website, so it needs access to your device&apos;s photo capabilities.</string>
+	<string>DotNetRu App</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 </dict>

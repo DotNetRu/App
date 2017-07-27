@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="1.0.0" package="com.yourcompany.conference" android:versionCode="1">
-	<uses-sdk android:minSdkVersion="16" />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="1.0.0" package="com.dotnetru.droid" android:versionCode="1" android:installLocation="auto">
+	<uses-sdk android:minSdkVersion="21" />
 	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-	<application android:icon="@drawable/newicon" android:theme="@style/MyTheme" android:label="TechDays 16">
+	<application android:icon="@drawable/newicon" android:theme="@style/MyTheme" android:label="DotNetRu App">
 		<meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="GOOGLE_MAPS_API_KEY" />
 	</application>
 </manifest>

@@ -6,7 +6,7 @@
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <ProjectGuid>{C4B4592F-6AC4-4FE6-B63E-5D2DE47FD340}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>XamarinEvolve.Droid</RootNamespace>
+    <RootNamespace>DotNetRu.Droid</RootNamespace>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
@@ -395,7 +395,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Resources\AboutResources.txt" />
     <None Include="Properties\AndroidManifest.xml" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="packages.config">
@@ -495,7 +494,9 @@
     <AndroidResource Include="Resources\values\styles.xml" />
     <AndroidResource Include="Resources\values-v21\styles.xml" />
     <AndroidResource Include="Resources\layout\tabs.axml" />
-    <AndroidResource Include="Resources\menu\nav_menu.xml" />
+    <AndroidResource Include="Resources\menu\nav_menu.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\layout\nav_view.axml" />
     <AndroidResource Include="Resources\layout\drawer_header.axml" />
     <AndroidResource Include="Resources\drawable-hdpi\heart_empty.png" />
@@ -633,21 +634,21 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <ItemGroup>
-    <ProjectReference Include="..\XamarinEvolve.Clients.Portable\XamarinEvolve.Clients.Portable.csproj">
+    <ProjectReference Include="..\XamarinEvolve.Clients.Portable\DotNetRu.Clients.Portable.csproj">
       <Project>{434442F3-9AF2-4A19-9151-EFBD731BD367}</Project>
-      <Name>XamarinEvolve.Clients.Portable</Name>
+      <Name>DotNetRu.Clients.Portable</Name>
     </ProjectReference>
-    <ProjectReference Include="..\XamarinEvolve.Clients.UI\XamarinEvolve.Clients.UI.csproj">
+    <ProjectReference Include="..\XamarinEvolve.Clients.UI\DotNetRu.Clients.UI.csproj">
       <Project>{CD2623BD-3609-4BE9-80EF-0974F3A1A27D}</Project>
-      <Name>XamarinEvolve.Clients.UI</Name>
+      <Name>DotNetRu.Clients.UI</Name>
     </ProjectReference>
     <ProjectReference Include="..\XamarinEvolve.DataStore.Abstractions\XamarinEvolve.DataStore.Abstractions.csproj">
       <Project>{50542AC8-CD37-4E51-B946-B85049D6EC11}</Project>
       <Name>XamarinEvolve.DataStore.Abstractions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\XamarinEvolve.Utils\XamarinEvolve.Utils.csproj">
+    <ProjectReference Include="..\XamarinEvolve.Utils\DotNetRu.Utils.csproj">
       <Project>{dfa0f0f6-c396-412e-86a9-e9095f71cc36}</Project>
-      <Name>XamarinEvolve.Utils</Name>
+      <Name>DotNetRu.Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

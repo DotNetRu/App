@@ -23,8 +23,6 @@
 		Filter,
 		Information,
 		Tweet,
-		SyncMobileToWeb,
-		SyncWebToMobile,
 		Feedback,
 		ConferenceFeedback,
 	}

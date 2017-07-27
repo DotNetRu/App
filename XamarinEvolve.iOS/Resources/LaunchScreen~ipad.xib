@@ -53,8 +53,6 @@
         <image name="tab_events_selected.png" width="32" height="30"/>
         <image name="tab_feed.png" width="32" height="30"/>
         <image name="tab_feed_selected.png" width="32" height="30"/>
-        <image name="tab_minihacks.png" width="32" height="30"/>
-        <image name="tab_minihacks_selected.png" width="32" height="30"/>
         <image name="tab_sessions.png" width="32" height="30"/>
         <image name="tab_sessions_selected.png" width="32" height="30"/>
         <image name="toolbar_overflow.png" width="20" height="26"/>
