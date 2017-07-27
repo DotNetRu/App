@@ -402,17 +402,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\ic_notification.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\floor_1.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\floor_2.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\floor_1.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\floor_2.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\floor_1.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\floor_2.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\floor_1.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\floor_2.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\floor_1.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\floor_2.png" />
     <AndroidResource Include="Resources\values\strings.xml" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_evals.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_evals.png" />
@@ -422,16 +411,7 @@
     <AndroidResource Include="Resources\drawable-hdpi\menu_evals.png" />
     <AndroidResource Include="Resources\drawable-mdpi\menu_evals.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\menu_evals.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\menu_evals.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\menu_evals.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\newicon.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\newicon.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\newicon.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\newicon.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\newicon.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\hotel_logo.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\hotel_logo.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\heroplaceholder.png" />
     <AndroidResource Include="Resources\drawable-hdpi\icon_linkapptoweb.png" />
     <AndroidResource Include="Resources\drawable-mdpi\icon_linkapptoweb.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\icon_linkapptoweb.png" />
@@ -535,20 +515,16 @@
     <AndroidResource Include="Resources\drawable-xhdpi\menu_settings.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\toolbar_filter.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\toolbar_share.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\menu_hacks.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\menu_sponsors.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\menu_events.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\menu_venue.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\menu_feed.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\menu_info.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\menu_sessions.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\menu_settings.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\toolbar_filter.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\toolbar_share.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\menu_hacks.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\menu_sponsors.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\menu_events.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\menu_venue.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\menu_feed.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\menu_info.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\menu_sessions.png" />
@@ -571,33 +547,26 @@
     <AndroidResource Include="Resources\drawable-xhdpi\toolbar_close.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\toolbar_close.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\toolbar_close.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\hotel_logo.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\hotel_logo.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\hotel_logo.png" />
     <AndroidResource Include="Resources\drawable-hdpi\profile_generic.png" />
     <AndroidResource Include="Resources\drawable-mdpi\profile_generic.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\profile_generic.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\profile_generic.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\profile_generic.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\heroplaceholder.png" />
     <AndroidResource Include="Resources\drawable-hdpi\icon_blog.png" />
     <AndroidResource Include="Resources\drawable-hdpi\icon_linkedin.png" />
     <AndroidResource Include="Resources\drawable-hdpi\icon_twitter.png" />
     <AndroidResource Include="Resources\drawable-hdpi\icon_website.png" />
     <AndroidResource Include="Resources\drawable-hdpi\profile_generic_big.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\heroplaceholder.png" />
     <AndroidResource Include="Resources\drawable-mdpi\icon_blog.png" />
     <AndroidResource Include="Resources\drawable-mdpi\icon_linkedin.png" />
     <AndroidResource Include="Resources\drawable-mdpi\icon_twitter.png" />
     <AndroidResource Include="Resources\drawable-mdpi\icon_website.png" />
     <AndroidResource Include="Resources\drawable-mdpi\profile_generic_big.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\heroplaceholder.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\icon_blog.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\icon_linkedin.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\icon_twitter.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\icon_website.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\profile_generic_big.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\heroplaceholder.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\icon_blog.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\icon_linkedin.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\icon_twitter.png" />
@@ -608,12 +577,6 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\icon_twitter.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\icon_website.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\profile_generic_big.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\logo_launchscreen.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\logo_launchscreen.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\logo_launchscreen.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\logo_launchscreen.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\logo_launchscreen.png" />
-    <AndroidResource Include="Resources\drawable\background_splash.axml" />
     <AndroidResource Include="Resources\drawable-xhdpi\icon_sessions_big_purple.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\icon_sessions_big_purple.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\icon_sessions_big_purple.png" />
@@ -665,18 +628,6 @@
     </XamarinComponentReference>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-mdpi\ic_notification.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_notification.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_notification.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_notification.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable-mdpi\heart_empty.png" />
   </ItemGroup>
   <ItemGroup>
@@ -702,21 +653,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xxxhdpi\icon_paperclip.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\floor_3.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-mdpi\floor_3.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\floor_3.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\floor_3.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\floor_3.png" />
   </ItemGroup>
   <Import Project="..\DotNetRu.Shared\DotNetRu.Shared.projitems" Label="Shared" />
   <Import Project="..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets')" />

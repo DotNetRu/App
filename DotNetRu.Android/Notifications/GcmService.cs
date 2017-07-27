@@ -150,7 +150,8 @@ namespace XamarinEvolve.Droid
                     .SetContentTitle(EventInfo.EventName)
                     .SetAutoCancel(true)
                     .SetStyle(style)
-                    .SetSmallIcon(Resource.Drawable.ic_notification)
+                    // TODO replace icon
+                    .SetSmallIcon(Resource.Drawable.ic_launcher)
                     .SetContentText(message);
                 //.Extend(wearableExtender);
 

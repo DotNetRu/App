@@ -40,8 +40,6 @@
          which is used to tint widgets -->
     <item name="colorAccent">@color/accent</item>
    </style>
-   <style name="SplashTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:windowBackground">@drawable/background_splash</item>
-    </style>
-
+  <style name="SplashTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
+  </style>
 </resources>

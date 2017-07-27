@@ -4,7 +4,7 @@
 	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-	<application android:icon="@drawable/newicon" android:theme="@style/MyTheme" android:label="DotNetRu App">
+	<application android:icon="@drawable/ic_launcher" android:theme="@style/MyTheme" android:label="DotNetRu App">
 		<meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="GOOGLE_MAPS_API_KEY" />
 	</application>
 </manifest>
