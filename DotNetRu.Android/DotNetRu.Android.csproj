@@ -355,14 +355,6 @@
       <HintPath>..\packages\ZXing.Net.Mobile.2.1.47\lib\MonoAndroid403\ZXing.Net.Mobile.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ZXing.Net.Mobile.Forms, Version=2.1.47.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ZXing.Net.Mobile.Forms.2.1.47\lib\MonoAndroid403\ZXing.Net.Mobile.Forms.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="ZXing.Net.Mobile.Forms.Android, Version=2.1.47.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ZXing.Net.Mobile.Forms.2.1.47\lib\MonoAndroid403\ZXing.Net.Mobile.Forms.Android.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="zxing.portable, Version=2.1.47.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ZXing.Net.Mobile.2.1.47\lib\MonoAndroid403\zxing.portable.dll</HintPath>
       <Private>True</Private>
@@ -396,7 +388,6 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="Properties\AndroidManifest.xml" />
-    <None Include="Assets\AboutAssets.txt" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -580,7 +571,6 @@
     <AndroidResource Include="Resources\drawable-xhdpi\icon_sessions_big_purple.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\icon_sessions_big_purple.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\icon_sessions_big_purple.png" />
-    <AndroidResource Include="Resources\values-v19\styles.xml" />
     <AndroidResource Include="Resources\drawable-hdpi\profile_pic_shadow.png" />
     <AndroidResource Include="Resources\drawable-mdpi\profile_pic_shadow.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\profile_pic_shadow.png" />

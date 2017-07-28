@@ -16,7 +16,7 @@ using XamarinEvolve.Clients.Portable;
 
 namespace XamarinEvolve.Droid
 {
-    [Activity(Label = XamarinEvolve.Utils.EventInfo.EventShortName, Icon = "@drawable/newicon", Theme="@style/SplashTheme", MainLauncher=true)]            
+    [Activity(Label = XamarinEvolve.Utils.EventInfo.EventShortName, Icon = "@drawable/ic_launcher", Theme="@style/SplashTheme", MainLauncher=true)]            
 
     public class SplashActivity : AppCompatActivity
     {

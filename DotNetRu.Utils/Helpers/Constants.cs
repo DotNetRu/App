@@ -20,11 +20,11 @@ namespace XamarinEvolve.Utils
 
 	public static class AboutThisApp
 	{
-		public const string AppLinkProtocol = "techdays";
-		public const string PackageName = "com.xpirit.techdays";
-		public const string AppName = "TechDays16";
-		public const string CompanyName = "Xpirit";
-		public const string Developer = "Xpirit";
+		public const string AppLinkProtocol = "dotnetru";
+		public const string PackageName = "com.dotnetru.app";
+		public const string AppName = "DotNetRu App";
+		public const string CompanyName = "DotNetRu";
+		public const string Developer = "DotNetRu";
 		public const string DeveloperWebsite = "https://www.xpirit.com/mobile";
 		public const string OpenSourceUrl = "http://tiny.cc/app-evolve";
 		public const string TermsOfUseUrl = "http://go.microsoft.com/fwlink/?linkid=206977";
@@ -36,7 +36,7 @@ namespace XamarinEvolve.Utils
 		public const string SessionsSiteSubdirectory = "Sessies";
 		public const string SpeakersSiteSubdirectory = "Sprekers";
 		public const string SponsorsSiteSubdirectory = "Sponsors";
-		public const string Copyright = "Copyright 2016 - TechDays";
+		public const string Copyright = "Copyright 2017 - DotNetRu";
 
 		public const string Credits = "The TechDays 2016 mobile apps were handcrafted by Xpirit, based on the great work done by Xamarin.\n\n" +
 			"Xpirit Team:\n" +
@@ -46,7 +46,6 @@ namespace XamarinEvolve.Utils
 			"Team TechDays NL\n\n" +
 			"Many thanks to the original Xamarin Team:\n" +
 			"James Montemagno\n" +
-			"Pierce Boggan\n" +
 		   "\n" +
 			"...and of course you! <3";
 	}

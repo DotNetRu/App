@@ -268,9 +268,6 @@ namespace DotNetRu.Droid
 			global::Xamarin.Forms.Platform.Android.AppLinks.Resource.Styleable.SignInButton_colorScheme = global::DotNetRu.Droid.Resource.Styleable.SignInButton_colorScheme;
 			global::Xamarin.Forms.Platform.Android.AppLinks.Resource.Styleable.SignInButton_scopeUris = global::DotNetRu.Droid.Resource.Styleable.SignInButton_scopeUris;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::DotNetRu.Droid.Resource.Attribute.actionBarSize;
-			global::ZXing.Net.Mobile.Forms.Android.Resource.Layout.zxingscanneractivitylayout = global::DotNetRu.Droid.Resource.Layout.zxingscanneractivitylayout;
-			global::ZXing.Net.Mobile.Forms.Android.Resource.Layout.zxingscannerfragmentlayout = global::DotNetRu.Droid.Resource.Layout.zxingscannerfragmentlayout;
-			global::ZXing.Net.Mobile.Forms.Android.Resource.String.library_name = global::DotNetRu.Droid.Resource.String.library_name;
 			global::ZXing.Mobile.Resource.Id.contentFrame = global::DotNetRu.Droid.Resource.Id.contentFrame;
 			global::ZXing.Mobile.Resource.Layout.zxingscanneractivitylayout = global::DotNetRu.Droid.Resource.Layout.zxingscanneractivitylayout;
 			global::ZXing.Mobile.Resource.Layout.zxingscannerfragmentlayout = global::DotNetRu.Droid.Resource.Layout.zxingscannerfragmentlayout;

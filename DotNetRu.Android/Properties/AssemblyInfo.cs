@@ -5,14 +5,11 @@ using Android.App;
 // Information about this assembly is defined by the following attributes.
 // Change them to the values specific to your project.
 
-[assembly: AssemblyTitle("XamarinEvolve.Droid")]
-[assembly: AssemblyDescription("TechDays 2016 Android")]
+[assembly: AssemblyTitle("DotNetRu.Droid")]
+[assembly: AssemblyDescription("DotNetRu App Android")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Xpirit")]
-[assembly: AssemblyProduct("TechDays 2016")]
-[assembly: AssemblyCopyright("Copyright © 2016 Xpirit Inc All Rights Reserved")]
-[assembly: AssemblyTrademark("Xpirit Nederland B.V.")]
-[assembly: AssemblyCulture("")]
+[assembly: AssemblyCompany("DotNetRu")]
+[assembly: AssemblyProduct("DotNetRu App Android")]
 
 // The assembly version has the format "{Major}.{Minor}.{Build}.{Revision}".
 // The form "{Major}.{Minor}.*" will automatically update the build and revision,

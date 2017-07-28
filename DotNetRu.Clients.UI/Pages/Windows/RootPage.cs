@@ -57,7 +57,7 @@ namespace XamarinEvolve.Clients.UI
 
       Master = menu;
       NavigateAsync((int) AppPage.Feed);
-      Title = "TechDays 2016";
+      Title = "DotNetRu App";
     }
 
 
