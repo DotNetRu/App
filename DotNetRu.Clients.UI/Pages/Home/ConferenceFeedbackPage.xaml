@@ -6,296 +6,54 @@
              xmlns:local="clr-namespace:XamarinEvolve.Clients.UI;assembly=XamarinEvolve.Clients.UI"
              Title="{Binding Title}"
              NavigationPage.BackButtonTitle="Back"
-             BackgroundColor="{DynamicResource WindowBackground}">  
+             BackgroundColor="{DynamicResource WindowBackground}">
   <ContentPage.Resources>
-     <ResourceDictionary>
-        <local:RatingConverter x:Key="RatingConverter" />
-     </ResourceDictionary>
-    </ContentPage.Resources>
-  
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Cancel" Command="{Binding DoneCommand}" x:Name="ToolbarDone"/>
-    </ContentPage.ToolbarItems>
+    <ResourceDictionary>
+      <local:RatingConverter x:Key="RatingConverter" />
+    </ResourceDictionary>
+  </ContentPage.Resources>
 
-	<Grid Padding="24">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+  <ContentPage.ToolbarItems>
+    <ToolbarItem Text="Cancel" Command="{Binding DoneCommand}" x:Name="ToolbarDone"/>
+  </ContentPage.ToolbarItems>
 
-		<ScrollView VerticalOptions="FillAndExpand">
+  <Grid Padding="24">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="Auto"/>
+    </Grid.RowDefinitions>
 
-			<StackLayout VerticalOptions="FillAndExpand" Spacing="{DynamicResource CardSpacing}"
+    <ScrollView VerticalOptions="FillAndExpand">
+
+      <StackLayout VerticalOptions="FillAndExpand" Spacing="{DynamicResource CardSpacing}"
                     Padding="{DynamicResource CardPadding}">
 
-				<local:CardView>
-					<StackLayout Spacing="5" Margin="5,5,5,5">
-						<local:LabelSection Text="Vraag 1 van 7" />
-						<local:HeaderDivider />
-						<StackLayout VerticalOptions="Center" Spacing="{StaticResource StandardSpacing}">
-							
-				            <Label Text="Hoe tevreden bent u over het algemeen genomen met dit evenement?" 
-				                HorizontalTextAlignment="Center" HorizontalOptions="Center" 
-				                StyleId="LabelSessionName"
-				                Style="{DynamicResource EvolveListItemTextStyle}"/>
+      </StackLayout>
+    </ScrollView>
 
-				            <Grid RowSpacing="18" HorizontalOptions="Center">
-				            <Grid.ColumnDefinitions>
-				                <ColumnDefinition Width="*"/>
-				                <ColumnDefinition Width="Auto"/>
-				                <ColumnDefinition Width="*"/>
-				            </Grid.ColumnDefinitions>
-				            <Grid.RowDefinitions>
-				                <RowDefinition Height="Auto"/>
-				            </Grid.RowDefinitions>
+    <StackLayout Padding="{StaticResource StandardPadding}" Grid.Row="1">
+      <Button
+          Text="Submit"
+          StyleId="ButtonSubmit"
+          Command="{Binding SubmitFeedbackCommand}"
+          IsEnabled="{Binding IsNotBusy}">
 
-				            <local:RatingControl x:Name="Question1" GroupName="Question1" Rating="{Binding Question1, Mode=TwoWay}" Grid.Column="1" />
-				          </Grid>
-
-				            <Label Text="{Binding Source={x:Reference Question1},
-				                   Path=Rating, Converter={StaticResource RatingConverter}, ConverterParameter='kies een antwoord,slecht,matig,neutraal,goed,uitstekend'}" 
-				                   Style="{DynamicResource EvolveListItemDetailTextStyle}"
-				                   StyleId="Status"
-				                   HorizontalOptions="Center"/>
-				        </StackLayout>
-						<local:FooterDivider />
-					</StackLayout>
-				</local:CardView>
-
-				<local:CardView>
-					<StackLayout Spacing="5" Margin="5,5,5,5">
-						<local:LabelSection Text="Vraag 2 van 7" />
-						<local:HeaderDivider />				
-						<StackLayout VerticalOptions="Center" Spacing="{StaticResource StandardSpacing}">
-							
-				            <Label Text="Hoe beoordeelt u de locatie (RAI Amsterdam)?" 
-				                HorizontalTextAlignment="Center" HorizontalOptions="Center" 
-				                StyleId="LabelSessionName"
-				                Style="{DynamicResource EvolveListItemTextStyle}"/>
-
-				            <Grid RowSpacing="18" HorizontalOptions="Center">
-				            <Grid.ColumnDefinitions>
-				                <ColumnDefinition Width="*"/>
-				                <ColumnDefinition Width="Auto"/>
-				                <ColumnDefinition Width="*"/>
-				            </Grid.ColumnDefinitions>
-				            <Grid.RowDefinitions>
-				                <RowDefinition Height="Auto"/>
-				            </Grid.RowDefinitions>
-
-				            <local:RatingControl x:Name="Question2" GroupName="Question2" Rating="{Binding Question2, Mode=TwoWay}" Grid.Column="1" />
-				          </Grid>
-
-				            <Label Text="{Binding Source={x:Reference Question2},
-				                   Path=Rating, Converter={StaticResource RatingConverter}, ConverterParameter='kies een antwoord,slecht,matig,neutraal,goed,uitstekend'}" 
-				                   Style="{DynamicResource EvolveListItemDetailTextStyle}"
-				                   StyleId="Status"
-				                   HorizontalOptions="Center"/>
-				        </StackLayout>
-					<local:FooterDivider />
-					</StackLayout>
-				</local:CardView>
-
-				<local:CardView>
-					<StackLayout Spacing="5" Margin="5,5,5,5">
-						<local:LabelSection Text="Vraag 3 van 7" />
-						<local:HeaderDivider />				
-
-						<StackLayout VerticalOptions="Center" Spacing="{StaticResource StandardSpacing}">
-							
-				            <Label Text="Hoe beoordeelt u de online registratie en betaling voor TechDays 2016?" 
-				                HorizontalTextAlignment="Center" HorizontalOptions="Center" 
-				                StyleId="LabelSessionName"
-				                Style="{DynamicResource EvolveListItemTextStyle}"/>
-
-				            <Grid RowSpacing="18" HorizontalOptions="Center">
-				            <Grid.ColumnDefinitions>
-				                <ColumnDefinition Width="*"/>
-				                <ColumnDefinition Width="Auto"/>
-				                <ColumnDefinition Width="*"/>
-				            </Grid.ColumnDefinitions>
-				            <Grid.RowDefinitions>
-				                <RowDefinition Height="Auto"/>
-				            </Grid.RowDefinitions>
-
-				            <local:RatingControl x:Name="Question3" GroupName="Question3" Rating="{Binding Question3, Mode=TwoWay}" Grid.Column="1" />
-				          </Grid>
-
-				            <Label Text="{Binding Source={x:Reference Question3},
-				                   Path=Rating, Converter={StaticResource RatingConverter}, ConverterParameter='kies een antwoord,slecht,matig,neutraal,goed,uitstekend'}" 
-				                   Style="{DynamicResource EvolveListItemDetailTextStyle}"
-				                   StyleId="Status"
-				                   HorizontalOptions="Center"/>
-				        </StackLayout>
-					<local:FooterDivider />
-					</StackLayout>
-				</local:CardView>
-
-				<local:CardView>
-					<StackLayout Spacing="5" Margin="5,5,5,5">
-						<local:LabelSection Text="Vraag 4 van 7" />
-						<local:HeaderDivider />				
-
-						<StackLayout VerticalOptions="Center" Spacing="{StaticResource StandardSpacing}">
-							
-				            <Label Text="Hoe beoordeelt u de website van TechDays 2016?" 
-				                HorizontalTextAlignment="Center" HorizontalOptions="Center" 
-				                StyleId="LabelSessionName"
-				                Style="{DynamicResource EvolveListItemTextStyle}"/>
-
-				            <Grid RowSpacing="18" HorizontalOptions="Center">
-				            <Grid.ColumnDefinitions>
-				                <ColumnDefinition Width="*"/>
-				                <ColumnDefinition Width="Auto"/>
-				                <ColumnDefinition Width="*"/>
-				            </Grid.ColumnDefinitions>
-				            <Grid.RowDefinitions>
-				                <RowDefinition Height="Auto"/>
-				            </Grid.RowDefinitions>
-
-				            <local:RatingControl x:Name="Question4" GroupName="Question4" Rating="{Binding Question4, Mode=TwoWay}" Grid.Column="1" />
-				          </Grid>
-
-				            <Label Text="{Binding Source={x:Reference Question4},
-				                   Path=Rating, Converter={StaticResource RatingConverter}, ConverterParameter='kies een antwoord,slecht,matig,neutraal,goed,uitstekend'}" 
-				                   Style="{DynamicResource EvolveListItemDetailTextStyle}"
-				                   StyleId="Status"
-				                   HorizontalOptions="Center"/>
-				        </StackLayout>
-						<local:FooterDivider />
-					</StackLayout>
-				</local:CardView>
-
-				<local:CardView>
-					<StackLayout Spacing="5" Margin="5,5,5,5">
-						<local:LabelSection Text="Vraag 5 van 7" />
-						<local:HeaderDivider />				
-
-						<StackLayout VerticalOptions="Center" Spacing="{StaticResource StandardSpacing}">
-							
-				            <Label Text="Hoe beoordeelt u deze TechDays 2016 app?" 
-				                HorizontalTextAlignment="Center" HorizontalOptions="Center" 
-				                StyleId="LabelSessionName"
-				                Style="{DynamicResource EvolveListItemTextStyle}"/>
-
-				            <Grid RowSpacing="18" HorizontalOptions="Center">
-				            <Grid.ColumnDefinitions>
-				                <ColumnDefinition Width="*"/>
-				                <ColumnDefinition Width="Auto"/>
-				                <ColumnDefinition Width="*"/>
-				            </Grid.ColumnDefinitions>
-				            <Grid.RowDefinitions>
-				                <RowDefinition Height="Auto"/>
-				            </Grid.RowDefinitions>
-
-				            <local:RatingControl x:Name="Question5" GroupName="Question5" Rating="{Binding Question5, Mode=TwoWay}" Grid.Column="1" />
-				          </Grid>
-
-				            <Label Text="{Binding Source={x:Reference Question5},
-				                   Path=Rating, Converter={StaticResource RatingConverter}, ConverterParameter='kies een antwoord,slecht,matig,neutraal,goed,uitstekend'}" 
-				                   Style="{DynamicResource EvolveListItemDetailTextStyle}"
-				                   StyleId="Status"
-				                   HorizontalOptions="Center"/>
-				        </StackLayout>
-						<local:FooterDivider />
-					</StackLayout>
-				</local:CardView>
-
-				<local:CardView>
-					<StackLayout Spacing="5" Margin="5,5,5,5">
-						<local:LabelSection Text="Vraag 6 van 7" />
-						<local:HeaderDivider />				
-
-						<StackLayout VerticalOptions="Center" Spacing="{StaticResource StandardSpacing}">
-							
-				            <Label Text="Wat is uw mening over Microsoft na deelname aan dit evenement?" 
-				                HorizontalTextAlignment="Center" HorizontalOptions="Center" 
-				                StyleId="LabelSessionName"
-				                Style="{DynamicResource EvolveListItemTextStyle}"/>
-
-				            <Grid RowSpacing="18" HorizontalOptions="Center">
-				            <Grid.ColumnDefinitions>
-				                <ColumnDefinition Width="*"/>
-				                <ColumnDefinition Width="Auto"/>
-				                <ColumnDefinition Width="*"/>
-				            </Grid.ColumnDefinitions>
-				            <Grid.RowDefinitions>
-				                <RowDefinition Height="Auto"/>
-				            </Grid.RowDefinitions>
-
-				            <local:Rating3Control x:Name="Question6" GroupName="Question6" Rating="{Binding Question6, Mode=TwoWay}" Grid.Column="1" />
-				          </Grid>
-
-				            <Label Text="{Binding Source={x:Reference Question6},
-				                   Path=Rating, Converter={StaticResource RatingConverter}, ConverterParameter='geen mening,slechter,gelijk,beter'}" 
-				                   Style="{DynamicResource EvolveListItemDetailTextStyle}"
-				                   StyleId="Status"
-				                   HorizontalOptions="Center"/>
-				        </StackLayout>
-						<local:FooterDivider />
-					</StackLayout>
-				</local:CardView>
-
-				<local:CardView>
-					<StackLayout Spacing="5" Margin="5,5,5,5">
-						<local:LabelSection Text="Vraag 7 van 7" />
-						<local:HeaderDivider />				
-
-						<StackLayout VerticalOptions="Center" Spacing="{StaticResource StandardSpacing}">
-							
-				            <Label Text="Kunt u het geleerde tijdens TechDays 2016 in de praktijk brengen?" 
-				                HorizontalTextAlignment="Center" HorizontalOptions="Center" 
-				                StyleId="LabelSessionName"
-				                Style="{DynamicResource EvolveListItemTextStyle}"/>
-
-				            <Grid RowSpacing="18" HorizontalOptions="Center">
-				            <Grid.ColumnDefinitions>
-				                <ColumnDefinition Width="*"/>
-				                <ColumnDefinition Width="Auto"/>
-				                <ColumnDefinition Width="*"/>
-				            </Grid.ColumnDefinitions>
-				            <Grid.RowDefinitions>
-				                <RowDefinition Height="Auto"/>
-				            </Grid.RowDefinitions>
-
-				            <local:Rating3Control x:Name="Question7" GroupName="Question7" Rating="{Binding Question7, Mode=TwoWay}" Grid.Column="1" />
-				          </Grid>
-
-				            <Label Text="{Binding Source={x:Reference Question7},
-				                   Path=Rating, Converter={StaticResource RatingConverter}, ConverterParameter='geen mening,nee,misschien,ja'}" 
-				                   Style="{DynamicResource EvolveListItemDetailTextStyle}"
-				                   StyleId="Status"
-				                   HorizontalOptions="Center"/>
-				        </StackLayout>
-						<local:FooterDivider />
-					</StackLayout>
-				</local:CardView>
-			</StackLayout>
-        </ScrollView>
-
-        <StackLayout Padding="{StaticResource StandardPadding}" Grid.Row="1">
-            <Button
-                Text="Submit"  
-                StyleId="ButtonSubmit"
-                Command="{Binding SubmitFeedbackCommand}"
-                IsEnabled="{Binding IsNotBusy}">
-
-                <Button.FontAttributes>
-                    <OnPlatform x:TypeArguments="FontAttributes" iOS="Bold"/>
-                </Button.FontAttributes>
-                <Button.BackgroundColor>
-                    <OnPlatform x:TypeArguments="Color" Android="{StaticResource PrimaryDark}" iOS="Transparent"/>
-                </Button.BackgroundColor>
-                <Button.TextColor>
-                    <OnPlatform x:TypeArguments="Color" Android="White" iOS="{StaticResource PrimaryDark}"/>
-                </Button.TextColor>
-                <Button.BorderWidth>
-                    <OnPlatform x:TypeArguments="x:Double" iOS="1"/>
-                </Button.BorderWidth> 
-                <Button.BorderColor>
-                   <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ButtonBorder}"/>
-                </Button.BorderColor> 
-            </Button>
-            </StackLayout>
-    </Grid>
+        <Button.FontAttributes>
+          <OnPlatform x:TypeArguments="FontAttributes" iOS="Bold"/>
+        </Button.FontAttributes>
+        <Button.BackgroundColor>
+          <OnPlatform x:TypeArguments="Color" Android="{StaticResource PrimaryDark}" iOS="Transparent"/>
+        </Button.BackgroundColor>
+        <Button.TextColor>
+          <OnPlatform x:TypeArguments="Color" Android="White" iOS="{StaticResource PrimaryDark}"/>
+        </Button.TextColor>
+        <Button.BorderWidth>
+          <OnPlatform x:TypeArguments="x:Double" iOS="1"/>
+        </Button.BorderWidth>
+        <Button.BorderColor>
+          <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ButtonBorder}"/>
+        </Button.BorderColor>
+      </Button>
+    </StackLayout>
+  </Grid>
 </local:BasePage>

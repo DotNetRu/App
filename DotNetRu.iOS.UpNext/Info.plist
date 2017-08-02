@@ -24,9 +24,9 @@
 		<string>com.apple.widget-extension</string>
 	</dict>
 	<key>CFBundleName</key>
-	<string>TechDays 16 Up Next</string>
+	<string>DotNetRu Up Next</string>
 	<key>CFBundleDisplayName</key>
-	<string>TechDays 16 Up Next</string>
+	<string>DotNetRu Up Next</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 </dict>

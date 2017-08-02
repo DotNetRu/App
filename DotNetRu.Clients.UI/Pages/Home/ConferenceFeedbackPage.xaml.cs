@@ -31,18 +31,5 @@ namespace XamarinEvolve.Clients.UI
 					await Navigation.PopModalAsync();
 				});
         }
-
-		protected override void OnDisappearing()
-		{
-			base.OnDisappearing();
-
-			Question1.RemoveBehaviors();
-			Question2.RemoveBehaviors();
-			Question3.RemoveBehaviors();
-			Question4.RemoveBehaviors();
-			Question5.RemoveBehaviors();
-			Question6.RemoveBehaviors();
-			Question7.RemoveBehaviors();
-		}
     }
 }

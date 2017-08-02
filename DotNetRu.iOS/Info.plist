@@ -48,17 +48,17 @@
 			<key>UIApplicationShortcutItemTitle</key>
 			<string>Tweet</string>
 			<key>UIApplicationShortcutItemType</key>
-			<string>com.xpirit.techdays.tweet</string>
+			<string>com.dotnetru.app.tweet</string>
 			<key>UIApplicationShortcutItemIconFile</key>
 			<string>quickaction_tweet</string>
 			<key>UIApplicationShortcutItemSubtitle</key>
-			<string>#TechDaysNL</string>
+			<string>#DotNetRu</string>
 		</dict>
 		<dict>
 			<key>UIApplicationShortcutItemTitle</key>
 			<string>Announcements</string>
 			<key>UIApplicationShortcutItemType</key>
-			<string>com.xpirit.techdays.announcements</string>
+			<string>com.dotnetru.app.announcements</string>
 			<key>UIApplicationShortcutItemIconFile</key>
 			<string>quickaction_announcements</string>
 		</dict>
@@ -113,16 +113,16 @@
 		<string>Default-568h@2x.png</string>
 	</array>
 	<key>CFBundleName</key>
-	<string>TechDays 16</string>
+	<string>DotNetRu App</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>techdays</string>
+				<string>DotNetRu</string>
 			</array>
 			<key>CFBundleURLName</key>
-			<string>com.xpirit.techdays</string>
+			<string>com.dotnetru.app</string>
 			<key>CFBundleURLTypes</key>
 			<string>Viewer</string>
 			<key>CFBundleURLIconFile</key>
@@ -138,11 +138,11 @@
 	<string>This app allows you to add/remove conference sessions in your calendar.</string>
 	<key>NSUserActivityTypes</key>
 	<array>
-		<string>com.xpirit.techdays.session</string>
-		<string>com.xpirit.techdays.sponsor</string>
-		<string>com.xpirit.techdays.speaker</string>
-		<string>com.xpirit.techdays.sessions</string>
-		<string>com.xpirit.techdays.speakers</string>
+		<string>com.dotnetru.app.session</string>
+		<string>com.dotnetru.app.sponsor</string>
+		<string>com.dotnetru.app.speaker</string>
+		<string>com.dotnetru.app.sessions</string>
+		<string>com.dotnetru.app.speakers</string>
 	</array>
 	<key>CFBundleDisplayName</key>
 	<string>DotNetRu App</string>
