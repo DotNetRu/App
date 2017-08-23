@@ -18,8 +18,7 @@
 	            RowHeight="90"
 	            IsPullToRefreshEnabled="{Binding IsNotBusy}"
 	            RefreshCommand="{Binding ForceRefreshCommand}"
-	            IsRefreshing="{Binding IsBusy, Mode=OneWay}" 
-	            CachingStrategy="RecycleElement"
+	            IsRefreshing="{Binding IsBusy, Mode=OneWay}"
 	            IsVisible="{Binding IsNotBusy}"
 	            AbsoluteLayout.LayoutFlags="All" 
 	            AbsoluteLayout.LayoutBounds="0,0,1,1">

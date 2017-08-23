@@ -91,7 +91,7 @@ namespace XamarinEvolve.Clients.Portable
 	            using (var streamReader = new StreamReader(stream))
 	            {
 	                var xml = streamReader.ReadToEnd();
-	                var speaker = xml.ParseXml<DotNetRu.DataStore.Audit.Speaker>();
+	                var speaker = xml.ParseXml<DotNetRu.DataStore.Audit.Models.Speaker>();
                     speakers.Add(new Speaker
                     {
                         FirstName = speaker.Name,
@@ -100,6 +100,8 @@ namespace XamarinEvolve.Clients.Portable
                         AvatarUrl = $@"https://raw.githubusercontent.com/DotNetRu/Audit/master/db/speakers/{speaker.Id}/avatar.small.jpg",
                         CompanyName = speaker.CompanyName,
                         CompanyWebsiteUrl = speaker.CompanyUrl,
+                        TwitterUrl = speaker.TwitterUrl,
+                        BlogUrl = speaker.BlogUrl,
                         Biography = speaker.Description
                     });
                 }
