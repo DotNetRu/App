@@ -1,0 +1,8 @@
+﻿<Speaker>
+  <Id>Anatoly-Kulakov</Id>
+  <Name>Анатолий Кулаков</Name>
+  <CompanyName>Paladyne Systems</CompanyName>
+  <CompanyUrl>http://www.paladynesys.com/</CompanyUrl>
+  <Description>Образовывался на роль специалиста по информационной безопасности. Зарабатывал, как суровый C++ разработчик под Linux. Когда надоело кодировать и захотелось творить, перешёл на C#. Пишет на .NET с первых его версий. Занимается проектированием и построением бизнес-приложений, распределённых и отказоустойчивых систем. Отдыхает с ES, CQRS и DDD.</Description>
+  <TwitterUrl>https://twitter.com/kulakovt</TwitterUrl>
+</Speaker>

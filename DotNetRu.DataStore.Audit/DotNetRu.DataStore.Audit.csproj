@@ -35,13 +35,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Community.cs" />
-    <Compile Include="Friend.cs" />
-    <Compile Include="Meetup.cs" />
+    <Compile Include="Models\Community.cs" />
+    <Compile Include="Models\Friend.cs" />
+    <Compile Include="Models\Meetup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Speaker.cs" />
-    <Compile Include="Talk.cs" />
-    <Compile Include="Venue.cs" />
+    <Compile Include="Models\Speaker.cs" />
+    <Compile Include="Models\Talk.cs" />
+    <Compile Include="Models\Venue.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -56,6 +56,51 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Storage\speakers\Alexander-Ivanov\index.xml" />
+    <EmbeddedResource Include="Storage\speakers\Alexander-Kugushev\index.xml" />
+    <EmbeddedResource Include="Storage\speakers\Alexander-Shapoval\index.xml" />
+    <EmbeddedResource Include="Storage\speakers\Alexander-Shelemin\index.xml" />
+    <EmbeddedResource Include="Storage\speakers\Alexander-Shvedov\index.xml" />
+    <EmbeddedResource Include="Storage\speakers\Anatoly-Kulakov\index.xml" />
+    <EmbeddedResource Include="Storage\speakers\Andrey-Akinshin\index.xml" />
+    <EmbeddedResource Include="Storage\speakers\Andrey-Terekhov\index.xml" />
+    <EmbeddedResource Include="Storage\speakers\Anton-Shabanov\index.xml" />
+    <EmbeddedResource Include="Storage\speakers\Artem-Borzilov\index.xml" />
+    <EmbeddedResource Include="Storage\speakers\Artem-Zhuravlev\index.xml" />
+    <EmbeddedResource Include="Storage\speakers\Dmitri-Nesteruk\index.xml" />
+    <EmbeddedResource Include="Storage\speakers\Dmitry-Ivanov\index.xml" />
+    <EmbeddedResource Include="Storage\speakers\Dmitry-Naumov\index.xml" />
+    <EmbeddedResource Include="Storage\speakers\Dmitry-Vlasov\index.xml" />
+    <EmbeddedResource Include="Storage\speakers\Igor-Labutin\index.xml" />
+    <EmbeddedResource Include="Storage\speakers\Igor-Yakovlev\index.xml" />
+    <EmbeddedResource Include="Storage\speakers\Ivan-Pashchenko\index.xml" />
+    <EmbeddedResource Include="Storage\speakers\Mikhail-Bashurov\index.xml" />
+    <EmbeddedResource Include="Storage\speakers\Mikhail-Filippov\index.xml" />
+    <EmbeddedResource Include="Storage\speakers\Mikhail-Shcherbakov\index.xml" />
+    <EmbeddedResource Include="Storage\speakers\Nikita-Kamensky\index.xml" />
+    <EmbeddedResource Include="Storage\speakers\Nikita-Kozlov\index.xml" />
+    <EmbeddedResource Include="Storage\speakers\Nikita-Tsukanov\index.xml" />
+    <EmbeddedResource Include="Storage\speakers\Pavel-Fedotovsky\index.xml" />
+    <EmbeddedResource Include="Storage\speakers\Pavel-Tupitsin\index.xml" />
+    <EmbeddedResource Include="Storage\speakers\Roman-Iovlev\index.xml" />
+    <EmbeddedResource Include="Storage\speakers\Roman-Nevolin\index.xml" />
+    <EmbeddedResource Include="Storage\speakers\Roman-Pavuk\index.xml" />
+    <EmbeddedResource Include="Storage\speakers\Sasha-Goldshtein\index.xml" />
+    <EmbeddedResource Include="Storage\speakers\Sergey-Baltiyskiy\index.xml" />
+    <EmbeddedResource Include="Storage\speakers\Sergey-Shchegrikovich\index.xml" />
+    <EmbeddedResource Include="Storage\speakers\Sergey-Shkredov\index.xml" />
+    <EmbeddedResource Include="Storage\speakers\Valery-Ignatyev\index.xml" />
+    <EmbeddedResource Include="Storage\speakers\Valery-Petrov\index.xml" />
+    <EmbeddedResource Include="Storage\speakers\Vladimir-Kochetkov\index.xml" />
+    <EmbeddedResource Include="Storage\speakers\Vladimir-Koshelev\index.xml" />
+    <EmbeddedResource Include="Storage\speakers\Vladimir-Ozerov\index.xml" />
+    <EmbeddedResource Include="Storage\speakers\Vsevolod-Ivanov\index.xml" />
+    <EmbeddedResource Include="Storage\speakers\Vyacheslav-Mikhaylov\index.xml" />
+    <EmbeddedResource Include="Storage\speakers\Yakov-Zhdanov\index.xml" />
+    <EmbeddedResource Include="Storage\speakers\Yulia-Tsisyk\index.xml" />
+    <EmbeddedResource Include="Storage\speakers\Yuri-Volkov\index.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.3.2.127\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.2.127\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />

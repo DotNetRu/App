@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
+using System.IO;
 using System.Reflection;
 using FormsToolkit;
 using MvvmHelpers;
@@ -73,23 +74,38 @@ namespace XamarinEvolve.Clients.Portable
 		public ICommand LoadSpeakersCommand =>
 			loadSpeakersCommand ?? (loadSpeakersCommand = new Command(async (f) => await ExecuteLoadSpeakersAsync((bool) f)));
 
-	    private IEnumerable<Speaker> GetSpeakers()
+	    private static IEnumerable<Speaker> GetSpeakers()
 	    {
-	        var xml = ResourceLoader.GetEmbeddedResourceString(Assembly.Load(new AssemblyName("XamarinEvolve.Clients.Portable")), "index.xml");
-	        var x = xml.ParseXml<DotNetRu.DataStore.Audit.Speaker>();
-            return  new List<Speaker>
-            {
-                new Speaker
-                {
-                    FirstName = x.Name,
-                    LastName = "",
-                    PhotoUrl = @"https://raw.githubusercontent.com/DotNetRu/Audit/master/db/speakers/Pavel-Fedotovsky/avatar.jpg",
-                    AvatarUrl = @"https://rawgit.com/DotNetRu/Audit/master/db/speakers/Pavel-Fedotovsky/avatar.small.jpg",
-                    CompanyName = x.CompanyName,
-                    CompanyWebsiteUrl = x.CompanyUrl,
-                    Biography = x.Description
+	        var assembly = Assembly.Load(new AssemblyName("DotNetRu.DataStore.Audit"));
+	        var resourceFileName = "index.xml";
+
+            var resourceNames = assembly.GetManifestResourceNames();
+	        var resourcePaths = resourceNames
+	            .Where(x => x.EndsWith(resourceFileName, StringComparison.CurrentCultureIgnoreCase))
+	            .ToArray();
+
+	        var speakers = new List<Speaker>();
+	        foreach (var resource in resourcePaths)
+	        {
+	            var stream = assembly.GetManifestResourceStream(resource);
+	            using (var streamReader = new StreamReader(stream))
+	            {
+	                var xml = streamReader.ReadToEnd();
+	                var speaker = xml.ParseXml<DotNetRu.DataStore.Audit.Speaker>();
+                    speakers.Add(new Speaker
+                    {
+                        FirstName = speaker.Name,
+                        LastName = "",
+                        PhotoUrl = $@"https://raw.githubusercontent.com/DotNetRu/Audit/master/db/speakers/{speaker.Id}/avatar.jpg",
+                        AvatarUrl = $@"https://raw.githubusercontent.com/DotNetRu/Audit/master/db/speakers/{speaker.Id}/avatar.small.jpg",
+                        CompanyName = speaker.CompanyName,
+                        CompanyWebsiteUrl = speaker.CompanyUrl,
+                        Biography = speaker.Description
+                    });
                 }
-            };
+
+            }
+	        return speakers;
 	    }
 
         async Task<bool> ExecuteLoadSpeakersAsync(bool force = false)
@@ -105,7 +121,7 @@ namespace XamarinEvolve.Clients.Portable
 				await Task.Delay(1000);
 #endif
 			    var speakers = GetSpeakers();//await StoreManager.SpeakerStore.GetItemsAsync(force);
-			    var k = speakers.First().FullName;
+                
 				SortSpeakers(speakers);
 
 				if (Device.OS != TargetPlatform.WinPhone && Device.OS != TargetPlatform.Windows && FeatureFlags.AppLinksEnabled)
