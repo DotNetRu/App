@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
+using System.Reflection;
 using FormsToolkit;
 using MvvmHelpers;
 using Xamarin.Forms;
 using XamarinEvolve.DataObjects;
 using System.Windows.Input;
 using System.Threading.Tasks;
+using Plugin.EmbeddedResource;
+using XamarinEvolve.Clients.Portable.Helpers;
 using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.Clients.Portable
@@ -70,7 +73,26 @@ namespace XamarinEvolve.Clients.Portable
 		public ICommand LoadSpeakersCommand =>
 			loadSpeakersCommand ?? (loadSpeakersCommand = new Command(async (f) => await ExecuteLoadSpeakersAsync((bool) f)));
 
-		async Task<bool> ExecuteLoadSpeakersAsync(bool force = false)
+	    private IEnumerable<Speaker> GetSpeakers()
+	    {
+	        var xml = ResourceLoader.GetEmbeddedResourceString(Assembly.Load(new AssemblyName("XamarinEvolve.Clients.Portable")), "index.xml");
+	        var x = xml.ParseXml<DotNetRu.DataStore.Audit.Speaker>();
+            return  new List<Speaker>
+            {
+                new Speaker
+                {
+                    FirstName = x.Name,
+                    LastName = "",
+                    PhotoUrl = @"https://raw.githubusercontent.com/DotNetRu/Audit/master/db/speakers/Pavel-Fedotovsky/avatar.jpg",
+                    AvatarUrl = @"https://rawgit.com/DotNetRu/Audit/master/db/speakers/Pavel-Fedotovsky/avatar.small.jpg",
+                    CompanyName = x.CompanyName,
+                    CompanyWebsiteUrl = x.CompanyUrl,
+                    Biography = x.Description
+                }
+            };
+	    }
+
+        async Task<bool> ExecuteLoadSpeakersAsync(bool force = false)
 		{
 			if (IsBusy)
 				return false;
@@ -82,8 +104,8 @@ namespace XamarinEvolve.Clients.Portable
 #if DEBUG
 				await Task.Delay(1000);
 #endif
-				var speakers = await StoreManager.SpeakerStore.GetItemsAsync(force);
-
+			    var speakers = GetSpeakers();//await StoreManager.SpeakerStore.GetItemsAsync(force);
+			    var k = speakers.First().FullName;
 				SortSpeakers(speakers);
 
 				if (Device.OS != TargetPlatform.WinPhone && Device.OS != TargetPlatform.Windows && FeatureFlags.AppLinksEnabled)
