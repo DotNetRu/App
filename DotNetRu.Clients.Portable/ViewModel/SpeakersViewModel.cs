@@ -77,7 +77,7 @@ namespace XamarinEvolve.Clients.Portable
 	    private static IEnumerable<Speaker> GetSpeakers()
 	    {
 	        var assembly = Assembly.Load(new AssemblyName("DotNetRu.DataStore.Audit"));
-	        var resourceFileName = "index.xml";
+	        const string resourceFileName = "index.xml";
 
             var resourceNames = assembly.GetManifestResourceNames();
 	        var resourcePaths = resourceNames
@@ -91,18 +91,19 @@ namespace XamarinEvolve.Clients.Portable
 	            using (var streamReader = new StreamReader(stream))
 	            {
 	                var xml = streamReader.ReadToEnd();
-	                var speaker = xml.ParseXml<DotNetRu.DataStore.Audit.Models.Speaker>();
+	                // ReSharper disable once InconsistentNaming
+	                var DotNEXTspeaker = xml.ParseXml<DotNetRu.DataStore.Audit.Models.Speaker>();
                     speakers.Add(new Speaker
                     {
-                        FirstName = speaker.Name,
+                        FirstName = DotNEXTspeaker.Name,
                         LastName = "",
-                        PhotoUrl = $@"https://raw.githubusercontent.com/DotNetRu/Audit/master/db/speakers/{speaker.Id}/avatar.jpg",
-                        AvatarUrl = $@"https://raw.githubusercontent.com/DotNetRu/Audit/master/db/speakers/{speaker.Id}/avatar.small.jpg",
-                        CompanyName = speaker.CompanyName,
-                        CompanyWebsiteUrl = speaker.CompanyUrl,
-                        TwitterUrl = speaker.TwitterUrl,
-                        BlogUrl = speaker.BlogUrl,
-                        Biography = speaker.Description
+                        PhotoUrl = $@"https://raw.githubusercontent.com/DotNetRu/Audit/master/db/speakers/{DotNEXTspeaker.Id}/avatar.jpg",
+                        AvatarUrl = $@"https://raw.githubusercontent.com/DotNetRu/Audit/master/db/speakers/{DotNEXTspeaker.Id}/avatar.small.jpg",
+                        CompanyName = DotNEXTspeaker.CompanyName,
+                        CompanyWebsiteUrl = DotNEXTspeaker.CompanyUrl,
+                        TwitterUrl = DotNEXTspeaker.TwitterUrl,
+                        BlogUrl = DotNEXTspeaker.BlogUrl,
+                        Biography = DotNEXTspeaker.Description
                     });
                 }
 
