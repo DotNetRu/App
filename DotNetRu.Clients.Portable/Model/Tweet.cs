@@ -10,65 +10,71 @@ namespace XamarinEvolve.Clients.Portable
 {
     public class Tweet
     {
-        public Tweet()
-        {
-        }
-        string tweetedImage;
-        string fullImage;
+        string _tweetedImage;
+        string _fullImage;
+
         [JsonIgnore]
-        public bool HasImage
-        {
-            get { return !string.IsNullOrWhiteSpace(tweetedImage); }
-        }
+        public bool HasImage => !string.IsNullOrWhiteSpace(_tweetedImage);
+
         [JsonProperty("tweetedImage")]
-        public string TweetedImage 
+        public string TweetedImage
         {
-            get { return tweetedImage; }
+            get => _tweetedImage;
             set
             {
-                tweetedImage = value;
-                fullImage = value;
-                if (!string.IsNullOrWhiteSpace(tweetedImage))
+                _tweetedImage = value;
+                _fullImage = value;
+                if (!string.IsNullOrWhiteSpace(_tweetedImage))
                 {
-                    tweetedImage += ":thumb";
+                    _tweetedImage += ":thumb";
                 }
             }
         }
 
-        ICommand  fullImageCommand;
+        ICommand _fullImageCommand;
+
         public ICommand FullImageCommand =>
-            fullImageCommand ?? (fullImageCommand = new Command(ExecuteFullImageCommand)); 
+            _fullImageCommand ?? (_fullImageCommand = new Command(ExecuteFullImageCommand));
 
         void ExecuteFullImageCommand()
         {
-            if (string.IsNullOrWhiteSpace(fullImage))
+            if (string.IsNullOrWhiteSpace(_fullImage))
                 return;
-            MessagingService.Current.SendMessage(MessageKeys.NavigateToImage, fullImage);
+            MessagingService.Current.SendMessage(MessageKeys.NavigateToImage, _fullImage);
         }
 
         [JsonProperty("text")]
         public string Text { get; set; }
+
         [JsonProperty("image")]
         public string Image { get; set; }
+
         [JsonProperty("url")]
         public string Url { get; set; }
+
         [JsonProperty("name")]
         public string Name { get; set; }
+
         [JsonProperty("screenName")]
         public string ScreenName { get; set; }
+
         [JsonProperty("createdDate")]
         public DateTime CreatedDate { get; set; }
+
         [JsonIgnore]
-        public string TitleDisplay { get { return Name; } }
+        public string TitleDisplay => Name;
+
         [JsonIgnore]
-        public string SubtitleDisplay { get { return "@" + ScreenName; } }
+        public string SubtitleDisplay => "@" + ScreenName;
+
         [JsonIgnore]
-        public string DateDisplay { get { return CreatedDate.Humanize(); } }
+        public string DateDisplay => CreatedDate.Humanize();
+
         [JsonIgnore]
-        public Uri TweetedImageUri 
-        { 
-            get 
-            { 
+        public Uri TweetedImageUri
+        {
+            get
+            {
                 try
                 {
                     if (string.IsNullOrWhiteSpace(TweetedImage))
@@ -78,10 +84,10 @@ namespace XamarinEvolve.Clients.Portable
                 }
                 catch
                 {
-
+                    // TODO ignored
                 }
                 return null;
-            } 
+            }
         }
     }
 }

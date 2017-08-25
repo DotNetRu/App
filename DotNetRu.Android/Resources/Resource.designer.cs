@@ -146,6 +146,7 @@ namespace DotNetRu.Droid
 			global::HockeyApp.Resource.Style.HockeyApp_ButtonStyle = global::DotNetRu.Droid.Resource.Style.HockeyApp_ButtonStyle;
 			global::HockeyApp.Resource.Style.HockeyApp_EditTextStyle = global::DotNetRu.Droid.Resource.Style.HockeyApp_EditTextStyle;
 			global::HockeyApp.Resource.Style.HockeyApp_SingleLineInputStyle = global::DotNetRu.Droid.Resource.Style.HockeyApp_SingleLineInputStyle;
+			global::ModernHttpClient.Resource.String.library_name = global::DotNetRu.Droid.Resource.String.library_name;
 			global::PCLStorage.Resource.String.ApplicationName = global::DotNetRu.Droid.Resource.String.ApplicationName;
 			global::PCLStorage.Resource.String.Hello = global::DotNetRu.Droid.Resource.String.Hello;
 			global::Xamarin.Forms.Platform.Android.AppLinks.Resource.Attribute.buttonSize = global::DotNetRu.Droid.Resource.Attribute.buttonSize;

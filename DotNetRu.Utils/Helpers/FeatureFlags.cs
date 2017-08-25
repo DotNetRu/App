@@ -12,7 +12,6 @@
 		public static bool AppToWebLinkingEnabled => true;
 		public static bool ShowLocationInSessionCell => true;
 
-		public static bool UseMocks => true;
 		public static bool HockeyAppEnabled => true;
 		public static bool GoogleAnalyticsEnabled => true;
 	}
