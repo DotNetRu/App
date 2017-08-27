@@ -21,15 +21,15 @@ namespace XamarinEvolve.Clients.Portable
 
 		public static void Init()
 		{
-			DependencyService.Register<ISessionStore, DataStore.Mock.SessionStore>();
-			DependencyService.Register<IFavoriteStore, DataStore.Mock.FavoriteStore>();
-			DependencyService.Register<IFeedbackStore, DataStore.Mock.FeedbackStore>();
-			DependencyService.Register<IConferenceFeedbackStore, DataStore.Mock.ConferenceFeedbackStore>();
-			DependencyService.Register<ISpeakerStore, DataStore.Mock.SpeakerStore>();
-			DependencyService.Register<ISponsorStore, DataStore.Mock.SponsorStore>();
-			DependencyService.Register<ICategoryStore, DataStore.Mock.CategoryStore>();
-			DependencyService.Register<IEventStore, DataStore.Mock.EventStore>();
-			DependencyService.Register<INotificationStore, DataStore.Mock.NotificationStore>();
+			DependencyService.Register<ISessionStore, DataStore.Azure.SessionStore>();
+			DependencyService.Register<IFavoriteStore, DataStore.Azure.FavoriteStore>();
+			DependencyService.Register<IFeedbackStore, DataStore.Azure.FeedbackStore>();
+			DependencyService.Register<IConferenceFeedbackStore, DataStore.Azure.ConferenceFeedbackStore>();
+			DependencyService.Register<ISpeakerStore, DataStore.Azure.SpeakerStore>();
+			DependencyService.Register<ISponsorStore, DataStore.Azure.SponsorStore>();
+			DependencyService.Register<ICategoryStore, DataStore.Azure.CategoryStore>();
+			DependencyService.Register<IEventStore, DataStore.Azure.EventStore>();
+			DependencyService.Register<INotificationStore, DataStore.Azure.NotificationStore>();
 			DependencyService.Register<IStoreManager, DataStore.Azure.StoreManager>();
 
 			DependencyService.Register<FavoriteService>();
