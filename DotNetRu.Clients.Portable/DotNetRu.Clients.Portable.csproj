@@ -247,7 +247,7 @@
     </ProjectReference>
     <ProjectReference Include="..\DotNetRu.DataStore.Azure\DotNetRu.DataStore.Azure.csproj">
       <Project>{5087B261-9D0F-457D-AD9E-B018248F1B16}</Project>
-      <Name>XamarinEvolve.DataStore.Azure</Name>
+      <Name>DotNetRu.DataStore.Azure</Name>
     </ProjectReference>
     <ProjectReference Include="..\DotNetRu.Utils\DotNetRu.Utils.csproj">
       <Project>{dfa0f0f6-c396-412e-86a9-e9095f71cc36}</Project>
