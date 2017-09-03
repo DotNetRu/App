@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
 using FormsToolkit;
 using MvvmHelpers;
 using Xamarin.Forms;
 using XamarinEvolve.DataObjects;
 using System.Windows.Input;
 using System.Threading.Tasks;
+using Plugin.EmbeddedResource;
+using XamarinEvolve.Clients.Portable.Helpers;
 using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.Clients.Portable
@@ -70,7 +74,44 @@ namespace XamarinEvolve.Clients.Portable
 		public ICommand LoadSpeakersCommand =>
 			loadSpeakersCommand ?? (loadSpeakersCommand = new Command(async (f) => await ExecuteLoadSpeakersAsync((bool) f)));
 
-		async Task<bool> ExecuteLoadSpeakersAsync(bool force = false)
+	    private static IEnumerable<Speaker> GetSpeakers()
+	    {
+	        var assembly = Assembly.Load(new AssemblyName("DotNetRu.DataStore.Audit"));
+	        const string resourceFileName = "index.xml";
+
+            var resourceNames = assembly.GetManifestResourceNames();
+	        var resourcePaths = resourceNames
+	            .Where(x => x.EndsWith(resourceFileName, StringComparison.CurrentCultureIgnoreCase))
+	            .ToArray();
+
+	        var speakers = new List<Speaker>();
+	        foreach (var resource in resourcePaths)
+	        {
+	            var stream = assembly.GetManifestResourceStream(resource);
+	            using (var streamReader = new StreamReader(stream))
+	            {
+	                var xml = streamReader.ReadToEnd();
+	                // ReSharper disable once InconsistentNaming
+	                var DotNEXTspeaker = xml.ParseXml<DotNetRu.DataStore.Audit.Models.Speaker>();
+                    speakers.Add(new Speaker
+                    {
+                        FirstName = DotNEXTspeaker.Name,
+                        LastName = "",
+                        PhotoUrl = $@"https://raw.githubusercontent.com/DotNetRu/Audit/master/db/speakers/{DotNEXTspeaker.Id}/avatar.jpg",
+                        AvatarUrl = $@"https://raw.githubusercontent.com/DotNetRu/Audit/master/db/speakers/{DotNEXTspeaker.Id}/avatar.small.jpg",
+                        CompanyName = DotNEXTspeaker.CompanyName,
+                        CompanyWebsiteUrl = DotNEXTspeaker.CompanyUrl,
+                        TwitterUrl = DotNEXTspeaker.TwitterUrl,
+                        BlogUrl = DotNEXTspeaker.BlogUrl,
+                        Biography = DotNEXTspeaker.Description
+                    });
+                }
+
+            }
+	        return speakers;
+	    }
+
+        async Task<bool> ExecuteLoadSpeakersAsync(bool force = false)
 		{
 			if (IsBusy)
 				return false;
@@ -82,8 +123,8 @@ namespace XamarinEvolve.Clients.Portable
 #if DEBUG
 				await Task.Delay(1000);
 #endif
-				var speakers = await StoreManager.SpeakerStore.GetItemsAsync(force);
-
+			    var speakers = GetSpeakers();//await StoreManager.SpeakerStore.GetItemsAsync(force);
+                
 				SortSpeakers(speakers);
 
 				if (Device.OS != TargetPlatform.WinPhone && Device.OS != TargetPlatform.Windows && FeatureFlags.AppLinksEnabled)
