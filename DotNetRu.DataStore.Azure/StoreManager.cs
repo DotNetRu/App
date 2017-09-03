@@ -8,10 +8,10 @@ using Microsoft.WindowsAzure.MobileServices.Sync;
 using Newtonsoft.Json.Linq;
 using Xamarin.Forms;
 using XamarinEvolve.DataObjects;
-using XamarinEvolve.DataStore.Abstractions;
 using System.Collections.Generic;
 using XamarinEvolve.Clients.Portable;
 using System.Diagnostics;
+using XamarinEvolve.DataStore.Azure.Abstractions;
 using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.DataStore.Azure

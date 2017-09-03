@@ -1,12 +1,12 @@
 ﻿using System;
-using XamarinEvolve.DataObjects;
-using XamarinEvolve.DataStore.Abstractions;
-using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using XamarinEvolve.DataObjects;
+using XamarinEvolve.DataStore.Azure.Abstractions;
 using XamarinEvolve.Utils;
 
-namespace XamarinEvolve.DataStore.Azure
+namespace XamarinEvolve.DataStore.Azure.Stores
 {
 	public class NotificationStore : BaseStore<Notification>, INotificationStore
 	{

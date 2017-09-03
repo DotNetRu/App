@@ -27,7 +27,6 @@ namespace XamarinEvolve.DataObjects
         /// <value>The longitude.</value>
         public double? Longitude { get; set; }
 
-        #if MOBILE
         [Newtonsoft.Json.JsonIgnore]
         public Uri ImageUri 
         { 
@@ -44,6 +43,5 @@ namespace XamarinEvolve.DataObjects
                 return null;
             } 
         }
-        #endif
     }
 }

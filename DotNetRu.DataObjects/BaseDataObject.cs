@@ -1,4 +1,5 @@
 ﻿using System;
+using MvvmHelpers;
 
 #if BACKEND
 using Microsoft.Azure.Mobile.Server;

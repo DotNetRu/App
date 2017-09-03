@@ -1,8 +1,7 @@
-﻿using System;
-using XamarinEvolve.DataObjects;
-using XamarinEvolve.DataStore.Abstractions;
+﻿using XamarinEvolve.DataObjects;
+using XamarinEvolve.DataStore.Azure.Abstractions;
 
-namespace XamarinEvolve.DataStore.Azure
+namespace XamarinEvolve.DataStore.Azure.Stores
 {
     public class EventStore : BaseStore<FeaturedEvent>, IEventStore
     {

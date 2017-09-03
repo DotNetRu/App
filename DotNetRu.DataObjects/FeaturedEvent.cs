@@ -44,12 +44,10 @@ namespace XamarinEvolve.DataObjects
         /// <value>The sponsor.</value>
         public virtual Sponsor Sponsor { get; set; }
 
-        #if MOBILE
         [JsonIgnore]
         public bool HasSponsor => Sponsor != null;
         [JsonIgnore]
         public DateTime StartTimeOrderBy { get { return StartTime.HasValue ? StartTime.Value : DateTime.MinValue; } }
-        #endif
     }
 }
 
