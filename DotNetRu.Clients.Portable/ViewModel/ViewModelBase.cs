@@ -1,12 +1,12 @@
 ﻿using Xamarin.Forms;
-using XamarinEvolve.DataStore.Abstractions;
-
 using MvvmHelpers;
 using Plugin.Share;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Plugin.Share.Abstractions;
 using System;
+using XamarinEvolve.DataStore.Azure.Abstractions;
+using XamarinEvolve.DataStore.Azure.Stores;
 
 namespace XamarinEvolve.Clients.Portable
 {
@@ -21,15 +21,15 @@ namespace XamarinEvolve.Clients.Portable
 
 		public static void Init()
 		{
-			DependencyService.Register<ISessionStore, DataStore.Azure.SessionStore>();
-			DependencyService.Register<IFavoriteStore, DataStore.Azure.FavoriteStore>();
-			DependencyService.Register<IFeedbackStore, DataStore.Azure.FeedbackStore>();
-			DependencyService.Register<IConferenceFeedbackStore, DataStore.Azure.ConferenceFeedbackStore>();
-			DependencyService.Register<ISpeakerStore, DataStore.Azure.SpeakerStore>();
-			DependencyService.Register<ISponsorStore, DataStore.Azure.SponsorStore>();
-			DependencyService.Register<ICategoryStore, DataStore.Azure.CategoryStore>();
-			DependencyService.Register<IEventStore, DataStore.Azure.EventStore>();
-			DependencyService.Register<INotificationStore, DataStore.Azure.NotificationStore>();
+			DependencyService.Register<ISessionStore, SessionStore>();
+			DependencyService.Register<IFavoriteStore, FavoriteStore>();
+			DependencyService.Register<IFeedbackStore, FeedbackStore>();
+			DependencyService.Register<IConferenceFeedbackStore, ConferenceFeedbackStore>();
+			DependencyService.Register<ISpeakerStore, SpeakerStore>();
+			DependencyService.Register<ISponsorStore, SponsorStore>();
+			DependencyService.Register<ICategoryStore, CategoryStore>();
+			DependencyService.Register<IEventStore, EventStore>();
+			DependencyService.Register<INotificationStore, NotificationStore>();
 			DependencyService.Register<IStoreManager, DataStore.Azure.StoreManager>();
 
 			DependencyService.Register<FavoriteService>();

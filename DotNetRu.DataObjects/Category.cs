@@ -26,7 +26,6 @@ namespace XamarinEvolve.DataObjects
 
         public virtual ICollection<Session> Sessions { get; set; }
 
-#if MOBILE
         bool filtered;
         [JsonIgnore]
         public bool IsFiltered
@@ -44,6 +43,5 @@ namespace XamarinEvolve.DataObjects
         }
         [JsonIgnore]
         public string BadgeName => string.IsNullOrWhiteSpace(ShortName) ? Name : ShortName; 
-#endif
     }
 }

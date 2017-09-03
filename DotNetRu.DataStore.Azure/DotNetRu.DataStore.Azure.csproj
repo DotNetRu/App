@@ -45,6 +45,17 @@
     <DefineConstants>MOBILE;ENABLE_TEST_CLOUD</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Abstractions\IBaseStore.cs" />
+    <Compile Include="Abstractions\ICategoryStore.cs" />
+    <Compile Include="Abstractions\IConferenceFeedbackStore.cs" />
+    <Compile Include="Abstractions\IEventStore.cs" />
+    <Compile Include="Abstractions\IFavoriteStore.cs" />
+    <Compile Include="Abstractions\IFeedbackStore.cs" />
+    <Compile Include="Abstractions\INotificationStore.cs" />
+    <Compile Include="Abstractions\ISessionStore.cs" />
+    <Compile Include="Abstractions\ISpeakerStore.cs" />
+    <Compile Include="Abstractions\ISponsorStore.cs" />
+    <Compile Include="Abstractions\IStoreManager.cs" />
     <Compile Include="InvalidTokenException.cs" />
     <Compile Include="JwtClaimNames.cs" />
     <Compile Include="JwtUtility.cs" />
@@ -64,6 +75,7 @@
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.1.0.6508-pre3\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.1.0.6508-pre3\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
   <Import Project="..\packages\Xamarin.Forms.2.3.0.34-pre1\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.0.34-pre1\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
+  <Import Project="..\DotNetRu.DataObjects\DotNetRu.Backend.Shared.projitems" Label="Shared" Condition="Exists('..\DotNetRu.DataObjects\DotNetRu.Backend.Shared.projitems')" />
   <ItemGroup>
     <Reference Include="Humanizer, Version=2.0.1.0, Culture=neutral, PublicKeyToken=979442b78dfc278e, processorArchitecture=MSIL">
       <HintPath>..\packages\Humanizer.Core.2.0.1\lib\portable-win+net45+wp8+wpa81\Humanizer.dll</HintPath>
@@ -133,10 +145,6 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\DotNetRu.DataStore.Abstractions\DotNetRu.DataStore.Abstractions.csproj">
-      <Project>{50542AC8-CD37-4E51-B946-B85049D6EC11}</Project>
-      <Name>XamarinEvolve.DataStore.Abstractions</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DotNetRu.Utils\DotNetRu.Utils.csproj">
       <Project>{dfa0f0f6-c396-412e-86a9-e9095f71cc36}</Project>
       <Name>DotNetRu.Utils</Name>

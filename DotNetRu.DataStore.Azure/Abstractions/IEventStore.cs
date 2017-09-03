@@ -1,6 +1,6 @@
 ﻿using XamarinEvolve.DataObjects;
 
-namespace XamarinEvolve.DataStore.Abstractions
+namespace XamarinEvolve.DataStore.Azure.Abstractions
 {
     public interface IEventStore : IBaseStore<FeaturedEvent>
     {

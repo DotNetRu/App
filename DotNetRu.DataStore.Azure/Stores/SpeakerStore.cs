@@ -1,10 +1,8 @@
-﻿using XamarinEvolve.DataStore.Abstractions;
+﻿using System.Threading.Tasks;
 using XamarinEvolve.DataObjects;
-using XamarinEvolve.DataStore.Azure;
-using System;
-using System.Threading.Tasks;
+using XamarinEvolve.DataStore.Azure.Abstractions;
 
-namespace XamarinEvolve.DataStore.Azure
+namespace XamarinEvolve.DataStore.Azure.Stores
 {
     public class SpeakerStore : BaseStore<Speaker>, ISpeakerStore
     {

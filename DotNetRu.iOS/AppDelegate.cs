@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-
+using WindowsAzure.Messaging;
 using Foundation;
 using UIKit;
 using XamarinEvolve.Clients.UI;
@@ -11,15 +10,12 @@ using Xamarin.Forms.Platform.iOS;
 using Xamarin;
 using FormsToolkit;
 using XamarinEvolve.Clients.Portable;
-using WindowsAzure.Messaging;
 using Refractored.XamForms.PullToRefresh.iOS;
 using Social;
 using CoreSpotlight;
-using XamarinEvolve.DataStore.Abstractions;
-using System.Threading.Tasks;
 using Google.AppIndexing;
 using HockeyApp.iOS;
-using NotificationCenter;
+using XamarinEvolve.DataStore.Azure.Abstractions;
 using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.iOS

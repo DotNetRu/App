@@ -1,7 +1,7 @@
-﻿using System.Threading.Tasks;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
-namespace XamarinEvolve.DataStore.Abstractions
+namespace XamarinEvolve.DataStore.Azure.Abstractions
 {
     public interface IBaseStore<T>
     {

@@ -1,15 +1,13 @@
 ﻿using System;
-using XamarinEvolve.DataStore.Abstractions;
-using System.Threading.Tasks;
 using System.Collections.Generic;
-using XamarinEvolve.DataObjects;
 using System.Linq;
-
-using XamarinEvolve.DataStore.Azure;
+using System.Threading.Tasks;
 using Xamarin.Forms;
+using XamarinEvolve.DataObjects;
+using XamarinEvolve.DataStore.Azure.Abstractions;
 using XamarinEvolve.Utils;
 
-namespace XamarinEvolve.DataStore.Azure
+namespace XamarinEvolve.DataStore.Azure.Stores
 {
     public class SessionStore : BaseStore<Session>, ISessionStore
     {

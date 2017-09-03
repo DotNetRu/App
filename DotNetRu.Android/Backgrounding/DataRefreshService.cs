@@ -13,7 +13,7 @@ using Android.Gms.Gcm;
 using Xamarin.Forms;
 using XamarinEvolve.Clients;
 using XamarinEvolve.Clients.Portable;
-using XamarinEvolve.DataStore.Abstractions;
+using XamarinEvolve.DataStore.Azure.Abstractions;
 
 namespace XamarinEvolve.Droid
 {

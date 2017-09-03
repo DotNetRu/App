@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace XamarinEvolve.DataStore.Abstractions
+namespace XamarinEvolve.DataStore.Azure.Abstractions
 {
     public interface IStoreManager
     {

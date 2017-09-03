@@ -2,9 +2,9 @@
 using XamarinEvolve.DataObjects;
 using System.Threading.Tasks;
 using Xamarin.Forms;
-using XamarinEvolve.DataStore.Abstractions;
 using FormsToolkit;
 using System.Linq;
+using XamarinEvolve.DataStore.Azure.Abstractions;
 using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.Clients.Portable

@@ -2,9 +2,9 @@
 using XamarinEvolve.Clients.UI;
 using FormsToolkit;
 using XamarinEvolve.Clients.Portable;
-using XamarinEvolve.DataStore.Abstractions;
 using XamarinEvolve.Utils;
 using System.Linq;
+using XamarinEvolve.DataStore.Azure.Abstractions;
 
 namespace XamarinEvolve.Clients.UI
 {

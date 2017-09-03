@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using XamarinEvolve.Clients.Portable;
 using FormsToolkit;
-using XamarinEvolve.DataStore.Abstractions;
+using XamarinEvolve.DataStore.Azure.Abstractions;
 using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.Clients.UI

@@ -1,15 +1,15 @@
 ﻿using System;
-using XamarinEvolve.DataStore.Abstractions;
-using XamarinEvolve.DataObjects;
-using System.Threading.Tasks;
 using System.Collections.Generic;
-using Microsoft.WindowsAzure.MobileServices.Sync;
-using Microsoft.WindowsAzure.MobileServices;
-using Xamarin.Forms;
 using System.Diagnostics;
+using System.Threading.Tasks;
+using Microsoft.WindowsAzure.MobileServices;
+using Microsoft.WindowsAzure.MobileServices.Sync;
 using Plugin.Connectivity;
+using Xamarin.Forms;
+using XamarinEvolve.DataObjects;
+using XamarinEvolve.DataStore.Azure.Abstractions;
 
-namespace XamarinEvolve.DataStore.Azure
+namespace XamarinEvolve.DataStore.Azure.Stores
 {
     public class BaseStore<T> : IBaseStore<T> where T : class, IBaseDataObject, new()
     {

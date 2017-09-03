@@ -1,12 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
-using System.Collections.Generic;
+﻿using System.Threading.Tasks;
 using XamarinEvolve.DataObjects;
+using XamarinEvolve.DataStore.Azure.Abstractions;
 
-using XamarinEvolve.DataStore.Azure;
-using XamarinEvolve.DataStore.Abstractions;
-
-namespace XamarinEvolve.DataStore.Azure
+namespace XamarinEvolve.DataStore.Azure.Stores
 {
     public class FeedbackStore : BaseStore<Feedback>, IFeedbackStore
     {

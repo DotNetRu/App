@@ -1,12 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
-using XamarinEvolve.DataObjects;
-using XamarinEvolve.DataStore.Abstractions;
+﻿using XamarinEvolve.DataObjects;
+using XamarinEvolve.DataStore.Azure.Abstractions;
 
-using Xamarin.Forms;
-using XamarinEvolve.DataStore.Azure;
-
-namespace XamarinEvolve.DataStore.Azure
+namespace XamarinEvolve.DataStore.Azure.Stores
 {
     public class CategoryStore : BaseStore<Category>, ICategoryStore
     {

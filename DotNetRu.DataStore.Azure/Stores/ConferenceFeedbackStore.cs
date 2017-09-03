@@ -1,10 +1,9 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using XamarinEvolve.DataObjects;
-using XamarinEvolve.DataStore.Abstractions;
+using XamarinEvolve.DataStore.Azure.Abstractions;
 
-namespace XamarinEvolve.DataStore.Azure
+namespace XamarinEvolve.DataStore.Azure.Stores
 {
 	public class ConferenceFeedbackStore : BaseStore<ConferenceFeedback>, IConferenceFeedbackStore
 	{

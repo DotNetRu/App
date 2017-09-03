@@ -1,8 +1,8 @@
-﻿using System.Threading.Tasks;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using XamarinEvolve.DataObjects;
 
-namespace XamarinEvolve.DataStore.Abstractions
+namespace XamarinEvolve.DataStore.Azure.Abstractions
 {
     public interface ISessionStore : IBaseStore<Session>
     {
