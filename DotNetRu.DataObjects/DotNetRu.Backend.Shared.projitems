@@ -13,7 +13,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Category.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Favorite.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Feedback.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)MobileToWebSync.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Room.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Session.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Speaker.cs" />

@@ -241,10 +241,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DotNetRu.DataStore.Abstractions\DotNetRu.DataStore.Abstractions.csproj">
-      <Project>{50542AC8-CD37-4E51-B946-B85049D6EC11}</Project>
-      <Name>XamarinEvolve.DataStore.Abstractions</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DotNetRu.DataStore.Audit\DotNetRu.DataStore.Audit.csproj">
       <Project>{7b4c73df-8a4a-4ad1-92d9-a064065cdd71}</Project>
       <Name>DotNetRu.DataStore.Audit</Name>
@@ -252,10 +248,6 @@
     <ProjectReference Include="..\DotNetRu.DataStore.Azure\DotNetRu.DataStore.Azure.csproj">
       <Project>{5087B261-9D0F-457D-AD9E-B018248F1B16}</Project>
       <Name>XamarinEvolve.DataStore.Azure</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DotNetRu.DataStore.Mock\DotNetRu.DataStore.Mock.csproj">
-      <Project>{4DF18ED7-0E19-4866-8D9B-B1CB5C86A366}</Project>
-      <Name>XamarinEvolve.DataStore.Mock</Name>
     </ProjectReference>
     <ProjectReference Include="..\DotNetRu.Utils\DotNetRu.Utils.csproj">
       <Project>{dfa0f0f6-c396-412e-86a9-e9095f71cc36}</Project>
