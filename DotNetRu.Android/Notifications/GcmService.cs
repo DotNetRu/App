@@ -96,77 +96,77 @@ namespace XamarinEvolve.Droid
 
 
 
-        protected override void OnMessage (Context context, Intent intent)
+        protected override void OnMessage(Context context, Intent intent)
         {
-            Console.WriteLine ("Received Notification");
+            Console.WriteLine("Received Notification");
 
-            try
-            {
-                //Push Notification arrived - print out the keys/values
-                if (intent != null || intent.Extras != null) 
-                {
+            //try
+            //{
+            //    //Push Notification arrived - print out the keys/values
+            //    if (intent != null || intent.Extras != null)
+            //    {
 
-                    var keyset = intent.Extras.KeySet ();
+            //        var keyset = intent.Extras.KeySet();
 
-                    foreach (var key in keyset)
-                    {
-                        var message = intent.Extras.GetString(key);
-                        Console.WriteLine("Key: {0}, Value: {1}", key, message);
-                        if(key == "message")
-                            SendNotification(message);
-                    }
-                }
-            }
-            catch(Exception ex)
-            {
-                Console.WriteLine ("Error parsing message: " + ex);
-            }
+            //        foreach (var key in keyset)
+            //        {
+            //            var message = intent.Extras.GetString(key);
+            //            Console.WriteLine("Key: {0}, Value: {1}", key, message);
+            //            if (key == "message")
+            //                SendNotification(message);
+            //        }
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine("Error parsing message: " + ex);
+            //}
 
         }
 
-        void SendNotification (string message)
-        {
-            try
-            {
-                Console.WriteLine ("SendNotification");
-                var notificationManager = NotificationManagerCompat.From (this);
+        //void SendNotification (string message)
+        //{
+        //    try
+        //    {
+        //        Console.WriteLine ("SendNotification");
+        //        //var notificationManager = NotificationManagerCompat.From (this);
 
-                Console.WriteLine ("Created Manager");
-                var notificationIntent = new Intent(this, typeof(MainActivity));
-                notificationIntent.AddFlags(ActivityFlags.ClearTop | ActivityFlags.NewTask); 
-                var pendingIntent = PendingIntent.GetActivity(this, 0, notificationIntent, PendingIntentFlags.UpdateCurrent);
+        //        Console.WriteLine ("Created Manager");
+        //        var notificationIntent = new Intent(this, typeof(MainActivity));
+        //        notificationIntent.AddFlags(ActivityFlags.ClearTop | ActivityFlags.NewTask); 
+        //        var pendingIntent = PendingIntent.GetActivity(this, 0, notificationIntent, PendingIntentFlags.UpdateCurrent);
 
-                Console.WriteLine ("Created Pending Intent");
-                /*var wearableExtender =
-                    new NotificationCompat.WearableExtender()
-                        .SetBackground(BitmapFactory.DecodeResource(Resources, Resource.Drawable.ic_background_evolve));*/
+        //        Console.WriteLine ("Created Pending Intent");
+        //        /*var wearableExtender =
+        //            new NotificationCompat.WearableExtender()
+        //                .SetBackground(BitmapFactory.DecodeResource(Resources, Resource.Drawable.ic_background_evolve));*/
 
-                var style = new NotificationCompat.BigTextStyle();
-                style.BigText(message);
+        //        var style = new NotificationCompat.BigTextStyle();
+        //        style.BigText(message);
 
-                var builder = new NotificationCompat.Builder(this)
-                    .SetContentIntent(pendingIntent)
-                    .SetContentTitle(EventInfo.EventName)
-                    .SetAutoCancel(true)
-                    .SetStyle(style)
-                    // TODO replace icon
-                    .SetSmallIcon(Resource.Drawable.ic_launcher)
-                    .SetContentText(message);
-                //.Extend(wearableExtender);
+        //        var builder = new NotificationCompat.Builder(this)
+        //            .SetContentIntent(pendingIntent)
+        //            .SetContentTitle(EventInfo.EventName)
+        //            .SetAutoCancel(true)
+        //            .SetStyle(style)
+        //            // TODO replace icon
+        //            .SetSmallIcon(Resource.Drawable.ic_launcher)
+        //            .SetContentText(message);
+        //        //.Extend(wearableExtender);
 
-                // Obtain a reference to the NotificationManager
-                var id = XamarinEvolve.Droid.Helpers.Settings.GetUniqueNotificationId();
-                Console.WriteLine ("Got Unique ID: " + id);
-                var notif = builder.Build ();
-                notif.Defaults = NotificationDefaults.All;
-                Console.WriteLine ("Notify");
-                notificationManager.Notify(id, notif);
-            }
-            catch(Exception ex)
-            {
-                Console.WriteLine(ex);
-            }
-        }
+        //        // Obtain a reference to the NotificationManager
+        //        var id = XamarinEvolve.Droid.Helpers.Settings.GetUniqueNotificationId();
+        //        Console.WriteLine ("Got Unique ID: " + id);
+        //        var notif = builder.Build ();
+        //        notif.Defaults = NotificationDefaults.All;
+        //        Console.WriteLine ("Notify");
+        //        notificationManager.Notify(id, notif);
+        //    }
+        //    catch(Exception ex)
+        //    {
+        //        Console.WriteLine(ex);
+        //    }
+        //}
 
         protected override bool OnRecoverableError (Context context, string errorId)
         {

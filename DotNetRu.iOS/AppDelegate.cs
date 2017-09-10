@@ -107,8 +107,6 @@ namespace XamarinEvolve.iOS
 
 			AppIndexing.SharedInstance.RegisterApp(PublicationSettings.iTunesAppId);
 
-			ZXing.Net.Mobile.Forms.iOS.Platform.Init();
-
 			//Random Inits for Linking out.
 			Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
 			SQLitePCL.CurrentPlatform.Init();
@@ -122,7 +120,6 @@ namespace XamarinEvolve.iOS
 				UIActivityType.SaveToCameraRoll
 			};
 			ImageCircle.Forms.Plugin.iOS.ImageCircleRenderer.Init();
-			ZXing.Net.Mobile.Forms.iOS.Platform.Init();
 			NonScrollableListViewRenderer.Initialize();
 			SelectedTabPageRenderer.Initialize();
 			TextViewValue1Renderer.Init();

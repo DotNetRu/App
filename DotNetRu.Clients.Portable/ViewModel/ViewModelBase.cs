@@ -1,137 +1,196 @@
-﻿using Xamarin.Forms;
-using XamarinEvolve.DataStore.Abstractions;
-
-using MvvmHelpers;
-using Plugin.Share;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using Plugin.Share.Abstractions;
-using System;
-
-namespace XamarinEvolve.Clients.Portable
+﻿namespace XamarinEvolve.Clients.Portable
 {
-	public class ViewModelBase : BaseViewModel
-	{
-		protected INavigation Navigation { get; }
+    using System;
+    using System.Threading.Tasks;
+    using System.Windows.Input;
 
-		public ViewModelBase(INavigation navigation = null)
-		{
-			Navigation = navigation;
-		}
+    using MvvmHelpers;
 
-		public static void Init()
-		{
-			DependencyService.Register<ISessionStore, DataStore.Mock.SessionStore>();
-			DependencyService.Register<IFavoriteStore, DataStore.Mock.FavoriteStore>();
-			DependencyService.Register<IFeedbackStore, DataStore.Mock.FeedbackStore>();
-			DependencyService.Register<IConferenceFeedbackStore, DataStore.Mock.ConferenceFeedbackStore>();
-			DependencyService.Register<ISpeakerStore, DataStore.Mock.SpeakerStore>();
-			DependencyService.Register<ISponsorStore, DataStore.Mock.SponsorStore>();
-			DependencyService.Register<ICategoryStore, DataStore.Mock.CategoryStore>();
-			DependencyService.Register<IEventStore, DataStore.Mock.EventStore>();
-			DependencyService.Register<INotificationStore, DataStore.Mock.NotificationStore>();
-			DependencyService.Register<IStoreManager, DataStore.Azure.StoreManager>();
+    using Plugin.Share;
+    using Plugin.Share.Abstractions;
 
-			DependencyService.Register<FavoriteService>();
-		}
+    using Xamarin.Forms;
 
+    using XamarinEvolve.DataStore.Abstractions;
 
-		protected ILogger Logger { get; } = DependencyService.Get<ILogger>();
-		protected IStoreManager StoreManager { get; } = DependencyService.Get<IStoreManager>();
-		protected IToast Toast { get; } = DependencyService.Get<IToast>();
+    /// <summary>
+    /// The view model base.
+    /// </summary>
+    public class ViewModelBase : BaseViewModel
+    {
+        /// <summary>
+        /// Gets the navigation.
+        /// </summary>
+        protected INavigation Navigation { get; }
 
-		protected FavoriteService FavoriteService { get; } = DependencyService.Get<FavoriteService>();
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ViewModelBase"/> class.
+        /// </summary>
+        /// <param name="navigation">
+        /// The navigation.
+        /// </param>
+        public ViewModelBase(INavigation navigation = null)
+        {
+            this.Navigation = navigation;
+        }
 
+        /// <summary>
+        /// The INIT.
+        /// </summary>
+        public static void Init()
+        {
+            DependencyService.Register<ISessionStore, DataStore.Mock.SessionStore>();
+            DependencyService.Register<IFavoriteStore, DataStore.Mock.FavoriteStore>();
+            DependencyService.Register<IFeedbackStore, DataStore.Mock.FeedbackStore>();
+            DependencyService.Register<IConferenceFeedbackStore, DataStore.Mock.ConferenceFeedbackStore>();
+            DependencyService.Register<ISpeakerStore, DataStore.Mock.SpeakerStore>();
+            DependencyService.Register<ISponsorStore, DataStore.Mock.SponsorStore>();
+            DependencyService.Register<ICategoryStore, DataStore.Mock.CategoryStore>();
+            DependencyService.Register<IEventStore, DataStore.Mock.EventStore>();
+            DependencyService.Register<INotificationStore, DataStore.Mock.NotificationStore>();
+            DependencyService.Register<IStoreManager, DataStore.Azure.StoreManager>();
 
-		public Settings Settings
-		{
-			get { return Settings.Current; }
-		}
+            DependencyService.Register<FavoriteService>();
+        }
 
-		ICommand launchBrowserCommand;
+        /// <summary>
+        /// Gets the logger.
+        /// </summary>
+        protected ILogger Logger { get; } = DependencyService.Get<ILogger>();
 
-		public ICommand LaunchBrowserCommand =>
-			launchBrowserCommand ?? (launchBrowserCommand =
-				new Command<string>(async (t) => await ExecuteLaunchBrowserAsync(t)));
+        /// <summary>
+        /// Gets the store manager.
+        /// </summary>
+        protected IStoreManager StoreManager { get; } = DependencyService.Get<IStoreManager>();
 
-		async Task ExecuteLaunchBrowserAsync(string arg)
-		{
-			if (IsBusy)
-				return;
+        /// <summary>
+        /// Gets the toast.
+        /// </summary>
+        protected IToast Toast { get; } = DependencyService.Get<IToast>();
 
-			if (!arg.StartsWith("http://", StringComparison.OrdinalIgnoreCase) &&
-					!arg.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
-				arg = "http://" + arg;
+        /// <summary>
+        /// Gets the favorite service.
+        /// </summary>
+        protected FavoriteService FavoriteService { get; } = DependencyService.Get<FavoriteService>();
 
-			arg = arg.Trim();
+        /// <summary>
+        /// The settings.
+        /// </summary>
+        public Settings Settings => Settings.Current;
 
-			var lower = arg.ToLowerInvariant();
+        /// <summary>
+        /// The launch browser command.
+        /// </summary>
+        ICommand launchBrowserCommand;
 
-			Logger.Track(EvolveLoggerKeys.LaunchedBrowser, "Url", lower);
+        /// <summary>
+        /// The launch browser command.
+        /// </summary>
+        public ICommand LaunchBrowserCommand => launchBrowserCommand
+                                                ?? (launchBrowserCommand = new Command<string>(
+                                                        async (t) => await ExecuteLaunchBrowserAsync(t)));
 
-			if (Device.OS == TargetPlatform.iOS)
-			{
-				if (lower.Contains("twitter.com"))
-				{
-					try
-					{
-						var id = arg.Substring(lower.LastIndexOf("/", StringComparison.Ordinal) + 1);
-						var launchTwitter = DependencyService.Get<ILaunchTwitter>();
-						if (lower.Contains("/status/"))
-						{
-							//status
-							if (launchTwitter.OpenStatus(id))
-								return;
-						}
-						else
-						{
-							//user
-							if (launchTwitter.OpenUserName(id))
-								return;
-						}
-					}
-					catch
-					{
-					}
-				}
-				if (lower.Contains("facebook.com"))
-				{
-					try
-					{
-						var id = arg.Substring(lower.LastIndexOf("/", StringComparison.Ordinal) + 1);
-						var launchFacebook = DependencyService.Get<ILaunchFacebook>();
-						if (launchFacebook.OpenUserName(id))
-							return;
-					}
-					catch
-					{
-					}
-				}
-			}
+        /// <summary>
+        /// The execute launch browser async.
+        /// </summary>
+        /// <param name="arg">
+        /// The arg.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        public async Task ExecuteLaunchBrowserAsync(string arg)
+        {
+            if (this.IsBusy)
+            {
+                return;
+            }
 
-			try
-			{
-				var primaryColor = ((Color)Application.Current.Resources["Primary"]);
+            if (!arg.StartsWith("http://", StringComparison.OrdinalIgnoreCase)
+                && !arg.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
+            {
+                arg = "http://" + arg;
+            }
 
-				await CrossShare.Current.OpenBrowser(arg, new BrowserOptions
-				{
-					ChromeShowTitle = true,
-					ChromeToolbarColor = new ShareColor
-					{
-						A = 255,
-						R = Convert.ToInt32(primaryColor.R),
-						G = Convert.ToInt32(primaryColor.G),
-						B = Convert.ToInt32(primaryColor.B)
-					},
-					UseSafairReaderMode = true,
-					UseSafariWebViewController = true
-				});
-			}
-			catch
-			{
-			}
-		}
-	}
+            arg = arg.Trim();
+
+            var lower = arg.ToLowerInvariant();
+
+            this.Logger.Track(EvolveLoggerKeys.LaunchedBrowser, "Url", lower);
+
+            if (Device.RuntimePlatform == Device.iOS)
+            {
+                if (lower.Contains("twitter.com"))
+                {
+                    try
+                    {
+                        var id = arg.Substring(lower.LastIndexOf("/", StringComparison.Ordinal) + 1);
+                        var launchTwitter = DependencyService.Get<ILaunchTwitter>();
+                        if (lower.Contains("/status/"))
+                        {
+                            // status
+                            if (launchTwitter.OpenStatus(id))
+                            {
+                                return;
+                            }
+                        }
+                        else
+                        {
+                            // user
+                            if (launchTwitter.OpenUserName(id))
+                            {
+                                return;
+                            }
+                        }
+                    }
+                    catch
+                    {
+                        // ignored
+                    }
+                }
+                if (lower.Contains("facebook.com"))
+                {
+                    try
+                    {
+                        var id = arg.Substring(lower.LastIndexOf("/", StringComparison.Ordinal) + 1);
+                        var launchFacebook = DependencyService.Get<ILaunchFacebook>();
+                        if (launchFacebook.OpenUserName(id))
+                        {
+                            return;
+                        }
+                    }
+                    catch
+                    {
+                        // ignored
+                    }
+                }
+            }
+
+            try
+            {
+                var primaryColor = (Color)Application.Current.Resources["Primary"];
+
+                await CrossShare.Current.OpenBrowser(
+                    arg,
+                    new BrowserOptions
+                        {
+                            ChromeShowTitle = true,
+                            ChromeToolbarColor =
+                                new ShareColor
+                                    {
+                                        A = 255,
+                                        R = Convert.ToInt32(primaryColor.R),
+                                        G = Convert.ToInt32(primaryColor.G),
+                                        B = Convert.ToInt32(primaryColor.B)
+                                    },
+                            UseSafariReaderMode = true,
+                            UseSafariWebViewController = true
+                        });
+            }
+            catch
+            {
+                // ignored
+            }
+        }
+    }
 }
-
-
