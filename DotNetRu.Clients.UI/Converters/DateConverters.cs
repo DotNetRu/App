@@ -9,6 +9,8 @@ using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.Clients.UI
 {
+    using XamarinEvolve.Utils.Extensions;
+
     class SessionTimeDisplayConverter : IValueConverter
     {
 

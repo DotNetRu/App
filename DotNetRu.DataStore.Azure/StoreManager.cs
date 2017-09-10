@@ -16,7 +16,9 @@ using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.DataStore.Azure
 {
-    public class StoreManager : IStoreManager
+	using XamarinEvolve.Utils.Helpers;
+
+	public class StoreManager : IStoreManager
     {
         
         public static MobileServiceClient MobileService { get; set; }

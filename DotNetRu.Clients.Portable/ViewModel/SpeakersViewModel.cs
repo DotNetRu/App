@@ -11,6 +11,8 @@ using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.Clients.Portable
 {
+	using XamarinEvolve.Utils.Helpers;
+
 	public class SpeakersViewModel: ViewModelBase
 	{
 		public SpeakersViewModel(INavigation navigation) : base(navigation)

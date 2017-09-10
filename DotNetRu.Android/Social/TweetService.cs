@@ -9,6 +9,8 @@ using XamarinEvolve.Droid;
 
 namespace XamarinEvolve.Droid
 {
+	using XamarinEvolve.Utils.Helpers;
+
 	public class TweetService : ITweetService
 	{
 		public async Task InitiateConferenceTweet()

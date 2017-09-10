@@ -5,6 +5,8 @@ using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.Clients.Portable
 {
+	using XamarinEvolve.Utils.Helpers;
+
 	public static class SpeakerExtensions
 	{
 		public static AppLinkEntry GetAppLink(this Speaker speaker)

@@ -11,6 +11,9 @@ using System.Linq;
 
 namespace XamarinEvolve.Clients.Portable
 {
+    using XamarinEvolve.Utils.Extensions;
+    using XamarinEvolve.Utils.Helpers;
+
 	public class SessionDetailsViewModel : ViewModelBase
 	{
 		Session session;
@@ -26,7 +29,7 @@ namespace XamarinEvolve.Clients.Portable
 		{
 			Session = session;
 			if (Session.StartTime.HasValue)
-				ShowReminder = !Session.StartTime.Value.IsTBA() && Session.EndTime.Value.ToUniversalTime() <= DateTime.UtcNow;
+				ShowReminder = !Session.StartTime.Value.IsTba() && Session.EndTime.Value.ToUniversalTime() <= DateTime.UtcNow;
 			else
 				ShowReminder = false;
 

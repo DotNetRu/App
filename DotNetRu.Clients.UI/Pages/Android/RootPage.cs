@@ -8,7 +8,9 @@ using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.Clients.UI
 {
-  public class RootPageAndroid : MasterDetailPage
+	using XamarinEvolve.Utils.Helpers;
+
+	public class RootPageAndroid : MasterDetailPage
   {
     Dictionary<int, EvolveNavigationPage> pages;
     DeepLinkPage page;

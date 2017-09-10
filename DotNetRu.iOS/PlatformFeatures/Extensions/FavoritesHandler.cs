@@ -14,7 +14,9 @@ using NotificationCenter;
 
 namespace XamarinEvolve.iOS.PlatformFeatures.Extensions
 {
-    public class FavoritesHandler : IPlatformSpecificDataHandler<Session>
+	using XamarinEvolve.Utils.Helpers;
+
+	public class FavoritesHandler : IPlatformSpecificDataHandler<Session>
 	{
 		public Task UpdateMultipleEntities(IEnumerable<Session> data)
 		{

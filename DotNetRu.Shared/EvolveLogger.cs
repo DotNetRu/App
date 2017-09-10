@@ -11,7 +11,9 @@ using Plugin.GoogleAnalytics;
 [assembly:Dependency(typeof(EvolveLogger))]
 namespace XamarinEvolve.Clients.Portable
 {
-    public class EvolveLogger : ILogger
+	using XamarinEvolve.Utils.Helpers;
+
+	public class EvolveLogger : ILogger
     {
         private bool googleAnalyticsEnabled = FeatureFlags.GoogleAnalyticsEnabled;
 

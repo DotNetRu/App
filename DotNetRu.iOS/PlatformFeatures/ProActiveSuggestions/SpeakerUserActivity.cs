@@ -12,6 +12,8 @@ using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.iOS.PlatformFeatures.ProActiveSuggestions
 {
+	using XamarinEvolve.Utils.Helpers;
+
 	public class SpeakerUserActivity : IPlatformSpecificExtension<Speaker>
 	{
 		private NSUserActivity _activity;

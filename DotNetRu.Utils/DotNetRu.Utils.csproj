@@ -51,9 +51,15 @@
     <NoStdLib>false</NoStdLib>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Helpers\Constants.cs" />
+    <Compile Include="Helpers\AboutThisApp.cs" />
+    <Compile Include="Helpers\ApiKeys.cs" />
+    <Compile Include="Helpers\Constants.cs">
+      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Helpers\Gravatar.cs" />
     <Compile Include="Helpers\MD5Core.cs" />
+    <Compile Include="Helpers\MessageKeys.cs" />
+    <Compile Include="Helpers\PublicationSettings.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Interfaces\ILogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -63,7 +69,7 @@
     <Compile Include="Helpers\Base36.cs" />
     <Compile Include="Helpers\Base36Exceptions.cs" />
     <Compile Include="Interfaces\IPlatformSpecificDataHandler.cs" />
-    <Compile Include="Extensions\DateTimeExtensions.cs" />
+    <Compile Include="Extensions\DateTimeExtenstions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Plugin.Settings, Version=2.5.1.0, Culture=neutral, processorArchitecture=MSIL">

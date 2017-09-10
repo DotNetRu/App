@@ -8,7 +8,9 @@ using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.Clients.UI
 {
-  public class RootPageWindows : MasterDetailPage
+	using XamarinEvolve.Utils.Helpers;
+
+	public class RootPageWindows : MasterDetailPage
   {
     Dictionary<AppPage, Page> pages;
     MenuPageUWP menu;
@@ -28,10 +30,8 @@ namespace XamarinEvolve.Clients.UI
       {
         items.Add(new MenuItem {Name = "Speakers", Icon = "menu_speakers.png", Page = AppPage.Speakers});
       }
-      if (FeatureFlags.EventsEnabled)
-      {
-        items.Add(new MenuItem {Name = "Events", Icon = "menu_events.png", Page = AppPage.Events});
-      }
+
+        items.Add(new MenuItem { Name = "Events", Icon = "menu_events.png", Page = AppPage.Events });
       if (FeatureFlags.SponsorsOnTabPage)
       {
         items.Add(new MenuItem {Name = "Sponsors", Icon = "menu_sponsors.png", Page = AppPage.Sponsors});

@@ -11,7 +11,9 @@ using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.Clients.Portable
 {
-    public class EventDetailsViewModel : ViewModelBase
+	using XamarinEvolve.Utils.Helpers;
+
+	public class EventDetailsViewModel : ViewModelBase
     {
         public FeaturedEvent Event { get; set; }
 

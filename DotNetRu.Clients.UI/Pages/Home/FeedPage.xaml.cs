@@ -9,6 +9,8 @@ using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.Clients.UI
 {
+	using XamarinEvolve.Utils.Helpers;
+
 	public partial class FeedPage : BasePage
 	{
 		public override AppPage PageType => AppPage.Feed;

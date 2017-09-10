@@ -8,7 +8,9 @@ using System.Linq;
 
 namespace XamarinEvolve.Clients.UI
 {
-    public class RootPageiOS : TabbedPage
+	using XamarinEvolve.Utils.Helpers;
+
+	public class RootPageiOS : TabbedPage
     {
 
         public RootPageiOS()
@@ -31,10 +33,8 @@ namespace XamarinEvolve.Clients.UI
 			{
 				Children.Add(new EvolveNavigationPage(new SpeakersPage()));
 			}
-			if (FeatureFlags.EventsEnabled)
-			{
-				Children.Add(new EvolveNavigationPage(new EventsPage()));
-			}
+
+            Children.Add(new EvolveNavigationPage(new EventsPage()));
 			if (FeatureFlags.SponsorsOnTabPage)
 			{
 				Children.Add(new EvolveNavigationPage(new SponsorsPage()));

@@ -6,7 +6,9 @@ using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.Clients.UI
 {
-  public partial class SettingsPage : BasePage
+	using XamarinEvolve.Utils.Helpers;
+
+	public partial class SettingsPage : BasePage
   {
     public override AppPage PageType => AppPage.Settings;
 

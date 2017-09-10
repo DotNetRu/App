@@ -10,6 +10,8 @@ using System.Linq;
 
 namespace XamarinEvolve.Clients.Portable
 {
+	using XamarinEvolve.Utils.Helpers;
+
 	public class SpeakerDetailsViewModel : ViewModelBase
     {
         

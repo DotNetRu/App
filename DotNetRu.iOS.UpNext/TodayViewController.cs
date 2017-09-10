@@ -13,6 +13,8 @@ using XamarinEvolve.Utils;
 
 namespace UpNext
 {
+	using XamarinEvolve.Utils.Helpers;
+
 	public partial class TodayViewController : UIViewController, INCWidgetProviding
 	{
 		private IEnumerable<Grouping<string, Session>> _data;

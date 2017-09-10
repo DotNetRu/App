@@ -18,6 +18,8 @@ using Plugin.Share;
 
 namespace XamarinEvolve.Clients.Portable
 {
+	using XamarinEvolve.Utils.Helpers;
+
 	public class FeedViewModel : ViewModelBase
 	{
 
@@ -26,14 +28,14 @@ namespace XamarinEvolve.Clients.Portable
 		public DateTime NextForceRefresh { get; set; }
 		public FeedViewModel()
 		{
-			Title = $"{Utils.EventInfo.EventName}";
+			Title = $"{EventInfo.EventName}";
 			NextForceRefresh = DateTime.UtcNow.AddMinutes(45);
 
 			MessagingService.Current.Subscribe("conferencefeedback_finished", (m) => { Device.BeginInvokeOnMainThread(EvaluateVisualState); });
 		}
 
 		// only start showing upcoming favorites 1 day before the conference
-		public bool ShowUpcomingFavorites => Utils.EventInfo.StartOfConference.AddDays(-1) < DateTime.UtcNow;
+		public bool ShowUpcomingFavorites => EventInfo.StartOfConference.AddDays(-1) < DateTime.UtcNow;
 
 		ICommand refreshCommand;
 		public ICommand RefreshCommand =>
@@ -103,7 +105,7 @@ namespace XamarinEvolve.Clients.Portable
 				Notification = new Notification
 				{
 					Date = DateTime.UtcNow,
-					Text = $"Welcome to {Utils.EventInfo.EventName}!"
+					Text = $"Welcome to {EventInfo.EventName}!"
 				};
 			}
 			finally
@@ -197,7 +199,7 @@ namespace XamarinEvolve.Clients.Portable
 			set { SetProperty(ref loadingSocial, value); }
 		}
 
-		public bool ShowBuyTicketButton => FeatureFlags.ShowBuyTicketButton && Utils.EventInfo.StartOfConference.AddDays(-1) >= DateTime.Now;
+		public bool ShowBuyTicketButton => FeatureFlags.ShowBuyTicketButton && EventInfo.StartOfConference.AddDays(-1) >= DateTime.Now;
 
 #if DEBUG
 		public bool ShowConferenceFeedbackButton => true;
@@ -223,7 +225,7 @@ namespace XamarinEvolve.Clients.Portable
 
 		void ExecuteBuyTicketNowCommand()
 		{
-			LaunchBrowserCommand.Execute(Utils.EventInfo.TicketUrl);
+			LaunchBrowserCommand.Execute(EventInfo.TicketUrl);
 		}
 
 		ICommand showConferenceFeedbackCommand;

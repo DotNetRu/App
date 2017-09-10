@@ -24,7 +24,9 @@ using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.iOS
 {
-    [Register("AppDelegate")]
+	using XamarinEvolve.Utils.Helpers;
+
+	[Register("AppDelegate")]
     public partial class AppDelegate : FormsApplicationDelegate
     {
         public static class ShortcutIdentifier

@@ -11,6 +11,8 @@ using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.Clients.UI
 {
+	using XamarinEvolve.Utils.Helpers;
+
 	public partial class App : Application
 	{
 		public static App current;

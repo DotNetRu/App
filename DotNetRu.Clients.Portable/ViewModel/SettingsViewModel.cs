@@ -10,7 +10,9 @@ using Humanizer;
 
 namespace XamarinEvolve.Clients.Portable
 {
-    public class SettingsViewModel : ViewModelBase
+	using XamarinEvolve.Utils.Helpers;
+
+	public class SettingsViewModel : ViewModelBase
 	{
 		public ObservableRangeCollection<MenuItem> AboutItems { get; } = new ObservableRangeCollection<MenuItem>();
 		public ObservableRangeCollection<MenuItem> TechnologyItems { get; } = new ObservableRangeCollection<MenuItem>();

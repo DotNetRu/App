@@ -12,8 +12,7 @@ using DotNetRu.Droid;
 
 namespace XamarinEvolve.Droid
 {
-
-
+	using XamarinEvolve.Utils.Helpers;
 
 	[Service(Name=AboutThisApp.PackageName + ".GcmService")] //Must use the service tag
     public class GcmService : GcmServiceBase

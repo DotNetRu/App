@@ -9,7 +9,9 @@ using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.Clients.UI
 {
-    public partial class SessionDetailsPage : BasePage
+	using XamarinEvolve.Utils.Helpers;
+
+	public partial class SessionDetailsPage : BasePage
 	{
 		private IPlatformSpecificExtension<Session> _extension;
 		public override AppPage PageType => AppPage.Session;

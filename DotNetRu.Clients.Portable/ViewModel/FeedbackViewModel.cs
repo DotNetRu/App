@@ -8,7 +8,9 @@ using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.Clients.Portable
 {
-    public class FeedbackViewModel : ViewModelBase
+	using XamarinEvolve.Utils.Helpers;
+
+	public class FeedbackViewModel : ViewModelBase
     {
         Session session;
         public Session Session

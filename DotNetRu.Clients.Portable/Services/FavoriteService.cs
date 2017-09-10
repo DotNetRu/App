@@ -9,6 +9,8 @@ using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.Clients.Portable
 {
+	using XamarinEvolve.Utils.Helpers;
+
 	public class FavoriteService
 	{
 		Session sessionQueued;

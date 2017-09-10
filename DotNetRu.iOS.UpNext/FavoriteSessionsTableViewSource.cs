@@ -10,7 +10,9 @@ using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.iOS.UpNext
 {
-    public class FavoriteSessionsTableViewSource: UITableViewSource
+	using XamarinEvolve.Utils.Helpers;
+
+	public class FavoriteSessionsTableViewSource: UITableViewSource
 	{
 		const string REUSE_IDENTIFIER = "FavoriteSessionCell";
 

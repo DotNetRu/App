@@ -10,7 +10,9 @@ using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.Clients.Portable
 {
-    public class EventsViewModel : ViewModelBase
+	using XamarinEvolve.Utils.Helpers;
+
+	public class EventsViewModel : ViewModelBase
     {
         public EventsViewModel(INavigation navigation) : base(navigation)
         {

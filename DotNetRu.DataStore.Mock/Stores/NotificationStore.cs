@@ -8,6 +8,8 @@ using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.DataStore.Mock
 {
+	using XamarinEvolve.Utils.Helpers;
+
 	public class NotificationStore : BaseStore<Notification>, INotificationStore
 	{
 		public NotificationStore()
