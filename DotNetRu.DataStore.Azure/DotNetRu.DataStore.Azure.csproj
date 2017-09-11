@@ -46,20 +46,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="InvalidTokenException.cs" />
-    <Compile Include="JwtClaimNames.cs" />
-    <Compile Include="JwtUtility.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Stores\FavoriteStore.cs" />
-    <Compile Include="Stores\FeedbackStore.cs" />
-    <Compile Include="Stores\SessionStore.cs" />
-    <Compile Include="Stores\SpeakerStore.cs" />
-    <Compile Include="Stores\SponsorStore.cs" />
-    <Compile Include="Stores\BaseStore.cs" />
-    <Compile Include="Stores\CategoryStore.cs" />
     <Compile Include="StoreManager.cs" />
-    <Compile Include="Stores\EventStore.cs" />
-    <Compile Include="Stores\NotificationStore.cs" />
-    <Compile Include="Stores\ConferenceFeedbackStore.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.1.0.6508-pre3\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.1.0.6508-pre3\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
@@ -126,7 +114,9 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Stores\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DotNetRu.DataStore.Abstractions\DotNetRu.DataStore.Abstractions.csproj">
       <Project>{50542AC8-CD37-4E51-B946-B85049D6EC11}</Project>

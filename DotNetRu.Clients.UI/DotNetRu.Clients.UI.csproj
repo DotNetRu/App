@@ -180,10 +180,6 @@
       <Project>{50542AC8-CD37-4E51-B946-B85049D6EC11}</Project>
       <Name>DotNetRu.DataStore.Abstractions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DotNetRu.DataStore.Azure\DotNetRu.DataStore.Azure.csproj">
-      <Project>{5087B261-9D0F-457D-AD9E-B018248F1B16}</Project>
-      <Name>DotNetRu.DataStore.Azure</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DotNetRu.DataStore.Mock\DotNetRu.DataStore.Mock.csproj">
       <Project>{4DF18ED7-0E19-4866-8D9B-B1CB5C86A366}</Project>
       <Name>DotNetRu.DataStore.Mock</Name>

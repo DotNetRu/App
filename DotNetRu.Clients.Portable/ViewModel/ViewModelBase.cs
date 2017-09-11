@@ -48,7 +48,7 @@
             DependencyService.Register<ICategoryStore, DataStore.Mock.CategoryStore>();
             DependencyService.Register<IEventStore, DataStore.Mock.EventStore>();
             DependencyService.Register<INotificationStore, DataStore.Mock.NotificationStore>();
-            DependencyService.Register<IStoreManager, DataStore.Azure.StoreManager>();
+            DependencyService.Register<IStoreManager, DataStore.Mock.StoreManager>();
 
             DependencyService.Register<FavoriteService>();
         }
