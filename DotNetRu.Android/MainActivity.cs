@@ -3,8 +3,8 @@ using Android.App;
 using Android.Content;
 using Android.Content.PM;
 using Android.Gms.AppIndexing;
-using Android.Gms.Common;
-using Android.Gms.Common.Apis;
+//using Android.Gms.Common;
+//using Android.Gms.Common.Apis;
 using Android.OS;
 using Android.Widget;
 using FormsToolkit.Droid;
@@ -103,7 +103,7 @@ namespace DotNetRu.Droid
       get { return current; }
     }
 
-    GoogleApiClient client;
+    // GoogleApiClient client;
 
     protected override void OnCreate(Bundle savedInstanceState)
     {
@@ -143,9 +143,9 @@ namespace DotNetRu.Droid
 
       if (gpsAvailable)
       {
-        client = new GoogleApiClient.Builder(this)
-          .AddApi(AppIndex.API)
-          .Build();
+        //client = new GoogleApiClient.Builder(this)
+        //  .AddApi(AppIndex.API)
+        //  .Build();
       }
 
       OnNewIntent(Intent);
@@ -189,30 +189,31 @@ namespace DotNetRu.Droid
 
     public bool IsPlayServicesAvailable()
     {
-      int resultCode = GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(this);
-      if (resultCode != ConnectionResult.Success)
-      {
-        if (GoogleApiAvailability.Instance.IsUserResolvableError(resultCode))
-        {
-          if (Settings.Current.GooglePlayChecked)
-            return false;
+      //int resultCode = GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(this);
+      //if (resultCode != ConnectionResult.Success)
+      //{
+      //  if (GoogleApiAvailability.Instance.IsUserResolvableError(resultCode))
+      //  {
+      //    if (Settings.Current.GooglePlayChecked)
+      //      return false;
 
-          Settings.Current.GooglePlayChecked = true;
-          Toast.MakeText(this, "Google Play services is not installed, push notifications have been disabled.",
-              ToastLength.Long)
-            .Show();
-        }
-        else
-        {
-          Settings.Current.PushNotificationsEnabled = false;
-        }
-        return false;
-      }
-      else
-      {
-        Settings.Current.PushNotificationsEnabled = true;
+      //    Settings.Current.GooglePlayChecked = true;
+      //    Toast.MakeText(this, "Google Play services is not installed, push notifications have been disabled.",
+      //        ToastLength.Long)
+      //      .Show();
+      //  }
+      //  else
+      //  {
+      //    Settings.Current.PushNotificationsEnabled = false;
+      //  }
+      //  return false;
+      //}
+      //else
+      //{
+      //  Settings.Current.PushNotificationsEnabled = true;
+      //  return true;
+      //}
         return true;
-      }
     }
 
     public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
