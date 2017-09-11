@@ -1,0 +1,8 @@
+﻿<Speaker>
+  <Id>Pavel-Tupitsin</Id>
+  <Name>Павел Тупицын</Name>
+  <CompanyName>GridGain</CompanyName>
+  <CompanyUrl>http://www.gridgain.com/</CompanyUrl>
+  <Description>Заведует .NET функционалом в Apache Ignite и GridGain. Сделал LINQ провайдер для кэша, async/await и поддержку generics для кластерных вычислений, распределённые сервисы, и другие штуки.</Description>
+  <BlogUrl>https://ptupitsyn.github.io/</BlogUrl>
+</Speaker>
