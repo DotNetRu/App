@@ -1,9 +1,10 @@
-﻿using System;
-using XamarinEvolve.DataStore.Abstractions;
-using System.Threading.Tasks;
-
-namespace XamarinEvolve.DataStore.Mock
+﻿namespace XamarinEvolve.DataStore.Mock.Stores
 {
+    using System;
+    using System.Threading.Tasks;
+
+    using XamarinEvolve.DataStore.Mock.Abstractions;
+
     public class BaseStore<T> : IBaseStore<T>
     {
         #region IBaseStore implementation

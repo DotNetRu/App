@@ -2,14 +2,17 @@
 using XamarinEvolve.DataObjects;
 using System.Threading.Tasks;
 using Xamarin.Forms;
-using XamarinEvolve.DataStore.Abstractions;
+
 using FormsToolkit;
 using System.Linq;
 using XamarinEvolve.Utils;
 
+using DotNetRu.DataStore.Audit.DataObjects;
+
 namespace XamarinEvolve.Clients.Portable
 {
-	using XamarinEvolve.Utils.Helpers;
+    using XamarinEvolve.DataStore.Mock.Abstractions;
+    using XamarinEvolve.Utils.Helpers;
 
 	public class FavoriteService
 	{
@@ -49,7 +52,7 @@ namespace XamarinEvolve.Clients.Portable
 				var actionWrapper = DependencyService.Get<IPlatformActionWrapper<Session>>();
 				actionWrapper?.Before(session);
 
-				var store = DependencyService.Get<IFavoriteStore>();
+				IFavoriteStore store = DependencyService.Get<IFavoriteStore>();
 				var targetValue = !session.IsFavorite;
 				session.IsFavorite = targetValue; //switch first so UI updates :)
 

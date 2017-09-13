@@ -1,16 +1,15 @@
-﻿using System;
-using XamarinEvolve.DataObjects;
-using XamarinEvolve.DataStore.Abstractions;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using System.Linq;
-using XamarinEvolve.Utils;
-
-namespace XamarinEvolve.DataStore.Mock
+﻿namespace XamarinEvolve.DataStore.Mock.Stores
 {
-	using XamarinEvolve.Utils.Helpers;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
 
-	public class NotificationStore : BaseStore<Notification>, INotificationStore
+    using XamarinEvolve.DataObjects;
+    using XamarinEvolve.DataStore.Mock.Abstractions;
+    using XamarinEvolve.Utils.Helpers;
+
+    public class NotificationStore : BaseStore<Notification>, INotificationStore
 	{
 		public NotificationStore()
 		{
@@ -18,7 +17,7 @@ namespace XamarinEvolve.DataStore.Mock
 
 		public async Task<Notification> GetLatestNotification()
 		{
-			var items = await GetItemsAsync();
+			var items = await this.GetItemsAsync();
 			return items.ElementAt(0);
 		}
 

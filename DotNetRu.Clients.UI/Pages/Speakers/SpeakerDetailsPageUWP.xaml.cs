@@ -5,6 +5,8 @@ using XamarinEvolve.DataObjects;
 
 namespace XamarinEvolve.Clients.UI
 {
+    using DotNetRu.DataStore.Audit.DataObjects;
+
     public partial class SpeakerDetailsPageUWP : BasePage
 	{
 		public override AppPage PageType => AppPage.Speaker;

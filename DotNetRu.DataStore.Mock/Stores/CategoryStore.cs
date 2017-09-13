@@ -1,10 +1,11 @@
-﻿using System.Threading.Tasks;
-using XamarinEvolve.DataObjects;
-using XamarinEvolve.DataStore.Abstractions;
-using System.Collections.Generic;
-
-namespace XamarinEvolve.DataStore.Mock
+﻿namespace XamarinEvolve.DataStore.Mock.Stores
 {
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+
+    using XamarinEvolve.DataObjects;
+    using XamarinEvolve.DataStore.Mock.Abstractions;
+
     public class CategoryStore : BaseStore<Category>, ICategoryStore
     {
         public override Task<IEnumerable<Category>> GetItemsAsync(bool forceRefresh = false)

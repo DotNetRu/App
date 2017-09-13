@@ -6,16 +6,18 @@ using System.Reflection;
 using FormsToolkit;
 using MvvmHelpers;
 using Xamarin.Forms;
-using XamarinEvolve.DataObjects;
+
 using System.Windows.Input;
 using System.Threading.Tasks;
-using Plugin.EmbeddedResource;
+
 using XamarinEvolve.Clients.Portable.Helpers;
 using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.Clients.Portable
 {
-	using XamarinEvolve.Utils.Helpers;
+    using DotNetRu.DataStore.Audit.Models;
+
+    using XamarinEvolve.Utils.Helpers;
 
 	public class SpeakersViewModel: ViewModelBase
 	{
@@ -24,7 +26,7 @@ namespace XamarinEvolve.Clients.Portable
 
 		}
 
-		public ObservableRangeCollection<Speaker> Speakers { get; } = new ObservableRangeCollection<Speaker>();
+		public ObservableRangeCollection<DotNetRu.DataStore.Audit.DataObjects.Speaker> Speakers { get; } = new ObservableRangeCollection<DotNetRu.DataStore.Audit.DataObjects.Speaker>();
 
 		#region Properties
 		Speaker selectedSpeaker;
@@ -48,9 +50,9 @@ namespace XamarinEvolve.Clients.Portable
 
 		#region Sorting
 
-		void SortSpeakers(IEnumerable<Speaker> speakers)
+		void SortSpeakers(IEnumerable<DotNetRu.DataStore.Audit.DataObjects.Speaker> speakers)
 		{
-			var speakersSorted = from speaker in speakers
+			IOrderedEnumerable<DotNetRu.DataStore.Audit.DataObjects.Speaker> speakersSorted = from speaker in speakers
 								 orderby speaker.FullName
 								 select speaker;
 
@@ -76,7 +78,7 @@ namespace XamarinEvolve.Clients.Portable
 		public ICommand LoadSpeakersCommand =>
 			loadSpeakersCommand ?? (loadSpeakersCommand = new Command(async (f) => await ExecuteLoadSpeakersAsync((bool) f)));
 
-	    private static IEnumerable<Speaker> GetSpeakers()
+	    private static IEnumerable<DotNetRu.DataStore.Audit.DataObjects.Speaker> GetSpeakers()
 	    {
 	        var assembly = Assembly.Load(new AssemblyName("DotNetRu.DataStore.Audit"));
 	        const string resourceFileName = "index.xml";
@@ -86,7 +88,7 @@ namespace XamarinEvolve.Clients.Portable
 	            .Where(x => x.EndsWith(resourceFileName, StringComparison.CurrentCultureIgnoreCase))
 	            .ToArray();
 
-	        var speakers = new List<Speaker>();
+	        var speakers = new List<DotNetRu.DataStore.Audit.DataObjects.Speaker>();
 	        foreach (var resource in resourcePaths)
 	        {
 	            var stream = assembly.GetManifestResourceStream(resource);
@@ -94,8 +96,8 @@ namespace XamarinEvolve.Clients.Portable
 	            {
 	                var xml = streamReader.ReadToEnd();
 	                // ReSharper disable once InconsistentNaming
-	                var DotNEXTspeaker = xml.ParseXml<DotNetRu.DataStore.Audit.Models.Speaker>();
-                    speakers.Add(new Speaker
+	                Speaker DotNEXTspeaker = xml.ParseXml<DotNetRu.DataStore.Audit.Models.Speaker>();
+                    speakers.Add(new DotNetRu.DataStore.Audit.DataObjects.Speaker
                     {
                         FirstName = DotNEXTspeaker.Name,
                         LastName = "",
@@ -125,13 +127,13 @@ namespace XamarinEvolve.Clients.Portable
 #if DEBUG
 				await Task.Delay(1000);
 #endif
-			    var speakers = GetSpeakers();//await StoreManager.SpeakerStore.GetItemsAsync(force);
+			    IEnumerable<DotNetRu.DataStore.Audit.DataObjects.Speaker> speakers = GetSpeakers();//await StoreManager.SpeakerStore.GetItemsAsync(force);
                 
 				SortSpeakers(speakers);
 
 				if (Device.OS != TargetPlatform.WinPhone && Device.OS != TargetPlatform.Windows && FeatureFlags.AppLinksEnabled)
 				{
-					foreach (var speaker in Speakers)
+					foreach (DotNetRu.DataStore.Audit.DataObjects.Speaker speaker in Speakers)
 					{
 						try
 						{

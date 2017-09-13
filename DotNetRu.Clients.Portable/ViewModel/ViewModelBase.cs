@@ -11,7 +11,8 @@
 
     using Xamarin.Forms;
 
-    using XamarinEvolve.DataStore.Abstractions;
+    using XamarinEvolve.DataStore.Mock.Abstractions;
+    using XamarinEvolve.DataStore.Mock.Stores;
 
     /// <summary>
     /// The view model base.
@@ -39,15 +40,15 @@
         /// </summary>
         public static void Init()
         {
-            DependencyService.Register<ISessionStore, DataStore.Mock.SessionStore>();
-            DependencyService.Register<IFavoriteStore, DataStore.Mock.FavoriteStore>();
-            DependencyService.Register<IFeedbackStore, DataStore.Mock.FeedbackStore>();
-            DependencyService.Register<IConferenceFeedbackStore, DataStore.Mock.ConferenceFeedbackStore>();
-            DependencyService.Register<ISpeakerStore, DataStore.Mock.SpeakerStore>();
-            DependencyService.Register<ISponsorStore, DataStore.Mock.SponsorStore>();
-            DependencyService.Register<ICategoryStore, DataStore.Mock.CategoryStore>();
-            DependencyService.Register<IEventStore, DataStore.Mock.EventStore>();
-            DependencyService.Register<INotificationStore, DataStore.Mock.NotificationStore>();
+            DependencyService.Register<ISessionStore, SessionStore>();
+            DependencyService.Register<IFavoriteStore, FavoriteStore>();
+            DependencyService.Register<IFeedbackStore, FeedbackStore>();
+            DependencyService.Register<IConferenceFeedbackStore, ConferenceFeedbackStore>();
+            DependencyService.Register<ISpeakerStore, SpeakerStore>();
+            DependencyService.Register<ISponsorStore, SponsorStore>();
+            DependencyService.Register<ICategoryStore, CategoryStore>();
+            DependencyService.Register<IEventStore, EventStore>();
+            DependencyService.Register<INotificationStore, NotificationStore>();
             DependencyService.Register<IStoreManager, DataStore.Mock.StoreManager>();
 
             DependencyService.Register<FavoriteService>();

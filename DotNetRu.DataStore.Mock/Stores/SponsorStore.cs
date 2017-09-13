@@ -1,11 +1,12 @@
-﻿using XamarinEvolve.DataStore.Abstractions;
-using XamarinEvolve.DataObjects;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace XamarinEvolve.DataStore.Mock
+﻿namespace XamarinEvolve.DataStore.Mock.Stores
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+
+    using XamarinEvolve.DataObjects;
+    using XamarinEvolve.DataStore.Mock.Abstractions;
+
     public class SponsorStore : BaseStore<Sponsor>, ISponsorStore
     {
         List<Sponsor> _sponsors;
@@ -226,37 +227,37 @@ namespace XamarinEvolve.DataStore.Mock
 
         public override async  Task<Sponsor> GetItemAsync(string id)
         {
-            await InitializeStore();
-            return _sponsors.FirstOrDefault(s => s.Id == id);
+            await this.InitializeStore();
+            return this._sponsors.FirstOrDefault(s => s.Id == id);
         }
 
         public override async Task<IEnumerable<Sponsor>> GetItemsAsync(bool forceRefresh = false)
         {
-            await InitializeStore();
+            await this.InitializeStore();
 
-            var json = Newtonsoft.Json.JsonConvert.SerializeObject (_sponsors);
-            return _sponsors as IEnumerable<Sponsor>;
+            var json = Newtonsoft.Json.JsonConvert.SerializeObject (this._sponsors);
+            return this._sponsors as IEnumerable<Sponsor>;
         }
 
         bool _initialized;
         public override Task InitializeStore()
         {
-            if (_initialized)
+            if (this._initialized)
                 return Task.FromResult(true);
 
-            _initialized = true;
+            this._initialized = true;
 
-            _sponsors = new List<Sponsor>();
+            this._sponsors = new List<Sponsor>();
             for (int i = 0; i < Companies.Length; i++)
             {
-                _sponsors.Add(new Sponsor
+                this._sponsors.Add(new Sponsor
                     {
                         Name = Companies[i],
                         ImageUrl = Logos[i],
                         Description = Descriptions[i],
                         WebsiteUrl = Websites[i],
                         TwitterUrl = Handles[i],
-                        SponsorLevel = GetLevel(Levels[i])
+                        SponsorLevel = this.GetLevel(Levels[i])
                     });
             }
 
@@ -266,19 +267,19 @@ namespace XamarinEvolve.DataStore.Mock
         List<SponsorLevel> _sponsorLevels;
         SponsorLevel GetLevel(int level)
         {
-            if (_sponsorLevels == null) {
-                    _sponsorLevels = new List<SponsorLevel> {
+            if (this._sponsorLevels == null) {
+                    this._sponsorLevels = new List<SponsorLevel> {
                     new SponsorLevel { Name = "Platinum", Rank = 0 },
                     new SponsorLevel { Name = "Gold", Rank = 1 },
                     new SponsorLevel{ Name = "Silver", Rank = 2 },
                     new SponsorLevel { Name = "Exhibitor", Rank = 3 }
                 };
-                var json = Newtonsoft.Json.JsonConvert.SerializeObject (_sponsorLevels);
+                var json = Newtonsoft.Json.JsonConvert.SerializeObject (this._sponsorLevels);
             }
 
 
 
-            return _sponsorLevels[level];
+            return this._sponsorLevels[level];
         }
     }
 }

@@ -1,13 +1,15 @@
-﻿using System;
-using XamarinEvolve.DataStore.Abstractions;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using XamarinEvolve.DataObjects;
-using System.Linq;
-
-namespace XamarinEvolve.DataStore.Mock
+﻿namespace XamarinEvolve.DataStore.Mock.Stores
 {
-	public class SpeakerStore : BaseStore<Speaker>, ISpeakerStore
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+
+    using DotNetRu.DataStore.Audit.DataObjects;
+
+    using XamarinEvolve.DataStore.Mock.Abstractions;
+
+    public class SpeakerStore : BaseStore<Speaker>, ISpeakerStore
     {        
         IEnumerable<Speaker> _speakers;
 
@@ -15,17 +17,17 @@ namespace XamarinEvolve.DataStore.Mock
 
         public async override Task<Speaker> GetItemAsync(string id)
         {
-            if(!_initialized)
-                await InitializeStore();
-            return _speakers.FirstOrDefault(s => s.Id == id);
+            if(!this._initialized)
+                await this.InitializeStore();
+            return this._speakers.FirstOrDefault(s => s.Id == id);
         }
 
         public async override Task<IEnumerable<Speaker>> GetItemsAsync(bool forceRefresh = false)
         {
-            if(!_initialized)
-                await InitializeStore();
+            if(!this._initialized)
+                await this.InitializeStore();
             
-            return _speakers;
+            return this._speakers;
         }
 
         #endregion
@@ -35,18 +37,18 @@ namespace XamarinEvolve.DataStore.Mock
         bool _initialized;
         public override Task InitializeStore()
         {
-            if (_initialized)
+            if (this._initialized)
                 return Task.FromResult(true);
 
-            _initialized = true;
-            _speakers = SampleData.GetSpeakers();
+            this._initialized = true;
+            this._speakers = SampleData.GetSpeakers();
 
             return Task.FromResult(true);
         }
 
 		public Task<Speaker> GetAppIndexSpeaker(string id)
 		{
-			return GetItemAsync(id);
+			return this.GetItemAsync(id);
 		}
 
 		#endregion

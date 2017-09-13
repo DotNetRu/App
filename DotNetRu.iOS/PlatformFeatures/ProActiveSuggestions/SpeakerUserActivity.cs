@@ -12,7 +12,9 @@ using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.iOS.PlatformFeatures.ProActiveSuggestions
 {
-	using XamarinEvolve.Utils.Helpers;
+    using DotNetRu.DataStore.Audit.DataObjects;
+
+    using XamarinEvolve.Utils.Helpers;
 
 	public class SpeakerUserActivity : IPlatformSpecificExtension<Speaker>
 	{

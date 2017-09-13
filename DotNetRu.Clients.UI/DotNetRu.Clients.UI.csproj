@@ -176,9 +176,9 @@
       <Project>{434442F3-9AF2-4A19-9151-EFBD731BD367}</Project>
       <Name>DotNetRu.Clients.Portable</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DotNetRu.DataStore.Abstractions\DotNetRu.DataStore.Abstractions.csproj">
-      <Project>{50542AC8-CD37-4E51-B946-B85049D6EC11}</Project>
-      <Name>DotNetRu.DataStore.Abstractions</Name>
+    <ProjectReference Include="..\DotNetRu.DataStore.Audit\DotNetRu.DataStore.Audit.csproj">
+      <Project>{7B4C73DF-8A4A-4AD1-92D9-A064065CDD71}</Project>
+      <Name>DotNetRu.DataStore.Audit</Name>
     </ProjectReference>
     <ProjectReference Include="..\DotNetRu.DataStore.Mock\DotNetRu.DataStore.Mock.csproj">
       <Project>{4DF18ED7-0E19-4866-8D9B-B1CB5C86A366}</Project>

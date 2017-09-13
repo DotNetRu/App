@@ -1,10 +1,11 @@
-﻿using System.Threading.Tasks;
-using XamarinEvolve.DataObjects;
-using XamarinEvolve.DataStore.Abstractions;
-
-namespace XamarinEvolve.DataStore.Mock
+﻿namespace XamarinEvolve.DataStore.Mock.Stores
 {
-	public class ConferenceFeedbackStore : BaseStore<ConferenceFeedback>, IConferenceFeedbackStore
+    using System.Threading.Tasks;
+
+    using XamarinEvolve.DataObjects;
+    using XamarinEvolve.DataStore.Mock.Abstractions;
+
+    public class ConferenceFeedbackStore : BaseStore<ConferenceFeedback>, IConferenceFeedbackStore
 	{
 		public Task<bool> LeftFeedback()
 		{

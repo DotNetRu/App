@@ -11,6 +11,8 @@ using System.Linq;
 
 namespace XamarinEvolve.Clients.Portable
 {
+    using DotNetRu.DataStore.Audit.DataObjects;
+
     using Plugin.Share.Abstractions;
 
     using XamarinEvolve.Utils.Extensions;

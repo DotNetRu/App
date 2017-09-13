@@ -6,6 +6,8 @@ using XamarinEvolve.Clients.Portable;
 
 namespace XamarinEvolve.Clients.UI
 {
+    using DotNetRu.DataStore.Audit.DataObjects;
+
     public class SpeakerCell: ViewCell
     {
         readonly INavigation navigation;

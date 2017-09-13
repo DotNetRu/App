@@ -1,13 +1,17 @@
-﻿using System;
-using XamarinEvolve.DataStore.Abstractions;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using XamarinEvolve.DataObjects;
-using System.Linq;
-using Xamarin.Forms;
-
-namespace XamarinEvolve.DataStore.Mock
+﻿namespace XamarinEvolve.DataStore.Mock.Stores
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+
+    using DotNetRu.DataStore.Audit.DataObjects;
+
+    using Xamarin.Forms;
+
+    using XamarinEvolve.DataObjects;
+    using XamarinEvolve.DataStore.Mock.Abstractions;
+
     public class SessionStore : BaseStore<Session>, ISessionStore
     {
 
@@ -18,36 +22,36 @@ namespace XamarinEvolve.DataStore.Mock
         IFeedbackStore _feedbackStore;
         public SessionStore()
         {
-            _speakerStore = DependencyService.Get<ISpeakerStore>();
-            _favoriteStore = DependencyService.Get<IFavoriteStore>();
-            _categoryStore = DependencyService.Get<ICategoryStore>();
-            _feedbackStore = DependencyService.Get<IFeedbackStore>();
+            this._speakerStore = DependencyService.Get<ISpeakerStore>();
+            this._favoriteStore = DependencyService.Get<IFavoriteStore>();
+            this._categoryStore = DependencyService.Get<ICategoryStore>();
+            this._feedbackStore = DependencyService.Get<IFeedbackStore>();
         }
 
         #region ISessionStore implementation
 
         public async override Task<Session> GetItemAsync(string id)
         {
-            if (!_initialized)
-                await InitializeStore();
+            if (!this._initialized)
+                await this.InitializeStore();
             
-            return _sessions.FirstOrDefault(s => s.Id == id);
+            return this._sessions.FirstOrDefault(s => s.Id == id);
         }
 
         public async override Task<IEnumerable<Session>> GetItemsAsync(bool forceRefresh = false)
         {
-            if (!_initialized)
-                await InitializeStore();
+            if (!this._initialized)
+                await this.InitializeStore();
             
-            return _sessions as IEnumerable<Session>;
+            return this._sessions as IEnumerable<Session>;
         }
 
         public async Task<IEnumerable<Session>> GetSpeakerSessionsAsync(string speakerId)
         {
-            if (!_initialized)
-                await InitializeStore();
+            if (!this._initialized)
+                await this.InitializeStore();
             
-            var results =  from session in _sessions
+            var results =  from session in this._sessions
                            where session.StartTime.HasValue
                            orderby session.StartTime.Value
                            from speaker in session.Speakers
@@ -59,12 +63,12 @@ namespace XamarinEvolve.DataStore.Mock
 
         public async Task<IEnumerable<Session>> GetNextSessions(int maxNumber)
         {
-            if (!_initialized)
-                await InitializeStore();
+            if (!this._initialized)
+                await this.InitializeStore();
 
             var date = DateTime.UtcNow.AddMinutes(-30);
 
-            var results = (from session in _sessions
+            var results = (from session in this._sessions
                 where (session.IsFavorite && session.StartTime.HasValue && session.StartTime.Value > date)
                                     orderby session.StartTime.Value
                                     select session).Take(maxNumber);
@@ -80,14 +84,14 @@ namespace XamarinEvolve.DataStore.Mock
         bool _initialized = false;
         public async override Task InitializeStore()
         {
-            if (_initialized)
+            if (this._initialized)
                 return;
             
-            _initialized = true;
-            var categories = (await _categoryStore.GetItemsAsync()).ToArray();
-            await _speakerStore.InitializeStore();
-            var speakers = (await _speakerStore.GetItemsAsync().ConfigureAwait(false)).ToArray();
-            _sessions = new List<Session>();
+            this._initialized = true;
+            var categories = (await this._categoryStore.GetItemsAsync()).ToArray();
+            await this._speakerStore.InitializeStore();
+            var speakers = (await this._speakerStore.GetItemsAsync().ConfigureAwait(false)).ToArray();
+            this._sessions = new List<Session>();
             int speaker = 0;
             int speakerCount = 0;
             int room = 0;
@@ -95,7 +99,7 @@ namespace XamarinEvolve.DataStore.Mock
             int category = 0;
             var day = new DateTime(2016, 4, 27, 13, 0, 0, DateTimeKind.Utc);
             int dayCount = 0;
-            for (int i = 0; i < _titles.Length; i++)
+            for (int i = 0; i < this._titles.Length; i++)
             {
                 var sessionSpeakers = new List<Speaker>();
                 var sessionCategories = new List<Category>();
@@ -112,7 +116,7 @@ namespace XamarinEvolve.DataStore.Mock
                 }
 
                 if (i == 1)
-                    sessionSpeakers.Add(_sessions[0].Speakers.ElementAt(0));
+                    sessionSpeakers.Add(this._sessions[0].Speakers.ElementAt(0));
 
                 for (int j = 0; j < categoryCount; j++)
                 {
@@ -123,30 +127,30 @@ namespace XamarinEvolve.DataStore.Mock
                 }
 
                 if (i == 1)
-                    sessionCategories.Add(_sessions[0].Categories.ElementAt(0));
+                    sessionCategories.Add(this._sessions[0].Categories.ElementAt(0));
 
-                var ro = _rooms[room];
+                var ro = this._rooms[room];
                 room++;
-                if (room >= _rooms.Length)
+                if (room >= this._rooms.Length)
                     room = 0;
 
-                _sessions.Add(new Session
+                this._sessions.Add(new Session
                     {
                         Id = i.ToString(),
                         Abstract = "This is an abstract that is going to tell us all about how awsome this session is and that you should go over there right now and get ready for awesome!.",
                         Categories = sessionCategories,
                         Room = ro,
                         Speakers = sessionSpeakers,
-                        Title = _titles[i],
-                        ShortTitle = _titlesShort[i]
+                        Title = this._titles[i],
+                        ShortTitle = this._titlesShort[i]
                     });
                 
-                _sessions[i].IsFavorite = await _favoriteStore.IsFavorite(_sessions[i].Id);
-                _sessions[i].FeedbackLeft = await _feedbackStore.LeftFeedback(_sessions[i]);
+                this._sessions[i].IsFavorite = await this._favoriteStore.IsFavorite(this._sessions[i].Id);
+                this._sessions[i].FeedbackLeft = await this._feedbackStore.LeftFeedback(this._sessions[i]);
 
-                SetStartEnd(_sessions[i], day);
+                this.SetStartEnd(this._sessions[i], day);
 
-                if (i == _titles.Length / 2)
+                if (i == this._titles.Length / 2)
                 {
                     dayCount = 0;
                     day = new DateTime(2016, 4, 28, 13, 0, 0, DateTimeKind.Utc);
@@ -167,20 +171,20 @@ namespace XamarinEvolve.DataStore.Mock
             }
 
 
-            _sessions.Add(new Session
+            this._sessions.Add(new Session
                 {
-                    Id = _sessions.Count.ToString(),
+                    Id = this._sessions.Count.ToString(),
                     Abstract = "Coming soon",
                     Categories = categories.Take(1).ToList(),
-                    Room = _rooms[0],
+                    Room = this._rooms[0],
                     //Speakers = new List<Speaker>{ speakers[0] },
                     Title = "Something awesome!",
                     ShortTitle = "Awesome",
                 });
-            _sessions[_sessions.Count - 1].IsFavorite = await _favoriteStore.IsFavorite(_sessions[_sessions.Count - 1].Id);
-            _sessions[_sessions.Count - 1].FeedbackLeft = await _feedbackStore.LeftFeedback(_sessions[_sessions.Count - 1]);
-            _sessions[_sessions.Count - 1].StartTime = null;
-            _sessions[_sessions.Count - 1].EndTime = null;
+            this._sessions[this._sessions.Count - 1].IsFavorite = await this._favoriteStore.IsFavorite(this._sessions[this._sessions.Count - 1].Id);
+            this._sessions[this._sessions.Count - 1].FeedbackLeft = await this._feedbackStore.LeftFeedback(this._sessions[this._sessions.Count - 1]);
+            this._sessions[this._sessions.Count - 1].StartTime = null;
+            this._sessions[this._sessions.Count - 1].EndTime = null;
         }
 
         void SetStartEnd(Session session, DateTime day)
@@ -191,7 +195,7 @@ namespace XamarinEvolve.DataStore.Mock
 
         public Task<Session> GetAppIndexSession (string id)
         {
-            return GetItemAsync (id);
+            return this.GetItemAsync (id);
         }
 
         Room [] _rooms = new [] 

@@ -1,31 +1,33 @@
-﻿using System;
-using XamarinEvolve.DataObjects;
-using XamarinEvolve.DataStore.Abstractions;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Xamarin.Forms;
-using System.Linq;
-
-namespace XamarinEvolve.DataStore.Mock
+﻿namespace XamarinEvolve.DataStore.Mock.Stores
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+
+    using Xamarin.Forms;
+
+    using XamarinEvolve.DataObjects;
+    using XamarinEvolve.DataStore.Mock.Abstractions;
+
     public class EventStore : BaseStore<FeaturedEvent>, IEventStore
     {
         List<FeaturedEvent> Events { get; }
         ISponsorStore _sponsors;
         public EventStore()
         {
-            Events = new List<FeaturedEvent>();
-            _sponsors = DependencyService.Get<ISponsorStore>();
+            this.Events = new List<FeaturedEvent>();
+            this._sponsors = DependencyService.Get<ISponsorStore>();
         }
 
         public override async Task InitializeStore()
         {
-            if (Events.Count != 0)
+            if (this.Events.Count != 0)
                 return;
 
-            var sponsorList = await _sponsors.GetItemsAsync();
+            var sponsorList = await this._sponsors.GetItemsAsync();
                         
-            Events.Add(new FeaturedEvent
+            this.Events.Add(new FeaturedEvent
                 {
                     Title = "Evening Event",
                     Description = "",
@@ -35,7 +37,7 @@ namespace XamarinEvolve.DataStore.Mock
                     IsAllDay = false,
                 });
 
-            Events.Add(new FeaturedEvent
+            this.Events.Add(new FeaturedEvent
                 {
                     Title = "Happy Hour",
                     Description = "",
@@ -46,7 +48,7 @@ namespace XamarinEvolve.DataStore.Mock
                     Sponsor = sponsorList.FirstOrDefault(x => x.Name == "Microsoft")
                 });
 
-            Events.Add(new FeaturedEvent
+            this.Events.Add(new FeaturedEvent
                 {
                     Title = "General Session",
                     Description = "",
@@ -59,10 +61,10 @@ namespace XamarinEvolve.DataStore.Mock
 
         public override async Task<IEnumerable<FeaturedEvent>> GetItemsAsync(bool forceRefresh = false)
         {
-            await InitializeStore();
+            await this.InitializeStore();
 
-            var json = Newtonsoft.Json.JsonConvert.SerializeObject (Events);
-            return Events;
+            var json = Newtonsoft.Json.JsonConvert.SerializeObject (this.Events);
+            return this.Events;
         }
     }
 }

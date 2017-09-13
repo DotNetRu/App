@@ -1,32 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-using Foundation;
-using UIKit;
-using XamarinEvolve.Clients.UI;
-using Xamarin.Forms;
-using FormsToolkit.iOS;
-using Xamarin.Forms.Platform.iOS;
-using Xamarin;
-using FormsToolkit;
-using XamarinEvolve.Clients.Portable;
-using WindowsAzure.Messaging;
-using Refractored.XamForms.PullToRefresh.iOS;
-using Social;
-using CoreSpotlight;
-using XamarinEvolve.DataStore.Abstractions;
-using System.Threading.Tasks;
-using Google.AppIndexing;
-using HockeyApp.iOS;
-using NotificationCenter;
-using XamarinEvolve.Utils;
-
-namespace XamarinEvolve.iOS
+﻿namespace XamarinEvolve.iOS
 {
-	using XamarinEvolve.Utils.Helpers;
+    using System;
+    using System.Collections.Generic;
 
-	[Register("AppDelegate")]
+    using CoreSpotlight;
+
+    using FormsToolkit;
+    using FormsToolkit.iOS;
+
+    using Foundation;
+
+    using Google.AppIndexing;
+
+    using Refractored.XamForms.PullToRefresh.iOS;
+
+    using Social;
+
+    using UIKit;
+
+    using Xamarin;
+    using Xamarin.Forms;
+    using Xamarin.Forms.Platform.iOS;
+
+    using XamarinEvolve.Clients.Portable;
+    using XamarinEvolve.Clients.UI;
+    using XamarinEvolve.DataStore.Mock.Abstractions;
+    using XamarinEvolve.Utils.Helpers;
+
+    [Register("AppDelegate")]
     public partial class AppDelegate : FormsApplicationDelegate
     {
         public static class ShortcutIdentifier

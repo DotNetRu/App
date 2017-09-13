@@ -1,22 +1,10 @@
-﻿using System;
-
-using Android.App;
-using Android.Content;
-using Android.Widget;
-using Android.Util;
-using Android.OS;
-using System.Threading.Tasks;
-using System.Threading;
-
-//using Android.Gms.Gcm;
-
-using Xamarin.Forms;
-using XamarinEvolve.Clients;
-using XamarinEvolve.Clients.Portable;
-using XamarinEvolve.DataStore.Abstractions;
-
-namespace XamarinEvolve.Droid
+﻿namespace XamarinEvolve.Droid
 {
+    using Android.App;
+    using Android.Content;
+    using Android.OS;
+    using Android.Util;
+
     [Service (Name="com.xamarin.xamarinevolve.DataRefreshService", Exported = true, Permission = "com.google.android.gms.permission.BIND_NETWORK_TASK_SERVICE")]
     [IntentFilter (new [] { "com.google.android.gms.gcm.ACTION_TASK_READY" })]
     public class DataRefreshService // : GcmTaskService

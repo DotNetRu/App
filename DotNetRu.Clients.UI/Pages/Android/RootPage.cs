@@ -3,12 +3,13 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using XamarinEvolve.Clients.Portable;
 using FormsToolkit;
-using XamarinEvolve.DataStore.Abstractions;
+
 using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.Clients.UI
 {
-	using XamarinEvolve.Utils.Helpers;
+    using XamarinEvolve.DataStore.Mock.Abstractions;
+    using XamarinEvolve.Utils.Helpers;
 
 	public class RootPageAndroid : MasterDetailPage
   {

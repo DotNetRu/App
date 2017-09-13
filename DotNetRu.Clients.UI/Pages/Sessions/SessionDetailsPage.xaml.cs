@@ -9,7 +9,9 @@ using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.Clients.UI
 {
-	using XamarinEvolve.Utils.Helpers;
+    using DotNetRu.DataStore.Audit.DataObjects;
+
+    using XamarinEvolve.Utils.Helpers;
 
 	public partial class SessionDetailsPage : BasePage
 	{

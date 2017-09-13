@@ -1,11 +1,11 @@
 ﻿using System;
 using Xamarin.Forms;
-using XamarinEvolve.DataObjects;
-using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.Clients.Portable
 {
-	using XamarinEvolve.Utils.Helpers;
+    using DotNetRu.DataStore.Audit.DataObjects;
+
+    using XamarinEvolve.Utils.Helpers;
 
 	public static class SpeakerExtensions
 	{

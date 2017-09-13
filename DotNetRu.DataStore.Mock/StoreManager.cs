@@ -1,9 +1,10 @@
-﻿using XamarinEvolve.DataStore.Abstractions;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace XamarinEvolve.DataStore.Mock
 {
+    using XamarinEvolve.DataStore.Mock.Abstractions;
+
     public class StoreManager : IStoreManager
     {
         #region IStoreManager implementation

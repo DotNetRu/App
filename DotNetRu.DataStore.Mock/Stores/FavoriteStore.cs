@@ -1,9 +1,10 @@
-﻿using System.Threading.Tasks;
-using XamarinEvolve.DataObjects;
-using XamarinEvolve.DataStore.Abstractions;
-
-namespace XamarinEvolve.DataStore.Mock
+﻿namespace XamarinEvolve.DataStore.Mock.Stores
 {
+    using System.Threading.Tasks;
+
+    using XamarinEvolve.DataObjects;
+    using XamarinEvolve.DataStore.Mock.Abstractions;
+
     public class FavoriteStore : BaseStore<Favorite>, IFavoriteStore
     {
         public Task<bool> IsFavorite(string sessionId)
