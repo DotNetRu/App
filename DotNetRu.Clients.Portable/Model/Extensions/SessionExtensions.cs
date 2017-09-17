@@ -8,6 +8,9 @@ using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.Clients.Portable
 {
+    using XamarinEvolve.Utils.Extensions;
+    using XamarinEvolve.Utils.Helpers;
+
 	public static class SessionExtensions
 	{
 		public static AppLinkEntry GetAppLink(this Session session)
@@ -39,7 +42,7 @@ namespace XamarinEvolve.Clients.Portable
 
 		public static string GetIndexName(this Session e)
 		{
-			if (!e.StartTime.HasValue || !e.EndTime.HasValue || e.StartTime.Value.IsTBA())
+			if (!e.StartTime.HasValue || !e.EndTime.HasValue || e.StartTime.Value.IsTba())
 				return "To be announced";
 
 			var start = e.StartTime.Value.ToEventTimeZone();
@@ -55,7 +58,7 @@ namespace XamarinEvolve.Clients.Portable
 
 		public static string GetSortName(this Session session)
 		{
-			if (!session.StartTime.HasValue || !session.EndTime.HasValue || session.StartTime.Value.IsTBA())
+			if (!session.StartTime.HasValue || !session.EndTime.HasValue || session.StartTime.Value.IsTba())
 				return "To be announced";
 
 			var start = session.StartTime.Value.ToEventTimeZone();
@@ -75,7 +78,7 @@ namespace XamarinEvolve.Clients.Portable
 
 		public static string GetDisplayName(this Session session)
 		{
-			if (!session.StartTime.HasValue || !session.EndTime.HasValue || session.StartTime.Value.IsTBA())
+			if (!session.StartTime.HasValue || !session.EndTime.HasValue || session.StartTime.Value.IsTba())
 				return "TBA";
 
 			var start = session.StartTime.Value.ToEventTimeZone();
@@ -109,7 +112,7 @@ namespace XamarinEvolve.Clients.Portable
 
 		public static string GetDisplayTime(this Session session)
 		{
-			if (!session.StartTime.HasValue || !session.EndTime.HasValue || session.StartTime.Value.IsTBA())
+			if (!session.StartTime.HasValue || !session.EndTime.HasValue || session.StartTime.Value.IsTba())
 				return "TBA";
 			var start = session.StartTime.Value.ToEventTimeZone();
 
@@ -136,7 +139,7 @@ namespace XamarinEvolve.Clients.Portable
 				sessions = sessions.Where(s => s.IsFavorite).ToList();
 			}
 
-			var tba = sessions.Where(s => !s.StartTime.HasValue || !s.EndTime.HasValue || s.StartTime.Value.IsTBA());
+			var tba = sessions.Where(s => !s.StartTime.HasValue || !s.EndTime.HasValue || s.StartTime.Value.IsTba());
 
 
 			var showPast = Settings.Current.ShowPastSessions;
@@ -150,7 +153,7 @@ namespace XamarinEvolve.Clients.Portable
 			//has not started or has started and hasn't ended or ended 20 minutes ago
 			//filter then by category and filters
 			var grouped = (from session in sessions
-						   where session.StartTime.HasValue && session.EndTime.HasValue && !session.StartTime.Value.IsTBA() && (showPast || (utc <= session.StartTime.Value || utc <= session.EndTime.Value.AddMinutes(20)))
+						   where session.StartTime.HasValue && session.EndTime.HasValue && !session.StartTime.Value.IsTba() && (showPast || (utc <= session.StartTime.Value || utc <= session.EndTime.Value.AddMinutes(20)))
 			               && (showAllCategories || (session?.Categories.Join(filteredCategoriesList, category => category.Name, filtered => filtered, (category, filter) => filter).Any() ?? false))
 						   orderby session.StartTimeOrderBy, session.Title
 						   group session by session.GetSortName()

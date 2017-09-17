@@ -8,7 +8,9 @@ using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.Clients.Portable
 {
-    public class Tweet
+	using XamarinEvolve.Utils.Helpers;
+
+	public class Tweet
     {
         string _tweetedImage;
         string _fullImage;

@@ -1,25 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using WindowsAzure.Messaging;
-using Foundation;
-using UIKit;
-using XamarinEvolve.Clients.UI;
-using Xamarin.Forms;
-using FormsToolkit.iOS;
-using Xamarin.Forms.Platform.iOS;
-using Xamarin;
-using FormsToolkit;
-using XamarinEvolve.Clients.Portable;
-using Refractored.XamForms.PullToRefresh.iOS;
-using Social;
-using CoreSpotlight;
-using Google.AppIndexing;
-using HockeyApp.iOS;
-using XamarinEvolve.DataStore.Azure.Abstractions;
-using XamarinEvolve.Utils;
-
-namespace XamarinEvolve.iOS
+﻿namespace XamarinEvolve.iOS
 {
+    using System;
+    using System.Collections.Generic;
+
+    using CoreSpotlight;
+
+    using FormsToolkit;
+    using FormsToolkit.iOS;
+
+    using Foundation;
+
+    using Google.AppIndexing;
+
+    using Refractored.XamForms.PullToRefresh.iOS;
+
+    using Social;
+
+    using UIKit;
+
+    using Xamarin;
+    using Xamarin.Forms;
+    using Xamarin.Forms.Platform.iOS;
+
+    using XamarinEvolve.Clients.Portable;
+    using XamarinEvolve.Clients.UI;
+    using XamarinEvolve.DataStore.Mock.Abstractions;
+    using XamarinEvolve.Utils.Helpers;
+
     [Register("AppDelegate")]
     public partial class AppDelegate : FormsApplicationDelegate
     {
@@ -101,8 +108,6 @@ namespace XamarinEvolve.iOS
 
 			AppIndexing.SharedInstance.RegisterApp(PublicationSettings.iTunesAppId);
 
-			ZXing.Net.Mobile.Forms.iOS.Platform.Init();
-
 			//Random Inits for Linking out.
 			Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
 			SQLitePCL.CurrentPlatform.Init();
@@ -116,7 +121,6 @@ namespace XamarinEvolve.iOS
 				UIActivityType.SaveToCameraRoll
 			};
 			ImageCircle.Forms.Plugin.iOS.ImageCircleRenderer.Init();
-			ZXing.Net.Mobile.Forms.iOS.Platform.Init();
 			NonScrollableListViewRenderer.Initialize();
 			SelectedTabPageRenderer.Initialize();
 			TextViewValue1Renderer.Init();

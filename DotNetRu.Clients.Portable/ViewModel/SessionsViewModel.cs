@@ -10,7 +10,9 @@ using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.Clients.Portable
 {
-    public class SessionsViewModel : ViewModelBase
+	using XamarinEvolve.Utils.Helpers;
+
+	public class SessionsViewModel : ViewModelBase
     {
         public SessionsViewModel(INavigation navigation) : base(navigation)
         {

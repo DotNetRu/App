@@ -4,7 +4,9 @@ using XamarinEvolve.DataObjects;
 
 namespace XamarinEvolve.Clients.UI
 {
-	public partial class EventsPage : BasePage
+    using XamarinEvolve.Clients.Portable.ViewModel;
+
+    public partial class EventsPage : BasePage
 	{
 		public override AppPage PageType => AppPage.Events;
 

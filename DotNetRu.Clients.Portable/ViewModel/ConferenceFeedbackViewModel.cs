@@ -8,6 +8,8 @@ using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.Clients.Portable
 {
+	using XamarinEvolve.Utils.Helpers;
+
 	public class ConferenceFeedbackViewModel : ViewModelBase
 	{
 		public ConferenceFeedbackViewModel(INavigation navigation) : base(navigation)

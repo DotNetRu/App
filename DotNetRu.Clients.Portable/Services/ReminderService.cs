@@ -11,7 +11,9 @@ using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.Clients.Portable
 {
-    public static class ReminderService
+	using XamarinEvolve.Utils.Helpers;
+
+	public static class ReminderService
     {
         public static async Task<bool> HasReminderAsync(string id)
         {

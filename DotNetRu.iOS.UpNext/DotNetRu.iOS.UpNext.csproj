@@ -132,11 +132,14 @@
     <Compile Include="Helpers\UIColorExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DotNetRu.DataStore.Audit\DotNetRu.DataStore.Audit.csproj">
+      <Project>{7B4C73DF-8A4A-4AD1-92D9-A064065CDD71}</Project>
+      <Name>DotNetRu.DataStore.Audit</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DotNetRu.Utils\DotNetRu.Utils.csproj">
       <Project>{DFA0F0F6-C396-412E-86A9-E9095F71CC36}</Project>
       <Name>DotNetRu.Utils</Name>
     </ProjectReference>
   </ItemGroup>
-  <Import Project="..\DotNetRu.DataObjects\DotNetRu.Backend.Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.AppExtension.CSharp.targets" />
 </Project>

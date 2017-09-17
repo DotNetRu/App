@@ -4,7 +4,9 @@ using XamarinEvolve.Clients.Portable;
 
 namespace XamarinEvolve.Clients.UI
 {
-	public partial class SpeakerDetailsPage : BasePage
+    using DotNetRu.DataStore.Audit.DataObjects;
+
+    public partial class SpeakerDetailsPage : BasePage
 	{
 		public override AppPage PageType => AppPage.Speaker;
 		private IPlatformSpecificExtension<Speaker> _extension;
