@@ -65,7 +65,6 @@ namespace XamarinEvolve.DataObjects
         /// </summary>
         /// <value>The rank.</value>
         public int Rank { get; set; }
-        #if MOBILE
         [Newtonsoft.Json.JsonIgnore]
         public Uri ImageUri 
         { 
@@ -82,6 +81,5 @@ namespace XamarinEvolve.DataObjects
                 return null;
             } 
         }
-        #endif
     }
 }

@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
-#if MOBILE
 using System.Windows.Input;
-#endif
 
 namespace XamarinEvolve.DataObjects
 {
@@ -79,7 +77,6 @@ namespace XamarinEvolve.DataObjects
         /// </summary>
         public string VideoUrl { get; set; }
 
-#if MOBILE
         private string speakerNames;
         [Newtonsoft.Json.JsonIgnore]
         public string SpeakerNames
@@ -195,7 +192,5 @@ namespace XamarinEvolve.DataObjects
 
 		[Newtonsoft.Json.JsonIgnore]
 		public string LevelString => $"Level: {Level}";
-
-#endif
     }
 }
