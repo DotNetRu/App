@@ -6,7 +6,9 @@ using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.iOS.UpNext
 {
-	public partial class FavoriteSessionCell : UITableViewCell
+    using XamarinEvolve.Utils.Extensions;
+
+    public partial class FavoriteSessionCell : UITableViewCell
 	{
 		private const string DEFAULT_COLOR = "5ac8fa"; // light blue
 

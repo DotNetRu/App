@@ -10,6 +10,8 @@ using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.iOS.PlatformFeatures.Social
 {
+	using XamarinEvolve.Utils.Helpers;
+
 	public class TweetService : ITweetService
 	{
 		public async Task InitiateConferenceTweet()

@@ -1,10 +1,12 @@
 ﻿using System;
 using Xamarin.Forms;
-using XamarinEvolve.DataObjects;
-using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.Clients.Portable
 {
+    using DotNetRu.DataStore.Audit.DataObjects;
+
+    using XamarinEvolve.Utils.Helpers;
+
 	public static class SpeakerExtensions
 	{
 		public static AppLinkEntry GetAppLink(this Speaker speaker)

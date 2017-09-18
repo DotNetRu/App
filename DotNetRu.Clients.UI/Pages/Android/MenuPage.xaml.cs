@@ -4,6 +4,8 @@ using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.Clients.UI
 {
+	using XamarinEvolve.Utils.Helpers;
+
 	public partial class MenuPage : ContentPage
 	{
 		RootPageAndroid root;

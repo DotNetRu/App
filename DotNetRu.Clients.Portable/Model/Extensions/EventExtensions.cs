@@ -7,7 +7,9 @@ using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.Clients.Portable
 {
-	public static class EventExtensions
+    using XamarinEvolve.Utils.Extensions;
+
+    public static class EventExtensions
 	{
 		public static IEnumerable<Grouping<string, FeaturedEvent>> GroupByDate(this IEnumerable<FeaturedEvent> events)
 		{
@@ -41,7 +43,7 @@ namespace XamarinEvolve.Clients.Portable
 		{
 
 
-			if (!e.StartTime.HasValue || !e.EndTime.HasValue || e.StartTime.Value.IsTBA())
+			if (!e.StartTime.HasValue || !e.EndTime.HasValue || e.StartTime.Value.IsTba())
 				return "To be announced";
 
 			var start = e.StartTime.Value.ToEventTimeZone();
@@ -73,7 +75,7 @@ namespace XamarinEvolve.Clients.Portable
 		public static string GetDisplayTime(this FeaturedEvent e)
 		{
 
-			if (!e.StartTime.HasValue || !e.EndTime.HasValue || e.StartTime.Value.IsTBA())
+			if (!e.StartTime.HasValue || !e.EndTime.HasValue || e.StartTime.Value.IsTba())
 				return "To be announced";
 
 			var start = e.StartTime.Value.ToEventTimeZone();

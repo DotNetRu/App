@@ -4,6 +4,8 @@ using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.Clients.Portable
 {
+	using XamarinEvolve.Utils.Helpers;
+
 	public static class MessagingUtils
 	{
 		public static void SendOfflineMessage()

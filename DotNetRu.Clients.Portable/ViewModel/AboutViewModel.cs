@@ -5,7 +5,9 @@ using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.Clients.Portable
 {
-  public class AboutViewModel : SettingsViewModel
+	using XamarinEvolve.Utils.Helpers;
+
+	public class AboutViewModel : SettingsViewModel
   {
     public ObservableRangeCollection<Grouping<string, MenuItem>> MenuItems { get; }
     public ObservableRangeCollection<MenuItem> InfoItems { get; } = new ObservableRangeCollection<MenuItem>();

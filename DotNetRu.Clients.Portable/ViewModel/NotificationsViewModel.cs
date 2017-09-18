@@ -10,6 +10,9 @@ using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.Clients.Portable
 {
+    using XamarinEvolve.Utils.Extensions;
+    using XamarinEvolve.Utils.Helpers;
+
 	public class NotificationsViewModel : ViewModelBase
 	{
 		public NotificationsViewModel() : base()

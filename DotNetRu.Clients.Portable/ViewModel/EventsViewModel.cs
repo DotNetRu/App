@@ -1,109 +1,156 @@
-﻿using System;
-using Xamarin.Forms;
-using XamarinEvolve.DataObjects;
-using MvvmHelpers;
-using FormsToolkit;
-using System.Windows.Input;
-using System.Threading.Tasks;
-using System.Linq;
-using XamarinEvolve.Utils;
-
-namespace XamarinEvolve.Clients.Portable
+﻿namespace XamarinEvolve.Clients.Portable.ViewModel
 {
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Windows.Input;
+
+    using FormsToolkit;
+
+    using MvvmHelpers;
+
+    using Xamarin.Forms;
+
+    using XamarinEvolve.DataObjects;
+    using XamarinEvolve.Utils.Helpers;
+
+    /// <summary>
+    /// The events view model.
+    /// </summary>
     public class EventsViewModel : ViewModelBase
     {
-        public EventsViewModel(INavigation navigation) : base(navigation)
+        /// <summary>
+        /// The selected event.
+        /// </summary>
+        private FeaturedEvent selectedEvent;
+
+        /// <summary>
+        /// The force refresh command.
+        /// </summary>
+        private ICommand forceRefreshCommand;
+
+        /// <summary>
+        /// The load events command.
+        /// </summary>
+        private ICommand loadEventsCommand;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EventsViewModel"/> class.
+        /// </summary>
+        /// <param name="navigation">
+        /// The navigation.
+        /// </param>
+        public EventsViewModel(INavigation navigation)
+            : base(navigation)
         {
-            Title = "Events";
+            this.Title = "Meetups";
         }
 
+        /// <summary>
+        /// The force refresh command.
+        /// </summary>
+        public ICommand ForceRefreshCommand => this.forceRefreshCommand
+                                               ?? (this.forceRefreshCommand = new Command(
+                                                       async () => await this.ExecuteForceRefreshCommandAsync()));
 
-        public ObservableRangeCollection<FeaturedEvent> Events { get; } = new ObservableRangeCollection<FeaturedEvent>();
-        public ObservableRangeCollection<Grouping<string, FeaturedEvent>> EventsGrouped { get; } = new ObservableRangeCollection<Grouping<string, FeaturedEvent>>();
+        /// <summary>
+        /// The load events command.
+        /// </summary>
+        public ICommand LoadEventsCommand => this.loadEventsCommand
+                                             ?? (this.loadEventsCommand = new Command<bool>(
+                                                     async (f) => await this.ExecuteLoadEventsAsync()));
 
+        /// <summary>
+        /// Gets the events.
+        /// </summary>
+        public ObservableRangeCollection<FeaturedEvent> Events { get; } =
+            new ObservableRangeCollection<FeaturedEvent>();
 
+        /// <summary>
+        /// Gets the events grouped.
+        /// </summary>
+        public ObservableRangeCollection<Grouping<string, FeaturedEvent>> EventsGrouped { get; } =
+            new ObservableRangeCollection<Grouping<string, FeaturedEvent>>();
 
-        #region Properties
-        FeaturedEvent selectedEvent;
+        /// <summary>
+        /// Gets or sets the selected event.
+        /// </summary>
         public FeaturedEvent SelectedEvent
         {
-            get { return selectedEvent; }
+            get => this.selectedEvent;
             set
             {
-                selectedEvent = value;
-                OnPropertyChanged();
-                if (selectedEvent == null)
+                this.selectedEvent = value;
+                this.OnPropertyChanged();
+                if (this.selectedEvent == null)
+                {
                     return;
+                }
 
-                MessagingService.Current.SendMessage(MessageKeys.NavigateToEvent, selectedEvent);
+                MessagingService.Current.SendMessage(MessageKeys.NavigateToEvent, this.selectedEvent);
 
-                SelectedEvent = null;
+                this.SelectedEvent = null;
             }
         }
 
-     
-        #endregion
-
-        #region Sorting
-
-
-        void SortEvents()
+        /// <summary>
+        /// The sort events.
+        /// </summary>
+        public void SortEvents()
         {
-            EventsGrouped.ReplaceRange(Events.GroupByDate());
+            this.EventsGrouped.ReplaceRange(this.Events.GroupByDate());
         }
 
-
-        #endregion
-
-
-        #region Commands
-
-        ICommand  forceRefreshCommand;
-        public ICommand ForceRefreshCommand =>
-        forceRefreshCommand ?? (forceRefreshCommand = new Command(async () => await ExecuteForceRefreshCommandAsync())); 
-
-        async Task ExecuteForceRefreshCommandAsync()
+        /// <summary>
+        /// The execute force refresh command async.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        public async Task ExecuteForceRefreshCommandAsync()
         {
-            await ExecuteLoadEventsAsync(true);
+            await this.ExecuteLoadEventsAsync(true);
         }
 
-        ICommand loadEventsCommand;
-        public ICommand LoadEventsCommand =>
-            loadEventsCommand ?? (loadEventsCommand = new Command<bool>(async (f) => await ExecuteLoadEventsAsync())); 
-
-        async Task<bool> ExecuteLoadEventsAsync(bool force = false)
+        /// <summary>
+        /// The execute load events async.
+        /// </summary>
+        /// <param name="force">
+        /// The force.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        public async Task<bool> ExecuteLoadEventsAsync(bool force = false)
         {
-            if(IsBusy)
+            if (this.IsBusy)
+            {
                 return false;
+            }
 
-            try 
+            try
             {
-                IsBusy = true;
+                this.IsBusy = true;
 
-                #if DEBUG
-                await Task.Delay(1000);
-                #endif
+                this.Events.ReplaceRange(await this.StoreManager.EventStore.GetItemsAsync(force));
 
-                Events.ReplaceRange(await StoreManager.EventStore.GetItemsAsync(force));
+                this.Title = "Meetups (" + this.Events.Count(
+                                 e => e.StartTime.HasValue && e.StartTime.Value.ToUniversalTime() > DateTime.UtcNow)
+                             + ")";
 
-				Title = "Events (" + Events.Count(e => e.StartTime.HasValue && e.StartTime.Value.ToUniversalTime() > DateTime.UtcNow) + ")";
-
-                SortEvents();
-
-            } 
-            catch (Exception ex) 
+                this.SortEvents();
+            }
+            catch (Exception ex)
             {
-                Logger.Report(ex, "Method", "ExecuteLoadEventsAsync");
+                this.Logger.Report(ex, "Method", "ExecuteLoadEventsAsync");
                 MessagingService.Current.SendMessage(MessageKeys.Error, ex);
             }
             finally
             {
-                IsBusy = false;
+                this.IsBusy = false;
             }
 
             return true;
         }
-        #endregion
     }
 }
-
