@@ -15,7 +15,6 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using XamarinEvolve.Clients.Portable;
 using XamarinEvolve.Clients.UI;
-using Xamarin.Forms.Platform.Android.AppLinks;
 using Xamarin;
 using XamarinEvolve.Droid;
 
@@ -114,7 +113,7 @@ namespace DotNetRu.Droid
 
       Forms.Init(this, savedInstanceState);
       FormsMaps.Init(this, savedInstanceState);
-      AndroidAppLinks.Init(this);
+           // AndroidAppLinks.Init(this);
       Toolkit.Init();
 
       PullToRefreshLayoutRenderer.Init();
