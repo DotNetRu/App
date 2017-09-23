@@ -76,11 +76,6 @@
                         </Grid.GestureRecognizers>
                         </Grid>
                         <local:FooterDivider/>
-                        <StackLayout Padding="16,8,16,0">
-                            <Label IsVisible="{Binding LoginEnabled}"
-								   Text="Sign in first to save and sync favorites and session feedback." 
-                                   Style="{DynamicResource EvolveListItemDetailTextStyle}"/>
-                        </StackLayout>
                     </StackLayout>
                 </local:CardView>
            

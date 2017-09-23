@@ -7,7 +7,6 @@
         bool IsInitialized { get; }
         Task InitializeAsync();
         ICategoryStore CategoryStore { get; }
-        IFavoriteStore FavoriteStore { get; }
         IFeedbackStore FeedbackStore { get; }
 		IConferenceFeedbackStore ConferenceFeedbackStore { get; }
         ISessionStore SessionStore { get; }

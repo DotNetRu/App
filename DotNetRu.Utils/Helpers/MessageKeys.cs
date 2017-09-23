@@ -14,13 +14,7 @@
 
         public const string NavigateLogin = "navigate_login";
 
-        public const string NavigateToSyncMobileToWebViewModel = "navigate_syncmobiletoweb";
-
-        public const string NavigateToSyncWebToMobileViewModel = "navigate_syncwebtomobile";
-
         public const string NavigateToConferenceFeedback = "navigate_conferencefeedback";
-
-        public const string SessionFavoriteToggled = "session_favorite_toggled";
 
         public const string Error = "error";
 

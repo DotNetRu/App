@@ -447,11 +447,9 @@
     <Compile Include="ViewController.designer.cs">
       <DependentUpon>ViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="PlatformFeatures\Extensions\FavoritesHandler.cs" />
     <Compile Include="PlatformFeatures\ProActiveSuggestions\SessionUserActivity.cs" />
     <Compile Include="PlatformFeatures\ProActiveSuggestions\SpeakerUserActivity.cs" />
     <Compile Include="PlatformFeatures\Social\TweetService.cs" />
-    <Compile Include="PlatformFeatures\HapticFeedback\FavoriteSelectionFeedbackProvider.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>

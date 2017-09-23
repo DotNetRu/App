@@ -4,7 +4,6 @@ using System.Windows.Input;
 using FormsToolkit;
 using Xamarin.Forms;
 using XamarinEvolve.DataObjects;
-using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.Clients.Portable
 {
@@ -14,7 +13,7 @@ namespace XamarinEvolve.Clients.Portable
 	{
 		public ConferenceFeedbackViewModel(INavigation navigation) : base(navigation)
 		{
-            Title = Device.OS == TargetPlatform.Windows ? "Feedback" : "Conference Feedback";
+            Title = Device.RuntimePlatform == Device.Windows ? "Feedback" : "Conference Feedback";
         }
 
 		private int _question1;

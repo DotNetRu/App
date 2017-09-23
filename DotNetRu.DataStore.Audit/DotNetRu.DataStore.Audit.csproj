@@ -38,7 +38,6 @@
     <Compile Include="DataObjects\BaseDataObject.cs" />
     <Compile Include="DataObjects\Category.cs" />
     <Compile Include="DataObjects\ConferenceFeedback.cs" />
-    <Compile Include="DataObjects\Favorite.cs" />
     <Compile Include="DataObjects\FeaturedEvent.cs" />
     <Compile Include="DataObjects\Feedback.cs" />
     <Compile Include="DataObjects\Notification.cs" />

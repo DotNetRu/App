@@ -1,45 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-
-using Xamarin.Forms;
-using XamarinEvolve.DataObjects;
-using XamarinEvolve.Clients.Portable;
-using FormsToolkit;
-using XamarinEvolve.Utils;
-
-namespace XamarinEvolve.Clients.UI
+﻿namespace XamarinEvolve.Clients.UI
 {
     using DotNetRu.DataStore.Audit.DataObjects;
 
+    using FormsToolkit;
+
+    using Xamarin.Forms;
+
+    using XamarinEvolve.Clients.Portable;
+    using XamarinEvolve.DataObjects;
     using XamarinEvolve.Utils.Helpers;
 
-	public partial class SessionDetailsPage : BasePage
-	{
-		private IPlatformSpecificExtension<Session> _extension;
-		public override AppPage PageType => AppPage.Session;
+    public partial class SessionDetailsPage : BasePage
+    {
+        private IPlatformSpecificExtension<Session> _extension;
+
+        public override AppPage PageType => AppPage.Session;
 
         SessionDetailsViewModel ViewModel => vm ?? (vm = BindingContext as SessionDetailsViewModel);
+
         SessionDetailsViewModel vm;
+
         public SessionDetailsPage(Session session)
         {
             InitializeComponent();
 
-			_extension = DependencyService.Get<IPlatformSpecificExtension<Session>>();
+            _extension = DependencyService.Get<IPlatformSpecificExtension<Session>>();
 
-			ItemId = session?.Title;
+            ItemId = session?.Title;
 
-            FavoriteButtonAndroid.Clicked += (sender, e) => {
-                Device.BeginInvokeOnMainThread (() => FavoriteIconAndroid.Grow ());
-            };
-            FavoriteButtoniOS.Clicked += (sender, e) => {
-                Device.BeginInvokeOnMainThread (() => FavoriteIconiOS.Grow ());
-            };
-
-            ListViewSpeakers.ItemSelected += async (sender, e) => 
+            ListViewSpeakers.ItemSelected += async (sender, e) =>
                 {
                     var speaker = ListViewSpeakers.SelectedItem as Speaker;
-                    if(speaker == null)
-                        return;
+                    if (speaker == null) return;
 
                     ContentPage destination;
 
@@ -61,34 +53,33 @@ namespace XamarinEvolve.Clients.UI
                 };
 
 
-            ButtonRate.Clicked += async (sender, e) => 
-            {
-				if(!Settings.Current.IsLoggedIn)
+            ButtonRate.Clicked += async (sender, e) =>
+                {
+                    if (!Settings.Current.IsLoggedIn)
                     {
                         MessagingService.Current.SendMessage(MessageKeys.NavigateLogin);
                         return;
                     }
-                    await NavigationService.PushModalAsync(Navigation, new EvolveNavigationPage(new FeedbackPage(ViewModel.Session)));
-            };
-            BindingContext = new SessionDetailsViewModel(Navigation, session); 
+                    await NavigationService.PushModalAsync(
+                        Navigation,
+                        new EvolveNavigationPage(new FeedbackPage(ViewModel.Session)));
+                };
+            BindingContext = new SessionDetailsViewModel(Navigation, session);
             ViewModel.LoadSessionCommand.Execute(null);
 
         }
 
-        void ListViewTapped (object sender, ItemTappedEventArgs e)
+        void ListViewTapped(object sender, ItemTappedEventArgs e)
         {
             var list = sender as ListView;
-            if (list == null)
-                return;
+            if (list == null) return;
             list.SelectedItem = null;
-        }           
+        }
 
-        void MainScroll_Scrolled (object sender, ScrolledEventArgs e)
+        void MainScroll_Scrolled(object sender, ScrolledEventArgs e)
         {
-            if (e.ScrollY > SessionDate.Y)
-                Title = ViewModel.Session.ShortTitle;
-            else
-                Title = "Session Details";
+            if (e.ScrollY > SessionDate.Y) Title = ViewModel.Session.ShortTitle;
+            else Title = "Session Details";
         }
 
         protected override async void OnAppearing()
@@ -100,13 +91,13 @@ namespace XamarinEvolve.Clients.UI
 
             var count = ViewModel?.Session?.Speakers?.Count ?? 0;
             var adjust = Device.OS != TargetPlatform.Android ? 1 : -count + 1;
-            if((ViewModel?.Session?.Speakers?.Count ?? 0) > 0)
+            if ((ViewModel?.Session?.Speakers?.Count ?? 0) > 0)
                 ListViewSpeakers.HeightRequest = (count * ListViewSpeakers.RowHeight) - adjust;
 
-			if (_extension != null)
-			{
-				await _extension.Execute(ViewModel.Session);
-			}
+            if (_extension != null)
+            {
+                await _extension.Execute(ViewModel.Session);
+            }
         }
 
         protected override async void OnDisappearing()
@@ -115,10 +106,10 @@ namespace XamarinEvolve.Clients.UI
             MainScroll.Scrolled -= MainScroll_Scrolled;
             ListViewSpeakers.ItemTapped -= ListViewTapped;
 
-			if (_extension != null)
-			{
-				await _extension.Finish();
-			}
+            if (_extension != null)
+            {
+                await _extension.Finish();
+            }
         }
 
         protected override void OnBindingContextChanged()
@@ -128,8 +119,9 @@ namespace XamarinEvolve.Clients.UI
 
             ListViewSpeakers.HeightRequest = 0;
 
-			var adjust = Device.OS != TargetPlatform.Android ? 1 : -ViewModel.SessionMaterialItems.Count + 2;
-			ListViewSessionMaterial.HeightRequest = (ViewModel.SessionMaterialItems.Count * ListViewSessionMaterial.RowHeight) - adjust;
+            var adjust = Device.OS != TargetPlatform.Android ? 1 : -ViewModel.SessionMaterialItems.Count + 2;
+            ListViewSessionMaterial.HeightRequest =
+                (ViewModel.SessionMaterialItems.Count * ListViewSessionMaterial.RowHeight) - adjust;
         }
     }
 }
