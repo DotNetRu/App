@@ -3826,8 +3826,8 @@ namespace DotNetRu.Droid
 			// aapt resource value: 0x7f0b003c
 			public const int multiply = 2131427388;
 			
-			// aapt resource value: 0x7f0b00fa
-			public const int nav_events = 2131427578;
+			// aapt resource value: 0x7f0b00f9
+			public const int nav_events = 2131427577;
 			
 			// aapt resource value: 0x7f0b00f7
 			public const int nav_feed = 2131427575;
@@ -3835,17 +3835,14 @@ namespace DotNetRu.Droid
 			// aapt resource value: 0x7f0b00f6
 			public const int nav_section_main = 2131427574;
 			
-			// aapt resource value: 0x7f0b00f8
-			public const int nav_sessions = 2131427576;
-			
-			// aapt resource value: 0x7f0b00fc
-			public const int nav_settings = 2131427580;
-			
-			// aapt resource value: 0x7f0b00f9
-			public const int nav_speakers = 2131427577;
-			
 			// aapt resource value: 0x7f0b00fb
-			public const int nav_sponsors = 2131427579;
+			public const int nav_settings = 2131427579;
+			
+			// aapt resource value: 0x7f0b00f8
+			public const int nav_speakers = 2131427576;
+			
+			// aapt resource value: 0x7f0b00fa
+			public const int nav_sponsors = 2131427578;
 			
 			// aapt resource value: 0x7f0b00db
 			public const int nav_view = 2131427547;
