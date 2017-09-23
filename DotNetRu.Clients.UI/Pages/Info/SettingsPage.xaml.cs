@@ -44,13 +44,6 @@ namespace XamarinEvolve.Clients.UI
       await DisplayAlert("Credits",
         AboutThisApp.Credits, "OK");
     }
-
-    protected override void OnDisappearing()
-    {
-      base.OnDisappearing();
-      MessagingService.Current.Unsubscribe(MessageKeys.NavigateToSyncMobileToWebViewModel);
-      MessagingService.Current.Unsubscribe(MessageKeys.NavigateToSyncWebToMobileViewModel);
-    }
   }
 }
 

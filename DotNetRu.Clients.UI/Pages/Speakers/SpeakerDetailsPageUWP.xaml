@@ -131,7 +131,7 @@
                 <local:NonScrollableListView.ItemTemplate>
                   <DataTemplate>
                     <ViewCell>
-                      <local:SessionCellView  FavoriteCommand="{Binding Path=BindingContext.FavoriteCommand, Source={x:Reference SpeakerInfo}}"/>
+                      <local:SessionCellView />
                     </ViewCell>
                   </DataTemplate>
                 </local:NonScrollableListView.ItemTemplate>

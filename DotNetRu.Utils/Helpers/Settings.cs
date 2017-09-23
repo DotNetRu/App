@@ -80,20 +80,6 @@ namespace XamarinEvolve.Clients.Portable
             return AppSettings.GetValueOrDefault("conferencefeedback_finished", false);
         }
 
-        const string LastFavoriteTimeKey = "last_favorite_time";
-
-        public DateTime LastFavoriteTime
-        {
-            get
-            {
-                return AppSettings.GetValueOrDefault(LastFavoriteTimeKey, DateTime.UtcNow);
-            }
-            set
-            {
-                AppSettings.AddOrUpdateValue(LastFavoriteTimeKey, value);
-            }
-        }
-
         const string HasSetReminderKey = "set_a_reminder";
 
         static readonly bool HasSetReminderDefault = false;
@@ -147,10 +133,6 @@ namespace XamarinEvolve.Clients.Portable
 
         static readonly bool FirstRunDefault = true;
 
-        /// <summary>
-        /// Gets or sets a value indicating whether the user wants to see favorites only.
-        /// </summary>
-        /// <value><c>true</c> if favorites only; otherwise, <c>false</c>.</value>
         public bool FirstRun
         {
             get
@@ -209,26 +191,6 @@ namespace XamarinEvolve.Clients.Portable
             set
             {
                 AppSettings.AddOrUpdateValue(PushRegisteredKey, value);
-            }
-        }
-
-        const string FavoriteModeKey = "favorites_only";
-
-        static readonly bool FavoriteModeDefault = false;
-
-        /// <summary>
-        /// Gets or sets a value indicating whether the user wants to see favorites only.
-        /// </summary>
-        /// <value><c>true</c> if favorites only; otherwise, <c>false</c>.</value>
-        public bool FavoritesOnly
-        {
-            get
-            {
-                return AppSettings.GetValueOrDefault(FavoriteModeKey, FavoriteModeDefault);
-            }
-            set
-            {
-                if (AppSettings.AddOrUpdateValue(FavoriteModeKey, value)) OnPropertyChanged();
             }
         }
 
@@ -495,7 +457,7 @@ namespace XamarinEvolve.Clients.Portable
 
         public bool IsLoggedIn => !string.IsNullOrWhiteSpace(UserIdentifier);
 
-        public bool HasFilters => (ShowPastSessions || FavoritesOnly
+        public bool HasFilters => (ShowPastSessions
                                    || (!string.IsNullOrWhiteSpace(FilteredCategories) && !ShowAllCategories));
 
         #endregion
