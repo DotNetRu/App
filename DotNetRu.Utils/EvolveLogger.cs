@@ -32,7 +32,6 @@ namespace XamarinEvolve.Clients.Portable
                 GoogleAnalytics.Current.Config.TrackingId = ApiKeys.GoogleAnalyticsTrackingId;
                 GoogleAnalytics.Current.Config.AppId = AboutThisApp.PackageName;
                 GoogleAnalytics.Current.Config.AppName = AboutThisApp.AppName;
-                GoogleAnalytics.Current.Config.AppInstallerId = Settings.Current.UserIdentifier;
 				GoogleAnalytics.Current.Config.UseSecure = true;
 #if DEBUG
                 GoogleAnalytics.Current.Config.Debug = true;

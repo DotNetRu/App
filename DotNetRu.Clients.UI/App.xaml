@@ -5,7 +5,7 @@
     x:Class="XamarinEvolve.Clients.UI.App">
     <Application.Resources>
         <ResourceDictionary>
-            <Color x:Key="Primary">#0078D7</Color>
+            <Color x:Key="Primary">#68217A</Color>
             <Color x:Key="PrimaryDark">#002050</Color>
             <Color x:Key="PrimaryDarkTranslucent">#0020503C</Color>
             <Color x:Key="Accent">#FFB900</Color>
