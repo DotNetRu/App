@@ -18,12 +18,10 @@
         List<Session> _sessions;
         ISpeakerStore _speakerStore;
         ICategoryStore _categoryStore;
-        IFavoriteStore _favoriteStore;
         IFeedbackStore _feedbackStore;
         public SessionStore()
         {
             this._speakerStore = DependencyService.Get<ISpeakerStore>();
-            this._favoriteStore = DependencyService.Get<IFavoriteStore>();
             this._categoryStore = DependencyService.Get<ICategoryStore>();
             this._feedbackStore = DependencyService.Get<IFeedbackStore>();
         }
@@ -69,7 +67,7 @@
             var date = DateTime.UtcNow.AddMinutes(-30);
 
             var results = (from session in this._sessions
-                where (session.IsFavorite && session.StartTime.HasValue && session.StartTime.Value > date)
+                where (session.StartTime.HasValue && session.StartTime.Value > date)
                                     orderby session.StartTime.Value
                                     select session).Take(maxNumber);
 
@@ -145,7 +143,6 @@
                         ShortTitle = this._titlesShort[i]
                     });
                 
-                this._sessions[i].IsFavorite = await this._favoriteStore.IsFavorite(this._sessions[i].Id);
                 this._sessions[i].FeedbackLeft = await this._feedbackStore.LeftFeedback(this._sessions[i]);
 
                 this.SetStartEnd(this._sessions[i], day);
@@ -181,7 +178,6 @@
                     Title = "Something awesome!",
                     ShortTitle = "Awesome",
                 });
-            this._sessions[this._sessions.Count - 1].IsFavorite = await this._favoriteStore.IsFavorite(this._sessions[this._sessions.Count - 1].Id);
             this._sessions[this._sessions.Count - 1].FeedbackLeft = await this._feedbackStore.LeftFeedback(this._sessions[this._sessions.Count - 1]);
             this._sessions[this._sessions.Count - 1].StartTime = null;
             this._sessions[this._sessions.Count - 1].EndTime = null;

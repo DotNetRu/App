@@ -9,7 +9,6 @@
     x:Name="SessionCell">
     <ContentView.Resources>
      <ResourceDictionary>
-        <local:IsFavoriteDetailTextConverter x:Key="IsFavoriteDetailTextConverter" />
         <toolkit:HexToColorConverter x:Key="StringToColorConverter" />
         <toolkit:UpperTextConverter x:Key="UpperTextConverter"/>
         <local:SessionTimeDisplayConverter x:Key="SessionTimeDisplayConverter" />
@@ -47,24 +46,13 @@
                    Style="{DynamicResource EvolveListItemDetailTextStyle}"
                    StyleId="SessionTime"/>
 
-            <Label Grid.Row="3" Grid.Column="1"
+        <Label Grid.Row="3" Grid.Column="1"
 		           VerticalOptions="End"
                    Text="{Binding Level}" 
                    Style="{DynamicResource EvolveListItemDetailTextStyle}"
                    StyleId="SessionLevel"/>
-            
-            <local:FavoriteImage StyleId="FavoriteButton"
-                    Grid.Column="1" 
-                    Grid.Row="0"
-                    Source="{Binding IsFavorite, Converter={StaticResource IsFilledIconConverter}, ConverterParameter='heart'}"
-                    HorizontalOptions="End" VerticalOptions="Start" Aspect="AspectFit">
-                <local:FavoriteImage.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding Path=FavoriteCommand, Source={x:Reference SessionCell}}"
-                                          CommandParameter="{Binding .}"/>
-                </local:FavoriteImage.GestureRecognizers>
-            </local:FavoriteImage>
 
-			<StackLayout x:Name="CategoriesPlaceholder" Spacing="2" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"
+        <StackLayout x:Name="CategoriesPlaceholder" Spacing="2" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"
 				HeightRequest="44"
 				Orientation="Horizontal"
 				HorizontalOptions="FillAndExpand"

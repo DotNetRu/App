@@ -1,12 +1,13 @@
-﻿using Xamarin.Forms;
-using XamarinEvolve.DataObjects;
-using XamarinEvolve.Clients.Portable;
-using System.Windows.Input;
-using ImageCircle.Forms.Plugin.Abstractions;
-using System.Linq;
-
-namespace XamarinEvolve.Clients.UI
+﻿namespace XamarinEvolve.Clients.UI
 {
+    using System.Linq;
+
+    using ImageCircle.Forms.Plugin.Abstractions;
+
+    using Xamarin.Forms;
+
+    using XamarinEvolve.Clients.Portable;
+    using XamarinEvolve.DataObjects;
 
     public class SessionCell: ViewCell
     {
@@ -114,15 +115,6 @@ namespace XamarinEvolve.Clients.UI
                     CategoriesPlaceholder.Children.Add(grid);
                 }
             }
-        }
-
-        public static readonly BindableProperty FavoriteCommandProperty = 
-            BindableProperty.Create(nameof(FavoriteCommand), typeof(ICommand), typeof(SessionCellView), default(ICommand));
-
-        public ICommand FavoriteCommand
-        {
-            get { return GetValue(FavoriteCommandProperty) as Command; }
-            set { SetValue(FavoriteCommandProperty, value); }
         }
     }
 }

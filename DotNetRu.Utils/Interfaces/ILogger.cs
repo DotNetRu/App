@@ -12,8 +12,6 @@ namespace XamarinEvolve.Clients.Portable
     public const string LoginCancel = "LoginCancel";
     public const string LoginTime = "LoginTime";
     public const string Signup = "Signup";
-    public const string FavoriteAdded = "FavoriteAdded";
-    public const string FavoriteRemoved = "FavoriteRemoved";
     public const string ReminderAdded = "ReminderAdded";
     public const string ReminderRemoved = "ReminderRemoved";
     public const string Share = "Share";

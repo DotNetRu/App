@@ -28,7 +28,7 @@
 
         public FeedViewModel()
         {
-            this.Title = $"{EventInfo.EventName}";
+            this.Title = "DotNetRu News";
             this.NextForceRefresh = DateTime.UtcNow.AddMinutes(45);
 
             MessagingService.Current.Subscribe(
@@ -36,13 +36,11 @@
                 (m) => { Device.BeginInvokeOnMainThread(this.EvaluateVisualState); });
         }
 
-        // only start showing upcoming favorites 1 day before the conference
-        public bool ShowUpcomingFavorites => EventInfo.StartOfConference.AddDays(-1) < DateTime.UtcNow;
+        private ICommand refreshCommand;
 
-        ICommand refreshCommand;
-
-        public ICommand RefreshCommand =>
-            this.refreshCommand ?? (this.refreshCommand = new Command(async () => await this.ExecuteRefreshCommandAsync()));
+        public ICommand RefreshCommand => this.refreshCommand
+                                          ?? (this.refreshCommand = new Command(
+                                                  async () => await this.ExecuteRefreshCommandAsync()));
 
         async Task ExecuteRefreshCommandAsync()
         {
@@ -52,8 +50,8 @@
                 this.IsBusy = true;
                 var tasks = new Task[]
                                 {
-                                    this.ExecuteLoadNotificationsCommandAsync(), this.ExecuteLoadSocialCommandAsync(),
-                                    this.ExecuteLoadSessionsCommandAsync()
+                                    this.ExecuteLoadNotificationsCommandAsync(),
+                                    this.ExecuteLoadSocialCommandAsync(), this.ExecuteLoadSessionsCommandAsync()
                                 };
 
                 await Task.WhenAll(tasks);
@@ -101,14 +99,15 @@
 
         public ICommand LoadNotificationsCommand => this.loadNotificationsCommand
                                                     ?? (this.loadNotificationsCommand = new Command(
-                                                            async () => await this.ExecuteLoadNotificationsCommandAsync()));
+                                                            async () =>
+                                                                await this.ExecuteLoadNotificationsCommandAsync()));
 
         async Task ExecuteLoadNotificationsCommandAsync()
         {
             if (this.LoadingNotifications) return;
             this.LoadingNotifications = true;
 #if DEBUG
-			await Task.Delay(1000);
+            await Task.Delay(1000);
 #endif
 
             try
@@ -119,7 +118,8 @@
             {
                 ex.Data["method"] = "ExecuteLoadNotificationsCommandAsync";
                 this.Logger.Report(ex);
-                this.Notification = new Notification { Date = DateTime.UtcNow, Text = $"Welcome to {EventInfo.EventName}!" };
+                this.Notification =
+                    new Notification { Date = DateTime.UtcNow, Text = $"Welcome to {EventInfo.EventName}!" };
             }
             finally
             {
@@ -147,10 +147,8 @@
                                                ?? (this.loadSessionsCommand = new Command(
                                                        async () => await this.ExecuteLoadSessionsCommandAsync()));
 
-        async Task ExecuteLoadSessionsCommandAsync()
+        private async Task ExecuteLoadSessionsCommandAsync()
         {
-            if (!this.ShowUpcomingFavorites) return;
-
             if (this.LoadingSessions) return;
 
             this.LoadingSessions = true;
@@ -160,9 +158,7 @@
                 this.NoSessions = false;
                 this.Sessions.Clear();
                 this.OnPropertyChanged("Sessions");
-#if DEBUG
-				await Task.Delay(1000);
-#endif
+
                 var sessions = await this.StoreManager.SessionStore.GetNextSessions(2);
                 if (sessions != null) this.Sessions.AddRange(sessions);
 
@@ -183,7 +179,6 @@
         public void EvaluateVisualState()
         {
             this.OnPropertyChanged(nameof(this.ShowBuyTicketButton));
-            this.OnPropertyChanged(nameof(this.ShowUpcomingFavorites));
             this.OnPropertyChanged(nameof(this.ShowConferenceFeedbackButton));
         }
 
@@ -244,8 +239,9 @@
 
         ICommand shareCommand;
 
-        public ICommand ShareCommand =>
-            this.shareCommand ?? (this.shareCommand = new Command(async () => await this.ExecuteShareCommand()));
+        public ICommand ShareCommand => this.shareCommand
+                                        ?? (this.shareCommand =
+                                                new Command(async () => await this.ExecuteShareCommand()));
 
         async Task ExecuteShareCommand()
         {
@@ -335,44 +331,6 @@
                 this.LaunchBrowserCommand.Execute(this.selectedTweet.Url);
 
                 this.SelectedTweet = null;
-            }
-        }
-
-        ICommand favoriteCommand;
-
-        public ICommand FavoriteCommand => this.favoriteCommand
-                                           ?? (this.favoriteCommand = new Command<Session>(
-                                                   async (s) => await this.ExecuteFavoriteCommandAsync(s)));
-
-        async Task ExecuteFavoriteCommandAsync(Session session)
-        {
-            if (session.IsFavorite)
-            {
-                MessagingService.Current.SendMessage(
-                    MessageKeys.Question,
-                    new MessagingServiceQuestion
-                        {
-                            Negative = "Cancel",
-                            Positive = "Unfavorite",
-                            Question =
-                                "Are you sure you want to remove this session from your favorites?",
-                            Title = "Unfavorite Session",
-                            OnCompleted = (async (result) =>
-                                {
-                                    if (!result) return;
-
-                                    await this.ToggleFavorite(session);
-                                })
-                        });
-            }
-        }
-
-        async Task ToggleFavorite(Session session)
-        {
-            var toggled = await this.FavoriteService.ToggleFavorite(session);
-            if (toggled)
-            {
-                await this.ExecuteLoadSessionsCommandAsync();
             }
         }
     }

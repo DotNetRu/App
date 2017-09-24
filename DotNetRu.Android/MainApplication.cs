@@ -4,7 +4,6 @@ using Android.App;
 using Android.OS;
 using Android.Runtime;
 using Plugin.CurrentActivity;
-using XamarinEvolve.Clients.Portable;
 
 namespace XamarinEvolve.Droid
 {
@@ -21,8 +20,6 @@ namespace XamarinEvolve.Droid
         {
             base.OnCreate();
             RegisterActivityLifecycleCallbacks(this);
-            Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
-
         }
 
         public override void OnTerminate()
