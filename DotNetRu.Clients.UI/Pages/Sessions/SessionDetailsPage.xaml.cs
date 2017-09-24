@@ -2,15 +2,12 @@
 {
     using DotNetRu.DataStore.Audit.DataObjects;
 
-    using FormsToolkit;
-
     using Xamarin.Forms;
 
     using XamarinEvolve.Clients.Portable;
     using XamarinEvolve.DataObjects;
-    using XamarinEvolve.Utils.Helpers;
 
-    public partial class SessionDetailsPage : BasePage
+    public partial class SessionDetailsPage
     {
         private IPlatformSpecificExtension<Session> _extension;
 
@@ -55,11 +52,6 @@
 
             ButtonRate.Clicked += async (sender, e) =>
                 {
-                    if (!Settings.Current.IsLoggedIn)
-                    {
-                        MessagingService.Current.SendMessage(MessageKeys.NavigateLogin);
-                        return;
-                    }
                     await NavigationService.PushModalAsync(
                         Navigation,
                         new EvolveNavigationPage(new FeedbackPage(ViewModel.Session)));

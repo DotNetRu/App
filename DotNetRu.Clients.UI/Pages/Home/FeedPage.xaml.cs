@@ -23,7 +23,6 @@
         public FeedPage()
         {
             InitializeComponent();
-            loggedIn = Settings.Current.UserIdentifier;
             BindingContext = new FeedViewModel();
 
             if (Device.OS == TargetPlatform.Windows || Device.OS == TargetPlatform.WinPhone)
@@ -91,10 +90,7 @@
 
         private void UpdatePage()
         {
-            bool forceRefresh = (DateTime.UtcNow > (ViewModel?.NextForceRefresh ?? DateTime.UtcNow))
-                                || loggedIn != Settings.Current.UserIdentifier;
-
-            loggedIn = Settings.Current.UserIdentifier;
+            bool forceRefresh = (DateTime.UtcNow > (ViewModel?.NextForceRefresh ?? DateTime.UtcNow));                                
 
             vm.EvaluateVisualState();
 

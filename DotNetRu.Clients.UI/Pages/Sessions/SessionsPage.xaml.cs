@@ -30,7 +30,6 @@
         public SessionsPage()
         {
             InitializeComponent();
-            loggedIn = Settings.Current.UserIdentifier;
             showPast = Settings.Current.ShowPastSessions;
             showAllCategories = Settings.Current.ShowAllCategories;
             filteredCategories = Settings.Current.FilteredCategories;
@@ -98,10 +97,7 @@
         {
             Title = "Sessions";
 
-            bool forceRefresh = (DateTime.UtcNow > (ViewModel?.NextForceRefresh ?? DateTime.UtcNow))
-                                || loggedIn != Settings.Current.UserIdentifier;
-
-            loggedIn = Settings.Current.UserIdentifier;
+            bool forceRefresh = (DateTime.UtcNow > (ViewModel?.NextForceRefresh ?? DateTime.UtcNow));
 
             // Load if none, or if 45 minutes has gone by
             if ((ViewModel?.Sessions?.Count ?? 0) == 0 || forceRefresh)

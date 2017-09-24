@@ -1,14 +1,6 @@
 ﻿namespace XamarinEvolve.Clients.Portable
 {
-    using System;
-    using System.Threading.Tasks;
-    using System.Windows.Input;
-
-    using Humanizer;
-
     using MvvmHelpers;
-
-    using Plugin.Connectivity;
 
     using Xamarin.Forms;
 
@@ -32,14 +24,8 @@
                 {
                     if (e.PropertyName == "Email")
                     {
-                        Settings.NeedsSync = true;
                         OnPropertyChanged("LoginText");
                         OnPropertyChanged("AccountItems");
-                        //if logged in you should go ahead and sync data.
-                        if (Settings.IsLoggedIn)
-                        {
-                            await ExecuteSyncCommandAsync();
-                        }
                     }
                 };
 
@@ -83,12 +69,6 @@
                     {
                         new MenuItem
                             {
-                                Name = "Azure Mobile Apps",
-                                Command = LaunchBrowserCommand,
-                                Parameter = "https://github.com/Azure/azure-mobile-apps-net-client/"
-                            },
-                        new MenuItem
-                            {
                                 Name = "Censored",
                                 Command = LaunchBrowserCommand,
                                 Parameter = "https://github.com/jamesmontemagno/Censored"
@@ -111,13 +91,6 @@
                                 Name = "Embedded Resource Plugin",
                                 Command = LaunchBrowserCommand,
                                 Parameter = "https://github.com/JosephHill/EmbeddedResourcePlugin"
-                            },
-                        new MenuItem
-                            {
-                                Name = "External Maps Plugin",
-                                Command = LaunchBrowserCommand,
-                                Parameter =
-                                    "https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/ExternalMaps"
                             },
                         new MenuItem
                             {
@@ -206,12 +179,6 @@
                                 Name = "Xamarin Insights",
                                 Command = LaunchBrowserCommand,
                                 Parameter = "http://xamarin.com/insights"
-                            },
-                        new MenuItem
-                            {
-                                Name = "ZXing.Net Mobile",
-                                Command = LaunchBrowserCommand,
-                                Parameter = "https://github.com/Redth/ZXing.Net.Mobile"
                             }
                     });
         }
@@ -224,95 +191,10 @@
             }
         }
 
-        public string LastSyncDisplay
-        {
-            get
-            {
-                if (!Settings.HasSyncedData) return "Never";
-
-                return Settings.LastSync.Humanize();
-            }
-        }
-
 #if DEBUG
         public bool IsDebug => true;
 #else
 		public bool IsDebug => false;
 #endif
-
-        ICommand forceResetCommand;
-
-        public ICommand ForceResetCommand => forceResetCommand
-                                             ?? (forceResetCommand = new Command(
-                                                     async () => await ExecuteForceResetCommandAsync()));
-
-        async Task ExecuteForceResetCommandAsync()
-        {
-            var userId = Settings.UserIdentifier;
-        }
-
-        static readonly string defaultSyncText = Device.OS == TargetPlatform.iOS ? "Sync Now" : "Last Sync";
-
-        string syncText = defaultSyncText;
-
-        public string SyncText
-        {
-            get
-            {
-                return syncText;
-            }
-            set
-            {
-                SetProperty(ref syncText, value);
-            }
-        }
-
-        ICommand syncCommand;
-
-        public ICommand SyncCommand =>
-            syncCommand ?? (syncCommand = new Command(async () => await ExecuteSyncCommandAsync()));
-
-        async Task ExecuteSyncCommandAsync()
-        {
-
-            if (IsBusy) return;
-
-            if (!CrossConnectivity.Current.IsConnected)
-            {
-                MessagingUtils.SendOfflineMessage();
-                return;
-            }
-
-            Logger.Track(EvolveLoggerKeys.ManualSync);
-
-            SyncText = "Syncing...";
-            IsBusy = true;
-
-            try
-            {
-#if DEBUG
-                await Task.Delay(1000);
-#endif
-
-                Settings.HasSyncedData = true;
-                Settings.LastSync = DateTime.UtcNow;
-                OnPropertyChanged("LastSyncDisplay");
-
-                await StoreManager.SyncAllAsync(Settings.Current.IsLoggedIn);
-            }
-            catch (Exception ex)
-            {
-                ex.Data["method"] = "ExecuteSyncCommandAsync";
-                MessagingUtils.SendAlert(
-                    "Unable to sync",
-                    "Uh oh, something went wrong with the sync, please try again. \n\n Debug:" + ex.Message);
-                Logger.Report(ex);
-            }
-            finally
-            {
-                SyncText = defaultSyncText;
-                IsBusy = false;
-            }
-        }
     }
 }

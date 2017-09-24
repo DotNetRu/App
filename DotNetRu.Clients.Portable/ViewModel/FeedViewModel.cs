@@ -28,7 +28,7 @@
 
         public FeedViewModel()
         {
-            this.Title = $"{EventInfo.EventName}";
+            this.Title = "DotNetRu News";
             this.NextForceRefresh = DateTime.UtcNow.AddMinutes(45);
 
             MessagingService.Current.Subscribe(

@@ -254,55 +254,6 @@ namespace XamarinEvolve.Clients.Portable
             }
         }
 
-        const string EmailKey = "email_key";
-
-        readonly string EmailDefault = string.Empty;
-
-        public string Email
-        {
-            get
-            {
-                return AppSettings.GetValueOrDefault(EmailKey, EmailDefault);
-            }
-            set
-            {
-                if (AppSettings.AddOrUpdateValue(EmailKey, value))
-                {
-                    OnPropertyChanged();
-                    OnPropertyChanged(nameof(UserAvatar));
-                }
-            }
-        }
-
-        const string UserIdentifierKey = "useridentifier_key";
-
-        readonly string UserIdentifierDefault = string.Empty;
-
-        public string UserIdentifier
-        {
-            get
-            {
-                var id = AppSettings.GetValueOrDefault(UserIdentifierKey, UserIdentifierDefault);
-
-                if (_platformSettings != null && _platformSettings.UserIdentifier != id)
-                {
-                    _platformSettings.UserIdentifier = id;
-                }
-                return id;
-            }
-            set
-            {
-                if (AppSettings.AddOrUpdateValue(UserIdentifierKey, value))
-                {
-                    if (_platformSettings != null)
-                    {
-                        _platformSettings.UserIdentifier = value;
-                    }
-                    OnPropertyChanged();
-                }
-            }
-        }
-
         const string DatabaseIdKey = "azure_database";
 
         static readonly int DatabaseIdDefault = 0;
@@ -324,114 +275,6 @@ namespace XamarinEvolve.Clients.Portable
             return DatabaseId++;
         }
 
-        const string FirstNameKey = "firstname_key";
-
-        readonly string FirstNameDefault = string.Empty;
-
-        public string FirstName
-        {
-            get
-            {
-                return AppSettings.GetValueOrDefault(FirstNameKey, FirstNameDefault);
-            }
-            set
-            {
-                if (AppSettings.AddOrUpdateValue(FirstNameKey, value))
-                {
-                    OnPropertyChanged();
-                    OnPropertyChanged(nameof(UserDisplayName));
-                }
-            }
-        }
-
-        const string LastNameKey = "lastname_key";
-
-        readonly string LastNameDefault = string.Empty;
-
-        public string LastName
-        {
-            get
-            {
-                return AppSettings.GetValueOrDefault(LastNameKey, LastNameDefault);
-            }
-            set
-            {
-                if (AppSettings.AddOrUpdateValue(LastNameKey, value))
-                {
-                    OnPropertyChanged();
-                    OnPropertyChanged(nameof(UserDisplayName));
-                }
-            }
-        }
-
-
-        const string NeedsSyncKey = "needs_sync";
-
-        const bool NeedsSyncDefault = true;
-
-        public bool NeedsSync
-        {
-            get
-            {
-                return AppSettings.GetValueOrDefault(NeedsSyncKey, NeedsSyncDefault)
-                       || LastSync < DateTime.Now.AddDays(-1);
-            }
-            set
-            {
-                AppSettings.AddOrUpdateValue(NeedsSyncKey, value);
-            }
-
-        }
-
-        const string LoginAttemptsKey = "login_attempts";
-
-        const int LoginAttemptsDefault = 0;
-
-        public int LoginAttempts
-        {
-            get
-            {
-                return AppSettings.GetValueOrDefault(LoginAttemptsKey, LoginAttemptsDefault);
-            }
-            set
-            {
-                AppSettings.AddOrUpdateValue(LoginAttemptsKey, value);
-            }
-        }
-
-        const string HasSyncedDataKey = "has_synced";
-
-        const bool HasSyncedDataDefault = false;
-
-        public bool HasSyncedData
-        {
-            get
-            {
-                return AppSettings.GetValueOrDefault(HasSyncedDataKey, HasSyncedDataDefault);
-            }
-            set
-            {
-                AppSettings.AddOrUpdateValue(HasSyncedDataKey, value);
-            }
-
-        }
-
-        const string LastSyncKey = "last_sync";
-
-        static readonly DateTime LastSyncDefault = DateTime.Now.AddDays(-30);
-
-        public DateTime LastSync
-        {
-            get
-            {
-                return AppSettings.GetValueOrDefault(LastSyncKey, LastSyncDefault);
-            }
-            set
-            {
-                if (AppSettings.AddOrUpdateValue(LastSyncKey, value)) OnPropertyChanged();
-            }
-        }
-
         bool isConnected;
 
         public bool IsConnected
@@ -449,13 +292,6 @@ namespace XamarinEvolve.Clients.Portable
         }
 
         #region Helpers
-
-
-        public string UserDisplayName => IsLoggedIn ? $"{FirstName} {LastName}" : "Sign In";
-
-        public string UserAvatar => IsLoggedIn ? Gravatar.GetURL(Email) : "profile_generic.png";
-
-        public bool IsLoggedIn => !string.IsNullOrWhiteSpace(UserIdentifier);
 
         public bool HasFilters => (ShowPastSessions
                                    || (!string.IsNullOrWhiteSpace(FilteredCategories) && !ShowAllCategories));
