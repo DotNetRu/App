@@ -2,7 +2,6 @@
 using NotificationCenter;
 using Foundation;
 using UIKit;
-using UpNext.Services;
 using System.Linq;
 using XamarinEvolve.iOS.UpNext;
 using System.Collections.Generic;
@@ -13,133 +12,130 @@ using XamarinEvolve.Utils;
 
 namespace UpNext
 {
-	using XamarinEvolve.Utils.Helpers;
+    using XamarinEvolve.Utils.Helpers;
 
-	public partial class TodayViewController : UIViewController, INCWidgetProviding
-	{
-		private IEnumerable<Grouping<string, Session>> _data;
-		private CGSize _collapsedSize;
+    public partial class TodayViewController : UIViewController, INCWidgetProviding
+    {
+        private IEnumerable<Grouping<string, Session>> _data;
 
-		protected TodayViewController(IntPtr handle) : base(handle)
-		{
-			// Note: this .ctor should not contain any initialization logic.
-		}
+        private CGSize _collapsedSize;
 
-		public override void DidReceiveMemoryWarning()
-		{
-			// Releases the view if it doesn't have a superview.
-			base.DidReceiveMemoryWarning();
+        protected TodayViewController(IntPtr handle)
+            : base(handle)
+        {
+            // Note: this .ctor should not contain any initialization logic.
+        }
 
-			// Release any cached data, images, etc that aren't in use.
-		}
+        public override void DidReceiveMemoryWarning()
+        {
+            // Releases the view if it doesn't have a superview.
+            base.DidReceiveMemoryWarning();
 
-		public override void ViewDidLoad()
-		{
-			base.ViewDidLoad();
+            // Release any cached data, images, etc that aren't in use.
+        }
 
-			ExtensionContext.SetWidgetLargestAvailableDisplayMode(NCWidgetDisplayMode.Expanded);
+        public override void ViewDidLoad()
+        {
+            base.ViewDidLoad();
 
-			// Get the possible sizes
-			_collapsedSize = ExtensionContext.GetWidgetMaximumSize(NCWidgetDisplayMode.Compact);
+            ExtensionContext.SetWidgetLargestAvailableDisplayMode(NCWidgetDisplayMode.Expanded);
 
-			if (IsInitialized())
-			{
-				if (!_data?.Any() ?? true)
-				{
-					MainTitleLabel.Text = "Loading your favorites...";
-					MainTitleLabel.Hidden = false;
-					SessionsTable.Hidden = true;
-				}
-			}
-			else
-			{
-				MainTitleLabel.Text = "Please open the app and load the sessions list once to initialize.";
-				MainTitleLabel.Hidden = false;
-				SessionsTable.Hidden = true;
-			}
-		}
+            // Get the possible sizes
+            _collapsedSize = ExtensionContext.GetWidgetMaximumSize(NCWidgetDisplayMode.Compact);
 
-		bool IsInitialized()
-		{
-			try
-			{
-				var settings = new NSUserDefaults($"group.{AboutThisApp.PackageName}", NSUserDefaultsType.SuiteName);
-				settings.Synchronize();
-				return settings.BoolForKey("FavoritesInitialized");
-			}
-			catch (Exception e)
-			{
-				Console.WriteLine(e);
-				return false;
-			}
-		}
+            if (IsInitialized())
+            {
+            }
+            else
+            {
+                MainTitleLabel.Text = "Please open the app and load the sessions list once to initialize.";
+                MainTitleLabel.Hidden = false;
+                SessionsTable.Hidden = true;
+            }
+        }
 
-		[Export("widgetActiveDisplayModeDidChange:withMaximumSize:")]
-		public void WidgetActiveDisplayModeDidChange(NCWidgetDisplayMode activeDisplayMode, CGSize maxSize)
-		{
-			SetPreferredContentSize();
-		}
+        bool IsInitialized()
+        {
+            try
+            {
+                var settings = new NSUserDefaults($"group.{AboutThisApp.PackageName}", NSUserDefaultsType.SuiteName);
+                settings.Synchronize();
+                return settings.BoolForKey("FavoritesInitialized");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
+        }
 
-		[Export("widgetPerformUpdateWithCompletionHandler:")]
-		public async void WidgetPerformUpdate(Action<NCUpdateResult> completionHandler)
-		{
-			// If an error is encoutered, use NCUpdateResultFailed
-			// If there's no update required, use NCUpdateResultNoData
-			// If there's an update, use NCUpdateResultNewData
+        [Export("widgetActiveDisplayModeDidChange:withMaximumSize:")]
+        public void WidgetActiveDisplayModeDidChange(NCWidgetDisplayMode activeDisplayMode, CGSize maxSize)
+        {
+            SetPreferredContentSize();
+        }
 
-			if (IsInitialized())
-			{
-				try
-				{
-					_data = await FavoriteService.GetFavorites();
+        [Export("widgetPerformUpdateWithCompletionHandler:")]
+        public async void WidgetPerformUpdate(Action<NCUpdateResult> completionHandler)
+        {
+            // If an error is encoutered, use NCUpdateResultFailed
+            // If there's no update required, use NCUpdateResultNoData
+            // If there's an update, use NCUpdateResultNewData
 
-					if (_data?.Any() ?? false)
-					{
-						MainTitleLabel.Hidden = true;
-						SessionsTable.Hidden = false;
+            if (IsInitialized())
+            {
+                try
+                {
+                    _data = null;
 
-						SessionsTable.RowHeight = UITableView.AutomaticDimension;
-						SessionsTable.EstimatedRowHeight = 65;
-						SessionsTable.Source = new FavoriteSessionsTableViewSource(_data, ExtensionContext);
-						SessionsTable.ReloadData();
-					}
-					else
-					{
-						MainTitleLabel.Hidden = false;
-						MainTitleLabel.Text = "You have no upcoming favorites";
-						SessionsTable.Hidden = true;
-					}
+                    if (_data?.Any() ?? false)
+                    {
+                        MainTitleLabel.Hidden = true;
+                        SessionsTable.Hidden = false;
 
-					SetPreferredContentSize();
+                        SessionsTable.RowHeight = UITableView.AutomaticDimension;
+                        SessionsTable.EstimatedRowHeight = 65;
+                        SessionsTable.ReloadData();
+                    }
+                    else
+                    {
+                        MainTitleLabel.Hidden = false;
+                        MainTitleLabel.Text = "You have no upcoming favorites";
+                        SessionsTable.Hidden = true;
+                    }
 
-					completionHandler(NCUpdateResult.NewData);
-				}
-				catch (Exception e)
-				{
-					Console.WriteLine(e);
-					completionHandler(NCUpdateResult.Failed);
-				}
-			}
-			else
-			{
-				completionHandler(NCUpdateResult.NoData);
-			}
-		}
+                    SetPreferredContentSize();
 
-		private void SetPreferredContentSize()
-		{
-			if (ExtensionContext.GetWidgetActiveDisplayMode() == NCWidgetDisplayMode.Compact)
-			{
-				PreferredContentSize = _collapsedSize;
-			}
-			else
-			{
-				var height = (!_data?.Any() ?? true) ? 100 : (_data.Count() * SessionsTable.SectionHeaderHeight) +
-					(_data.SelectMany(g => g.AsEnumerable()).Count() * SessionsTable.EstimatedRowHeight) +
-					SessionsTable.SectionFooterHeight + 70;
-				Console.WriteLine($"Requesting widget height: {height}");
-				PreferredContentSize = new CGSize(0, height);
-			}
-		}
-	}
+                    completionHandler(NCUpdateResult.NewData);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    completionHandler(NCUpdateResult.Failed);
+                }
+            }
+            else
+            {
+                completionHandler(NCUpdateResult.NoData);
+            }
+        }
+
+        private void SetPreferredContentSize()
+        {
+            if (ExtensionContext.GetWidgetActiveDisplayMode() == NCWidgetDisplayMode.Compact)
+            {
+                PreferredContentSize = _collapsedSize;
+            }
+            else
+            {
+                var height = (!_data?.Any() ?? true)
+                                 ? 100
+                                 : (_data.Count() * SessionsTable.SectionHeaderHeight)
+                                   + (_data.SelectMany(g => g.AsEnumerable()).Count()
+                                      * SessionsTable.EstimatedRowHeight) + SessionsTable.SectionFooterHeight + 70;
+                Console.WriteLine($"Requesting widget height: {height}");
+                PreferredContentSize = new CGSize(0, height);
+            }
+        }
+    }
 }

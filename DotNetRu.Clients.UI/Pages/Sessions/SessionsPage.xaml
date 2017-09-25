@@ -8,11 +8,6 @@
     Title="Sessions"
     Icon="tab_sessions.png"
     BackgroundColor="{DynamicResource WindowBackground}">
-    <ContentPage.Resources>
-     <ResourceDictionary>
-        <local:IsFavoriteTextConverter x:Key="IsFavoriteTextConverter" />
-     </ResourceDictionary>
-    </ContentPage.Resources>
     <ContentPage.Content>
     <Grid RowSpacing="0">
         <Grid.RowDefinitions>
@@ -76,7 +71,7 @@
         <DataTemplate>
           <ViewCell>
              <!--Inflate main Session Cell here-->
-             <local:SessionCellView FavoriteCommand="{Binding Path=BindingContext.FavoriteCommand, Source={x:Reference SessionsPage}}"/>
+             <local:SessionCellView />
           </ViewCell>
         </DataTemplate>
       </ListView.ItemTemplate>

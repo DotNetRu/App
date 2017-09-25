@@ -49,7 +49,6 @@
     <Compile Include="Abstractions\ICategoryStore.cs" />
     <Compile Include="Abstractions\IConferenceFeedbackStore.cs" />
     <Compile Include="Abstractions\IEventStore.cs" />
-    <Compile Include="Abstractions\IFavoriteStore.cs" />
     <Compile Include="Abstractions\IFeedbackStore.cs" />
     <Compile Include="Abstractions\INotificationStore.cs" />
     <Compile Include="Abstractions\ISessionStore.cs" />
@@ -57,7 +56,6 @@
     <Compile Include="Abstractions\ISponsorStore.cs" />
     <Compile Include="Abstractions\IStoreManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Stores\FavoriteStore.cs" />
     <Compile Include="Stores\FeedbackStore.cs" />
     <Compile Include="Stores\SpeakerStore.cs" />
     <Compile Include="Stores\SponsorStore.cs" />

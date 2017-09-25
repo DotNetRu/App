@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
-using Newtonsoft.Json;
-namespace XamarinEvolve.DataObjects
+﻿namespace XamarinEvolve.DataObjects
 {
+    using System.Collections.Generic;
+
     using DotNetRu.DataStore.Audit.DataObjects;
+
+    using Newtonsoft.Json;
 
     public class Category : BaseDataObject
     {
