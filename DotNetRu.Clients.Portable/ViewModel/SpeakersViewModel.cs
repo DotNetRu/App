@@ -1,170 +1,171 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using System.Xml.Serialization;
+using DotNetRu.DataStore.Audit.DataObjects;
 using FormsToolkit;
 using MvvmHelpers;
 using Xamarin.Forms;
-
-using System.Windows.Input;
-using System.Threading.Tasks;
-
-using XamarinEvolve.Clients.Portable.Helpers;
 using XamarinEvolve.Utils;
+using XamarinEvolve.Utils.Helpers;
 
 namespace XamarinEvolve.Clients.Portable
 {
-    using DotNetRu.DataStore.Audit.Models;
+    public class SpeakersViewModel : ViewModelBase
+    {
+        private List<Speaker> _speakers;
 
-    using XamarinEvolve.Utils.Helpers;
-
-	public class SpeakersViewModel: ViewModelBase
-	{
-		public SpeakersViewModel(INavigation navigation) : base(navigation)
+        public SpeakersViewModel(INavigation navigation) : base(navigation)
         {
+        }
 
-		}
+        public ObservableRangeCollection<Speaker> Speakers { get; } = new ObservableRangeCollection<Speaker>();
 
-		public ObservableRangeCollection<DotNetRu.DataStore.Audit.DataObjects.Speaker> Speakers { get; } = new ObservableRangeCollection<DotNetRu.DataStore.Audit.DataObjects.Speaker>();
+        #region Sorting
 
-		#region Properties
-		Speaker selectedSpeaker;
-		public Speaker SelectedSpeaker
-		{
-			get { return selectedSpeaker; }
-			set
-			{
-				selectedSpeaker = value;
-				OnPropertyChanged();
-				if (selectedSpeaker == null)
-					return;
+        private void SortSpeakers(IEnumerable<Speaker> speakers)
+        {
+            var speakersSorted = from speaker in speakers
+                orderby speaker.FullName
+                select speaker;
 
-				MessagingService.Current.SendMessage(MessageKeys.NavigateToSpeaker, selectedSpeaker);
+            Speakers.ReplaceRange(speakersSorted);
+        }
 
-				SelectedSpeaker = null;
-			}
-		}
+        #endregion
 
-		#endregion
+        #region Properties
 
-		#region Sorting
+        private DotNetRu.DataStore.Audit.Models.Speaker selectedSpeaker;
 
-		void SortSpeakers(IEnumerable<DotNetRu.DataStore.Audit.DataObjects.Speaker> speakers)
-		{
-			IOrderedEnumerable<DotNetRu.DataStore.Audit.DataObjects.Speaker> speakersSorted = from speaker in speakers
-								 orderby speaker.FullName
-								 select speaker;
+        public DotNetRu.DataStore.Audit.Models.Speaker SelectedSpeaker
+        {
+            get => selectedSpeaker;
+            set
+            {
+                selectedSpeaker = value;
+                OnPropertyChanged();
+                if (selectedSpeaker == null)
+                    return;
 
-			Speakers.ReplaceRange(speakersSorted);
-		}
+                MessagingService.Current.SendMessage(MessageKeys.NavigateToSpeaker, selectedSpeaker);
 
-
-
-		#endregion
-
-		#region Commands
-
-		ICommand forceRefreshCommand;
-		public ICommand ForceRefreshCommand =>
-		forceRefreshCommand ?? (forceRefreshCommand = new Command(async () => await ExecuteForceRefreshCommandAsync()));
-
-		async Task ExecuteForceRefreshCommandAsync()
-		{
-			await ExecuteLoadSpeakersAsync(true);
-		}
-
-		ICommand loadSpeakersCommand;
-		public ICommand LoadSpeakersCommand =>
-			loadSpeakersCommand ?? (loadSpeakersCommand = new Command(async (f) => await ExecuteLoadSpeakersAsync((bool) f)));
-
-	    private static IEnumerable<DotNetRu.DataStore.Audit.DataObjects.Speaker> GetSpeakers()
-	    {
-	        var assembly = Assembly.Load(new AssemblyName("DotNetRu.DataStore.Audit"));
-	        const string resourceFileName = "index.xml";
-
-            var resourceNames = assembly.GetManifestResourceNames();
-	        var resourcePaths = resourceNames
-	            .Where(x => x.EndsWith(resourceFileName, StringComparison.CurrentCultureIgnoreCase))
-	            .ToArray();
-
-	        var speakers = new List<DotNetRu.DataStore.Audit.DataObjects.Speaker>();
-	        foreach (var resource in resourcePaths)
-	        {
-	            var stream = assembly.GetManifestResourceStream(resource);
-	            using (var streamReader = new StreamReader(stream))
-	            {
-	                var xml = streamReader.ReadToEnd();
-	                // ReSharper disable once InconsistentNaming
-	                Speaker DotNEXTspeaker = xml.ParseXml<DotNetRu.DataStore.Audit.Models.Speaker>();
-                    speakers.Add(new DotNetRu.DataStore.Audit.DataObjects.Speaker
-                    {
-                        FirstName = DotNEXTspeaker.Name,
-                        LastName = "",
-                        PhotoUrl = $@"https://raw.githubusercontent.com/DotNetRu/Audit/master/db/speakers/{DotNEXTspeaker.Id}/avatar.jpg",
-                        AvatarUrl = $@"https://raw.githubusercontent.com/DotNetRu/Audit/master/db/speakers/{DotNEXTspeaker.Id}/avatar.small.jpg",
-                        CompanyName = DotNEXTspeaker.CompanyName,
-                        CompanyWebsiteUrl = DotNEXTspeaker.CompanyUrl,
-                        TwitterUrl = DotNEXTspeaker.TwitterUrl,
-                        BlogUrl = DotNEXTspeaker.BlogUrl,
-                        Biography = DotNEXTspeaker.Description
-                    });
-                }
-
+                SelectedSpeaker = null;
             }
-	        return speakers;
-	    }
+        }
 
-        async Task<bool> ExecuteLoadSpeakersAsync(bool force = false)
-		{
-			if (IsBusy)
-				return false;
+        #endregion
 
-			try
-			{
-				IsBusy = true;
+        #region Commands
+
+        private ICommand forceRefreshCommand;
+
+        public ICommand ForceRefreshCommand =>
+            forceRefreshCommand ?? (forceRefreshCommand =
+                new Command(async () => await ExecuteForceRefreshCommandAsync()));
+
+        private async Task ExecuteForceRefreshCommandAsync()
+        {
+            await ExecuteLoadSpeakersAsync(true);
+        }
+
+        private ICommand loadSpeakersCommand;
+
+        public ICommand LoadSpeakersCommand =>
+            loadSpeakersCommand ?? (loadSpeakersCommand =
+                new Command(async f => await ExecuteLoadSpeakersAsync((bool) f)));
+
+        private List<Speaker> AuditSpeakerToUISpeakerConverter(IEnumerable<DotNetRu.DataStore.Audit.Models.Speaker> auditSpeakers)
+        {
+            return auditSpeakers.Select(speaker => new Speaker
+                {
+                    FirstName = speaker.Name,
+                    LastName = "",
+                    PhotoUrl = $@"https://raw.githubusercontent.com/DotNetRu/Audit/master/db/speakers/{speaker.Id}/avatar.jpg",
+                    AvatarUrl = $@"https://raw.githubusercontent.com/DotNetRu/Audit/master/db/speakers/{speaker.Id}/avatar.small.jpg",
+                    CompanyName = speaker.CompanyName,
+                    CompanyWebsiteUrl = speaker.CompanyUrl,
+                    TwitterUrl = speaker.TwitterUrl,
+                    BlogUrl = speaker.BlogUrl,
+                    Biography = speaker.Description
+                })
+                .ToList();
+        }
+
+        private List<Speaker> GetSpeakers()
+        {
+            var assembly = Assembly.Load(new AssemblyName("DotNetRu.DataStore.Audit"));
+            var stream = assembly.GetManifestResourceStream("DotNetRu.DataStore.Audit.Storage.speakers.xml");
+            List<DotNetRu.DataStore.Audit.Models.Speaker> speakers;
+            using (var reader = new StreamReader(stream))
+            {
+                var xRoot = new XmlRootAttribute
+                {
+                    ElementName = "Speakers",
+                    IsNullable = true
+                };
+                var serializer = new XmlSerializer(typeof(List<DotNetRu.DataStore.Audit.Models.Speaker>), xRoot);
+                speakers = (List<DotNetRu.DataStore.Audit.Models.Speaker>) serializer.Deserialize(reader);
+            }
+            return AuditSpeakerToUISpeakerConverter(speakers);
+        }
+
+        private async Task<bool> ExecuteLoadSpeakersAsync(bool force = false)
+        {
+            if (IsBusy)
+                return false;
+
+            try
+            {
+                IsBusy = true;
 
 #if DEBUG
-				await Task.Delay(1000);
+                await Task.Delay(1000);
 #endif
-			    IEnumerable<DotNetRu.DataStore.Audit.DataObjects.Speaker> speakers = GetSpeakers();//await StoreManager.SpeakerStore.GetItemsAsync(force);
-                
-				SortSpeakers(speakers);
+                if (_speakers == null)
+                {
+                    IEnumerable<Speaker>
+                        speakers = GetSpeakers(); //await StoreManager.SpeakerStore.GetItemsAsync(force);
 
-				if (Device.OS != TargetPlatform.WinPhone && Device.OS != TargetPlatform.Windows && FeatureFlags.AppLinksEnabled)
-				{
-					foreach (DotNetRu.DataStore.Audit.DataObjects.Speaker speaker in Speakers)
-					{
-						try
-						{
-							// data migration: older applinks are removed so the index is rebuilt again
-							Application.Current.AppLinks.DeregisterLink(new Uri($"http://{AboutThisApp.AppLinksBaseDomain}/{AboutThisApp.SpeakersSiteSubdirectory}/{speaker.Id}"));
-
-							Application.Current.AppLinks.RegisterLink(speaker.GetAppLink());
-						}
-						catch (Exception applinkException)
-						{
-							// don't crash the app
-							Logger.Report(applinkException, "AppLinks.RegisterLink", speaker.Id);
-						}
-					}
-				}
-			}
-			catch (Exception ex)
-			{
-				Logger.Report(ex, "Method", "ExecuteLoadSpeakersAsync");
-				MessagingService.Current.SendMessage(MessageKeys.Error, ex);
-			}
-			finally
-			{
-				IsBusy = false;
-			}
-
-			return true;
-		}
+                    SortSpeakers(speakers);
+                    _speakers = speakers.ToList();
+                }
 
 
-		#endregion
-	}
+                if (Device.OS != TargetPlatform.WinPhone && Device.OS != TargetPlatform.Windows &&
+                    FeatureFlags.AppLinksEnabled)
+                    foreach (var speaker in Speakers)
+                        try
+                        {
+                            // data migration: older applinks are removed so the index is rebuilt again
+                            Application.Current.AppLinks.DeregisterLink(new Uri(
+                                $"http://{AboutThisApp.AppLinksBaseDomain}/{AboutThisApp.SpeakersSiteSubdirectory}/{speaker.Id}"));
+
+                            Application.Current.AppLinks.RegisterLink(speaker.GetAppLink());
+                        }
+                        catch (Exception applinkException)
+                        {
+                            // don't crash the app
+                            Logger.Report(applinkException, "AppLinks.RegisterLink", speaker.Id);
+                        }
+            }
+            catch (Exception ex)
+            {
+                Logger.Report(ex, "Method", "ExecuteLoadSpeakersAsync");
+                MessagingService.Current.SendMessage(MessageKeys.Error, ex);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+
+            return true;
+        }
+
+        #endregion
+    }
 }
-
