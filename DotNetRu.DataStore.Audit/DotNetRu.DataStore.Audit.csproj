@@ -55,49 +55,12 @@
     <Compile Include="Models\Venue.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Storage\speakers\Alexander-Ivanov\index.xml" />
-    <EmbeddedResource Include="Storage\speakers\Alexander-Kugushev\index.xml" />
-    <EmbeddedResource Include="Storage\speakers\Alexander-Shapoval\index.xml" />
-    <EmbeddedResource Include="Storage\speakers\Alexander-Shelemin\index.xml" />
-    <EmbeddedResource Include="Storage\speakers\Alexander-Shvedov\index.xml" />
-    <EmbeddedResource Include="Storage\speakers\Anatoly-Kulakov\index.xml" />
-    <EmbeddedResource Include="Storage\speakers\Andrey-Akinshin\index.xml" />
-    <EmbeddedResource Include="Storage\speakers\Andrey-Terekhov\index.xml" />
-    <EmbeddedResource Include="Storage\speakers\Anton-Shabanov\index.xml" />
-    <EmbeddedResource Include="Storage\speakers\Artem-Borzilov\index.xml" />
-    <EmbeddedResource Include="Storage\speakers\Artem-Zhuravlev\index.xml" />
-    <EmbeddedResource Include="Storage\speakers\Dmitri-Nesteruk\index.xml" />
-    <EmbeddedResource Include="Storage\speakers\Dmitry-Ivanov\index.xml" />
-    <EmbeddedResource Include="Storage\speakers\Dmitry-Naumov\index.xml" />
-    <EmbeddedResource Include="Storage\speakers\Dmitry-Vlasov\index.xml" />
-    <EmbeddedResource Include="Storage\speakers\Igor-Labutin\index.xml" />
-    <EmbeddedResource Include="Storage\speakers\Igor-Yakovlev\index.xml" />
-    <EmbeddedResource Include="Storage\speakers\Ivan-Pashchenko\index.xml" />
-    <EmbeddedResource Include="Storage\speakers\Mikhail-Bashurov\index.xml" />
-    <EmbeddedResource Include="Storage\speakers\Mikhail-Filippov\index.xml" />
-    <EmbeddedResource Include="Storage\speakers\Mikhail-Shcherbakov\index.xml" />
-    <EmbeddedResource Include="Storage\speakers\Nikita-Kamensky\index.xml" />
-    <EmbeddedResource Include="Storage\speakers\Nikita-Kozlov\index.xml" />
-    <EmbeddedResource Include="Storage\speakers\Nikita-Tsukanov\index.xml" />
-    <EmbeddedResource Include="Storage\speakers\Pavel-Fedotovsky\index.xml" />
-    <EmbeddedResource Include="Storage\speakers\Pavel-Tupitsin\index.xml" />
-    <EmbeddedResource Include="Storage\speakers\Roman-Iovlev\index.xml" />
-    <EmbeddedResource Include="Storage\speakers\Roman-Nevolin\index.xml" />
-    <EmbeddedResource Include="Storage\speakers\Roman-Pavuk\index.xml" />
-    <EmbeddedResource Include="Storage\speakers\Sasha-Goldshtein\index.xml" />
-    <EmbeddedResource Include="Storage\speakers\Sergey-Baltiyskiy\index.xml" />
-    <EmbeddedResource Include="Storage\speakers\Sergey-Shchegrikovich\index.xml" />
-    <EmbeddedResource Include="Storage\speakers\Sergey-Shkredov\index.xml" />
-    <EmbeddedResource Include="Storage\speakers\Valery-Ignatyev\index.xml" />
-    <EmbeddedResource Include="Storage\speakers\Valery-Petrov\index.xml" />
-    <EmbeddedResource Include="Storage\speakers\Vladimir-Kochetkov\index.xml" />
-    <EmbeddedResource Include="Storage\speakers\Vladimir-Koshelev\index.xml" />
-    <EmbeddedResource Include="Storage\speakers\Vladimir-Ozerov\index.xml" />
-    <EmbeddedResource Include="Storage\speakers\Vsevolod-Ivanov\index.xml" />
-    <EmbeddedResource Include="Storage\speakers\Vyacheslav-Mikhaylov\index.xml" />
-    <EmbeddedResource Include="Storage\speakers\Yakov-Zhdanov\index.xml" />
-    <EmbeddedResource Include="Storage\speakers\Yulia-Tsisyk\index.xml" />
-    <EmbeddedResource Include="Storage\speakers\Yuri-Volkov\index.xml" />
+    <EmbeddedResource Include="Storage\communities.xml" />
+    <EmbeddedResource Include="Storage\friends.xml" />
+    <EmbeddedResource Include="Storage\meetups.xml" />
+    <EmbeddedResource Include="Storage\speakers.xml" />
+    <EmbeddedResource Include="Storage\talks.xml" />
+    <EmbeddedResource Include="Storage\venues.xml" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MvvmHelpers, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">

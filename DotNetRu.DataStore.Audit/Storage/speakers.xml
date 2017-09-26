@@ -1,0 +1,340 @@
+<Speakers>
+<Speaker>
+  <Id>Alexander-Ivanov</Id>
+  <Name>Александр Иванов</Name>
+  <CompanyName>EPAM</CompanyName>
+  <CompanyUrl>http://www.epam-group.ru/</CompanyUrl>
+  <Description>.NET разработчик с 2007 года. Его специализация это Web-разработка. За это время он накопил опыт работы не только с back-end'ом, но также с front-end'ом и базами данных. Старается не отставать от новых технологий, которые постоянно появляются в индустрии Web-разработки и позволяют нам создавать всё более сложные и интересные продукты для пользователей.</Description>
+</Speaker>
+<Speaker>
+  <Id>Alexander-Kugushev</Id>
+  <Name>Александр Кугушев</Name>
+  <CompanyName>EPAM</CompanyName>
+  <CompanyUrl>http://www.epam.com/</CompanyUrl>
+  <Description>Senior Software Engineer в компании EPAM. Занимается back-end разработкой в немаленькой распределенной команде. Несколько лет назад увлёкся синтаксическим анализом и всё ещё не отпустило.</Description>
+  <BlogUrl>https://devandfun.blogspot.com/</BlogUrl>
+  <HabrUrl>https://habrahabr.ru/users/kaw/</HabrUrl>
+</Speaker>
+<Speaker>
+  <Id>Alexander-Shapoval</Id>
+  <Name>Александр Шаповал</Name>
+  <CompanyName>Microsoft</CompanyName>
+  <CompanyUrl>https://www.microsoft.com/</CompanyUrl>
+  <Description>Эксперт по стратегическим технологиям. Работает в Microsoft с 2003 года. Занимается взаимодействием с ИТ-профессионалами.</Description>
+  <BlogUrl>https://blogs.technet.microsoft.com/ashapo/</BlogUrl>
+  <TwitterUrl>https://twitter.com/ashapoval</TwitterUrl>
+</Speaker>
+<Speaker>
+  <Id>Alexander-Shelemin</Id>
+  <Name>Александр Шелёмин</Name>
+  <CompanyName>Veeam</CompanyName>
+  <CompanyUrl>https://www.veeam.com/</CompanyUrl>
+  <Description></Description>
+</Speaker>
+<Speaker>
+  <Id>Alexander-Shvedov</Id>
+  <Name>Александр Шведов</Name>
+  <CompanyName>JetBrains</CompanyName>
+  <CompanyUrl>https://www.jetbrains.com/</CompanyUrl>
+  <Description>Разработчик в компании JetBrains, более 4 лет занимается поддержкой языков C# и XAML в известном .NET-программистам продукте, расширении для Microsoft Visual Studio – ReSharper. Профессиональные интересы: дизайн языков программирования, анализы и трансформации программ, функциональное программирование.</Description>
+  <TwitterUrl>https://twitter.com/controlflow</TwitterUrl>
+</Speaker>
+<Speaker>
+  <Id>Anatoly-Kulakov</Id>
+  <Name>Анатолий Кулаков</Name>
+  <CompanyName>Paladyne Systems</CompanyName>
+  <CompanyUrl>http://www.paladynesys.com/</CompanyUrl>
+  <Description>Образовывался на роль специалиста по информационной безопасности. Зарабатывал, как суровый C++ разработчик под Linux. Когда надоело кодировать и захотелось творить, перешёл на C#. Пишет на .NET с первых его версий. Занимается проектированием и построением бизнес-приложений, распределённых и отказоустойчивых систем. Отдыхает с ES, CQRS и DDD.</Description>
+  <TwitterUrl>https://twitter.com/kulakovt</TwitterUrl>
+</Speaker>
+<Speaker>
+  <Id>Andrey-Akinshin</Id>
+  <Name>Андрей Акиньшин</Name>
+  <CompanyName>JetBrains</CompanyName>
+  <CompanyUrl>https://www.jetbrains.com/</CompanyUrl>
+  <Description>.NET MVP, к.ф.-м.н., серебряный призёр ACM ICPC, постдок в Вейцмановском институте науки. В свободное время любит разбираться во внутренностях .NET и делиться находками с сообществом.</Description>
+  <BlogUrl>http://aakinshin.net/</BlogUrl>
+  <TwitterUrl>https://twitter.com/andrey_akinshin</TwitterUrl>
+</Speaker>
+<Speaker>
+  <Id>Andrey-Terekhov</Id>
+  <Name>Андрей Терехов</Name>
+  <CompanyName>EPAM</CompanyName>
+  <CompanyUrl>https://www.epam-group.ru/</CompanyUrl>
+  <Description>Software Engineer в EPAM. В свободное время любит изучать внутренности популярных опен-сорс библиотек.</Description>
+</Speaker>
+<Speaker>
+  <Id>Anton-Shabanov</Id>
+  <Name>Антон Шабанов</Name>
+  <CompanyName>WaveAccess</CompanyName>
+  <CompanyUrl>http://www.waveaccess.ru/</CompanyUrl>
+  <Description></Description>
+  <TwitterUrl>https://twitter.com/ShabanovAnton</TwitterUrl>
+</Speaker>
+<Speaker>
+  <Id>Artem-Borzilov</Id>
+  <Name>Артём Борзилов</Name>
+  <CompanyName>ИСП РАН</CompanyName>
+  <CompanyUrl>http://www.ispras.ru/</CompanyUrl>
+  <Description></Description>
+</Speaker>
+<Speaker>
+  <Id>Artem-Zhuravlev</Id>
+  <Name>Артём Журавлёв</Name>
+  <CompanyName>DataArt</CompanyName>
+  <CompanyUrl>http://dataart.ru/</CompanyUrl>
+  <Description></Description>
+</Speaker>
+<Speaker>
+  <Id>Dmitri-Nesteruk</Id>
+  <Name>Дмитрий Нестерук</Name>
+  <CompanyName>JetBrains</CompanyName>
+  <CompanyUrl>https://www.jetbrains.com/</CompanyUrl>
+  <Description>Квант, разработчик и просто увлечённый человек. Занимается финансовой математикой, пишет видеокурсы по технологиям и математике, делает доклады про инструменты и методики разработки. Работает исследователем в университете Саутгемптона (Великобритания).</Description>
+  <BlogUrl>https://nesteruk.wordpress.com/</BlogUrl>
+  <TwitterUrl>https://twitter.com/dnesteruk</TwitterUrl>
+</Speaker>
+<Speaker>
+  <Id>Dmitry-Ivanov</Id>
+  <Name>Дмитрий Иванов</Name>
+  <CompanyName>JetBrains</CompanyName>
+  <CompanyUrl>https://www.jetbrains.com/</CompanyUrl>
+  <Description>Закончил кафедру системного программирования математико-механического факультета СПбГУ в 2006 году. Прошёл путь от Junior Developer до Team Lead в разных IT-компаниях Санкт-Петербурга. В настоящий момент занимается разработкой ядра ReSharper в компании JetBrains. Профессиональные интересы охватывают низкоуровневое программирование, производительность, многозадачность, алгоритмы и структуры данных.</Description>
+  <TwitterUrl>https://twitter.com/korifey_ad</TwitterUrl>
+</Speaker>
+<Speaker>
+  <Id>Dmitry-Naumov</Id>
+  <Name>Дмитрий Наумов</Name>
+  <CompanyName>Paladyne Systems</CompanyName>
+  <CompanyUrl>http://www.paladynesys.com/</CompanyUrl>
+  <Description>Архитектор в компании Paladyne Systems с разносторонним опытом, занимался разработкой от сложных desktop приложений до распределенных приложений на .NET платформе. Человек умеющий просто говорить о сложном и постигший смысл многих акронимов мира разработки: SOLID, TDD, DDD, CQRS, ES.</Description>
+  <BlogUrl>http://dmitry-naumov.blogspot.ru/</BlogUrl>
+</Speaker>
+<Speaker>
+  <Id>Dmitry-Vlasov</Id>
+  <Name>Дмитрий Власов</Name>
+  <CompanyName>БТК групп</CompanyName>
+  <CompanyUrl>http://www.btcgroup.ru/</CompanyUrl>
+  <Description>Ведущий бизнес-аналитик, компания АО «БТК групп», Интересы: «Функциональное программирование, анализ и визуализация данных, опыт взаимодействия (UX)».</Description>
+</Speaker>
+<Speaker>
+  <Id>Igor-Labutin</Id>
+  <Name>Игорь Лабутин</Name>
+  <CompanyName>Lanit-Tercom</CompanyName>
+  <CompanyUrl>http://www.lanit-tercom.ru/</CompanyUrl>
+  <Description>Архитектор. Начинал 16 лет назад программистом на С++, писал под Win, Linux, QNX в областях начиная от обработки видео до драйверов сетевых карт с полноценной реализацией TCP/IP стека. 9 лет назад переквалифицировался в C# и стал кроме кодирования заниматься архитектурой. Особое внимание уделяет проблемам взаимодействия приложений (в основном на стеке WCF), проблемам производительности, а также удобству разработчиков при работе над сложными проектами.</Description>
+</Speaker>
+<Speaker>
+  <Id>Igor-Yakovlev</Id>
+  <Name>Игорь Яковлев</Name>
+  <CompanyName>Positive Technologies</CompanyName>
+  <CompanyUrl>http://www.ptsecurity.ru/</CompanyUrl>
+  <Description>Игорь работает в компании Positive Technologies в команде .NET ядра PT Application Inspector, анализатора исходного кода веб-приложений для поиска уязвимостей. Является аспирантом Математико-Механического факультета СПбГУ.
+
+Профессиональные интересы: статический и динамический анализ кода, исследование внутреннего устройства.NET, computer science, точные науки, различные платформы и языками программирования.</Description>
+</Speaker>
+<Speaker>
+  <Id>Ivan-Pashchenko</Id>
+  <Name>Иван Пащенко</Name>
+  <CompanyName>DataArt</CompanyName>
+  <CompanyUrl>http://dataart.ru/</CompanyUrl>
+  <Description>В коммерческой разработке с 2010 г. Имеет разнообразный опыт от геймдева до сурового энтерпрайза. Сейчас занимается разработкой распределенных бэкенд-приложений и дизайном API.</Description>
+</Speaker>
+<Speaker>
+  <Id>Mikhail-Bashurov</Id>
+  <Name>Михаил Башуров</Name>
+  <CompanyName>EPAM</CompanyName>
+  <CompanyUrl>https://www.epam-group.ru/</CompanyUrl>
+  <Description>Full stack разработчик на.NET и JS. Сейчас работет в EPAM. Получает удовольствие от красивого UI и зелёных тестов. Не чурается DBA и DevOps’а. Любит ASP.NET, React, Redux, Docker и PowerShell.</Description>
+  <TwitterUrl>https://twitter.com/SaitoNakamura</TwitterUrl>
+</Speaker>
+<Speaker>
+  <Id>Mikhail-Filippov</Id>
+  <Name>Михаил Филиппов</Name>
+  <CompanyName>JetBrains</CompanyName>
+  <CompanyUrl>https://www.jetbrains.com/</CompanyUrl>
+  <Description>Разрабатывает на C#, ASP.NET для себя и для компании. Один из Разработчиков JetBrains Rider.</Description>
+  <TwitterUrl>https://twitter.com/filippovma</TwitterUrl>
+</Speaker>
+<Speaker>
+  <Id>Mikhail-Shcherbakov</Id>
+  <Name>Михаил Щербаков</Name>
+  <CompanyName>IntelliEgg</CompanyName>
+  <CompanyUrl>http://intelliegg.com/</CompanyUrl>
+  <Description>Организатор встреч SpbDotNet Community. Ранее занимался разработкой анализатора кода в Positive Technologies, работал Team Lead'ом в Acronis, Luxoft и Cezurity. Профессиональные интересы: статический и динамический анализ кода, информационная безопасность, автоматизация отладки кода, исследование внутреннего устройства .NET CLR.</Description>
+  <TwitterUrl>https://twitter.com/yu5k3</TwitterUrl>
+  <HabrUrl>https://habrahabr.ru/users/yu5k3</HabrUrl>
+</Speaker>
+<Speaker>
+  <Id>Nikita-Kamensky</Id>
+  <Name>Никита Каменский</Name>
+  <CompanyName>Тинькофф</CompanyName>
+  <CompanyUrl>https://www.tinkoff.ru/</CompanyUrl>
+  <Description>Разработчик UWP-приложений в компании Tinkoff. Разбавляет горькую жизнь мобильного разработчика теорией категорий и лямбда-исчислением.</Description>
+  <TwitterUrl>https://twitter.com/ghospodee</TwitterUrl>
+</Speaker>
+<Speaker>
+  <Id>Nikita-Kozlov</Id>
+  <Name>Никита Козлов</Name>
+  <CompanyName>DataArt</CompanyName>
+  <CompanyUrl>http://dataart.ru/</CompanyUrl>
+  <Description>Любит .NET, в остальное время занимается исследованиями в области фундаментальной математики. Долгое время увлекался олимпиадным программированием и компиляторами.</Description>
+</Speaker>
+<Speaker>
+  <Id>Nikita-Tsukanov</Id>
+  <Name>Никита Цуканов</Name>
+  <CompanyName>Promarket</CompanyName>
+  <CompanyUrl>https://www.promarket.pro/</CompanyUrl>
+  <Description>Начинал в Навителе с разработки под WinCE/Mobile на C/C++. В дальнейшем занимался разработкой VPN-сервиса с кроссплатформенным клиентом на Gtk#, серверная часть которого писалась так же на C#. В настоящее время является CTO в стартапе Promarket.</Description>
+  <BlogUrl>http://keks-n.net/</BlogUrl>
+  <HabrUrl>https://habrahabr.ru/users/kekekeks/</HabrUrl>
+</Speaker>
+<Speaker>
+  <Id>Pavel-Fedotovsky</Id>
+  <Name>Павел Федотовский</Name>
+  <CompanyName>Ланит-Терком</CompanyName>
+  <CompanyUrl>http://www.lanit-tercom.com/</CompanyUrl>
+  <Description>Lead C# Developer, активно интересуется новинками .NET. Последнее время разрабатывает REST API на .NET Core. В прошлом увлекался оптимизацией .NET приложений.</Description>
+</Speaker>
+<Speaker>
+  <Id>Pavel-Tupitsin</Id>
+  <Name>Павел Тупицын</Name>
+  <CompanyName>GridGain</CompanyName>
+  <CompanyUrl>http://www.gridgain.com/</CompanyUrl>
+  <Description>Заведует .NET функционалом в Apache Ignite и GridGain. Сделал LINQ провайдер для кэша, async/await и поддержку generics для кластерных вычислений, распределённые сервисы, и другие штуки.</Description>
+  <BlogUrl>https://ptupitsyn.github.io/</BlogUrl>
+</Speaker>
+<Speaker>
+  <Id>Roman-Iovlev</Id>
+  <Name>Роман Иовлев</Name>
+  <CompanyName>EPAM</CompanyName>
+  <CompanyUrl>https://www.epam-group.ru/</CompanyUrl>
+  <Description>Chief QA Automation и евангелист JDI в компании EPAM. Участвовал в различных конференциях: SQA Days, Agile Days, IT Week, IT Subbotnik и EuroStar. Автор нескольких opensource-фреймворков для автоматизированного тестирования: VIQA и JDI. Роман старается улучшить мир вокруг, помочь коллегам в проектах, научиться тестировать в удовольствие: быстро, дёшево, качественно.</Description>
+</Speaker>
+<Speaker>
+  <Id>Roman-Nevolin</Id>
+  <Name>Роман Неволин</Name>
+  <CompanyName>EPAM</CompanyName>
+  <CompanyUrl>https://www.epam-group.ru/</CompanyUrl>
+  <Description>.NET разработчик в компании EPAM, любящий ковырять данные и искать в них хитрые закономерности. Активно занимается исследованиями в области Machine Learning и разработкой собственных инструментов машинного обучения.</Description>
+  <TwitterUrl>https://twitter.com/nevoroman</TwitterUrl>
+</Speaker>
+<Speaker>
+  <Id>Roman-Pavuk</Id>
+  <Name>Роман Правук</Name>
+  <CompanyName>EPAM</CompanyName>
+  <CompanyUrl>http://www.epam-group.ru/</CompanyUrl>
+  <Description></Description>
+</Speaker>
+<Speaker>
+  <Id>Sasha-Goldshtein</Id>
+  <Name>Саша Голдштейн</Name>
+  <CompanyName>Sela Group</CompanyName>
+  <CompanyUrl>http://www.selagroup.com/</CompanyUrl>
+  <Description>Sasha Goldshtein is the CTO of Sela Group, a Microsoft C# MVP and Azure MRS, a Pluralsight author, and an international consultant and trainer. Sasha is the author of «Introducing Windows 7 for Developers» (Microsoft Press, 2009) and «Pro .NET Performance» (Apress, 2012), a prolific blogger, and author of numerous training courses including .NET Debugging, .NET Performance, Android Application Development, and Modern C++. His consulting work revolves mainly around distributed architecture, production debugging, and mobile application development.</Description>
+  <TwitterUrl>https://twitter.com/goldshtn</TwitterUrl>
+</Speaker>
+<Speaker>
+  <Id>Sergey-Baltiyskiy</Id>
+  <Name>Сергей Балтийский</Name>
+  <CompanyName>JetBrains</CompanyName>
+  <CompanyUrl>https://www.jetbrains.com/</CompanyUrl>
+  <Description>До прихода в дивный мир дотнета занимался разработкой под Windows на C++. Оказалось, что возможности дотнета прямо-таки провоцируют общаться с Native памятью и кодом — к большой пользе, если делать это с умом.
+
+В JetBrains занимается разработкой Application Framework в ReSharper и смежных продуктах дотнет-семейства.</Description>
+</Speaker>
+<Speaker>
+  <Id>Sergey-Shchegrikovich</Id>
+  <Name>Сергей Щегрикович</Name>
+  <CompanyName>dotDigital Group plc</CompanyName>
+  <CompanyUrl>http://www.dotdigitalgroup.com/</CompanyUrl>
+  <Description>​.NET разработчeк с 9 годами опыта. С 2014 года активный участник [.Net User Group Minsk](https://www.facebook.com/groups/dotnet.minsk/). Хобби – изучение техник написания высокопроизводительного кода и продвинутых методов отладки.</Description>
+  <ContactsUrl>https://www.linkedin.com/in/shchegrikovich</ContactsUrl>
+  <TwitterUrl>https://twitter.com/shchegrikovich</TwitterUrl>
+</Speaker>
+<Speaker>
+  <Id>Sergey-Shkredov</Id>
+  <Name>Сергей Шкредов</Name>
+  <CompanyName>JetBrains</CompanyName>
+  <CompanyUrl>https://www.jetbrains.com/</CompanyUrl>
+  <Description>Руководитель .NET направления в компании JetBrains, автор многочисленных фич в ReSharper.
+
+Интересуется архитектурой расширяемых приложений, инновационными подходами к разработке программ с использованием интеллектуальных инструментов и, конечно же, тем, как программисты, работая в команде, могут достичь выдающихся результатов и получать удовольствие от своей деятельности.</Description>
+  <TwitterUrl>https://twitter.com/serjic</TwitterUrl>
+</Speaker>
+<Speaker>
+  <Id>Valery-Ignatyev</Id>
+  <Name>Валерий Игнатьев</Name>
+  <CompanyName>ИСП РАН</CompanyName>
+  <CompanyUrl>http://www.ispras.ru/</CompanyUrl>
+  <Description></Description>
+</Speaker>
+<Speaker>
+  <Id>Valery-Petrov</Id>
+  <Name>Валерий Петров</Name>
+  <CompanyName>Sidenis</CompanyName>
+  <CompanyUrl>http://sidenis.ru/</CompanyUrl>
+  <Description>.NET разработчик в небольшой российско-швейцарской компании Sidenis. Окончил МатМех СПбГУ по специальности математическое обеспечение и администрирование информационных систем, кафедра параллельных алгоритмов. Интересуется Concurrency, производительностью, кросс-платформенностью (особенно под разные архитектуры) и всякими «кишочками».</Description>
+  <TwitterUrl>https://twitter.com/m08pvv</TwitterUrl>
+  <HabrUrl>https://habrahabr.ru/users/m08pvv/</HabrUrl>
+</Speaker>
+<Speaker>
+  <Id>Vladimir-Kochetkov</Id>
+  <Name>Владимир Кочетков</Name>
+  <CompanyName>Positive Technologies</CompanyName>
+  <CompanyUrl>http://www.ptsecurity.ru/</CompanyUrl>
+  <Description>Team Lead и Security Researcher в компании Positive Technologies. Принимает непосредственное участие в разработке анализатора защищенности приложений Application Inspector. Является участником и администратором проекта RSDN.</Description>
+  <TwitterUrl>https://twitter.com/kochetkov_v</TwitterUrl>
+</Speaker>
+<Speaker>
+  <Id>Vladimir-Koshelev</Id>
+  <Name>Владимир Кошелев</Name>
+  <CompanyName>ИСП РАН</CompanyName>
+  <CompanyUrl>http://www.ispras.ru/</CompanyUrl>
+  <Description>Является младшим научным сотрудником ИСП РАН. В течение последних трех лет занимался разработкой статического анализатора для языков C/C++, C#, Java.</Description>
+</Speaker>
+<Speaker>
+  <Id>Vladimir-Ozerov</Id>
+  <Name>Владимир Озеров</Name>
+  <CompanyName>GridGain</CompanyName>
+  <CompanyUrl>http://www.gridgain.com/</CompanyUrl>
+  <Description>Архитектор компании GridGain. Комитер и PMC member OSS-проекта Apache Ignite. Занимается вопросами распределенных вычислений, кэширования и репликации, интеграцией с .NET/C++, разработкой модулей для экосистемы Hadoop.</Description>
+  <TwitterUrl>https://twitter.com/devozerov</TwitterUrl>
+</Speaker>
+<Speaker>
+  <Id>Vsevolod-Ivanov</Id>
+  <Name>Всеволод Иванов</Name>
+  <CompanyName>Touch Instinct</CompanyName>
+  <CompanyUrl>http://touchin.ru/</CompanyUrl>
+  <Description>Технический директор компании Touch Instinct.</Description>
+</Speaker>
+<Speaker>
+  <Id>Vyacheslav-Mikhaylov</Id>
+  <Name>Вячеслав Михайлов</Name>
+  <CompanyName>DataArt</CompanyName>
+  <CompanyUrl>http://dataart.ru/</CompanyUrl>
+  <Description>Solutions Architect из компании DataArt. Занимается разработкой ПО уже 18 лет. Работал в различных индустриях: finance, information security, travel.</Description>
+</Speaker>
+<Speaker>
+  <Id>Yakov-Zhdanov</Id>
+  <Name>Яков Жданов</Name>
+  <CompanyName>GridGain</CompanyName>
+  <CompanyUrl>http://www.gridgain.com/</CompanyUrl>
+  <Description>Яков пришел в GridGain в 2010 году. В данный момент занимает должность директора по разработке и в этой роли непосредственно участвует в процессе разработки и принятии технических решений. Является комитером проекта Apache Ignite. Не представляет лето без мотоциклов, а зиму без снега и гор.</Description>
+</Speaker>
+<Speaker>
+  <Id>Yulia-Tsisyk</Id>
+  <Name>Юлия Цисык</Name>
+  <CompanyName>CUSTIS</CompanyName>
+  <CompanyUrl>http://www.custis.ru/</CompanyUrl>
+  <Description>.NET разработчик в CUSTIS. Организатор .NET сообщества в Москве.</Description>
+  <TwitterUrl>https://twitter.com/YuliaFast</TwitterUrl>
+</Speaker>
+<Speaker>
+  <Id>Yuri-Volkov</Id>
+  <Name>Юрий Волков</Name>
+  <CompanyName>Университет ИТМО</CompanyName>
+  <CompanyUrl>http://www.ifmo.ru/</CompanyUrl>
+  <Description>Студент Университета ИТМО, занимается .NET и Java разработкой, изучает принципы работы виртуальных сред выполнения. Также уделяет время анализу данных и машинному обучению.</Description>
+</Speaker>
+</Speakers>
