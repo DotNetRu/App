@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using DotNetRu.DataStore.Audit.Models;
 using Newtonsoft.Json;
 namespace XamarinEvolve.DataObjects
 {
@@ -50,6 +52,8 @@ namespace XamarinEvolve.DataObjects
         public bool HasSponsor => Sponsor != null;
         [JsonIgnore]
         public DateTime StartTimeOrderBy { get { return StartTime.HasValue ? StartTime.Value : DateTime.MinValue; } }
+        [JsonIgnore]
+        public IEnumerable<string> EventTalksIds { get; set; }
     }
 }
 
