@@ -35,8 +35,9 @@ namespace XamarinEvolve.Clients.Portable
 				if (DateTime.Today.DayOfYear + 1 == start.DayOfYear)
 					return $"Tomorrow";
 			}
-			var monthDay = start.ToString("M");
-			return $"{monthDay}";
+			//var monthDay = start.ToString("M");
+		    var year = start.ToString("Y");
+			return $"{year}";
 		}
 
 		public static string GetDisplayName(this FeaturedEvent e)

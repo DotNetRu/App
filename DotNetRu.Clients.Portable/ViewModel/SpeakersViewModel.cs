@@ -24,7 +24,6 @@ namespace XamarinEvolve.Clients.Portable
         }
 
         public ObservableRangeCollection<Speaker> Speakers { get; } = new ObservableRangeCollection<Speaker>();
-
        
 
         #region Sorting
@@ -42,19 +41,19 @@ namespace XamarinEvolve.Clients.Portable
 
         #region Properties
 
-        private AuditSpeaker selectedSpeaker; // Q: MB wrong speaker type?
+        private Speaker _selectedSpeaker;
 
-        public AuditSpeaker SelectedSpeaker
+        public Speaker SelectedSpeaker
         {
-            get => selectedSpeaker;
+            get => _selectedSpeaker;
             set
             {
-                selectedSpeaker = value;
+                _selectedSpeaker = value;
                 OnPropertyChanged();
-                if (selectedSpeaker == null)
+                if (_selectedSpeaker == null)
                     return;
 
-                MessagingService.Current.SendMessage(MessageKeys.NavigateToSpeaker, selectedSpeaker);
+                MessagingService.Current.SendMessage(MessageKeys.NavigateToSpeaker, _selectedSpeaker);
 
                 SelectedSpeaker = null;
             }
@@ -93,7 +92,7 @@ namespace XamarinEvolve.Clients.Portable
 #if DEBUG
                 await Task.Delay(1000);
 #endif
-                if (!Speakers.Any()) // TODO: update data when we'll have finally managed to get them directly from github
+                if (!Speakers.Any() || force) // TODO: update data when we'll have finally managed to get them directly from github
                 {
                     IEnumerable<Speaker> speakers = SpeakerLoaderService.Speakers; //await StoreManager.SpeakerStore.GetItemsAsync(force);
                     SortSpeakers(speakers);
