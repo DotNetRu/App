@@ -184,8 +184,8 @@ namespace XamarinEvolve.Clients.Portable
                 PresentationUrl = talk.SlidesUrl,
                 VideoUrl = talk.VideoUrl,
                 ShortTitle = talk.Title, 
-                StartTime = DateTime.Now,
-                EndTime = DateTime.Now.AddHours(1),
+                StartTime = Event.StartTime?.ToLocalTime().AddHours(15),   //TODO: It's a zaglushka
+                EndTime = Event.StartTime?.ToLocalTime().AddHours(18),
                 Speakers = SpeakerLoaderService.Speakers.Where(s => talk.SpeakerIds.Any(s1 => s1 == s.Id)).ToList()
             }
             ).ToList();
