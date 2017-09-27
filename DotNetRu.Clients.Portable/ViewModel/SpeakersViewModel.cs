@@ -18,13 +18,14 @@ namespace XamarinEvolve.Clients.Portable
 {
     public class SpeakersViewModel : ViewModelBase
     {
-        private List<Speaker> _speakers; // use Speakers instead of _speakers
 
         public SpeakersViewModel(INavigation navigation) : base(navigation)
         {
         }
 
         public ObservableRangeCollection<Speaker> Speakers { get; } = new ObservableRangeCollection<Speaker>();
+
+       
 
         #region Sorting
 
@@ -80,40 +81,6 @@ namespace XamarinEvolve.Clients.Portable
             loadSpeakersCommand ?? (loadSpeakersCommand =
                 new Command(async f => await ExecuteLoadSpeakersAsync((bool)f)));
 
-        private List<Speaker> AuditSpeakerToUISpeakerConverter(IEnumerable<AuditSpeaker> auditSpeakers)
-        {
-            return auditSpeakers.Select(speaker => new Speaker
-            {
-                FirstName = speaker.Name,
-                LastName = "",
-                PhotoUrl = $@"https://raw.githubusercontent.com/DotNetRu/Audit/master/db/speakers/{speaker.Id}/avatar.jpg",
-                AvatarUrl = $@"https://raw.githubusercontent.com/DotNetRu/Audit/master/db/speakers/{speaker.Id}/avatar.small.jpg",
-                CompanyName = speaker.CompanyName,
-                CompanyWebsiteUrl = speaker.CompanyUrl,
-                TwitterUrl = speaker.TwitterUrl,
-                BlogUrl = speaker.BlogUrl,
-                Biography = speaker.Description
-            }).ToList();
-        }
-
-        private List<Speaker> GetSpeakers()
-        {
-            var assembly = Assembly.Load(new AssemblyName("DotNetRu.DataStore.Audit"));
-            var stream = assembly.GetManifestResourceStream("DotNetRu.DataStore.Audit.Storage.speakers.xml");
-            List<AuditSpeaker> speakers;
-            using (var reader = new StreamReader(stream))
-            {
-                var xRoot = new XmlRootAttribute
-                {
-                    ElementName = "Speakers",
-                    IsNullable = true
-                };
-                var serializer = new XmlSerializer(typeof(List<AuditSpeaker>), xRoot);
-                speakers = (List<AuditSpeaker>)serializer.Deserialize(reader);
-            }
-            return AuditSpeakerToUISpeakerConverter(speakers);
-        }
-
         private async Task<bool> ExecuteLoadSpeakersAsync(bool force = false)
         {
             if (IsBusy)
@@ -126,13 +93,10 @@ namespace XamarinEvolve.Clients.Portable
 #if DEBUG
                 await Task.Delay(1000);
 #endif
-                if (_speakers == null) // TODO: update data when we'll have finally managed to get them directly from github
+                if (!Speakers.Any()) // TODO: update data when we'll have finally managed to get them directly from github
                 {
-                    IEnumerable<Speaker>
-                        speakers = GetSpeakers(); //await StoreManager.SpeakerStore.GetItemsAsync(force);
-
+                    IEnumerable<Speaker> speakers = SpeakerLoaderService.Speakers; //await StoreManager.SpeakerStore.GetItemsAsync(force);
                     SortSpeakers(speakers);
-                    _speakers = speakers.ToList();
                 }
 
 

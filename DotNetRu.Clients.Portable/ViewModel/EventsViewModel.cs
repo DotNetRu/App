@@ -124,7 +124,8 @@ namespace XamarinEvolve.Clients.Portable.ViewModel
                 Title = meetup.Name,
                 StartTime = meetup.Date,
                 EndTime = meetup.Date,
-                LocationName = meetup.VenueId
+                LocationName = meetup.VenueId,
+                EventTalksIds = meetup.TalkIds,
             }).ToList();
         }
 
