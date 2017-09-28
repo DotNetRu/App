@@ -1,19 +1,22 @@
-﻿namespace XamarinEvolve.Clients.Portable.ViewModel
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using System.Xml.Serialization;
+using DotNetRu.DataStore.Audit.Models;
+using FormsToolkit;
+using MvvmHelpers;
+using Xamarin.Forms;
+using XamarinEvolve.DataObjects;
+using XamarinEvolve.Utils.Helpers;
+
+
+// TODO: It's needed to group meetups not only by month but year too
+namespace XamarinEvolve.Clients.Portable.ViewModel
 {
-    using System;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using System.Windows.Input;
-
-    using FormsToolkit;
-
-    using MvvmHelpers;
-
-    using Xamarin.Forms;
-
-    using XamarinEvolve.DataObjects;
-    using XamarinEvolve.Utils.Helpers;
-
     /// <summary>
     /// The events view model.
     /// </summary>
@@ -43,22 +46,22 @@
         public EventsViewModel(INavigation navigation)
             : base(navigation)
         {
-            this.Title = "Meetups";
+            Title = "Meetups";
         }
 
         /// <summary>
         /// The force refresh command.
         /// </summary>
-        public ICommand ForceRefreshCommand => this.forceRefreshCommand
-                                               ?? (this.forceRefreshCommand = new Command(
-                                                       async () => await this.ExecuteForceRefreshCommandAsync()));
+        public ICommand ForceRefreshCommand => forceRefreshCommand
+                                               ?? (forceRefreshCommand = new Command(
+                                                       async () => await ExecuteForceRefreshCommandAsync()));
 
         /// <summary>
         /// The load events command.
         /// </summary>
-        public ICommand LoadEventsCommand => this.loadEventsCommand
-                                             ?? (this.loadEventsCommand = new Command<bool>(
-                                                     async (f) => await this.ExecuteLoadEventsAsync()));
+        public ICommand LoadEventsCommand => loadEventsCommand
+                                             ?? (loadEventsCommand = new Command<bool>(
+                                                     async f => await ExecuteLoadEventsAsync()));
 
         /// <summary>
         /// Gets the events.
@@ -77,19 +80,19 @@
         /// </summary>
         public FeaturedEvent SelectedEvent
         {
-            get => this.selectedEvent;
+            get => selectedEvent;
             set
             {
-                this.selectedEvent = value;
-                this.OnPropertyChanged();
-                if (this.selectedEvent == null)
+                selectedEvent = value;
+                OnPropertyChanged();
+                if (selectedEvent == null)
                 {
                     return;
                 }
 
-                MessagingService.Current.SendMessage(MessageKeys.NavigateToEvent, this.selectedEvent);
+                MessagingService.Current.SendMessage(MessageKeys.NavigateToEvent, selectedEvent);
 
-                this.SelectedEvent = null;
+                SelectedEvent = null;
             }
         }
 
@@ -98,7 +101,7 @@
         /// </summary>
         public void SortEvents()
         {
-            this.EventsGrouped.ReplaceRange(this.Events.GroupByDate());
+            EventsGrouped.ReplaceRange(Events.GroupByDate());
         }
 
         /// <summary>
@@ -109,7 +112,39 @@
         /// </returns>
         public async Task ExecuteForceRefreshCommandAsync()
         {
-            await this.ExecuteLoadEventsAsync(true);
+            await ExecuteLoadEventsAsync(true);
+        }
+
+        private List<FeaturedEvent> MeetupsToFeaturedEvents(IEnumerable<Meetup> meetups)
+        {
+            return meetups.Select(meetup => new FeaturedEvent
+            {
+                Description = meetup.Name,
+                IsAllDay = true,
+                Title = meetup.Name,
+                StartTime = meetup.Date,
+                EndTime = meetup.Date,
+                LocationName = meetup.VenueId,
+                EventTalksIds = meetup.TalkIds,
+            }).ToList();
+        }
+
+        private List<FeaturedEvent> GetEvents()
+        {
+            var assembly = Assembly.Load(new AssemblyName("DotNetRu.DataStore.Audit"));
+            var stream = assembly.GetManifestResourceStream("DotNetRu.DataStore.Audit.Storage.meetups.xml");
+            List<Meetup> meetups;
+            using (var reader = new StreamReader(stream))
+            {
+                var xRoot = new XmlRootAttribute
+                {
+                    ElementName = "Meetups",
+                    IsNullable = false
+                };
+                var serializer = new XmlSerializer(typeof(List<Meetup>), xRoot);
+                meetups = (List<Meetup>) serializer.Deserialize(reader);
+            }
+            return MeetupsToFeaturedEvents(meetups);
         }
 
         /// <summary>
@@ -123,31 +158,33 @@
         /// </returns>
         public async Task<bool> ExecuteLoadEventsAsync(bool force = false)
         {
-            if (this.IsBusy)
+            if (IsBusy)
             {
                 return false;
             }
 
             try
             {
-                this.IsBusy = true;
+                IsBusy = true;
 
-                this.Events.ReplaceRange(await this.StoreManager.EventStore.GetItemsAsync(force));
+                // TODO: update data when we'll have finally managed to get them directly from github
+                Events?.ReplaceRange(GetEvents());
+                //Events.ReplaceRange(await StoreManager.EventStore.GetItemsAsync(force));
 
-                this.Title = "Meetups (" + this.Events.Count(
+                Title = "Meetups (" + Events?.Count(
                                  e => e.StartTime.HasValue && e.StartTime.Value.ToUniversalTime() > DateTime.UtcNow)
                              + ")";
 
-                this.SortEvents();
+                SortEvents();
             }
             catch (Exception ex)
             {
-                this.Logger.Report(ex, "Method", "ExecuteLoadEventsAsync");
+                Logger.Report(ex, "Method", "ExecuteLoadEventsAsync");
                 MessagingService.Current.SendMessage(MessageKeys.Error, ex);
             }
             finally
             {
-                this.IsBusy = false;
+                IsBusy = false;
             }
 
             return true;

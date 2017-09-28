@@ -27,14 +27,14 @@
 
         string loggedIn;
 
-        public SessionsPage()
+        public SessionsPage(FeaturedEvent meetup = null)
         {
             InitializeComponent();
             showPast = Settings.Current.ShowPastSessions;
             showAllCategories = Settings.Current.ShowAllCategories;
             filteredCategories = Settings.Current.FilteredCategories;
 
-            BindingContext = vm = new SessionsViewModel(Navigation);
+            BindingContext = vm = new SessionsViewModel(Navigation, meetup);
 
             if (Device.OS == TargetPlatform.Windows || Device.OS == TargetPlatform.WinPhone)
             {
