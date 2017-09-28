@@ -183,6 +183,7 @@ namespace XamarinEvolve.Clients.Portable
                 Abstract = talk.Description,
                 PresentationUrl = talk.SlidesUrl,
                 VideoUrl = talk.VideoUrl,
+                CodeUrl = talk.CodeUrl,
                 ShortTitle = talk.Title, 
                 StartTime = Event.StartTime?.ToLocalTime().AddHours(15),   //TODO: It's a zaglushka
                 EndTime = Event.StartTime?.ToLocalTime().AddHours(18),

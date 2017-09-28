@@ -68,6 +68,12 @@ namespace XamarinEvolve.Clients.Portable
                 SessionMaterialItems.Add(
                     new MenuItem { Name = "Session Recording", Parameter = session.VideoUrl, Icon = "icon_video.png" });
             }
+
+            if (!string.IsNullOrWhiteSpace(session.CodeUrl))
+            {
+                SessionMaterialItems.Add(
+                    new MenuItem {Name = "Code from Session", Parameter = session.CodeUrl, Icon="icon_code.png"});
+            }
         }
 
 #if DEBUG
