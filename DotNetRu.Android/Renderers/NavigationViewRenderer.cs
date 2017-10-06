@@ -1,7 +1,6 @@
 ﻿using Android.Runtime;
 using Android.Support.Design.Widget;
 using Android.Views;
-using Android.Widget;
 
 using DotNetRu.Droid;
 
@@ -9,7 +8,6 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
 using XamarinEvolve.Clients.Portable;
-using XamarinEvolve.Utils;
 
 [assembly: ExportRenderer(typeof(XamarinEvolve.Clients.UI.NavigationView), typeof(NavigationViewRenderer))]
 
@@ -21,16 +19,11 @@ namespace DotNetRu.Droid
     {
         NavigationView navView;
 
-        ImageView profileImage;
-
-        TextView profileName;
-
         public override void OnViewAdded(Android.Views.View child)
         {
             base.OnViewAdded(child);
 
             navView.Menu.FindItem(Resource.Id.nav_feed).SetTitle($"{EventInfo.EventName}");
-            navView.Menu.FindItem(Resource.Id.nav_speakers).SetVisible(FeatureFlags.SpeakersEnabled);
             navView.Menu.FindItem(Resource.Id.nav_events).SetVisible(true);
         }
 
