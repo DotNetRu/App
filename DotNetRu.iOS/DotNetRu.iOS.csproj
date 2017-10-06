@@ -459,9 +459,6 @@
     <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\Icon-87.png">
       <InProject>false</InProject>
     </ImageAsset>
-    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\Contents.json">
-      <InProject>false</InProject>
-    </ImageAsset>
     <None Include="app.config" />
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
