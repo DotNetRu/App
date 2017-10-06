@@ -111,7 +111,6 @@
 
             AppIndexing.SharedInstance.RegisterApp(PublicationSettings.iTunesAppId);
 
-            SQLitePCL.CurrentPlatform.Init();
             Plugin.Share.ShareImplementation.ExcludedUIActivityTypes = new List<NSString>
                                                                            {
                                                                                UIActivityType
