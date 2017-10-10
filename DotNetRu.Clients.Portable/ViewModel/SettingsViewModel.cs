@@ -19,16 +19,6 @@
 
         public SettingsViewModel()
         {
-            //This will be triggered wen 
-            Settings.PropertyChanged += async (sender, e) =>
-                {
-                    if (e.PropertyName == "Email")
-                    {
-                        OnPropertyChanged("LoginText");
-                        OnPropertyChanged("AccountItems");
-                    }
-                };
-
             AboutItems.AddRange(
                 new[]
                     {

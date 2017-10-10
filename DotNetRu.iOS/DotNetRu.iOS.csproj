@@ -90,7 +90,8 @@
     <IpaPackageName>
     </IpaPackageName>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
-    <CodesignProvision>DotNetRu Development</CodesignProvision>
+    <CodesignProvision>
+    </CodesignProvision>
     <DeviceSpecificBuild>true</DeviceSpecificBuild>
     <MtouchFloat32>true</MtouchFloat32>
     <MtouchLink>None</MtouchLink>

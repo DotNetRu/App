@@ -13,7 +13,7 @@
 
         public const string CompanyName = "DotNetRu";
 
-        public const string Developer = "DotNetRu";
+        public const string Developer = "DotNetRu Team";
 
         public const string DeveloperWebsite = "https://www.xpirit.com/mobile";
 
