@@ -483,7 +483,6 @@
     <None Include="app.config" />
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
-    <InterfaceDefinition Include="LaunchScreen.storyboard" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -550,6 +549,7 @@
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen~ipad.xib" />
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
+    <InterfaceDefinition Include="LaunchScreen.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\icon_paperclip.png" />
