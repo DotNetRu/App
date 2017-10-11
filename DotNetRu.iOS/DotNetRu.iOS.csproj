@@ -29,9 +29,10 @@
     <DeviceSpecificBuild>true</DeviceSpecificBuild>
     <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
     <MtouchFastDev>true</MtouchFastDev>
-    <CodesignKey>iPhone Developer: Pavel Fedotovsky (25P3FFXZ26)</CodesignKey>
+    <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
-    <CodesignProvision>DotNetRu Development</CodesignProvision>
+    <CodesignProvision>
+    </CodesignProvision>
     <CodesignEntitlements>
     </CodesignEntitlements>
     <IOSDebugOverWiFi>False</IOSDebugOverWiFi>
@@ -48,12 +49,13 @@
     </CodesignEntitlements>
     <MtouchArch>ARMv7, ARM64</MtouchArch>
     <ConsolePause>false</ConsolePause>
-    <CodesignKey>iPhone Distribution: Pavel Fedotovsky (V5AL4NEC57)</CodesignKey>
+    <CodesignKey>iPhone Distribution</CodesignKey>
     <MtouchUseLlvm>true</MtouchUseLlvm>
     <IpaPackageName>
     </IpaPackageName>
     <DefineConstants>MOBILE</DefineConstants>
-    <CodesignProvision>DotNetRu</CodesignProvision>
+    <CodesignProvision>
+    </CodesignProvision>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
     <BuildIpa>true</BuildIpa>
     <MtouchSdkVersion>11.0</MtouchSdkVersion>
