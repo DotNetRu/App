@@ -152,6 +152,6 @@
 	<key>XSAppIconAssets</key>
 	<string>Resources/Media.xcassets/AppIcons.appiconset</string>
 	<key>UILaunchStoryboardName</key>
-	<string>(not set)</string>
+	<string>LaunchScreen</string>
 </dict>
 </plist>
