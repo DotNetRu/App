@@ -39,6 +39,12 @@
                                 Parameter = AboutThisApp.DeveloperWebsite
                             },
                         new MenuItem
+                        {
+                            Name = $"Big thanks to James Montemagno!",
+                            Command = LaunchBrowserCommand,
+                            Parameter = AboutThisApp.MontemagnoWebsite
+                        },
+                        new MenuItem
                             {
                                 Name = "Open source on GitHub!",
                                 Command = LaunchBrowserCommand,
