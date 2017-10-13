@@ -34,7 +34,7 @@ namespace XamarinEvolve.Clients.UI
         items.Add(new MenuItem {Name = "Sponsors", Icon = "menu_sponsors.png", Page = AppPage.Sponsors});
       }
 
-      items.Add(new MenuItem {Name = "Settings", Icon = "menu_settings.png", Page = AppPage.Settings});
+      items.Add(new MenuItem {Name = "About", Icon = "menu_info.png", Page = AppPage.Settings});
 
       menu = new MenuPageUWP();
       menu.MenuList.ItemsSource = items;

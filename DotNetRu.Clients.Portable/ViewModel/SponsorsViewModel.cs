@@ -7,6 +7,10 @@ using MvvmHelpers;
 using Xamarin.Forms;
 using XamarinEvolve.DataObjects;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
+using System.Xml.Serialization;
+using DotNetRu.DataStore.Audit.Models;
 using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.Clients.Portable
@@ -72,7 +76,38 @@ namespace XamarinEvolve.Clients.Portable
 
         ICommand loadSponsorsCommand;
         public ICommand LoadSponsorsCommand =>
-            loadSponsorsCommand ?? (loadSponsorsCommand = new Command(async (f) => await ExecuteLoadSponsorsAsync())); 
+            loadSponsorsCommand ?? (loadSponsorsCommand = new Command(async (f) => await ExecuteLoadSponsorsAsync()));
+
+        List<Sponsor> FriendToSponsorConverter(IEnumerable<Friend> friends)
+        {
+            return friends.Select(friend => new Sponsor
+            {
+                Description = friend.Description,
+                Name = friend.Name,
+                Id = friend.Id,
+                ImageUrl = "https://d30y9cdsu7xlg0.cloudfront.net/png/6808-200.png",
+                WebsiteUrl = friend.Url
+            }).ToList();
+        }
+
+
+        List<Sponsor> GetSponsors()
+        {
+            var assembly = Assembly.Load(new AssemblyName("DotNetRu.DataStore.Audit"));
+            var stream = assembly.GetManifestResourceStream("DotNetRu.DataStore.Audit.Storage.friends.xml");
+            IEnumerable<Friend> friends;
+            using (var reader = new StreamReader(stream))
+            {
+                var xRoot = new XmlRootAttribute
+                {
+                    ElementName = "Friends",
+                    IsNullable = false
+                };
+                var serializer = new XmlSerializer(typeof(List<Friend>), xRoot);
+                friends = (List<Friend>)serializer.Deserialize(reader); ;
+            }
+            return FriendToSponsorConverter(friends);
+        }
 
         async Task<bool> ExecuteLoadSponsorsAsync(bool force = false)
         {
@@ -86,7 +121,7 @@ namespace XamarinEvolve.Clients.Portable
                 #if DEBUG
                 await Task.Delay(1000);
                 #endif
-                var sponsors = await StoreManager.SponsorStore.GetItemsAsync(force);
+                var sponsors = GetSponsors();//await StoreManager.SponsorStore.GetItemsAsync(force);
                
                 SortSponsors(sponsors);
 
