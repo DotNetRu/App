@@ -26,10 +26,7 @@ namespace XamarinEvolve.Clients.UI
 
       items.Add(new MenuItem {Name = $"{EventInfo.EventName}", Icon = "menu_feed.png", Page = AppPage.Feed});
       items.Add(new MenuItem {Name = "Sessions", Icon = "menu_sessions.png", Page = AppPage.Sessions});
-      if (FeatureFlags.SpeakersEnabled)
-      {
         items.Add(new MenuItem {Name = "Speakers", Icon = "menu_speakers.png", Page = AppPage.Speakers});
-      }
 
         items.Add(new MenuItem { Name = "Events", Icon = "menu_events.png", Page = AppPage.Events });
       if (FeatureFlags.SponsorsOnTabPage)

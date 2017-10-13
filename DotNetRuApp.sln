@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.12
+VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Targets", "Targets", "{B3B306B8-9A3D-4CD6-81FD-9C9EAB3C5788}"
 EndProject
@@ -283,9 +283,7 @@ Global
 		{3F4527EF-1454-4EFF-AB5C-CBE235E3DA9B}.Debug|ARM.ActiveCfg = Debug|iPhoneSimulator
 		{3F4527EF-1454-4EFF-AB5C-CBE235E3DA9B}.Debug|ARM.Build.0 = Debug|iPhoneSimulator
 		{3F4527EF-1454-4EFF-AB5C-CBE235E3DA9B}.Debug|iPhone.ActiveCfg = Debug|iPhone
-		{3F4527EF-1454-4EFF-AB5C-CBE235E3DA9B}.Debug|iPhone.Build.0 = Debug|iPhone
 		{3F4527EF-1454-4EFF-AB5C-CBE235E3DA9B}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
-		{3F4527EF-1454-4EFF-AB5C-CBE235E3DA9B}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
 		{3F4527EF-1454-4EFF-AB5C-CBE235E3DA9B}.Debug|x64.ActiveCfg = Debug|iPhoneSimulator
 		{3F4527EF-1454-4EFF-AB5C-CBE235E3DA9B}.Debug|x64.Build.0 = Debug|iPhoneSimulator
 		{3F4527EF-1454-4EFF-AB5C-CBE235E3DA9B}.Debug|x86.ActiveCfg = Debug|iPhoneSimulator
@@ -295,7 +293,6 @@ Global
 		{3F4527EF-1454-4EFF-AB5C-CBE235E3DA9B}.Release|ARM.ActiveCfg = Release|iPhone
 		{3F4527EF-1454-4EFF-AB5C-CBE235E3DA9B}.Release|ARM.Build.0 = Release|iPhone
 		{3F4527EF-1454-4EFF-AB5C-CBE235E3DA9B}.Release|iPhone.ActiveCfg = Release|iPhone
-		{3F4527EF-1454-4EFF-AB5C-CBE235E3DA9B}.Release|iPhone.Build.0 = Release|iPhone
 		{3F4527EF-1454-4EFF-AB5C-CBE235E3DA9B}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
 		{3F4527EF-1454-4EFF-AB5C-CBE235E3DA9B}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 		{3F4527EF-1454-4EFF-AB5C-CBE235E3DA9B}.Release|x64.ActiveCfg = Release|iPhone
