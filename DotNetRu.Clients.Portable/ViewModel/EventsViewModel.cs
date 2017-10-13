@@ -137,7 +137,7 @@ namespace XamarinEvolve.Clients.Portable.ViewModel
                 this.Events?.ReplaceRange(GetEvents());
                 //Events.ReplaceRange(await StoreManager.EventStore.GetItemsAsync(force));
 
-                this.Title = "Meetups (" + this.Events?.Count(e => e.StartTime.HasValue) + ")";
+                this.Title = "Meetups"; // (" + this.Events?.Count(e => e.StartTime.HasValue) + ")";
 
                 this.SortEvents();
             }
