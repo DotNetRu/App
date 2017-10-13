@@ -19,7 +19,7 @@
 
         public const string MontemagnoWebsite = "https://montemagno.com";
 
-        public const string OpenSourceUrl = "http://tiny.cc/app-evolve";
+        public const string OpenSourceUrl = "https://github.com/DotNetRu/App";
 
         public const string TermsOfUseUrl = "http://go.microsoft.com/fwlink/?linkid=206977";
 
