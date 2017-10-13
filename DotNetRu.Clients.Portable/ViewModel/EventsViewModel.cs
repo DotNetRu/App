@@ -1,22 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using System.Xml.Serialization;
-using DotNetRu.DataStore.Audit.Models;
-using FormsToolkit;
-using MvvmHelpers;
-using Xamarin.Forms;
-using XamarinEvolve.DataObjects;
-using XamarinEvolve.Utils.Helpers;
-
-
-// TODO: It's needed to group meetups not only by month but year too
+﻿// TODO: It's needed to group meetups not only by month but year too
 namespace XamarinEvolve.Clients.Portable.ViewModel
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Reflection;
+    using System.Threading.Tasks;
+    using System.Windows.Input;
+    using System.Xml.Serialization;
+
+    using DotNetRu.DataStore.Audit.Models;
+
+    using FormsToolkit;
+
+    using MvvmHelpers;
+
+    using Xamarin.Forms;
+
+    using XamarinEvolve.DataObjects;
+    using XamarinEvolve.Utils.Helpers;
+
     /// <summary>
     /// The events view model.
     /// </summary>
@@ -37,31 +41,25 @@ namespace XamarinEvolve.Clients.Portable.ViewModel
         /// </summary>
         private ICommand loadEventsCommand;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="EventsViewModel"/> class.
-        /// </summary>
-        /// <param name="navigation">
-        /// The navigation.
-        /// </param>
         public EventsViewModel(INavigation navigation)
             : base(navigation)
         {
-            Title = "Meetups";
+            this.Title = "Meetups";
         }
 
         /// <summary>
         /// The force refresh command.
         /// </summary>
-        public ICommand ForceRefreshCommand => forceRefreshCommand
-                                               ?? (forceRefreshCommand = new Command(
-                                                       async () => await ExecuteForceRefreshCommandAsync()));
+        public ICommand ForceRefreshCommand => this.forceRefreshCommand
+                                               ?? (this.forceRefreshCommand = new Command(
+                                                       async () => await this.ExecuteForceRefreshCommandAsync()));
 
         /// <summary>
         /// The load events command.
         /// </summary>
-        public ICommand LoadEventsCommand => loadEventsCommand
-                                             ?? (loadEventsCommand = new Command<bool>(
-                                                     async f => await ExecuteLoadEventsAsync()));
+        public ICommand LoadEventsCommand => this.loadEventsCommand
+                                             ?? (this.loadEventsCommand = new Command<bool>(
+                                                     async f => await this.ExecuteLoadEventsAsync()));
 
         /// <summary>
         /// Gets the events.
@@ -80,19 +78,19 @@ namespace XamarinEvolve.Clients.Portable.ViewModel
         /// </summary>
         public FeaturedEvent SelectedEvent
         {
-            get => selectedEvent;
+            get => this.selectedEvent;
             set
             {
-                selectedEvent = value;
-                OnPropertyChanged();
-                if (selectedEvent == null)
+                this.selectedEvent = value;
+                this.OnPropertyChanged();
+                if (this.selectedEvent == null)
                 {
                     return;
                 }
 
-                MessagingService.Current.SendMessage(MessageKeys.NavigateToEvent, selectedEvent);
+                MessagingService.Current.SendMessage(MessageKeys.NavigateToEvent, this.selectedEvent);
 
-                SelectedEvent = null;
+                this.SelectedEvent = null;
             }
         }
 
@@ -101,7 +99,7 @@ namespace XamarinEvolve.Clients.Portable.ViewModel
         /// </summary>
         public void SortEvents()
         {
-            EventsGrouped.ReplaceRange(Events.GroupByDate());
+            this.EventsGrouped.ReplaceRange(this.Events.GroupByDate());
         }
 
         /// <summary>
@@ -112,39 +110,7 @@ namespace XamarinEvolve.Clients.Portable.ViewModel
         /// </returns>
         public async Task ExecuteForceRefreshCommandAsync()
         {
-            await ExecuteLoadEventsAsync(true);
-        }
-
-        private List<FeaturedEvent> MeetupsToFeaturedEvents(IEnumerable<Meetup> meetups)
-        {
-            return meetups.Select(meetup => new FeaturedEvent
-            {
-                Description = meetup.Name,
-                IsAllDay = true,
-                Title = meetup.Name,
-                StartTime = meetup.Date,
-                EndTime = meetup.Date,
-                LocationName = meetup.VenueId,
-                EventTalksIds = meetup.TalkIds,
-            }).ToList();
-        }
-
-        private List<FeaturedEvent> GetEvents()
-        {
-            var assembly = Assembly.Load(new AssemblyName("DotNetRu.DataStore.Audit"));
-            var stream = assembly.GetManifestResourceStream("DotNetRu.DataStore.Audit.Storage.meetups.xml");
-            List<Meetup> meetups;
-            using (var reader = new StreamReader(stream))
-            {
-                var xRoot = new XmlRootAttribute
-                {
-                    ElementName = "Meetups",
-                    IsNullable = false
-                };
-                var serializer = new XmlSerializer(typeof(List<Meetup>), xRoot);
-                meetups = (List<Meetup>) serializer.Deserialize(reader);
-            }
-            return MeetupsToFeaturedEvents(meetups);
+            await this.ExecuteLoadEventsAsync(true);
         }
 
         /// <summary>
@@ -158,36 +124,63 @@ namespace XamarinEvolve.Clients.Portable.ViewModel
         /// </returns>
         public async Task<bool> ExecuteLoadEventsAsync(bool force = false)
         {
-            if (IsBusy)
+            if (this.IsBusy)
             {
                 return false;
             }
 
             try
             {
-                IsBusy = true;
+                this.IsBusy = true;
 
                 // TODO: update data when we'll have finally managed to get them directly from github
-                Events?.ReplaceRange(GetEvents());
+                this.Events?.ReplaceRange(GetEvents());
                 //Events.ReplaceRange(await StoreManager.EventStore.GetItemsAsync(force));
 
-                Title = "Meetups (" + Events?.Count(
-                                 e => e.StartTime.HasValue && e.StartTime.Value.ToUniversalTime() > DateTime.UtcNow)
-                             + ")";
+                this.Title = "Meetups (" + this.Events?.Count(e => e.StartTime.HasValue) + ")";
 
-                SortEvents();
+                this.SortEvents();
             }
             catch (Exception ex)
             {
-                Logger.Report(ex, "Method", "ExecuteLoadEventsAsync");
+                this.Logger.Report(ex, "Method", "ExecuteLoadEventsAsync");
                 MessagingService.Current.SendMessage(MessageKeys.Error, ex);
             }
             finally
             {
-                IsBusy = false;
+                this.IsBusy = false;
             }
 
             return true;
+        }
+
+        private List<FeaturedEvent> MeetupsToFeaturedEvents(IEnumerable<Meetup> meetups)
+        {
+            return meetups.Select(
+                meetup => new FeaturedEvent
+                              {
+                                  Description = meetup.Name,
+                                  IsAllDay = true,
+                                  Title = meetup.Name,
+                                  StartTime = meetup.Date,
+                                  EndTime = meetup.Date,
+                                  LocationName = meetup.VenueId,
+                                  EventTalksIds = meetup.TalkIds,
+                              }).ToList();
+        }
+
+        private List<FeaturedEvent> GetEvents()
+        {
+            var assembly = Assembly.Load(new AssemblyName("DotNetRu.DataStore.Audit"));
+            var stream = assembly.GetManifestResourceStream("DotNetRu.DataStore.Audit.Storage.meetups.xml");
+            List<Meetup> meetups;
+            using (var reader = new StreamReader(stream))
+            {
+                var xRoot = new XmlRootAttribute { ElementName = "Meetups", IsNullable = false };
+                var serializer = new XmlSerializer(typeof(List<Meetup>), xRoot);
+                meetups = (List<Meetup>)serializer.Deserialize(reader);
+            }
+            return this.MeetupsToFeaturedEvents(meetups);
         }
     }
 }

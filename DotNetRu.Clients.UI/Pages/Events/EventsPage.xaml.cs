@@ -1,60 +1,53 @@
-﻿using Xamarin.Forms;
-using XamarinEvolve.Clients.Portable;
-using XamarinEvolve.DataObjects;
-
-namespace XamarinEvolve.Clients.UI
+﻿namespace XamarinEvolve.Clients.UI
 {
-    using XamarinEvolve.Clients.Portable.ViewModel;
+    using Xamarin.Forms;
 
-    public partial class EventsPage : BasePage
-	{
+    using XamarinEvolve.Clients.Portable;
+    using XamarinEvolve.Clients.Portable.ViewModel;
+    using XamarinEvolve.DataObjects;
+
+    public partial class EventsPage
+    {
 		public override AppPage PageType => AppPage.Events;
 
-        EventsViewModel vm;
-        EventsViewModel ViewModel => vm ?? (vm = BindingContext as EventsViewModel);
+        EventsViewModel eventsViewModel;
+        EventsViewModel ViewModel => this.eventsViewModel ?? (this.eventsViewModel = BindingContext as EventsViewModel);
 
-		public EventsPage()
+        public EventsPage()
         {
-            InitializeComponent();
-            BindingContext = new EventsViewModel(Navigation);
+            this.InitializeComponent();
+            this.BindingContext = new EventsViewModel(Navigation);
 
-            if (Device.OS == TargetPlatform.Windows || Device.OS == TargetPlatform.WinPhone)
+            if (Device.RuntimePlatform == Device.Windows || Device.RuntimePlatform == Device.WinPhone)
             {
-                ToolbarItems.Add(new ToolbarItem
-                {
-                    Text = "Refresh",
-                    Icon ="toolbar_refresh.png",
-                    Command = ViewModel.ForceRefreshCommand
-                });
+                this.ToolbarItems.Add(
+                    new ToolbarItem
+                        {
+                            Text = "Refresh",
+                            Icon = "toolbar_refresh.png",
+                            Command = this.ViewModel.ForceRefreshCommand
+                        });
             }
 
-            ListViewEvents.ItemTapped += (sender, e) => ListViewEvents.SelectedItem = null;
-            ListViewEvents.ItemSelected += async (sender, e) => 
+            this.ListViewEvents.ItemTapped += (sender, e) => ListViewEvents.SelectedItem = null;
+            this.ListViewEvents.ItemSelected += async (sender, e) =>
                 {
-                    var ev = ListViewEvents.SelectedItem as FeaturedEvent;
-                    if(ev == null)
+                    if (!(this.ListViewEvents.SelectedItem is FeaturedEvent ev))
+                    {
                         return;
-                    
-                    //var eventDetails = new EventDetailsPage();
+                    }
 
-                    //eventDetails.Event = ev;
-                    //await NavigationService.PushAsync(Navigation, eventDetails);
                     var eventSessions = new SessionsPage(ev);
                     await NavigationService.PushAsync(Navigation, eventSessions);
                     ListViewEvents.SelectedItem = null;
                 };
         }
-            
+
         protected override void OnAppearing()
         {
             base.OnAppearing();
             if (ViewModel.Events.Count == 0)
                 ViewModel.LoadEventsCommand.Execute(false);
-        }
-
-        protected override void OnDisappearing()
-        {
-            base.OnDisappearing();
         }
     }
 }
