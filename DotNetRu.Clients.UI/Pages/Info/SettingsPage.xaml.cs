@@ -10,7 +10,7 @@ namespace XamarinEvolve.Clients.UI
 
 	public partial class SettingsPage : BasePage
   {
-    public override AppPage PageType => AppPage.Settings;
+    public override AppPage PageType => AppPage.Information;
 
     SettingsViewModel vm;
 
