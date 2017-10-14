@@ -43,33 +43,33 @@
 
         public override bool FinishedLaunching(UIApplication uiApplication, NSDictionary launchOptions)
         {
-#if !ENABLE_TEST_CLOUD
-            if (!string.IsNullOrWhiteSpace(ApiKeys.HockeyAppiOS) && ApiKeys.HockeyAppiOS != nameof(ApiKeys.HockeyAppiOS))
-            {
+//#if !ENABLE_TEST_CLOUD
+//            //if (!string.IsNullOrWhiteSpace(ApiKeys.HockeyAppiOS) && ApiKeys.HockeyAppiOS != nameof(ApiKeys.HockeyAppiOS))
+//            //{
                
-                var manager = BITHockeyManager.SharedHockeyManager;
-                manager.Configure(ApiKeys.HockeyAppiOS);
+//            //    var manager = BITHockeyManager.SharedHockeyManager;
+//            //    manager.Configure(ApiKeys.HockeyAppiOS);
 
-                //Disable update manager
-                manager.DisableUpdateManager = true;
+//            //    //Disable update manager
+//            //    manager.DisableUpdateManager = true;
 
-                manager.StartManager();
-                //manager.Authenticator.AuthenticateInstallation();
+//            //    manager.StartManager();
+//            //    //manager.Authenticator.AuthenticateInstallation();
                    
-            }
-#endif
-            // Code for starting up the Xamarin Test Cloud Agent
-#if ENABLE_TEST_CLOUD
-            Xamarin.Calabash.Start();
-            //Mapping StyleId to iOS Labels
-            Forms.ViewInitialized += (object sender, ViewInitializedEventArgs e) =>
-                {
-                    if (null != e.View.StyleId)
-                    {
-                        e.NativeView.AccessibilityIdentifier = e.View.StyleId;
-                    }
-                };
-#endif
+//            //}
+//#endif
+//            // Code for starting up the Xamarin Test Cloud Agent
+//#if ENABLE_TEST_CLOUD
+//            Xamarin.Calabash.Start();
+//            //Mapping StyleId to iOS Labels
+//            Forms.ViewInitialized += (object sender, ViewInitializedEventArgs e) =>
+//                {
+//                    if (null != e.View.StyleId)
+//                    {
+//                        e.NativeView.AccessibilityIdentifier = e.View.StyleId;
+//                    }
+//                };
+//#endif
 
             Forms.Init();
 
@@ -111,7 +111,6 @@
 
             AppIndexing.SharedInstance.RegisterApp(PublicationSettings.iTunesAppId);
 
-            SQLitePCL.CurrentPlatform.Init();
             Plugin.Share.ShareImplementation.ExcludedUIActivityTypes = new List<NSString>
                                                                            {
                                                                                UIActivityType
@@ -160,26 +159,26 @@
         public override void RegisteredForRemoteNotifications(UIApplication app, NSData deviceToken)
         {
 
-#if ENABLE_TEST_CLOUD
-#else
+//#if ENABLE_TEST_CLOUD
+//#else
 
-            if (ApiKeys.AzureServiceBusUrl == nameof(ApiKeys.AzureServiceBusUrl))
-                return;
+//            if (ApiKeys.AzureServiceBusUrl == nameof(ApiKeys.AzureServiceBusUrl))
+//                return;
 
-            // Connection string from your azure dashboard
-            var cs = SBConnectionString.CreateListenAccess(
-                new NSUrl(ApiKeys.AzureServiceBusUrl),
-                ApiKeys.AzureKey);
+//            // Connection string from your azure dashboard
+//            var cs = SBConnectionString.CreateListenAccess(
+//                new NSUrl(ApiKeys.AzureServiceBusUrl),
+//                ApiKeys.AzureKey);
 
-            // Register our info with Azure
-            var hub = new SBNotificationHub (cs, ApiKeys.AzureHubName);
-            hub.RegisterNativeAsync (deviceToken, null, err => {
-                if (err != null)
-                    Console.WriteLine("Error: " + err.Description);
-                else
-                    Console.WriteLine("Success");
-            });
-#endif
+//            // Register our info with Azure
+//            var hub = new SBNotificationHub (cs, ApiKeys.AzureHubName);
+//            hub.RegisterNativeAsync (deviceToken, null, err => {
+//                if (err != null)
+//                    Console.WriteLine("Error: " + err.Description);
+//                else
+//                    Console.WriteLine("Success");
+//            });
+//#endif
         }
 
         public override void ReceivedRemoteNotification(UIApplication app, NSDictionary userInfo)

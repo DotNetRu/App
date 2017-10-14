@@ -19,16 +19,6 @@
 
         public SettingsViewModel()
         {
-            //This will be triggered wen 
-            Settings.PropertyChanged += async (sender, e) =>
-                {
-                    if (e.PropertyName == "Email")
-                    {
-                        OnPropertyChanged("LoginText");
-                        OnPropertyChanged("AccountItems");
-                    }
-                };
-
             AboutItems.AddRange(
                 new[]
                     {
@@ -38,6 +28,12 @@
                                 Command = LaunchBrowserCommand,
                                 Parameter = AboutThisApp.DeveloperWebsite
                             },
+                        new MenuItem
+                        {
+                            Name = $"Big thanks to James Montemagno!",
+                            Command = LaunchBrowserCommand,
+                            Parameter = AboutThisApp.MontemagnoWebsite
+                        },
                         new MenuItem
                             {
                                 Name = "Open source on GitHub!",

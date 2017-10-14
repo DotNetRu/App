@@ -1,0 +1,80 @@
+<Venues>
+<Venue>
+  <Id>Msk-CUSTIS</Id>
+  <Name>Конференц-зал «CUSTIS»</Name>
+  <Address>Москва, ул.Лесная, 43 (6 этаж)</Address>
+  <MapUrl>https://yandex.ru/maps/-/CBQFNFU41A</MapUrl>
+</Venue>
+<Venue>
+  <Id>Msk-Microsoft</Id>
+  <Name>Конференц-зал «Microsoft»</Name>
+  <Address>Москва, БП Крылатские Холмы, Крылатская, 17 к1</Address>
+  <MapUrl>https://yandex.ru/maps/-/CBQFR8g4WA</MapUrl>
+</Venue>
+<Venue>
+  <Id>Spb-Ankor</Id>
+  <Name>БЦ «Анкор»</Name>
+  <Address>Санкт-Петербург, ул. Якорная, дом 7, БЦ «Анкор»</Address>
+  <MapUrl>https://yandex.ru/maps/-/CZHERH-v</MapUrl>
+</Venue>
+<Venue>
+  <Id>Spb-AnyDayCafe</Id>
+  <Name>Кафе «Any Day»</Name>
+  <Address>Санкт-Петербург, Херсонская улица, 12-14, БЦ «Ренессанс Правда»</Address>
+  <MapUrl>https://yandex.ru/maps/-/CBQDZ6gb1D</MapUrl>
+</Venue>
+<Venue>
+  <Id>Spb-House</Id>
+  <Name>КДЦ «Club House»</Name>
+  <Address>Санкт-Петербург, пр. Медиков д.3, КДЦ «Club House»</Address>
+  <MapUrl>https://maps.yandex.ru/-/CVHJv4NC</MapUrl>
+</Venue>
+<Venue>
+  <Id>Spb-Intermedia</Id>
+  <Name>Столовая «Intermedia»</Name>
+  <Address>Санкт-Петербург, площадь Александра Невского, дом 2 (10 этаж)</Address>
+  <MapUrl>https://yandex.ru/maps/-/CBQ5USaV8B</MapUrl>
+</Venue>
+<Venue>
+  <Id>Spb-Osen</Id>
+  <Name>БЦ «Осень»</Name>
+  <Address>Санкт-Петербург, Свердловская наб. 44, литера Я, БЦ «Осень»</Address>
+  <MapUrl>https://maps.yandex.ru/-/CVHJvX4I</MapUrl>
+</Venue>
+<Venue>
+  <Id>Spb-Ostrov</Id>
+  <Name>БЦ «Остров»</Name>
+  <Address>Санкт-Петербург, Средний пр-т Васильевского Острова, д. 36/40 (5 этаж)</Address>
+  <MapUrl>https://maps.yandex.ru/-/CVHJv-lQ</MapUrl>
+</Venue>
+<Venue>
+  <Id>Spb-Radison</Id>
+  <Name>Гостиница «Park Inn by Radisson Пулковская»</Name>
+  <Address>Санкт-Петербург, площадь Победы, 1, Гостиница «Park Inn by Radisson Пулковская»</Address>
+  <MapUrl>https://yandex.ru/maps/-/CZxTJCP5</MapUrl>
+</Venue>
+<Venue>
+  <Id>Spb-Selectel</Id>
+  <Name>Конференц-холл «Selectel»</Name>
+  <Address>Санкт-Петербург, Цветочная, 19</Address>
+  <MapUrl>https://maps.yandex.ru/-/C6q5nXJx</MapUrl>
+</Venue>
+<Venue>
+  <Id>Spb-Telekom</Id>
+  <Name>БЦ «Телеком СПб»</Name>
+  <Address>Санкт-Петербург, Большой Сампсониевский пр., 60 (вход с Гельсингфорсской ул.), БЦ «Телеком СПб»</Address>
+  <MapUrl>https://maps.yandex.ru/-/CVHJvZmd</MapUrl>
+</Venue>
+<Venue>
+  <Id>Spb-Universe</Id>
+  <Name>БЦ «Universe»</Name>
+  <Address>Санкт-Петербург, Университетская наб., 7-9-11 к. 5А (подъезд к офису с Кадетской линии), БЦ «Universe»</Address>
+  <MapUrl>https://maps.yandex.ru/-/CVHJvHI7</MapUrl>
+</Venue>
+<Venue>
+  <Id>Spb-Welcome</Id>
+  <Name>Пространство «Welcome»</Name>
+  <Address>Санкт-Петербург, Невский проспект 48 (Правое крыло ТД «Пассаж», 3 этаж, Пространство «Welcome»)</Address>
+  <MapUrl>https://yandex.ru/maps/-/C6AmiV67</MapUrl>
+</Venue>
+</Venues>

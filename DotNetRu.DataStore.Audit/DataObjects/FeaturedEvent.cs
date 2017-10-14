@@ -1,8 +1,11 @@
-﻿using System;
-using Newtonsoft.Json;
-namespace XamarinEvolve.DataObjects
+﻿namespace XamarinEvolve.DataObjects
 {
+    using System;
+    using System.Collections.Generic;
+
     using DotNetRu.DataStore.Audit.DataObjects;
+
+    using Newtonsoft.Json;
 
     public class FeaturedEvent : BaseDataObject
     {
@@ -47,9 +50,13 @@ namespace XamarinEvolve.DataObjects
         public virtual Sponsor Sponsor { get; set; }
 
         [JsonIgnore]
-        public bool HasSponsor => Sponsor != null;
+        public bool HasSponsor => this.Sponsor != null;
+
         [JsonIgnore]
-        public DateTime StartTimeOrderBy { get { return StartTime.HasValue ? StartTime.Value : DateTime.MinValue; } }
+        public DateTime StartTimeOrderBy => this.StartTime ?? DateTime.MinValue;
+
+        [JsonIgnore]
+        public IEnumerable<string> EventTalksIds { get; set; }
     }
 }
 

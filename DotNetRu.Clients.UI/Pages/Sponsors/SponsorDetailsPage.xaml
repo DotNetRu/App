@@ -30,12 +30,13 @@
                                 VerticalOptions="FillAndExpand"
                                 Aspect="AspectFit"
                                 StyleId="SponsorDetailImage"
+                                Source="friends.png"
                                 HeightRequest="150">
-                                <Image.Source>
+                                <!--<Image.Source>
                                     <UriImageSource Uri="{Binding Sponsor.ImageUri}" 
                                         CacheValidity="4" 
                                         CachingEnabled="true"/>
-                                </Image.Source>
+                                </Image.Source>-->
                             </Image>
                             </StackLayout>
                             <StackLayout Spacing="0">

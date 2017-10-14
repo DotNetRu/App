@@ -1,4 +1,11 @@
-﻿namespace XamarinEvolve.Clients.Portable
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Xml.Serialization;
+using DotNetRu.DataStore.Audit.Models;
+
+namespace XamarinEvolve.Clients.Portable
 {
     using System;
     using System.Threading.Tasks;
@@ -16,9 +23,11 @@
 
     public class SessionsViewModel : ViewModelBase
     {
-        public SessionsViewModel(INavigation navigation)
+        public FeaturedEvent Event { get; set; }
+        public SessionsViewModel(INavigation navigation, FeaturedEvent featuredEvent = null)
             : base(navigation)
         {
+            Event = featuredEvent;
             NextForceRefresh = DateTime.UtcNow.AddMinutes(45);
         }
 
@@ -166,6 +175,42 @@
                                                ?? (loadSessionsCommand = new Command<bool>(
                                                        async (f) => await ExecuteLoadSessionsAsync()));
 
+        List<Session> TalkToSessionConverter(IEnumerable<Talk> talks)
+        {
+            return talks.Select(talk => new Session
+            {
+                Title = talk.Title,
+                Abstract = talk.Description,
+                PresentationUrl = talk.SlidesUrl,
+                VideoUrl = talk.VideoUrl,
+                CodeUrl = talk.CodeUrl,
+                ShortTitle = talk.Title, 
+                StartTime = Event.StartTime?.ToLocalTime().AddHours(15),   //TODO: It's a zaglushka
+                EndTime = Event.StartTime?.ToLocalTime().AddHours(18),
+                Speakers = SpeakerLoaderService.Speakers.Where(s => talk.SpeakerIds.Any(s1 => s1 == s.Id)).ToList()
+            }
+            ).ToList();
+        }
+
+        List<Session> GetSessions()
+        {
+            var assembly = Assembly.Load(new AssemblyName("DotNetRu.DataStore.Audit"));
+            var stream = assembly.GetManifestResourceStream("DotNetRu.DataStore.Audit.Storage.talks.xml");
+            IEnumerable<Talk> sessions;
+            using (var reader = new StreamReader(stream))
+            {
+                var xRoot = new XmlRootAttribute
+                {
+                    ElementName = "Talks",
+                    IsNullable = false
+                };
+                var serializer = new XmlSerializer(typeof(List<Talk>), xRoot);
+                sessions = ((List<Talk>)serializer.Deserialize(reader)).Where(t => Event.EventTalksIds.Any(t1 => t1 == t.Id));
+            }
+            return TalkToSessionConverter(sessions);
+        }
+
+
 
         async Task<bool> ExecuteLoadSessionsAsync(bool force = false)
         {
@@ -182,7 +227,7 @@
                 await Task.Delay(1000);
 #endif
 
-                Sessions.ReplaceRange(await StoreManager.SessionStore.GetItemsAsync(force));
+                Sessions.ReplaceRange(GetSessions()/*await StoreManager.SessionStore.GetItemsAsync(force)*/);
 
                 SessionsFiltered.ReplaceRange(Sessions);
                 SortSessions();
