@@ -6,17 +6,17 @@
     using Android.Content;
     using Android.Content.PM;
     using Android.OS;
-    using Android.Support.V4.Content;
 
     using FormsToolkit.Droid;
 
     using Gcm;
 
+    using ImageCircle.Forms.Plugin.Droid;
+
     using Plugin.Permissions;
 
     using Refractored.XamForms.PullToRefresh.Droid;
 
-    using Xamarin;
     using Xamarin.Forms;
     using Xamarin.Forms.Platform.Android;
 
@@ -25,6 +25,7 @@
     using XamarinEvolve.Droid;
     using XamarinEvolve.Utils.Helpers;
 
+    using Debug = System.Diagnostics.Debug;
     using EventInfo = XamarinEvolve.Utils.Helpers.EventInfo;
 
     [Activity(
@@ -34,47 +35,47 @@
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     [IntentFilter(
         new[] { Intent.ActionView },
-        Categories = new[] { Android.Content.Intent.CategoryDefault, Android.Content.Intent.CategoryBrowsable },
+        Categories = new[] { Intent.CategoryDefault, Intent.CategoryBrowsable },
         DataScheme = "http",
         DataPathPrefix = "/" + AboutThisApp.SessionsSiteSubdirectory + "/",
         DataHost = AboutThisApp.AppLinksBaseDomain)]
     [IntentFilter(
         new[] { Intent.ActionView },
-        Categories = new[] { Android.Content.Intent.CategoryDefault, Android.Content.Intent.CategoryBrowsable },
+        Categories = new[] { Intent.CategoryDefault, Intent.CategoryBrowsable },
         DataScheme = "http",
         DataPathPrefix = "/" + AboutThisApp.SpeakersSiteSubdirectory + "/",
         DataHost = AboutThisApp.AppLinksBaseDomain)]
     [IntentFilter(
         new[] { Intent.ActionView },
-        Categories = new[] { Android.Content.Intent.CategoryDefault, Android.Content.Intent.CategoryBrowsable },
+        Categories = new[] { Intent.CategoryDefault, Intent.CategoryBrowsable },
         DataScheme = "https",
         DataPathPrefix = "/" + AboutThisApp.SpeakersSiteSubdirectory + "/",
         DataHost = AboutThisApp.AppLinksBaseDomain)]
     [IntentFilter(
         new[] { Intent.ActionView },
-        Categories = new[] { Android.Content.Intent.CategoryDefault, Android.Content.Intent.CategoryBrowsable },
+        Categories = new[] { Intent.CategoryDefault, Intent.CategoryBrowsable },
         DataScheme = "http",
         DataHost = AboutThisApp.AppLinksBaseDomain)]
     [IntentFilter(
         new[] { Intent.ActionView },
-        Categories = new[] { Android.Content.Intent.CategoryDefault, Android.Content.Intent.CategoryBrowsable },
+        Categories = new[] { Intent.CategoryDefault, Intent.CategoryBrowsable },
         DataScheme = "https",
         DataHost = AboutThisApp.AppLinksBaseDomain)]
     [IntentFilter(
         new[] { Intent.ActionView },
-        Categories = new[] { Android.Content.Intent.CategoryDefault, Android.Content.Intent.CategoryBrowsable },
+        Categories = new[] { Intent.CategoryDefault, Intent.CategoryBrowsable },
         DataScheme = "https",
         DataPathPrefix = "/" + AboutThisApp.SessionsSiteSubdirectory + "/",
         DataHost = AboutThisApp.AppLinksBaseDomain)]
 
     [IntentFilter(
         new[] { Intent.ActionView },
-        Categories = new[] { Android.Content.Intent.CategoryDefault, Android.Content.Intent.CategoryBrowsable },
+        Categories = new[] { Intent.CategoryDefault, Intent.CategoryBrowsable },
         DataScheme = "http",
         DataHost = AboutThisApp.AppLinksBaseDomain)]
     [IntentFilter(
         new[] { Intent.ActionView },
-        Categories = new[] { Android.Content.Intent.CategoryDefault, Android.Content.Intent.CategoryBrowsable },
+        Categories = new[] { Intent.CategoryDefault, Intent.CategoryBrowsable },
         DataScheme = "https",
         DataHost = AboutThisApp.AppLinksBaseDomain)]
     public class MainActivity : FormsAppCompatActivity
@@ -90,16 +91,15 @@
         }
 
         // GoogleApiClient client;
-
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            FormsAppCompatActivity.ToolbarResource = Resource.Layout.toolbar;
-            FormsAppCompatActivity.TabLayoutResource = Resource.Layout.tabs;
+            ToolbarResource = Resource.Layout.toolbar;
+            TabLayoutResource = Resource.Layout.tabs;
 
             base.OnCreate(savedInstanceState);
 
             Forms.Init(this, savedInstanceState);
-            FormsMaps.Init(this, savedInstanceState);
+
             // AndroidAppLinks.Init(this);
             Toolkit.Init();
 
@@ -107,9 +107,9 @@
             typeof(Color).GetProperty("Accent", BindingFlags.Public | BindingFlags.Static)
                 .SetValue(null, Color.FromHex("#757575"));
 
-            ImageCircle.Forms.Plugin.Droid.ImageCircleRenderer.Init();
+            ImageCircleRenderer.Init();
 
-#if ENABLE_TEST_CLOUD //Mapping StyleID to element content descriptions
+#if ENABLE_TEST_CLOUD // Mapping StyleID to element content descriptions
             Xamarin.Forms.Forms.ViewInitialized += (object sender, Xamarin.Forms.ViewInitializedEventArgs e) => {
                 if (!string.IsNullOrWhiteSpace(e.View.StyleId)) {
                     e.NativeView.ContentDescription = e.View.StyleId;
@@ -124,9 +124,9 @@
 
             if (gpsAvailable)
             {
-                //client = new GoogleApiClient.Builder(this)
-                //  .AddApi(AppIndex.API)
-                //  .Build();
+                // client = new GoogleApiClient.Builder(this)
+                // .AddApi(AppIndex.API)
+                // .Build();
             }
 
             OnNewIntent(Intent);
@@ -147,37 +147,37 @@
             GcmClient.CheckManifest(this);
 
             // Register for push notifications
-            System.Diagnostics.Debug.WriteLine("MainActivity", "Registering...");
+            Debug.WriteLine("MainActivity", "Registering...");
             GcmService.Initialize(this);
             GcmService.Register(this);
         }
 
         public bool IsPlayServicesAvailable()
         {
-            //int resultCode = GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(this);
-            //if (resultCode != ConnectionResult.Success)
-            //{
-            //  if (GoogleApiAvailability.Instance.IsUserResolvableError(resultCode))
-            //  {
-            //    if (Settings.Current.GooglePlayChecked)
-            //      return false;
+            // int resultCode = GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(this);
+            // if (resultCode != ConnectionResult.Success)
+            // {
+            // if (GoogleApiAvailability.Instance.IsUserResolvableError(resultCode))
+            // {
+            // if (Settings.Current.GooglePlayChecked)
+            // return false;
 
-            //    Settings.Current.GooglePlayChecked = true;
-            //    Toast.MakeText(this, "Google Play services is not installed, push notifications have been disabled.",
-            //        ToastLength.Long)
-            //      .Show();
-            //  }
-            //  else
-            //  {
-            //    Settings.Current.PushNotificationsEnabled = false;
-            //  }
-            //  return false;
-            //}
-            //else
-            //{
-            //  Settings.Current.PushNotificationsEnabled = true;
-            //  return true;
-            //}
+            // Settings.Current.GooglePlayChecked = true;
+            // Toast.MakeText(this, "Google Play services is not installed, push notifications have been disabled.",
+            // ToastLength.Long)
+            // .Show();
+            // }
+            // else
+            // {
+            // Settings.Current.PushNotificationsEnabled = false;
+            // }
+            // return false;
+            // }
+            // else
+            // {
+            // Settings.Current.PushNotificationsEnabled = true;
+            // return true;
+            // }
             return true;
         }
 
