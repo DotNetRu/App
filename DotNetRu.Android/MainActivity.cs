@@ -117,10 +117,6 @@
             };
 #endif
 
-#if !ENABLE_TEST_CLOUD
-            InitializeHockeyApp();
-#endif
-
             LoadApplication(new App());
 
             var gpsAvailable = IsPlayServicesAvailable();
@@ -142,19 +138,6 @@
 #endif
 
             DataRefreshService.ScheduleRefresh(this);
-        }
-
-
-
-        void InitializeHockeyApp()
-        {
-            if (string.IsNullOrWhiteSpace(ApiKeys.HockeyAppAndroid)
-                || ApiKeys.HockeyAppAndroid == nameof(ApiKeys.HockeyAppAndroid)) return;
-
-            HockeyApp.Android.CrashManager.Register(this, ApiKeys.HockeyAppAndroid);
-
-            HockeyApp.Android.Metrics.MetricsManager.Register(this, Application, ApiKeys.HockeyAppAndroid);
-
         }
 
         private void RegisterWithGCM()
