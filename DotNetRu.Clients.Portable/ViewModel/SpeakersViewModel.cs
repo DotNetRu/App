@@ -1,21 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using System.Xml.Serialization;
-using DotNetRu.DataStore.Audit.DataObjects;
-using FormsToolkit;
-using MvvmHelpers;
-using Xamarin.Forms;
-using XamarinEvolve.Utils;
-using XamarinEvolve.Utils.Helpers;
-using AuditSpeaker = DotNetRu.DataStore.Audit.Models.Speaker;
-
-namespace XamarinEvolve.Clients.Portable
+﻿namespace XamarinEvolve.Clients.Portable
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Windows.Input;
+
+    using DotNetRu.DataStore.Audit.DataObjects;
+
+    using FormsToolkit;
+
+    using MvvmHelpers;
+
+    using Xamarin.Forms;
+
+    using XamarinEvolve.Utils.Helpers;
+
     public class SpeakersViewModel : ViewModelBase
     {
 
@@ -34,7 +34,7 @@ namespace XamarinEvolve.Clients.Portable
                                  orderby speaker.FullName
                                  select speaker;
 
-            Speakers.ReplaceRange(speakersSorted);
+            this.Speakers.ReplaceRange(speakersSorted);
         }
 
         #endregion
@@ -45,17 +45,17 @@ namespace XamarinEvolve.Clients.Portable
 
         public Speaker SelectedSpeaker
         {
-            get => _selectedSpeaker;
+            get => this._selectedSpeaker;
             set
             {
-                _selectedSpeaker = value;
-                OnPropertyChanged();
-                if (_selectedSpeaker == null)
+                this._selectedSpeaker = value;
+                this.OnPropertyChanged();
+                if (this._selectedSpeaker == null)
                     return;
 
-                MessagingService.Current.SendMessage(MessageKeys.NavigateToSpeaker, _selectedSpeaker);
+                MessagingService.Current.SendMessage(MessageKeys.NavigateToSpeaker, this._selectedSpeaker);
 
-                SelectedSpeaker = null;
+                this.SelectedSpeaker = null;
             }
         }
 
@@ -65,65 +65,65 @@ namespace XamarinEvolve.Clients.Portable
 
         private ICommand forceRefreshCommand;
 
-        public ICommand ForceRefreshCommand =>
-            forceRefreshCommand ?? (forceRefreshCommand =
-                new Command(async () => await ExecuteForceRefreshCommandAsync()));
+        public ICommand ForceRefreshCommand => this.forceRefreshCommand ?? (this.forceRefreshCommand =
+                new Command(async () => await this.ExecuteForceRefreshCommandAsync()));
 
         private async Task ExecuteForceRefreshCommandAsync()
         {
-            await ExecuteLoadSpeakersAsync(true);
+            await this.ExecuteLoadSpeakersAsync(true);
         }
 
         private ICommand loadSpeakersCommand;
 
-        public ICommand LoadSpeakersCommand =>
-            loadSpeakersCommand ?? (loadSpeakersCommand =
-                new Command(async f => await ExecuteLoadSpeakersAsync((bool)f)));
+        public ICommand LoadSpeakersCommand => this.loadSpeakersCommand ?? (this.loadSpeakersCommand =
+                new Command(async f => await this.ExecuteLoadSpeakersAsync((bool)f)));
 
         private async Task<bool> ExecuteLoadSpeakersAsync(bool force = false)
         {
-            if (IsBusy)
+            if (this.IsBusy)
                 return false;
 
             try
             {
-                IsBusy = true;
+                this.IsBusy = true;
 
-#if DEBUG
-                await Task.Delay(1000);
-#endif
-                if (!Speakers.Any() || force) // TODO: update data when we'll have finally managed to get them directly from github
+                // TODO: update data when we'll have finally managed to get them directly from github
+                if (!this.Speakers.Any() || force) 
                 {
-                    IEnumerable<Speaker> speakers = SpeakerLoaderService.Speakers; //await StoreManager.SpeakerStore.GetItemsAsync(force);
-                    SortSpeakers(speakers);
+                    IEnumerable<Speaker> speakers = SpeakerLoaderService.Speakers;
+                    this.SortSpeakers(speakers);
                 }
 
+                // TODO uncomment
+                //if (Device.RuntimePlatform != Device.UWP && FeatureFlags.AppLinksEnabled)
+                //{
+                //    foreach (var speaker in this.Speakers)
+                //    {
+                //        try
+                //        {
+                //            // data migration: older applinks are removed so the index is rebuilt again
+                //            Application.Current.AppLinks.DeregisterLink(
+                //                new Uri(
+                //                    $"http://{AboutThisApp.AppLinksBaseDomain}/{AboutThisApp.SpeakersSiteSubdirectory}/{speaker.Id}"));
 
-                if (Device.OS != TargetPlatform.WinPhone && Device.OS != TargetPlatform.Windows &&
-                    FeatureFlags.AppLinksEnabled)
-                    foreach (var speaker in Speakers)
-                        try
-                        {
-                            // data migration: older applinks are removed so the index is rebuilt again
-                            Application.Current.AppLinks.DeregisterLink(new Uri(
-                                $"http://{AboutThisApp.AppLinksBaseDomain}/{AboutThisApp.SpeakersSiteSubdirectory}/{speaker.Id}"));
-
-                            Application.Current.AppLinks.RegisterLink(speaker.GetAppLink());
-                        }
-                        catch (Exception applinkException)
-                        {
-                            // don't crash the app
-                            Logger.Report(applinkException, "AppLinks.RegisterLink", speaker.Id);
-                        }
+                //            Application.Current.AppLinks.RegisterLink(speaker.GetAppLink());
+                //        }
+                //        catch (Exception applinkException)
+                //        {
+                //            // don't crash the app
+                //            this.Logger.Report(applinkException, "AppLinks.RegisterLink", speaker.Id);
+                //        }
+                //    }
+                //}
             }
             catch (Exception ex)
             {
-                Logger.Report(ex, "Method", "ExecuteLoadSpeakersAsync");
+                this.Logger.Report(ex, "Method", "ExecuteLoadSpeakersAsync");
                 MessagingService.Current.SendMessage(MessageKeys.Error, ex);
             }
             finally
             {
-                IsBusy = false;
+                this.IsBusy = false;
             }
 
             return true;
