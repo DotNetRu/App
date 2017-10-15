@@ -16,8 +16,6 @@
 
         public static bool ShowLocationInSessionCell => true;
 
-        public static bool HockeyAppEnabled => true;
-
         public static bool GoogleAnalyticsEnabled => true;
     }
 }
