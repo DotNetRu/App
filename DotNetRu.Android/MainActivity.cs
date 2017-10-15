@@ -100,6 +100,7 @@
 
             Forms.Init(this, savedInstanceState);
 
+            // TODO enable AppLinks, currently there are issues with Google Play Services
             // AndroidAppLinks.Init(this);
             Toolkit.Init();
 
