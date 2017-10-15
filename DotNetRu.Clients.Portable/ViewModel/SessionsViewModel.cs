@@ -1,15 +1,15 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Xml.Serialization;
-using DotNetRu.DataStore.Audit.Models;
-
-namespace XamarinEvolve.Clients.Portable
+﻿namespace XamarinEvolve.Clients.Portable
 {
     using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Reflection;
     using System.Threading.Tasks;
     using System.Windows.Input;
+    using System.Xml.Serialization;
+
+    using DotNetRu.DataStore.Audit.Models;
 
     using FormsToolkit;
 
@@ -27,8 +27,8 @@ namespace XamarinEvolve.Clients.Portable
         public SessionsViewModel(INavigation navigation, FeaturedEvent featuredEvent = null)
             : base(navigation)
         {
-            Event = featuredEvent;
-            NextForceRefresh = DateTime.UtcNow.AddMinutes(45);
+            this.Event = featuredEvent;
+            this.NextForceRefresh = DateTime.UtcNow.AddMinutes(45);
         }
 
         public ObservableRangeCollection<Session> Sessions { get; } = new ObservableRangeCollection<Session>();
@@ -49,17 +49,18 @@ namespace XamarinEvolve.Clients.Portable
         {
             get
             {
-                return selectedSession;
+                return this.selectedSession;
             }
+
             set
             {
-                selectedSession = value;
-                OnPropertyChanged();
-                if (selectedSession == null) return;
+                this.selectedSession = value;
+                this.OnPropertyChanged();
+                if (this.selectedSession == null) return;
 
-                MessagingService.Current.SendMessage(MessageKeys.NavigateToSession, selectedSession);
+                MessagingService.Current.SendMessage(MessageKeys.NavigateToSession, this.selectedSession);
 
-                SelectedSession = null;
+                this.SelectedSession = null;
             }
         }
 
@@ -69,11 +70,12 @@ namespace XamarinEvolve.Clients.Portable
         {
             get
             {
-                return filter;
+                return this.filter;
             }
+
             set
             {
-                if (SetProperty(ref filter, value)) ExecuteFilterSessionsAsync();
+                if (this.SetProperty(ref this.filter, value)) this.ExecuteFilterSessionsAsync();
 
             }
         }
@@ -85,7 +87,7 @@ namespace XamarinEvolve.Clients.Portable
 
         void SortSessions()
         {
-            SessionsGrouped.ReplaceRange(SessionsFiltered.FilterAndGroupByDate());
+            this.SessionsGrouped.ReplaceRange(this.SessionsFiltered.FilterAndGroupByDate());
         }
 
         bool noSessionsFound;
@@ -94,11 +96,12 @@ namespace XamarinEvolve.Clients.Portable
         {
             get
             {
-                return noSessionsFound;
+                return this.noSessionsFound;
             }
+
             set
             {
-                SetProperty(ref noSessionsFound, value);
+                this.SetProperty(ref this.noSessionsFound, value);
             }
         }
 
@@ -108,11 +111,12 @@ namespace XamarinEvolve.Clients.Portable
         {
             get
             {
-                return noSessionsFoundMessage;
+                return this.noSessionsFoundMessage;
             }
+
             set
             {
-                SetProperty(ref noSessionsFoundMessage, value);
+                this.SetProperty(ref this.noSessionsFoundMessage, value);
             }
         }
 
@@ -123,57 +127,57 @@ namespace XamarinEvolve.Clients.Portable
 
         ICommand forceRefreshCommand;
 
-        public ICommand ForceRefreshCommand => forceRefreshCommand
-                                               ?? (forceRefreshCommand = new Command(
-                                                       async () => await ExecuteForceRefreshCommandAsync()));
+        public ICommand ForceRefreshCommand => this.forceRefreshCommand
+                                               ?? (this.forceRefreshCommand = new Command(
+                                                       async () => await this.ExecuteForceRefreshCommandAsync()));
 
         async Task ExecuteForceRefreshCommandAsync()
         {
-            await ExecuteLoadSessionsAsync(true);
+            await this.ExecuteLoadSessionsAsync(true);
         }
 
         ICommand filterSessionsCommand;
 
-        public ICommand FilterSessionsCommand => filterSessionsCommand
-                                                 ?? (filterSessionsCommand = new Command(
-                                                         async () => await ExecuteFilterSessionsAsync()));
+        public ICommand FilterSessionsCommand => this.filterSessionsCommand
+                                                 ?? (this.filterSessionsCommand = new Command(
+                                                         async () => await this.ExecuteFilterSessionsAsync()));
 
         async Task ExecuteFilterSessionsAsync()
         {
-            IsBusy = true;
-            NoSessionsFound = false;
+            this.IsBusy = true;
+            this.NoSessionsFound = false;
 
             // Abort the current command if the user is typing fast
-            if (!string.IsNullOrEmpty(Filter))
+            if (!string.IsNullOrEmpty(this.Filter))
             {
-                var query = Filter;
+                var query = this.Filter;
                 await Task.Delay(250);
-                if (query != Filter) return;
+                if (query != this.Filter) return;
             }
 
-            SessionsFiltered.ReplaceRange(Sessions.Search(Filter));
-            SortSessions();
+            this.SessionsFiltered.ReplaceRange(this.Sessions.Search(this.Filter));
+            this.SortSessions();
 
-            if (SessionsGrouped.Count == 0)
+            if (this.SessionsGrouped.Count == 0)
             {
-                NoSessionsFoundMessage = "No Sessions Found";
-                NoSessionsFound = true;
+                this.NoSessionsFoundMessage = "No Sessions Found";
+                this.NoSessionsFound = true;
             }
             else
             {
-                NoSessionsFound = false;
+                this.NoSessionsFound = false;
             }
 
-            IsBusy = false;
+            this.IsBusy = false;
         }
 
 
 
         ICommand loadSessionsCommand;
 
-        public ICommand LoadSessionsCommand => loadSessionsCommand
-                                               ?? (loadSessionsCommand = new Command<bool>(
-                                                       async (f) => await ExecuteLoadSessionsAsync()));
+        public ICommand LoadSessionsCommand => this.loadSessionsCommand
+                                               ?? (this.loadSessionsCommand = new Command<bool>(
+                                                       async (f) => await this.ExecuteLoadSessionsAsync()));
 
         List<Session> TalkToSessionConverter(IEnumerable<Talk> talks)
         {
@@ -185,8 +189,8 @@ namespace XamarinEvolve.Clients.Portable
                 VideoUrl = talk.VideoUrl,
                 CodeUrl = talk.CodeUrl,
                 ShortTitle = talk.Title, 
-                StartTime = Event.StartTime?.ToLocalTime().AddHours(15),   //TODO: It's a zaglushka
-                EndTime = Event.StartTime?.ToLocalTime().AddHours(18),
+                StartTime = this.Event.StartTime?.ToLocalTime().AddHours(15),   // TODO: It's a zaglushka
+                EndTime = this.Event.StartTime?.ToLocalTime().AddHours(18),
                 Speakers = SpeakerLoaderService.Speakers.Where(s => talk.SpeakerIds.Any(s1 => s1 == s.Id)).ToList()
             }
             ).ToList();
@@ -205,77 +209,81 @@ namespace XamarinEvolve.Clients.Portable
                     IsNullable = false
                 };
                 var serializer = new XmlSerializer(typeof(List<Talk>), xRoot);
-                sessions = ((List<Talk>)serializer.Deserialize(reader)).Where(t => Event.EventTalksIds.Any(t1 => t1 == t.Id));
+                sessions = ((List<Talk>)serializer.Deserialize(reader)).Where(t => this.Event.EventTalksIds.Any(t1 => t1 == t.Id));
             }
-            return TalkToSessionConverter(sessions);
+
+            return this.TalkToSessionConverter(sessions);
         }
 
 
 
         async Task<bool> ExecuteLoadSessionsAsync(bool force = false)
         {
-            if (IsBusy) return false;
+            if (this.IsBusy) return false;
 
             try
             {
-                NextForceRefresh = DateTime.UtcNow.AddMinutes(45);
-                IsBusy = true;
-                NoSessionsFound = false;
-                Filter = string.Empty;
+                this.NextForceRefresh = DateTime.UtcNow.AddMinutes(45);
+                this.IsBusy = true;
+                this.NoSessionsFound = false;
+                this.Filter = string.Empty;
 
 #if DEBUG
                 await Task.Delay(1000);
 #endif
 
-                Sessions.ReplaceRange(GetSessions()/*await StoreManager.SessionStore.GetItemsAsync(force)*/);
+                this.Sessions.ReplaceRange(this.GetSessions()/*await StoreManager.SessionStore.GetItemsAsync(force)*/);
 
-                SessionsFiltered.ReplaceRange(Sessions);
-                SortSessions();
+                this.SessionsFiltered.ReplaceRange(this.Sessions);
+                this.SortSessions();
 
-                if (SessionsGrouped.Count == 0)
+                if (this.SessionsGrouped.Count == 0)
                 {
-                    NoSessionsFoundMessage = "No Sessions Found";
-                    NoSessionsFound = true;
+                    this.NoSessionsFoundMessage = "No Sessions Found";
+                    this.NoSessionsFound = true;
                 }
                 else
                 {
-                    NoSessionsFound = false;
+                    this.NoSessionsFound = false;
                 }
 
                 if (Device.OS != TargetPlatform.WinPhone && Device.OS != TargetPlatform.Windows
                     && FeatureFlags.AppLinksEnabled)
                 {
-                    foreach (var session in Sessions)
+                    foreach (var session in this.Sessions)
                     {
                         try
                         {
-                            // data migration: older applinks are removed so the index is rebuilt again
-                            Application.Current.AppLinks.DeregisterLink(
-                                new Uri(
-                                    $"http://{AboutThisApp.AppLinksBaseDomain}/{AboutThisApp.SessionsSiteSubdirectory}/{session.Id}"));
+                            // TODO uncomment
 
-                            Application.Current.AppLinks.RegisterLink(session.GetAppLink());
+                            // data migration: older applinks are removed so the index is rebuilt again
+                            // Application.Current.AppLinks.DeregisterLink(
+                            // new Uri(
+                            // $"http://{AboutThisApp.AppLinksBaseDomain}/{AboutThisApp.SessionsSiteSubdirectory}/{session.Id}"));
+
+                            // Application.Current.AppLinks.RegisterLink(session.GetAppLink());
                         }
                         catch (Exception applinkException)
                         {
                             // don't crash the app
-                            Logger.Report(applinkException, "AppLinks.RegisterLink", session.Id);
+                            this.Logger.Report(applinkException, "AppLinks.RegisterLink", session.Id);
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                Logger.Report(ex, "Method", "ExecuteLoadSessionsAsync");
+                this.Logger.Report(ex, "Method", "ExecuteLoadSessionsAsync");
                 MessagingService.Current.SendMessage(MessageKeys.Error, ex);
             }
             finally
             {
-                IsBusy = false;
+                this.IsBusy = false;
             }
 
             return true;
         }
+
         #endregion
     }
 }
