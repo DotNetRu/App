@@ -24,7 +24,7 @@
 
         <local:CardView>
           <StackLayout Spacing="0">
-            <local:LabelSection Text="About the App">
+            <local:LabelSection Text="{Binding AppInfo}">
               <local:LabelSection.IsVisible>
                 <OnPlatform x:TypeArguments="x:Boolean" Android="True" iOS="False" WinPhone="True"/>
               </local:LabelSection.IsVisible>
