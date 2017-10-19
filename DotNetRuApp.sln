@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Targets", "Targets", "{B3B306B8-9A3D-4CD6-81FD-9C9EAB3C5788}"
 EndProject
@@ -87,8 +87,9 @@ Global
 		{C4B4592F-6AC4-4FE6-B63E-5D2DE47FD340}.UITest|ARM.ActiveCfg = UITest|Any CPU
 		{C4B4592F-6AC4-4FE6-B63E-5D2DE47FD340}.UITest|ARM.Build.0 = UITest|Any CPU
 		{C4B4592F-6AC4-4FE6-B63E-5D2DE47FD340}.UITest|ARM.Deploy.0 = UITest|Any CPU
-		{C4B4592F-6AC4-4FE6-B63E-5D2DE47FD340}.UITest|iPhone.ActiveCfg = UITest|iPhone
-		{C4B4592F-6AC4-4FE6-B63E-5D2DE47FD340}.UITest|iPhone.Build.0 = UITest|iPhone
+		{C4B4592F-6AC4-4FE6-B63E-5D2DE47FD340}.UITest|iPhone.ActiveCfg = UITest|Any CPU
+		{C4B4592F-6AC4-4FE6-B63E-5D2DE47FD340}.UITest|iPhone.Build.0 = UITest|Any CPU
+		{C4B4592F-6AC4-4FE6-B63E-5D2DE47FD340}.UITest|iPhone.Deploy.0 = UITest|Any CPU
 		{C4B4592F-6AC4-4FE6-B63E-5D2DE47FD340}.UITest|iPhoneSimulator.ActiveCfg = UITest|Any CPU
 		{C4B4592F-6AC4-4FE6-B63E-5D2DE47FD340}.UITest|iPhoneSimulator.Build.0 = UITest|Any CPU
 		{C4B4592F-6AC4-4FE6-B63E-5D2DE47FD340}.UITest|iPhoneSimulator.Deploy.0 = UITest|Any CPU
