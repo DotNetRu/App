@@ -21,10 +21,11 @@
     using XamarinEvolve.Utils;
     using XamarinEvolve.Utils.Helpers;
 
-    public class SessionsViewModel : ViewModelBase
+    public class MeetupViewModel : ViewModelBase
     {
         public FeaturedEvent Event { get; set; }
-        public SessionsViewModel(INavigation navigation, FeaturedEvent featuredEvent = null)
+
+        public MeetupViewModel(INavigation navigation, FeaturedEvent featuredEvent = null)
             : base(navigation)
         {
             this.Event = featuredEvent;
@@ -47,10 +48,7 @@
 
         public Session SelectedSession
         {
-            get
-            {
-                return this.selectedSession;
-            }
+            get => this.selectedSession;
 
             set
             {
@@ -68,10 +66,7 @@
 
         public string Filter
         {
-            get
-            {
-                return this.filter;
-            }
+            get => this.filter;
 
             set
             {
@@ -94,30 +89,18 @@
 
         public bool NoSessionsFound
         {
-            get
-            {
-                return this.noSessionsFound;
-            }
+            get => this.noSessionsFound;
 
-            set
-            {
-                this.SetProperty(ref this.noSessionsFound, value);
-            }
+            set => this.SetProperty(ref this.noSessionsFound, value);
         }
 
         string noSessionsFoundMessage;
 
         public string NoSessionsFoundMessage
         {
-            get
-            {
-                return this.noSessionsFoundMessage;
-            }
+            get => this.noSessionsFoundMessage;
 
-            set
-            {
-                this.SetProperty(ref this.noSessionsFoundMessage, value);
-            }
+            set => this.SetProperty(ref this.noSessionsFoundMessage, value);
         }
 
         #endregion
@@ -171,8 +154,6 @@
             this.IsBusy = false;
         }
 
-
-
         ICommand loadSessionsCommand;
 
         public ICommand LoadSessionsCommand => this.loadSessionsCommand
@@ -181,19 +162,21 @@
 
         List<Session> TalkToSessionConverter(IEnumerable<Talk> talks)
         {
-            return talks.Select(talk => new Session
-            {
-                Title = talk.Title,
-                Abstract = talk.Description,
-                PresentationUrl = talk.SlidesUrl,
-                VideoUrl = talk.VideoUrl,
-                CodeUrl = talk.CodeUrl,
-                ShortTitle = talk.Title, 
-                StartTime = this.Event.StartTime?.ToLocalTime().AddHours(15),   // TODO: It's a zaglushka
-                EndTime = this.Event.StartTime?.ToLocalTime().AddHours(18),
-                Speakers = SpeakerLoaderService.Speakers.Where(s => talk.SpeakerIds.Any(s1 => s1 == s.Id)).ToList()
-            }
-            ).ToList();
+            return talks.Select(
+                talk => new Session
+                            {
+                                Title = talk.Title,
+                                Abstract = talk.Description,
+                                PresentationUrl = talk.SlidesUrl,
+                                VideoUrl = talk.VideoUrl,
+                                CodeUrl = talk.CodeUrl,
+                                ShortTitle = talk.Title,
+                                StartTime =
+                                    this.Event.StartTime?.ToLocalTime().AddHours(15), // TODO: It's a zaglushka
+                                EndTime = this.Event.StartTime?.ToLocalTime().AddHours(18),
+                                Speakers = SpeakerLoaderService.Speakers
+                                    .Where(s => talk.SpeakerIds.Any(s1 => s1 == s.Id)).ToList()
+                            }).ToList();
         }
 
         List<Session> GetSessions()
@@ -203,19 +186,14 @@
             IEnumerable<Talk> sessions;
             using (var reader = new StreamReader(stream))
             {
-                var xRoot = new XmlRootAttribute
-                {
-                    ElementName = "Talks",
-                    IsNullable = false
-                };
+                var xRoot = new XmlRootAttribute { ElementName = "Talks", IsNullable = false };
                 var serializer = new XmlSerializer(typeof(List<Talk>), xRoot);
-                sessions = ((List<Talk>)serializer.Deserialize(reader)).Where(t => this.Event.EventTalksIds.Any(t1 => t1 == t.Id));
+                sessions = ((List<Talk>)serializer.Deserialize(reader)).Where(
+                    t => this.Event.EventTalksIds.Any(t1 => t1 == t.Id));
             }
 
             return this.TalkToSessionConverter(sessions);
         }
-
-
 
         async Task<bool> ExecuteLoadSessionsAsync(bool force = false)
         {
@@ -228,11 +206,7 @@
                 this.NoSessionsFound = false;
                 this.Filter = string.Empty;
 
-#if DEBUG
-                await Task.Delay(1000);
-#endif
-
-                this.Sessions.ReplaceRange(this.GetSessions()/*await StoreManager.SessionStore.GetItemsAsync(force)*/);
+                this.Sessions.ReplaceRange(this.GetSessions() /*await StoreManager.SessionStore.GetItemsAsync(force)*/);
 
                 this.SessionsFiltered.ReplaceRange(this.Sessions);
                 this.SortSessions();
@@ -287,4 +261,3 @@
         #endregion
     }
 }
-

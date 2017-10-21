@@ -13,107 +13,113 @@
 
         public override AppPage PageType => AppPage.Session;
 
-        SessionDetailsViewModel ViewModel => vm ?? (vm = BindingContext as SessionDetailsViewModel);
+        TalkViewModel ViewModel => this.talkViewModel ?? (this.talkViewModel = this.BindingContext as TalkViewModel);
 
-        SessionDetailsViewModel vm;
+        TalkViewModel talkViewModel;
 
         public SessionDetailsPage(Session session)
         {
-            InitializeComponent();
+            this.InitializeComponent();
 
-            _extension = DependencyService.Get<IPlatformSpecificExtension<Session>>();
+            this._extension = DependencyService.Get<IPlatformSpecificExtension<Session>>();
 
-            ItemId = session?.Title;
+            this.ItemId = session?.Title;
 
-            ListViewSpeakers.ItemSelected += async (sender, e) =>
+            this.ListViewSpeakers.ItemSelected += async (sender, e) =>
                 {
-                    var speaker = ListViewSpeakers.SelectedItem as Speaker;
+                    var speaker = this.ListViewSpeakers.SelectedItem as Speaker;
                     if (speaker == null) return;
 
                     ContentPage destination;
 
                     if (Device.OS == TargetPlatform.Windows || Device.OS == TargetPlatform.WinPhone)
                     {
-                        var speakerDetailsUwp = new SpeakerDetailsPageUWP(vm.Session.Id);
+                        var speakerDetailsUwp = new SpeakerDetailsPageUWP(this.talkViewModel.Session.Id);
                         speakerDetailsUwp.Speaker = speaker;
                         destination = speakerDetailsUwp;
                     }
                     else
                     {
-                        var speakerDetails = new SpeakerDetailsPage(vm.Session.Id);
+                        var speakerDetails = new SpeakerDetailsPage(this.talkViewModel.Session.Id);
                         speakerDetails.Speaker = speaker;
                         destination = speakerDetails;
                     }
 
-                    await NavigationService.PushAsync(Navigation, destination);
-                    ListViewSpeakers.SelectedItem = null;
+                    await NavigationService.PushAsync(this.Navigation, destination);
+                    this.ListViewSpeakers.SelectedItem = null;
                 };
 
-
-            ButtonRate.Clicked += async (sender, e) =>
+            this.ButtonRate.Clicked += async (sender, e) =>
                 {
                     await NavigationService.PushModalAsync(
-                        Navigation,
-                        new EvolveNavigationPage(new FeedbackPage(ViewModel.Session)));
+                        this.Navigation,
+                        new EvolveNavigationPage(new FeedbackPage(this.ViewModel.Session)));
                 };
-            BindingContext = new SessionDetailsViewModel(Navigation, session);
-            ViewModel.LoadSessionCommand.Execute(null);
+            this.BindingContext = new TalkViewModel(this.Navigation, session);
+            this.ViewModel.LoadSessionCommand.Execute(null);
 
         }
 
         void ListViewTapped(object sender, ItemTappedEventArgs e)
         {
-            var list = sender as ListView;
-            if (list == null) return;
+            if (!(sender is ListView list))
+            {
+                return;
+            }
+
             list.SelectedItem = null;
         }
 
         void MainScroll_Scrolled(object sender, ScrolledEventArgs e)
         {
-            if (e.ScrollY > SessionDate.Y) Title = ViewModel.Session.ShortTitle;
-            else Title = "Session Details";
+            if (e.ScrollY > this.SessionDate.Y)
+            {
+                this.Title = this.ViewModel.Session.ShortTitle;
+            }
+            else
+            {
+                this.Title = "Talk";
+            }
         }
 
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            MainScroll.Scrolled += MainScroll_Scrolled;
-            ListViewSpeakers.ItemTapped += ListViewTapped;
+            this.MainScroll.Scrolled += this.MainScroll_Scrolled;
+            this.ListViewSpeakers.ItemTapped += this.ListViewTapped;
 
-
-            var count = ViewModel?.Session?.Speakers?.Count ?? 0;
+            var count = this.ViewModel?.Session?.Speakers?.Count ?? 0;
             var adjust = Device.OS != TargetPlatform.Android ? 1 : -count + 1;
-            if ((ViewModel?.Session?.Speakers?.Count ?? 0) > 0)
-                ListViewSpeakers.HeightRequest = (count * ListViewSpeakers.RowHeight) - adjust;
+            if ((this.ViewModel?.Session?.Speakers?.Count ?? 0) > 0) this.ListViewSpeakers.HeightRequest = (count * this.ListViewSpeakers.RowHeight) - adjust;
 
-            if (_extension != null)
+            if (this._extension != null)
             {
-                await _extension.Execute(ViewModel.Session);
+                await this._extension.Execute(this.ViewModel.Session);
             }
         }
 
         protected override async void OnDisappearing()
         {
             base.OnDisappearing();
-            MainScroll.Scrolled -= MainScroll_Scrolled;
-            ListViewSpeakers.ItemTapped -= ListViewTapped;
+            this.MainScroll.Scrolled -= this.MainScroll_Scrolled;
+            this.ListViewSpeakers.ItemTapped -= this.ListViewTapped;
 
-            if (_extension != null)
+            if (this._extension != null)
             {
-                await _extension.Finish();
+                await this._extension.Finish();
             }
         }
 
         protected override void OnBindingContextChanged()
         {
             base.OnBindingContextChanged();
-            vm = null;
+            this.talkViewModel = null;
 
-            ListViewSpeakers.HeightRequest = 0;
+            this.ListViewSpeakers.HeightRequest = 0;
 
-            var adjust = Device.OS != TargetPlatform.Android ? 1 : -ViewModel.SessionMaterialItems.Count + 2;
-            ListViewSessionMaterial.HeightRequest =
-                (ViewModel.SessionMaterialItems.Count * ListViewSessionMaterial.RowHeight) - adjust;
+            var adjust = Device.OS != TargetPlatform.Android ? 1 : -this.ViewModel.SessionMaterialItems.Count + 2;
+            this.ListViewSessionMaterial.HeightRequest =
+                (this.ViewModel.SessionMaterialItems.Count * this.ListViewSessionMaterial.RowHeight) - adjust;
         }
     }
 }
