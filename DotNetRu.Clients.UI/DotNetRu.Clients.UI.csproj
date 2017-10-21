@@ -78,8 +78,8 @@
     <Compile Include="Pages\Sessions\FilterSessionsPage.xaml.cs">
       <DependentUpon>FilterSessionsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Sessions\SessionDetailsPage.xaml.cs">
-      <DependentUpon>SessionDetailsPage.xaml</DependentUpon>
+    <Compile Include="Pages\Sessions\TalkPage.xaml.cs">
+      <DependentUpon>TalkPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\NavigationView.cs" />
     <Compile Include="Cells\TextViewValue1.cs" />
@@ -298,9 +298,10 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <LogicalName>FilterSessionsPage.xaml</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pages\Sessions\SessionDetailsPage.xaml">
+    <EmbeddedResource Include="Pages\Sessions\TalkPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <LogicalName>SessionDetailsPage.xaml</LogicalName>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Cells\SpeakerCell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>

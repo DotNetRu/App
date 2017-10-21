@@ -17,9 +17,6 @@
         <local:HumanizeDateConverter x:Key="HumanizeDateConverter" />
      </ResourceDictionary>
     </ContentPage.Resources>
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Icon="toolbar_share.png" Text="Share" Command="{Binding ShareCommand}"/>
-    </ContentPage.ToolbarItems>
     <pull:PullToRefreshLayout
           IsPullToRefreshEnabled="True"
           RefreshCommand="{Binding RefreshCommand}"
@@ -58,52 +55,6 @@
 							BackgroundColor="{DynamicResource Primary}"
 							TextColor="White"
 							Command="{Binding ShowConferenceFeedbackCommand}"/>
-                    <local:FooterDivider/>
-                </StackLayout>
-            </local:CardView>
-
-             <local:CardView>
-                 <!--Notifications-->
-                 <StackLayout Spacing="0">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="34"/>
-                        </Grid.ColumnDefinitions>
-                        <local:LabelSection Text="Announcements"/>
-                    </Grid>
-                    <local:HeaderDivider/>
-                    <StackLayout IsVisible="{Binding LoadingNotifications}" 
-                                 HorizontalOptions="FillAndExpand" 
-                                 VerticalOptions="Center" 
-                                  BackgroundColor="White"
-                                  Padding="{StaticResource StandardPadding}">
-                        <ActivityIndicator IsRunning="{Binding LoadingNotifications}">
-                            <ActivityIndicator.Color>
-                                <OnPlatform x:TypeArguments="Color" Android="{StaticResource Accent}"/>
-                            </ActivityIndicator.Color>
-                        </ActivityIndicator>
-                        <Label Text="Loading Announcements..." 
-                               HorizontalOptions="Center" 
-                               Style="{DynamicResource EvolveListItemTextStyle}"/>
-                   </StackLayout>
-                    <StackLayout IsVisible="{Binding LoadingNotifications, Converter={StaticResource InvertedBooleanConverter}}}" 
-                                 HorizontalOptions="FillAndExpand" 
-                                 VerticalOptions="Center" 
-                                  BackgroundColor="White"
-                                  Padding="{StaticResource StandardPadding}"
-                                  x:Name="NotificationStack"
-                                  StyleId="AnnouncementItem" >
-                        <Label Text="{Binding Text}" 
-                               BindingContext="{Binding Notification}"
-                               Style="{DynamicResource EvolveListItemTextStyle}"
-                               StyleId="AnnouncementTitle" />
-
-                        <Label Text="{Binding Date, Converter={StaticResource HumanizeDateConverter}}"  
-                               BindingContext="{Binding Notification}"
-                               Style="{DynamicResource EvolveListItemDetailTextStyle}"
-                               StyleId="AnnouncementTime" />
-                   </StackLayout>
                     <local:FooterDivider/>
                 </StackLayout>
             </local:CardView>

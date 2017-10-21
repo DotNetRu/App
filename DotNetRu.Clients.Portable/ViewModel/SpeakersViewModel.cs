@@ -63,16 +63,6 @@
 
         #region Commands
 
-        private ICommand forceRefreshCommand;
-
-        public ICommand ForceRefreshCommand => this.forceRefreshCommand ?? (this.forceRefreshCommand =
-                new Command(async () => await this.ExecuteForceRefreshCommandAsync()));
-
-        private async Task ExecuteForceRefreshCommandAsync()
-        {
-            await this.ExecuteLoadSpeakersAsync(true);
-        }
-
         private ICommand loadSpeakersCommand;
 
         public ICommand LoadSpeakersCommand => this.loadSpeakersCommand ?? (this.loadSpeakersCommand =
@@ -81,7 +71,9 @@
         private async Task<bool> ExecuteLoadSpeakersAsync(bool force = false)
         {
             if (this.IsBusy)
+            {
                 return false;
+            }
 
             try
             {

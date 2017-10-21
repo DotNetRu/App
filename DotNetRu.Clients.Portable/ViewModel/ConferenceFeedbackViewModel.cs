@@ -149,7 +149,10 @@
 
         async Task ExecuteSubmitFeedbackCommandAsync()
         {
-            if (IsBusy) return;
+            if (IsBusy)
+            {
+                return;
+            }
 
             IsBusy = true;
             try
@@ -176,7 +179,7 @@
                         {
                             Title = "Feedback Received",
                             Message =
-                                $"Thanks for the feedback, we hope you had a great {EventInfo.EventName}.",
+                                $"Thanks for the feedback!",
                             Cancel = "OK",
                             OnCompleted = async () =>
                                 {

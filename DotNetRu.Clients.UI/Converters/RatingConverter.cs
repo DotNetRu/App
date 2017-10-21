@@ -1,75 +1,88 @@
-﻿using System;
-using Xamarin.Forms;
-using XamarinEvolve.DataObjects;
-using System.Globalization;
-
-namespace XamarinEvolve.Clients.UI
+﻿namespace XamarinEvolve.Clients.UI
 {
-	/// <summary>
-	/// Rating converter for display text
-	/// </summary>
-	class RatingConverter : IValueConverter
-	{
-		private static readonly string[] defaultValues = { "Choose a rating", "Not a fan", "It was ok", "Good", "Great", "Love it!" };
+    using System;
+    using System.Globalization;
 
-		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-		{
-			var rating = (int)value;
+    using Xamarin.Forms;
 
-			var values = defaultValues;
+    using XamarinEvolve.DataObjects;
+    using XamarinEvolve.Utils;
 
-			if (parameter != null && parameter is string)
-			{
-				values = ((string)parameter).Split(',');
-			}
+    /// <inheritdoc />
+    /// <summary>
+    /// Rating converter for display text
+    /// </summary>
+    public class RatingConverter : IValueConverter
+    {
+        private static readonly string[] defaultValues =
+            {
+                "Choose a rating", "Not a fan", "It was ok", "Good", "Great", "Love it!"                 
+            };
 
-			if (rating >= 0 && rating < values.Length)
-			{
-				return values[rating];
-			}
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var rating = (int)value;
 
-			return string.Empty;
-		}
+            var values = defaultValues;
 
-		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-		{
-			throw new NotImplementedException();
-		}
-	}
+            if (parameter is string s)
+            {
+                values = s.Split(',');
+            }
 
-	/// <summary>
-	/// Determins if the rating section should be visible
-	/// </summary>
-	class RatingVisibleConverter : IValueConverter
-	{
-		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-		{
+            if (rating >= 0 && rating < values.Length)
+            {
+                return values[rating];
+            }
 
-#if DEBUG || ENABLE_TEST_CLOUD
-			//return true;
-#endif
+            return string.Empty;
+        }
 
-			var session = value as Session;
-			if (session == null)
-				return false;
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
 
-			if (!session.StartTime.HasValue)
-				return false;
+    /// <inheritdoc />
+    /// <summary>
+    /// Determins if the rating section should be visible
+    /// </summary>
+    public class RatingVisibleConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (!FeatureFlags.TalkRatingVisible)
+            {
+                return false;
+            }
 
-			if (session.StartTime.Value == DateTime.MinValue)
-				return false;
+            if (!(value is Session session))
+            {
+                return false;
+            }
 
-			//if it has started or is about to start
-			if (session.StartTime.Value.AddMinutes(-15).ToUniversalTime() < DateTime.UtcNow)
-				return true;
+            if (!session.StartTime.HasValue)
+            {
+                return false;
+            }
 
-			return false;
-		}
+            if (session.StartTime.Value == DateTime.MinValue)
+            {
+                return false;
+            }
 
-		public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
-		{
-			throw new NotImplementedException();
-		}
-	}
+            // if it has started or is about to start
+            return session.StartTime.Value.AddMinutes(-15).ToUniversalTime() < DateTime.UtcNow;
+        }
 
+        public object ConvertBack(
+            object value,
+            Type targetType,
+            object parameter,
+            CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

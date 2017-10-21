@@ -1,20 +1,17 @@
 ﻿
-using Xamarin.Forms;
-using XamarinEvolve.Utils;
-
 namespace XamarinEvolve.Clients.UI
 {
-	using XamarinEvolve.Utils.Helpers;
+    using Xamarin.Forms;
 
-	public partial class MenuPageUWP : ContentPage
-	{
-		public MenuPageUWP()
-		{
-			InitializeComponent();
+    public partial class MenuPageUWP
+    {
+        public MenuPageUWP()
+        {
+            this.InitializeComponent();
 
-			Title = EventInfo.EventName;
-		}
+            this.Title = "TODO";
+        }
 
-		public ListView MenuList => ListViewMenu;
-	}
+        public ListView MenuList => this.ListViewMenu;
+    }
 }
