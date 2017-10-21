@@ -28,7 +28,10 @@
                                 IsLinkActive = true
                             };
 
-            if (Device.OS == TargetPlatform.iOS) entry.Thumbnail = ImageSource.FromFile("Icon.png");
+            if (Device.RuntimePlatform == Device.iOS)
+            {
+                entry.Thumbnail = ImageSource.FromFile("Icon.png");
+            }
 
             entry.KeyValues.Add("contentType", "Session");
             entry.KeyValues.Add("appName", AboutThisApp.AppName);
@@ -44,7 +47,10 @@
 
         public static string GetIndexName(this Session e)
         {
-            if (!e.StartTime.HasValue || !e.EndTime.HasValue || e.StartTime.Value.IsTba()) return "To be announced";
+            if (!e.StartTime.HasValue || !e.EndTime.HasValue || e.StartTime.Value.IsTba())
+            {
+                return "To be announced";
+            }
 
             var start = e.StartTime.Value.ToEventTimeZone();
 
@@ -60,7 +66,9 @@
         public static string GetSortName(this Session session)
         {
             if (!session.StartTime.HasValue || !session.EndTime.HasValue || session.StartTime.Value.IsTba())
+            {
                 return "To be announced";
+            }
 
             var start = session.StartTime.Value.ToEventTimeZone();
             var startString = start.ToString("t");
@@ -133,11 +141,8 @@
         {
             var tba = sessions.Where(s => !s.StartTime.HasValue || !s.EndTime.HasValue || s.StartTime.Value.IsTba());
 
-
-            var showPast = Settings.Current.ShowPastSessions;
             var showAllCategories = Settings.Current.ShowAllCategories;
             var filteredCategories = Settings.Current.FilteredCategories;
-            var utc = DateTime.UtcNow;
 
             var filteredCategoriesList = filteredCategories.Split('|');
 
@@ -147,8 +152,6 @@
             var grouped = (from session in sessions
                            where session.StartTime.HasValue && session.EndTime.HasValue
                                  && !session.StartTime.Value.IsTba()
-                                 && (showPast || (utc <= session.StartTime.Value
-                                                  || utc <= session.EndTime.Value.AddMinutes(20)))
                                  && (showAllCategories || (session?.Categories.Join(
                                                                filteredCategoriesList,
                                                                category => category.Name,

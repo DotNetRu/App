@@ -48,13 +48,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\SpeakerLoaderService.cs" />
     <Compile Include="TweetHelper.cs" />
-    <Compile Include="ViewModel\SessionsViewModel.cs" />
+    <Compile Include="ViewModel\MeetupViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="Model\Extensions\SessionExtensions.cs" />
     <Compile Include="ViewModel\FilterSessionsViewModel.cs" />
     <Compile Include="ViewModel\AboutViewModel.cs" />
     <Compile Include="Model\MenuItem.cs" />
-    <Compile Include="ViewModel\SessionDetailsViewModel.cs" />
+    <Compile Include="ViewModel\TalkViewModel.cs" />
     <Compile Include="ViewModel\SettingsViewModel.cs" />
     <Compile Include="Helpers\MessagingUtils.cs" />
     <Compile Include="ViewModel\SpeakerDetailsViewModel.cs" />

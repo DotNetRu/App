@@ -72,8 +72,8 @@
     <Compile Include="Converters\DateConverters.cs" />
     <Compile Include="Behaviors\StarBehavior.cs" />
     <Compile Include="Converters\RatingConverter.cs" />
-    <Compile Include="Pages\Sessions\SessionsPage.xaml.cs">
-      <DependentUpon>SessionsPage.xaml</DependentUpon>
+    <Compile Include="Pages\Sessions\MeetupPage.xaml.cs">
+      <DependentUpon>MeetupPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Sessions\FilterSessionsPage.xaml.cs">
       <DependentUpon>FilterSessionsPage.xaml</DependentUpon>
@@ -290,9 +290,10 @@
       <DeployService-Deploy>True</DeployService-Deploy>
       <LogicalName>success.png</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pages\Sessions\SessionsPage.xaml">
+    <EmbeddedResource Include="Pages\Sessions\MeetupPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <LogicalName>SessionsPage.xaml</LogicalName>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\Sessions\FilterSessionsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
