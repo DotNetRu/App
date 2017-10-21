@@ -1,28 +1,27 @@
-﻿using Xamarin.Forms;
-using System.Threading.Tasks;
-using XamarinEvolve.Utils;
-
-namespace XamarinEvolve.Clients.UI
+﻿namespace XamarinEvolve.Clients.UI
 {
-	using XamarinEvolve.Utils.Helpers;
+    using System.Threading.Tasks;
 
-	public partial class MenuPage : ContentPage
-	{
-		RootPageAndroid root;
-		public MenuPage(RootPageAndroid root)
-		{
-			this.root = root;
-			InitializeComponent();
+    using Xamarin.Forms;
 
-			this.Title = EventInfo.EventName;
+    public partial class MenuPage : ContentPage
+    {
+        RootPageAndroid root;
 
-			NavView.NavigationItemSelected += async (sender, e) =>
-			{
-				this.root.IsPresented = false;
+        public MenuPage(RootPageAndroid root)
+        {
+            this.root = root;
+            InitializeComponent();
 
-				await Task.Delay(225);
-				await this.root.NavigateAsync(e.Index);
-			};
-		}
-	}
+            this.Title = "TODO";
+
+            NavView.NavigationItemSelected += async (sender, e) =>
+                {
+                    this.root.IsPresented = false;
+
+                    await Task.Delay(225);
+                    await this.root.NavigateAsync(e.Index);
+                };
+        }
+    }
 }

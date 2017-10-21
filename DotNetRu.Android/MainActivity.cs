@@ -26,10 +26,9 @@
     using XamarinEvolve.Utils.Helpers;
 
     using Debug = System.Diagnostics.Debug;
-    using EventInfo = XamarinEvolve.Utils.Helpers.EventInfo;
 
     [Activity(
-        Label = EventInfo.EventShortName,
+        Label = AboutThisApp.AppName,
         Icon = "@drawable/ic_launcher",
         LaunchMode = LaunchMode.SingleTask,
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]

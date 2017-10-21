@@ -210,9 +210,12 @@
             return false;
         }
 
-        void ProcessNotification(NSDictionary userInfo)
+        private void ProcessNotification(NSDictionary userInfo)
         {
-            if (userInfo == null) return;
+            if (userInfo == null)
+            {
+                return;
+            }
 
             Console.WriteLine("Received Notification");
 
@@ -231,7 +234,7 @@
                     try
                     {
 
-                        var avAlert = new UIAlertView($"{EventInfo.EventName} Update", alert, null, "OK", null);
+                        var avAlert = new UIAlertView($"{AboutThisApp.AppName} Update", alert, null, "OK", null);
                         avAlert.Show();
 
                     }
