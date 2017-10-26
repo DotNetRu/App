@@ -1,9 +1,9 @@
-﻿using Xamarin.Forms;
+﻿using ToastIOS;
+
+using Xamarin.Forms;
+
 using XamarinEvolve.Clients.Portable;
 using XamarinEvolve.iOS;
-using ToastIOS;
-using UIKit;
-using CoreGraphics;
 
 [assembly:Dependency(typeof(Toaster))]
 namespace XamarinEvolve.iOS

@@ -11,11 +11,11 @@
         public MenuPage(RootPageAndroid root)
         {
             this.root = root;
-            InitializeComponent();
+            this.InitializeComponent();
 
             this.Title = "TODO";
 
-            NavView.NavigationItemSelected += async (sender, e) =>
+            this.NavView.NavigationItemSelected += async (sender, e) =>
                 {
                     this.root.IsPresented = false;
 

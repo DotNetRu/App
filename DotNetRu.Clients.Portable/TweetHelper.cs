@@ -54,11 +54,11 @@
                                     CreatedDate = tweet.CreatedAt,
                                     Url =
                                         $"https://twitter.com/{tweetUser.ScreenNameResponse}/status/{tweet.StatusID}",
-                                    Image = (tweet.RetweetedStatus?.User != null
+                                    Image = tweet.RetweetedStatus?.User != null
                                                  ? tweet.RetweetedStatus.User.ProfileImageUrl.Replace(
                                                      "http://",
                                                      "https://")
-                                                 : tweetUser.ProfileImageUrl.Replace("http://", "https://"))
+                                                 : tweetUser.ProfileImageUrl.Replace("http://", "https://")
                                 }).OrderByDescending(x => x.CreatedDate).Take(15).ToList();
 
                 return tweets;

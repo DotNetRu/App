@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Windows.Input;
-using Xamarin.Forms;
+
 using FormsToolkit;
-using Newtonsoft.Json;
+
 using Humanizer;
-using XamarinEvolve.Utils;
+
+using Newtonsoft.Json;
+
+using Xamarin.Forms;
 
 namespace XamarinEvolve.Clients.Portable
 {
@@ -16,33 +19,32 @@ namespace XamarinEvolve.Clients.Portable
         string _fullImage;
 
         [JsonIgnore]
-        public bool HasImage => !string.IsNullOrWhiteSpace(_tweetedImage);
+        public bool HasImage => !string.IsNullOrWhiteSpace(this._tweetedImage);
 
         [JsonProperty("tweetedImage")]
         public string TweetedImage
         {
-            get => _tweetedImage;
+            get => this._tweetedImage;
             set
             {
-                _tweetedImage = value;
-                _fullImage = value;
-                if (!string.IsNullOrWhiteSpace(_tweetedImage))
+                this._tweetedImage = value;
+                this._fullImage = value;
+                if (!string.IsNullOrWhiteSpace(this._tweetedImage))
                 {
-                    _tweetedImage += ":thumb";
+                    this._tweetedImage += ":thumb";
                 }
             }
         }
 
         ICommand _fullImageCommand;
 
-        public ICommand FullImageCommand =>
-            _fullImageCommand ?? (_fullImageCommand = new Command(ExecuteFullImageCommand));
+        public ICommand FullImageCommand => this._fullImageCommand ?? (this._fullImageCommand = new Command(this.ExecuteFullImageCommand));
 
         void ExecuteFullImageCommand()
         {
-            if (string.IsNullOrWhiteSpace(_fullImage))
+            if (string.IsNullOrWhiteSpace(this._fullImage))
                 return;
-            MessagingService.Current.SendMessage(MessageKeys.NavigateToImage, _fullImage);
+            MessagingService.Current.SendMessage(MessageKeys.NavigateToImage, this._fullImage);
         }
 
         [JsonProperty("text")]
@@ -64,13 +66,13 @@ namespace XamarinEvolve.Clients.Portable
         public DateTime CreatedDate { get; set; }
 
         [JsonIgnore]
-        public string TitleDisplay => Name;
+        public string TitleDisplay => this.Name;
 
         [JsonIgnore]
-        public string SubtitleDisplay => "@" + ScreenName;
+        public string SubtitleDisplay => "@" + this.ScreenName;
 
         [JsonIgnore]
-        public string DateDisplay => CreatedDate.Humanize();
+        public string DateDisplay => this.CreatedDate.Humanize();
 
         [JsonIgnore]
         public Uri TweetedImageUri
@@ -79,15 +81,16 @@ namespace XamarinEvolve.Clients.Portable
             {
                 try
                 {
-                    if (string.IsNullOrWhiteSpace(TweetedImage))
+                    if (string.IsNullOrWhiteSpace(this.TweetedImage))
                         return null;
 
-                    return new Uri(TweetedImage);
+                    return new Uri(this.TweetedImage);
                 }
                 catch
                 {
                     // TODO ignored
                 }
+
                 return null;
             }
         }

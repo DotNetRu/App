@@ -134,9 +134,9 @@ namespace XamarinEvolve.Clients.Portable.ViewModel
                 this.IsBusy = true;
 
                 // TODO: update data when we'll have finally managed to get them directly from github
-                this.Events?.ReplaceRange(GetEvents());
-                //Events.ReplaceRange(await StoreManager.EventStore.GetItemsAsync(force));
+                this.Events?.ReplaceRange(this.GetEvents());
 
+                // Events.ReplaceRange(await StoreManager.EventStore.GetItemsAsync(force));
                 this.Title = "Meetups"; // (" + this.Events?.Count(e => e.StartTime.HasValue) + ")";
 
                 this.SortEvents();
@@ -180,6 +180,7 @@ namespace XamarinEvolve.Clients.Portable.ViewModel
                 var serializer = new XmlSerializer(typeof(List<Meetup>), xRoot);
                 meetups = (List<Meetup>)serializer.Deserialize(reader);
             }
+
             return this.MeetupsToFeaturedEvents(meetups);
         }
     }

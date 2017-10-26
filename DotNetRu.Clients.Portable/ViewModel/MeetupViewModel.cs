@@ -23,8 +23,6 @@
 
     public class MeetupViewModel : ViewModelBase
     {
-        public FeaturedEvent Event { get; set; }
-
         public MeetupViewModel(INavigation navigation, FeaturedEvent featuredEvent = null)
             : base(navigation)
         {
@@ -32,60 +30,42 @@
             this.NextForceRefresh = DateTime.UtcNow.AddMinutes(45);
         }
 
-        public ObservableRangeCollection<Session> Sessions { get; } = new ObservableRangeCollection<Session>();
+        public ObservableRangeCollection<TalkModel> Sessions { get; } = new ObservableRangeCollection<TalkModel>();        
 
-        public ObservableRangeCollection<Session> SessionsFiltered { get; } = new ObservableRangeCollection<Session>();
-
-        public ObservableRangeCollection<Grouping<string, Session>> SessionsGrouped { get; } =
-            new ObservableRangeCollection<Grouping<string, Session>>();
+        public ObservableRangeCollection<Grouping<string, TalkModel>> SessionsGrouped { get; } =
+            new ObservableRangeCollection<Grouping<string, TalkModel>>();
 
         public DateTime NextForceRefresh { get; set; }
 
+        public FeaturedEvent Event { get; set; }
 
         #region Properties
 
-        Session selectedSession;
+        private TalkModel selectedTalkModel;
 
-        public Session SelectedSession
+        public TalkModel SelectedTalkModel
         {
-            get => this.selectedSession;
+            get => this.selectedTalkModel;
 
             set
             {
-                this.selectedSession = value;
+                this.selectedTalkModel = value;
                 this.OnPropertyChanged();
-                if (this.selectedSession == null) return;
+                if (this.selectedTalkModel == null)
+                {
+                    return;
+                }
 
-                MessagingService.Current.SendMessage(MessageKeys.NavigateToSession, this.selectedSession);
+                MessagingService.Current.SendMessage(MessageKeys.NavigateToSession, this.selectedTalkModel);
 
-                this.SelectedSession = null;
-            }
-        }
-
-        string filter = string.Empty;
-
-        public string Filter
-        {
-            get => this.filter;
-
-            set
-            {
-                if (this.SetProperty(ref this.filter, value)) this.ExecuteFilterSessionsAsync();
-
+                this.SelectedTalkModel = null;
             }
         }
 
         #endregion
 
-        #region Filtering and Sorting
-
-
-        void SortSessions()
-        {
-            this.SessionsGrouped.ReplaceRange(this.SessionsFiltered.FilterAndGroupByDate());
-        }
-
-        bool noSessionsFound;
+        private bool noSessionsFound;
+        private string noSessionsFoundMessage;
 
         public bool NoSessionsFound
         {
@@ -94,8 +74,6 @@
             set => this.SetProperty(ref this.noSessionsFound, value);
         }
 
-        string noSessionsFoundMessage;
-
         public string NoSessionsFoundMessage
         {
             get => this.noSessionsFoundMessage;
@@ -103,67 +81,29 @@
             set => this.SetProperty(ref this.noSessionsFoundMessage, value);
         }
 
-        #endregion
-
-
         #region Commands
 
-        ICommand forceRefreshCommand;
+        private ICommand forceRefreshCommand;
 
         public ICommand ForceRefreshCommand => this.forceRefreshCommand
                                                ?? (this.forceRefreshCommand = new Command(
                                                        async () => await this.ExecuteForceRefreshCommandAsync()));
 
-        async Task ExecuteForceRefreshCommandAsync()
+        public async Task ExecuteForceRefreshCommandAsync()
         {
             await this.ExecuteLoadSessionsAsync(true);
         }
 
-        ICommand filterSessionsCommand;
-
-        public ICommand FilterSessionsCommand => this.filterSessionsCommand
-                                                 ?? (this.filterSessionsCommand = new Command(
-                                                         async () => await this.ExecuteFilterSessionsAsync()));
-
-        async Task ExecuteFilterSessionsAsync()
-        {
-            this.IsBusy = true;
-            this.NoSessionsFound = false;
-
-            // Abort the current command if the user is typing fast
-            if (!string.IsNullOrEmpty(this.Filter))
-            {
-                var query = this.Filter;
-                await Task.Delay(250);
-                if (query != this.Filter) return;
-            }
-
-            this.SessionsFiltered.ReplaceRange(this.Sessions.Search(this.Filter));
-            this.SortSessions();
-
-            if (this.SessionsGrouped.Count == 0)
-            {
-                this.NoSessionsFoundMessage = "No Sessions Found";
-                this.NoSessionsFound = true;
-            }
-            else
-            {
-                this.NoSessionsFound = false;
-            }
-
-            this.IsBusy = false;
-        }
-
-        ICommand loadSessionsCommand;
+        private ICommand loadSessionsCommand;
 
         public ICommand LoadSessionsCommand => this.loadSessionsCommand
                                                ?? (this.loadSessionsCommand = new Command<bool>(
                                                        async (f) => await this.ExecuteLoadSessionsAsync()));
 
-        List<Session> TalkToSessionConverter(IEnumerable<Talk> talks)
+        private List<TalkModel> TalkToSessionConverter(IEnumerable<TalkEntity> talks)
         {
             return talks.Select(
-                talk => new Session
+                talk => new TalkModel
                             {
                                 Title = talk.Title,
                                 Abstract = talk.Description,
@@ -171,47 +111,45 @@
                                 VideoUrl = talk.VideoUrl,
                                 CodeUrl = talk.CodeUrl,
                                 ShortTitle = talk.Title,
-                                StartTime =
-                                    this.Event.StartTime?.ToLocalTime().AddHours(15), // TODO: It's a zaglushka
-                                EndTime = this.Event.StartTime?.ToLocalTime().AddHours(18),
                                 Speakers = SpeakerLoaderService.Speakers
                                     .Where(s => talk.SpeakerIds.Any(s1 => s1 == s.Id)).ToList()
                             }).ToList();
         }
 
-        List<Session> GetSessions()
+        private List<TalkModel> GetSessions()
         {
             var assembly = Assembly.Load(new AssemblyName("DotNetRu.DataStore.Audit"));
             var stream = assembly.GetManifestResourceStream("DotNetRu.DataStore.Audit.Storage.talks.xml");
-            IEnumerable<Talk> sessions;
+            IEnumerable<TalkEntity> sessions;
             using (var reader = new StreamReader(stream))
             {
-                var xRoot = new XmlRootAttribute { ElementName = "Talks", IsNullable = false };
-                var serializer = new XmlSerializer(typeof(List<Talk>), xRoot);
-                sessions = ((List<Talk>)serializer.Deserialize(reader)).Where(
+                var serializer = new XmlSerializer(typeof(List<TalkEntity>), new XmlRootAttribute("Talks"));
+                var deserialized = (List<TalkEntity>)serializer.Deserialize(reader);
+                
+                sessions = deserialized.Where(
                     t => this.Event.EventTalksIds.Any(t1 => t1 == t.Id));
             }
 
             return this.TalkToSessionConverter(sessions);
         }
 
-        async Task<bool> ExecuteLoadSessionsAsync(bool force = false)
+        private async Task<bool> ExecuteLoadSessionsAsync(bool force = false)
         {
-            if (this.IsBusy) return false;
+            if (this.IsBusy)
+            {
+                return false;
+            }
 
             try
             {
                 this.NextForceRefresh = DateTime.UtcNow.AddMinutes(45);
                 this.IsBusy = true;
                 this.NoSessionsFound = false;
-                this.Filter = string.Empty;
 
-                this.Sessions.ReplaceRange(this.GetSessions() /*await StoreManager.SessionStore.GetItemsAsync(force)*/);
+                var sessions = this.GetSessions();
+                this.Sessions.ReplaceRange(sessions);
 
-                this.SessionsFiltered.ReplaceRange(this.Sessions);
-                this.SortSessions();
-
-                if (this.SessionsGrouped.Count == 0)
+                if (sessions.Count == 0)
                 {
                     this.NoSessionsFoundMessage = "No Sessions Found";
                     this.NoSessionsFound = true;
@@ -221,8 +159,10 @@
                     this.NoSessionsFound = false;
                 }
 
-                if (Device.OS != TargetPlatform.WinPhone && Device.OS != TargetPlatform.Windows
-                    && FeatureFlags.AppLinksEnabled)
+                var day = this.Event.GetDate();
+                this.SessionsGrouped.ReplaceRange(new[] { new Grouping<string, TalkModel>(day, sessions) });
+
+                if (Device.RuntimePlatform != Device.UWP && FeatureFlags.AppLinksEnabled)
                 {
                     foreach (var session in this.Sessions)
                     {

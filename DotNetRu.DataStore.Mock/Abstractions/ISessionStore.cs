@@ -5,11 +5,11 @@
 
     using XamarinEvolve.DataObjects;
 
-    public interface ISessionStore : IBaseStore<Session>
+    public interface ISessionStore : IBaseStore<TalkModel>
     {
-        Task<IEnumerable<Session>> GetSpeakerSessionsAsync(string speakerId);
-        Task<IEnumerable<Session>> GetNextSessions(int maxNumber);
-        Task<Session> GetAppIndexSession (string id);
+        Task<IEnumerable<TalkModel>> GetSpeakerSessionsAsync(string speakerId);
+        Task<IEnumerable<TalkModel>> GetNextSessions(int maxNumber);
+        Task<TalkModel> GetAppIndexSession (string id);
     }
 }
 

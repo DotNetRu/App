@@ -28,7 +28,6 @@
 
     using XamarinEvolve.Clients.Portable;
     using XamarinEvolve.Clients.UI;
-    using XamarinEvolve.DataStore.Mock.Abstractions;
     using XamarinEvolve.Utils.Helpers;
 
     [Register("AppDelegate")]

@@ -1,5 +1,4 @@
-﻿using System;
-namespace XamarinEvolve.Clients.Portable
+﻿namespace XamarinEvolve.Clients.Portable
 {
 	public interface IProvidePageInfo
 	{

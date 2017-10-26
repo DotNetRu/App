@@ -28,24 +28,24 @@
         /// <value>The color.</value>
         public string Color { get; set; }
 
-        public virtual ICollection<Session> Sessions { get; set; }
+        public virtual ICollection<TalkModel> Sessions { get; set; }
 
         bool filtered;
         [JsonIgnore]
         public bool IsFiltered
         {
-            get { return filtered; }
-            set { SetProperty(ref filtered, value); }
+            get => this.filtered;
+            set => this.SetProperty(ref this.filtered, value);
         }
 
         bool enabled;
         [JsonIgnore]
         public bool IsEnabled
         {
-            get { return enabled; }
-            set { SetProperty(ref enabled, value); }
+            get => this.enabled;
+            set => this.SetProperty(ref this.enabled, value);
         }
         [JsonIgnore]
-        public string BadgeName => string.IsNullOrWhiteSpace(ShortName) ? Name : ShortName; 
+        public string BadgeName => string.IsNullOrWhiteSpace(this.ShortName) ? this.Name : this.ShortName; 
     }
 }

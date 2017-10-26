@@ -1,7 +1,10 @@
 // Helpers/Settings.cs
+
+using System.Threading.Tasks;
+
 using Plugin.Settings;
 using Plugin.Settings.Abstractions;
-using System.Threading.Tasks;
+
 using Xamarin.Forms;
 
 namespace XamarinEvolve.DataStore.Mock

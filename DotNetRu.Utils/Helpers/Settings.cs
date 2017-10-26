@@ -1,8 +1,10 @@
-using Plugin.Settings;
-using Plugin.Settings.Abstractions;
-using Xamarin.Forms;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+
+using Plugin.Settings;
+using Plugin.Settings.Abstractions;
+
+using Xamarin.Forms;
 
 namespace XamarinEvolve.Clients.Portable
 {
@@ -83,6 +85,7 @@ namespace XamarinEvolve.Clients.Portable
             {
                 return AppSettings.GetValueOrDefault(HasSetReminderKey, HasSetReminderDefault);
             }
+
             set
             {
                 AppSettings.AddOrUpdateValue(HasSetReminderKey, value);
@@ -99,6 +102,7 @@ namespace XamarinEvolve.Clients.Portable
             {
                 return AppSettings.GetValueOrDefault(EventCalendarKey, EventCalendarIdDefault);
             }
+
             set
             {
                 AppSettings.AddOrUpdateValue(EventCalendarKey, value);
@@ -116,6 +120,7 @@ namespace XamarinEvolve.Clients.Portable
             {
                 return AppSettings.GetValueOrDefault(PushNotificationsEnabledKey, PushNotificationsEnabledDefault);
             }
+
             set
             {
                 if (AppSettings.AddOrUpdateValue(PushNotificationsEnabledKey, value)) OnPropertyChanged();
@@ -132,6 +137,7 @@ namespace XamarinEvolve.Clients.Portable
             {
                 return AppSettings.GetValueOrDefault(FirstRunKey, FirstRunDefault);
             }
+
             set
             {
                 if (AppSettings.AddOrUpdateValue(FirstRunKey, value)) OnPropertyChanged();
@@ -148,6 +154,7 @@ namespace XamarinEvolve.Clients.Portable
             {
                 return AppSettings.GetValueOrDefault(GooglePlayCheckedKey, GooglePlayCheckedDefault);
             }
+
             set
             {
                 AppSettings.AddOrUpdateValue(GooglePlayCheckedKey, value);
@@ -164,6 +171,7 @@ namespace XamarinEvolve.Clients.Portable
             {
                 return AppSettings.GetValueOrDefault(AttemptedPushKey, AttemptedPushDefault);
             }
+
             set
             {
                 AppSettings.AddOrUpdateValue(AttemptedPushKey, value);
@@ -181,6 +189,7 @@ namespace XamarinEvolve.Clients.Portable
             {
                 return AppSettings.GetValueOrDefault(PushRegisteredKey, PushRegisteredDefault);
             }
+
             set
             {
                 AppSettings.AddOrUpdateValue(PushRegisteredKey, value);
@@ -201,6 +210,7 @@ namespace XamarinEvolve.Clients.Portable
             {
                 return AppSettings.GetValueOrDefault(ShowAllCategoriesKey, ShowAllCategoriesDefault);
             }
+
             set
             {
                 if (AppSettings.AddOrUpdateValue(ShowAllCategoriesKey, value)) OnPropertyChanged();
@@ -218,6 +228,7 @@ namespace XamarinEvolve.Clients.Portable
             {
                 return AppSettings.GetValueOrDefault(FilteredCategoriesKey, FilteredCategoriesDefault);
             }
+
             set
             {
                 if (AppSettings.AddOrUpdateValue(FilteredCategoriesKey, value)) OnPropertyChanged();
@@ -234,6 +245,7 @@ namespace XamarinEvolve.Clients.Portable
             {
                 return AppSettings.GetValueOrDefault(DatabaseIdKey, DatabaseIdDefault);
             }
+
             set
             {
                 AppSettings.AddOrUpdateValue(DatabaseIdKey, value);
@@ -253,6 +265,7 @@ namespace XamarinEvolve.Clients.Portable
             {
                 return isConnected;
             }
+
             set
             {
                 if (isConnected == value) return;

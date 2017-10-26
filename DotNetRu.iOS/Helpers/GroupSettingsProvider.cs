@@ -1,9 +1,7 @@
-﻿using System;
-using Foundation;
+﻿using Foundation;
 using Xamarin.Forms;
 using XamarinEvolve.Clients.Portable;
 using XamarinEvolve.iOS;
-using XamarinEvolve.Utils;
 
 [assembly:Dependency(typeof(GroupSettingsProvider))]
 
@@ -17,14 +15,12 @@ namespace XamarinEvolve.iOS
 
 		public string UserIdentifier
 		{
-			get
+			get => this._groupSettings.StringForKey(nameof(this.UserIdentifier));
+
+		    set
 			{
-				return _groupSettings.StringForKey(nameof(UserIdentifier));
-			}
-			set
-			{
-				_groupSettings.SetString(value, nameof(UserIdentifier));
-				_groupSettings.Synchronize();
+			    this._groupSettings.SetString(value, nameof(this.UserIdentifier));
+			    this._groupSettings.Synchronize();
 			}
 		}
 	}

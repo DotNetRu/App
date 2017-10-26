@@ -23,59 +23,59 @@
 
     public class TalkViewModel : ViewModelBase
     {
-        private Session session;
+        private TalkModel talkModel;
 
-        public Session Session
+        public TalkModel TalkModel
         {
-            get => this.session;
-            set => this.SetProperty(ref this.session, value);
+            get => this.talkModel;
+            set => this.SetProperty(ref this.talkModel, value);
         }
 
         public ObservableRangeCollection<MenuItem> SessionMaterialItems { get; } =
             new ObservableRangeCollection<MenuItem>();
 
-        public TalkViewModel(INavigation navigation, Session session)
+        public TalkViewModel(INavigation navigation, TalkModel talkModel)
             : base(navigation)
         {
-            this.Session = session;
-            if (this.Session.StartTime.HasValue)
+            this.TalkModel = talkModel;
+            if (this.TalkModel.StartTime.HasValue)
             {
-                this.ShowReminder = !this.Session.StartTime.Value.IsTba()
-                                    && this.Session.EndTime.Value.ToUniversalTime() <= DateTime.UtcNow;
+                this.ShowReminder = !this.TalkModel.StartTime.Value.IsTba()
+                                    && this.TalkModel.EndTime.Value.ToUniversalTime() <= DateTime.UtcNow;
             }
             else
             {
                 this.ShowReminder = false;
             }
 
-            if (!string.IsNullOrWhiteSpace(session.PresentationUrl))
+            if (!string.IsNullOrWhiteSpace(talkModel.PresentationUrl))
             {
                 this.SessionMaterialItems.Add(
                     new MenuItem
                         {
                             Name = "Presentation Slides",
-                            Parameter = session.PresentationUrl,
+                            Parameter = talkModel.PresentationUrl,
                             Icon = "icon_presentation.png"
                         });
             }
 
-            if (!string.IsNullOrWhiteSpace(session.VideoUrl))
+            if (!string.IsNullOrWhiteSpace(talkModel.VideoUrl))
             {
                 this.SessionMaterialItems.Add(
-                    new MenuItem { Name = "Talk Recording", Parameter = session.VideoUrl, Icon = "icon_video.png" });
+                    new MenuItem { Name = "Talk Recording", Parameter = talkModel.VideoUrl, Icon = "icon_video.png" });
             }
 
-            if (!string.IsNullOrWhiteSpace(session.CodeUrl))
+            if (!string.IsNullOrWhiteSpace(talkModel.CodeUrl))
             {
                 this.SessionMaterialItems.Add(
-                    new MenuItem {Name = "Code from Session", Parameter = session.CodeUrl, Icon="icon_code.png"});
+                    new MenuItem {Name = "Code from Session", Parameter = talkModel.CodeUrl, Icon="icon_code.png"});
             }
         }
 
 
-        public bool ShowSessionMaterials => SessionMaterialItems.Any();
+        public bool ShowSessionMaterials => this.SessionMaterialItems.Any();
 
-        MenuItem selectedSessionMaterialItem;
+        private MenuItem selectedSessionMaterialItem;
 
         public MenuItem SelectedSessionMaterialItem
         {
@@ -95,7 +95,7 @@
 
         public bool ShowReminder { get; set; }
 
-        bool isReminderSet;
+        private bool isReminderSet;
 
         public bool IsReminderSet
         {
@@ -104,9 +104,7 @@
             set => this.SetProperty(ref this.isReminderSet, value);
         }
 
-
-
-        Speaker selectedSpeaker;
+        private Speaker selectedSpeaker;
 
         public Speaker SelectedSpeaker
         {
@@ -124,7 +122,7 @@
             }
         }
 
-        ICommand reminderCommand;
+        private ICommand reminderCommand;
 
         public ICommand ReminderCommand => this.reminderCommand
                                            ?? (this.reminderCommand = new Command(
@@ -135,16 +133,16 @@
             if (!this.IsReminderSet)
             {
                 var result = await ReminderService.AddReminderAsync(
-                                 this.Session.Id,
+                                 this.TalkModel.Id,
                                  new Plugin.Calendars.Abstractions.CalendarEvent
                                      {
                                          AllDay = false,
-                                         Description = this.Session.Abstract,
-                                         Location = this.Session.Room?.Name
+                                         Description = this.TalkModel.Abstract,
+                                         Location = this.TalkModel.Room?.Name
                                              ?? string.Empty,
-                                         Name = this.Session.Title,
-                                         Start = this.Session.StartTime.Value,
-                                         End = this.Session.EndTime.Value
+                                         Name = this.TalkModel.Title,
+                                         Start = this.TalkModel.StartTime.Value,
+                                         End = this.TalkModel.EndTime.Value
                                      });
 
 
@@ -153,42 +151,44 @@
                     return;
                 }
 
-                this.Logger.Track(EvolveLoggerKeys.ReminderAdded, "Title", this.Session.Title);
+                this.Logger.Track(EvolveLoggerKeys.ReminderAdded, "Title", this.TalkModel.Title);
                 this.IsReminderSet = true;
             }
             else
             {
-                var result = await ReminderService.RemoveReminderAsync(this.Session.Id);
+                var result = await ReminderService.RemoveReminderAsync(this.TalkModel.Id);
                 if (!result) return;
-                this.Logger.Track(EvolveLoggerKeys.ReminderRemoved, "Title", this.Session.Title);
+                this.Logger.Track(EvolveLoggerKeys.ReminderRemoved, "Title", this.TalkModel.Title);
                 this.IsReminderSet = false;
             }
         }
 
-        ICommand shareCommand;
+        private ICommand shareCommand;
 
-        public ICommand ShareCommand => this.shareCommand ?? (this.shareCommand = new Command(async () => await this.ExecuteShareCommandAsync()));
+        public ICommand ShareCommand => this.shareCommand
+                                        ?? (this.shareCommand = new Command(
+                                                async () => await this.ExecuteShareCommandAsync()));
 
-        async Task ExecuteShareCommandAsync()
+        public async Task ExecuteShareCommandAsync()
         {
-            this.Logger.Track(EvolveLoggerKeys.Share, "Title", this.Session.Title);
-            var speakerHandles = this.Session.SpeakerHandles;
+            this.Logger.Track(EvolveLoggerKeys.Share, "Title", this.TalkModel.Title);
+            var speakerHandles = this.TalkModel.SpeakerHandles;
             if (!string.IsNullOrEmpty(speakerHandles))
             {
                 speakerHandles = " by " + speakerHandles;
             }
 
-            var message = $"Can't wait for {this.Session.Title}{speakerHandles} at {EventInfo.HashTag}!";
+            var message = $"Can't wait for {this.TalkModel.Title}{speakerHandles} at {EventInfo.HashTag}!";
 
             if (FeatureFlags.AppLinksEnabled)
             {
-                message += " " + this.Session.GetWebUrl();
+                message += " " + this.TalkModel.GetWebUrl();
             }
 
             await CrossShare.Current.Share(new ShareMessage { Text = message });
         }
 
-        ICommand loadSessionCommand;
+        private ICommand loadSessionCommand;
 
         public ICommand LoadSessionCommand => this.loadSessionCommand
                                               ?? (this.loadSessionCommand = new Command(
@@ -203,8 +203,8 @@
             {
                 this.IsBusy = true;
 
-                this.IsReminderSet = await ReminderService.HasReminderAsync(this.Session.Id);
-                this.Session.FeedbackLeft = await this.StoreManager.FeedbackStore.LeftFeedback(this.Session);
+                this.IsReminderSet = await ReminderService.HasReminderAsync(this.TalkModel.Id);
+                this.TalkModel.FeedbackLeft = await this.StoreManager.FeedbackStore.LeftFeedback(this.TalkModel);
 
 
             }

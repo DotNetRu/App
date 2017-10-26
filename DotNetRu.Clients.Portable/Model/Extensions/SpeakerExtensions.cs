@@ -17,8 +17,8 @@
 
             var entry = new AppLinkEntry
                             {
-                                Title = speaker.FullName ?? "",
-                                Description = speaker.Biography ?? "",
+                                Title = speaker.FullName ?? string.Empty,
+                                Description = speaker.Biography ?? string.Empty,
                                 AppLinkUri = new Uri(url, UriKind.RelativeOrAbsolute),
                                 IsLinkActive = true,
                             };

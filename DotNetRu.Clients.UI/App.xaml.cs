@@ -20,20 +20,20 @@
         public App()
         {
             current = this;
-            InitializeComponent();
+            this.InitializeComponent();
             ViewModelBase.Init();
+
             // The root page of your application
-            switch (Device.OS)
+            switch (Device.RuntimePlatform)
             {
-                case TargetPlatform.Android:
-                    MainPage = new RootPageAndroid();
+                case Device.Android:
+                    this.MainPage = new RootPageAndroid();
                     break;
-                case TargetPlatform.iOS:
-                    MainPage = new EvolveNavigationPage(new RootPageiOS());
+                case Device.iOS:
+                    this.MainPage = new EvolveNavigationPage(new RootPageiOS());
                     break;
-                case TargetPlatform.Windows:
-                case TargetPlatform.WinPhone:
-                    MainPage = new RootPageWindows();
+                case Device.UWP:
+                    this.MainPage = new RootPageWindows();
                     break;
                 default:
                     throw new NotImplementedException();
@@ -46,12 +46,12 @@
 
         protected override void OnStart()
         {
-            OnResume();
+            this.OnResume();
         }
 
         public void SecondOnResume()
         {
-            OnResume();
+            this.OnResume();
         }
 
         bool registered;
@@ -60,18 +60,19 @@
 
         protected override void OnResume()
         {
-            if (registered) return;
-            registered = true;
+            if (this.registered) return;
+            this.registered = true;
+
             // Handle when your app resumes
             Settings.Current.IsConnected = CrossConnectivity.Current.IsConnected;
-            CrossConnectivity.Current.ConnectivityChanged += ConnectivityChanged;
+            CrossConnectivity.Current.ConnectivityChanged += this.ConnectivityChanged;
 
             // Handle when your app starts
             MessagingService.Current.Subscribe<MessagingServiceAlert>(
                 MessageKeys.Message,
                 async (m, info) =>
                     {
-                        var task = Application.Current?.MainPage?.DisplayAlert(info.Title, info.Message, info.Cancel);
+                        var task = Current?.MainPage?.DisplayAlert(info.Title, info.Message, info.Cancel);
 
                         if (task == null) return;
 
@@ -79,16 +80,11 @@
                         info?.OnCompleted?.Invoke();
                     });
 
-
             MessagingService.Current.Subscribe<MessagingServiceQuestion>(
                 MessageKeys.Question,
                 async (m, q) =>
                     {
-                        var task = Application.Current?.MainPage?.DisplayAlert(
-                            q.Title,
-                            q.Question,
-                            q.Positive,
-                            q.Negative);
+                        var task = Current?.MainPage?.DisplayAlert(q.Title, q.Question, q.Positive, q.Negative);
                         if (task == null) return;
                         var result = await task;
                         q?.OnCompleted?.Invoke(result);
@@ -98,11 +94,7 @@
                 MessageKeys.Choice,
                 async (m, q) =>
                     {
-                        var task = Application.Current?.MainPage?.DisplayActionSheet(
-                            q.Title,
-                            q.Cancel,
-                            q.Destruction,
-                            q.Items);
+                        var task = Current?.MainPage?.DisplayActionSheet(q.Title, q.Cancel, q.Destruction, q.Items);
                         if (task == null) return;
                         var result = await task;
                         q?.OnCompleted?.Invoke(result);
@@ -110,9 +102,9 @@
 
             try
             {
-                if (firstRun || Device.OS != TargetPlatform.iOS) return;
+                if (this.firstRun || Device.RuntimePlatform != Device.iOS) return;
 
-                var mainNav = MainPage as NavigationPage;
+                var mainNav = this.MainPage as NavigationPage;
                 if (mainNav == null) return;
 
                 var rootPage = mainNav.CurrentPage as RootPageiOS;
@@ -127,12 +119,14 @@
                     about.OnResume();
                     return;
                 }
-                var sessions = rootNav.CurrentPage as SessionsPage;
+
+                var sessions = rootNav.CurrentPage as MeetupPage;
                 if (sessions != null)
                 {
                     sessions.OnResume();
                     return;
                 }
+
                 var feed = rootNav.CurrentPage as FeedPage;
                 if (feed != null)
                 {
@@ -145,13 +139,13 @@
             }
             finally
             {
-                firstRun = false;
+                this.firstRun = false;
             }
         }
 
         async Task Finish()
         {
-            if (Device.OS == TargetPlatform.iOS && Settings.Current.FirstRun)
+            if (Device.RuntimePlatform == Device.iOS && Settings.Current.FirstRun)
             {
 
 #if ENABLE_TEST_CLOUD
@@ -181,14 +175,14 @@ $"We can send you updates through {EventInfo.EventName} via push notifications. 
 
         public void SendOnAppLinkRequestReceived(Uri uri)
         {
-            OnAppLinkRequestReceived(uri);
+            this.OnAppLinkRequestReceived(uri);
         }
 
         protected override void OnAppLinkRequestReceived(Uri uri)
         {
             var data = uri.ToString().ToLowerInvariant();
 
-            //only if deep linking
+            // only if deep linking
             if (!data.Contains($"/{AboutThisApp.SessionsSiteSubdirectory.ToLowerInvariant()}/")
                 && !data.Contains($"/{AboutThisApp.SpeakersSiteSubdirectory.ToLowerInvariant()}/")) return;
 
@@ -201,9 +195,10 @@ $"We can send you updates through {EventInfo.EventName} via push notifications. 
                 {
                     destination = AppPage.Speaker;
                 }
+
                 MessagingService.Current.SendMessage(
                     "DeepLinkPage",
-                    new DeepLinkPage { Page = destination, Id = id.Replace("#", "") });
+                    new DeepLinkPage { Page = destination, Id = id.Replace("#", string.Empty) });
             }
 
             base.OnAppLinkRequestReceived(uri);
@@ -211,21 +206,21 @@ $"We can send you updates through {EventInfo.EventName} via push notifications. 
 
         protected override void OnSleep()
         {
-            if (!registered) return;
+            if (!this.registered) return;
 
-            registered = false;
+            this.registered = false;
             MessagingService.Current.Unsubscribe(MessageKeys.NavigateLogin);
             MessagingService.Current.Unsubscribe<MessagingServiceQuestion>(MessageKeys.Question);
             MessagingService.Current.Unsubscribe<MessagingServiceAlert>(MessageKeys.Message);
             MessagingService.Current.Unsubscribe<MessagingServiceChoice>(MessageKeys.Choice);
 
             // Handle when your app sleeps
-            CrossConnectivity.Current.ConnectivityChanged -= ConnectivityChanged;
+            CrossConnectivity.Current.ConnectivityChanged -= this.ConnectivityChanged;
         }
 
         protected void ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
         {
-            //save current state and then set it
+            // save current state and then set it
             var connected = Settings.Current.IsConnected;
             Settings.Current.IsConnected = e.IsConnected;
             if (connected && !e.IsConnected)

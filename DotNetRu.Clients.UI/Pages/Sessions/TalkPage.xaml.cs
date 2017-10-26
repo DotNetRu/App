@@ -7,41 +7,43 @@
     using XamarinEvolve.Clients.Portable;
     using XamarinEvolve.DataObjects;
 
-    public partial class SessionDetailsPage
+    public partial class TalkPage
     {
-        private IPlatformSpecificExtension<Session> _extension;
+        private readonly IPlatformSpecificExtension<TalkModel> extension;
 
         public override AppPage PageType => AppPage.Session;
 
-        TalkViewModel ViewModel => this.talkViewModel ?? (this.talkViewModel = this.BindingContext as TalkViewModel);
+        public TalkViewModel ViewModel => this.talkViewModel ?? (this.talkViewModel = this.BindingContext as TalkViewModel);
 
-        TalkViewModel talkViewModel;
+        private TalkViewModel talkViewModel;
 
-        public SessionDetailsPage(Session session)
+        public TalkPage(TalkModel talkModel)
         {
             this.InitializeComponent();
 
-            this._extension = DependencyService.Get<IPlatformSpecificExtension<Session>>();
+            this.extension = DependencyService.Get<IPlatformSpecificExtension<TalkModel>>();
 
-            this.ItemId = session?.Title;
+            this.ItemId = talkModel?.Title;
 
             this.ListViewSpeakers.ItemSelected += async (sender, e) =>
                 {
-                    var speaker = this.ListViewSpeakers.SelectedItem as Speaker;
-                    if (speaker == null) return;
+                    if (!(this.ListViewSpeakers.SelectedItem is Speaker speaker))
+                    {
+                        return;
+                    }
 
                     ContentPage destination;
 
-                    if (Device.OS == TargetPlatform.Windows || Device.OS == TargetPlatform.WinPhone)
+                    if (Device.RuntimePlatform == Device.UWP)
                     {
-                        var speakerDetailsUwp = new SpeakerDetailsPageUWP(this.talkViewModel.Session.Id);
-                        speakerDetailsUwp.Speaker = speaker;
+                        var speakerDetailsUwp =
+                            new SpeakerDetailsPageUWP(this.talkViewModel.TalkModel.Id) { Speaker = speaker };
                         destination = speakerDetailsUwp;
                     }
                     else
                     {
-                        var speakerDetails = new SpeakerDetailsPage(this.talkViewModel.Session.Id);
-                        speakerDetails.Speaker = speaker;
+                        var speakerDetails =
+                            new SpeakerDetailsPage(this.talkViewModel.TalkModel.Id) { Speaker = speaker };
                         destination = speakerDetails;
                     }
 
@@ -53,14 +55,14 @@
                 {
                     await NavigationService.PushModalAsync(
                         this.Navigation,
-                        new EvolveNavigationPage(new FeedbackPage(this.ViewModel.Session)));
+                        new EvolveNavigationPage(new FeedbackPage(this.ViewModel.TalkModel)));
                 };
-            this.BindingContext = new TalkViewModel(this.Navigation, session);
+            this.BindingContext = new TalkViewModel(this.Navigation, talkModel);
             this.ViewModel.LoadSessionCommand.Execute(null);
 
         }
 
-        void ListViewTapped(object sender, ItemTappedEventArgs e)
+        public void ListViewTapped(object sender, ItemTappedEventArgs e)
         {
             if (!(sender is ListView list))
             {
@@ -70,16 +72,9 @@
             list.SelectedItem = null;
         }
 
-        void MainScroll_Scrolled(object sender, ScrolledEventArgs e)
+        public void MainScroll_Scrolled(object sender, ScrolledEventArgs e)
         {
-            if (e.ScrollY > this.SessionDate.Y)
-            {
-                this.Title = this.ViewModel.Session.ShortTitle;
-            }
-            else
-            {
-                this.Title = "Talk";
-            }
+            this.Title = e.ScrollY > this.SessionDate.Y ? this.ViewModel.TalkModel.ShortTitle : "Talk";
         }
 
         protected override async void OnAppearing()
@@ -88,13 +83,16 @@
             this.MainScroll.Scrolled += this.MainScroll_Scrolled;
             this.ListViewSpeakers.ItemTapped += this.ListViewTapped;
 
-            var count = this.ViewModel?.Session?.Speakers?.Count ?? 0;
-            var adjust = Device.OS != TargetPlatform.Android ? 1 : -count + 1;
-            if ((this.ViewModel?.Session?.Speakers?.Count ?? 0) > 0) this.ListViewSpeakers.HeightRequest = (count * this.ListViewSpeakers.RowHeight) - adjust;
-
-            if (this._extension != null)
+            var count = this.ViewModel?.TalkModel?.Speakers?.Count ?? 0;
+            var adjust = Device.RuntimePlatform != Device.Android ? 1 : -count + 1;
+            if ((this.ViewModel?.TalkModel?.Speakers?.Count ?? 0) > 0)
             {
-                await this._extension.Execute(this.ViewModel.Session);
+                this.ListViewSpeakers.HeightRequest = (count * this.ListViewSpeakers.RowHeight) - adjust;
+            }
+
+            if (this.extension != null)
+            {
+                await this.extension.Execute(this.ViewModel.TalkModel);
             }
         }
 
@@ -104,9 +102,9 @@
             this.MainScroll.Scrolled -= this.MainScroll_Scrolled;
             this.ListViewSpeakers.ItemTapped -= this.ListViewTapped;
 
-            if (this._extension != null)
+            if (this.extension != null)
             {
-                await this._extension.Finish();
+                await this.extension.Finish();
             }
         }
 
@@ -117,7 +115,7 @@
 
             this.ListViewSpeakers.HeightRequest = 0;
 
-            var adjust = Device.OS != TargetPlatform.Android ? 1 : -this.ViewModel.SessionMaterialItems.Count + 2;
+            var adjust = Device.RuntimePlatform != Device.Android ? 1 : -this.ViewModel.SessionMaterialItems.Count + 2;
             this.ListViewSessionMaterial.HeightRequest =
                 (this.ViewModel.SessionMaterialItems.Count * this.ListViewSessionMaterial.RowHeight) - adjust;
         }

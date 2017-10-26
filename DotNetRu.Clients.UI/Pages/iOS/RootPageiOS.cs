@@ -13,19 +13,19 @@
 
     public class RootPageiOS : TabbedPage
     {
-
         public RootPageiOS()
         {
             NavigationPage.SetHasNavigationBar(this, false);
-            Children.Add(new EvolveNavigationPage(new FeedPage()));
-                Children.Add(new EvolveNavigationPage(new SpeakersPage()));
+            this.Children.Add(new EvolveNavigationPage(new FeedPage()));
+            this.Children.Add(new EvolveNavigationPage(new SpeakersPage()));
 
-            Children.Add(new EvolveNavigationPage(new EventsPage()));
+            this.Children.Add(new EvolveNavigationPage(new EventsPage()));
             if (FeatureFlags.SponsorsOnTabPage)
             {
-                Children.Add(new EvolveNavigationPage(new SponsorsPage()));
+                this.Children.Add(new EvolveNavigationPage(new SponsorsPage()));
             }
-            Children.Add(new EvolveNavigationPage(new AboutPage()));
+
+            this.Children.Add(new EvolveNavigationPage(new AboutPage()));
 
             MessagingService.Current.Subscribe<DeepLinkPage>(
                 "DeepLinkPage",
@@ -34,30 +34,37 @@
                         switch (p.Page)
                         {
                             case AppPage.Notification:
-                                Navigate(AppPage.Feed);
-                                Navigate(AppPage.Notification);
-                                await CurrentPage.Navigation.PopToRootAsync();
-                                await CurrentPage.Navigation.PushAsync(new NotificationsPage());
+                                this.Navigate(AppPage.Feed);
+                                this.Navigate(AppPage.Notification);
+                                await this.CurrentPage.Navigation.PopToRootAsync();
+                                await this.CurrentPage.Navigation.PushAsync(new NotificationsPage());
                                 break;
                             case AppPage.Events:
-                                Navigate(AppPage.Events);
-                                await CurrentPage.Navigation.PopToRootAsync();
+                                this.Navigate(AppPage.Events);
+                                await this.CurrentPage.Navigation.PopToRootAsync();
                                 break;
                             case AppPage.Session:
-                                Navigate(AppPage.Sessions);
-                                await CurrentPage.Navigation.PopToRootAsync();
+                                this.Navigate(AppPage.Sessions);
+                                await this.CurrentPage.Navigation.PopToRootAsync();
                                 var session = await DependencyService.Get<ISessionStore>().GetAppIndexSession(p.Id);
-                                if (session == null) break;
-                                await CurrentPage.Navigation.PushAsync(new SessionDetailsPage(session));
+                                if (session == null)
+                                {
+                                    break;
+                                }
+
+                                await this.CurrentPage.Navigation.PushAsync(new TalkPage(session));
                                 break;
                             case AppPage.Speaker:
-                                Navigate(AppPage.Speakers);
-                                await CurrentPage.Navigation.PopToRootAsync();
+                                this.Navigate(AppPage.Speakers);
+                                await this.CurrentPage.Navigation.PopToRootAsync();
                                 var speaker = await DependencyService.Get<ISpeakerStore>().GetAppIndexSpeaker(p.Id);
-                                if (speaker == null) break;
+                                if (speaker == null)
+                                {
+                                    break;
+                                }
 
                                 ContentPage destination;
-                                if (Device.OS == TargetPlatform.Windows || Device.OS == TargetPlatform.WinPhone)
+                                if (Device.RuntimePlatform == Device.UWP)
                                 {
                                     destination = new SpeakerDetailsPageUWP(speaker);
                                 }
@@ -65,7 +72,8 @@
                                 {
                                     destination = new SpeakerDetailsPage(speaker);
                                 }
-                                await CurrentPage.Navigation.PushAsync(destination);
+
+                                await this.CurrentPage.Navigation.PushAsync(destination);
                                 break;
                         }
                     });
@@ -73,12 +81,12 @@
 
         public void Navigate(AppPage menuId)
         {
-            var page = Children.OfType<EvolveNavigationPage>().FirstOrDefault(
+            var page = this.Children.OfType<EvolveNavigationPage>().FirstOrDefault(
                 n => n.CurrentPage is IProvidePageInfo && ((IProvidePageInfo)n.CurrentPage).PageType == menuId);
 
             if (page != null)
             {
-                CurrentPage = page;
+                this.CurrentPage = page;
             }
         }
 
@@ -93,5 +101,3 @@
         }
     }
 }
-
-

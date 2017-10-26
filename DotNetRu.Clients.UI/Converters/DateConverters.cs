@@ -1,28 +1,29 @@
-﻿using System;
-using Xamarin.Forms;
-using XamarinEvolve.Clients.Portable;
-using System.Globalization;
-using XamarinEvolve.DataObjects;
-using Humanizer;
-using System.Diagnostics;
-using XamarinEvolve.Utils;
-
-namespace XamarinEvolve.Clients.UI
+﻿namespace XamarinEvolve.Clients.UI
 {
+    using System;
+    using System.Diagnostics;
+    using System.Globalization;
+
+    using Humanizer;
+
+    using Xamarin.Forms;
+
+    using XamarinEvolve.Clients.Portable;
+    using XamarinEvolve.DataObjects;
     using XamarinEvolve.Utils.Extensions;
 
-    class SessionTimeDisplayConverter : IValueConverter
+    public class SessionTimeDisplayConverter : IValueConverter
     {
-
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             try
             {
-                var session = value as Session;
-                if(session == null)
+                if (!(value is TalkModel session))
+                {
                     return string.Empty;
+                }
 
-                return Device.OS == TargetPlatform.iOS ? session.GetDisplayTime() : session.GetDisplayName();
+                return Device.RuntimePlatform == Device.iOS ? session.GetDisplayTime() : session.GetDisplayName();
             }
             catch (Exception ex)
             {
@@ -40,17 +41,18 @@ namespace XamarinEvolve.Clients.UI
     }
 
 
-    class SessionDateDisplayConverter : IValueConverter
+    public class TalkDateDisplayConverter : IValueConverter
     {
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             try
             {
-                var session = value as Session;
-                if(session == null)
+                if (!(value is TalkModel session))
+                {
                     return string.Empty;
-                
+                }
+
                 return session.GetDisplayName();
             }
             catch (Exception ex)
@@ -69,17 +71,17 @@ namespace XamarinEvolve.Clients.UI
     }
 
 
-    class EventDateDisplayConverter : IValueConverter
+    public class EventDateDisplayConverter : IValueConverter
     {
-
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             try
             {
-                var featured = value as FeaturedEvent;
-                if(featured == null)
+                if (!(value is FeaturedEvent featured))
+                {
                     return string.Empty;
-                
+                }
+
                 return featured.GetDisplayName();
             }
             catch (Exception ex)
@@ -96,17 +98,17 @@ namespace XamarinEvolve.Clients.UI
             throw new NotImplementedException();
         }
     }
-        
-    class EventTimeDisplayConverter : IValueConverter
-    {
 
+    public class EventTimeDisplayConverter : IValueConverter
+    {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             try
             {
-                var featured = value as FeaturedEvent;
-                if(featured == null)
+                if (!(value is FeaturedEvent featured))
+                {
                     return string.Empty;
+                }
 
                 return featured.GetDisplayTime();
             }
@@ -125,15 +127,16 @@ namespace XamarinEvolve.Clients.UI
         }
     }
 
-    class EventDayNumberDisplayConverter : IValueConverter
+    public class EventDayNumberDisplayConverter : IValueConverter
     {
-
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             try
             {
-                if(!(value is DateTime))
+                if (!(value is DateTime))
+                {
                     return string.Empty;
+                }
 
                 return ((DateTime)value).ToEventTimeZone().Day;
             }
@@ -152,17 +155,19 @@ namespace XamarinEvolve.Clients.UI
         }
     }
 
-    class EventDayDisplayConverter : IValueConverter
+    public class EventDayDisplayConverter : IValueConverter
     {
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             try
             {
-                if(!(value is DateTime))
+                if (!(value is DateTime))
+                {
                     return string.Empty;
+                }
 
-                return ((DateTime)value).ToEventTimeZone().DayOfWeek.ToString().Substring(0,3).ToUpperInvariant();
+                return ((DateTime)value).ToEventTimeZone().DayOfWeek.ToString().Substring(0, 3).ToUpperInvariant();
             }
             catch (Exception ex)
             {
@@ -179,18 +184,20 @@ namespace XamarinEvolve.Clients.UI
         }
     }
 
-    class EventColorDisplayConverter : IValueConverter
+    public class EventColorDisplayConverter : IValueConverter
     {
-
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             try
             {
+                if (!(value is DateTime))
+                {
+                    return (Color)Application.Current.Resources["Primary"];
+                }
 
-                if(!(value is DateTime))
-					return (Color) Application.Current.Resources["Primary"];
-
-                return DateTime.UtcNow > ((DateTime)value).ToUniversalTime() ? Color.FromHex("D3D2D2") : (Color)Application.Current.Resources["Primary"];
+                return DateTime.UtcNow > ((DateTime)value).ToUniversalTime()
+                           ? Color.FromHex("D3D2D2")
+                           : (Color)Application.Current.Resources["Primary"];
             }
             catch (Exception ex)
             {
@@ -207,17 +214,17 @@ namespace XamarinEvolve.Clients.UI
         }
     }
 
-    class HumanizeDateConverter : IValueConverter
+    public class HumanizeDateConverter : IValueConverter
     {
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             try
             {
-                if (value is DateTime) 
+                if (value is DateTime)
                 {
-                    var date = ((DateTime)value);
-                    if (date.Kind == DateTimeKind.Local) 
+                    var date = (DateTime)value;
+                    if (date.Kind == DateTimeKind.Local)
                     {
                         return date.Humanize(false);
                     }
@@ -240,4 +247,3 @@ namespace XamarinEvolve.Clients.UI
         }
     }
 }
-

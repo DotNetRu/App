@@ -1,6 +1,7 @@
 ﻿namespace XamarinEvolve.DataStore.Mock.Stores
 {
     using System;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     using XamarinEvolve.DataStore.Mock.Abstractions;
@@ -13,31 +14,38 @@
         {
             
         }
-        public virtual System.Threading.Tasks.Task InitializeStore()
+
+        public virtual Task InitializeStore()
         {
             throw new NotImplementedException();
         }
-        public virtual System.Threading.Tasks.Task<System.Collections.Generic.IEnumerable<T>> GetItemsAsync(bool forceRefresh = false)
+
+        public virtual Task<IEnumerable<T>> GetItemsAsync(bool forceRefresh = false)
         {
             throw new NotImplementedException();
         }
-        public virtual System.Threading.Tasks.Task<T> GetItemAsync(string id)
+
+        public virtual Task<T> GetItemAsync(string id)
         {
             throw new NotImplementedException();
         }
-        public virtual System.Threading.Tasks.Task<bool> InsertAsync(T item)
+
+        public virtual Task<bool> InsertAsync(T item)
         {
             throw new NotImplementedException();
         }
-        public virtual System.Threading.Tasks.Task<bool> UpdateAsync(T item)
+
+        public virtual Task<bool> UpdateAsync(T item)
         {
             throw new NotImplementedException();
         }
-        public virtual System.Threading.Tasks.Task<bool> RemoveAsync(T item)
+
+        public virtual Task<bool> RemoveAsync(T item)
         {
             throw new NotImplementedException();
         }
-        public virtual System.Threading.Tasks.Task<bool> SyncAsync()
+
+        public virtual Task<bool> SyncAsync()
         {
             return Task.FromResult(true);
         }
