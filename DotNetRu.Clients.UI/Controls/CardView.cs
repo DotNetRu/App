@@ -6,12 +6,12 @@ namespace XamarinEvolve.Clients.UI
     {
         public CardView()
         {
-            Padding = 0;
-            if (Device.OS == TargetPlatform.iOS)
+            this.Padding = 0;
+            if (Device.RuntimePlatform == Device.iOS)
             {
-                HasShadow = false;
-                OutlineColor = Color.Transparent;
-                BackgroundColor = Color.Transparent;
+                this.HasShadow = false;
+                this.OutlineColor = Color.Transparent;
+                this.BackgroundColor = Color.Transparent;
             }
         }
     }

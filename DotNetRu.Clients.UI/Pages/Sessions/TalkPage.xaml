@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <local:BasePage 
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-    x:Class="XamarinEvolve.Clients.UI.SessionDetailsPage"
+    x:Class="XamarinEvolve.Clients.UI.TalkPage"
     xmlns:local="clr-namespace:XamarinEvolve.Clients.UI;assembly=XamarinEvolve.Clients.UI"
     xmlns:imagecircle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
     xmlns:toolkit="clr-namespace:FormsToolkit;assembly=FormsToolkit"
@@ -12,7 +12,7 @@
     <ContentPage.Resources>
      <ResourceDictionary>
         <toolkit:HexToColorConverter x:Key="StringToColorConverter" />
-        <local:SessionDateDisplayConverter x:Key="SessionDateDisplayConverter" />
+        <local:TalkDateDisplayConverter x:Key="SessionDateDisplayConverter" />
         <local:HasReminderTextConverter x:Key="HasReminderTextConverter" />
         <local:IsFilledIconConverter x:Key="IsFilledIconConverter" />
         <toolkit:HasDataConverter x:Key="GenericIsVisibleConverter"/>
@@ -32,14 +32,14 @@
                    HorizontalOptions="FillAndExpand" 
                    BackgroundColor="{DynamicResource Primary}">
                     <Label
-                        Text="{Binding Session.Title}"
+                        Text="{Binding TalkModel.Title}"
                         FontSize="Large"
                         Style="{DynamicResource TitleStyle}"
                         TextColor="White"
                         StyleId="SessionTitle"/>
                     <Label
                         x:Name="SessionDate"
-                        Text="{Binding Session, Converter={StaticResource SessionDateDisplayConverter}}"
+                        Text="{Binding TalkModel, Converter={StaticResource SessionDateDisplayConverter}}"
                         Style="{DynamicResource EvolveDetailTextStyle}"
                         TextColor="White"
                         StyleId="SessionDate"/>
@@ -50,7 +50,7 @@
                     Padding="{DynamicResource CardPadding}">
 
 
-                     <local:CardView IsVisible="{Binding Session.Speakers, Converter={StaticResource GenericIsVisibleConverter}}">
+                     <local:CardView IsVisible="{Binding TalkModel.Speakers, Converter={StaticResource GenericIsVisibleConverter}}">
                          <!--Speakers-->
                          <StackLayout Spacing="0">
                             <local:LabelSection Text="Speakers"/>
@@ -71,7 +71,7 @@
                            </StackLayout>
                             <local:NonScrollableListView 
                                 x:Name="ListViewSpeakers"
-                                ItemsSource="{Binding Session.Speakers}"
+                                ItemsSource="{Binding TalkModel.Speakers}"
                                 StyleId="SessionSpeakers"
                                 RowHeight="88"> 
                                 <local:NonScrollableListView.SeparatorColor>
@@ -138,10 +138,10 @@
                                 <StackLayout Padding="{StaticResource StandardPadding}" BackgroundColor="White" StyleId="RateCardBox">
                                           <Label Text="Thanks for your feedback!" 
                                                    HorizontalOptions="Center" 
-                                                   IsVisible="{Binding Session.FeedbackLeft}"
+                                                   IsVisible="{Binding TalkModel.FeedbackLeft}"
                                                    Style="{DynamicResource EvolveListItemTextStyle}"/>
                                         <Button
-                                            IsVisible="{Binding Session.FeedbackLeft, Converter={StaticResource InvertedBooleanConverter}}"
+                                            IsVisible="{Binding TalkModel.FeedbackLeft, Converter={StaticResource InvertedBooleanConverter}}"
                                             Text="Rate this Session"                                     
                                             x:Name="ButtonRate">
                                             <Button.FontAttributes>
@@ -163,59 +163,14 @@
                                     </StackLayout>
                                 <local:FooterDivider/>
                         </StackLayout>
-                    </local:CardView>
-				
-                    <!--Follow-->
-                    <local:CardView>
-                      <StackLayout Spacing="0">
-                            <local:LabelSection Text="Follow"/> 
-                            <local:HeaderDivider/>
-                             <Grid Padding="{StaticResource StandardPadding}" 
-                                           BackgroundColor="White"
-                                           ColumnSpacing="{StaticResource StandardSpacing}">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions> 
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="24"/>
-                                </Grid.ColumnDefinitions>
-                               <Grid.IsVisible>
-                                <OnPlatform x:TypeArguments="x:Boolean" iOS="false" Android="true" WinPhone="true"/>
-                               </Grid.IsVisible>
-                                <Button StyleId="ReminderButton"
-                                        IsVisible="{Binding ShowReminder}"
-                                        Text="{Binding IsReminderSet, Converter={StaticResource HasReminderTextConverter}}"
-                                        BackgroundColor="{StaticResource PrimaryDark}"
-                                        Command="{Binding ReminderCommand}"
-                                        TextColor="White"/>                                        
-                             </Grid>
-   
-                             <StackLayout Padding="16,0" Spacing="8" Orientation="Horizontal" BackgroundColor="White">
-                                <StackLayout.IsVisible>
-                                    <OnPlatform x:TypeArguments="x:Boolean" iOS="true" Android="false" WinPhone="false"/>
-                                </StackLayout.IsVisible>
-                                <Button 
-                                    StyleId="ReminderButton"
-                                    IsVisible="{Binding ShowReminder}"
-                                    Text="{Binding IsReminderSet, Converter={StaticResource HasReminderTextConverter}}"
-                                    FontAttributes="Bold"
-                                    HorizontalOptions="StartAndExpand"
-                                    TextColor="{DynamicResource Primary}"
-                                    Command="{Binding ReminderCommand}" />
-                             </StackLayout>
-                             <local:SectionDivider/>                              
-                            <local:FooterDivider/>
-                         </StackLayout>
-                     </local:CardView>
+                    </local:CardView>			
 
-				 	 <local:CardView IsVisible="{Binding Session.Room, Converter={StaticResource GenericIsVisibleConverter}}">
+				 	 <local:CardView IsVisible="{Binding TalkModel.Room, Converter={StaticResource GenericIsVisibleConverter}}">
                       	<StackLayout Spacing="0">
                             <local:LabelSection Text="Location"/> 
                             <local:HeaderDivider/>
                              <StackLayout Padding="{StaticResource StandardPadding}" BackgroundColor="White">
-                                <Label Text="{Binding Session.Room.Name}" Style="{DynamicResource EvolveListItemTextStyle}">
+                                <Label Text="{Binding TalkModel.Room.Name}" Style="{DynamicResource EvolveListItemTextStyle}">
                                     <Label.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding GoToRoom}"/>
                                     </Label.GestureRecognizers>
@@ -226,24 +181,24 @@
                     </local:CardView>
 
                     <!--Abstract-->
-                    <local:CardView IsVisible="{Binding Session.Abstract, Converter={StaticResource GenericIsVisibleConverter}}">
+                    <local:CardView IsVisible="{Binding TalkModel.Abstract, Converter={StaticResource GenericIsVisibleConverter}}">
                       <StackLayout Spacing="0">
                             <local:LabelSection Text="Abstract"/> 
                             <local:HeaderDivider/>
                              <StackLayout Padding="{StaticResource StandardPadding}" BackgroundColor="White">
-                                <Label Text="{Binding Session.Abstract}" Style="{DynamicResource EvolveListItemTextStyle}" StyleId="SessionAbstract"/>
+                                <Label Text="{Binding TalkModel.Abstract}" Style="{DynamicResource EvolveListItemTextStyle}" StyleId="SessionAbstract"/>
                              </StackLayout>
                             <local:FooterDivider/>
                          </StackLayout>
                      </local:CardView>
 
                     <!--Level-->
-                    <local:CardView IsVisible="{Binding Session.Level, Converter={StaticResource GenericIsVisibleConverter}}">
+                    <local:CardView IsVisible="{Binding TalkModel.Level, Converter={StaticResource GenericIsVisibleConverter}}">
                       <StackLayout Spacing="0">
                             <local:LabelSection Text="Level"/> 
                             <local:HeaderDivider/>
                              <StackLayout Padding="{StaticResource StandardPadding}" BackgroundColor="White">
-                                <Label Text="{Binding Session.Level}" Style="{DynamicResource EvolveListItemTextStyle}" StyleId="SessionLevel"/>
+                                <Label Text="{Binding TalkModel.Level}" Style="{DynamicResource EvolveListItemTextStyle}" StyleId="SessionLevel"/>
                              </StackLayout>
                             <local:FooterDivider/>
                          </StackLayout>

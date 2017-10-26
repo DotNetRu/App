@@ -81,13 +81,7 @@
     {
         private static MainActivity current;
 
-        public static MainActivity Current
-        {
-            get
-            {
-                return current;
-            }
-        }
+        public static MainActivity Current => current;
 
         // GoogleApiClient client;
         protected override void OnCreate(Bundle savedInstanceState)
@@ -117,9 +111,9 @@
             };
 #endif
 
-            LoadApplication(new App());
+            this.LoadApplication(new App());
 
-            var gpsAvailable = IsPlayServicesAvailable();
+            var gpsAvailable = this.IsPlayServicesAvailable();
             Settings.Current.PushNotificationsEnabled = gpsAvailable;
 
             if (gpsAvailable)
@@ -129,12 +123,12 @@
                 // .Build();
             }
 
-            OnNewIntent(Intent);
+            this.OnNewIntent(this.Intent);
 
             if (!Settings.Current.PushNotificationsEnabled) return;
 #if ENABLE_TEST_CLOUD
 #else
-            RegisterWithGCM();
+            this.RegisterWithGCM();
 #endif
 
             DataRefreshService.ScheduleRefresh(this);

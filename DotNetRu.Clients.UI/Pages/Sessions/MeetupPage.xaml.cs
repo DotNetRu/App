@@ -9,7 +9,7 @@
     using XamarinEvolve.Clients.Portable;
     using XamarinEvolve.DataObjects;
 
-    public partial class SessionsPage
+    public partial class MeetupPage
     {
         public override AppPage PageType => AppPage.Sessions;
 
@@ -18,7 +18,7 @@
 
         private MeetupViewModel meetupViewModel;
 
-        public SessionsPage(FeaturedEvent meetup = null)
+        public MeetupPage(FeaturedEvent meetup = null)
         {
             this.InitializeComponent();
 
@@ -35,32 +35,31 @@
                         });
             }
 
-            //this.filterItem = new ToolbarItem { Text = "Filter" };
+            // this.filterItem = new ToolbarItem { Text = "Filter" };
 
-            //if (Device.RuntimePlatform != Device.iOS)
-            //{
-            //    this.filterItem.Icon = "toolbar_filter.png";
-            //}
+            // if (Device.RuntimePlatform != Device.iOS)
+            // {
+            // this.filterItem.Icon = "toolbar_filter.png";
+            // }
 
-            //this.filterItem.Command = new Command(
-            //    async () =>
-            //        {
-            //            if (this.meetupViewModel.IsBusy) return;
-            //            await NavigationService.PushModalAsync(
-            //                this.Navigation,
-            //                new EvolveNavigationPage(new FilterSessionsPage()));
-            //        });
+            // this.filterItem.Command = new Command(
+            // async () =>
+            // {
+            // if (this.meetupViewModel.IsBusy) return;
+            // await NavigationService.PushModalAsync(
+            // this.Navigation,
+            // new EvolveNavigationPage(new FilterSessionsPage()));
+            // });
 
-            //this.ToolbarItems.Add(this.filterItem);
-
+            // this.ToolbarItems.Add(this.filterItem);
             this.ListViewSessions.ItemSelected += async (sender, e) =>
                 {
-                    if (!(this.ListViewSessions.SelectedItem is Session session))
+                    if (!(this.ListViewSessions.SelectedItem is TalkModel session))
                     {
                         return;
                     }
 
-                    var sessionDetails = new SessionDetailsPage(session);
+                    var sessionDetails = new TalkPage(session);
 
                     await NavigationService.PushAsync(this.Navigation, sessionDetails);
                     this.ListViewSessions.SelectedItem = null;

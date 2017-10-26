@@ -1,14 +1,18 @@
 ﻿using System;
-using NotificationCenter;
-using Foundation;
-using UIKit;
-using System.Linq;
-using XamarinEvolve.iOS.UpNext;
 using System.Collections.Generic;
-using XamarinEvolve.DataObjects;
+using System.Linq;
+
 using CoreGraphics;
+
+using Foundation;
+
 using MvvmHelpers;
-using XamarinEvolve.Utils;
+
+using NotificationCenter;
+
+using UIKit;
+
+using XamarinEvolve.DataObjects;
 
 namespace UpNext
 {
@@ -16,7 +20,7 @@ namespace UpNext
 
     public partial class TodayViewController : UIViewController, INCWidgetProviding
     {
-        private IEnumerable<Grouping<string, Session>> _data;
+        private IEnumerable<Grouping<string, TalkModel>> _data;
 
         private CGSize _collapsedSize;
 
@@ -38,19 +42,19 @@ namespace UpNext
         {
             base.ViewDidLoad();
 
-            ExtensionContext.SetWidgetLargestAvailableDisplayMode(NCWidgetDisplayMode.Expanded);
+            this.ExtensionContext.SetWidgetLargestAvailableDisplayMode(NCWidgetDisplayMode.Expanded);
 
             // Get the possible sizes
-            _collapsedSize = ExtensionContext.GetWidgetMaximumSize(NCWidgetDisplayMode.Compact);
+            this._collapsedSize = this.ExtensionContext.GetWidgetMaximumSize(NCWidgetDisplayMode.Compact);
 
-            if (IsInitialized())
+            if (this.IsInitialized())
             {
             }
             else
             {
-                MainTitleLabel.Text = "Please open the app and load the sessions list once to initialize.";
-                MainTitleLabel.Hidden = false;
-                SessionsTable.Hidden = true;
+                this.MainTitleLabel.Text = "Please open the app and load the sessions list once to initialize.";
+                this.MainTitleLabel.Hidden = false;
+                this.SessionsTable.Hidden = true;
             }
         }
 
@@ -72,7 +76,7 @@ namespace UpNext
         [Export("widgetActiveDisplayModeDidChange:withMaximumSize:")]
         public void WidgetActiveDisplayModeDidChange(NCWidgetDisplayMode activeDisplayMode, CGSize maxSize)
         {
-            SetPreferredContentSize();
+            this.SetPreferredContentSize();
         }
 
         [Export("widgetPerformUpdateWithCompletionHandler:")]
@@ -81,30 +85,29 @@ namespace UpNext
             // If an error is encoutered, use NCUpdateResultFailed
             // If there's no update required, use NCUpdateResultNoData
             // If there's an update, use NCUpdateResultNewData
-
-            if (IsInitialized())
+            if (this.IsInitialized())
             {
                 try
                 {
-                    _data = null;
+                    this._data = null;
 
-                    if (_data?.Any() ?? false)
+                    if (this._data?.Any() ?? false)
                     {
-                        MainTitleLabel.Hidden = true;
-                        SessionsTable.Hidden = false;
+                        this.MainTitleLabel.Hidden = true;
+                        this.SessionsTable.Hidden = false;
 
-                        SessionsTable.RowHeight = UITableView.AutomaticDimension;
-                        SessionsTable.EstimatedRowHeight = 65;
-                        SessionsTable.ReloadData();
+                        this.SessionsTable.RowHeight = UITableView.AutomaticDimension;
+                        this.SessionsTable.EstimatedRowHeight = 65;
+                        this.SessionsTable.ReloadData();
                     }
                     else
                     {
-                        MainTitleLabel.Hidden = false;
-                        MainTitleLabel.Text = "You have no upcoming favorites";
-                        SessionsTable.Hidden = true;
+                        this.MainTitleLabel.Hidden = false;
+                        this.MainTitleLabel.Text = "You have no upcoming favorites";
+                        this.SessionsTable.Hidden = true;
                     }
 
-                    SetPreferredContentSize();
+                    this.SetPreferredContentSize();
 
                     completionHandler(NCUpdateResult.NewData);
                 }
@@ -122,19 +125,19 @@ namespace UpNext
 
         private void SetPreferredContentSize()
         {
-            if (ExtensionContext.GetWidgetActiveDisplayMode() == NCWidgetDisplayMode.Compact)
+            if (this.ExtensionContext.GetWidgetActiveDisplayMode() == NCWidgetDisplayMode.Compact)
             {
-                PreferredContentSize = _collapsedSize;
+                this.PreferredContentSize = this._collapsedSize;
             }
             else
             {
-                var height = (!_data?.Any() ?? true)
+                var height = (!this._data?.Any() ?? true)
                                  ? 100
-                                 : (_data.Count() * SessionsTable.SectionHeaderHeight)
-                                   + (_data.SelectMany(g => g.AsEnumerable()).Count()
-                                      * SessionsTable.EstimatedRowHeight) + SessionsTable.SectionFooterHeight + 70;
+                                 : (this._data.Count() * this.SessionsTable.SectionHeaderHeight)
+                                   + (this._data.SelectMany(g => g.AsEnumerable()).Count()
+                                      * this.SessionsTable.EstimatedRowHeight) + this.SessionsTable.SectionFooterHeight + 70;
                 Console.WriteLine($"Requesting widget height: {height}");
-                PreferredContentSize = new CGSize(0, height);
+                this.PreferredContentSize = new CGSize(0, height);
             }
         }
     }

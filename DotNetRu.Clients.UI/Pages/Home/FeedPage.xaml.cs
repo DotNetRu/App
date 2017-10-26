@@ -14,11 +14,9 @@
     {
         public override AppPage PageType => AppPage.Feed;
 
-        FeedViewModel ViewModel => this.vm ?? (this.vm = this.BindingContext as FeedViewModel);
+        FeedViewModel ViewModel => this.feedViewModel ?? (this.feedViewModel = this.BindingContext as FeedViewModel);
 
-        FeedViewModel vm;
-
-        string loggedIn;
+        FeedViewModel feedViewModel;
 
         public FeedPage()
         {
@@ -80,7 +78,7 @@
         {
             bool forceRefresh = DateTime.UtcNow > (this.ViewModel?.NextForceRefresh ?? DateTime.UtcNow);
 
-            this.vm.EvaluateVisualState();
+            this.feedViewModel.EvaluateVisualState();
 
             if (forceRefresh)
             {

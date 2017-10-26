@@ -1,5 +1,4 @@
-﻿using System;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace XamarinEvolve.Clients.UI
 {
@@ -7,7 +6,7 @@ namespace XamarinEvolve.Clients.UI
     {
         public ParallaxScrollView()
         {
-            Scrolled += (sender, e) => Parallax();
+            this.Scrolled += (sender, e) => this.Parallax();
         }
 
 
@@ -17,37 +16,39 @@ namespace XamarinEvolve.Clients.UI
 
         public View ParallaxView
         {
-            get { return (View)GetValue(ParallaxViewProperty); }
-            set { SetValue(ParallaxViewProperty, value); }
+            get => (View)this.GetValue(ParallaxViewProperty);
+            set => this.SetValue(ParallaxViewProperty, value);
         }
 
         double height;
         public void Parallax()
         {
-            if (ParallaxView == null || Device.OS == TargetPlatform.Windows || Device.OS == TargetPlatform.WinPhone)
+            if (this.ParallaxView == null || Device.RuntimePlatform == Device.UWP)
                 return;
-            
-            if(height <= 0)
-                height = ParallaxView.Height;
 
-            var y = -(int)((float)ScrollY / 2.5f);
+            if (this.height <= 0)
+            {
+                this.height = this.ParallaxView.Height;
+            }
+
+            var y = -(int)((float)this.ScrollY / 2.5f);
             if (y < 0)
             {
-                //Move the Image's Y coordinate a fraction of the ScrollView's Y position
-                ParallaxView.Scale = 1;
-                ParallaxView.TranslationY = y;
+                // Move the Image's Y coordinate a fraction of the ScrollView's Y position
+                this.ParallaxView.Scale = 1;
+                this.ParallaxView.TranslationY = y;
             }
-            else if (Device.OS == TargetPlatform.iOS)
+            else if (Device.RuntimePlatform == Device.iOS)
             {
-                //Calculate a scale that equalizes the height vs scroll
-                double newHeight = height + (ScrollY * -1);
-                ParallaxView.Scale = newHeight / height;
-                ParallaxView.TranslationY = -(ScrollY / 2);
+                // Calculate a scale that equalizes the height vs scroll
+                double newHeight = this.height + (this.ScrollY * -1);
+                this.ParallaxView.Scale = newHeight / this.height;
+                this.ParallaxView.TranslationY = -(this.ScrollY / 2);
             }
             else
             {
-                ParallaxView.Scale = 1;
-                ParallaxView.TranslationY = 0;
+                this.ParallaxView.Scale = 1;
+                this.ParallaxView.TranslationY = 0;
             }
         }
     }

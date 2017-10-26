@@ -41,6 +41,7 @@
                 Settings.Current.RemoveReminderId(id);
 
             }
+
             return false;
         }
 
@@ -52,7 +53,8 @@
             try
             {
                 var evolveCal = await GetOrCreateEvolveCalendarAsync();
-                //Create event and then create the reminder!
+
+                // Create event and then create the reminder!
                 await CrossCalendars.Current.AddOrUpdateEventAsync(evolveCal, calEvent);
                 await CrossCalendars.Current.AddEventReminderAsync(
                     calEvent,
@@ -75,6 +77,7 @@
                                 Cancel = "OK"
                             });
                 }
+
                 Settings.Current.HasSetReminder = true;
             }
             catch (Exception ex)
@@ -91,6 +94,7 @@
                         });
                 return false;
             }
+
             return true;
         }
 
@@ -123,6 +127,7 @@
                         });
                 return false;
             }
+
             return true;
         }
 
@@ -138,7 +143,7 @@
                 {
                     if (alert)
                     {
-                        if (Device.OS == TargetPlatform.iOS)
+                        if (Device.RuntimePlatform == Device.iOS)
                         {
                             MessagingService.Current.SendMessage<MessagingServiceQuestion>(
                                 MessageKeys.Question,
@@ -193,6 +198,7 @@
                                 Cancel = "OK"
                             });
                 }
+
                 return false;
             }
 
@@ -219,16 +225,16 @@
 
             }
 
-            //if for some reason the calendar does not exist then simply create a enw one.
-            if (Device.OS == TargetPlatform.Android)
+            // if for some reason the calendar does not exist then simply create a enw one.
+            if (Device.RuntimePlatform == Device.Android)
             {
-                //On android it is really hard to delete a calendar made by an app, so just add to default calendar.
+                // On android it is really hard to delete a calendar made by an app, so just add to default calendar.
                 try
                 {
                     var calendars = await CrossCalendars.Current.GetCalendarsAsync();
                     foreach (var calendar in calendars)
                     {
-                        //find first calendar we can add stuff to
+                        // find first calendar we can add stuff to
                         if (!calendar.CanEditEvents) continue;
 
                         Settings.Current.EventCalendarId = calendar.ExternalID;
@@ -242,7 +248,7 @@
             }
             else
             {
-                //try to find app if already uninstalled for some reason
+                // try to find app if already uninstalled for some reason
                 try
                 {
                     var calendars = await CrossCalendars.Current.GetCalendarsAsync();

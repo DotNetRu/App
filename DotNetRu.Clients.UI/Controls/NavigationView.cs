@@ -7,7 +7,7 @@ namespace XamarinEvolve.Clients.UI
     {
         public void OnNavigationItemSelected(NavigationItemSelectedEventArgs e)
         {
-            NavigationItemSelected?.Invoke(this, e);
+            this.NavigationItemSelected?.Invoke(this, e);
         }
 
         public event NavigationItemSelectedEventHandler NavigationItemSelected;

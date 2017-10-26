@@ -40,17 +40,17 @@
                    Style="{DynamicResource EvolveListItemDetailTextStyle}"
                    StyleId="SpeakerNames"/>
 
-            <Label Grid.Row="3"
+            <!--<Label Grid.Row="3"
                    VerticalOptions="End"
                    Text="{Binding ., Converter={StaticResource SessionTimeDisplayConverter}}" 
                    Style="{DynamicResource EvolveListItemDetailTextStyle}"
-                   StyleId="SessionTime"/>
+                   StyleId="SessionTime"/>-->
 
-        <Label Grid.Row="3" Grid.Column="1"
+        <!--<Label Grid.Row="3" Grid.Column="1"
 		           VerticalOptions="End"
                    Text="{Binding Level}" 
                    Style="{DynamicResource EvolveListItemDetailTextStyle}"
-                   StyleId="SessionLevel"/>
+                   StyleId="SessionLevel"/>-->
 
         <!--<StackLayout x:Name="CategoriesPlaceholder" Spacing="2" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"
 				HeightRequest="44"

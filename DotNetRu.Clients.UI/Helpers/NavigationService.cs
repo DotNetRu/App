@@ -9,6 +9,7 @@ namespace XamarinEvolve.Clients.UI
     public static class NavigationService
     {
         static bool navigating;
+
         /// <summary>
         /// PUsh a page async
         /// </summary>

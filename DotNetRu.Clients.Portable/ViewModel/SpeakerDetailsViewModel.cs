@@ -21,7 +21,7 @@
 
         public Speaker Speaker { get; set; }
 
-        public ObservableRangeCollection<Session> Sessions { get; } = new ObservableRangeCollection<Session>();
+        public ObservableRangeCollection<TalkModel> Sessions { get; } = new ObservableRangeCollection<TalkModel>();
 
         public ObservableRangeCollection<MenuItem> FollowItems { get; } = new ObservableRangeCollection<MenuItem>();
 
@@ -29,11 +29,8 @@
 
         public bool HasAdditionalSessions
         {
-            get => hasAdditionalSessions;
-            set
-            {
-                SetProperty(ref hasAdditionalSessions, value);
-            }
+            get => this.hasAdditionalSessions;
+            set => this.SetProperty(ref this.hasAdditionalSessions, value);
         }
 
         private string sessionId;
@@ -41,12 +38,12 @@
         public SpeakerDetailsViewModel(Speaker speaker, string sessionId)
             : base()
         {
-            Speaker = speaker;
+            this.Speaker = speaker;
             this.sessionId = sessionId;
 
             if (!string.IsNullOrWhiteSpace(speaker.CompanyWebsiteUrl))
             {
-                FollowItems.Add(
+                this.FollowItems.Add(
                     new MenuItem
                         {
                             Name = speaker.CompanyWebsiteUrl.StripUrlForDisplay(),
@@ -57,7 +54,7 @@
 
             if (!string.IsNullOrWhiteSpace(speaker.BlogUrl))
             {
-                FollowItems.Add(
+                this.FollowItems.Add(
                     new MenuItem
                         {
                             Name = speaker.BlogUrl.StripUrlForDisplay(),
@@ -70,7 +67,7 @@
             {
                 var twitterValue = speaker.TwitterUrl.CleanUpTwitter();
 
-                FollowItems.Add(
+                this.FollowItems.Add(
                     new MenuItem
                         {
                             Name = $"@{twitterValue}",
@@ -78,16 +75,18 @@
                             Icon = "icon_twitter.png"
                         });
             }
+
             if (!string.IsNullOrWhiteSpace(speaker.FacebookProfileName))
             {
                 var profileName = speaker.FacebookProfileName.GetLastPartOfUrl();
                 var profileDisplayName = profileName;
-                Int64 testProfileId;
-                if (Int64.TryParse(profileName, out testProfileId))
+                long testProfileId;
+                if (long.TryParse(profileName, out testProfileId))
                 {
                     profileDisplayName = "Facebook";
                 }
-                FollowItems.Add(
+
+                this.FollowItems.Add(
                     new MenuItem
                         {
                             Name = profileDisplayName,
@@ -95,9 +94,10 @@
                             Icon = "icon_facebook.png"
                         });
             }
+
             if (!string.IsNullOrWhiteSpace(speaker.LinkedInUrl))
             {
-                FollowItems.Add(
+                this.FollowItems.Add(
                     new MenuItem
                         {
                             Name = "LinkedIn",
@@ -109,37 +109,37 @@
 
         ICommand loadSessionsCommand;
 
-        public ICommand LoadSessionsCommand => loadSessionsCommand
-                                               ?? (loadSessionsCommand = new Command(
-                                                       async () => await ExecuteLoadSessionsCommandAsync()));
+        public ICommand LoadSessionsCommand => this.loadSessionsCommand
+                                               ?? (this.loadSessionsCommand = new Command(
+                                                       async () => await this.ExecuteLoadSessionsCommandAsync()));
 
         public async Task ExecuteLoadSessionsCommandAsync()
         {
-            if (IsBusy) return;
+            if (this.IsBusy) return;
 
             try
             {
-                IsBusy = true;
+                this.IsBusy = true;
 
 #if DEBUG
                 await Task.Delay(1000);
 #endif
 
 
-                var items = (await StoreManager.SessionStore.GetSpeakerSessionsAsync(Speaker.Id));
+                var items = await this.StoreManager.SessionStore.GetSpeakerSessionsAsync(this.Speaker.Id);
 
-                Sessions.ReplaceRange(items);
+                this.Sessions.ReplaceRange(items);
 
-                HasAdditionalSessions = Sessions.Count > 0;
+                this.HasAdditionalSessions = this.Sessions.Count > 0;
             }
             catch (Exception ex)
             {
-                HasAdditionalSessions = false;
-                Logger.Report(ex);
+                this.HasAdditionalSessions = false;
+                this.Logger.Report(ex);
             }
             finally
             {
-                IsBusy = false;
+                this.IsBusy = false;
             }
         }
 
@@ -147,39 +147,35 @@
 
         public MenuItem SelectedFollowItem
         {
-            get
-            {
-                return selectedFollowItem;
-            }
+            get => this.selectedFollowItem;
+
             set
             {
-                selectedFollowItem = value;
-                OnPropertyChanged();
-                if (selectedFollowItem == null) return;
+                this.selectedFollowItem = value;
+                this.OnPropertyChanged();
+                if (this.selectedFollowItem == null) return;
 
-                LaunchBrowserCommand.Execute(selectedFollowItem.Parameter);
+                this.LaunchBrowserCommand.Execute(this.selectedFollowItem.Parameter);
 
-                SelectedFollowItem = null;
+                this.SelectedFollowItem = null;
             }
         }
 
-        Session selectedSession;
+        TalkModel selectedTalkModel;
 
-        public Session SelectedSession
+        public TalkModel SelectedTalkModel
         {
-            get
-            {
-                return selectedSession;
-            }
+            get => this.selectedTalkModel;
+
             set
             {
-                selectedSession = value;
-                OnPropertyChanged();
-                if (selectedSession == null) return;
+                this.selectedTalkModel = value;
+                this.OnPropertyChanged();
+                if (this.selectedTalkModel == null) return;
 
-                MessagingService.Current.SendMessage(MessageKeys.NavigateToSession, selectedSession);
+                MessagingService.Current.SendMessage(MessageKeys.NavigateToSession, this.selectedTalkModel);
 
-                SelectedSession = null;
+                this.SelectedTalkModel = null;
             }
         }
     }

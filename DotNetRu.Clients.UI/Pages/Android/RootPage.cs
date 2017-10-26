@@ -1,17 +1,17 @@
-﻿using Xamarin.Forms;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using XamarinEvolve.Clients.Portable;
-using FormsToolkit;
-
-using XamarinEvolve.Utils;
-
-namespace XamarinEvolve.Clients.UI
+﻿namespace XamarinEvolve.Clients.UI
 {
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+
+    using FormsToolkit;
+
+    using Xamarin.Forms;
+
+    using XamarinEvolve.Clients.Portable;
     using XamarinEvolve.DataStore.Mock.Abstractions;
     using XamarinEvolve.Utils.Helpers;
 
-	public class RootPageAndroid : MasterDetailPage
+    public class RootPageAndroid : MasterDetailPage
   {
     Dictionary<int, EvolveNavigationPage> pages;
     DeepLinkPage page;
@@ -19,18 +19,18 @@ namespace XamarinEvolve.Clients.UI
 
     public RootPageAndroid()
     {
-      pages = new Dictionary<int, EvolveNavigationPage>();
-      Master = new MenuPage(this);
+        this.pages = new Dictionary<int, EvolveNavigationPage>();
+        this.Master = new MenuPage(this);
 
-      pages.Add(0, new EvolveNavigationPage(new FeedPage()));
+        this.pages.Add(0, new EvolveNavigationPage(new FeedPage()));
 
-      Detail = pages[0];
+        this.Detail = this.pages[0];
       MessagingService.Current.Subscribe<DeepLinkPage>("DeepLinkPage", async (m, p) =>
       {
-        page = p;
+          this.page = p;
 
-        if (isRunning)
-          await GoToDeepLink();
+        if (this.isRunning)
+          await this.GoToDeepLink();
       });
     }
 
@@ -39,45 +39,45 @@ namespace XamarinEvolve.Clients.UI
     public async Task NavigateAsync(int menuId)
     {
       EvolveNavigationPage newPage = null;
-      if (!pages.ContainsKey(menuId))
+      if (!this.pages.ContainsKey(menuId))
       {
-        //only cache specific pages
+        // only cache specific pages
         switch (menuId)
         {
-          case (int) AppPage.Feed: //Feed
-            pages.Add(menuId, new EvolveNavigationPage(new FeedPage()));
+          case (int) AppPage.Feed: // Feed
+              this.pages.Add(menuId, new EvolveNavigationPage(new FeedPage()));
             break;
-          case (int) AppPage.Sessions: //sessions
-            pages.Add(menuId, new EvolveNavigationPage(new SessionsPage()));
+          case (int) AppPage.Sessions: // sessions
+              this.pages.Add(menuId, new EvolveNavigationPage(new MeetupPage()));
             break;
-          case (int) AppPage.Speakers: //speakers
-            pages.Add(menuId, new EvolveNavigationPage(new SpeakersPage()));
+          case (int) AppPage.Speakers: // speakers
+              this.pages.Add(menuId, new EvolveNavigationPage(new SpeakersPage()));
             break;
-          case (int) AppPage.Events: //events
-            pages.Add(menuId, new EvolveNavigationPage(new EventsPage()));
+          case (int) AppPage.Events: // events
+              this.pages.Add(menuId, new EvolveNavigationPage(new EventsPage()));
             break;
-          case (int) AppPage.Sponsors: //sponsors
+          case (int) AppPage.Sponsors: // sponsors
             newPage = new EvolveNavigationPage(new SponsorsPage());
             break;
-          case (int) AppPage.Settings: //Settings
+          case (int) AppPage.Settings: // Settings
             newPage = new EvolveNavigationPage(new SettingsPage());
             break;
         }
       }
 
       if (newPage == null)
-        newPage = pages[menuId];
+        newPage = this.pages[menuId];
 
       if (newPage == null)
         return;
 
-      //if we are on the same tab and pressed it again.
-      if (Detail == newPage)
+      // if we are on the same tab and pressed it again.
+      if (this.Detail == newPage)
       {
         await newPage.Navigation.PopToRootAsync();
       }
 
-      Detail = newPage;
+        this.Detail = newPage;
     }
 
     protected override async void OnAppearing()
@@ -90,37 +90,37 @@ namespace XamarinEvolve.Clients.UI
         MessagingService.Current.SendMessage(MessageKeys.NavigateLogin);
       }
 
-      isRunning = true;
+        this.isRunning = true;
 
-      await GoToDeepLink();
+      await this.GoToDeepLink();
 
     }
 
     async Task GoToDeepLink()
     {
-      if (page == null)
+      if (this.page == null)
         return;
-      var p = page.Page;
-      var id = page.Id;
-      page = null;
+      var p = this.page.Page;
+      var id = this.page.Id;
+        this.page = null;
       switch (p)
       {
 
         case AppPage.Session:
-          await NavigateAsync((int) AppPage.Sessions);
+          await this.NavigateAsync((int) AppPage.Sessions);
           var session = await DependencyService.Get<ISessionStore>().GetAppIndexSession(id);
           if (session == null)
             break;
-          await Detail.Navigation.PushAsync(new SessionDetailsPage(session));
+          await this.Detail.Navigation.PushAsync(new TalkPage(session));
           break;
         case AppPage.Speaker:
-          await NavigateAsync((int) AppPage.Speakers);
+          await this.NavigateAsync((int) AppPage.Speakers);
           var speaker = await DependencyService.Get<ISpeakerStore>().GetAppIndexSpeaker(id);
           if (speaker == null)
             break;
 
           ContentPage destination;
-          if (Device.OS == TargetPlatform.Windows || Device.OS == TargetPlatform.WinPhone)
+          if (Device.RuntimePlatform == Device.UWP)
           {
             destination = new SpeakerDetailsPageUWP(speaker);
           }
@@ -128,7 +128,8 @@ namespace XamarinEvolve.Clients.UI
           {
             destination = new SpeakerDetailsPage(speaker);
           }
-          await Detail.Navigation.PushAsync(destination);
+
+          await this.Detail.Navigation.PushAsync(destination);
           break;
       }
     }

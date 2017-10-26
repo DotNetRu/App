@@ -23,8 +23,8 @@
 
         public RootPageWindows()
         {
-            //MasterBehavior = MasterBehavior.Popover;
-            pages = new Dictionary<AppPage, Page>();
+            // MasterBehavior = MasterBehavior.Popover;
+            this.pages = new Dictionary<AppPage, Page>();
 
             var items = new ObservableCollection<MenuItem>();
 
@@ -41,24 +41,24 @@
 
             items.Add(new MenuItem { Name = "About", Icon = "menu_info.png", Page = AppPage.Settings });
 
-            menu = new MenuPageUWP();
-            menu.MenuList.ItemsSource = items;
+            this.menu = new MenuPageUWP();
+            this.menu.MenuList.ItemsSource = items;
 
-            menu.MenuList.ItemSelected += (sender, args) =>
+            this.menu.MenuList.ItemSelected += (sender, args) =>
                 {
-                    if (menu.MenuList.SelectedItem == null) return;
+                    if (this.menu.MenuList.SelectedItem == null) return;
 
                     Device.BeginInvokeOnMainThread(
                         () =>
                             {
-                                NavigateAsync(((MenuItem)menu.MenuList.SelectedItem).Page);
-                                if (!IsDesktop) IsPresented = false;
+                                this.NavigateAsync(((MenuItem)this.menu.MenuList.SelectedItem).Page);
+                                if (!IsDesktop) this.IsPresented = false;
                             });
                 };
 
-            Master = menu;
-            NavigateAsync((int)AppPage.Feed);
-            Title = "DotNetRu App";
+            this.Master = this.menu;
+            this.NavigateAsync((int)AppPage.Feed);
+            this.Title = "DotNetRu App";
         }
 
 
@@ -66,38 +66,39 @@
         public void NavigateAsync(AppPage menuId)
         {
             Page newPage = null;
-            if (!pages.ContainsKey(menuId))
+            if (!this.pages.ContainsKey(menuId))
             {
-                //only cache specific pages
+                // only cache specific pages
                 switch (menuId)
                 {
-                    case AppPage.Feed: //Feed
-                        pages.Add(menuId, new EvolveNavigationPage(new FeedPage()));
+                    case AppPage.Feed: // Feed
+                        this.pages.Add(menuId, new EvolveNavigationPage(new FeedPage()));
                         break;
-                    case AppPage.Sessions: //sessions
-                        pages.Add(menuId, new EvolveNavigationPage(new SessionsPage()));
+                    case AppPage.Sessions: // sessions
+                        this.pages.Add(menuId, new EvolveNavigationPage(new MeetupPage()));
                         break;
-                    case AppPage.Speakers: //sessions
-                        pages.Add(menuId, new EvolveNavigationPage(new SpeakersPage()));
+                    case AppPage.Speakers: // sessions
+                        this.pages.Add(menuId, new EvolveNavigationPage(new SpeakersPage()));
                         break;
-                    case AppPage.Events: //events
-                        pages.Add(menuId, new EvolveNavigationPage(new EventsPage()));
+                    case AppPage.Events: // events
+                        this.pages.Add(menuId, new EvolveNavigationPage(new EventsPage()));
                         break;
-                    case AppPage.Sponsors: //sponsors
+                    case AppPage.Sponsors: // sponsors
                         newPage = new EvolveNavigationPage(new SponsorsPage());
                         break;
-                    case AppPage.Settings: //Settings
+                    case AppPage.Settings: // Settings
                         newPage = new EvolveNavigationPage(new SettingsPage());
                         break;
                 }
             }
 
-            if (newPage == null) newPage = pages[menuId];
+            if (newPage == null) newPage = this.pages[menuId];
 
             if (newPage == null) return;
 
-            Detail = newPage;
-            //await Navigation.PushAsync(newPage);
+            this.Detail = newPage;
+
+            // await Navigation.PushAsync(newPage);
         }
 
         protected override void OnAppearing()

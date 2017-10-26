@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace XamarinEvolve.DataObjects
+﻿namespace XamarinEvolve.DataObjects
 {
     using DotNetRu.DataStore.Audit.DataObjects;
 
@@ -11,6 +9,7 @@ namespace XamarinEvolve.DataObjects
         /// </summary>
         /// <value>The name.</value>
         public string Name { get; set; }
+
         /// <summary>
         /// Gets or sets the image URL if there is one
         /// </summary>

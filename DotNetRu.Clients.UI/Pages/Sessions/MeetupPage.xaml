@@ -3,8 +3,8 @@
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:XamarinEvolve.Clients.UI;assembly=XamarinEvolve.Clients.UI"
-    x:Class="XamarinEvolve.Clients.UI.SessionsPage"
-    x:Name="MeetupPage"
+    x:Class="XamarinEvolve.Clients.UI.MeetupPage"
+    x:Name="Meetup"
     Title="Meetup"
     Icon="tab_sessions.png"
     BackgroundColor="{DynamicResource WindowBackground}">
@@ -102,3 +102,47 @@
     </Grid>
     </ContentPage.Content>
 </local:BasePage>
+
+<!--<local:CardView>
+                      <StackLayout Spacing="0">
+                            <local:LabelSection Text="Follow"/> 
+                            <local:HeaderDivider/>
+                             <Grid Padding="{StaticResource StandardPadding}" 
+                                           BackgroundColor="White"
+                                           ColumnSpacing="{StaticResource StandardSpacing}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions> 
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="24"/>
+                                </Grid.ColumnDefinitions>
+                               <Grid.IsVisible>
+                                <OnPlatform x:TypeArguments="x:Boolean" iOS="false" Android="true" WinPhone="true"/>
+                               </Grid.IsVisible>
+                                <Button StyleId="ReminderButton"
+                                        IsVisible="{Binding ShowReminder}"
+                                        Text="{Binding IsReminderSet, Converter={StaticResource HasReminderTextConverter}}"
+                                        BackgroundColor="{StaticResource PrimaryDark}"
+                                        Command="{Binding ReminderCommand}"
+                                        TextColor="White"/>                                        
+                             </Grid>
+   
+                             <StackLayout Padding="16,0" Spacing="8" Orientation="Horizontal" BackgroundColor="White">
+                                <StackLayout.IsVisible>
+                                    <OnPlatform x:TypeArguments="x:Boolean" iOS="true" Android="false" WinPhone="false"/>
+                                </StackLayout.IsVisible>
+                                <Button 
+                                    StyleId="ReminderButton"
+                                    IsVisible="{Binding ShowReminder}"
+                                    Text="{Binding IsReminderSet, Converter={StaticResource HasReminderTextConverter}}"
+                                    FontAttributes="Bold"
+                                    HorizontalOptions="StartAndExpand"
+                                    TextColor="{DynamicResource Primary}"
+                                    Command="{Binding ReminderCommand}" />
+                             </StackLayout>
+                             <local:SectionDivider/>                              
+                            <local:FooterDivider/>
+                         </StackLayout>
+                     </local:CardView>-->

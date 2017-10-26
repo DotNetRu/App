@@ -1,13 +1,14 @@
 ﻿using System;
+using System.Threading.Tasks;
+using System.Windows.Input;
+
+using FormsToolkit;
+
+using MvvmHelpers;
 
 using Xamarin.Forms;
+
 using XamarinEvolve.DataObjects;
-using System.Windows.Input;
-using Plugin.ExternalMaps;
-using MvvmHelpers;
-using FormsToolkit;
-using System.Threading.Tasks;
-using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.Clients.Portable
 {
@@ -21,81 +22,76 @@ namespace XamarinEvolve.Clients.Portable
 
         public EventDetailsViewModel(INavigation navigation, FeaturedEvent e) : base(navigation)
         {
-            Event = e;
-            Sponsors = new ObservableRangeCollection<Sponsor>();
-            if (e.Sponsor != null)
-                Sponsors.Add(e.Sponsor);
+            this.Event = e;
+            this.Sponsors = new ObservableRangeCollection<Sponsor>();
+            if (e.Sponsor != null) this.Sponsors.Add(e.Sponsor);
         }
 
         bool isReminderSet;
         public bool IsReminderSet
         {
-            get { return isReminderSet; }
-            set { SetProperty(ref isReminderSet, value); }
+            get => this.isReminderSet;
+            set => this.SetProperty(ref this.isReminderSet, value);
         }
 
         ICommand  loadEventDetailsCommand;
-        public ICommand LoadEventDetailsCommand =>
-            loadEventDetailsCommand ?? (loadEventDetailsCommand = new Command(async () => await ExecuteLoadEventDetailsCommandAsync())); 
+        public ICommand LoadEventDetailsCommand => this.loadEventDetailsCommand ?? (this.loadEventDetailsCommand = new Command(async () => await this.ExecuteLoadEventDetailsCommandAsync())); 
 
         async Task ExecuteLoadEventDetailsCommandAsync()
         {
 
-            if(IsBusy)
+            if(this.IsBusy)
                 return;
 
             try 
             {
-
-
-                IsBusy = true;
-                IsReminderSet = await ReminderService.HasReminderAsync("event_" + Event.Id);
+                this.IsBusy = true;
+                this.IsReminderSet = await ReminderService.HasReminderAsync("event_" + this.Event.Id);
             } 
             catch (Exception ex) 
             {
-                Logger.Report(ex, "Method", "ExecuteLoadEventDetailsCommandAsync");
+                this.Logger.Report(ex, "Method", "ExecuteLoadEventDetailsCommandAsync");
                 MessagingService.Current.SendMessage(MessageKeys.Error, ex);
             }
             finally
             {
-                IsBusy = false;
+                this.IsBusy = false;
             }
         }
 
         ICommand  reminderCommand;
-        public ICommand ReminderCommand =>
-            reminderCommand ?? (reminderCommand = new Command(async () => await ExecuteReminderCommandAsync())); 
+        public ICommand ReminderCommand => this.reminderCommand ?? (this.reminderCommand = new Command(async () => await this.ExecuteReminderCommandAsync())); 
 
 
         async Task ExecuteReminderCommandAsync()
         {
-            if(!IsReminderSet)
+            if(!this.IsReminderSet)
             {
-                var result = await ReminderService.AddReminderAsync("event_" + Event.Id, 
+                var result = await ReminderService.AddReminderAsync("event_" + this.Event.Id, 
                     new Plugin.Calendars.Abstractions.CalendarEvent
                     {
-                        Description = Event.Description,
-                        Location = Event.LocationName,
-                        AllDay = Event.IsAllDay,
-                        Name = Event.Title,
-                        Start = Event.StartTime.Value,
-                        End = Event.EndTime.Value
+                        Description = this.Event.Description,
+                        Location = this.Event.LocationName,
+                        AllDay = this.Event.IsAllDay,
+                        Name = this.Event.Title,
+                        Start = this.Event.StartTime.Value,
+                        End = this.Event.EndTime.Value
                     });
 
 
                 if(!result)
                     return;
 
-                Logger.Track(EvolveLoggerKeys.ReminderAdded, "Title", Event.Title);
-                IsReminderSet = true;
+                this.Logger.Track(EvolveLoggerKeys.ReminderAdded, "Title", this.Event.Title);
+                this.IsReminderSet = true;
             }
             else
             {
-                var result = await ReminderService.RemoveReminderAsync("event_" + Event.Id);
+                var result = await ReminderService.RemoveReminderAsync("event_" + this.Event.Id);
                 if(!result)
                     return;
-                Logger.Track(EvolveLoggerKeys.ReminderRemoved, "Title", Event.Title);
-                IsReminderSet = false;
+                this.Logger.Track(EvolveLoggerKeys.ReminderRemoved, "Title", this.Event.Title);
+                this.IsReminderSet = false;
             }
 
         }
@@ -103,17 +99,17 @@ namespace XamarinEvolve.Clients.Portable
         Sponsor selectedSponsor;
         public Sponsor SelectedSponsor
         {
-            get { return selectedSponsor; }
+            get => this.selectedSponsor;
             set
             {
-                selectedSponsor = value;
-                OnPropertyChanged();
-                if (selectedSponsor == null)
+                this.selectedSponsor = value;
+                this.OnPropertyChanged();
+                if (this.selectedSponsor == null)
                     return;
 
-                MessagingService.Current.SendMessage(MessageKeys.NavigateToSponsor, selectedSponsor);
+                MessagingService.Current.SendMessage(MessageKeys.NavigateToSponsor, this.selectedSponsor);
 
-                SelectedSponsor = null;
+                this.SelectedSponsor = null;
             }
         }
 

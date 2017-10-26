@@ -19,173 +19,167 @@
 
         public SettingsViewModel()
         {
-            AboutItems.AddRange(
+            this.AboutItems.AddRange(
                 new[]
                     {
                         new MenuItem
                             {
                                 Name = $"Created by {AboutThisApp.Developer} with <3",
-                                Command = LaunchBrowserCommand,
+                                Command = this.LaunchBrowserCommand,
                                 Parameter = AboutThisApp.DeveloperWebsite
                             },
                         new MenuItem
                         {
                             Name = $"Big thanks to James Montemagno!",
-                            Command = LaunchBrowserCommand,
+                            Command = this.LaunchBrowserCommand,
                             Parameter = AboutThisApp.MontemagnoWebsite
                         },
                         new MenuItem
                             {
                                 Name = "Open source on GitHub!",
-                                Command = LaunchBrowserCommand,
+                                Command = this.LaunchBrowserCommand,
                                 Parameter = AboutThisApp.OpenSourceUrl
                             },
                         new MenuItem
                             {
                                 Name = "Terms of Use",
-                                Command = LaunchBrowserCommand,
+                                Command = this.LaunchBrowserCommand,
                                 Parameter = AboutThisApp.TermsOfUseUrl
                             },
                         new MenuItem
                             {
                                 Name = "Privacy Policy",
-                                Command = LaunchBrowserCommand,
+                                Command = this.LaunchBrowserCommand,
                                 Parameter = AboutThisApp.PrivacyPolicyUrl
                             },
                         new MenuItem
                             {
                                 Name = "Open Source Notice",
-                                Command = LaunchBrowserCommand,
+                                Command = this.LaunchBrowserCommand,
                                 Parameter = AboutThisApp.OpenSourceNoticeUrl
                             }
                     });
 
-            TechnologyItems.AddRange(
+            this.TechnologyItems.AddRange(
                 new[]
                     {
                         new MenuItem
                             {
                                 Name = "Censored",
-                                Command = LaunchBrowserCommand,
+                                Command = this.LaunchBrowserCommand,
                                 Parameter = "https://github.com/jamesmontemagno/Censored"
                             },
                         new MenuItem
                             {
                                 Name = "Calendar Plugin",
-                                Command = LaunchBrowserCommand,
+                                Command = this.LaunchBrowserCommand,
                                 Parameter = "https://github.com/TheAlmightyBob/Calendars"
                             },
                         new MenuItem
                             {
                                 Name = "Connectivity Plugin",
-                                Command = LaunchBrowserCommand,
+                                Command = this.LaunchBrowserCommand,
                                 Parameter =
                                     "https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/Connectivity"
                             },
                         new MenuItem
                             {
                                 Name = "Embedded Resource Plugin",
-                                Command = LaunchBrowserCommand,
+                                Command = this.LaunchBrowserCommand,
                                 Parameter = "https://github.com/JosephHill/EmbeddedResourcePlugin"
                             },
                         new MenuItem
                             {
                                 Name = "Humanizer",
-                                Command = LaunchBrowserCommand,
+                                Command = this.LaunchBrowserCommand,
                                 Parameter = "https://github.com/Humanizr/Humanizer"
                             },
                         new MenuItem
                             {
                                 Name = "Image Circles",
-                                Command = LaunchBrowserCommand,
+                                Command = this.LaunchBrowserCommand,
                                 Parameter =
                                     "https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/ImageCircle"
                             },
                         new MenuItem
                             {
                                 Name = "Json.NET",
-                                Command = LaunchBrowserCommand,
+                                Command = this.LaunchBrowserCommand,
                                 Parameter = "https://github.com/JamesNK/Newtonsoft.Json"
                             },
                         new MenuItem
                             {
                                 Name = "LinqToTwitter",
-                                Command = LaunchBrowserCommand,
+                                Command = this.LaunchBrowserCommand,
                                 Parameter = "https://github.com/JoeMayo/LinqToTwitter"
                             },
                         new MenuItem
                             {
                                 Name = "Messaging Plugin",
-                                Command = LaunchBrowserCommand,
+                                Command = this.LaunchBrowserCommand,
                                 Parameter = "https://github.com/cjlotz/Xamarin.Plugins"
                             },
                         new MenuItem
                             {
                                 Name = "Mvvm Helpers",
-                                Command = LaunchBrowserCommand,
+                                Command = this.LaunchBrowserCommand,
                                 Parameter = "https://github.com/jamesmontemagno/mvvm-helpers"
                             },
                         new MenuItem
                             {
                                 Name = "Noda Time",
-                                Command = LaunchBrowserCommand,
+                                Command = this.LaunchBrowserCommand,
                                 Parameter = "https://github.com/nodatime/nodatime"
                             },
                         new MenuItem
                             {
                                 Name = "Permissions Plugin",
-                                Command = LaunchBrowserCommand,
+                                Command = this.LaunchBrowserCommand,
                                 Parameter =
                                     "https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/Permissions"
                             },
                         new MenuItem
                             {
                                 Name = "PCL Storage",
-                                Command = LaunchBrowserCommand,
+                                Command = this.LaunchBrowserCommand,
                                 Parameter = "https://github.com/dsplaisted/PCLStorage"
                             },
                         new MenuItem
                             {
                                 Name = "Pull to Refresh Layout",
-                                Command = LaunchBrowserCommand,
+                                Command = this.LaunchBrowserCommand,
                                 Parameter =
                                     "https://github.com/jamesmontemagno/Xamarin.Forms-PullToRefreshLayout"
                             },
                         new MenuItem
                             {
                                 Name = "Settings Plugin",
-                                Command = LaunchBrowserCommand,
+                                Command = this.LaunchBrowserCommand,
                                 Parameter =
                                     "https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/Settings"
                             },
                         new MenuItem
                             {
                                 Name = "Toolkit for Xamarin.Forms",
-                                Command = LaunchBrowserCommand,
+                                Command = this.LaunchBrowserCommand,
                                 Parameter = "https://github.com/jamesmontemagno/xamarin.forms-toolkit"
                             },
                         new MenuItem
                             {
                                 Name = "Xamarin.Forms",
-                                Command = LaunchBrowserCommand,
+                                Command = this.LaunchBrowserCommand,
                                 Parameter = "http://xamarin.com/forms"
                             },
                         new MenuItem
                             {
                                 Name = "Xamarin Insights",
-                                Command = LaunchBrowserCommand,
+                                Command = this.LaunchBrowserCommand,
                                 Parameter = "http://xamarin.com/insights"
                             }
                     });
         }
 
-        public string AppVersion
-        {
-            get
-            {
-                return $"Version {DependencyService.Get<IAppVersionProvider>()?.AppVersion ?? "1.0"}";
-            }
-        }
+        public string AppVersion => $"Version {DependencyService.Get<IAppVersionProvider>()?.AppVersion ?? "1.0"}";
 
         public string AppInfo => "Всероссийское .NET сообщество\nDotNetRu - группа независимых сообществ .NET разработчиков со всей России. Мы объединяем людей вокруг .NET платформы, чтобы способствовать обмену опытом и знаниями. Проводим регулярные встречи, чтобы делиться новостями и лучшими практиками в разработке программных продуктов.";
 

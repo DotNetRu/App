@@ -1,8 +1,10 @@
 ﻿using System;
+
 using Xamarin.Forms;
+using Xamarin.Forms.Platform.iOS;
+
 using XamarinEvolve.Clients.UI;
 using XamarinEvolve.iOS;
-using Xamarin.Forms.Platform.iOS;
 
 [assembly:ExportRenderer(typeof(NonScrollableListView), typeof(NonScrollableListViewRenderer))]
 [assembly:ExportRenderer(typeof(AlwaysScrollView), typeof(AlwaysScrollViewRenderer))]
@@ -14,11 +16,11 @@ namespace XamarinEvolve.iOS
         {
             var test = DateTime.UtcNow;
         }
+
         protected override void OnElementChanged(ElementChangedEventArgs<ListView> e)
         {
             base.OnElementChanged(e);
-            if (Control != null)
-                Control.ScrollEnabled = false;
+            if (this.Control != null) this.Control.ScrollEnabled = false;
             
         }
     }
@@ -29,6 +31,7 @@ namespace XamarinEvolve.iOS
         {
             var test = DateTime.UtcNow;
         }
+
         protected override void OnElementChanged(VisualElementChangedEventArgs e)
         {
             base.OnElementChanged(e);

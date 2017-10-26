@@ -8,16 +8,16 @@ namespace XamarinEvolve.Clients.UI
 	{
 		public override AppPage PageType => AppPage.Event;
 
-        EventDetailsViewModel ViewModel => vm ?? (vm = BindingContext as EventDetailsViewModel);
+        EventDetailsViewModel ViewModel => this.vm ?? (this.vm = this.BindingContext as EventDetailsViewModel);
         EventDetailsViewModel vm;
 
         public EventDetailsPage()
         {
-            InitializeComponent();
+            this.InitializeComponent();
 
-            ListViewSponsors.ItemSelected += async (sender, e) => 
+            this.ListViewSponsors.ItemSelected += async (sender, e) => 
                 {
-                    var sponsor = ListViewSponsors.SelectedItem as Sponsor;
+                    var sponsor = this.ListViewSponsors.SelectedItem as Sponsor;
                     if(sponsor == null)
                         return;
 
@@ -26,32 +26,32 @@ namespace XamarinEvolve.Clients.UI
                             Sponsor = sponsor
                         };
 
-                    await NavigationService.PushAsync(Navigation, sponsorDetails);
+                    await NavigationService.PushAsync(this.Navigation, sponsorDetails);
 
-                    ListViewSponsors.SelectedItem = null;
+                    this.ListViewSponsors.SelectedItem = null;
                 };
         }
 
         public FeaturedEvent Event
         {
-            get { return ViewModel.Event; }
-            set { BindingContext = new EventDetailsViewModel(Navigation, value); }
+            get => this.ViewModel.Event;
+            set => this.BindingContext = new EventDetailsViewModel(this.Navigation, value);
         }
 
 		protected override void OnBindingContextChanged()
         {
             base.OnBindingContextChanged();
-            vm = null;
+            this.vm = null;
 
-            var adjust = Device.OS != TargetPlatform.Android ? 1 : -ViewModel.Sponsors.Count + 1;
-            ListViewSponsors.HeightRequest = ListViewSponsors.RowHeight - adjust;
+            var adjust = Device.RuntimePlatform != Device.Android ? 1 : -this.ViewModel.Sponsors.Count + 1;
+            this.ListViewSponsors.HeightRequest = this.ListViewSponsors.RowHeight - adjust;
         }
 
         protected override void OnAppearing()
         {
-            base.OnAppearing(); 
+            base.OnAppearing();
 
-            ViewModel.LoadEventDetailsCommand.Execute(null);
+            this.ViewModel.LoadEventDetailsCommand.Execute(null);
 
         }
 

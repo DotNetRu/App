@@ -9,7 +9,7 @@
     using XamarinEvolve.DataObjects;
     using XamarinEvolve.Utils.Extensions;
 
-    public static class EventExtensions
+    public static class MeetupExtensions
     {
         public static IEnumerable<Grouping<string, FeaturedEvent>> GroupByDate(this IEnumerable<FeaturedEvent> events)
         {
@@ -41,9 +41,35 @@
                     return "Tomorrow";
                 }
             }
-            //var monthDay = start.ToString("M");
+
+            // var monthDay = start.ToString("M");
             var year = start.ToString("Y");
             return $"{year}";
+        }
+
+        public static string GetDate(this FeaturedEvent e)
+        {
+            if (!e.StartTime.HasValue || !e.EndTime.HasValue)
+            {
+                return "TBA";
+            }
+
+            var start = e.StartTime.Value.ToEventTimeZone();
+
+            if (DateTime.Today.Year == start.Year)
+            {
+                if (DateTime.Today.DayOfYear == start.DayOfYear)
+                {
+                    return "Today";
+                }
+
+                if (DateTime.Today.DayOfYear + 1 == start.DayOfYear)
+                {
+                    return "Tomorrow";
+                }
+            }
+
+            return start.ToString("MMMM dd, yyyy");
         }
 
         public static string GetDisplayName(this FeaturedEvent e)

@@ -22,7 +22,7 @@
     {
         public ObservableRangeCollection<Tweet> Tweets { get; } = new ObservableRangeCollection<Tweet>();
 
-        public ObservableRangeCollection<Session> Sessions { get; } = new ObservableRangeCollection<Session>();
+        public ObservableRangeCollection<TalkModel> Sessions { get; } = new ObservableRangeCollection<TalkModel>();
 
         public DateTime NextForceRefresh { get; set; }
 
@@ -48,7 +48,7 @@
             {
                 this.NextForceRefresh = DateTime.UtcNow.AddMinutes(45);
                 this.IsBusy = true;
-                var tasks = new Task[]
+                var tasks = new[]
                                 {
                                     this.ExecuteLoadNotificationsCommandAsync(),
                                     this.ExecuteLoadSocialCommandAsync(), this.ExecuteLoadSessionsCommandAsync()
@@ -166,20 +166,20 @@
             set => this.SetProperty(ref this.noSessions, value);
         }
 
-        Session selectedSession;
+        TalkModel selectedTalkModel;
 
-        public Session SelectedSession
+        public TalkModel SelectedTalkModel
         {
-            get => this.selectedSession;
+            get => this.selectedTalkModel;
             set
             {
-                this.selectedSession = value;
+                this.selectedTalkModel = value;
                 this.OnPropertyChanged();
-                if (this.selectedSession == null) return;
+                if (this.selectedTalkModel == null) return;
 
-                MessagingService.Current.SendMessage(MessageKeys.NavigateToSession, this.selectedSession);
+                MessagingService.Current.SendMessage(MessageKeys.NavigateToSession, this.selectedTalkModel);
 
-                this.SelectedSession = null;
+                this.SelectedTalkModel = null;
             }
         }
 

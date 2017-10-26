@@ -14,13 +14,7 @@ namespace XamarinEvolve.DataStore.Mock
             return Task.FromResult(true);
         }
 
-        public bool IsInitialized
-        {
-            get
-            {
-                return true;
-            }
-        }
+        public bool IsInitialized => true;
 
         public Task InitializeAsync()
         {
@@ -36,39 +30,35 @@ namespace XamarinEvolve.DataStore.Mock
 
         INotificationStore _notificationStore;
 
-        public INotificationStore NotificationStore =>
-            _notificationStore ?? (_notificationStore = DependencyService.Get<INotificationStore>());
+        public INotificationStore NotificationStore => this._notificationStore ?? (this._notificationStore = DependencyService.Get<INotificationStore>());
 
         ICategoryStore _categoryStore;
 
-        public ICategoryStore CategoryStore =>
-            _categoryStore ?? (_categoryStore = DependencyService.Get<ICategoryStore>());
+        public ICategoryStore CategoryStore => this._categoryStore ?? (this._categoryStore = DependencyService.Get<ICategoryStore>());
 
         IFeedbackStore _feedbackStore;
 
-        public IFeedbackStore FeedbackStore =>
-            _feedbackStore ?? (_feedbackStore = DependencyService.Get<IFeedbackStore>());
+        public IFeedbackStore FeedbackStore => this._feedbackStore ?? (this._feedbackStore = DependencyService.Get<IFeedbackStore>());
 
         IConferenceFeedbackStore _conferenceFeedbackStore;
 
-        public IConferenceFeedbackStore ConferenceFeedbackStore =>
-            _conferenceFeedbackStore ?? (_conferenceFeedbackStore = DependencyService.Get<IConferenceFeedbackStore>());
+        public IConferenceFeedbackStore ConferenceFeedbackStore => this._conferenceFeedbackStore ?? (this._conferenceFeedbackStore = DependencyService.Get<IConferenceFeedbackStore>());
 
         ISessionStore _sessionStore;
 
-        public ISessionStore SessionStore => _sessionStore ?? (_sessionStore = DependencyService.Get<ISessionStore>());
+        public ISessionStore SessionStore => this._sessionStore ?? (this._sessionStore = DependencyService.Get<ISessionStore>());
 
         ISpeakerStore _speakerStore;
 
-        public ISpeakerStore SpeakerStore => _speakerStore ?? (_speakerStore = DependencyService.Get<ISpeakerStore>());
+        public ISpeakerStore SpeakerStore => this._speakerStore ?? (this._speakerStore = DependencyService.Get<ISpeakerStore>());
 
         IEventStore _eventStore;
 
-        public IEventStore EventStore => _eventStore ?? (_eventStore = DependencyService.Get<IEventStore>());
+        public IEventStore EventStore => this._eventStore ?? (this._eventStore = DependencyService.Get<IEventStore>());
 
         ISponsorStore _sponsorStore;
 
-        public ISponsorStore SponsorStore => _sponsorStore ?? (_sponsorStore = DependencyService.Get<ISponsorStore>());
+        public ISponsorStore SponsorStore => this._sponsorStore ?? (this._sponsorStore = DependencyService.Get<ISponsorStore>());
 
     }
 }

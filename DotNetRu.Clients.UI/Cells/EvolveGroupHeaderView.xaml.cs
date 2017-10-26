@@ -1,22 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace XamarinEvolve.Clients.UI
 {
-
     public class EvolveGroupHeader : ViewCell
     {
         public EvolveGroupHeader()
         {
-            View = new EvolveGroupHeaderView();
+            this.View = new EvolveGroupHeaderView();
         }
     }
-    public partial class EvolveGroupHeaderView : ContentView
+    public partial class EvolveGroupHeaderView
     {
         public EvolveGroupHeaderView()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

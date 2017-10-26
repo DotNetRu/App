@@ -57,7 +57,7 @@
                 return false;
             }
 
-            if (!(value is Session session))
+            if (!(value is TalkModel session))
             {
                 return false;
             }

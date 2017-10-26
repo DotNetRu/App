@@ -1,10 +1,14 @@
 ﻿using System;
+
+using FormsToolkit.iOS;
+
+using UIKit;
+
+using Xamarin.Forms;
+using Xamarin.Forms.Platform.iOS;
+
 using XamarinEvolve.Clients.UI;
 using XamarinEvolve.iOS;
-using Xamarin.Forms.Platform.iOS;
-using Xamarin.Forms;
-using UIKit;
-using FormsToolkit.iOS;
 
 [assembly:ExportRenderer(typeof(TextViewValue1), typeof(TextViewValue1Renderer))]
 namespace XamarinEvolve.iOS
@@ -23,6 +27,7 @@ namespace XamarinEvolve.iOS
             if (tvc == null) {
                 tvc = new CellTableViewCell (UITableViewCellStyle.Value1, item.GetType().FullName);
             }
+
             tvc.Cell = item;
             var cell = base.GetCell(item, tvc, tv);
             cell.SetDisclosure(item.StyleId);

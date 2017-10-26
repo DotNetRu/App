@@ -13,19 +13,19 @@
 
     public class FeedbackViewModel : ViewModelBase
     {
-        Session session;
+        TalkModel talkModel;
 
-        public Session Session
+        public TalkModel TalkModel
         {
-            get => this.session;
-            set => this.SetProperty(ref this.session, value);
+            get => this.talkModel;
+            set => this.SetProperty(ref this.talkModel, value);
         }
 
 
-        public FeedbackViewModel(INavigation navigation, Session session)
+        public FeedbackViewModel(INavigation navigation, TalkModel talkModel)
             : base(navigation)
         {
-            this.Session = session;
+            this.TalkModel = talkModel;
         }
 
         ICommand submitRatingCommand;
@@ -68,14 +68,14 @@
                             OnCompleted = async () =>
                                 {
                                     await this.Navigation.PopModalAsync();
-                                    if (Device.OS == TargetPlatform.Android)
+                                    if (Device.RuntimePlatform == Device.Android)
                                         MessagingService.Current.SendMessage("eval_finished");
                                 }
                         });
 
-                this.Session.FeedbackLeft = true;
+                this.TalkModel.FeedbackLeft = true;
                 await this.StoreManager.FeedbackStore.InsertAsync(
-                    new Feedback { SessionId = this.session.Id, SessionRating = rating });
+                    new Feedback { SessionId = this.talkModel.Id, SessionRating = rating });
             }
             catch (Exception ex)
             {
