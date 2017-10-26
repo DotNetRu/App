@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using MvvmHelpers;
 
 namespace XamarinEvolve.Clients.Portable
@@ -9,14 +8,14 @@ namespace XamarinEvolve.Clients.Portable
         string name;
         public string Name
         {
-            get { return name; }
-            set { SetProperty(ref name, value); }
+            get => this.name;
+            set => this.SetProperty(ref this.name, value);
         }
         string subtitle;
         public string Subtitle
         {
-            get { return subtitle; }
-            set { SetProperty(ref subtitle, value); }
+            get => this.subtitle;
+            set => this.SetProperty(ref this.subtitle, value);
         }
 
         public string Icon {get;set;}

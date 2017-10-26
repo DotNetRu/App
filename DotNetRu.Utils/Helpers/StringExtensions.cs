@@ -13,9 +13,9 @@ namespace XamarinEvolve.Utils
 			if (url == null)
 				return null;
 
-			var result = url.Replace("http://", "");
-			result = result.Replace("https://", "");
-			result = result.Replace("www.", "");
+			var result = url.Replace("http://", string.Empty);
+			result = result.Replace("https://", string.Empty);
+			result = result.Replace("www.", string.Empty);
 			if (result.EndsWith("/", StringComparison.CurrentCultureIgnoreCase))
 			{
 				result = result.Remove(result.Length - 1);

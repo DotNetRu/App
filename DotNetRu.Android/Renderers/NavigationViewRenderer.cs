@@ -13,48 +13,50 @@ using XamarinEvolve.Clients.Portable;
 
 namespace DotNetRu.Droid
 {
-    using XamarinEvolve.Utils.Helpers;
+    using System.ComponentModel;
+
+    using View = Android.Views.View;
 
     public class NavigationViewRenderer : ViewRenderer<XamarinEvolve.Clients.UI.NavigationView, NavigationView>
     {
         NavigationView navView;
 
-        public override void OnViewAdded(Android.Views.View child)
+        public override void OnViewAdded(View child)
         {
             base.OnViewAdded(child);
 
-            navView.Menu.FindItem(Resource.Id.nav_feed).SetTitle($"{EventInfo.EventName}");
-            navView.Menu.FindItem(Resource.Id.nav_events).SetVisible(true);
+            this.navView.Menu.FindItem(Resource.Id.nav_events).SetVisible(true);
         }
 
         protected override void OnElementChanged(ElementChangedEventArgs<XamarinEvolve.Clients.UI.NavigationView> e)
         {
 
             base.OnElementChanged(e);
-            if (e.OldElement != null || Element == null) return;
-
+            if (e.OldElement != null || this.Element == null)
+            {
+                return;
+            }
 
             var view = Inflate(Forms.Context, Resource.Layout.nav_view, null);
-            navView = view.JavaCast<NavigationView>();
+            this.navView = view.JavaCast<NavigationView>();
 
+            this.navView.NavigationItemSelected += this.NavView_NavigationItemSelected;
 
-            navView.NavigationItemSelected += NavView_NavigationItemSelected;
+            Settings.Current.PropertyChanged += this.SettingsPropertyChanged;
+            this.SetNativeControl(this.navView);
 
-            Settings.Current.PropertyChanged += SettingsPropertyChanged;
-            SetNativeControl(navView);
-
-            navView.SetCheckedItem(Resource.Id.nav_feed);
+            this.navView.SetCheckedItem(Resource.Id.nav_feed);
         }
 
-        void SettingsPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        void SettingsPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
         }
 
-        public override void OnViewRemoved(Android.Views.View child)
+        public override void OnViewRemoved(View child)
         {
             base.OnViewRemoved(child);
-            navView.NavigationItemSelected -= NavView_NavigationItemSelected;
-            Settings.Current.PropertyChanged -= SettingsPropertyChanged;
+            this.navView.NavigationItemSelected -= this.NavView_NavigationItemSelected;
+            Settings.Current.PropertyChanged -= this.SettingsPropertyChanged;
         }
 
         IMenuItem previousItem;
@@ -63,11 +65,11 @@ namespace DotNetRu.Droid
         {
 
 
-            if (previousItem != null) previousItem.SetChecked(false);
+            if (this.previousItem != null) this.previousItem.SetChecked(false);
 
-            navView.SetCheckedItem(e.MenuItem.ItemId);
+            this.navView.SetCheckedItem(e.MenuItem.ItemId);
 
-            previousItem = e.MenuItem;
+            this.previousItem = e.MenuItem;
 
             int id = 0;
             switch (e.MenuItem.ItemId)

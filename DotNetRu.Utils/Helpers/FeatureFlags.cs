@@ -4,6 +4,8 @@
     {
         public static bool EventsEnabled => false;
 
+        public static bool TalkRatingVisible => false;
+
         public static bool ShowBuyTicketButton => true;
 
         public static bool ShowConferenceFeedbackButton => true;

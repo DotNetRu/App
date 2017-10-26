@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace XamarinEvolve.DataObjects
+﻿namespace XamarinEvolve.DataObjects
 {
     using DotNetRu.DataStore.Audit.DataObjects;
 
@@ -23,6 +21,7 @@ namespace XamarinEvolve.DataObjects
         /// </summary>
         /// <value>The description.</value>
         public string Description { get; set; }
+
         /// <summary>
         /// Transparent PNG Rectangle
         /// </summary>

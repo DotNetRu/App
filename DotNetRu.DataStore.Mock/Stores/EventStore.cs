@@ -30,7 +30,7 @@
             this.Events.Add(new FeaturedEvent
                 {
                     Title = "Evening Event",
-                    Description = "",
+                    Description = string.Empty,
                     StartTime = new DateTime(2016, 4, 26, 23, 0, 0, DateTimeKind.Utc),
                     EndTime = new DateTime(2016, 4, 27, 1, 0, 0, DateTimeKind.Utc),
                 LocationName = string.Empty,
@@ -40,7 +40,7 @@
             this.Events.Add(new FeaturedEvent
                 {
                     Title = "Happy Hour",
-                    Description = "",
+                    Description = string.Empty,
                     StartTime = new DateTime(2016, 4, 27, 22, 30, 0, DateTimeKind.Utc),
                     EndTime = new DateTime(2016, 4, 28, 0, 0, 0, DateTimeKind.Utc),
                     LocationName = "Expo Hall",
@@ -51,7 +51,7 @@
             this.Events.Add(new FeaturedEvent
                 {
                     Title = "General Session",
-                    Description = "",
+                    Description = string.Empty,
                     StartTime = new DateTime(2016, 4, 28, 13, 0, 0, DateTimeKind.Utc),
                     EndTime = new DateTime(2016, 4, 28, 14, 30, 0, DateTimeKind.Utc),
                     LocationName ="General Session",

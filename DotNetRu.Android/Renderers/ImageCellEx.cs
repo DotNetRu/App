@@ -1,18 +1,21 @@
-﻿using System;
-using Xamarin.Forms;
-using XamarinEvolve.Droid;
-using Xamarin.Forms.Platform.Android;
-using Android.Widget;
-using Android.Content;
+﻿using Android.Content;
 using Android.Util;
 using Android.Views;
+using Android.Widget;
+
+using Xamarin.Forms;
+using Xamarin.Forms.Platform.Android;
+
+using XamarinEvolve.Droid;
 
 [assembly:ExportCell(typeof(ImageCell), typeof(ImageCellEx))]
 namespace XamarinEvolve.Droid
 {
+    using View = Android.Views.View;
+
     public class ImageCellEx: ImageCellRenderer
     {
-        protected override Android.Views.View GetCellCore(Cell item, Android.Views.View convertView, Android.Views.ViewGroup parent, Context context)
+        protected override View GetCellCore(Cell item, View convertView, ViewGroup parent, Context context)
         {
             var cell = (LinearLayout)base.GetCellCore(item, convertView, parent, context);
 

@@ -22,8 +22,8 @@ namespace XamarinEvolve.Clients.UI
 		/// Orientation (Horizontal or Vertical)
 		/// </summary>
 		public StackOrientation Orientation {
-			get { return (StackOrientation)GetValue (OrientationProperty); }
-			set { SetValue (OrientationProperty, value); } 
+			get => (StackOrientation)this.GetValue (OrientationProperty);
+		    set => this.SetValue (OrientationProperty, value);
 		}
 
 		/// <summary>
@@ -40,8 +40,8 @@ namespace XamarinEvolve.Clients.UI
 		/// </summary>
 		/// <value>The spacing.</value>
 		public double Spacing {
-			get { return (double)GetValue (SpacingProperty); }
-			set { SetValue (SpacingProperty, value); } 
+			get => (double)this.GetValue (SpacingProperty);
+		    set => this.SetValue (SpacingProperty, value);
 		}
 
 		/// <summary>
@@ -50,33 +50,32 @@ namespace XamarinEvolve.Clients.UI
 		/// </summary>
 		private void OnSizeChanged()
 		{
-			ForceLayout();
+		    this.ForceLayout();
 		}
 
-		//http://forums.xamarin.com/discussion/17961/stacklayout-with-horizontal-orientation-how-to-wrap-vertically#latest
-		//		protected override void OnPropertyChanged
-		//		(string propertyName = null)
-		//		{
-		//			base.OnPropertyChanged(propertyName);
-		//			if ((propertyName == WrapLayout.OrientationProperty.PropertyName) ||
-		//				(propertyName == WrapLayout.SpacingProperty.PropertyName)) {
-		//				this.OnSizeChanged();
-		//			}
-		//		}
-
+		// http://forums.xamarin.com/discussion/17961/stacklayout-with-horizontal-orientation-how-to-wrap-vertically#latest
+		// 		protected override void OnPropertyChanged
+		// 		(string propertyName = null)
+		// 		{
+		// 			base.OnPropertyChanged(propertyName);
+		// 			if ((propertyName == WrapLayout.OrientationProperty.PropertyName) ||
+		// 				(propertyName == WrapLayout.SpacingProperty.PropertyName)) {
+		// 				this.OnSizeChanged();
+		// 			}
+		// 		}
 		protected override SizeRequest OnMeasure(double widthConstraint, double heightConstraint)
 		{
-			if (WidthRequest > 0)
-				widthConstraint = Math.Min(widthConstraint, WidthRequest);
-			if (HeightRequest > 0)
-				heightConstraint = Math.Min(heightConstraint, HeightRequest);
+			if (this.WidthRequest > 0)
+				widthConstraint = Math.Min(widthConstraint, this.WidthRequest);
+			if (this.HeightRequest > 0)
+				heightConstraint = Math.Min(heightConstraint, this.HeightRequest);
 
 			double internalWidth = double.IsPositiveInfinity(widthConstraint) ? double.PositiveInfinity : Math.Max(0, widthConstraint);
 			double internalHeight = double.IsPositiveInfinity(heightConstraint) ? double.PositiveInfinity : Math.Max(0, heightConstraint);
 
-			return Orientation == StackOrientation.Vertical
-				? DoVerticalMeasure(internalWidth, internalHeight)
-					: DoHorizontalMeasure(internalWidth, internalHeight);
+			return this.Orientation == StackOrientation.Vertical
+				? this.DoVerticalMeasure(internalWidth, internalHeight)
+					: this.DoHorizontalMeasure(internalWidth, internalHeight);
 		}
 
 		/// <summary>
@@ -95,15 +94,15 @@ namespace XamarinEvolve.Clients.UI
 			double minHeight = 0;
 			double heightUsed = 0;
 
-			foreach (var item in Children)    
+			foreach (var item in this.Children)    
 			{
 				var size = item.Measure (widthConstraint, heightConstraint);
 				width = Math.Max (width, size.Request.Width);
 
-				var newHeight = height + size.Request.Height + Spacing;
+				var newHeight = height + size.Request.Height + this.Spacing;
 				if (newHeight > heightConstraint) {
 					columnCount++;
-					heightUsed = Math.Max (height, heightUsed) + Spacing;
+					heightUsed = Math.Max (height, heightUsed) + this.Spacing;
 					height = size.Request.Height;
 				} else
 					height = newHeight;
@@ -113,7 +112,7 @@ namespace XamarinEvolve.Clients.UI
 			}
 
 			if (columnCount > 1) {
-				height = Math.Max (height, heightUsed + Padding.Top + Padding.Bottom + Margin.Top + Margin.Bottom);
+				height = Math.Max (height, heightUsed + this.Padding.Top + this.Padding.Bottom + this.Margin.Top + this.Margin.Bottom);
 				width *= columnCount;  // take max width
 			}
 
@@ -129,7 +128,7 @@ namespace XamarinEvolve.Clients.UI
 		private SizeRequest DoHorizontalMeasure(double widthConstraint, double heightConstraint)
 		{
 			double width = 0d;
-			double horizontalPaddingAndMargin = Padding.Left + Margin.Left + Margin.Right + Padding.Right;
+			double horizontalPaddingAndMargin = this.Padding.Left + this.Margin.Left + this.Margin.Right + this.Padding.Right;
 			double height = 0d;
 			double minWidth = width;
 			double minHeight = height;
@@ -141,7 +140,7 @@ namespace XamarinEvolve.Clients.UI
 
 			bool firstRow = true;
 
-			foreach (var item in Children)    
+			foreach (var item in this.Children)    
 			{
 				var size = item.Measure(widthConstraint, heightConstraint);
 
@@ -149,24 +148,25 @@ namespace XamarinEvolve.Clients.UI
 				minWidth = Math.Max (minWidth, size.Minimum.Width);
 
 				var newWidth = width + size.Request.Width;
-				if (newWidth + Spacing >= widthConstraint) 
+				if (newWidth + this.Spacing >= widthConstraint) 
 				{
 					if (!firstRow)
 					{
 						heightUsed += currentRowHeight;
 					}
+
 					firstRow = false;
 
 					// wrap to next row
-					currentRowHeight = size.Request.Height + Spacing;
+					currentRowHeight = size.Request.Height + this.Spacing;
 					widthUsed = Math.Max (width, widthUsed);
-					width = size.Request.Width + Spacing + horizontalPaddingAndMargin;
+					width = size.Request.Width + this.Spacing + horizontalPaddingAndMargin;
 				}
 				else 
 				{
 					// stay on same row
 					width = newWidth;
-					currentRowHeight = Math.Max(size.Request.Height + Spacing, currentRowHeight);
+					currentRowHeight = Math.Max(size.Request.Height + this.Spacing, currentRowHeight);
 
 					if (firstRow)
 					{
@@ -176,7 +176,7 @@ namespace XamarinEvolve.Clients.UI
 			}
 				
 			width = Math.Max(width, widthUsed);
-			height = Math.Round(heightUsed) + Padding.Top + Margin.Top + Margin.Bottom + Padding.Bottom;
+			height = Math.Round(heightUsed) + this.Padding.Top + this.Margin.Top + this.Margin.Bottom + this.Padding.Bottom;
 
 			return new SizeRequest(new Size(width, height), new Size(minWidth, minHeight));
 		}
@@ -190,12 +190,12 @@ namespace XamarinEvolve.Clients.UI
 		/// <param name="height">A value representing the height of the child region bounding box.</param>
 		protected override void LayoutChildren (double x, double y, double width, double height)
 		{
-			if (Orientation == StackOrientation.Vertical) 
+			if (this.Orientation == StackOrientation.Vertical) 
 			{
 				double colWidth = 0;
 				double yPos = y, xPos = x;
 
-				foreach (var child in Children.Where(c => c.IsVisible)) 
+				foreach (var child in this.Children.Where(c => c.IsVisible)) 
 				{
 					var request = child.Measure (width, height);
 
@@ -205,13 +205,13 @@ namespace XamarinEvolve.Clients.UI
 
 					if (yPos + childHeight > height) {
 						yPos = y;
-						xPos += colWidth + Spacing;
+						xPos += colWidth + this.Spacing;
 						colWidth = 0;
 					}
 
 					var region = new Rectangle (xPos, yPos, childWidth, childHeight);
 					LayoutChildIntoBoundingRegion (child, region);
-					yPos += region.Height + Spacing;
+					yPos += region.Height + this.Spacing;
 				}
 			}
 			else 
@@ -219,7 +219,7 @@ namespace XamarinEvolve.Clients.UI
 				double rowHeight = 0;
 				double yPos = y, xPos = x;
 
-				foreach (var child in Children.Where(c => c.IsVisible)) 
+				foreach (var child in this.Children.Where(c => c.IsVisible)) 
 				{
 					var request = child.Measure (width, height);
 
@@ -227,7 +227,7 @@ namespace XamarinEvolve.Clients.UI
 
 					if (xPos + childWidth >= width) {
 						xPos = x;
-						yPos += rowHeight + Spacing;
+						yPos += rowHeight + this.Spacing;
 						rowHeight = 0;
 					}
 
@@ -236,7 +236,7 @@ namespace XamarinEvolve.Clients.UI
 
 					var region = new Rectangle (xPos, yPos, childWidth, childHeight);
 					LayoutChildIntoBoundingRegion (child, region);
-					xPos += region.Width + Spacing;
+					xPos += region.Width + this.Spacing;
 				}
 			}
 		}

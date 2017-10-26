@@ -1,15 +1,16 @@
-﻿using System;
-using Xamarin.Forms;
-
-namespace XamarinEvolve.Clients.UI
+﻿namespace XamarinEvolve.Clients.UI
 {
+    using Xamarin.Forms;
+
     public class NonScrollableListView : ListView
     {
         public NonScrollableListView()
-            :base(ListViewCachingStrategy.RecycleElement)
+            : base(ListViewCachingStrategy.RecycleElement)
         {
-            if (Device.OS == TargetPlatform.Windows || Device.OS == TargetPlatform.WinPhone)
-                BackgroundColor = Color.White;
+            if (Device.RuntimePlatform == Device.UWP)
+            {
+                this.BackgroundColor = Color.White;
+            }
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Xamarin.Forms;
-using XamarinEvolve.DataObjects;
+
 using XamarinEvolve.Clients.Portable;
+using XamarinEvolve.DataObjects;
 
 namespace XamarinEvolve.Clients.UI
 {
@@ -9,29 +10,28 @@ namespace XamarinEvolve.Clients.UI
 		public override AppPage PageType => AppPage.Feedback;
         FeedbackViewModel vm;
 
-        public FeedbackPage(Session session)
+        public FeedbackPage(TalkModel talkModel)
         {
-            InitializeComponent();
+            this.InitializeComponent();
 
-			ItemId = session.Title;
+            this.ItemId = talkModel.Title;
 
-            BindingContext = vm = new FeedbackViewModel(Navigation, session);
-            if (Device.OS != TargetPlatform.iOS)
-                ToolbarDone.Icon = "toolbar_close.png";
+            this.BindingContext = this.vm = new FeedbackViewModel(this.Navigation, talkModel);
+            if (Device.RuntimePlatform != Device.iOS) this.ToolbarDone.Icon = "toolbar_close.png";
 
-            ToolbarDone.Command = new Command(async () => 
+            this.ToolbarDone.Command = new Command(async () => 
                 {
-                    if(vm.IsBusy)
+                    if(this.vm.IsBusy)
                         return;
                     
-                    await Navigation.PopModalAsync();
+                    await this.Navigation.PopModalAsync();
                 });
         }
 
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
-            RatingControl.RemoveBehaviors();
+            this.RatingControl.RemoveBehaviors();
         }
     }
 }

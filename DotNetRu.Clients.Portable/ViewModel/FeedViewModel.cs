@@ -22,13 +22,13 @@
     {
         public ObservableRangeCollection<Tweet> Tweets { get; } = new ObservableRangeCollection<Tweet>();
 
-        public ObservableRangeCollection<Session> Sessions { get; } = new ObservableRangeCollection<Session>();
+        public ObservableRangeCollection<TalkModel> Sessions { get; } = new ObservableRangeCollection<TalkModel>();
 
         public DateTime NextForceRefresh { get; set; }
 
         public FeedViewModel()
         {
-            this.Title = "DotNetRu News";
+            this.Title = "News";
             this.NextForceRefresh = DateTime.UtcNow.AddMinutes(45);
 
             MessagingService.Current.Subscribe(
@@ -48,7 +48,7 @@
             {
                 this.NextForceRefresh = DateTime.UtcNow.AddMinutes(45);
                 this.IsBusy = true;
-                var tasks = new Task[]
+                var tasks = new[]
                                 {
                                     this.ExecuteLoadNotificationsCommandAsync(),
                                     this.ExecuteLoadSocialCommandAsync(), this.ExecuteLoadSessionsCommandAsync()
@@ -71,28 +71,16 @@
 
         public Notification Notification
         {
-            get
-            {
-                return this.notification;
-            }
-            set
-            {
-                this.SetProperty(ref this.notification, value);
-            }
+            get => this.notification;
+            set => this.SetProperty(ref this.notification, value);
         }
 
         bool loadingNotifications;
 
         public bool LoadingNotifications
         {
-            get
-            {
-                return this.loadingNotifications;
-            }
-            set
-            {
-                this.SetProperty(ref this.loadingNotifications, value);
-            }
+            get => this.loadingNotifications;
+            set => this.SetProperty(ref this.loadingNotifications, value);
         }
 
         ICommand loadNotificationsCommand;
@@ -106,10 +94,6 @@
         {
             if (this.LoadingNotifications) return;
             this.LoadingNotifications = true;
-#if DEBUG
-            await Task.Delay(1000);
-#endif
-
             try
             {
                 this.Notification = await this.StoreManager.NotificationStore.GetLatestNotification();
@@ -118,8 +102,6 @@
             {
                 ex.Data["method"] = "ExecuteLoadNotificationsCommandAsync";
                 this.Logger.Report(ex);
-                this.Notification =
-                    new Notification { Date = DateTime.UtcNow, Text = $"Welcome to {EventInfo.EventName}!" };
             }
             finally
             {
@@ -131,14 +113,8 @@
 
         public bool LoadingSessions
         {
-            get
-            {
-                return this.loadingSessions;
-            }
-            set
-            {
-                this.SetProperty(ref this.loadingSessions, value);
-            }
+            get => this.loadingSessions;
+            set => this.SetProperty(ref this.loadingSessions, value);
         }
 
         ICommand loadSessionsCommand;
@@ -186,33 +162,24 @@
 
         public bool NoSessions
         {
-            get
-            {
-                return this.noSessions;
-            }
-            set
-            {
-                this.SetProperty(ref this.noSessions, value);
-            }
+            get => this.noSessions;
+            set => this.SetProperty(ref this.noSessions, value);
         }
 
-        Session selectedSession;
+        TalkModel selectedTalkModel;
 
-        public Session SelectedSession
+        public TalkModel SelectedTalkModel
         {
-            get
-            {
-                return this.selectedSession;
-            }
+            get => this.selectedTalkModel;
             set
             {
-                this.selectedSession = value;
+                this.selectedTalkModel = value;
                 this.OnPropertyChanged();
-                if (this.selectedSession == null) return;
+                if (this.selectedTalkModel == null) return;
 
-                MessagingService.Current.SendMessage(MessageKeys.NavigateToSession, this.selectedSession);
+                MessagingService.Current.SendMessage(MessageKeys.NavigateToSession, this.selectedTalkModel);
 
-                this.SelectedSession = null;
+                this.SelectedTalkModel = null;
             }
         }
 
@@ -220,14 +187,8 @@
 
         public bool LoadingSocial
         {
-            get
-            {
-                return this.loadingSocial;
-            }
-            set
-            {
-                this.SetProperty(ref this.loadingSocial, value);
-            }
+            get => this.loadingSocial;
+            set => this.SetProperty(ref this.loadingSocial, value);
         }
 
         public bool ShowBuyTicketButton =>
@@ -237,23 +198,11 @@
 
         public string SocialHeader => "Social";
 
-        ICommand shareCommand;
-
-        public ICommand ShareCommand => this.shareCommand
-                                        ?? (this.shareCommand =
-                                                new Command(async () => await this.ExecuteShareCommand()));
-
-        async Task ExecuteShareCommand()
-        {
-            var tweet = DependencyService.Get<ITweetService>();
-            await tweet.InitiateConferenceTweet();
-        }
-
         ICommand buyTicketNowCommand;
 
         public ICommand BuyTicketNowCommand => this.buyTicketNowCommand
                                                ?? (this.buyTicketNowCommand =
-                                                       new Command(() => this.ExecuteBuyTicketNowCommand()));
+                                                       new Command(this.ExecuteBuyTicketNowCommand));
 
         void ExecuteBuyTicketNowCommand()
         {
@@ -264,7 +213,7 @@
 
         public ICommand ShowConferenceFeedbackCommand => this.showConferenceFeedbackCommand
                                                          ?? (this.showConferenceFeedbackCommand = new Command(
-                                                                 () => this.ExecuteShowConferenceFeedbackCommand()));
+                                                                 this.ExecuteShowConferenceFeedbackCommand));
 
         void ExecuteShowConferenceFeedbackCommand()
         {
@@ -304,24 +253,15 @@
 
         public bool SocialError
         {
-            get
-            {
-                return this.socialError;
-            }
-            set
-            {
-                this.SetProperty(ref this.socialError, value);
-            }
+            get => this.socialError;
+            set => this.SetProperty(ref this.socialError, value);
         }
 
         Tweet selectedTweet;
 
         public Tweet SelectedTweet
         {
-            get
-            {
-                return this.selectedTweet;
-            }
+            get => this.selectedTweet;
             set
             {
                 this.selectedTweet = value;

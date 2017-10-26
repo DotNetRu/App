@@ -1,35 +1,40 @@
 ﻿using System;
-using Xamarin.Forms.Platform.Android;
-using Xamarin.Forms;
-using DotNetRu.Droid;
+
 using Android.Widget;
+
+using DotNetRu.Droid;
+
+using Xamarin.Forms;
+using Xamarin.Forms.Platform.Android;
 
 [assembly:ExportRenderer(typeof(SearchBar), typeof(EvolveSearchBarRenderer))]
 namespace DotNetRu.Droid
 {
+    using Android.Views;
+
     public class EvolveSearchBarRenderer : SearchBarRenderer
     {
         
-        protected override void OnElementChanged(ElementChangedEventArgs<Xamarin.Forms.SearchBar> e)
+        protected override void OnElementChanged(ElementChangedEventArgs<SearchBar> e)
         {
             base.OnElementChanged(e);
-            if (Control == null)
+            if (this.Control == null)
                 return;
 
-            UpdateSearchIcon();
-            UpdateCursorColor();
-            UpdateSearchPlate();
+            this.UpdateSearchIcon();
+            this.UpdateCursorColor();
+            this.UpdateSearchPlate();
 
         }
 
         void UpdateSearchPlate ()
         {
-            var searchId = Control.Resources.GetIdentifier ("android:id/search_plate", null, null);
+            var searchId = this.Control.Resources.GetIdentifier ("android:id/search_plate", null, null);
             if (searchId == 0)
                 return;
 
 
-            var image = FindViewById<Android.Views.View>(searchId);
+            var image = this.FindViewById<View>(searchId);
             if (image == null)
                 return;
 
@@ -41,7 +46,7 @@ namespace DotNetRu.Droid
         {
             try 
             {
-                var searchId = Control.Resources.GetIdentifier ("android:id/search_mag_icon", null, null);
+                var searchId = this.Control.Resources.GetIdentifier ("android:id/search_mag_icon", null, null);
                 if (searchId == 0)
                     return;
 
@@ -63,7 +68,7 @@ namespace DotNetRu.Droid
             AutoCompleteTextView textView = null;
             try 
             {
-                var searchId = Control.Resources.GetIdentifier ("android:id/search_src_text", null, null);
+                var searchId = this.Control.Resources.GetIdentifier ("android:id/search_src_text", null, null);
                 if (searchId == 0)
                     return;
 

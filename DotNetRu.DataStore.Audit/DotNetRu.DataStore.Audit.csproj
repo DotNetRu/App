@@ -42,7 +42,7 @@
     <Compile Include="DataObjects\Feedback.cs" />
     <Compile Include="DataObjects\Notification.cs" />
     <Compile Include="DataObjects\Room.cs" />
-    <Compile Include="DataObjects\Session.cs" />
+    <Compile Include="DataObjects\TalkModel.cs" />
     <Compile Include="DataObjects\Speaker.cs" />
     <Compile Include="DataObjects\Sponsor.cs" />
     <Compile Include="DataObjects\SponsorLevel.cs" />
@@ -51,7 +51,7 @@
     <Compile Include="Models\Meetup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\Speaker.cs" />
-    <Compile Include="Models\Talk.cs" />
+    <Compile Include="Models\TalkEntity.cs" />
     <Compile Include="Models\Venue.cs" />
   </ItemGroup>
   <ItemGroup>

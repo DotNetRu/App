@@ -1,18 +1,13 @@
-// Helpers/Settings.cs
-using Plugin.Settings;
-using Plugin.Settings.Abstractions;
-using XamarinEvolve.Clients.Portable;
-using System;
-using Xamarin.Forms;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using XamarinEvolve.Utils;
+
+using Plugin.Settings;
+using Plugin.Settings.Abstractions;
+
+using Xamarin.Forms;
 
 namespace XamarinEvolve.Clients.Portable
 {
-    using XamarinEvolve.Utils.Helpers;
-
     /// <summary>
     /// This is the Settings static class that can be used in your Core solution or in any
     /// of your client applications. All settings are laid out the same exact way with getters
@@ -90,6 +85,7 @@ namespace XamarinEvolve.Clients.Portable
             {
                 return AppSettings.GetValueOrDefault(HasSetReminderKey, HasSetReminderDefault);
             }
+
             set
             {
                 AppSettings.AddOrUpdateValue(HasSetReminderKey, value);
@@ -106,6 +102,7 @@ namespace XamarinEvolve.Clients.Portable
             {
                 return AppSettings.GetValueOrDefault(EventCalendarKey, EventCalendarIdDefault);
             }
+
             set
             {
                 AppSettings.AddOrUpdateValue(EventCalendarKey, value);
@@ -123,6 +120,7 @@ namespace XamarinEvolve.Clients.Portable
             {
                 return AppSettings.GetValueOrDefault(PushNotificationsEnabledKey, PushNotificationsEnabledDefault);
             }
+
             set
             {
                 if (AppSettings.AddOrUpdateValue(PushNotificationsEnabledKey, value)) OnPropertyChanged();
@@ -139,6 +137,7 @@ namespace XamarinEvolve.Clients.Portable
             {
                 return AppSettings.GetValueOrDefault(FirstRunKey, FirstRunDefault);
             }
+
             set
             {
                 if (AppSettings.AddOrUpdateValue(FirstRunKey, value)) OnPropertyChanged();
@@ -155,6 +154,7 @@ namespace XamarinEvolve.Clients.Portable
             {
                 return AppSettings.GetValueOrDefault(GooglePlayCheckedKey, GooglePlayCheckedDefault);
             }
+
             set
             {
                 AppSettings.AddOrUpdateValue(GooglePlayCheckedKey, value);
@@ -171,6 +171,7 @@ namespace XamarinEvolve.Clients.Portable
             {
                 return AppSettings.GetValueOrDefault(AttemptedPushKey, AttemptedPushDefault);
             }
+
             set
             {
                 AppSettings.AddOrUpdateValue(AttemptedPushKey, value);
@@ -188,6 +189,7 @@ namespace XamarinEvolve.Clients.Portable
             {
                 return AppSettings.GetValueOrDefault(PushRegisteredKey, PushRegisteredDefault);
             }
+
             set
             {
                 AppSettings.AddOrUpdateValue(PushRegisteredKey, value);
@@ -208,32 +210,10 @@ namespace XamarinEvolve.Clients.Portable
             {
                 return AppSettings.GetValueOrDefault(ShowAllCategoriesKey, ShowAllCategoriesDefault);
             }
+
             set
             {
                 if (AppSettings.AddOrUpdateValue(ShowAllCategoriesKey, value)) OnPropertyChanged();
-            }
-        }
-
-        const string ShowPastSessionsKey = "show_past_sessions";
-
-        static readonly bool ShowPastSessionsDefault = false;
-
-        /// <summary>
-        /// Gets or sets a value indicating whether the user wants show past sessions.
-        /// </summary>
-        /// <value><c>true</c> if show past sessions; otherwise, <c>false</c>.</value>
-        public bool ShowPastSessions
-        {
-            get
-            {
-                //if end of conference
-                if (DateTime.UtcNow > EventInfo.EndOfConference) return true;
-
-                return AppSettings.GetValueOrDefault(ShowPastSessionsKey, ShowPastSessionsDefault);
-            }
-            set
-            {
-                if (AppSettings.AddOrUpdateValue(ShowPastSessionsKey, value)) OnPropertyChanged();
             }
         }
 
@@ -248,6 +228,7 @@ namespace XamarinEvolve.Clients.Portable
             {
                 return AppSettings.GetValueOrDefault(FilteredCategoriesKey, FilteredCategoriesDefault);
             }
+
             set
             {
                 if (AppSettings.AddOrUpdateValue(FilteredCategoriesKey, value)) OnPropertyChanged();
@@ -264,6 +245,7 @@ namespace XamarinEvolve.Clients.Portable
             {
                 return AppSettings.GetValueOrDefault(DatabaseIdKey, DatabaseIdDefault);
             }
+
             set
             {
                 AppSettings.AddOrUpdateValue(DatabaseIdKey, value);
@@ -283,6 +265,7 @@ namespace XamarinEvolve.Clients.Portable
             {
                 return isConnected;
             }
+
             set
             {
                 if (isConnected == value) return;
@@ -293,8 +276,7 @@ namespace XamarinEvolve.Clients.Portable
 
         #region Helpers
 
-        public bool HasFilters => (ShowPastSessions
-                                   || (!string.IsNullOrWhiteSpace(FilteredCategories) && !ShowAllCategories));
+        public bool HasFilters => !string.IsNullOrWhiteSpace(FilteredCategories) && !ShowAllCategories;
 
         #endregion
 

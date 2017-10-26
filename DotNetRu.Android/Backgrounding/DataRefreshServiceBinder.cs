@@ -1,6 +1,4 @@
-﻿using System;
-
-using Android.OS;
+﻿using Android.OS;
 
 namespace XamarinEvolve.Droid
 {
@@ -15,7 +13,7 @@ namespace XamarinEvolve.Droid
 
         public DataRefreshService GetDemoService ()
         {
-            return service;
+            return this.service;
         }
     }
 }

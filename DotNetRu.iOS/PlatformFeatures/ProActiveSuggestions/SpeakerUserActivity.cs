@@ -4,9 +4,7 @@ using CoreSpotlight;
 using Foundation;
 using Xamarin.Forms;
 using XamarinEvolve.Clients.Portable;
-using XamarinEvolve.DataObjects;
 using XamarinEvolve.iOS.PlatformFeatures.ProActiveSuggestions;
-using XamarinEvolve.Utils;
 
 [assembly: Dependency(typeof(SpeakerUserActivity))]
 
@@ -22,26 +20,26 @@ namespace XamarinEvolve.iOS.PlatformFeatures.ProActiveSuggestions
 
 		public Task Execute(Speaker entity)
 		{
-			if (_activity != null)
+			if (this._activity != null)
 			{
-				_activity.Invalidate();
+			    this._activity.Invalidate();
 			}
 
-			_activity = new NSUserActivity($"{AboutThisApp.PackageName}.speaker")
+		    this._activity = new NSUserActivity($"{AboutThisApp.PackageName}.speaker")
 			{
 				Title = entity.FullName
 			};
 
-			RegisterHandoff(entity);
+		    this.RegisterHandoff(entity);
 
-			_activity.BecomeCurrent();
+		    this._activity.BecomeCurrent();
 
 			return Task.CompletedTask;
 		}
 
 		public Task Finish()
 		{
-			_activity?.ResignCurrent();
+		    this._activity?.ResignCurrent();
 			return Task.CompletedTask;
 		}
 
@@ -59,18 +57,18 @@ namespace XamarinEvolve.iOS.PlatformFeatures.ProActiveSuggestions
 				}
 			}
 
-			_activity.Keywords = new NSSet<NSString>(keywords);
-			_activity.WebPageUrl = NSUrl.FromString(speaker.GetWebUrl());
+		    this._activity.Keywords = new NSSet<NSString>(keywords);
+		    this._activity.WebPageUrl = NSUrl.FromString(speaker.GetWebUrl());
 
-			_activity.EligibleForHandoff = false;
+		    this._activity.EligibleForHandoff = false;
 
-			_activity.AddUserInfoEntries(userInfo);
+		    this._activity.AddUserInfoEntries(userInfo);
 
 			// Provide context
 			var attributes = new CSSearchableItemAttributeSet($"{AboutThisApp.PackageName}.speaker");
 			attributes.Keywords = keywords.ToArray().Select(k => k.ToString()).ToArray();
 			attributes.Url = NSUrl.FromString(speaker.GetAppLink().AppLinkUri.AbsoluteUri);
-			_activity.ContentAttributeSet = attributes;
+		    this._activity.ContentAttributeSet = attributes;
 		}
 	}
 }

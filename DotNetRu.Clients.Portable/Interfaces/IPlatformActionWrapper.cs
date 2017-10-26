@@ -1,6 +1,4 @@
-﻿using XamarinEvolve.DataObjects;
-
-namespace XamarinEvolve.Clients.Portable
+﻿namespace XamarinEvolve.Clients.Portable
 {
     using DotNetRu.DataStore.Audit.DataObjects;
 

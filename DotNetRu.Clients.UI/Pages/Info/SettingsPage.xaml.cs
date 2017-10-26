@@ -1,8 +1,8 @@
 ﻿using System;
+
 using Xamarin.Forms;
+
 using XamarinEvolve.Clients.Portable;
-using FormsToolkit;
-using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.Clients.UI
 {
@@ -16,16 +16,15 @@ namespace XamarinEvolve.Clients.UI
 
     public SettingsPage()
     {
-      InitializeComponent();
+        this.InitializeComponent();
 
-
-      BindingContext = vm = new SettingsViewModel();
-      var adjust = Device.OS != TargetPlatform.Android ? 1 : -vm.AboutItems.Count + 1;
-      ListViewAbout.HeightRequest = (vm.AboutItems.Count * ListViewAbout.RowHeight) - adjust;
-      ListViewAbout.ItemTapped += (sender, e) => ListViewAbout.SelectedItem = null;
-      adjust = Device.OS != TargetPlatform.Android ? 1 : -vm.TechnologyItems.Count + 1;
-      ListViewTechnology.HeightRequest = (vm.TechnologyItems.Count * ListViewTechnology.RowHeight) - adjust;
-      ListViewTechnology.ItemTapped += (sender, e) => ListViewTechnology.SelectedItem = null;
+        this.BindingContext = this.vm = new SettingsViewModel();
+      var adjust = Device.RuntimePlatform != Device.Android ? 1 : -this.vm.AboutItems.Count + 1;
+        this.ListViewAbout.HeightRequest = (this.vm.AboutItems.Count * this.ListViewAbout.RowHeight) - adjust;
+        this.ListViewAbout.ItemTapped += (sender, e) => this.ListViewAbout.SelectedItem = null;
+      adjust = Device.RuntimePlatform != Device.Android ? 1 : -this.vm.TechnologyItems.Count + 1;
+        this.ListViewTechnology.HeightRequest = (this.vm.TechnologyItems.Count * this.ListViewTechnology.RowHeight) - adjust;
+        this.ListViewTechnology.ItemTapped += (sender, e) => this.ListViewTechnology.SelectedItem = null;
     }
 
     bool dialogShown;
@@ -33,15 +32,15 @@ namespace XamarinEvolve.Clients.UI
 
     async void OnTapGestureRecognizerTapped(object sender, EventArgs args)
     {
-      count++;
-      if (dialogShown || count < 8)
+        this.count++;
+      if (this.dialogShown || this.count < 8)
         return;
 
-      dialogShown = true;
+        this.dialogShown = true;
 
       App.Logger.Track("AppCreditsFound-8MoreThan92");
 
-      await DisplayAlert("Credits",
+      await this.DisplayAlert("Credits",
         AboutThisApp.Credits, "OK");
     }
   }

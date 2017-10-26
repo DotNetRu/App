@@ -11,6 +11,7 @@
 
     using Xamarin.Forms;
 
+    using XamarinEvolve.DataStore.Mock;
     using XamarinEvolve.DataStore.Mock.Abstractions;
     using XamarinEvolve.DataStore.Mock.Stores;
 
@@ -48,7 +49,7 @@
             DependencyService.Register<ICategoryStore, CategoryStore>();
             DependencyService.Register<IEventStore, EventStore>();
             DependencyService.Register<INotificationStore, NotificationStore>();
-            DependencyService.Register<IStoreManager, DataStore.Mock.StoreManager>();
+            DependencyService.Register<IStoreManager, StoreManager>();
         }
 
         /// <summary>
@@ -79,9 +80,9 @@
         /// <summary>
         /// The launch browser command.
         /// </summary>
-        public ICommand LaunchBrowserCommand => launchBrowserCommand
-                                                ?? (launchBrowserCommand = new Command<string>(
-                                                        async (t) => await ExecuteLaunchBrowserAsync(t)));
+        public ICommand LaunchBrowserCommand => this.launchBrowserCommand
+                                                ?? (this.launchBrowserCommand = new Command<string>(
+                                                        async (t) => await this.ExecuteLaunchBrowserAsync(t)));
 
         /// <summary>
         /// The execute launch browser async.
@@ -141,6 +142,7 @@
                         // ignored
                     }
                 }
+
                 if (lower.Contains("facebook.com"))
                 {
                     try

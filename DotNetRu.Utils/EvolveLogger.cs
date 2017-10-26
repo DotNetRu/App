@@ -23,7 +23,7 @@ namespace XamarinEvolve.Clients.Portable
         {
             if (FeatureFlags.GoogleAnalyticsEnabled)
             {
-                SetupGoogleAnalytics();
+                this.SetupGoogleAnalytics();
             }
         }
 
@@ -42,7 +42,7 @@ namespace XamarinEvolve.Clients.Portable
             }
             catch
             {
-                googleAnalyticsEnabled = false;
+                this.googleAnalyticsEnabled = false;
             }
         }
 
@@ -52,7 +52,7 @@ namespace XamarinEvolve.Clients.Portable
         {
             Debug.WriteLine("Logger: TrackPage: " + page.ToString() + " Id: " + id ?? string.Empty);
 
-            if (googleAnalyticsEnabled)
+            if (this.googleAnalyticsEnabled)
             {
                 GoogleAnalytics.Current.Tracker.SendView($"{page}Page:{id ?? string.Empty}");
             }
@@ -64,7 +64,7 @@ namespace XamarinEvolve.Clients.Portable
                 "Logger: TrackTimeSpent: " + page.ToString() + " Id: " + (id ?? string.Empty)
                 + $" Time: {time.TotalMilliseconds} ms");
 
-            if (googleAnalyticsEnabled)
+            if (this.googleAnalyticsEnabled)
             {
                 GoogleAnalytics.Current.Tracker.SendTiming(time, "TimeSpentOnPage", page, id);
             }
@@ -74,7 +74,7 @@ namespace XamarinEvolve.Clients.Portable
         {
             Debug.WriteLine("Logger: Track: " + trackIdentifier);
 
-            if (googleAnalyticsEnabled)
+            if (this.googleAnalyticsEnabled)
             {
                 GoogleAnalytics.Current.Tracker.SendEvent("General", trackIdentifier);
             }
@@ -86,7 +86,7 @@ namespace XamarinEvolve.Clients.Portable
 
             var fullTrackIdentifier = $"{trackIdentifier}-{key}-{@value}";
 
-            if (googleAnalyticsEnabled)
+            if (this.googleAnalyticsEnabled)
             {
                 GoogleAnalytics.Current.Tracker.SendEvent("General", fullTrackIdentifier, value);
             }
@@ -96,7 +96,7 @@ namespace XamarinEvolve.Clients.Portable
         {
             Debug.WriteLine("Logger: Report: " + exception);
 
-            if (googleAnalyticsEnabled)
+            if (this.googleAnalyticsEnabled)
             {
                 GoogleAnalytics.Current.Tracker.SendException(exception, warningLevel == Severity.Critical);
             }
@@ -109,7 +109,7 @@ namespace XamarinEvolve.Clients.Portable
         {
             Debug.WriteLine("Logger: Report: " + exception);
 
-            if (googleAnalyticsEnabled)
+            if (this.googleAnalyticsEnabled)
             {
                 GoogleAnalytics.Current.Tracker.SendException(exception, warningLevel == Severity.Critical);
             }
@@ -123,7 +123,7 @@ namespace XamarinEvolve.Clients.Portable
         {
             Debug.WriteLine("Logger: Report: " + exception + " key: " + key + " value: " + value);
 
-            if (googleAnalyticsEnabled)
+            if (this.googleAnalyticsEnabled)
             {
                 GoogleAnalytics.Current.Tracker.SendException(exception, warningLevel == Severity.Critical);
             }

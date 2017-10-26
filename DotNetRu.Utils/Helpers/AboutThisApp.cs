@@ -9,7 +9,7 @@
 
         public const string PackageName = "com.dotnetru.app";
 
-        public const string AppName = "DotNetRu App";
+        public const string AppName = "DotNetRu";
 
         public const string CompanyName = "DotNetRu";
 

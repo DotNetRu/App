@@ -88,27 +88,21 @@
         /// </summary>
         public bool? IsFeatured { get; set; }
 
-        public virtual ICollection<Session> Sessions { get; set; }
+        public virtual ICollection<TalkModel> Sessions { get; set; }
 
         [Newtonsoft.Json.JsonIgnore]
-        public string FullName
-        {
-            get
-            {
-                return $"{FirstName.Trim()} {LastName.Trim()}";
-            }
-        }
+        public string FullName => $"{this.FirstName.Trim()} {this.LastName.Trim()}";
 
         [Newtonsoft.Json.JsonIgnore]
         public string Title
         {
             get
             {
-                if (string.IsNullOrWhiteSpace(CompanyName)) return PositionName;
+                if (string.IsNullOrWhiteSpace(this.CompanyName)) return this.PositionName;
 
-                if (string.IsNullOrWhiteSpace(PositionName)) return CompanyName;
+                if (string.IsNullOrWhiteSpace(this.PositionName)) return this.CompanyName;
 
-                return $"{PositionName.Trim()}, {CompanyName.Trim()}";
+                return $"{this.PositionName.Trim()}, {this.CompanyName.Trim()}";
             }
         }
 
@@ -119,12 +113,13 @@
             {
                 try
                 {
-                    return new Uri(AvatarUrl);
+                    return new Uri(this.AvatarUrl);
                 }
                 catch
                 {
 
                 }
+
                 return null;
             }
         }
@@ -136,12 +131,13 @@
             {
                 try
                 {
-                    return new Uri(PhotoUrl);
+                    return new Uri(this.PhotoUrl);
                 }
                 catch
                 {
 
                 }
+
                 return null;
             }
         }

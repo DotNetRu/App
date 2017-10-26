@@ -14,12 +14,12 @@
 
         public AboutViewModel()
         {
-            AboutItems.Clear();
-            AboutItems.Add(new MenuItem { Name = "About this app", Icon = "icon_venue.png" });
+            this.AboutItems.Clear();
+            this.AboutItems.Add(new MenuItem { Name = "About this app", Icon = "icon_venue.png" });
 
             if (!FeatureFlags.SponsorsOnTabPage)
             {
-                InfoItems.Add(new MenuItem { Name = "Friends", Icon = "icon_venue.png", Parameter = "sponsors" });
+                this.InfoItems.Add(new MenuItem { Name = "Friends", Icon = "icon_venue.png", Parameter = "sponsors" });
             }
 
             // pushItem.Command = new Command(

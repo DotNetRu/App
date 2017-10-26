@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Linq;
-using System.Windows.Input;
-
-namespace XamarinEvolve.DataObjects
+﻿namespace XamarinEvolve.DataObjects
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+
     using DotNetRu.DataStore.Audit.DataObjects;
 
-    public class Session : BaseDataObject
+    public class TalkModel : BaseDataObject
     {
-        public Session()
+        public TalkModel()
         {
             this.Speakers = new List<Speaker>();
             this.Categories = new List<Category>();
@@ -94,22 +93,27 @@ namespace XamarinEvolve.DataObjects
         {
             get
             {
-                if (speakerNames != null) return speakerNames;
-
-                speakerNames = string.Empty;
-
-                if (Speakers == null || Speakers.Count == 0) return speakerNames;
-
-                var allSpeakers = Speakers.ToArray();
-                speakerNames = string.Empty;
-                for (int i = 0; i < allSpeakers.Length; i++)
+                if (this.speakerNames != null)
                 {
-                    speakerNames += allSpeakers[i].FullName;
-                    if (i != Speakers.Count - 1) speakerNames += ", ";
+                    return this.speakerNames;
                 }
 
+                this.speakerNames = string.Empty;
 
-                return speakerNames;
+                if (this.Speakers == null || this.Speakers.Count == 0)
+                {
+                    return this.speakerNames;
+                }
+
+                var allSpeakers = this.Speakers.ToArray();
+                this.speakerNames = string.Empty;
+                for (int i = 0; i < allSpeakers.Length; i++)
+                {
+                    this.speakerNames += allSpeakers[i].FullName;
+                    if (i != this.Speakers.Count - 1) this.speakerNames += ", ";
+                }
+
+                return this.speakerNames;
             }
         }
 
@@ -120,14 +124,17 @@ namespace XamarinEvolve.DataObjects
         {
             get
             {
-                if (speakerHandles != null) return speakerHandles;
+                if (this.speakerHandles != null)
+                {
+                    return this.speakerHandles;
+                }
 
-                speakerHandles = string.Empty;
+                this.speakerHandles = string.Empty;
 
-                if (Speakers == null || Speakers.Count == 0) return speakerHandles;
+                if (this.Speakers == null || this.Speakers.Count == 0) return this.speakerHandles;
 
-                var allSpeakers = Speakers.ToArray();
-                speakerHandles = string.Empty;
+                var allSpeakers = this.Speakers.ToArray();
+                this.speakerHandles = string.Empty;
                 for (int i = 0; i < allSpeakers.Length; i++)
                 {
                     var handle = allSpeakers[i].TwitterUrl;
@@ -135,24 +142,19 @@ namespace XamarinEvolve.DataObjects
                     {
                         if (i != 0)
                         {
-                            speakerHandles += ", ";
+                            this.speakerHandles += ", ";
                         }
-                        speakerHandles += $"@{handle}";
+
+                        this.speakerHandles += $"@{handle}";
                     }
                 }
 
-                return speakerHandles;
+                return this.speakerHandles;
             }
         }
 
         [Newtonsoft.Json.JsonIgnore]
-        public DateTime StartTimeOrderBy
-        {
-            get
-            {
-                return StartTime.HasValue ? StartTime.Value : DateTime.MinValue;
-            }
-        }
+        public DateTime StartTimeOrderBy => this.StartTime ?? DateTime.MinValue;
 
         const string delimiter = "|";
 
@@ -163,24 +165,26 @@ namespace XamarinEvolve.DataObjects
         {
             get
             {
-                if (haystack != null) return haystack;
+                if (this.haystack != null) return this.haystack;
 
                 var builder = new StringBuilder();
                 builder.Append(delimiter);
-                builder.Append(Title);
+                builder.Append(this.Title);
                 builder.Append(delimiter);
-                if (Categories != null)
+                if (this.Categories != null)
                 {
-                    foreach (var c in Categories) builder.Append($"{c.Name}{delimiter}{c.ShortName}{delimiter}");
+                    foreach (var c in this.Categories) builder.Append($"{c.Name}{delimiter}{c.ShortName}{delimiter}");
                 }
-                if (Speakers != null)
+
+                if (this.Speakers != null)
                 {
-                    foreach (var p in Speakers)
+                    foreach (var p in this.Speakers)
                         builder.Append(
                             $"{p.FirstName} {p.LastName}{delimiter}{p.FirstName}{delimiter}{p.LastName}{delimiter}");
                 }
-                haystack = builder.ToString();
-                return haystack;
+
+                this.haystack = builder.ToString();
+                return this.haystack;
             }
         }
 
@@ -189,17 +193,12 @@ namespace XamarinEvolve.DataObjects
         [Newtonsoft.Json.JsonIgnore]
         public bool FeedbackLeft
         {
-            get
-            {
-                return feedbackLeft;
-            }
-            set
-            {
-                SetProperty(ref feedbackLeft, value);
-            }
+            get => this.feedbackLeft;
+
+            set => this.SetProperty(ref this.feedbackLeft, value);
         }
 
         [Newtonsoft.Json.JsonIgnore]
-        public string LevelString => $"Level: {Level}";
+        public string LevelString => $"Level: {this.Level}";
     }
 }

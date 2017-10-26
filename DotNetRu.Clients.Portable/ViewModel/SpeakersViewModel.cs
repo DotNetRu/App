@@ -63,16 +63,6 @@
 
         #region Commands
 
-        private ICommand forceRefreshCommand;
-
-        public ICommand ForceRefreshCommand => this.forceRefreshCommand ?? (this.forceRefreshCommand =
-                new Command(async () => await this.ExecuteForceRefreshCommandAsync()));
-
-        private async Task ExecuteForceRefreshCommandAsync()
-        {
-            await this.ExecuteLoadSpeakersAsync(true);
-        }
-
         private ICommand loadSpeakersCommand;
 
         public ICommand LoadSpeakersCommand => this.loadSpeakersCommand ?? (this.loadSpeakersCommand =
@@ -81,7 +71,9 @@
         private async Task<bool> ExecuteLoadSpeakersAsync(bool force = false)
         {
             if (this.IsBusy)
+            {
                 return false;
+            }
 
             try
             {
@@ -95,26 +87,26 @@
                 }
 
                 // TODO uncomment
-                //if (Device.RuntimePlatform != Device.UWP && FeatureFlags.AppLinksEnabled)
-                //{
-                //    foreach (var speaker in this.Speakers)
-                //    {
-                //        try
-                //        {
-                //            // data migration: older applinks are removed so the index is rebuilt again
-                //            Application.Current.AppLinks.DeregisterLink(
-                //                new Uri(
-                //                    $"http://{AboutThisApp.AppLinksBaseDomain}/{AboutThisApp.SpeakersSiteSubdirectory}/{speaker.Id}"));
+                // if (Device.RuntimePlatform != Device.UWP && FeatureFlags.AppLinksEnabled)
+                // {
+                // foreach (var speaker in this.Speakers)
+                // {
+                // try
+                // {
+                // // data migration: older applinks are removed so the index is rebuilt again
+                // Application.Current.AppLinks.DeregisterLink(
+                // new Uri(
+                // $"http://{AboutThisApp.AppLinksBaseDomain}/{AboutThisApp.SpeakersSiteSubdirectory}/{speaker.Id}"));
 
-                //            Application.Current.AppLinks.RegisterLink(speaker.GetAppLink());
-                //        }
-                //        catch (Exception applinkException)
-                //        {
-                //            // don't crash the app
-                //            this.Logger.Report(applinkException, "AppLinks.RegisterLink", speaker.Id);
-                //        }
-                //    }
-                //}
+                // Application.Current.AppLinks.RegisterLink(speaker.GetAppLink());
+                // }
+                // catch (Exception applinkException)
+                // {
+                // // don't crash the app
+                // this.Logger.Report(applinkException, "AppLinks.RegisterLink", speaker.Id);
+                // }
+                // }
+                // }
             }
             catch (Exception ex)
             {

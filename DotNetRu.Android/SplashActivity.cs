@@ -1,24 +1,19 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using Android.Support.V7.App;
-using DotNetRu.Droid;
-using XamarinEvolve.Clients.Portable;
-
-namespace XamarinEvolve.Droid
+﻿namespace XamarinEvolve.Droid
 {
-	using XamarinEvolve.Utils.Helpers;
+    using Android.App;
+    using Android.Content;
+    using Android.OS;
+    using Android.Support.V7.App;
 
-	[Activity(Label = EventInfo.EventShortName, Icon = "@drawable/ic_launcher", Theme="@style/SplashTheme", MainLauncher=true)]            
+    using DotNetRu.Droid;
+
+    using XamarinEvolve.Utils.Helpers;
+
+    [Activity(
+        Label = AboutThisApp.AppName,
+        Icon = "@drawable/ic_launcher",
+        Theme = "@style/SplashTheme",
+        MainLauncher = true)]
 
     public class SplashActivity : AppCompatActivity
     {
@@ -26,8 +21,8 @@ namespace XamarinEvolve.Droid
         {
             base.OnCreate(savedInstanceState);
             var intent = new Intent(this, typeof(MainActivity));
-            StartActivity(intent);
-            Finish();
+            this.StartActivity(intent);
+            this.Finish();
         }
     }
 }

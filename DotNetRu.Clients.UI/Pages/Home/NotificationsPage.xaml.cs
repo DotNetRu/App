@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-using Xamarin.Forms;
-using XamarinEvolve.Clients.Portable;
+﻿using XamarinEvolve.Clients.Portable;
 
 namespace XamarinEvolve.Clients.UI
 {
@@ -13,16 +9,15 @@ namespace XamarinEvolve.Clients.UI
         NotificationsViewModel vm;
         public NotificationsPage()
         {
-            InitializeComponent();
-            BindingContext = vm = new NotificationsViewModel();
-            ListViewNotifications.ItemTapped += (sender, e) => ListViewNotifications.SelectedItem = null;
+            this.InitializeComponent();
+            this.BindingContext = this.vm = new NotificationsViewModel();
+            this.ListViewNotifications.ItemTapped += (sender, e) => this.ListViewNotifications.SelectedItem = null;
         }
 
 		protected override void OnAppearing()
         {
             base.OnAppearing();
-            if (vm.Notifications.Count == 0)
-                vm.LoadNotificationsCommand.Execute(false);
+            if (this.vm.Notifications.Count == 0) this.vm.LoadNotificationsCommand.Execute(false);
         }
     }
 }

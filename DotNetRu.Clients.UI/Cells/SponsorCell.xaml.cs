@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace XamarinEvolve.Clients.UI
 {
@@ -8,7 +6,7 @@ namespace XamarinEvolve.Clients.UI
     {
         public SponsorCell()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

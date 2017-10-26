@@ -7,14 +7,14 @@ namespace XamarinEvolve.Clients.UI
 	{
 		public Rating3Control()
 		{
-			InitializeComponent();
+		    this.InitializeComponent();
 		}
 
 		public void RemoveBehaviors()
 		{
-			ClearBehaviors(StarGrid1);
-			ClearBehaviors(StarGrid2);
-			ClearBehaviors(StarGrid3);
+		    this.ClearBehaviors(this.StarGrid1);
+		    this.ClearBehaviors(this.StarGrid2);
+		    this.ClearBehaviors(this.StarGrid3);
 		}
 
 		void ClearBehaviors(Grid grid)
@@ -31,25 +31,25 @@ namespace XamarinEvolve.Clients.UI
 
 		public int Rating
 		{
-			set { SetValue(RatingProperty, value); }
-			get { return (int)GetValue(RatingProperty); }
+		    get => (int)this.GetValue(RatingProperty);
+		    set => this.SetValue(RatingProperty, value);
 		}
 
-		public static readonly BindableProperty GroupNameProperty =
+	    public static readonly BindableProperty GroupNameProperty =
 			BindableProperty.Create("GroupName",
 				typeof(string),
 				typeof(Rating3Control), default(string), propertyChanged: OnGroupNameChanged);
 
 		public string GroupName
 		{
-			set { SetValue(GroupNameProperty, value); }
-			get { return (string)GetValue(GroupNameProperty); }
+		    get => (string)this.GetValue(GroupNameProperty);
+		    set => this.SetValue(GroupNameProperty, value);
 		}
 
-		public void OnStarRatingChanged(object sender, EventArgs e)
+	    public void OnStarRatingChanged(object sender, EventArgs e)
 		{
 			var behavior = sender as StarBehavior;
-			Rating = behavior?.StarRating ?? 0;
+		    this.Rating = behavior?.StarRating ?? 0;
 		}
 
 		static void OnGroupNameChanged(BindableObject bindable, object oldValue, object newValue)

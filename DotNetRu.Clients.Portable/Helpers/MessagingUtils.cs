@@ -1,6 +1,5 @@
 ﻿using FormsToolkit;
 using Xamarin.Forms;
-using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.Clients.Portable
 {
