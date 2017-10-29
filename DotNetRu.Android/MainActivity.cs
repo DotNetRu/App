@@ -84,8 +84,10 @@
         // GoogleApiClient client;
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            ToolbarResource = Resource.Layout.toolbar;
-            TabLayoutResource = Resource.Layout.tabs;
+            Forms.SetFlags("FastRenderers_Experimental");
+
+            FormsAppCompatActivity.ToolbarResource = Resource.Layout.toolbar;
+            FormsAppCompatActivity.TabLayoutResource = Resource.Layout.tabs;
 
             base.OnCreate(savedInstanceState);
 
@@ -108,7 +110,6 @@
                 }
             };
 #endif
-
             this.LoadApplication(new App());
 
             var gpsAvailable = this.IsPlayServicesAvailable();
