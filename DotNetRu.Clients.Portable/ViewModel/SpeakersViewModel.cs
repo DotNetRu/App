@@ -23,12 +23,12 @@
         {
         }
 
-        public ObservableRangeCollection<Speaker> Speakers { get; } = new ObservableRangeCollection<Speaker>();
+        public ObservableRangeCollection<SpeakerModel> Speakers { get; } = new ObservableRangeCollection<SpeakerModel>();
        
 
         #region Sorting
 
-        private void SortSpeakers(IEnumerable<Speaker> speakers)
+        private void SortSpeakers(IEnumerable<SpeakerModel> speakers)
         {
             var speakersSorted = from speaker in speakers
                                  orderby speaker.FullName
@@ -41,21 +41,21 @@
 
         #region Properties
 
-        private Speaker _selectedSpeaker;
+        private SpeakerModel selectedSpeakerModel;
 
-        public Speaker SelectedSpeaker
+        public SpeakerModel SelectedSpeakerModel
         {
-            get => this._selectedSpeaker;
+            get => this.selectedSpeakerModel;
             set
             {
-                this._selectedSpeaker = value;
+                this.selectedSpeakerModel = value;
                 this.OnPropertyChanged();
-                if (this._selectedSpeaker == null)
+                if (this.selectedSpeakerModel == null)
                     return;
 
-                MessagingService.Current.SendMessage(MessageKeys.NavigateToSpeaker, this._selectedSpeaker);
+                MessagingService.Current.SendMessage(MessageKeys.NavigateToSpeaker, this.selectedSpeakerModel);
 
-                this.SelectedSpeaker = null;
+                this.SelectedSpeakerModel = null;
             }
         }
 
@@ -82,7 +82,7 @@
                 // TODO: update data when we'll have finally managed to get them directly from github
                 if (!this.Speakers.Any() || force) 
                 {
-                    IEnumerable<Speaker> speakers = SpeakerLoaderService.Speakers;
+                    IEnumerable<SpeakerModel> speakers = SpeakerLoaderService.Speakers;
                     this.SortSpeakers(speakers);
                 }
 

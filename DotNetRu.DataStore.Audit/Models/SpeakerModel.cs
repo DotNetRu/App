@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
 
-    public class Speaker : BaseDataObject
+    public class SpeakerModel : BaseDataObject
     {
         /// <summary>
         /// Gets or sets the first name.
@@ -96,9 +96,15 @@
         {
             get
             {
-                if (string.IsNullOrWhiteSpace(this.CompanyName)) return this.PositionName;
+                if (string.IsNullOrWhiteSpace(this.CompanyName))
+                {
+                    return this.PositionName;
+                }
 
-                if (string.IsNullOrWhiteSpace(this.PositionName)) return this.CompanyName;
+                if (string.IsNullOrWhiteSpace(this.PositionName))
+                {
+                    return this.CompanyName;
+                }
 
                 return $"{this.PositionName.Trim()}, {this.CompanyName.Trim()}";
             }
@@ -115,7 +121,7 @@
                 }
                 catch
                 {
-
+                    // ignored
                 }
 
                 return null;

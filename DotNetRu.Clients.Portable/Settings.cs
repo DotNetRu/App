@@ -18,14 +18,7 @@ namespace XamarinEvolve.DataStore.Mock
     /// </summary>
     public static class Settings
     {
-        static ISettings AppSettings
-        {
-            get
-            {
-                return CrossSettings.Current;
-            }
-        }
-
+        static ISettings AppSettings => CrossSettings.Current;
 
         public static bool IsFavorite(string id) =>
             AppSettings.GetValueOrDefault("fav_"+id, false);

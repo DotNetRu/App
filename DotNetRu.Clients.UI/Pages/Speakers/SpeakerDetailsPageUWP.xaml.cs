@@ -18,9 +18,9 @@ namespace XamarinEvolve.Clients.UI
 
 	    readonly string sessionId;
 
-		public SpeakerDetailsPageUWP(Speaker speaker) : this((string)null)
+		public SpeakerDetailsPageUWP(SpeakerModel speakerModel) : this((string)null)
 		{
-		    this.Speaker = speaker;
+		    this.SpeakerModel = speakerModel;
 		}
 
         public SpeakerDetailsPageUWP(string sessionId)
@@ -59,9 +59,9 @@ namespace XamarinEvolve.Clients.UI
         {
         }
 
-        public Speaker Speaker
+        public SpeakerModel SpeakerModel
         {
-            get => this.ViewModel.Speaker;
+            get => this.ViewModel.SpeakerModel;
             set 
 			{
 			    this.BindingContext = new SpeakerDetailsViewModel(value, this.sessionId);

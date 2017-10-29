@@ -103,21 +103,21 @@
             set => this.SetProperty(ref this.isReminderSet, value);
         }
 
-        private Speaker selectedSpeaker;
+        private SpeakerModel selectedSpeakerModel;
 
-        public Speaker SelectedSpeaker
+        public SpeakerModel SelectedSpeakerModel
         {
-            get => this.selectedSpeaker;
+            get => this.selectedSpeakerModel;
 
             set
             {
-                this.selectedSpeaker = value;
+                this.selectedSpeakerModel = value;
                 this.OnPropertyChanged();
-                if (this.selectedSpeaker == null) return;
+                if (this.selectedSpeakerModel == null) return;
 
-                MessagingService.Current.SendMessage(MessageKeys.NavigateToSpeaker, this.selectedSpeaker);
+                MessagingService.Current.SendMessage(MessageKeys.NavigateToSpeaker, this.selectedSpeakerModel);
 
-                this.SelectedSpeaker = null;
+                this.SelectedSpeakerModel = null;
             }
         }
 

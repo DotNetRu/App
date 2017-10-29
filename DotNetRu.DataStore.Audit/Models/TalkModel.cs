@@ -9,7 +9,7 @@
     {
         public TalkModel()
         {
-            this.Speakers = new List<Speaker>();
+            this.Speakers = new List<SpeakerModel>();
             this.Categories = new List<Category>();
         }
 
@@ -36,7 +36,7 @@
         /// Gets or sets the speakers.
         /// </summary>
         /// <value>The speakers.</value>
-        public virtual ICollection<Speaker> Speakers { get; set; }
+        public virtual ICollection<SpeakerModel> Speakers { get; set; }
 
         /// <summary>
         /// Gets or sets the room.

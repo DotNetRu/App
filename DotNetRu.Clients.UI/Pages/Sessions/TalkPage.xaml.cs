@@ -26,7 +26,7 @@
 
             this.ListViewSpeakers.ItemSelected += async (sender, e) =>
                 {
-                    if (!(this.ListViewSpeakers.SelectedItem is Speaker speaker))
+                    if (!(this.ListViewSpeakers.SelectedItem is SpeakerModel speaker))
                     {
                         return;
                     }
@@ -36,13 +36,13 @@
                     if (Device.RuntimePlatform == Device.UWP)
                     {
                         var speakerDetailsUwp =
-                            new SpeakerDetailsPageUWP(this.talkViewModel.TalkModel.Id) { Speaker = speaker };
+                            new SpeakerDetailsPageUWP(this.talkViewModel.TalkModel.Id) { SpeakerModel = speaker };
                         destination = speakerDetailsUwp;
                     }
                     else
                     {
                         var speakerDetails =
-                            new SpeakerDetailsPage(this.talkViewModel.TalkModel.Id) { Speaker = speaker };
+                            new SpeakerDetailsPage(this.talkViewModel.TalkModel.Id) { SpeakerModel = speaker };
                         destination = speakerDetails;
                     }
 

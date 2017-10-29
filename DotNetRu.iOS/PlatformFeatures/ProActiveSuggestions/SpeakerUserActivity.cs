@@ -14,11 +14,11 @@ namespace XamarinEvolve.iOS.PlatformFeatures.ProActiveSuggestions
 
     using XamarinEvolve.Utils.Helpers;
 
-	public class SpeakerUserActivity : IPlatformSpecificExtension<Speaker>
+	public class SpeakerUserActivity : IPlatformSpecificExtension<SpeakerModel>
 	{
 		private NSUserActivity _activity;
 
-		public Task Execute(Speaker entity)
+		public Task Execute(SpeakerModel entity)
 		{
 			if (this._activity != null)
 			{
@@ -43,22 +43,22 @@ namespace XamarinEvolve.iOS.PlatformFeatures.ProActiveSuggestions
 			return Task.CompletedTask;
 		}
 
-		void RegisterHandoff(Speaker speaker)
+		void RegisterHandoff(SpeakerModel speakerModel)
 		{
 			var userInfo = new NSMutableDictionary();
-			userInfo.Add(new NSString("Url"), new NSString(speaker.GetAppLink().AppLinkUri.AbsoluteUri));
+			userInfo.Add(new NSString("Url"), new NSString(speakerModel.GetAppLink().AppLinkUri.AbsoluteUri));
 
-			var keywords = new NSMutableSet<NSString>(new NSString(speaker.FirstName), new NSString(speaker.LastName));
-			if (speaker.Sessions != null)
+			var keywords = new NSMutableSet<NSString>(new NSString(speakerModel.FirstName), new NSString(speakerModel.LastName));
+			if (speakerModel.Sessions != null)
 			{
-				foreach (var session in speaker.Sessions)
+				foreach (var session in speakerModel.Sessions)
 				{
 					keywords.Add(new NSString(session.Title));
 				}
 			}
 
 		    this._activity.Keywords = new NSSet<NSString>(keywords);
-		    this._activity.WebPageUrl = NSUrl.FromString(speaker.GetWebUrl());
+		    this._activity.WebPageUrl = NSUrl.FromString(speakerModel.GetWebUrl());
 
 		    this._activity.EligibleForHandoff = false;
 
@@ -67,7 +67,7 @@ namespace XamarinEvolve.iOS.PlatformFeatures.ProActiveSuggestions
 			// Provide context
 			var attributes = new CSSearchableItemAttributeSet($"{AboutThisApp.PackageName}.speaker");
 			attributes.Keywords = keywords.ToArray().Select(k => k.ToString()).ToArray();
-			attributes.Url = NSUrl.FromString(speaker.GetAppLink().AppLinkUri.AbsoluteUri);
+			attributes.Url = NSUrl.FromString(speakerModel.GetAppLink().AppLinkUri.AbsoluteUri);
 		    this._activity.ContentAttributeSet = attributes;
 		}
 	}

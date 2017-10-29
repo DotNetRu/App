@@ -12,22 +12,11 @@
 
     public static class SpeakerLoaderService
     {
-        private static List<Speaker> _speakers;
+        private static List<SpeakerModel> _speakers;
 
-        public static List<Speaker> Speakers
-        {
-            get
-            {
-                if (_speakers == null)
-                {
-                    _speakers = GetSpeakers();
-                }
+        public static List<SpeakerModel> Speakers => _speakers ?? (_speakers = GetSpeakers());
 
-                return _speakers;
-            }
-        }
-
-        private static List<Speaker> GetSpeakers()
+        private static List<SpeakerModel> GetSpeakers()
         {
             var assembly = Assembly.Load(new AssemblyName("DotNetRu.DataStore.Audit"));
             var stream = assembly.GetManifestResourceStream("DotNetRu.DataStore.Audit.Storage.speakers.xml");
@@ -42,10 +31,10 @@
             return AuditSpeakerToUISpeakerConverter(speakers);
         }
 
-        private static List<Speaker> AuditSpeakerToUISpeakerConverter(IEnumerable<AuditSpeaker> auditSpeakers)
+        private static List<SpeakerModel> AuditSpeakerToUISpeakerConverter(IEnumerable<AuditSpeaker> auditSpeakers)
         {
             return auditSpeakers.Select(
-                speaker => new Speaker
+                speaker => new SpeakerModel
                                {
                                    Id = speaker.Id,
                                    FirstName = speaker.Name,

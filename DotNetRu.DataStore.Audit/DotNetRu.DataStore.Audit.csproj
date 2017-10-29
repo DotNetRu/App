@@ -51,7 +51,7 @@
     <Compile Include="Models\Notification.cs" />
     <Compile Include="Models\Room.cs" />
     <Compile Include="Models\TalkModel.cs" />
-    <Compile Include="Models\Speaker.cs" />
+    <Compile Include="Models\SpeakerModel.cs" />
     <Compile Include="Models\Sponsor.cs" />
     <Compile Include="Models\SponsorLevel.cs" />
     <Compile Include="Entities\Community.cs" />

@@ -1,0 +1,10 @@
+<Speaker>
+  <Id>Adam-Sitnik</Id>
+  <Name>Adam Sitnik</Name>
+  <CompanyName>Powel</CompanyName>
+  <CompanyUrl>https://www.powel.com/</CompanyUrl>
+  <Description>Adam is a software engineer focused on performance and reliability. He has spent much of his professional life working on systems for energy producers and distributors. It included projects such: energy trading, production optimization, balance settlement and critical events detection. So far no blackouts! He’s an Open Source Contributor to BenchmarkDotNet and corefxlab. He is also an ex-MMA practitioner, AFOL, rabbit owner and a huge star wars fan.</Description>
+  <BlogUrl>http://adamsitnik.com/</BlogUrl>
+  <TwitterUrl>https://twitter.com/SitnikAdam</TwitterUrl>
+  <ContactsUrl>http://adamsitnik.com/about/</ContactsUrl>
+</Speaker>
