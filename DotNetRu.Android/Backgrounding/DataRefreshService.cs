@@ -10,7 +10,6 @@
     {
         // GcmTaskService
         // IBinder binder;
-
         const string LOG_TAG = "OnRunTask";
 
         public DataRefreshService ()

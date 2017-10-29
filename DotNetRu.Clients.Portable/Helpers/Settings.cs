@@ -33,6 +33,7 @@ namespace XamarinEvolve.Clients.Portable.Helpers
 			{
 				return AppSettings.GetValueOrDefault(SettingsKey, SettingsDefault);
 			}
+
 			set
 			{
 				AppSettings.AddOrUpdateValue(SettingsKey, value);
