@@ -1,7 +1,7 @@
-﻿using System.Xml.Serialization;
-
-namespace DotNetRu.DataStore.Audit.Models
+﻿namespace DotNetRu.DataStore.Audit.Entities
 {
+    using System.Xml.Serialization;
+
     [XmlType("Talk")]
     public class TalkEntity
     {

@@ -4,11 +4,12 @@
     using System.Threading.Tasks;
     using System.Windows.Input;
 
+    using DotNetRu.DataStore.Audit.Models;
+
     using FormsToolkit;
 
     using Xamarin.Forms;
 
-    using XamarinEvolve.DataObjects;
     using XamarinEvolve.Utils.Helpers;
 
     public class ConferenceFeedbackViewModel : ViewModelBase

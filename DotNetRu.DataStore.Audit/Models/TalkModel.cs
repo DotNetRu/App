@@ -1,11 +1,9 @@
-﻿namespace XamarinEvolve.DataObjects
+﻿namespace DotNetRu.DataStore.Audit.Models
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
-
-    using DotNetRu.DataStore.Audit.DataObjects;
 
     public class TalkModel : BaseDataObject
     {

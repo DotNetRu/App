@@ -1,9 +1,10 @@
 ﻿namespace XamarinEvolve.Clients.UI
 {
+    using DotNetRu.DataStore.Audit.Models;
+
     using Xamarin.Forms;
 
     using XamarinEvolve.Clients.Portable;
-    using XamarinEvolve.DataObjects;
 
     public partial class SponsorsPage
     {

@@ -3,7 +3,8 @@ using Xamarin.Forms;
 
 namespace XamarinEvolve.DataStore.Mock
 {
-    using XamarinEvolve.DataStore.Mock.Abstractions;
+    using DotNetRu.DataStore.Audit;
+    using DotNetRu.DataStore.Audit.Abstractions;
 
     public class StoreManager : IStoreManager
     {

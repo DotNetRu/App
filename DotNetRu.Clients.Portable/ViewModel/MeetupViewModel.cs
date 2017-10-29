@@ -9,6 +9,7 @@
     using System.Windows.Input;
     using System.Xml.Serialization;
 
+    using DotNetRu.DataStore.Audit.Entities;
     using DotNetRu.DataStore.Audit.Models;
 
     using FormsToolkit;
@@ -17,7 +18,6 @@
 
     using Xamarin.Forms;
 
-    using XamarinEvolve.DataObjects;
     using XamarinEvolve.Utils;
     using XamarinEvolve.Utils.Helpers;
 

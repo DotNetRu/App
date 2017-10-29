@@ -4,12 +4,13 @@
     using System.Diagnostics;
     using System.Globalization;
 
+    using DotNetRu.DataStore.Audit.Models;
+
     using Humanizer;
 
     using Xamarin.Forms;
 
     using XamarinEvolve.Clients.Portable;
-    using XamarinEvolve.DataObjects;
     using XamarinEvolve.Utils.Extensions;
 
     public class SessionTimeDisplayConverter : IValueConverter

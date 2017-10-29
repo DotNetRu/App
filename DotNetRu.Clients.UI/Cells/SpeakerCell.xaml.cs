@@ -1,6 +1,6 @@
 ﻿namespace XamarinEvolve.Clients.UI
 {
-    using DotNetRu.DataStore.Audit.DataObjects;
+    using DotNetRu.DataStore.Audit.Models;
 
     using Xamarin.Forms;
 

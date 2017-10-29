@@ -1,7 +1,5 @@
-﻿namespace XamarinEvolve.DataObjects
+﻿namespace DotNetRu.DataStore.Audit.Models
 {
-    using DotNetRu.DataStore.Audit.DataObjects;
-
     public class SponsorLevel : BaseDataObject
     {
         /// <summary>

@@ -1,8 +1,8 @@
-﻿namespace XamarinEvolve.DataStore.Mock.Abstractions
+﻿namespace DotNetRu.DataStore.Audit.Abstractions
 {
     using System.Threading.Tasks;
 
-    using XamarinEvolve.DataObjects;
+    using DotNetRu.DataStore.Audit.Models;
 
     public interface INotificationStore : IBaseStore<Notification>
     {

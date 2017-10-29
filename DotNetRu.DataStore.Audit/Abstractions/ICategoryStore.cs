@@ -1,10 +1,9 @@
-﻿namespace XamarinEvolve.DataStore.Mock.Abstractions
+﻿namespace DotNetRu.DataStore.Audit.Abstractions
 {
-    using XamarinEvolve.DataObjects;
+    using DotNetRu.DataStore.Audit.Models;
 
     public interface ICategoryStore : IBaseStore<Category>
     {
-       
     }
 }
 

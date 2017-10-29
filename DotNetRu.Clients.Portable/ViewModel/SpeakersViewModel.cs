@@ -6,7 +6,7 @@
     using System.Threading.Tasks;
     using System.Windows.Input;
 
-    using DotNetRu.DataStore.Audit.DataObjects;
+    using DotNetRu.DataStore.Audit.Models;
 
     using FormsToolkit;
 

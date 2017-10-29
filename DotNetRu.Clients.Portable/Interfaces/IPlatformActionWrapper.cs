@@ -1,6 +1,6 @@
 ﻿namespace XamarinEvolve.Clients.Portable
 {
-    using DotNetRu.DataStore.Audit.DataObjects;
+    using DotNetRu.DataStore.Audit.Models;
 
     public interface IPlatformActionWrapper<T> where T : BaseDataObject
 	{

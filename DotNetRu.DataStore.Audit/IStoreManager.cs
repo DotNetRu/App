@@ -1,6 +1,8 @@
-﻿namespace XamarinEvolve.DataStore.Mock.Abstractions
+﻿namespace DotNetRu.DataStore.Audit
 {
     using System.Threading.Tasks;
+
+    using DotNetRu.DataStore.Audit.Abstractions;
 
     public interface IStoreManager
     {

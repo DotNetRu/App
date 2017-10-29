@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace XamarinEvolve.DataObjects
+﻿namespace DotNetRu.DataStore.Audit.Models
 {
-    using DotNetRu.DataStore.Audit.DataObjects;
+    using System;
 
     public class Notification : BaseDataObject
     {

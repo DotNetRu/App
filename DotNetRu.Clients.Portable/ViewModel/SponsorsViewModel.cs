@@ -7,19 +7,18 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Xml.Serialization;
 
-using DotNetRu.DataStore.Audit.Models;
-
 using FormsToolkit;
 
 using MvvmHelpers;
 
 using Xamarin.Forms;
 
-using XamarinEvolve.DataObjects;
-
 namespace XamarinEvolve.Clients.Portable
 {
-	using XamarinEvolve.Utils.Helpers;
+    using DotNetRu.DataStore.Audit.Entities;
+    using DotNetRu.DataStore.Audit.Models;
+
+    using XamarinEvolve.Utils.Helpers;
 
 	public class SponsorsViewModel : ViewModelBase
     {

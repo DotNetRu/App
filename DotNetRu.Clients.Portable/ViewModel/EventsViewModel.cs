@@ -10,6 +10,7 @@ namespace XamarinEvolve.Clients.Portable.ViewModel
     using System.Windows.Input;
     using System.Xml.Serialization;
 
+    using DotNetRu.DataStore.Audit.Entities;
     using DotNetRu.DataStore.Audit.Models;
 
     using FormsToolkit;
@@ -18,7 +19,6 @@ namespace XamarinEvolve.Clients.Portable.ViewModel
 
     using Xamarin.Forms;
 
-    using XamarinEvolve.DataObjects;
     using XamarinEvolve.Utils.Helpers;
 
     /// <summary>

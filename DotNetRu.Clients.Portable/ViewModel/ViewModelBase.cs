@@ -4,6 +4,9 @@
     using System.Threading.Tasks;
     using System.Windows.Input;
 
+    using DotNetRu.DataStore.Audit;
+    using DotNetRu.DataStore.Audit.Abstractions;
+
     using MvvmHelpers;
 
     using Plugin.Share;
@@ -12,7 +15,6 @@
     using Xamarin.Forms;
 
     using XamarinEvolve.DataStore.Mock;
-    using XamarinEvolve.DataStore.Mock.Abstractions;
     using XamarinEvolve.DataStore.Mock.Stores;
 
     /// <summary>

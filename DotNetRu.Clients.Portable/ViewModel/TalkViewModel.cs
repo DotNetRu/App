@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using System.Windows.Input;
 
-    using DotNetRu.DataStore.Audit.DataObjects;
+    using DotNetRu.DataStore.Audit.Models;
 
     using FormsToolkit;
 
@@ -16,7 +16,6 @@
 
     using Xamarin.Forms;
 
-    using XamarinEvolve.DataObjects;
     using XamarinEvolve.Utils;
     using XamarinEvolve.Utils.Extensions;
     using XamarinEvolve.Utils.Helpers;
