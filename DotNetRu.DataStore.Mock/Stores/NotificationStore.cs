@@ -5,8 +5,8 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    using XamarinEvolve.DataObjects;
-    using XamarinEvolve.DataStore.Mock.Abstractions;
+    using DotNetRu.DataStore.Audit.Abstractions;
+    using DotNetRu.DataStore.Audit.Models;
 
     public class NotificationStore : BaseStore<Notification>, INotificationStore
     {

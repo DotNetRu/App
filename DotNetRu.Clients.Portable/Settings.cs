@@ -9,7 +9,7 @@ using Xamarin.Forms;
 
 namespace XamarinEvolve.DataStore.Mock
 {
-    using XamarinEvolve.DataStore.Mock.Abstractions;
+    using DotNetRu.DataStore.Audit.Abstractions;
 
     /// <summary>
     /// This is the Settings static class that can be used in your Core solution or in any

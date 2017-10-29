@@ -5,12 +5,10 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    using DotNetRu.DataStore.Audit.DataObjects;
+    using DotNetRu.DataStore.Audit.Abstractions;
+    using DotNetRu.DataStore.Audit.Models;
 
     using Xamarin.Forms;
-
-    using XamarinEvolve.DataObjects;
-    using XamarinEvolve.DataStore.Mock.Abstractions;
 
     public class SessionStore : BaseStore<TalkModel>, ISessionStore
     {

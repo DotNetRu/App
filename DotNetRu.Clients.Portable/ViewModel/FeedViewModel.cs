@@ -4,13 +4,14 @@
     using System.Threading.Tasks;
     using System.Windows.Input;
 
+    using DotNetRu.DataStore.Audit.Models;
+
     using FormsToolkit;
 
     using MvvmHelpers;
 
     using Xamarin.Forms;
 
-    using XamarinEvolve.DataObjects;
     using XamarinEvolve.Utils;
     using XamarinEvolve.Utils.Helpers;
 

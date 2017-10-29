@@ -1,12 +1,11 @@
 ﻿using Xamarin.Forms;
 using XamarinEvolve.Clients.Portable;
-using XamarinEvolve.DataObjects;
 
 namespace XamarinEvolve.Clients.UI
 {
     using System;
 
-    using DotNetRu.DataStore.Audit.DataObjects;
+    using DotNetRu.DataStore.Audit.Models;
 
     using FFImageLoading.Forms;
 

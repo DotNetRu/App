@@ -10,7 +10,7 @@ using XamarinEvolve.iOS.PlatformFeatures.ProActiveSuggestions;
 
 namespace XamarinEvolve.iOS.PlatformFeatures.ProActiveSuggestions
 {
-    using DotNetRu.DataStore.Audit.DataObjects;
+    using DotNetRu.DataStore.Audit.Models;
 
     using XamarinEvolve.Utils.Helpers;
 

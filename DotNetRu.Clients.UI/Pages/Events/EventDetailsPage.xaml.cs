@@ -1,10 +1,11 @@
 ﻿using Xamarin.Forms;
 using XamarinEvolve.Clients.Portable;
-using XamarinEvolve.DataObjects;
 
 namespace XamarinEvolve.Clients.UI
 {
-	public partial class EventDetailsPage : BasePage
+    using DotNetRu.DataStore.Audit.Models;
+
+    public partial class EventDetailsPage : BasePage
 	{
 		public override AppPage PageType => AppPage.Event;
 

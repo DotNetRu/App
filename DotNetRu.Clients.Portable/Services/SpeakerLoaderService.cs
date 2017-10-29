@@ -6,9 +6,9 @@
     using System.Reflection;
     using System.Xml.Serialization;
 
-    using DotNetRu.DataStore.Audit.DataObjects;
+    using DotNetRu.DataStore.Audit.Models;
 
-    using AuditSpeaker = DotNetRu.DataStore.Audit.Models.Speaker;
+    using AuditSpeaker = DotNetRu.DataStore.Audit.Entities.Speaker;
 
     public static class SpeakerLoaderService
     {

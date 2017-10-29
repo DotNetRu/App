@@ -1,9 +1,10 @@
 ﻿using Xamarin.Forms;
 using XamarinEvolve.Clients.Portable;
-using XamarinEvolve.DataObjects;
 
 namespace XamarinEvolve.Clients.UI
 {
+    using DotNetRu.DataStore.Audit.Models;
+
     public partial class SponsorDetailsPage : BasePage
 	{
 		public override AppPage PageType => AppPage.Sponsor;

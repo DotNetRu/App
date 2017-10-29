@@ -1,6 +1,7 @@
-﻿namespace DotNetRu.DataStore.Audit.DataObjects
+﻿namespace DotNetRu.DataStore.Audit.Models
 {
     using System;
+
     using MvvmHelpers;
 
     public interface IBaseDataObject

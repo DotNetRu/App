@@ -1,8 +1,6 @@
-﻿namespace XamarinEvolve.DataObjects
+﻿namespace DotNetRu.DataStore.Audit.Models
 {
     using System.Collections.Generic;
-
-    using DotNetRu.DataStore.Audit.DataObjects;
 
     using Newtonsoft.Json;
 

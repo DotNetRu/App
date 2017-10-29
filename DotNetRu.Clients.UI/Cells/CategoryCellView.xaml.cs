@@ -1,8 +1,8 @@
 ﻿namespace XamarinEvolve.Clients.UI
 {
-    using Xamarin.Forms;
+    using DotNetRu.DataStore.Audit.Models;
 
-    using XamarinEvolve.DataObjects;
+    using Xamarin.Forms;
 
     public class CategoryCell: ViewCell
     {

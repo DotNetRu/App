@@ -5,10 +5,10 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    using Xamarin.Forms;
+    using DotNetRu.DataStore.Audit.Abstractions;
+    using DotNetRu.DataStore.Audit.Models;
 
-    using XamarinEvolve.DataObjects;
-    using XamarinEvolve.DataStore.Mock.Abstractions;
+    using Xamarin.Forms;
 
     public class EventStore : BaseStore<FeaturedEvent>, IEventStore
     {

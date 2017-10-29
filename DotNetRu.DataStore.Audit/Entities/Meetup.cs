@@ -1,8 +1,8 @@
-﻿using System;
-using System.Xml.Serialization;
-
-namespace DotNetRu.DataStore.Audit.Models
+﻿namespace DotNetRu.DataStore.Audit.Entities
 {
+    using System;
+    using System.Xml.Serialization;
+
     [XmlType(AnonymousType = true)]
     [XmlRoot(Namespace = "", IsNullable = false)]
     public class Meetup

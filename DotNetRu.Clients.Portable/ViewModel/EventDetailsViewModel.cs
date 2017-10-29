@@ -8,11 +8,11 @@ using MvvmHelpers;
 
 using Xamarin.Forms;
 
-using XamarinEvolve.DataObjects;
-
 namespace XamarinEvolve.Clients.Portable
 {
-	using XamarinEvolve.Utils.Helpers;
+    using DotNetRu.DataStore.Audit.Models;
+
+    using XamarinEvolve.Utils.Helpers;
 
 	public class EventDetailsViewModel : ViewModelBase
     {

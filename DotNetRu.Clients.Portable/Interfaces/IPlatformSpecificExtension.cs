@@ -2,7 +2,7 @@
 
 namespace XamarinEvolve.Clients.Portable
 {
-    using DotNetRu.DataStore.Audit.DataObjects;
+    using DotNetRu.DataStore.Audit.Models;
 
     public interface IPlatformSpecificExtension<T> where T : IBaseDataObject
 	{

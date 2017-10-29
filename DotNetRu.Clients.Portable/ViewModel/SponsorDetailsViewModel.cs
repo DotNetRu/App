@@ -2,11 +2,12 @@
 
 using Xamarin.Forms;
 
-using XamarinEvolve.DataObjects;
 using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.Clients.Portable
 {
+    using DotNetRu.DataStore.Audit.Models;
+
     public class SponsorDetailsViewModel : ViewModelBase
     {
         
