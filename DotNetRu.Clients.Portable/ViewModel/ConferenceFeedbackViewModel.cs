@@ -32,9 +32,9 @@
 
         public ICommand SubmitFeedbackCommand => this.submitFeedbackCommand
                                                  ?? (this.submitFeedbackCommand = new Command(
-                                                         async () => await this.ExecuteSubmitFeedbackCommandAsync()));
+                                                         this.ExecuteSubmitFeedbackCommandAsync));
 
-        async Task ExecuteSubmitFeedbackCommandAsync()
+        private void ExecuteSubmitFeedbackCommandAsync()
         {
             if (this.IsBusy)
             {

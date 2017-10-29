@@ -11,7 +11,7 @@
         ICategoryStore CategoryStore { get; }
         ISessionStore SessionStore { get; }
         ISpeakerStore SpeakerStore { get; }
-        ISponsorStore SponsorStore { get; }
+        IFriendStore FriendStore { get; }
         IEventStore EventStore { get; }
         INotificationStore NotificationStore { get; }
 

@@ -60,8 +60,8 @@
     <Compile Include="ViewModel\SettingsViewModel.cs" />
     <Compile Include="Helpers\MessagingUtils.cs" />
     <Compile Include="ViewModel\SpeakerDetailsViewModel.cs" />
-    <Compile Include="ViewModel\SponsorsViewModel.cs" />
-    <Compile Include="ViewModel\SponsorDetailsViewModel.cs" />
+    <Compile Include="ViewModel\FriendsViewModel.cs" />
+    <Compile Include="ViewModel\FriendDetailsViewModel.cs" />
     <Compile Include="ViewModel\EventsViewModel.cs" />
     <Compile Include="ViewModel\EventDetailsViewModel.cs" />
     <Compile Include="Model\Extensions\MeetupExtensions.cs" />

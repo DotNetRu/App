@@ -45,10 +45,10 @@
         /// Gets or sets the sponsor if there is one for the event
         /// </summary>
         /// <value>The sponsor.</value>
-        public virtual Sponsor Sponsor { get; set; }
+        public virtual FriendModel FriendModel { get; set; }
 
         [JsonIgnore]
-        public bool HasSponsor => this.Sponsor != null;
+        public bool HasSponsor => this.FriendModel != null;
 
         [JsonIgnore]
         public DateTime StartTimeOrderBy => this.StartTime ?? DateTime.MinValue;

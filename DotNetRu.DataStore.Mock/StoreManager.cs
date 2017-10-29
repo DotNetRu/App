@@ -49,9 +49,9 @@ namespace XamarinEvolve.DataStore.Mock
 
         public IEventStore EventStore => this._eventStore ?? (this._eventStore = DependencyService.Get<IEventStore>());
 
-        ISponsorStore _sponsorStore;
+        IFriendStore friendStore;
 
-        public ISponsorStore SponsorStore => this._sponsorStore ?? (this._sponsorStore = DependencyService.Get<ISponsorStore>());
+        public IFriendStore FriendStore => this.friendStore ?? (this.friendStore = DependencyService.Get<IFriendStore>());
 
     }
 }

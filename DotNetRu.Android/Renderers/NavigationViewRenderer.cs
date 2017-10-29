@@ -84,7 +84,7 @@ namespace DotNetRu.Droid
                     id = (int)AppPage.Events;
                     break;
                 case Resource.Id.nav_sponsors:
-                    id = (int)AppPage.Sponsors;
+                    id = (int)AppPage.Friends;
                     break;
                 case Resource.Id.nav_settings:
                     id = (int)AppPage.Settings;

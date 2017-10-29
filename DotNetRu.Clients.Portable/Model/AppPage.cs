@@ -17,7 +17,7 @@
 
         Events,
 
-        Sponsors,
+        Friends,
 
         Settings,
 
@@ -25,7 +25,7 @@
 
         Speaker,
 
-        Sponsor,
+        Friend,
 
         Event,
 

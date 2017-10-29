@@ -13,11 +13,11 @@
     public class EventStore : BaseStore<FeaturedEvent>, IEventStore
     {
         List<FeaturedEvent> Events { get; }
-        ISponsorStore _sponsors;
+        IFriendStore friends;
         public EventStore()
         {
             this.Events = new List<FeaturedEvent>();
-            this._sponsors = DependencyService.Get<ISponsorStore>();
+            this.friends = DependencyService.Get<IFriendStore>();
         }
 
         public override async Task InitializeStore()
@@ -25,7 +25,7 @@
             if (this.Events.Count != 0)
                 return;
 
-            var sponsorList = await this._sponsors.GetItemsAsync();
+            var sponsorList = await this.friends.GetItemsAsync();
                         
             this.Events.Add(new FeaturedEvent
                 {
@@ -45,7 +45,7 @@
                     EndTime = new DateTime(2016, 4, 28, 0, 0, 0, DateTimeKind.Utc),
                     LocationName = "Expo Hall",
                     IsAllDay = false,
-                    Sponsor = sponsorList.FirstOrDefault(x => x.Name == "Microsoft")
+                    FriendModel = sponsorList.FirstOrDefault(x => x.Name == "Microsoft")
                 });
 
             this.Events.Add(new FeaturedEvent
