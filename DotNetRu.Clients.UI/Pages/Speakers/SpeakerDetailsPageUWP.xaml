@@ -13,8 +13,7 @@
              BackgroundColor="{DynamicResource WindowBackgroundTable}">
   <ContentPage.Resources>
     <ResourceDictionary>
-      <local:SpeakerImageConverter x:Key="SpeakerImageConverter" />
-      <toolkit:HasDataConverter x:Key="GenericIsVisibleConverter"/>
+        <toolkit:HasDataConverter x:Key="GenericIsVisibleConverter"/>
     </ResourceDictionary>
   </ContentPage.Resources>
   <ScrollView x:Name="MainScroll">
@@ -38,7 +37,7 @@
                 <local:LabelSection Text="Details"/>
                 <local:HeaderDivider/>
                 <imagecircle:CircleImage FillColor="{DynamicResource Primary}" 
-                                          Source="{Binding Speaker.PhotoUrl, Converter={StaticResource SpeakerImageConverter}}"
+                                          Source="{Binding Speaker.PhotoImage}"
                                           VerticalOptions="Center"
                                           Aspect="AspectFill"
                                           WidthRequest="200" HeightRequest="200" Margin="5" HorizontalOptions="Center">
