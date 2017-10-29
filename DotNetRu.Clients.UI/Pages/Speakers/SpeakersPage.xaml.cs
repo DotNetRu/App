@@ -47,7 +47,7 @@
                 };
         }
 
-        void ListViewTapped(object sender, ItemTappedEventArgs e)
+        public void ListViewTapped(object sender, ItemTappedEventArgs e)
         {
             if (!(sender is ListView list))
             {
