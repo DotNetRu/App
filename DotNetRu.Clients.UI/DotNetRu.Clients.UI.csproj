@@ -97,11 +97,11 @@
     <Compile Include="Pages\Speakers\SpeakerDetailsPage.xaml.cs">
       <DependentUpon>SpeakerDetailsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Sponsors\SponsorsPage.xaml.cs">
-      <DependentUpon>SponsorsPage.xaml</DependentUpon>
+    <Compile Include="Pages\Friends\FriendsPage.xaml.cs">
+      <DependentUpon>FriendsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Sponsors\SponsorDetailsPage.xaml.cs">
-      <DependentUpon>SponsorDetailsPage.xaml</DependentUpon>
+    <Compile Include="Pages\Friends\FriendDetailsPage.xaml.cs">
+      <DependentUpon>FriendDetailsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Events\EventsPage.xaml.cs">
       <DependentUpon>EventsPage.xaml</DependentUpon>
@@ -147,8 +147,8 @@
     <Compile Include="Pages\Home\NotificationsPage.xaml.cs">
       <DependentUpon>NotificationsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Cells\SponsorCell.xaml.cs">
-      <DependentUpon>SponsorCell.xaml</DependentUpon>
+    <Compile Include="Cells\FriendCell.xaml.cs">
+      <DependentUpon>FriendCell.xaml</DependentUpon>
     </Compile>
     <Compile Include="Cells\NotificationCell.xaml.cs">
       <DependentUpon>NotificationCell.xaml</DependentUpon>
@@ -321,13 +321,15 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <LogicalName>SpeakerDetailsPage.xaml</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pages\Sponsors\SponsorsPage.xaml">
+    <EmbeddedResource Include="Pages\Friends\FriendsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <LogicalName>SponsorsPage.xaml</LogicalName>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pages\Sponsors\SponsorDetailsPage.xaml">
+    <EmbeddedResource Include="Pages\Friends\FriendDetailsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <LogicalName>SponsorDetailsPage.xaml</LogicalName>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\Events\EventsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
@@ -381,7 +383,7 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <LogicalName>NotificationsPage.xaml</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Cells\SponsorCell.xaml">
+    <EmbeddedResource Include="Cells\FriendCell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <LogicalName>SponsorCell.xaml</LogicalName>
     </EmbeddedResource>

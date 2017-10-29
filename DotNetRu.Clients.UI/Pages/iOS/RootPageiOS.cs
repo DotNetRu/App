@@ -23,7 +23,7 @@
             this.Children.Add(new EvolveNavigationPage(new EventsPage()));
             if (FeatureFlags.SponsorsOnTabPage)
             {
-                this.Children.Add(new EvolveNavigationPage(new SponsorsPage()));
+                this.Children.Add(new EvolveNavigationPage(new FriendsPage()));
             }
 
             this.Children.Add(new EvolveNavigationPage(new AboutPage()));

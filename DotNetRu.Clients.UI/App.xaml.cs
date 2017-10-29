@@ -173,7 +173,7 @@ $"We can send you updates through {EventInfo.EventName} via push notifications. 
             }
         }
 
-        public void SendOnAppLinkRequestReceived(Uri uri)
+        public new void SendOnAppLinkRequestReceived(Uri uri)
         {
             this.OnAppLinkRequestReceived(uri);
         }

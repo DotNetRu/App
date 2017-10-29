@@ -39,7 +39,7 @@ namespace XamarinEvolve.Clients.UI
                     switch (item.Parameter)
                     {
                         case "sponsors":
-                            page = new SponsorsPage();
+                            page = new FriendsPage();
                             break;
                     }
 

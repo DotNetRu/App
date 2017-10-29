@@ -18,14 +18,12 @@
 
     public class SpeakersViewModel : ViewModelBase
     {
-
         public SpeakersViewModel(INavigation navigation) : base(navigation)
         {
         }
 
         public ObservableRangeCollection<SpeakerModel> Speakers { get; } = new ObservableRangeCollection<SpeakerModel>();
        
-
         #region Sorting
 
         private void SortSpeakers(IEnumerable<SpeakerModel> speakers)
@@ -38,9 +36,7 @@
         }
 
         #endregion
-
-        #region Properties
-
+        
         private SpeakerModel selectedSpeakerModel;
 
         public SpeakerModel SelectedSpeakerModel
@@ -51,7 +47,9 @@
                 this.selectedSpeakerModel = value;
                 this.OnPropertyChanged();
                 if (this.selectedSpeakerModel == null)
+                {
                     return;
+                }
 
                 MessagingService.Current.SendMessage(MessageKeys.NavigateToSpeaker, this.selectedSpeakerModel);
 
@@ -59,20 +57,16 @@
             }
         }
 
-        #endregion
-
-        #region Commands
-
         private ICommand loadSpeakersCommand;
 
         public ICommand LoadSpeakersCommand => this.loadSpeakersCommand ?? (this.loadSpeakersCommand =
-                new Command(async f => await this.ExecuteLoadSpeakersAsync((bool)f)));
+                new Command((f) => this.ExecuteLoadSpeakers((bool)f)));
 
-        private async Task<bool> ExecuteLoadSpeakersAsync(bool force = false)
+        private void ExecuteLoadSpeakers(bool force = false)
         {
             if (this.IsBusy)
             {
-                return false;
+                return;
             }
 
             try
@@ -110,7 +104,7 @@
             }
             catch (Exception ex)
             {
-                this.Logger.Report(ex, "Method", "ExecuteLoadSpeakersAsync");
+                this.Logger.Report(ex, "Method", "ExecuteLoadSpeakers");
                 MessagingService.Current.SendMessage(MessageKeys.Error, ex);
             }
             finally
@@ -118,9 +112,7 @@
                 this.IsBusy = false;
             }
 
-            return true;
+            return;
         }
-
-        #endregion
     }
 }

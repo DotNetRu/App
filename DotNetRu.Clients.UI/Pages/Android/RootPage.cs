@@ -14,11 +14,11 @@
 
     public class RootPageAndroid : MasterDetailPage
     {
-        readonly Dictionary<int, EvolveNavigationPage> pages;
+        private readonly Dictionary<int, EvolveNavigationPage> pages;
 
-        DeepLinkPage page;
+        private DeepLinkPage page;
 
-        bool isRunning = false;
+        private bool isRunning;
 
         public RootPageAndroid()
         {
@@ -34,11 +34,12 @@
                     {
                         this.page = p;
 
-                        if (this.isRunning) await this.GoToDeepLink();
+                        if (this.isRunning)
+                        {
+                            await this.GoToDeepLink();
+                        }
                     });
         }
-
-
 
         public async Task NavigateAsync(int menuId)
         {
@@ -60,18 +61,24 @@
                     case (int)AppPage.Events: // events
                         this.pages.Add(menuId, new EvolveNavigationPage(new EventsPage()));
                         break;
-                    case (int)AppPage.Sponsors: // sponsors
-                        newPage = new EvolveNavigationPage(new SponsorsPage());
+                    case (int)AppPage.Friends: // friends
+                        newPage = new EvolveNavigationPage(new FriendsPage());
                         break;
-                    case (int)AppPage.Settings: // Settings
+                    case (int)AppPage.Settings: // settings
                         newPage = new EvolveNavigationPage(new SettingsPage());
                         break;
                 }
             }
 
-            if (newPage == null) newPage = this.pages[menuId];
+            if (newPage == null)
+            {
+                newPage = this.pages[menuId];
+            }
 
-            if (newPage == null) return;
+            if (newPage == null)
+            {
+                return;
+            }
 
             // if we are on the same tab and pressed it again.
             if (this.Detail == newPage)
@@ -98,9 +105,12 @@
 
         }
 
-        async Task GoToDeepLink()
+        private async Task GoToDeepLink()
         {
-            if (this.page == null) return;
+            if (this.page == null)
+            {
+                return;
+            }
             var p = this.page.Page;
             var id = this.page.Id;
             this.page = null;
@@ -110,7 +120,10 @@
                 case AppPage.Session:
                     await this.NavigateAsync((int)AppPage.Sessions);
                     var session = await DependencyService.Get<ISessionStore>().GetAppIndexSession(id);
-                    if (session == null) break;
+                    if (session == null)
+                    {
+                        break;
+                    }
                     await this.Detail.Navigation.PushAsync(new TalkPage(session));
                     break;
                 case AppPage.Speaker:

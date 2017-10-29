@@ -18,13 +18,12 @@ namespace XamarinEvolve.Clients.UI
 
             this.ListViewSponsors.ItemSelected += async (sender, e) => 
                 {
-                    var sponsor = this.ListViewSponsors.SelectedItem as Sponsor;
-                    if(sponsor == null)
+                    if(!(this.ListViewSponsors.SelectedItem is FriendModel sponsor))
                         return;
 
-                    var sponsorDetails = new SponsorDetailsPage
+                    var sponsorDetails = new FriendDetailsPage
                         {
-                            Sponsor = sponsor
+                            FriendModel = sponsor
                         };
 
                     await NavigationService.PushAsync(this.Navigation, sponsorDetails);
