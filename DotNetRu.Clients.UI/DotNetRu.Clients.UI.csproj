@@ -180,10 +180,6 @@
       <Project>{7B4C73DF-8A4A-4AD1-92D9-A064065CDD71}</Project>
       <Name>DotNetRu.DataStore.Audit</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DotNetRu.DataStore.Mock\DotNetRu.DataStore.Mock.csproj">
-      <Project>{4DF18ED7-0E19-4866-8D9B-B1CB5C86A366}</Project>
-      <Name>DotNetRu.DataStore.Mock</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DotNetRu.Utils\DotNetRu.Utils.csproj">
       <Project>{dfa0f0f6-c396-412e-86a9-e9095f71cc36}</Project>
       <Name>DotNetRu.Utils</Name>

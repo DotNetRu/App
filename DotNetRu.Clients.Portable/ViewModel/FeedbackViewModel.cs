@@ -1,7 +1,6 @@
 ﻿namespace XamarinEvolve.Clients.Portable
 {
     using System;
-    using System.Threading.Tasks;
     using System.Windows.Input;
 
     using DotNetRu.DataStore.Audit.Models;
@@ -33,12 +32,14 @@
 
         public ICommand SubmitRatingCommand => this.submitRatingCommand
                                                ?? (this.submitRatingCommand = new Command<int>(
-                                                       async (rating) =>
-                                                           await this.ExecuteSubmitRatingCommandAsync(rating)));
+                                                        this.ExecuteSubmitRatingCommandAsync));
 
-        async Task ExecuteSubmitRatingCommandAsync(int rating)
+        private void ExecuteSubmitRatingCommandAsync(int rating)
         {
-            if (this.IsBusy) return;
+            if (this.IsBusy)
+            {
+                return;
+            }
 
             this.IsBusy = true;
             try
