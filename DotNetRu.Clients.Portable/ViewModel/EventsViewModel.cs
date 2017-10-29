@@ -21,6 +21,7 @@ namespace XamarinEvolve.Clients.Portable.ViewModel
 
     using XamarinEvolve.Utils.Helpers;
 
+    /// <inheritdoc />
     /// <summary>
     /// The events view model.
     /// </summary>
@@ -52,14 +53,14 @@ namespace XamarinEvolve.Clients.Portable.ViewModel
         /// </summary>
         public ICommand ForceRefreshCommand => this.forceRefreshCommand
                                                ?? (this.forceRefreshCommand = new Command(
-                                                       async () => await this.ExecuteForceRefreshCommandAsync()));
+                                                       this.ExecuteForceRefreshCommandAsync));
 
         /// <summary>
         /// The load events command.
         /// </summary>
         public ICommand LoadEventsCommand => this.loadEventsCommand
                                              ?? (this.loadEventsCommand = new Command<bool>(
-                                                     async f => await this.ExecuteLoadEventsAsync()));
+                                                     f => this.ExecuteLoadEventsAsync(f)));
 
         /// <summary>
         /// Gets the events.
@@ -108,9 +109,9 @@ namespace XamarinEvolve.Clients.Portable.ViewModel
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        public async Task ExecuteForceRefreshCommandAsync()
+        public void ExecuteForceRefreshCommandAsync()
         {
-            await this.ExecuteLoadEventsAsync(true);
+            this.ExecuteLoadEventsAsync(true);
         }
 
         /// <summary>
@@ -122,7 +123,7 @@ namespace XamarinEvolve.Clients.Portable.ViewModel
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        public async Task<bool> ExecuteLoadEventsAsync(bool force = false)
+        public bool ExecuteLoadEventsAsync(bool force = false)
         {
             if (this.IsBusy)
             {
