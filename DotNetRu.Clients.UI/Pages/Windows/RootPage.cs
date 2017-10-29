@@ -15,9 +15,9 @@
 
     public class RootPageWindows : MasterDetailPage
     {
-        Dictionary<AppPage, Page> pages;
+        readonly Dictionary<AppPage, Page> pages;
 
-        MenuPageUWP menu;
+        readonly MenuPageUWP menu;
 
         public static bool IsDesktop { get; set; }
 
@@ -36,7 +36,7 @@
             items.Add(new MenuItem { Name = "Events", Icon = "menu_events.png", Page = AppPage.Events });
             if (FeatureFlags.SponsorsOnTabPage)
             {
-                items.Add(new MenuItem { Name = "Sponsors", Icon = "menu_sponsors.png", Page = AppPage.Sponsors });
+                items.Add(new MenuItem { Name = "Friends", Icon = "menu_sponsors.png", Page = AppPage.Friends });
             }
 
             items.Add(new MenuItem { Name = "About", Icon = "menu_info.png", Page = AppPage.Settings });
@@ -83,8 +83,8 @@
                     case AppPage.Events: // events
                         this.pages.Add(menuId, new EvolveNavigationPage(new EventsPage()));
                         break;
-                    case AppPage.Sponsors: // sponsors
-                        newPage = new EvolveNavigationPage(new SponsorsPage());
+                    case AppPage.Friends: // sponsors
+                        newPage = new EvolveNavigationPage(new FriendsPage());
                         break;
                     case AppPage.Settings: // Settings
                         newPage = new EvolveNavigationPage(new SettingsPage());

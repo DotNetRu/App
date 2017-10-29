@@ -1,0 +1,9 @@
+﻿<Speaker>
+  <Id>Nikita-Tsukanov</Id>
+  <Name>Никита Цуканов</Name>
+  <CompanyName>Promarket</CompanyName>
+  <CompanyUrl>https://www.promarket.pro/</CompanyUrl>
+  <Description>Начинал в Навителе с разработки под WinCE/Mobile на C/C++. В дальнейшем занимался разработкой VPN-сервиса с кроссплатформенным клиентом на Gtk#, серверная часть которого писалась так же на C#. В настоящее время является CTO в стартапе Promarket.</Description>
+  <BlogUrl>http://keks-n.net/</BlogUrl>
+  <HabrUrl>https://habrahabr.ru/users/kekekeks/</HabrUrl>
+</Speaker>

@@ -1,14 +1,16 @@
 ﻿using Xamarin.Forms;
 
 using XamarinEvolve.Clients.Portable;
-using XamarinEvolve.DataObjects;
 
 namespace XamarinEvolve.Clients.UI
 {
+    using DotNetRu.DataStore.Audit.Models;
+
     public partial class FeedbackPage : BasePage
 	{
 		public override AppPage PageType => AppPage.Feedback;
-        FeedbackViewModel vm;
+
+	    readonly FeedbackViewModel vm;
 
         public FeedbackPage(TalkModel talkModel)
         {

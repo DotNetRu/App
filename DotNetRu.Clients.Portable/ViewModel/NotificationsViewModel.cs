@@ -9,10 +9,10 @@ using MvvmHelpers;
 
 using Xamarin.Forms;
 
-using XamarinEvolve.DataObjects;
-
 namespace XamarinEvolve.Clients.Portable
 {
+    using DotNetRu.DataStore.Audit.Models;
+
     using XamarinEvolve.Utils.Extensions;
     using XamarinEvolve.Utils.Helpers;
 

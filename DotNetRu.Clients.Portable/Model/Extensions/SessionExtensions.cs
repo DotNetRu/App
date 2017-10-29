@@ -4,11 +4,12 @@
     using System.Collections.Generic;
     using System.Linq;
 
+    using DotNetRu.DataStore.Audit.Models;
+
     using MvvmHelpers;
 
     using Xamarin.Forms;
 
-    using XamarinEvolve.DataObjects;
     using XamarinEvolve.Utils;
     using XamarinEvolve.Utils.Extensions;
     using XamarinEvolve.Utils.Helpers;

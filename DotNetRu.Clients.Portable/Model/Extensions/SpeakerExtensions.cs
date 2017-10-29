@@ -2,7 +2,7 @@
 {
     using System;
 
-    using DotNetRu.DataStore.Audit.DataObjects;
+    using DotNetRu.DataStore.Audit.Models;
 
     using Xamarin.Forms;
 
@@ -10,24 +10,24 @@
 
     public static class SpeakerExtensions
     {
-        public static AppLinkEntry GetAppLink(this Speaker speaker)
+        public static AppLinkEntry GetAppLink(this SpeakerModel speakerModel)
         {
             var url =
-                $"http://{AboutThisApp.AppLinksBaseDomain}/{AboutThisApp.SpeakersSiteSubdirectory.ToLowerInvariant()}/{speaker.Id}";
+                $"http://{AboutThisApp.AppLinksBaseDomain}/{AboutThisApp.SpeakersSiteSubdirectory.ToLowerInvariant()}/{speakerModel.Id}";
 
             var entry = new AppLinkEntry
                             {
-                                Title = speaker.FullName ?? string.Empty,
-                                Description = speaker.Biography ?? string.Empty,
+                                Title = speakerModel.FullName ?? string.Empty,
+                                Description = speakerModel.Biography ?? string.Empty,
                                 AppLinkUri = new Uri(url, UriKind.RelativeOrAbsolute),
                                 IsLinkActive = true,
                             };
 
             if (Device.RuntimePlatform == Device.iOS)
             {
-                if (!string.IsNullOrEmpty(speaker.AvatarUrl))
+                if (!string.IsNullOrEmpty(speakerModel.AvatarUrl))
                 {
-                    entry.Thumbnail = ImageSource.FromUri(speaker.AvatarUri);
+                    entry.Thumbnail = ImageSource.FromUri(speakerModel.AvatarUri);
                 }
                 else
                 {
@@ -42,9 +42,9 @@
             return entry;
         }
 
-        public static string GetWebUrl(this Speaker speaker)
+        public static string GetWebUrl(this SpeakerModel speakerModel)
         {
-            return $"http://{AboutThisApp.AppLinksBaseDomain}/{AboutThisApp.SpeakersSiteSubdirectory}/#{speaker.Id}";
+            return $"http://{AboutThisApp.AppLinksBaseDomain}/{AboutThisApp.SpeakersSiteSubdirectory}/#{speakerModel.Id}";
         }
     }
 }

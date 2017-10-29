@@ -30,7 +30,7 @@
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AndroidLinkMode>None</AndroidLinkMode>
+    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
     <ConsolePause>false</ConsolePause>
     <RunCodeAnalysis>false</RunCodeAnalysis>
     <AssemblyName>DotNetRu.Droid</AssemblyName>

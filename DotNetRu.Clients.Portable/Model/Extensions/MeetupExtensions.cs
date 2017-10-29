@@ -4,9 +4,10 @@
     using System.Collections.Generic;
     using System.Linq;
 
+    using DotNetRu.DataStore.Audit.Models;
+
     using MvvmHelpers;
 
-    using XamarinEvolve.DataObjects;
     using XamarinEvolve.Utils.Extensions;
 
     public static class MeetupExtensions

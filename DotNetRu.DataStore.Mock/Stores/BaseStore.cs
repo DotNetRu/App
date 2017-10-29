@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    using XamarinEvolve.DataStore.Mock.Abstractions;
+    using DotNetRu.DataStore.Audit.Abstractions;
 
     public class BaseStore<T> : IBaseStore<T>
     {

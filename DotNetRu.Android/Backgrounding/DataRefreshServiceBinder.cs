@@ -4,7 +4,7 @@ namespace XamarinEvolve.Droid
 {
     public class DataRefreshServiceBinder : Binder
     {
-        DataRefreshService service;
+        readonly DataRefreshService service;
 
         public DataRefreshServiceBinder (DataRefreshService service)
         {

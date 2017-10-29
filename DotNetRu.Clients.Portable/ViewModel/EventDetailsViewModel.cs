@@ -8,23 +8,23 @@ using MvvmHelpers;
 
 using Xamarin.Forms;
 
-using XamarinEvolve.DataObjects;
-
 namespace XamarinEvolve.Clients.Portable
 {
-	using XamarinEvolve.Utils.Helpers;
+    using DotNetRu.DataStore.Audit.Models;
+
+    using XamarinEvolve.Utils.Helpers;
 
 	public class EventDetailsViewModel : ViewModelBase
     {
         public FeaturedEvent Event { get; set; }
 
-        public ObservableRangeCollection<Sponsor> Sponsors { get; set; }
+        public ObservableRangeCollection<FriendModel> Sponsors { get; set; }
 
         public EventDetailsViewModel(INavigation navigation, FeaturedEvent e) : base(navigation)
         {
             this.Event = e;
-            this.Sponsors = new ObservableRangeCollection<Sponsor>();
-            if (e.Sponsor != null) this.Sponsors.Add(e.Sponsor);
+            this.Sponsors = new ObservableRangeCollection<FriendModel>();
+            if (e.FriendModel != null) this.Sponsors.Add(e.FriendModel);
         }
 
         bool isReminderSet;
@@ -96,20 +96,20 @@ namespace XamarinEvolve.Clients.Portable
 
         }
 
-        Sponsor selectedSponsor;
-        public Sponsor SelectedSponsor
+        FriendModel selectedFriendModel;
+        public FriendModel SelectedFriendModel
         {
-            get => this.selectedSponsor;
+            get => this.selectedFriendModel;
             set
             {
-                this.selectedSponsor = value;
+                this.selectedFriendModel = value;
                 this.OnPropertyChanged();
-                if (this.selectedSponsor == null)
+                if (this.selectedFriendModel == null)
                     return;
 
-                MessagingService.Current.SendMessage(MessageKeys.NavigateToSponsor, this.selectedSponsor);
+                MessagingService.Current.SendMessage(MessageKeys.NavigateToSponsor, this.selectedFriendModel);
 
-                this.SelectedSponsor = null;
+                this.SelectedFriendModel = null;
             }
         }
 

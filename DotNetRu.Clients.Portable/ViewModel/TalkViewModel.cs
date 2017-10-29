@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using System.Windows.Input;
 
-    using DotNetRu.DataStore.Audit.DataObjects;
+    using DotNetRu.DataStore.Audit.Models;
 
     using FormsToolkit;
 
@@ -16,7 +16,6 @@
 
     using Xamarin.Forms;
 
-    using XamarinEvolve.DataObjects;
     using XamarinEvolve.Utils;
     using XamarinEvolve.Utils.Extensions;
     using XamarinEvolve.Utils.Helpers;
@@ -68,7 +67,7 @@
             if (!string.IsNullOrWhiteSpace(talkModel.CodeUrl))
             {
                 this.SessionMaterialItems.Add(
-                    new MenuItem {Name = "Code from Session", Parameter = talkModel.CodeUrl, Icon="icon_code.png"});
+                    new MenuItem { Name = "Code from Session", Parameter = talkModel.CodeUrl, Icon = "icon_code.png" });
             }
         }
 
@@ -104,21 +103,21 @@
             set => this.SetProperty(ref this.isReminderSet, value);
         }
 
-        private Speaker selectedSpeaker;
+        private SpeakerModel selectedSpeakerModel;
 
-        public Speaker SelectedSpeaker
+        public SpeakerModel SelectedSpeakerModel
         {
-            get => this.selectedSpeaker;
+            get => this.selectedSpeakerModel;
 
             set
             {
-                this.selectedSpeaker = value;
+                this.selectedSpeakerModel = value;
                 this.OnPropertyChanged();
-                if (this.selectedSpeaker == null) return;
+                if (this.selectedSpeakerModel == null) return;
 
-                MessagingService.Current.SendMessage(MessageKeys.NavigateToSpeaker, this.selectedSpeaker);
+                MessagingService.Current.SendMessage(MessageKeys.NavigateToSpeaker, this.selectedSpeakerModel);
 
-                this.SelectedSpeaker = null;
+                this.SelectedSpeakerModel = null;
             }
         }
 
@@ -137,11 +136,14 @@
                                  new Plugin.Calendars.Abstractions.CalendarEvent
                                      {
                                          AllDay = false,
-                                         Description = this.TalkModel.Abstract,
-                                         Location = this.TalkModel.Room?.Name
+                                         Description =
+                                             this.TalkModel.Abstract,
+                                         Location =
+                                             this.TalkModel.Room?.Name
                                              ?? string.Empty,
                                          Name = this.TalkModel.Title,
-                                         Start = this.TalkModel.StartTime.Value,
+                                         Start = this.TalkModel.StartTime
+                                             .Value,
                                          End = this.TalkModel.EndTime.Value
                                      });
 
@@ -204,9 +206,6 @@
                 this.IsBusy = true;
 
                 this.IsReminderSet = await ReminderService.HasReminderAsync(this.TalkModel.Id);
-                this.TalkModel.FeedbackLeft = await this.StoreManager.FeedbackStore.LeftFeedback(this.TalkModel);
-
-
             }
             catch (Exception ex)
             {
