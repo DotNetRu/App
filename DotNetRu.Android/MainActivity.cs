@@ -79,9 +79,7 @@
         DataHost = AboutThisApp.AppLinksBaseDomain)]
     public class MainActivity : FormsAppCompatActivity
     {
-        private static MainActivity current;
-
-        public static MainActivity Current => current;
+        public static MainActivity Current { get; }
 
         // GoogleApiClient client;
         protected override void OnCreate(Bundle savedInstanceState)

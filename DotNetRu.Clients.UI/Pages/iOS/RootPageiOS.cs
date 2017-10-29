@@ -61,23 +61,23 @@
 
                                 // TODO implement using Store
 
-                                //var speaker = await DependencyService.Get<ISpeakerStore>().GetAppIndexSpeaker(p.Id);
-                                //if (speaker == null)
-                                //{
-                                //    break;
-                                //}
+                                // var speaker = await DependencyService.Get<ISpeakerStore>().GetAppIndexSpeaker(p.Id);
+                                // if (speaker == null)
+                                // {
+                                // break;
+                                // }
 
-                                //ContentPage destination;
-                                //if (Device.RuntimePlatform == Device.UWP)
-                                //{
-                                //    destination = new SpeakerDetailsPageUWP(speaker);
-                                //}
-                                //else
-                                //{
-                                //    destination = new SpeakerDetailsPage(speaker);
-                                //}
+                                // ContentPage destination;
+                                // if (Device.RuntimePlatform == Device.UWP)
+                                // {
+                                // destination = new SpeakerDetailsPageUWP(speaker);
+                                // }
+                                // else
+                                // {
+                                // destination = new SpeakerDetailsPage(speaker);
+                                // }
 
-                                //await this.CurrentPage.Navigation.PushAsync(destination);
+                                // await this.CurrentPage.Navigation.PushAsync(destination);
                                 break;
                         }
                     });

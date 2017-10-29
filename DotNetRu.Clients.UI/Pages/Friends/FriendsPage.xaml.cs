@@ -52,6 +52,7 @@
             {
                 return;
             }
+
             list.SelectedItem = null;
         }
 

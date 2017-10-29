@@ -111,6 +111,7 @@
             {
                 return;
             }
+
             var p = this.page.Page;
             var id = this.page.Id;
             this.page = null;
@@ -124,25 +125,27 @@
                     {
                         break;
                     }
+
                     await this.Detail.Navigation.PushAsync(new TalkPage(session));
                     break;
                 case AppPage.Speaker:
                     await this.NavigateAsync((int)AppPage.Speakers);
+
                     // TODO implement SpeakerStore
 
                     // var speaker = // await DependencyService.Get<ISpeakerStore>().GetAppIndexSpeaker(id);                    
 
-                    //ContentPage destination;
-                    //if (Device.RuntimePlatform == Device.UWP)
-                    //{
-                    //    destination = new SpeakerDetailsPageUWP(speaker);
-                    //}
-                    //else
-                    //{
-                    //    destination = new SpeakerDetailsPage(speaker);
-                    //}
+                    // ContentPage destination;
+                    // if (Device.RuntimePlatform == Device.UWP)
+                    // {
+                    // destination = new SpeakerDetailsPageUWP(speaker);
+                    // }
+                    // else
+                    // {
+                    // destination = new SpeakerDetailsPage(speaker);
+                    // }
 
-                    //await this.Detail.Navigation.PushAsync(destination);
+                    // await this.Detail.Navigation.PushAsync(destination);
                     break;
             }
         }
