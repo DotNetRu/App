@@ -68,7 +68,7 @@
             if (!string.IsNullOrWhiteSpace(talkModel.CodeUrl))
             {
                 this.SessionMaterialItems.Add(
-                    new MenuItem {Name = "Code from Session", Parameter = talkModel.CodeUrl, Icon="icon_code.png"});
+                    new MenuItem { Name = "Code from Session", Parameter = talkModel.CodeUrl, Icon = "icon_code.png" });
             }
         }
 
@@ -137,11 +137,14 @@
                                  new Plugin.Calendars.Abstractions.CalendarEvent
                                      {
                                          AllDay = false,
-                                         Description = this.TalkModel.Abstract,
-                                         Location = this.TalkModel.Room?.Name
+                                         Description =
+                                             this.TalkModel.Abstract,
+                                         Location =
+                                             this.TalkModel.Room?.Name
                                              ?? string.Empty,
                                          Name = this.TalkModel.Title,
-                                         Start = this.TalkModel.StartTime.Value,
+                                         Start = this.TalkModel.StartTime
+                                             .Value,
                                          End = this.TalkModel.EndTime.Value
                                      });
 
@@ -204,9 +207,6 @@
                 this.IsBusy = true;
 
                 this.IsReminderSet = await ReminderService.HasReminderAsync(this.TalkModel.Id);
-                this.TalkModel.FeedbackLeft = await this.StoreManager.FeedbackStore.LeftFeedback(this.TalkModel);
-
-
             }
             catch (Exception ex)
             {

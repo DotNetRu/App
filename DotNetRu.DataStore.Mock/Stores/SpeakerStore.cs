@@ -15,14 +15,14 @@
 
         #region ISpeakerStore implementation
 
-        public async override Task<Speaker> GetItemAsync(string id)
+        public override async Task<Speaker> GetItemAsync(string id)
         {
             if(!this._initialized)
                 await this.InitializeStore();
             return this._speakers.FirstOrDefault(s => s.Id == id);
         }
 
-        public async override Task<IEnumerable<Speaker>> GetItemsAsync(bool forceRefresh = false)
+        public override async Task<IEnumerable<Speaker>> GetItemsAsync(bool forceRefresh = false)
         {
             if(!this._initialized)
                 await this.InitializeStore();
@@ -199,7 +199,7 @@
             return $"({digits(3)}) 555-{digits(4)}";
         }
 
-        readonly static string[] Companies =
+        static readonly string[] Companies =
             {
                 "Xamarin",
                 "Couchbase",
@@ -210,7 +210,7 @@
                 "Google"
             };
 
-        readonly static string[] Names =
+        static readonly string[] Names =
             {
                 "SMITH", "JOHNSON", "WILLIAMS", "BROWN", "JONES", "MILLER", "DAVIS", "GARCIA",
                 "RODRIGUEZ", "WILSON", "MARTINEZ", "ANDERSON", "TAYLOR", "THOMAS", "HERNANDEZ",

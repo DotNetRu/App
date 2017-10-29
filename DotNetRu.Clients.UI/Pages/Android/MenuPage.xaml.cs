@@ -6,7 +6,7 @@
 
     public partial class MenuPage : ContentPage
     {
-        RootPageAndroid root;
+        readonly RootPageAndroid root;
 
         public MenuPage(RootPageAndroid root)
         {
