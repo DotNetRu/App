@@ -57,23 +57,26 @@
                             case AppPage.Speaker:
                                 this.Navigate(AppPage.Speakers);
                                 await this.CurrentPage.Navigation.PopToRootAsync();
-                                var speaker = await DependencyService.Get<ISpeakerStore>().GetAppIndexSpeaker(p.Id);
-                                if (speaker == null)
-                                {
-                                    break;
-                                }
 
-                                ContentPage destination;
-                                if (Device.RuntimePlatform == Device.UWP)
-                                {
-                                    destination = new SpeakerDetailsPageUWP(speaker);
-                                }
-                                else
-                                {
-                                    destination = new SpeakerDetailsPage(speaker);
-                                }
+                                // TODO implement using Store
 
-                                await this.CurrentPage.Navigation.PushAsync(destination);
+                                //var speaker = await DependencyService.Get<ISpeakerStore>().GetAppIndexSpeaker(p.Id);
+                                //if (speaker == null)
+                                //{
+                                //    break;
+                                //}
+
+                                //ContentPage destination;
+                                //if (Device.RuntimePlatform == Device.UWP)
+                                //{
+                                //    destination = new SpeakerDetailsPageUWP(speaker);
+                                //}
+                                //else
+                                //{
+                                //    destination = new SpeakerDetailsPage(speaker);
+                                //}
+
+                                //await this.CurrentPage.Navigation.PushAsync(destination);
                                 break;
                         }
                     });

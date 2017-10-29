@@ -10,7 +10,7 @@
     public class SponsorStore : BaseStore<Sponsor>, ISponsorStore
     {
         List<Sponsor> _sponsors;
-        readonly static string[] Companies =
+        static readonly string[] Companies =
             {
                 "Airwatch", "AppDome",
 
@@ -25,7 +25,7 @@
                 "Urban Airship", "WillowTree", "Zebra Technologies", "Zumero"
             };
 
-        readonly static int[] Levels =
+        static readonly int[] Levels =
             {
                 2, 3,
 
@@ -36,7 +36,7 @@
                 2, 3, 2, 3, 2, 3, 3, 2, 3
             };
 
-        readonly static string[] Logos =
+        static readonly string[] Logos =
             {
                 "https://s3.amazonaws.com/blog.xamarin.com/wp-content/uploads/2016/03/16193046/Airwatch.png",
                 "https://s3.amazonaws.com/blog.xamarin.com/wp-content/uploads/2016/03/16193047/AppDome.png",
@@ -74,7 +74,7 @@
                 "https://s3.amazonaws.com/blog.xamarin.com/wp-content/uploads/2016/03/16193052/Zumero.png"
             };
 
-        readonly static string[] Descriptions =
+        static readonly string[] Descriptions =
             {
                 "AirWatch by VMware is the leader in enterprise mobility management, with more than 16,000 global customers. The AirWatch platform includes industry-leading mobile device, email, application, content and browser management solutions. Organizations can implement these solutions across device types and use cases, including complete EMM for corporate and line of business deployments, and containerized solutions for bring your own device (BYOD) programs.",
                 "AppDome provides an essential shield that secures mobile apps from advanced cyber threats, mobile fraud, IP rights infringement and data theft.  AppDome's core App Fusion technology offers the ability to fuse new features and new capabilities into existing consumer and enterprise apps on iOS and Android by uploading the final package to the AppDome Service.",
@@ -111,7 +111,7 @@
                 "Zumero is a replicate-and-sync solution for mobile apps and SQL Server.  Zumero enables Xamarin developers to create data-driven business apps for mobile workers who need to collaborate and share data in both online and offline scenarios.  Zumero also offers complete mobile app development services for Xamarin."
             };
 
-        readonly static string[] Handles =
+        static readonly string[] Handles =
             {
                 "AirWatch", "App_Dome",
 
@@ -126,7 +126,7 @@
                 "willowtreeapps", "ZebraTechnologies", "zumero_uno"
             };
 
-        readonly static string[] Websites =
+        static readonly string[] Websites =
             {
                 "air-watch.com", "appdome.com",
 

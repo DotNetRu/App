@@ -9,9 +9,9 @@ namespace XamarinEvolve.Clients.UI
     {
         public override AppPage PageType => AppPage.Information;
 
-        AboutViewModel vm;
+        readonly AboutViewModel vm;
 
-        IPushNotifications push;
+        readonly IPushNotifications push;
 
         public AboutPage()
         {

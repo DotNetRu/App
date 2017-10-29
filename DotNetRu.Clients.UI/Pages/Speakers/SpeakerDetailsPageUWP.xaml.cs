@@ -16,7 +16,8 @@ namespace XamarinEvolve.Clients.UI
 
         SpeakerDetailsViewModel ViewModel => this.vm ?? (this.vm = this.BindingContext as SpeakerDetailsViewModel);
         SpeakerDetailsViewModel vm;
-        string sessionId;
+
+	    readonly string sessionId;
 
 		public SpeakerDetailsPageUWP(Speaker speaker) : this((string)null)
 		{

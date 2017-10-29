@@ -11,7 +11,7 @@ namespace XamarinEvolve.iOS
 
 	public class GroupSettingsProvider : IPlatformSpecificSettings
 	{
-		private NSUserDefaults _groupSettings = new NSUserDefaults($"group.{AboutThisApp.PackageName}", NSUserDefaultsType.SuiteName);
+		private readonly NSUserDefaults _groupSettings = new NSUserDefaults($"group.{AboutThisApp.PackageName}", NSUserDefaultsType.SuiteName);
 
 		public string UserIdentifier
 		{

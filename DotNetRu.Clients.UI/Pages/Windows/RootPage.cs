@@ -15,9 +15,9 @@
 
     public class RootPageWindows : MasterDetailPage
     {
-        Dictionary<AppPage, Page> pages;
+        readonly Dictionary<AppPage, Page> pages;
 
-        MenuPageUWP menu;
+        readonly MenuPageUWP menu;
 
         public static bool IsDesktop { get; set; }
 

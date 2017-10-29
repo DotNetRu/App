@@ -42,10 +42,6 @@
         public static void Init()
         {
             DependencyService.Register<ISessionStore, SessionStore>();
-            DependencyService.Register<IFeedbackStore, FeedbackStore>();
-            DependencyService.Register<IConferenceFeedbackStore, ConferenceFeedbackStore>();
-            DependencyService.Register<ISpeakerStore, SpeakerStore>();
-            DependencyService.Register<ISponsorStore, SponsorStore>();
             DependencyService.Register<ICategoryStore, CategoryStore>();
             DependencyService.Register<IEventStore, EventStore>();
             DependencyService.Register<INotificationStore, NotificationStore>();

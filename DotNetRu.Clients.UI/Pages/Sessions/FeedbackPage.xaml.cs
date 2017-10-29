@@ -8,7 +8,8 @@ namespace XamarinEvolve.Clients.UI
     public partial class FeedbackPage : BasePage
 	{
 		public override AppPage PageType => AppPage.Feedback;
-        FeedbackViewModel vm;
+
+	    readonly FeedbackViewModel vm;
 
         public FeedbackPage(TalkModel talkModel)
         {

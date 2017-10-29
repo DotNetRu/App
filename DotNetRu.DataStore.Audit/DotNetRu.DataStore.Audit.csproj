@@ -35,6 +35,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Abstractions\IBaseStore.cs" />
+    <Compile Include="Abstractions\ICategoryStore.cs" />
+    <Compile Include="Abstractions\IEventStore.cs" />
+    <Compile Include="Abstractions\INotificationStore.cs" />
+    <Compile Include="Abstractions\ISessionStore.cs" />
+    <Compile Include="Abstractions\ISpeakerStore.cs" />
+    <Compile Include="Abstractions\ISponsorStore.cs" />
+    <Compile Include="IStoreManager.cs" />
     <Compile Include="DataObjects\BaseDataObject.cs" />
     <Compile Include="DataObjects\Category.cs" />
     <Compile Include="DataObjects\ConferenceFeedback.cs" />

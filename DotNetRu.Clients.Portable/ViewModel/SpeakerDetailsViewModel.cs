@@ -121,11 +121,6 @@
             {
                 this.IsBusy = true;
 
-#if DEBUG
-                await Task.Delay(1000);
-#endif
-
-
                 var items = await this.StoreManager.SessionStore.GetSpeakerSessionsAsync(this.Speaker.Id);
 
                 this.Sessions.ReplaceRange(items);

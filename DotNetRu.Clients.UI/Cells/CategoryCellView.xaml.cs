@@ -27,6 +27,7 @@
             {
                 return;
             }
+
             if (string.IsNullOrWhiteSpace(category.Color))
             {
                 Grid.SetColumn(this.LabelName, 0);

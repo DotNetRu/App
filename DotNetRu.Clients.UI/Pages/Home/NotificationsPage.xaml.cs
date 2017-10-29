@@ -6,7 +6,7 @@ namespace XamarinEvolve.Clients.UI
 	{
 		public override AppPage PageType => AppPage.Notification;
 
-        NotificationsViewModel vm;
+	    readonly NotificationsViewModel vm;
         public NotificationsPage()
         {
             this.InitializeComponent();

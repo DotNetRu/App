@@ -36,14 +36,6 @@ namespace XamarinEvolve.DataStore.Mock
 
         public ICategoryStore CategoryStore => this._categoryStore ?? (this._categoryStore = DependencyService.Get<ICategoryStore>());
 
-        IFeedbackStore _feedbackStore;
-
-        public IFeedbackStore FeedbackStore => this._feedbackStore ?? (this._feedbackStore = DependencyService.Get<IFeedbackStore>());
-
-        IConferenceFeedbackStore _conferenceFeedbackStore;
-
-        public IConferenceFeedbackStore ConferenceFeedbackStore => this._conferenceFeedbackStore ?? (this._conferenceFeedbackStore = DependencyService.Get<IConferenceFeedbackStore>());
-
         ISessionStore _sessionStore;
 
         public ISessionStore SessionStore => this._sessionStore ?? (this._sessionStore = DependencyService.Get<ISessionStore>());

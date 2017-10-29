@@ -74,8 +74,6 @@
                         });
 
                 this.TalkModel.FeedbackLeft = true;
-                await this.StoreManager.FeedbackStore.InsertAsync(
-                    new Feedback { SessionId = this.talkModel.Id, SessionRating = rating });
             }
             catch (Exception ex)
             {
