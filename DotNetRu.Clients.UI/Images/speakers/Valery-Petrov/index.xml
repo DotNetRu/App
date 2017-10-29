@@ -1,0 +1,9 @@
+﻿<Speaker>
+  <Id>Valery-Petrov</Id>
+  <Name>Валерий Петров</Name>
+  <CompanyName>Sidenis</CompanyName>
+  <CompanyUrl>http://sidenis.ru/</CompanyUrl>
+  <Description>.NET разработчик в небольшой российско-швейцарской компании Sidenis. Окончил МатМех СПбГУ по специальности математическое обеспечение и администрирование информационных систем, кафедра параллельных алгоритмов. Интересуется Concurrency, производительностью, кросс-платформенностью (особенно под разные архитектуры) и всякими «кишочками».</Description>
+  <TwitterUrl>https://twitter.com/m08pvv</TwitterUrl>
+  <HabrUrl>https://habrahabr.ru/users/m08pvv/</HabrUrl>
+</Speaker>

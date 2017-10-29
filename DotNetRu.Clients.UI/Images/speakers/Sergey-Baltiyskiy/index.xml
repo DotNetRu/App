@@ -1,0 +1,9 @@
+﻿<Speaker>
+  <Id>Sergey-Baltiyskiy</Id>
+  <Name>Сергей Балтийский</Name>
+  <CompanyName>JetBrains</CompanyName>
+  <CompanyUrl>https://www.jetbrains.com/</CompanyUrl>
+  <Description>До прихода в дивный мир дотнета занимался разработкой под Windows на C++. Оказалось, что возможности дотнета прямо-таки провоцируют общаться с Native памятью и кодом — к большой пользе, если делать это с умом.
+
+В JetBrains занимается разработкой Application Framework в ReSharper и смежных продуктах дотнет-семейства.</Description>
+</Speaker>

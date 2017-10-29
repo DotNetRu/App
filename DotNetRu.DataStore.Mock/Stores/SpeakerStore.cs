@@ -8,20 +8,20 @@
     using DotNetRu.DataStore.Audit.Abstractions;
     using DotNetRu.DataStore.Audit.Models;
 
-    public class SpeakerStore : BaseStore<Speaker>, ISpeakerStore
+    public class SpeakerStore : BaseStore<SpeakerModel>, ISpeakerStore
     {        
-        IEnumerable<Speaker> _speakers;
+        IEnumerable<SpeakerModel> _speakers;
 
         #region ISpeakerStore implementation
 
-        public override async Task<Speaker> GetItemAsync(string id)
+        public override async Task<SpeakerModel> GetItemAsync(string id)
         {
             if(!this._initialized)
                 await this.InitializeStore();
             return this._speakers.FirstOrDefault(s => s.Id == id);
         }
 
-        public override async Task<IEnumerable<Speaker>> GetItemsAsync(bool forceRefresh = false)
+        public override async Task<IEnumerable<SpeakerModel>> GetItemsAsync(bool forceRefresh = false)
         {
             if(!this._initialized)
                 await this.InitializeStore();
@@ -45,7 +45,7 @@
             return Task.FromResult(true);
         }
 
-		public Task<Speaker> GetAppIndexSpeaker(string id)
+		public Task<SpeakerModel> GetAppIndexSpeaker(string id)
 		{
 			return this.GetItemAsync(id);
 		}
@@ -136,9 +136,9 @@
             };
         }
 
-        public static IEnumerable<Speaker> GetSpeakers() => Generate();
+        public static IEnumerable<SpeakerModel> GetSpeakers() => Generate();
 
-        static IEnumerable<Speaker> Generate()
+        static IEnumerable<SpeakerModel> Generate()
         {
             _random = new Random(0);
 
@@ -160,7 +160,7 @@
                var company = Companies[_random.Next(0, Companies.Length - 1)];
                 var domain = $"{company.ToLower()}.com";
                
-                var speaker = new Speaker
+                var speaker = new SpeakerModel
                 {
                     Id = i.ToString(),
                     FirstName = firstName,

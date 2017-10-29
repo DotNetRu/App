@@ -4,9 +4,9 @@
 
     using DotNetRu.DataStore.Audit.Models;
 
-    public interface ISpeakerStore : IBaseStore<Speaker>
+    public interface ISpeakerStore : IBaseStore<SpeakerModel>
 	{
-		Task<Speaker> GetAppIndexSpeaker(string id);
+		Task<SpeakerModel> GetAppIndexSpeaker(string id);
 	}
 }
 

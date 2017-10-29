@@ -26,7 +26,7 @@
             if (this.navigation == null)
                 return;
 
-            if (!(this.BindingContext is Speaker speaker))
+            if (!(this.BindingContext is SpeakerModel speaker))
             {
                 return;
             }
@@ -37,14 +37,14 @@
             {
                 await this.navigation.PushAsync(new SpeakerDetailsPageUWP(this.sessionId)
                 {
-                    Speaker = speaker
+                    SpeakerModel = speaker
                 });
             }
             else
             {
                 await this.navigation.PushAsync(new SpeakerDetailsPage(this.sessionId)
                 {
-                    Speaker = speaker
+                    SpeakerModel = speaker
                 });
             }
         }

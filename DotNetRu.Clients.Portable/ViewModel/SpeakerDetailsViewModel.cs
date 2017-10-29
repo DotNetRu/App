@@ -18,7 +18,7 @@
     public class SpeakerDetailsViewModel : ViewModelBase
     {
 
-        public Speaker Speaker { get; set; }
+        public SpeakerModel SpeakerModel { get; set; }
 
         public ObservableRangeCollection<TalkModel> Sessions { get; } = new ObservableRangeCollection<TalkModel>();
 
@@ -34,37 +34,37 @@
 
         private string sessionId;
 
-        public SpeakerDetailsViewModel(Speaker speaker, string sessionId)
+        public SpeakerDetailsViewModel(SpeakerModel speakerModel, string sessionId)
             : base()
         {
-            this.Speaker = speaker;
+            this.SpeakerModel = speakerModel;
             this.sessionId = sessionId;
 
-            if (!string.IsNullOrWhiteSpace(speaker.CompanyWebsiteUrl))
+            if (!string.IsNullOrWhiteSpace(speakerModel.CompanyWebsiteUrl))
             {
                 this.FollowItems.Add(
                     new MenuItem
                         {
-                            Name = speaker.CompanyWebsiteUrl.StripUrlForDisplay(),
-                            Parameter = speaker.CompanyWebsiteUrl,
+                            Name = speakerModel.CompanyWebsiteUrl.StripUrlForDisplay(),
+                            Parameter = speakerModel.CompanyWebsiteUrl,
                             Icon = "icon_website.png"
                         });
             }
 
-            if (!string.IsNullOrWhiteSpace(speaker.BlogUrl))
+            if (!string.IsNullOrWhiteSpace(speakerModel.BlogUrl))
             {
                 this.FollowItems.Add(
                     new MenuItem
                         {
-                            Name = speaker.BlogUrl.StripUrlForDisplay(),
-                            Parameter = speaker.BlogUrl,
+                            Name = speakerModel.BlogUrl.StripUrlForDisplay(),
+                            Parameter = speakerModel.BlogUrl,
                             Icon = "icon_blog.png"
                         });
             }
 
-            if (!string.IsNullOrWhiteSpace(speaker.TwitterUrl))
+            if (!string.IsNullOrWhiteSpace(speakerModel.TwitterUrl))
             {
-                var twitterValue = speaker.TwitterUrl.CleanUpTwitter();
+                var twitterValue = speakerModel.TwitterUrl.CleanUpTwitter();
 
                 this.FollowItems.Add(
                     new MenuItem
@@ -75,9 +75,9 @@
                         });
             }
 
-            if (!string.IsNullOrWhiteSpace(speaker.FacebookProfileName))
+            if (!string.IsNullOrWhiteSpace(speakerModel.FacebookProfileName))
             {
-                var profileName = speaker.FacebookProfileName.GetLastPartOfUrl();
+                var profileName = speakerModel.FacebookProfileName.GetLastPartOfUrl();
                 var profileDisplayName = profileName;
                 long testProfileId;
                 if (long.TryParse(profileName, out testProfileId))
@@ -94,13 +94,13 @@
                         });
             }
 
-            if (!string.IsNullOrWhiteSpace(speaker.LinkedInUrl))
+            if (!string.IsNullOrWhiteSpace(speakerModel.LinkedInUrl))
             {
                 this.FollowItems.Add(
                     new MenuItem
                         {
                             Name = "LinkedIn",
-                            Parameter = speaker.LinkedInUrl.StripUrlForDisplay(),
+                            Parameter = speakerModel.LinkedInUrl.StripUrlForDisplay(),
                             Icon = "icon_linkedin.png"
                         });
             }
@@ -120,7 +120,7 @@
             {
                 this.IsBusy = true;
 
-                var items = await this.StoreManager.SessionStore.GetSpeakerSessionsAsync(this.Speaker.Id);
+                var items = await this.StoreManager.SessionStore.GetSpeakerSessionsAsync(this.SpeakerModel.Id);
 
                 this.Sessions.ReplaceRange(items);
 

@@ -26,7 +26,7 @@
 
             this.ListViewSpeakers.ItemSelected += async (sender, e) =>
                 {
-                    if (!(this.ListViewSpeakers.SelectedItem is Speaker speaker))
+                    if (!(this.ListViewSpeakers.SelectedItem is SpeakerModel speaker))
                     {
                         return;
                     }

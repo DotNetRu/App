@@ -95,7 +95,7 @@
             int dayCount = 0;
             for (int i = 0; i < this._titles.Length; i++)
             {
-                var sessionSpeakers = new List<Speaker>();
+                var sessionSpeakers = new List<SpeakerModel>();
                 var sessionCategories = new List<Category>();
 
                 categoryCount++;

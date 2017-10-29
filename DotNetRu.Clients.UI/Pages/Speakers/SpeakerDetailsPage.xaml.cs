@@ -10,7 +10,7 @@ namespace XamarinEvolve.Clients.UI
     {
         public override AppPage PageType => AppPage.Speaker;
 
-        private readonly IPlatformSpecificExtension<Speaker> _extension;
+        private readonly IPlatformSpecificExtension<SpeakerModel> _extension;
 
         SpeakerDetailsViewModel ViewModel => this.speakerDetailsViewModel ?? (this.speakerDetailsViewModel = this.BindingContext as SpeakerDetailsViewModel);
 
@@ -18,10 +18,10 @@ namespace XamarinEvolve.Clients.UI
 
         readonly string sessionId;
 
-        public SpeakerDetailsPage(Speaker speaker)
+        public SpeakerDetailsPage(SpeakerModel speakerModel)
             : this((string)null)
         {
-            this.Speaker = speaker;
+            this.SpeakerModel = speakerModel;
         }
 
         public SpeakerDetailsPage(string sessionId)
@@ -29,7 +29,7 @@ namespace XamarinEvolve.Clients.UI
             this.sessionId = sessionId;
             this.InitializeComponent();
             this.MainScroll.ParallaxView = this.HeaderView;
-            this._extension = DependencyService.Get<IPlatformSpecificExtension<Speaker>>();
+            this._extension = DependencyService.Get<IPlatformSpecificExtension<SpeakerModel>>();
 
             this.ListViewSessions.ItemSelected += async (sender, e) =>
                 {
@@ -51,9 +51,9 @@ namespace XamarinEvolve.Clients.UI
             }
         }
 
-        public Speaker Speaker
+        public SpeakerModel SpeakerModel
         {
-            get => this.ViewModel.Speaker;
+            get => this.ViewModel.SpeakerModel;
             set
             {
                 this.BindingContext = new SpeakerDetailsViewModel(value, this.sessionId);
@@ -63,7 +63,7 @@ namespace XamarinEvolve.Clients.UI
 
         void MainScroll_Scrolled(object sender, ScrolledEventArgs e)
         {
-            if (e.ScrollY > (this.MainStack.Height - this.SpeakerTitle.Height)) this.Title = this.Speaker.FirstName;
+            if (e.ScrollY > (this.MainStack.Height - this.SpeakerTitle.Height)) this.Title = this.SpeakerModel.FirstName;
             else this.Title = "Speaker Info";
         }
 
@@ -105,7 +105,7 @@ namespace XamarinEvolve.Clients.UI
 
             if (this._extension != null)
             {
-                await this._extension.Execute(this.ViewModel.Speaker);
+                await this._extension.Execute(this.ViewModel.SpeakerModel);
             }
         }
 
