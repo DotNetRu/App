@@ -10,18 +10,18 @@
     using XamarinEvolve.Clients.Portable.ViewModel;
     using XamarinEvolve.Utils.Helpers;
 
-    public partial class FeedPage
+    public partial class NewsPage
     {
         public override AppPage PageType => AppPage.Feed;
 
-        FeedViewModel ViewModel => this.feedViewModel ?? (this.feedViewModel = this.BindingContext as FeedViewModel);
+        public NewsViewModel NewsViewModel => this.newsViewModel ?? (this.newsViewModel = this.BindingContext as NewsViewModel);
 
-        FeedViewModel feedViewModel;
+        private NewsViewModel newsViewModel;
 
-        public FeedPage()
+        public NewsPage()
         {
             this.InitializeComponent();
-            this.BindingContext = new FeedViewModel();
+            this.BindingContext = new NewsViewModel();
 
             if (Device.RuntimePlatform == Device.UWP)
             {
@@ -30,14 +30,14 @@
                         {
                             Text = "Refresh",
                             Icon = "toolbar_refresh.png",
-                            Command = this.ViewModel.RefreshCommand
+                            Command = this.NewsViewModel.RefreshCommand
                         });
             }
 
-            this.ViewModel.Tweets.CollectionChanged += (sender, e) =>
+            this.NewsViewModel.Tweets.CollectionChanged += (sender, e) =>
                 {
-                    var adjust = Device.RuntimePlatform != Device.Android ? 1 : -this.ViewModel.Tweets.Count + 2;
-                    this.ListViewSocial.HeightRequest = (this.ViewModel.Tweets.Count * this.ListViewSocial.RowHeight) - adjust;
+                    var adjust = Device.RuntimePlatform != Device.Android ? 1 : -this.NewsViewModel.Tweets.Count + 2;
+                    this.ListViewSocial.HeightRequest = (this.NewsViewModel.Tweets.Count * this.ListViewSocial.RowHeight) - adjust;
                 };
         }
 
@@ -76,29 +76,29 @@
 
         private void UpdatePage()
         {
-            bool forceRefresh = DateTime.UtcNow > (this.ViewModel?.NextForceRefresh ?? DateTime.UtcNow);
+            bool forceRefresh = DateTime.UtcNow > (this.NewsViewModel?.NextForceRefresh ?? DateTime.UtcNow);
 
-            this.feedViewModel.EvaluateVisualState();
+            this.newsViewModel.EvaluateVisualState();
 
             if (forceRefresh)
             {
-                this.ViewModel.RefreshCommand.Execute(null);
+                this.NewsViewModel.RefreshCommand.Execute(null);
             }
             else
             {
 
-                if (this.ViewModel.Tweets.Count == 0)
+                if (this.NewsViewModel.Tweets.Count == 0)
                 {
-                    this.ViewModel.LoadSocialCommand.Execute(null);
+                    this.NewsViewModel.LoadSocialCommand.Execute(null);
                 }
 
-                if (this.firstLoad && this.ViewModel.Sessions.Count == 0)
+                if (this.firstLoad && this.NewsViewModel.Sessions.Count == 0)
                 {
                     this.firstLoad = false;
-                    this.ViewModel.LoadSessionsCommand.Execute(null);
+                    this.NewsViewModel.LoadSessionsCommand.Execute(null);
                 }
 
-                if (this.ViewModel.Notification == null) this.ViewModel.LoadNotificationsCommand.Execute(null);
+                if (this.NewsViewModel.Notification == null) this.NewsViewModel.LoadNotificationsCommand.Execute(null);
             }
 
         }

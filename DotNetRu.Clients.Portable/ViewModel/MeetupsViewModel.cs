@@ -6,7 +6,6 @@ namespace XamarinEvolve.Clients.Portable.ViewModel
     using System.IO;
     using System.Linq;
     using System.Reflection;
-    using System.Threading.Tasks;
     using System.Windows.Input;
     using System.Xml.Serialization;
 
@@ -25,7 +24,7 @@ namespace XamarinEvolve.Clients.Portable.ViewModel
     /// <summary>
     /// The events view model.
     /// </summary>
-    public class EventsViewModel : ViewModelBase
+    public class MeetupsViewModel : ViewModelBase
     {
         /// <summary>
         /// The selected event.
@@ -42,7 +41,7 @@ namespace XamarinEvolve.Clients.Portable.ViewModel
         /// </summary>
         private ICommand loadEventsCommand;
 
-        public EventsViewModel(INavigation navigation)
+        public MeetupsViewModel(INavigation navigation)
             : base(navigation)
         {
             this.Title = "Meetups";

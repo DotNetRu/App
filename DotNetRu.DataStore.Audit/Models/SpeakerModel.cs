@@ -2,8 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Reflection;
-
     using Xamarin.Forms;
 
     public class SpeakerModel : BaseDataObject

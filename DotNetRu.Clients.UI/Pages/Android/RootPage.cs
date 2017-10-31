@@ -25,7 +25,7 @@
             this.pages = new Dictionary<int, EvolveNavigationPage>();
             this.Master = new MenuPage(this);
 
-            this.pages.Add(0, new EvolveNavigationPage(new FeedPage()));
+            this.pages.Add(0, new EvolveNavigationPage(new NewsPage()));
 
             this.Detail = this.pages[0];
             MessagingService.Current.Subscribe<DeepLinkPage>(
@@ -50,7 +50,7 @@
                 switch (menuId)
                 {
                     case (int)AppPage.Feed: // Feed
-                        this.pages.Add(menuId, new EvolveNavigationPage(new FeedPage()));
+                        this.pages.Add(menuId, new EvolveNavigationPage(new NewsPage()));
                         break;
                     case (int)AppPage.Sessions: // sessions
                         this.pages.Add(menuId, new EvolveNavigationPage(new MeetupPage()));
@@ -59,7 +59,7 @@
                         this.pages.Add(menuId, new EvolveNavigationPage(new SpeakersPage()));
                         break;
                     case (int)AppPage.Events: // events
-                        this.pages.Add(menuId, new EvolveNavigationPage(new EventsPage()));
+                        this.pages.Add(menuId, new EvolveNavigationPage(new MeetupsPage()));
                         break;
                     case (int)AppPage.Friends: // friends
                         newPage = new EvolveNavigationPage(new FriendsPage());

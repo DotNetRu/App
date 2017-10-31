@@ -8,7 +8,7 @@
 
         public static bool ShowBuyTicketButton => true;
 
-        public static bool ShowConferenceFeedbackButton => true;
+        public static bool ShowConferenceFeedbackButton => false;
 
         public static bool SponsorsOnTabPage => false;
 

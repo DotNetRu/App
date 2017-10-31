@@ -4,18 +4,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
     x:Class="XamarinEvolve.Clients.UI.TalkPage"
     xmlns:local="clr-namespace:XamarinEvolve.Clients.UI;assembly=XamarinEvolve.Clients.UI"
-    xmlns:imagecircle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
     xmlns:toolkit="clr-namespace:FormsToolkit;assembly=FormsToolkit"
     Title="Talk"
     NavigationPage.BackButtonTitle="Back"
     BackgroundColor="{DynamicResource WindowBackgroundTable}">
     <ContentPage.Resources>
      <ResourceDictionary>
-        <toolkit:HexToColorConverter x:Key="StringToColorConverter" />
-        <local:TalkDateDisplayConverter x:Key="SessionDateDisplayConverter" />
-        <local:HasReminderTextConverter x:Key="HasReminderTextConverter" />
-        <local:IsFilledIconConverter x:Key="IsFilledIconConverter" />
-        <toolkit:HasDataConverter x:Key="GenericIsVisibleConverter"/>
+         <local:TalkDateDisplayConverter x:Key="SessionDateDisplayConverter" />
+         <toolkit:HasDataConverter x:Key="GenericIsVisibleConverter"/>
         <local:RatingVisibleConverter x:Key="RatingVisibleConverter" />
         <toolkit:InvertedBooleanConverter x:Key="InvertedBooleanConverter" />
      </ResourceDictionary>
@@ -23,7 +19,7 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Icon="toolbar_share.png" Text="Share" Command="{Binding ShareCommand}"/>
     </ContentPage.ToolbarItems>
-        <local:AlwaysScrollView Grid.RowSpan="2" x:Name="MainScroll">
+        <local:AlwaysScrollView x:Name="MainScroll">
             <StackLayout Spacing="0"> <!--Padding set dynamic in code behind-->
               <!--This first stack is what overlays on top of the hero image-->
               <StackLayout 
@@ -130,7 +126,7 @@
                             </StackLayout>
                         </local:CardView>
 
-					<local:CardView IsVisible="{Binding Session, Converter={StaticResource RatingVisibleConverter}}">
+					<local:CardView IsVisible="{Binding TalkModel, Converter={StaticResource RatingVisibleConverter}}">
                         <StackLayout Spacing="0">
                             <!--Rate-->
                             <local:LabelSection Text="Leave Feedback" StyleId="FeedbackTitle"/>

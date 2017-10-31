@@ -127,7 +127,7 @@
                     return;
                 }
 
-                var feed = rootNav.CurrentPage as FeedPage;
+                var feed = rootNav.CurrentPage as NewsPage;
                 if (feed != null)
                 {
                     feed.OnResume();

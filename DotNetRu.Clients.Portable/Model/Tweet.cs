@@ -1,22 +1,23 @@
-﻿using System;
-using System.Windows.Input;
-
-using FormsToolkit;
-
-using Humanizer;
-
-using Newtonsoft.Json;
-
-using Xamarin.Forms;
-
-namespace XamarinEvolve.Clients.Portable
+﻿namespace XamarinEvolve.Clients.Portable
 {
-	using XamarinEvolve.Utils.Helpers;
+    using System;
+    using System.Windows.Input;
 
-	public class Tweet
+    using FormsToolkit;
+
+    using Humanizer;
+
+    using Newtonsoft.Json;
+
+    using Xamarin.Forms;
+
+    using XamarinEvolve.Utils.Helpers;
+
+    public class Tweet
     {
-        string _tweetedImage;
-        string _fullImage;
+        private string _tweetedImage;
+
+        private string _fullImage;
 
         [JsonIgnore]
         public bool HasImage => !string.IsNullOrWhiteSpace(this._tweetedImage);
@@ -38,12 +39,12 @@ namespace XamarinEvolve.Clients.Portable
 
         ICommand _fullImageCommand;
 
-        public ICommand FullImageCommand => this._fullImageCommand ?? (this._fullImageCommand = new Command(this.ExecuteFullImageCommand));
+        public ICommand FullImageCommand => this._fullImageCommand
+                                            ?? (this._fullImageCommand = new Command(this.ExecuteFullImageCommand));
 
         void ExecuteFullImageCommand()
         {
-            if (string.IsNullOrWhiteSpace(this._fullImage))
-                return;
+            if (string.IsNullOrWhiteSpace(this._fullImage)) return;
             MessagingService.Current.SendMessage(MessageKeys.NavigateToImage, this._fullImage);
         }
 
@@ -82,7 +83,9 @@ namespace XamarinEvolve.Clients.Portable
                 try
                 {
                     if (string.IsNullOrWhiteSpace(this.TweetedImage))
+                    {
                         return null;
+                    }
 
                     return new Uri(this.TweetedImage);
                 }

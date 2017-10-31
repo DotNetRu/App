@@ -14,7 +14,7 @@
     {
         public override AppPage PageType => AppPage.Sessions;
 
-        private MeetupViewModel ViewModel =>
+        private MeetupViewModel MeetupViewModel =>
             this.meetupViewModel ?? (this.meetupViewModel = this.BindingContext as MeetupViewModel);
 
         private MeetupViewModel meetupViewModel;
@@ -93,12 +93,12 @@
 
         private void UpdatePage()
         {
-            bool forceRefresh = DateTime.UtcNow > (this.ViewModel?.NextForceRefresh ?? DateTime.UtcNow);
+            bool forceRefresh = DateTime.UtcNow > (this.MeetupViewModel?.NextForceRefresh ?? DateTime.UtcNow);
 
             // Load if none, or if 45 minutes has gone by
-            if ((this.ViewModel?.Sessions?.Count ?? 0) == 0 || forceRefresh)
+            if ((this.MeetupViewModel?.Sessions?.Count ?? 0) == 0 || forceRefresh)
             {
-                this.ViewModel?.LoadSessionsCommand?.Execute(forceRefresh);
+                this.MeetupViewModel?.LoadSessionsCommand?.Execute(forceRefresh);
             }
         }
 

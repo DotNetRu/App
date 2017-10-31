@@ -7,18 +7,18 @@
     using XamarinEvolve.Clients.Portable;
     using XamarinEvolve.Clients.Portable.ViewModel;
 
-    public partial class EventsPage
+    public partial class MeetupsPage
     {
         public override AppPage PageType => AppPage.Events;
 
-        EventsViewModel eventsViewModel;
+        MeetupsViewModel meetupsViewModel;
 
-        EventsViewModel ViewModel => this.eventsViewModel ?? (this.eventsViewModel = this.BindingContext as EventsViewModel);
+        MeetupsViewModel ViewModel => this.meetupsViewModel ?? (this.meetupsViewModel = this.BindingContext as MeetupsViewModel);
 
-        public EventsPage()
+        public MeetupsPage()
         {
             this.InitializeComponent();
-            this.BindingContext = new EventsViewModel(this.Navigation);
+            this.BindingContext = new MeetupsViewModel(this.Navigation);
 
             if (Device.RuntimePlatform == Device.UWP)
             {
