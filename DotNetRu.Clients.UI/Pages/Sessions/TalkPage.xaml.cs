@@ -71,15 +71,15 @@
             list.SelectedItem = null;
         }
 
-        public void MainScroll_Scrolled(object sender, ScrolledEventArgs e)
-        {
-            this.Title = e.ScrollY > this.SessionDate.Y ? this.ViewModel.TalkModel.ShortTitle : "Talk";
-        }
+        //public void MainScroll_Scrolled(object sender, ScrolledEventArgs e)
+        //{
+        //    this.Title = e.ScrollY > this.SessionDate.Y ? this.ViewModel.TalkModel.ShortTitle : "Talk";
+        //}
 
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            this.MainScroll.Scrolled += this.MainScroll_Scrolled;
+            //this.MainScroll.Scrolled += this.MainScroll_Scrolled;
             this.ListViewSpeakers.ItemTapped += this.ListViewTapped;
 
             var count = this.ViewModel?.TalkModel?.Speakers?.Count ?? 0;
@@ -98,7 +98,7 @@
         protected override async void OnDisappearing()
         {
             base.OnDisappearing();
-            this.MainScroll.Scrolled -= this.MainScroll_Scrolled;
+            //this.MainScroll.Scrolled -= this.MainScroll_Scrolled;
             this.ListViewSpeakers.ItemTapped -= this.ListViewTapped;
 
             if (this.extension != null)

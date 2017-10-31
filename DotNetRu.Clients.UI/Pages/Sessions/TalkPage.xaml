@@ -33,12 +33,12 @@
                         Style="{DynamicResource TitleStyle}"
                         TextColor="White"
                         StyleId="SessionTitle"/>
-                    <Label
+                    <!--<Label
                         x:Name="SessionDate"
                         Text="{Binding TalkModel, Converter={StaticResource SessionDateDisplayConverter}}"
                         Style="{DynamicResource EvolveDetailTextStyle}"
                         TextColor="White"
-                        StyleId="SessionDate"/>
+                        StyleId="SessionDate"/>-->
                 </StackLayout>
                 <StackLayout 
                     BackgroundColor="{DynamicResource WindowBackgroundTable}"
