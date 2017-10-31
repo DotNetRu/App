@@ -19,7 +19,7 @@
     /// <summary>
     /// The feed view model.
     /// </summary>
-    public class FeedViewModel : ViewModelBase
+    public class NewsViewModel : ViewModelBase
     {
         public ObservableRangeCollection<Tweet> Tweets { get; } = new ObservableRangeCollection<Tweet>();
 
@@ -27,7 +27,7 @@
 
         public DateTime NextForceRefresh { get; set; }
 
-        public FeedViewModel()
+        public NewsViewModel()
         {
             this.Title = "News";
             this.NextForceRefresh = DateTime.UtcNow.AddMinutes(45);
@@ -51,8 +51,8 @@
                 this.IsBusy = true;
                 var tasks = new[]
                                 {
-                                    this.ExecuteLoadNotificationsCommandAsync(),
-                                    this.ExecuteLoadSocialCommandAsync(), this.ExecuteLoadSessionsCommandAsync()
+                                    this.ExecuteLoadNotificationsCommandAsync(), this.ExecuteLoadSocialCommandAsync(),
+                                    this.ExecuteLoadSessionsCommandAsync()
                                 };
 
                 await Task.WhenAll(tasks);
@@ -195,7 +195,7 @@
         public bool ShowBuyTicketButton =>
             FeatureFlags.ShowBuyTicketButton && EventInfo.StartOfConference.AddDays(-1) >= DateTime.Now;
 
-        public bool ShowConferenceFeedbackButton => true;
+        public bool ShowConferenceFeedbackButton => FeatureFlags.ShowConferenceFeedbackButton;
 
         public string SocialHeader => "Social";
 
@@ -276,4 +276,3 @@
         }
     }
 }
-

@@ -24,7 +24,7 @@
 
         public ObservableRangeCollection<MenuItem> FollowItems { get; } = new ObservableRangeCollection<MenuItem>();
 
-        bool hasAdditionalSessions;
+        private bool hasAdditionalSessions;
 
         public bool HasAdditionalSessions
         {
@@ -32,24 +32,9 @@
             set => this.SetProperty(ref this.hasAdditionalSessions, value);
         }
 
-        private string sessionId;
-
-        public SpeakerDetailsViewModel(SpeakerModel speakerModel, string sessionId)
-            : base()
+        public SpeakerDetailsViewModel(SpeakerModel speakerModel)
         {
             this.SpeakerModel = speakerModel;
-            this.sessionId = sessionId;
-
-            if (!string.IsNullOrWhiteSpace(speakerModel.CompanyWebsiteUrl))
-            {
-                this.FollowItems.Add(
-                    new MenuItem
-                        {
-                            Name = speakerModel.CompanyWebsiteUrl.StripUrlForDisplay(),
-                            Parameter = speakerModel.CompanyWebsiteUrl,
-                            Icon = "icon_website.png"
-                        });
-            }
 
             if (!string.IsNullOrWhiteSpace(speakerModel.BlogUrl))
             {
@@ -106,7 +91,7 @@
             }
         }
 
-        ICommand loadSessionsCommand;
+        private ICommand loadSessionsCommand;
 
         public ICommand LoadSessionsCommand => this.loadSessionsCommand
                                                ?? (this.loadSessionsCommand = new Command(
@@ -114,7 +99,10 @@
 
         public async Task ExecuteLoadSessionsCommandAsync()
         {
-            if (this.IsBusy) return;
+            if (this.IsBusy)
+            {
+                return;
+            }
 
             try
             {
@@ -137,7 +125,7 @@
             }
         }
 
-        MenuItem selectedFollowItem;
+        private MenuItem selectedFollowItem;
 
         public MenuItem SelectedFollowItem
         {
@@ -147,7 +135,10 @@
             {
                 this.selectedFollowItem = value;
                 this.OnPropertyChanged();
-                if (this.selectedFollowItem == null) return;
+                if (this.selectedFollowItem == null)
+                {
+                    return;
+                }
 
                 this.LaunchBrowserCommand.Execute(this.selectedFollowItem.Parameter);
 
@@ -155,7 +146,7 @@
             }
         }
 
-        TalkModel selectedTalkModel;
+        private TalkModel selectedTalkModel;
 
         public TalkModel SelectedTalkModel
         {
