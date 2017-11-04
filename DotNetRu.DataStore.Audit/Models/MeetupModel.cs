@@ -5,7 +5,7 @@
 
     using Newtonsoft.Json;
 
-    public class FeaturedEvent : BaseDataObject
+    public class MeetupModel : BaseDataObject
     {
         /// <summary>
         /// Gets or sets the title of the event such as: Keynote

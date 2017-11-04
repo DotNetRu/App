@@ -72,7 +72,7 @@
                 switch (menuId)
                 {
                     case AppPage.Feed: // Feed
-                        this.pages.Add(menuId, new EvolveNavigationPage(new FeedPage()));
+                        this.pages.Add(menuId, new EvolveNavigationPage(new NewsPage()));
                         break;
                     case AppPage.Sessions: // sessions
                         this.pages.Add(menuId, new EvolveNavigationPage(new MeetupPage()));
@@ -81,7 +81,7 @@
                         this.pages.Add(menuId, new EvolveNavigationPage(new SpeakersPage()));
                         break;
                     case AppPage.Events: // events
-                        this.pages.Add(menuId, new EvolveNavigationPage(new EventsPage()));
+                        this.pages.Add(menuId, new EvolveNavigationPage(new MeetupsPage()));
                         break;
                     case AppPage.Friends: // sponsors
                         newPage = new EvolveNavigationPage(new FriendsPage());

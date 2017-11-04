@@ -14,12 +14,31 @@
     {
         public override AppPage PageType => AppPage.Sessions;
 
-        private MeetupViewModel ViewModel =>
+        private MeetupViewModel MeetupViewModel =>
             this.meetupViewModel ?? (this.meetupViewModel = this.BindingContext as MeetupViewModel);
 
         private MeetupViewModel meetupViewModel;
 
-        public MeetupPage(FeaturedEvent meetup = null)
+        public MeetupPage()
+        {
+            this.InitializeComponent();
+
+            // this.ToolbarItems.Add(this.filterItem);
+            this.ListViewSessions.ItemSelected += async (sender, e) =>
+                {
+                    if (!(this.ListViewSessions.SelectedItem is TalkModel session))
+                    {
+                        return;
+                    }
+
+                    var sessionDetails = new TalkPage(session);
+
+                    await NavigationService.PushAsync(this.Navigation, sessionDetails);
+                    this.ListViewSessions.SelectedItem = null;
+                };
+        }
+
+        public MeetupPage(MeetupModel meetup = null)
         {
             this.InitializeComponent();
 
@@ -83,22 +102,17 @@
 
             this.ListViewSessions.ItemTapped += this.ListViewTapped;
 
-            if (Device.RuntimePlatform == Device.Android)
-            {
-                MessagingService.Current.Subscribe("filter_changed", (d) => this.UpdatePage());
-            }
-
             this.UpdatePage();
         }
 
         private void UpdatePage()
         {
-            bool forceRefresh = DateTime.UtcNow > (this.ViewModel?.NextForceRefresh ?? DateTime.UtcNow);
+            bool forceRefresh = DateTime.UtcNow > (this.MeetupViewModel?.NextForceRefresh ?? DateTime.UtcNow);
 
             // Load if none, or if 45 minutes has gone by
-            if ((this.ViewModel?.Sessions?.Count ?? 0) == 0 || forceRefresh)
+            if ((this.MeetupViewModel?.Sessions?.Count ?? 0) == 0 || forceRefresh)
             {
-                this.ViewModel?.LoadSessionsCommand?.Execute(forceRefresh);
+                this.MeetupViewModel?.LoadSessionsCommand?.Execute(forceRefresh);
             }
         }
 

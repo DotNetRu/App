@@ -17,10 +17,10 @@
         public RootPageiOS()
         {
             NavigationPage.SetHasNavigationBar(this, false);
-            this.Children.Add(new EvolveNavigationPage(new FeedPage()));
+            this.Children.Add(new EvolveNavigationPage(new NewsPage()));
             this.Children.Add(new EvolveNavigationPage(new SpeakersPage()));
 
-            this.Children.Add(new EvolveNavigationPage(new EventsPage()));
+            this.Children.Add(new EvolveNavigationPage(new MeetupsPage()));
             if (FeatureFlags.SponsorsOnTabPage)
             {
                 this.Children.Add(new EvolveNavigationPage(new FriendsPage()));

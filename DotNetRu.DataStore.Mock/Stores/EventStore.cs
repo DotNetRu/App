@@ -10,13 +10,13 @@
 
     using Xamarin.Forms;
 
-    public class EventStore : BaseStore<FeaturedEvent>, IEventStore
+    public class EventStore : BaseStore<MeetupModel>, IEventStore
     {
-        List<FeaturedEvent> Events { get; }
+        List<MeetupModel> Events { get; }
         IFriendStore friends;
         public EventStore()
         {
-            this.Events = new List<FeaturedEvent>();
+            this.Events = new List<MeetupModel>();
             this.friends = DependencyService.Get<IFriendStore>();
         }
 
@@ -27,7 +27,7 @@
 
             var sponsorList = await this.friends.GetItemsAsync();
                         
-            this.Events.Add(new FeaturedEvent
+            this.Events.Add(new MeetupModel
                 {
                     Title = "Evening Event",
                     Description = string.Empty,
@@ -37,7 +37,7 @@
                     IsAllDay = false,
                 });
 
-            this.Events.Add(new FeaturedEvent
+            this.Events.Add(new MeetupModel
                 {
                     Title = "Happy Hour",
                     Description = string.Empty,
@@ -48,7 +48,7 @@
                     FriendModel = sponsorList.FirstOrDefault(x => x.Name == "Microsoft")
                 });
 
-            this.Events.Add(new FeaturedEvent
+            this.Events.Add(new MeetupModel
                 {
                     Title = "General Session",
                     Description = string.Empty,
@@ -59,7 +59,7 @@
                 });
         }
 
-        public override async Task<IEnumerable<FeaturedEvent>> GetItemsAsync(bool forceRefresh = false)
+        public override async Task<IEnumerable<MeetupModel>> GetItemsAsync(bool forceRefresh = false)
         {
             await this.InitializeStore();
 

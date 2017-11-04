@@ -6,7 +6,6 @@ namespace XamarinEvolve.Clients.Portable.ViewModel
     using System.IO;
     using System.Linq;
     using System.Reflection;
-    using System.Threading.Tasks;
     using System.Windows.Input;
     using System.Xml.Serialization;
 
@@ -25,12 +24,12 @@ namespace XamarinEvolve.Clients.Portable.ViewModel
     /// <summary>
     /// The events view model.
     /// </summary>
-    public class EventsViewModel : ViewModelBase
+    public class MeetupsViewModel : ViewModelBase
     {
         /// <summary>
         /// The selected event.
         /// </summary>
-        private FeaturedEvent selectedEvent;
+        private MeetupModel selectedEvent;
 
         /// <summary>
         /// The force refresh command.
@@ -42,7 +41,7 @@ namespace XamarinEvolve.Clients.Portable.ViewModel
         /// </summary>
         private ICommand loadEventsCommand;
 
-        public EventsViewModel(INavigation navigation)
+        public MeetupsViewModel(INavigation navigation)
             : base(navigation)
         {
             this.Title = "Meetups";
@@ -65,19 +64,19 @@ namespace XamarinEvolve.Clients.Portable.ViewModel
         /// <summary>
         /// Gets the events.
         /// </summary>
-        public ObservableRangeCollection<FeaturedEvent> Events { get; } =
-            new ObservableRangeCollection<FeaturedEvent>();
+        public ObservableRangeCollection<MeetupModel> Events { get; } =
+            new ObservableRangeCollection<MeetupModel>();
 
         /// <summary>
         /// Gets the events grouped.
         /// </summary>
-        public ObservableRangeCollection<Grouping<string, FeaturedEvent>> EventsGrouped { get; } =
-            new ObservableRangeCollection<Grouping<string, FeaturedEvent>>();
+        public ObservableRangeCollection<Grouping<string, MeetupModel>> EventsGrouped { get; } =
+            new ObservableRangeCollection<Grouping<string, MeetupModel>>();
 
         /// <summary>
         /// Gets or sets the selected event.
         /// </summary>
-        public FeaturedEvent SelectedEvent
+        public MeetupModel SelectedEvent
         {
             get => this.selectedEvent;
             set
@@ -155,10 +154,10 @@ namespace XamarinEvolve.Clients.Portable.ViewModel
             return true;
         }
 
-        private List<FeaturedEvent> MeetupsToFeaturedEvents(IEnumerable<Meetup> meetups)
+        private List<MeetupModel> MeetupsToFeaturedEvents(IEnumerable<Meetup> meetups)
         {
             return meetups.Select(
-                meetup => new FeaturedEvent
+                meetup => new MeetupModel
                               {
                                   Description = meetup.Name,
                                   IsAllDay = true,
@@ -170,7 +169,7 @@ namespace XamarinEvolve.Clients.Portable.ViewModel
                               }).ToList();
         }
 
-        private List<FeaturedEvent> GetEvents()
+        private List<MeetupModel> GetEvents()
         {
             var assembly = Assembly.Load(new AssemblyName("DotNetRu.DataStore.Audit"));
             var stream = assembly.GetManifestResourceStream("DotNetRu.DataStore.Audit.Storage.meetups.xml");

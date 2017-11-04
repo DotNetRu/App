@@ -56,7 +56,7 @@ namespace XamarinEvolve.Clients.UI
             get => this.ViewModel.SpeakerModel;
             set
             {
-                this.BindingContext = new SpeakerDetailsViewModel(value, this.sessionId);
+                this.BindingContext = new SpeakerDetailsViewModel(value);
                 this.ItemId = value?.FullName;
             }
         }

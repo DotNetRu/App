@@ -12,16 +12,16 @@
 
     public static class MeetupExtensions
     {
-        public static IEnumerable<Grouping<string, FeaturedEvent>> GroupByDate(this IEnumerable<FeaturedEvent> events)
+        public static IEnumerable<Grouping<string, MeetupModel>> GroupByDate(this IEnumerable<MeetupModel> events)
         {
             return from e in events
                    orderby e.StartTimeOrderBy descending
                    group e by e.GetSortName()
                    into eventGroup
-                   select new Grouping<string, FeaturedEvent>(eventGroup.Key, eventGroup);
+                   select new Grouping<string, MeetupModel>(eventGroup.Key, eventGroup);
         }
 
-        public static string GetSortName(this FeaturedEvent e)
+        public static string GetSortName(this MeetupModel e)
         {
             if (!e.StartTime.HasValue || !e.EndTime.HasValue)
             {
@@ -48,7 +48,7 @@
             return $"{year}";
         }
 
-        public static string GetDate(this FeaturedEvent e)
+        public static string GetDate(this MeetupModel e)
         {
             if (!e.StartTime.HasValue || !e.EndTime.HasValue)
             {
@@ -73,7 +73,7 @@
             return start.ToString("MMMM dd, yyyy");
         }
 
-        public static string GetDisplayName(this FeaturedEvent e)
+        public static string GetDisplayName(this MeetupModel e)
         {
             if (!e.StartTime.HasValue || !e.EndTime.HasValue || e.StartTime.Value.IsTba())
             {
@@ -109,7 +109,7 @@
             return $"{day}, {monthDay}, {startString}–{endString}";
         }
 
-        public static string GetDisplayTime(this FeaturedEvent e)
+        public static string GetDisplayTime(this MeetupModel e)
         {
 
             if (!e.StartTime.HasValue || !e.EndTime.HasValue || e.StartTime.Value.IsTba())

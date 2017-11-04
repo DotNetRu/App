@@ -78,7 +78,7 @@
         {
             try
             {
-                if (!(value is FeaturedEvent featured))
+                if (!(value is MeetupModel featured))
                 {
                     return string.Empty;
                 }
@@ -106,7 +106,7 @@
         {
             try
             {
-                if (!(value is FeaturedEvent featured))
+                if (!(value is MeetupModel featured))
                 {
                     return string.Empty;
                 }
@@ -197,8 +197,8 @@
                 }
 
                 return DateTime.UtcNow > ((DateTime)value).ToUniversalTime()
-                           ? Color.FromHex("D3D2D2")
-                           : (Color)Application.Current.Resources["Primary"];
+                           ? (Color)Application.Current.Resources["Primary"]
+                           : Color.FromHex("D3D2D2");
             }
             catch (Exception ex)
             {
