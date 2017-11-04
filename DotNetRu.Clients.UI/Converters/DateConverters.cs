@@ -78,7 +78,7 @@
         {
             try
             {
-                if (!(value is FeaturedEvent featured))
+                if (!(value is MeetupModel featured))
                 {
                     return string.Empty;
                 }
@@ -106,7 +106,7 @@
         {
             try
             {
-                if (!(value is FeaturedEvent featured))
+                if (!(value is MeetupModel featured))
                 {
                     return string.Empty;
                 }

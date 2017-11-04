@@ -19,7 +19,26 @@
 
         private MeetupViewModel meetupViewModel;
 
-        public MeetupPage(FeaturedEvent meetup = null)
+        public MeetupPage()
+        {
+            this.InitializeComponent();
+
+            // this.ToolbarItems.Add(this.filterItem);
+            this.ListViewSessions.ItemSelected += async (sender, e) =>
+                {
+                    if (!(this.ListViewSessions.SelectedItem is TalkModel session))
+                    {
+                        return;
+                    }
+
+                    var sessionDetails = new TalkPage(session);
+
+                    await NavigationService.PushAsync(this.Navigation, sessionDetails);
+                    this.ListViewSessions.SelectedItem = null;
+                };
+        }
+
+        public MeetupPage(MeetupModel meetup = null)
         {
             this.InitializeComponent();
 
@@ -82,11 +101,6 @@
             base.OnAppearing();
 
             this.ListViewSessions.ItemTapped += this.ListViewTapped;
-
-            if (Device.RuntimePlatform == Device.Android)
-            {
-                MessagingService.Current.Subscribe("filter_changed", (d) => this.UpdatePage());
-            }
 
             this.UpdatePage();
         }

@@ -37,7 +37,7 @@
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Event has an Id, but doesn't exist, removing" + ex);
+                Debug.WriteLine("MeetupModel has an Id, but doesn't exist, removing" + ex);
                 Settings.Current.RemoveReminderId(id);
 
             }
@@ -87,7 +87,7 @@
                     MessageKeys.Message,
                     new MessagingServiceAlert
                         {
-                            Title = "Event Creation",
+                            Title = "MeetupModel Creation",
                             Message =
                                 "Unable to create calendar event, please check calendar app and try again.",
                             Cancel = "OK"
@@ -120,7 +120,7 @@
                     MessageKeys.Message,
                     new MessagingServiceAlert
                         {
-                            Title = "Event Deletion",
+                            Title = "MeetupModel Deletion",
                             Message =
                                 "Unable to delete calendar event, please check calendar app and try again.",
                             Cancel = "OK"

@@ -34,7 +34,7 @@
             this.ListViewEvents.ItemTapped += (sender, e) => this.ListViewEvents.SelectedItem = null;
             this.ListViewEvents.ItemSelected += async (sender, e) =>
                 {
-                    if (!(this.ListViewEvents.SelectedItem is FeaturedEvent ev))
+                    if (!(this.ListViewEvents.SelectedItem is MeetupModel ev))
                     {
                         return;
                     }
