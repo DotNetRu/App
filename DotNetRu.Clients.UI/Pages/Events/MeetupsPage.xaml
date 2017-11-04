@@ -2,12 +2,11 @@
 <local:BasePage 
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-    xmlns:local="clr-namespace:XamarinEvolve.Clients.UI;assembly=XamarinEvolve.Clients.UI"
+    xmlns:local="clr-namespace:XamarinEvolve.Clients.UI;assembly=XamarinEvolve.Clients.UI"    
     x:Class="XamarinEvolve.Clients.UI.MeetupsPage"
     xmlns:imagecircle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
     Title="{Binding Title}"
-    Icon="tab_events.png"
-   
+    Icon="tab_events.png"   
     BackgroundColor="{DynamicResource WindowBackground}">
    <ContentPage.Resources>
      <ResourceDictionary>
@@ -29,7 +28,7 @@
             IsRefreshing="{Binding IsBusy, Mode=OneWay}" 
             CachingStrategy="RecycleElement"
             IsVisible="{Binding IsNotBusy}"
-            StyleId="EventsPageIdentifier"
+            StyleId="MeetupModelsPageIdentifier"
             AbsoluteLayout.LayoutFlags="All" 
             AbsoluteLayout.LayoutBounds="0,0,1,1"
             BackgroundColor="White">
@@ -63,20 +62,20 @@
                                HorizontalTextAlignment="Center"
                                Style="{DynamicResource EvolveListItemTextStyle}"
                                TextColor="White"
-                               StyleId="EventItemCircleDate"/>
+                               StyleId="MeetupModelItemCircleDate"/>
                     </Grid>
                     <Label  Text="{Binding StartTime, Converter={StaticResource EventDayDisplayConverter}}" 
                                VerticalTextAlignment="Center" 
                                HorizontalTextAlignment="Center"
                                Style="{DynamicResource EvolveListItemDetailTextStyle}"
-                               StyleId="EventItemDay"/>
+                               StyleId="MeetupModelItemDay"/>
                 </StackLayout>
 
                 <StackLayout Grid.Column="1" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
                         <Label Text="{Binding Title}" 
-                               Style="{DynamicResource EvolveListItemTextStyle}" StyleId="EventItemTitle"/>
+                               Style="{DynamicResource EvolveListItemTextStyle}" StyleId="MeetupModelItemTitle"/>
                         <Label Text="{Binding ., Converter={StaticResource EventTimeDisplayConverter}}" 
-                               Style="{DynamicResource EvolveListItemDetailTextStyle}" StyleId="EventItemTime"/>
+                               Style="{DynamicResource EvolveListItemDetailTextStyle}" StyleId="MeetupModelItemTime"/>
                 </StackLayout>
             </Grid>
 
@@ -111,7 +110,7 @@
                     <OnPlatform x:TypeArguments="Color" Android="{StaticResource Accent}"/>
                 </ActivityIndicator.Color>
             </ActivityIndicator>
-            <Label Text="Loading Events..." HorizontalOptions="Center" Style="{DynamicResource EvolveListItemTextStyle}"/>
+            <Label Text="Loading MeetupModels..." HorizontalOptions="Center" Style="{DynamicResource EvolveListItemTextStyle}"/>
        </StackLayout>
     </AbsoluteLayout>
 </local:BasePage>

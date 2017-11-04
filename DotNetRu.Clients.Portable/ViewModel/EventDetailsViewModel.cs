@@ -16,11 +16,11 @@ namespace XamarinEvolve.Clients.Portable
 
 	public class EventDetailsViewModel : ViewModelBase
     {
-        public FeaturedEvent Event { get; set; }
+        public MeetupModel Event { get; set; }
 
         public ObservableRangeCollection<FriendModel> Sponsors { get; set; }
 
-        public EventDetailsViewModel(INavigation navigation, FeaturedEvent e) : base(navigation)
+        public EventDetailsViewModel(INavigation navigation, MeetupModel e) : base(navigation)
         {
             this.Event = e;
             this.Sponsors = new ObservableRangeCollection<FriendModel>();

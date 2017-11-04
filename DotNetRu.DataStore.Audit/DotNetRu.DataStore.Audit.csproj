@@ -44,11 +44,12 @@
     <Compile Include="Abstractions\IFriendStore.cs" />
     <Compile Include="Extensions\FriendEntityExtensions.cs" />
     <Compile Include="Extensions\SpeakerEntityExtensions.cs" />
+    <Compile Include="Extensions\TalkEntityExtensions.cs" />
     <Compile Include="IStoreManager.cs" />
     <Compile Include="Models\BaseDataObject.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\ConferenceFeedback.cs" />
-    <Compile Include="Models\FeaturedEvent.cs" />
+    <Compile Include="Models\MeetupModel.cs" />
     <Compile Include="Models\Feedback.cs" />
     <Compile Include="Models\Notification.cs" />
     <Compile Include="Models\Room.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="Entities\SpeakerEntity.cs" />
     <Compile Include="Entities\TalkEntity.cs" />
     <Compile Include="Entities\Venue.cs" />
+    <Compile Include="SpeakerLoaderService.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Storage\communities.xml" />
