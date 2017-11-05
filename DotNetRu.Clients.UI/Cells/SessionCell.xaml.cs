@@ -30,7 +30,7 @@
                 return;
             }
 
-            App.Logger.TrackPage(AppPage.Session.ToString(), session.Title);
+            App.Logger.TrackPage(AppPage.Talk.ToString(), session.Title);
             await NavigationService.PushAsync(this.navigation, new TalkPage(session));
         }
     }

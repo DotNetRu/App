@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using Xamarin.Forms;
 
-    public class SpeakerModel : BaseDataObject
+    public sealed class SpeakerModel : BaseDataObject
     {
         /// <summary>
         /// Gets or sets the first name.
@@ -72,7 +72,7 @@
         /// <value>The linked in URL.</value>
         public string LinkedInUrl { get; set; }
 
-        public virtual ICollection<TalkModel> Sessions { get; set; }
+        public ICollection<TalkModel> Talks { get; set; }
 
         [Newtonsoft.Json.JsonIgnore]
         public string FullName => $"{this.FirstName.Trim()} {this.LastName.Trim()}";

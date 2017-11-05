@@ -5,6 +5,7 @@
     using System.Windows.Input;
 
     using DotNetRu.DataStore.Audit.Models;
+    using DotNetRu.DataStore.Audit.Services;
 
     using FormsToolkit;
 
@@ -95,9 +96,9 @@
 
         public ICommand LoadSessionsCommand => this.loadSessionsCommand
                                                ?? (this.loadSessionsCommand = new Command(
-                                                       async () => await this.ExecuteLoadSessionsCommandAsync()));
+                                                       this.ExecuteLoadSessionsCommandAsync));
 
-        public async Task ExecuteLoadSessionsCommandAsync()
+        public void ExecuteLoadSessionsCommandAsync()
         {
             if (this.IsBusy)
             {
@@ -108,9 +109,8 @@
             {
                 this.IsBusy = true;
 
-                var items = await this.StoreManager.SessionStore.GetSpeakerSessionsAsync(this.SpeakerModel.Id);
-
-                this.Sessions.ReplaceRange(items);
+                var talks = TalkService.GetTalks(this.SpeakerModel.Id);
+                this.Sessions.ReplaceRange(talks);
 
                 this.HasAdditionalSessions = this.Sessions.Count > 0;
             }
