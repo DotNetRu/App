@@ -5,6 +5,8 @@
     using System.Linq;
     using System.Text;
 
+    using Xamarin.Forms;
+
     public class TalkModel : BaseDataObject
     {
         public TalkModel()
@@ -36,19 +38,19 @@
         /// Gets or sets the speakers.
         /// </summary>
         /// <value>The speakers.</value>
-        public virtual ICollection<SpeakerModel> Speakers { get; set; }
+        public ICollection<SpeakerModel> Speakers { get; set; }
 
         /// <summary>
         /// Gets or sets the room.
         /// </summary>
         /// <value>The room.</value>
-        public virtual Room Room { get; set; }
+        public Room Room { get; set; }
 
         /// <summary>
         /// Gets or sets the categories.
         /// </summary>
         /// <value>The main categories.</value>
-        public virtual ICollection<Category> Categories { get; set; }
+        public ICollection<Category> Categories { get; set; }
 
         /// <summary>
         /// Gets or sets the start time.
@@ -185,6 +187,8 @@
                 return this.haystack;
             }
         }
+
+        public ImageSource SpeakerAvatar => this.Speakers.First().AvatarImage;
 
         bool feedbackLeft;
 

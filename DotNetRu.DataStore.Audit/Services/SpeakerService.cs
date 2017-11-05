@@ -10,7 +10,7 @@
     using DotNetRu.DataStore.Audit.Extensions;
     using DotNetRu.DataStore.Audit.Models;
 
-    public static class SpeakerLoaderService
+    public static class SpeakerService
     {
         private static IEnumerable<SpeakerModel> speakers;
 

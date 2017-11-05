@@ -350,8 +350,8 @@
                     handled = true;
                     break;
                 case ShortcutIdentifier.Events:
-                    Console.WriteLine("QUICKACTION: Events");
-                    this.ContinueNavigation(AppPage.Events);
+                    Console.WriteLine("QUICKACTION: Meetups");
+                    this.ContinueNavigation(AppPage.Meetups);
                     handled = true;
                     break;
             }

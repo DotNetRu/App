@@ -78,7 +78,7 @@ namespace XamarinEvolve.Clients.UI
             this.ListViewSessions.HeightRequest = 0;
         }
 
-        protected override async void OnAppearing()
+        protected override void OnAppearing()
         {
             base.OnAppearing();
 
@@ -88,14 +88,13 @@ namespace XamarinEvolve.Clients.UI
             if (this.ViewModel.Sessions.Count > 0)
                 return;
 
-            await this.ViewModel.ExecuteLoadSessionsCommandAsync();
+            this.ViewModel.ExecuteLoadSessionsCommandAsync();
             this.ListViewSessions.HeightRequest = (this.ViewModel.Sessions.Count * this.ListViewSessions.RowHeight) - 1;
         }
 
         void ListViewTapped(object sender, ItemTappedEventArgs e)
         {
-            var list = sender as ListView;
-            if (list == null)
+            if (!(sender is ListView list))
                 return;
             list.SelectedItem = null;
         }

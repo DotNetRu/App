@@ -71,7 +71,7 @@ namespace XamarinEvolve.Clients.Portable
                     new Plugin.Calendars.Abstractions.CalendarEvent
                     {
                         Description = this.Event.Description,
-                        Location = this.Event.LocationName,
+                        Location = this.Event.VenueID,
                         AllDay = this.Event.IsAllDay,
                         Name = this.Event.Title,
                         Start = this.Event.StartTime.Value,

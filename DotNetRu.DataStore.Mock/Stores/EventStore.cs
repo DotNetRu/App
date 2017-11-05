@@ -33,7 +33,7 @@
                     Description = string.Empty,
                     StartTime = new DateTime(2016, 4, 26, 23, 0, 0, DateTimeKind.Utc),
                     EndTime = new DateTime(2016, 4, 27, 1, 0, 0, DateTimeKind.Utc),
-                LocationName = string.Empty,
+                VenueID = string.Empty,
                     IsAllDay = false,
                 });
 
@@ -43,7 +43,7 @@
                     Description = string.Empty,
                     StartTime = new DateTime(2016, 4, 27, 22, 30, 0, DateTimeKind.Utc),
                     EndTime = new DateTime(2016, 4, 28, 0, 0, 0, DateTimeKind.Utc),
-                    LocationName = "Expo Hall",
+                    VenueID = "Expo Hall",
                     IsAllDay = false,
                     FriendModel = sponsorList.FirstOrDefault(x => x.Name == "Microsoft")
                 });
@@ -54,7 +54,7 @@
                     Description = string.Empty,
                     StartTime = new DateTime(2016, 4, 28, 13, 0, 0, DateTimeKind.Utc),
                     EndTime = new DateTime(2016, 4, 28, 14, 30, 0, DateTimeKind.Utc),
-                    LocationName ="General Session",
+                    VenueID ="General Session",
                     IsAllDay = false,
                 });
         }

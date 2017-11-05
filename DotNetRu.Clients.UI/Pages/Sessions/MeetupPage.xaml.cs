@@ -1,10 +1,9 @@
 ﻿namespace XamarinEvolve.Clients.UI
 {
-    using System;
+    using System.Linq;
 
     using DotNetRu.DataStore.Audit.Models;
-
-    using FormsToolkit;
+    using DotNetRu.DataStore.Audit.Services;
 
     using Xamarin.Forms;
 
@@ -12,16 +11,21 @@
 
     public partial class MeetupPage
     {
-        public override AppPage PageType => AppPage.Sessions;
-
-        private MeetupViewModel MeetupViewModel =>
-            this.meetupViewModel ?? (this.meetupViewModel = this.BindingContext as MeetupViewModel);
 
         private MeetupViewModel meetupViewModel;
 
+        /// <summary>
+        /// Design-time only
+        /// </summary>
         public MeetupPage()
         {
             this.InitializeComponent();
+
+            var meetupModel = MeetupService.GetMeetups().First();
+                
+            this.BindingContext = this.meetupViewModel = new MeetupViewModel(this.Navigation, meetupModel);
+
+            this.UpdatePage();
 
             // this.ToolbarItems.Add(this.filterItem);
             this.ListViewSessions.ItemSelected += async (sender, e) =>
@@ -42,18 +46,9 @@
         {
             this.InitializeComponent();
 
-            this.BindingContext = this.meetupViewModel = new MeetupViewModel(this.Navigation, meetup);
+            var venue = VenueService.Venues.Single(x => x.Id == meetup.VenueID);
 
-            if (Device.RuntimePlatform == Device.UWP)
-            {
-                this.ToolbarItems.Add(
-                    new ToolbarItem
-                        {
-                            Text = "Refresh",
-                            Icon = "toolbar_refresh.png",
-                            Command = this.meetupViewModel.ForceRefreshCommand
-                        });
-            }
+            this.BindingContext = this.meetupViewModel = new MeetupViewModel(this.Navigation, meetup, venue);
 
             // this.filterItem = new ToolbarItem { Text = "Filter" };
 
@@ -86,6 +81,11 @@
                 };
         }
 
+        public override AppPage PageType => AppPage.Meetup;
+
+        private MeetupViewModel MeetupViewModel =>
+            this.meetupViewModel ?? (this.meetupViewModel = this.BindingContext as MeetupViewModel);
+
         private void ListViewTapped(object sender, ItemTappedEventArgs e)
         {
             if (!(sender is ListView list))
@@ -103,16 +103,21 @@
             this.ListViewSessions.ItemTapped += this.ListViewTapped;
 
             this.UpdatePage();
+
+            var count = this.MeetupViewModel?.Sessions?.Count ?? 0;
+            var adjust = Device.RuntimePlatform != Device.Android ? 1 : -count + 1;
+            if ((this.MeetupViewModel?.Sessions?.Count ?? 0) > 0)
+            {
+                this.ListViewSessions.HeightRequest = (count * this.ListViewSessions.RowHeight) - adjust;
+            }
         }
 
         private void UpdatePage()
         {
-            bool forceRefresh = DateTime.UtcNow > (this.MeetupViewModel?.NextForceRefresh ?? DateTime.UtcNow);
-
-            // Load if none, or if 45 minutes has gone by
-            if ((this.MeetupViewModel?.Sessions?.Count ?? 0) == 0 || forceRefresh)
+            // Load if none
+            if ((this.MeetupViewModel?.Sessions?.Count ?? 0) == 0)
             {
-                this.MeetupViewModel?.LoadSessionsCommand?.Execute(forceRefresh);
+                this.MeetupViewModel?.LoadSessionsCommand?.Execute(null);
             }
         }
 
@@ -120,10 +125,6 @@
         {
             base.OnDisappearing();
             this.ListViewSessions.ItemTapped -= this.ListViewTapped;
-            if (Device.RuntimePlatform == Device.Android)
-            {
-                MessagingService.Current.Unsubscribe("filter_changed");
-            }
         }
 
         public void OnResume()
