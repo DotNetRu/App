@@ -318,6 +318,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Effects\ImageShadowEffect.cs" />
+    <Compile Include="Localize.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Resource.designer.cs" />

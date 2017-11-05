@@ -1,4 +1,8 @@
-﻿namespace XamarinEvolve.Clients.UI
+﻿using System;
+using System.Globalization;
+using XamarinEvolve.Clients.Portable.Interfaces;
+
+namespace XamarinEvolve.Clients.UI
 {
     using DotNetRu.DataStore.Audit.Models;
 
@@ -37,6 +41,12 @@
             var adjust = Device.RuntimePlatform != Device.Android ? 1 : -this.FriendDetailsViewModel.FollowItems.Count + 1;
             this.ListViewFollow.HeightRequest =
                 (this.FriendDetailsViewModel.FollowItems.Count * this.ListViewFollow.RowHeight) - adjust;
+        }
+
+        private void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
+        {
+            var k = new CultureInfo("ru");
+            DependencyService.Get<ILocalize>().SetLocale(k);
         }
     }
 }
