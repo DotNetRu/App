@@ -138,7 +138,7 @@
                                 <local:NonScrollableListView
                                     x:Name="ListViewSessions"
                                     ItemsSource="{Binding Sessions}"
-                                    RowHeight="120">
+                                    RowHeight="95">
                                     <local:NonScrollableListView.SeparatorColor>
                                         <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ListSeparator}"/>
                                     </local:NonScrollableListView.SeparatorColor>

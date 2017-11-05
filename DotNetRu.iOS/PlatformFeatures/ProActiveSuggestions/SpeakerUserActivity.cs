@@ -49,9 +49,9 @@ namespace XamarinEvolve.iOS.PlatformFeatures.ProActiveSuggestions
 			userInfo.Add(new NSString("Url"), new NSString(speakerModel.GetAppLink().AppLinkUri.AbsoluteUri));
 
 			var keywords = new NSMutableSet<NSString>(new NSString(speakerModel.FirstName), new NSString(speakerModel.LastName));
-			if (speakerModel.Sessions != null)
+			if (speakerModel.Talks != null)
 			{
-				foreach (var session in speakerModel.Sessions)
+				foreach (var session in speakerModel.Talks)
 				{
 					keywords.Add(new NSString(session.Title));
 				}

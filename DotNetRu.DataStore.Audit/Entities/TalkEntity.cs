@@ -14,9 +14,6 @@
 
         public string Description { get; set; }
 
-        [XmlArrayItem("TalkId", IsNullable = true)]
-        public string[] SeeAlsoTalkIds { get; set; }
-
         public string CodeUrl { get; set; }
 
         public string SlidesUrl { get; set; }

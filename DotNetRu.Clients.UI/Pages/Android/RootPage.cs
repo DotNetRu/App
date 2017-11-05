@@ -52,13 +52,13 @@
                     case (int)AppPage.Feed: // Feed
                         this.pages.Add(menuId, new EvolveNavigationPage(new NewsPage()));
                         break;
-                    case (int)AppPage.Sessions: // sessions
+                    case (int)AppPage.Meetup: // sessions
                         this.pages.Add(menuId, new EvolveNavigationPage(new MeetupPage()));
                         break;
                     case (int)AppPage.Speakers: // speakers
                         this.pages.Add(menuId, new EvolveNavigationPage(new SpeakersPage()));
                         break;
-                    case (int)AppPage.Events: // events
+                    case (int)AppPage.Meetups: // events
                         this.pages.Add(menuId, new EvolveNavigationPage(new MeetupsPage()));
                         break;
                     case (int)AppPage.Friends: // friends
@@ -118,8 +118,8 @@
             switch (p)
             {
 
-                case AppPage.Session:
-                    await this.NavigateAsync((int)AppPage.Sessions);
+                case AppPage.Talk:
+                    await this.NavigateAsync((int)AppPage.Meetup);
                     var session = await DependencyService.Get<ISessionStore>().GetAppIndexSession(id);
                     if (session == null)
                     {

@@ -1,81 +1,94 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<local:BasePage 
-    xmlns="http://xamarin.com/schemas/2014/forms" 
+<local:BasePage
+    xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:XamarinEvolve.Clients.UI;assembly=XamarinEvolve.Clients.UI"    
+    xmlns:local="clr-namespace:XamarinEvolve.Clients.UI;assembly=XamarinEvolve.Clients.UI"
     x:Class="XamarinEvolve.Clients.UI.MeetupPage"
     x:Name="Meetup"
     Title="Meetup"
     Icon="tab_sessions.png"
-    BackgroundColor="{DynamicResource WindowBackground}"
-    BindingContext="{x:Static local:ViewModelLocator.MeetupViewModel}"
-    >
-    <ContentPage.Content>    
-      <StackLayout>
-        <!--<local:CardView IsVisible="True">
-          <local:LabelSection Text="Talks"/>-->
-          <ListView 
-                x:Name="ListViewSessions"
-                ItemsSource="{Binding SessionsGrouped}"
-                GroupDisplayBinding="{Binding Key}"
-                IsGroupingEnabled="true"
-                IsPullToRefreshEnabled="false"
-                RefreshCommand="{Binding ForceRefreshCommand}"
-                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-                HasUnevenRows ="true"
-                CachingStrategy="RecycleElement"
-                IsVisible="{Binding IsNotBusy}"
-                BackgroundColor="White"
-                AbsoluteLayout.LayoutFlags="All" 
-                AbsoluteLayout.LayoutBounds="0,0,1,1">
-                <ListView.SeparatorColor>
-                    <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ListSeparator}" WinPhone="{StaticResource ListSeparator}"/>
-                </ListView.SeparatorColor>
-            <ListView.GroupHeaderTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <ViewCell.Height>
-                            <OnPlatform x:TypeArguments="x:Double" iOS="28"/>
-                        </ViewCell.Height>
-                        <local:EvolveGroupHeaderView/>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.GroupHeaderTemplate>
-            <ListView.ItemTemplate>
-            <DataTemplate>
-              <ViewCell>
-                  <!--Inflate main Session Cell here-->
-                  <local:SessionCellView />
-              </ViewCell>
-            </DataTemplate>
-          </ListView.ItemTemplate>
-        </ListView>
-        <StackLayout IsVisible="{Binding IsBusy}"
-                                      AbsoluteLayout.LayoutFlags="PositionProportional"
-                                      AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1">
-                                      <StackLayout.Orientation>
-                                      <OnPlatform x:TypeArguments="StackOrientation" iOS="Horizontal"/>
-                                      </StackLayout.Orientation>
-              <ActivityIndicator IsRunning="{Binding IsBusy}" >
-                  <ActivityIndicator.Color>
-                      <OnPlatform x:TypeArguments="Color" Android="{StaticResource Accent}"/>
-                  </ActivityIndicator.Color>
-              </ActivityIndicator>
-              <Label Text="Loading Talks..." HorizontalOptions="Center" Style="{DynamicResource EvolveListItemTextStyle}"/>
-          </StackLayout>
-          <StackLayout IsVisible="{Binding NoSessionsFound}"
-                                      HorizontalOptions="FillAndExpand"
-                                      VerticalOptions="CenterAndExpand"
-                                      AbsoluteLayout.LayoutFlags="All"
-                                      AbsoluteLayout.LayoutBounds="0,0,1,1"
-                      BackgroundColor="{DynamicResource WindowBackground}"
-                      Padding="16,0">
-              <Label Text="{Binding NoSessionsFoundMessage}" HorizontalOptions="Center" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand" FontSize="22" TextColor="#D3D2D2"/>
-          </StackLayout>
-
-        <!--</local:CardView>-->
+    BackgroundColor="{DynamicResource WindowBackground}">
+  <ContentPage.Content>
+    <StackLayout>
+      <StackLayout
+          Padding="16,0,0,16"
+          Spacing="{StaticResource SmallSpacing}"
+          HorizontalOptions="FillAndExpand"
+          BackgroundColor="{DynamicResource Primary}">
+        <Label
+            Text="{Binding MeetupModel.Title}"
+            FontSize="Large"
+            Style="{DynamicResource TitleStyle}"
+            TextColor="White"
+            HorizontalTextAlignment="Center"
+            StyleId="SessionTitle"/>
       </StackLayout>
-</ContentPage.Content>
+      <local:AlwaysScrollView>
+        <StackLayout Spacing="0">
+          <StackLayout BackgroundColor="{DynamicResource WindowBackgroundTable}"
+                      Spacing="{DynamicResource CardSpacing}"
+                      Padding="{DynamicResource CardPadding}">
+            <local:CardView>
+              <StackLayout Spacing="0">
+                <local:LabelSection Text="Talks"/>
+                <local:HeaderDivider/>
+                <StackLayout IsVisible="{Binding IsBusy}">
+                  <StackLayout.Orientation>
+                    <OnPlatform x:TypeArguments="StackOrientation" iOS="Horizontal"/>
+                  </StackLayout.Orientation>
+                  <ActivityIndicator IsRunning="{Binding IsBusy}" >
+                    <ActivityIndicator.Color>
+                      <OnPlatform x:TypeArguments="Color" Android="{StaticResource Accent}"/>
+                    </ActivityIndicator.Color>
+                  </ActivityIndicator>
+                  <Label Text="Loading Talks..." HorizontalOptions="Center" Style="{DynamicResource EvolveListItemTextStyle}"/>
+                </StackLayout>
+                <StackLayout IsVisible="{Binding NoSessionsFound}"
+                              HorizontalOptions="FillAndExpand"
+                              VerticalOptions="CenterAndExpand"
+                              BackgroundColor="{DynamicResource WindowBackground}"
+                              Padding="16,0">
+                  <Label Text="{Binding NoSessionsFoundMessage}" HorizontalOptions="Center" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand" FontSize="22" TextColor="#D3D2D2"/>
+                </StackLayout>
+                <local:NonScrollableListView
+                    x:Name="ListViewSessions"
+                    ItemsSource="{Binding Sessions}"
+                    StyleId="SessionSpeakers"
+                    RowHeight="95">
+                  <local:NonScrollableListView.SeparatorColor>
+                    <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ListSeparator}"/>
+                  </local:NonScrollableListView.SeparatorColor>
+                  <local:NonScrollableListView.ItemTemplate>
+                    <DataTemplate>
+                      <ViewCell StyleId="disclosure">
+                        <local:SessionCellView />
+                      </ViewCell>
+                    </DataTemplate>
+                  </local:NonScrollableListView.ItemTemplate>
+                </local:NonScrollableListView>
+                <local:FooterDivider/>
+              </StackLayout>
+            </local:CardView>
+
+            <local:CardView>
+              <local:CardView.GestureRecognizers>
+                  <TapGestureRecognizer Command="{Binding TapVenueCommand}"/>
+              </local:CardView.GestureRecognizers>
+              <StackLayout Spacing="0">
+                <local:LabelSection Text="Venue"/>
+                <local:HeaderDivider/>
+                  <StackLayout Padding="{StaticResource StandardPadding}" BackgroundColor="White">
+                      <Label Text="{Binding VenueModel.Name}" Style="{DynamicResource EvolveListItemTextStyle}" StyleId="SessionAbstract"/>
+                      <Label Text="{Binding VenueModel.Address}" Style="{DynamicResource EvolveListItemTextStyle}" StyleId="SessionAbstract"/>
+                  </StackLayout>
+                <local:FooterDivider/>
+              </StackLayout>
+            </local:CardView>            
+          </StackLayout>
+        </StackLayout>
+      </local:AlwaysScrollView>
+    </StackLayout>
+  </ContentPage.Content>
 </local:BasePage>
 
 <!--<local:CardView>

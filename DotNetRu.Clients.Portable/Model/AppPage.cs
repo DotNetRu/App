@@ -11,17 +11,17 @@
     {
         Feed,
 
-        Sessions,
+        Meetup,
 
         Speakers,
 
-        Events,
+        Meetups,
 
         Friends,
 
         Settings,
 
-        Session,
+        Talk,
 
         Speaker,
 

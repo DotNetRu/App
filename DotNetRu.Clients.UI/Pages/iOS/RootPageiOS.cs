@@ -40,12 +40,12 @@
                                 await this.CurrentPage.Navigation.PopToRootAsync();
                                 await this.CurrentPage.Navigation.PushAsync(new NotificationsPage());
                                 break;
-                            case AppPage.Events:
-                                this.Navigate(AppPage.Events);
+                            case AppPage.Meetups:
+                                this.Navigate(AppPage.Meetups);
                                 await this.CurrentPage.Navigation.PopToRootAsync();
                                 break;
-                            case AppPage.Session:
-                                this.Navigate(AppPage.Sessions);
+                            case AppPage.Talk:
+                                this.Navigate(AppPage.Meetup);
                                 await this.CurrentPage.Navigation.PopToRootAsync();
                                 var session = await DependencyService.Get<ISessionStore>().GetAppIndexSession(p.Id);
                                 if (session == null)
