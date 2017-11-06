@@ -119,7 +119,6 @@
 
         private string speakerHandles;
 
-        [Newtonsoft.Json.JsonIgnore]
         public string SpeakerHandles
         {
             get
@@ -131,7 +130,10 @@
 
                 this.speakerHandles = string.Empty;
 
-                if (this.Speakers == null || this.Speakers.Count == 0) return this.speakerHandles;
+                if (this.Speakers == null || this.Speakers.Count == 0)
+                {
+                    return this.speakerHandles;
+                }
 
                 var allSpeakers = this.Speakers.ToArray();
                 this.speakerHandles = string.Empty;
