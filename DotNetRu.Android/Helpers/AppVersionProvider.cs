@@ -6,16 +6,20 @@ using XamarinEvolve.Droid;
 
 namespace XamarinEvolve.Droid
 {
-	public class AppVersionProvider : IAppVersionProvider
-	{
-		public string AppVersion
-		{
-			get
-			{
-				var context = Android.App.Application.Context;
-				return context.PackageManager.GetPackageInfo(context.PackageName, 0).VersionName;
-			}
-		}
-	}
+    using Android.Content;
+    using Android.Content.PM;
+
+    public class AppVersionProvider : IAppVersionProvider
+    {
+        public string AppVersion
+        {
+            get
+            {
+                Context context = Android.App.Application.Context;
+                PackageInfo packageInfo = context.PackageManager.GetPackageInfo(context.PackageName, 0);
+                return packageInfo.VersionName + " (" + packageInfo.VersionCode + ")";
+            }
+        }
+    }
 }
 
