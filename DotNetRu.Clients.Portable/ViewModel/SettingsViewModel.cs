@@ -24,16 +24,16 @@
                     {
                         new MenuItem
                             {
-                                Name = $"Created by {AboutThisApp.Developer} with <3",
+                                Name = $"Created by {AboutThisApp.Developer}",
                                 Command = this.LaunchBrowserCommand,
                                 Parameter = AboutThisApp.DeveloperWebsite
                             },
                         new MenuItem
-                        {
-                            Name = $"Big thanks to James Montemagno!",
-                            Command = this.LaunchBrowserCommand,
-                            Parameter = AboutThisApp.MontemagnoWebsite
-                        },
+                            {
+                                Name = $"Big thanks to James Montemagno!",
+                                Command = this.LaunchBrowserCommand,
+                                Parameter = AboutThisApp.MontemagnoWebsite
+                            },
                         new MenuItem
                             {
                                 Name = "Open source on GitHub!",
@@ -42,21 +42,15 @@
                             },
                         new MenuItem
                             {
-                                Name = "Terms of Use",
-                                Command = this.LaunchBrowserCommand,
-                                Parameter = AboutThisApp.TermsOfUseUrl
-                            },
-                        new MenuItem
-                            {
-                                Name = "Privacy Policy",
-                                Command = this.LaunchBrowserCommand,
-                                Parameter = AboutThisApp.PrivacyPolicyUrl
-                            },
-                        new MenuItem
-                            {
                                 Name = "Open Source Notice",
                                 Command = this.LaunchBrowserCommand,
                                 Parameter = AboutThisApp.OpenSourceNoticeUrl
+                            },
+                        new MenuItem
+                            {
+                                Name = "Issue tracker",
+                                Command = this.LaunchBrowserCommand,
+                                Parameter = AboutThisApp.OpenSourceUrl
                             }
                     });
 
@@ -71,22 +65,10 @@
                             },
                         new MenuItem
                             {
-                                Name = "Calendar Plugin",
-                                Command = this.LaunchBrowserCommand,
-                                Parameter = "https://github.com/TheAlmightyBob/Calendars"
-                            },
-                        new MenuItem
-                            {
                                 Name = "Connectivity Plugin",
                                 Command = this.LaunchBrowserCommand,
                                 Parameter =
                                     "https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/Connectivity"
-                            },
-                        new MenuItem
-                            {
-                                Name = "Embedded Resource Plugin",
-                                Command = this.LaunchBrowserCommand,
-                                Parameter = "https://github.com/JosephHill/EmbeddedResourcePlugin"
                             },
                         new MenuItem
                             {
@@ -100,12 +82,6 @@
                                 Command = this.LaunchBrowserCommand,
                                 Parameter =
                                     "https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/ImageCircle"
-                            },
-                        new MenuItem
-                            {
-                                Name = "Json.NET",
-                                Command = this.LaunchBrowserCommand,
-                                Parameter = "https://github.com/JamesNK/Newtonsoft.Json"
                             },
                         new MenuItem
                             {
@@ -137,12 +113,6 @@
                                 Command = this.LaunchBrowserCommand,
                                 Parameter =
                                     "https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/Permissions"
-                            },
-                        new MenuItem
-                            {
-                                Name = "PCL Storage",
-                                Command = this.LaunchBrowserCommand,
-                                Parameter = "https://github.com/dsplaisted/PCLStorage"
                             },
                         new MenuItem
                             {
@@ -182,11 +152,5 @@
         public string AppVersion => $"Version {DependencyService.Get<IAppVersionProvider>()?.AppVersion ?? "1.0"}";
 
         public string AppInfo => "Всероссийское .NET сообщество\nDotNetRu - группа независимых сообществ .NET разработчиков со всей России. Мы объединяем людей вокруг .NET платформы, чтобы способствовать обмену опытом и знаниями. Проводим регулярные встречи, чтобы делиться новостями и лучшими практиками в разработке программных продуктов.";
-
-#if DEBUG
-        public bool IsDebug => true;
-#else
-		public bool IsDebug => false;
-#endif
     }
 }
