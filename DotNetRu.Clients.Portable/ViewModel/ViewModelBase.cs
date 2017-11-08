@@ -1,4 +1,8 @@
-﻿namespace XamarinEvolve.Clients.Portable
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using XamarinEvolve.Clients.UI;
+
+namespace XamarinEvolve.Clients.Portable
 {
     using System;
     using System.Threading.Tasks;
@@ -17,6 +21,12 @@
     /// </summary>
     public class ViewModelBase : BaseViewModel
     {
+        public static string CurrentLanguage = "EN";
+        public LocalizedResources Resources
+        {
+            get;
+            private set;
+        }
         /// <summary>
         /// Gets the navigation.
         /// </summary>
@@ -31,8 +41,17 @@
         public ViewModelBase(INavigation navigation = null)
         {
             this.Navigation = navigation;
+            Resources = new LocalizedResources(typeof(ApplicationResources.AppResources), CurrentLanguage);
         }
+        //public new void OnPropertyChanged([CallerMemberName]string property = null)
+        //{
+        //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
+        //    //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Test"));
 
+
+        //}
+
+        //public new event PropertyChangedEventHandler PropertyChanged;
         /// <summary>
         /// The INIT.
         /// </summary>

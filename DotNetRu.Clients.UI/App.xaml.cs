@@ -32,9 +32,6 @@ namespace XamarinEvolve.Clients.UI
             current = this;
             this.InitializeComponent();
             ViewModelBase.Init();
-            var ci = DependencyService.Get<ILocalize>().GetCurrentCultureInfo();
-            AppResources.AppResources.Culture = ci; // set the RESX for resource localization
-            DependencyService.Get<ILocalize>().SetLocale(ci); // set the Thread for locale-aware methods
             // The root page of your application
             switch (Device.RuntimePlatform)
             {
