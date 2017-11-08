@@ -43,11 +43,6 @@ namespace XamarinEvolve.Clients.UI
                 (this.FriendDetailsViewModel.FollowItems.Count * this.ListViewFollow.RowHeight) - adjust;
         }
 
-        private void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
-        {
-            var k = new CultureInfo("ru");
-            DependencyService.Get<ILocalize>().SetLocale(k);
-        }
     }
 }
 

@@ -117,7 +117,85 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Test" xml:space="preserve">
-    <value>Тест</value>
+  <data name="About" xml:space="preserve">
+    <value>О проекте</value>
+  </data>
+  <data name="AboutText" xml:space="preserve">
+    <value>Всероссийское .NET сообщество\nDotNetRu - группа независимых сообществ .NET разработчиков со всей России. Мы объединяем людей вокруг .NET платформы, чтобы способствовать обмену опытом и знаниями. Проводим регулярные встречи, чтобы делиться новостями и лучшими практиками в разработке программных продуктов. </value>
+  </data>
+  <data name="Abstract" xml:space="preserve">
+    <value>Аннотация</value>
+  </data>
+  <data name="Biography" xml:space="preserve">
+    <value>Биография</value>
+  </data>
+  <data name="CreatedBy" xml:space="preserve">
+    <value>Сделано командой DotNetRu c любовью &lt;3</value>
+  </data>
+  <data name="Follow" xml:space="preserve">
+    <value>Подписаться</value>
+  </data>
+  <data name="Friends" xml:space="preserve">
+    <value>Партнеры</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Язык</value>
+  </data>
+  <data name="Materials" xml:space="preserve">
+    <value>Материалы</value>
+  </data>
+  <data name="Meetups" xml:space="preserve">
+    <value>Митапы</value>
+  </data>
+  <data name="News" xml:space="preserve">
+    <value>Новости</value>
+  </data>
+  <data name="OpenSourceNotice" xml:space="preserve">
+    <value>Уведомление об Open Source</value>
+  </data>
+  <data name="PresentationSlides" xml:space="preserve">
+    <value>Презентация</value>
+  </data>
+  <data name="PrivacyPolicy" xml:space="preserve">
+    <value>Конфиденциальность</value>
+  </data>
+  <data name="Sessions" xml:space="preserve">
+    <value>Сессии</value>
+  </data>
+  <data name="Social" xml:space="preserve">
+    <value>Социальные сети</value>
+  </data>
+  <data name="Speakers" xml:space="preserve">
+    <value>Лекторы</value>
+  </data>
+  <data name="Talk" xml:space="preserve">
+    <value>Лекция</value>
+  </data>
+  <data name="TalkRecording" xml:space="preserve">
+    <value>Запись лекции</value>
+  </data>
+  <data name="TechnologyUsed" xml:space="preserve">
+    <value>Используемые технологии</value>
+  </data>
+  <data name="TermsOfUse" xml:space="preserve">
+    <value>Правила использования</value>
+  </data>
+  <data name="Thanks" xml:space="preserve">
+    <value>Огромный респект Джеймсу Монтемагно</value>
+  </data>
+  <data name="Venue" xml:space="preserve">
+    <value>Место проведения</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Версия</value>
+  </data>
+  <data name="OpenSource" xml:space="preserve">
+    <value>Исходный код на Github!</value>
+  </data>
+  <data name="Friend" xml:space="preserve">
+    <value>Партнер</value>
+  </data>
+  <data name="Links" xml:space="preserve">
+    <value>Ссылки</value>
   </data>
 </root>

@@ -5,12 +5,12 @@
     x:Class="XamarinEvolve.Clients.UI.SettingsPage"
     xmlns:local="clr-namespace:XamarinEvolve.Clients.UI;assembly=XamarinEvolve.Clients.UI"    
     x:Name="AboutPage"
-    Title="About"
+    Title="{Binding Resources[About]}"
     Icon="tab_about.png"
     NavigationPage.BackButtonTitle="Info"    
     BackgroundColor="{DynamicResource WindowBackgroundTable}">
   <local:AlwaysScrollView>
-    <StackLayout Spacing="0">      
+    <StackLayout Spacing="0">
       <StackLayout
           BackgroundColor="{DynamicResource WindowBackgroundTable}"
           Spacing="{DynamicResource CardSpacing}"
@@ -23,6 +23,8 @@
               <StackLayout.Padding>
                 <OnPlatform x:TypeArguments="Thickness" iOS="16,8,16,8" Android="16,8" WinPhone="16,8"/>
               </StackLayout.Padding>
+              <Label Text="{Binding Resources[Language]}" />
+              <Picker ItemsSource="{Binding Languages}" SelectedItem="{Binding SelectedLanguage, Mode=TwoWay}" />
               <Label Text="{Binding AppVersion}"
                        Style="{DynamicResource EvolveListItemDetailTextStyle}"/>
               <Label Text="{Binding Copyright}"
@@ -52,7 +54,7 @@
 
         <local:CardView>
           <StackLayout Spacing="0">
-            <local:LabelSection Text="Technology Used"/>
+            <local:LabelSection Text="{Binding Resources[TechnologyUsed]}"/>
             <local:HeaderDivider/>
             <local:NonScrollableListView
                 x:Name="ListViewTechnology"

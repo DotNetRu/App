@@ -5,7 +5,7 @@
     x:Class="XamarinEvolve.Clients.UI.FriendDetailsPage"
     xmlns:local="clr-namespace:XamarinEvolve.Clients.UI;assembly=XamarinEvolve.Clients.UI"
     xmlns:toolkit="clr-namespace:FormsToolkit;assembly=FormsToolkit"
-    Title="Friend"
+    Title="{Binding Resources[Friend]}"
     
     BackgroundColor="{DynamicResource WindowBackgroundTable}">
   <ContentPage.Resources>
@@ -46,12 +46,8 @@
 
         <local:CardView IsVisible="{Binding FollowItems, Converter={StaticResource GenericIsVisibleConverter}}">
           <StackLayout Spacing="0">
-            <Label Text="{local:Translate Test}">
-              <Label.GestureRecognizers>
-                <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped" />
-              </Label.GestureRecognizers>
-            </Label>
-            <local:LabelSection Text="Links"/>
+            
+            <local:LabelSection Text="{Binding Resources[Links]}"/>
             <local:HeaderDivider/>
             <local:NonScrollableListView
                 ItemsSource="{Binding FollowItems}"
