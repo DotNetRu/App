@@ -1,4 +1,5 @@
-﻿using XamarinEvolve.Clients.Portable.Interfaces;
+﻿using XamarinEvolve.Clients.Portable.ApplicationResources;
+using XamarinEvolve.Clients.Portable.Interfaces;
 
 namespace XamarinEvolve.Clients.UI
 {
@@ -30,6 +31,9 @@ namespace XamarinEvolve.Clients.UI
         public App()
         {
             current = this;
+            var ci = DependencyService.Get<ILocalize>().GetCurrentCultureInfo();
+            AppResources.Culture = ci;
+            ViewModelBase.CurrentLanguage = AppResources.Culture.Name.Substring(0, 2);
             this.InitializeComponent();
             ViewModelBase.Init();
             // The root page of your application

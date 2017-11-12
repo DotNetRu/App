@@ -127,7 +127,7 @@
     <value>Аннотация</value>
   </data>
   <data name="Biography" xml:space="preserve">
-    <value>Биография</value>
+    <value>О лекторе</value>
   </data>
   <data name="CreatedBy" xml:space="preserve">
     <value>Сделано командой DotNetRu c любовью &lt;3</value>
@@ -197,5 +197,29 @@
   </data>
   <data name="Links" xml:space="preserve">
     <value>Ссылки</value>
+  </data>
+  <data name="AllDay" xml:space="preserve">
+    <value>Весь день</value>
+  </data>
+  <data name="ToBeAnnounced" xml:space="preserve">
+    <value>Будет аннонсировано позже</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>Сегодня</value>
+  </data>
+  <data name="Tomorrow" xml:space="preserve">
+    <value>Завтра</value>
+  </data>
+  <data name="Yesterday" xml:space="preserve">
+    <value>Вчера</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Загрузка...</value>
+  </data>
+  <data name="Share" xml:space="preserve">
+    <value>Поделиться</value>
+  </data>
+  <data name="SpeakerInfo" xml:space="preserve">
+    <value>Информация о лекторе</value>
   </data>
 </root>

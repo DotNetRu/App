@@ -126,6 +126,9 @@
   <data name="Abstract" xml:space="preserve">
     <value>Abstract</value>
   </data>
+  <data name="AllDay" xml:space="preserve">
+    <value>All day</value>
+  </data>
   <data name="Biography" xml:space="preserve">
     <value>Biography</value>
   </data>
@@ -146,6 +149,9 @@
   </data>
   <data name="Links" xml:space="preserve">
     <value>Links</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Loading Social Feed...</value>
   </data>
   <data name="Materials" xml:space="preserve">
     <value>Materials</value>
@@ -171,8 +177,14 @@
   <data name="Sessions" xml:space="preserve">
     <value>Sessions</value>
   </data>
+  <data name="Share" xml:space="preserve">
+    <value>Share</value>
+  </data>
   <data name="Social" xml:space="preserve">
     <value>Social</value>
+  </data>
+  <data name="SpeakerInfo" xml:space="preserve">
+    <value>Speaker Info</value>
   </data>
   <data name="Speakers" xml:space="preserve">
     <value>Speakers</value>
@@ -192,10 +204,22 @@
   <data name="Thanks" xml:space="preserve">
     <value>Big thanks to James Montemagno</value>
   </data>
+  <data name="ToBeAnnounced" xml:space="preserve">
+    <value>To be announced</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>Today</value>
+  </data>
+  <data name="Tomorrow" xml:space="preserve">
+    <value>Tomorrow</value>
+  </data>
   <data name="Venue" xml:space="preserve">
     <value>Venue</value>
   </data>
   <data name="Version" xml:space="preserve">
     <value>Version</value>
+  </data>
+  <data name="Yesterday" xml:space="preserve">
+    <value>Yesterday</value>
   </data>
 </root>

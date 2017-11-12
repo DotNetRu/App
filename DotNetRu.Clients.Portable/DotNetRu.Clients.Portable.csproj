@@ -55,6 +55,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.ru.resx</DependentUpon>
     </Compile>
+    <Compile Include="Extensions\DateTimeExtenstions.cs" />
     <Compile Include="Helpers\CultureChangedMessage.cs" />
     <Compile Include="Helpers\LocalizedResources.cs" />
     <Compile Include="Helpers\PlatformCulture.cs" />
@@ -220,12 +221,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ApplicationResources\AppResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ApplicationResources\AppResources.ru.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.ru.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>

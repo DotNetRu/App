@@ -11,7 +11,7 @@
     using Xamarin.Forms;
 
     using XamarinEvolve.Utils;
-    using XamarinEvolve.Utils.Extensions;
+    using XamarinEvolve.Clients.Portable;
     using XamarinEvolve.Utils.Helpers;
 
     public static class TalkModelExtensions

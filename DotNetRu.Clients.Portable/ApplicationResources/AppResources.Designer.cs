@@ -23,7 +23,7 @@ namespace XamarinEvolve.Clients.Portable.ApplicationResources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class AppResources {
+    public class AppResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -37,7 +37,7 @@ namespace XamarinEvolve.Clients.Portable.ApplicationResources {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("XamarinEvolve.Clients.Portable.ApplicationResources.AppResources", typeof(AppResources).GetTypeInfo().Assembly);
@@ -52,7 +52,7 @@ namespace XamarinEvolve.Clients.Portable.ApplicationResources {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -64,7 +64,7 @@ namespace XamarinEvolve.Clients.Portable.ApplicationResources {
         /// <summary>
         ///   Looks up a localized string similar to About.
         /// </summary>
-        internal static string About {
+        public static string About {
             get {
                 return ResourceManager.GetString("About", resourceCulture);
             }
@@ -73,7 +73,7 @@ namespace XamarinEvolve.Clients.Portable.ApplicationResources {
         /// <summary>
         ///   Looks up a localized string similar to Russian .NET community is a group of independent communities of .NET developers from Russia. We unite people around .Net platform to contribute to the experience and knowledge exchange. We hold meetings regularly to share news and best practices in software development! .
         /// </summary>
-        internal static string AboutText {
+        public static string AboutText {
             get {
                 return ResourceManager.GetString("AboutText", resourceCulture);
             }
@@ -82,16 +82,25 @@ namespace XamarinEvolve.Clients.Portable.ApplicationResources {
         /// <summary>
         ///   Looks up a localized string similar to Abstract.
         /// </summary>
-        internal static string Abstract {
+        public static string Abstract {
             get {
                 return ResourceManager.GetString("Abstract", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All day.
+        /// </summary>
+        public static string AllDay {
+            get {
+                return ResourceManager.GetString("AllDay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Biography.
         /// </summary>
-        internal static string Biography {
+        public static string Biography {
             get {
                 return ResourceManager.GetString("Biography", resourceCulture);
             }
@@ -100,7 +109,7 @@ namespace XamarinEvolve.Clients.Portable.ApplicationResources {
         /// <summary>
         ///   Looks up a localized string similar to Created by DotNetRu Team with &lt;3.
         /// </summary>
-        internal static string CreatedBy {
+        public static string CreatedBy {
             get {
                 return ResourceManager.GetString("CreatedBy", resourceCulture);
             }
@@ -109,7 +118,7 @@ namespace XamarinEvolve.Clients.Portable.ApplicationResources {
         /// <summary>
         ///   Looks up a localized string similar to Follow.
         /// </summary>
-        internal static string Follow {
+        public static string Follow {
             get {
                 return ResourceManager.GetString("Follow", resourceCulture);
             }
@@ -118,7 +127,7 @@ namespace XamarinEvolve.Clients.Portable.ApplicationResources {
         /// <summary>
         ///   Looks up a localized string similar to Friend.
         /// </summary>
-        internal static string Friend {
+        public static string Friend {
             get {
                 return ResourceManager.GetString("Friend", resourceCulture);
             }
@@ -127,7 +136,7 @@ namespace XamarinEvolve.Clients.Portable.ApplicationResources {
         /// <summary>
         ///   Looks up a localized string similar to Friends.
         /// </summary>
-        internal static string Friends {
+        public static string Friends {
             get {
                 return ResourceManager.GetString("Friends", resourceCulture);
             }
@@ -136,7 +145,7 @@ namespace XamarinEvolve.Clients.Portable.ApplicationResources {
         /// <summary>
         ///   Looks up a localized string similar to Language.
         /// </summary>
-        internal static string Language {
+        public static string Language {
             get {
                 return ResourceManager.GetString("Language", resourceCulture);
             }
@@ -145,16 +154,25 @@ namespace XamarinEvolve.Clients.Portable.ApplicationResources {
         /// <summary>
         ///   Looks up a localized string similar to Links.
         /// </summary>
-        internal static string Links {
+        public static string Links {
             get {
                 return ResourceManager.GetString("Links", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Loading Social Feed....
+        /// </summary>
+        public static string Loading {
+            get {
+                return ResourceManager.GetString("Loading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Materials.
         /// </summary>
-        internal static string Materials {
+        public static string Materials {
             get {
                 return ResourceManager.GetString("Materials", resourceCulture);
             }
@@ -163,7 +181,7 @@ namespace XamarinEvolve.Clients.Portable.ApplicationResources {
         /// <summary>
         ///   Looks up a localized string similar to Meetups.
         /// </summary>
-        internal static string Meetups {
+        public static string Meetups {
             get {
                 return ResourceManager.GetString("Meetups", resourceCulture);
             }
@@ -172,7 +190,7 @@ namespace XamarinEvolve.Clients.Portable.ApplicationResources {
         /// <summary>
         ///   Looks up a localized string similar to News.
         /// </summary>
-        internal static string News {
+        public static string News {
             get {
                 return ResourceManager.GetString("News", resourceCulture);
             }
@@ -181,7 +199,7 @@ namespace XamarinEvolve.Clients.Portable.ApplicationResources {
         /// <summary>
         ///   Looks up a localized string similar to Open source on Github!.
         /// </summary>
-        internal static string OpenSource {
+        public static string OpenSource {
             get {
                 return ResourceManager.GetString("OpenSource", resourceCulture);
             }
@@ -190,7 +208,7 @@ namespace XamarinEvolve.Clients.Portable.ApplicationResources {
         /// <summary>
         ///   Looks up a localized string similar to Open Source Notice.
         /// </summary>
-        internal static string OpenSourceNotice {
+        public static string OpenSourceNotice {
             get {
                 return ResourceManager.GetString("OpenSourceNotice", resourceCulture);
             }
@@ -199,7 +217,7 @@ namespace XamarinEvolve.Clients.Portable.ApplicationResources {
         /// <summary>
         ///   Looks up a localized string similar to Presentation Slides.
         /// </summary>
-        internal static string PresentationSlides {
+        public static string PresentationSlides {
             get {
                 return ResourceManager.GetString("PresentationSlides", resourceCulture);
             }
@@ -208,7 +226,7 @@ namespace XamarinEvolve.Clients.Portable.ApplicationResources {
         /// <summary>
         ///   Looks up a localized string similar to Privacy Policy.
         /// </summary>
-        internal static string PrivacyPolicy {
+        public static string PrivacyPolicy {
             get {
                 return ResourceManager.GetString("PrivacyPolicy", resourceCulture);
             }
@@ -217,25 +235,43 @@ namespace XamarinEvolve.Clients.Portable.ApplicationResources {
         /// <summary>
         ///   Looks up a localized string similar to Sessions.
         /// </summary>
-        internal static string Sessions {
+        public static string Sessions {
             get {
                 return ResourceManager.GetString("Sessions", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Share.
+        /// </summary>
+        public static string Share {
+            get {
+                return ResourceManager.GetString("Share", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Social.
         /// </summary>
-        internal static string Social {
+        public static string Social {
             get {
                 return ResourceManager.GetString("Social", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Speaker Info.
+        /// </summary>
+        public static string SpeakerInfo {
+            get {
+                return ResourceManager.GetString("SpeakerInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Speakers.
         /// </summary>
-        internal static string Speakers {
+        public static string Speakers {
             get {
                 return ResourceManager.GetString("Speakers", resourceCulture);
             }
@@ -244,7 +280,7 @@ namespace XamarinEvolve.Clients.Portable.ApplicationResources {
         /// <summary>
         ///   Looks up a localized string similar to Talk.
         /// </summary>
-        internal static string Talk {
+        public static string Talk {
             get {
                 return ResourceManager.GetString("Talk", resourceCulture);
             }
@@ -253,7 +289,7 @@ namespace XamarinEvolve.Clients.Portable.ApplicationResources {
         /// <summary>
         ///   Looks up a localized string similar to Talk Recording.
         /// </summary>
-        internal static string TalkRecording {
+        public static string TalkRecording {
             get {
                 return ResourceManager.GetString("TalkRecording", resourceCulture);
             }
@@ -262,7 +298,7 @@ namespace XamarinEvolve.Clients.Portable.ApplicationResources {
         /// <summary>
         ///   Looks up a localized string similar to Technology Used.
         /// </summary>
-        internal static string TechnologyUsed {
+        public static string TechnologyUsed {
             get {
                 return ResourceManager.GetString("TechnologyUsed", resourceCulture);
             }
@@ -271,7 +307,7 @@ namespace XamarinEvolve.Clients.Portable.ApplicationResources {
         /// <summary>
         ///   Looks up a localized string similar to Terms of use.
         /// </summary>
-        internal static string TermsOfUse {
+        public static string TermsOfUse {
             get {
                 return ResourceManager.GetString("TermsOfUse", resourceCulture);
             }
@@ -280,16 +316,43 @@ namespace XamarinEvolve.Clients.Portable.ApplicationResources {
         /// <summary>
         ///   Looks up a localized string similar to Big thanks to James Montemagno.
         /// </summary>
-        internal static string Thanks {
+        public static string Thanks {
             get {
                 return ResourceManager.GetString("Thanks", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to To be announced.
+        /// </summary>
+        public static string ToBeAnnounced {
+            get {
+                return ResourceManager.GetString("ToBeAnnounced", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Today.
+        /// </summary>
+        public static string Today {
+            get {
+                return ResourceManager.GetString("Today", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tomorrow.
+        /// </summary>
+        public static string Tomorrow {
+            get {
+                return ResourceManager.GetString("Tomorrow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Venue.
         /// </summary>
-        internal static string Venue {
+        public static string Venue {
             get {
                 return ResourceManager.GetString("Venue", resourceCulture);
             }
@@ -298,9 +361,18 @@ namespace XamarinEvolve.Clients.Portable.ApplicationResources {
         /// <summary>
         ///   Looks up a localized string similar to Version.
         /// </summary>
-        internal static string Version {
+        public static string Version {
             get {
                 return ResourceManager.GetString("Version", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yesterday.
+        /// </summary>
+        public static string Yesterday {
+            get {
+                return ResourceManager.GetString("Yesterday", resourceCulture);
             }
         }
     }
