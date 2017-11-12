@@ -1,5 +1,6 @@
 ﻿using System.Globalization;
 using System.Threading;
+using Android.Content;
 using Xamarin.Forms;
 using XamarinEvolve.Clients.Portable.Helpers;
 using XamarinEvolve.Clients.Portable.Interfaces;

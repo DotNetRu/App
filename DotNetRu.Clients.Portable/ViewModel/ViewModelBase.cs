@@ -21,7 +21,7 @@ namespace XamarinEvolve.Clients.Portable
     /// </summary>
     public class ViewModelBase : BaseViewModel
     {
-        public static string CurrentLanguage = "EN";
+        public static string CurrentLanguage = "en";
         public LocalizedResources Resources
         {
             get;

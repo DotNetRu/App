@@ -5,7 +5,7 @@
     xmlns:local="clr-namespace:XamarinEvolve.Clients.UI;assembly=XamarinEvolve.Clients.UI"
     x:Class="XamarinEvolve.Clients.UI.MeetupPage"
     x:Name="Meetup"
-    Title="Meetup"
+    Title="{Binding Resources[Meetup]}"
     Icon="tab_sessions.png"
     BackgroundColor="{DynamicResource WindowBackground}">
   <ContentPage.Content>
@@ -30,7 +30,7 @@
                       Padding="{DynamicResource CardPadding}">
             <local:CardView>
               <StackLayout Spacing="0">
-                <local:LabelSection Text="Talks"/>
+                <local:LabelSection Text="{Binding Resources[Talks]}"/>
                 <local:HeaderDivider/>
                 <StackLayout IsVisible="{Binding IsBusy}">
                   <StackLayout.Orientation>
@@ -75,7 +75,7 @@
                   <TapGestureRecognizer Command="{Binding TapVenueCommand}"/>
               </local:CardView.GestureRecognizers>
               <StackLayout Spacing="0">
-                <local:LabelSection Text="Venue"/>
+                <local:LabelSection Text="{Binding Resources[Venue]}"/>
                 <local:HeaderDivider/>
                   <StackLayout Padding="{StaticResource StandardPadding}" BackgroundColor="White">
                       <Label Text="{Binding VenueModel.Name}" Style="{DynamicResource EvolveListItemTextStyle}" StyleId="SessionAbstract"/>

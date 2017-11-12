@@ -1,4 +1,6 @@
-﻿namespace XamarinEvolve.Utils.Extensions
+﻿using XamarinEvolve.Clients.Portable.ApplicationResources;
+
+namespace XamarinEvolve.Clients.Portable
 {
     using System;
     using System.Diagnostics;
@@ -75,17 +77,17 @@
             {
                 if (DateTime.Today.DayOfYear == start.DayOfYear)
                 {
-                    return "Today";
+                    return AppResources.Today;
                 }
 
                 if (DateTime.Today.DayOfYear - 1 == start.DayOfYear)
                 {
-                    return "Yesterday";
+                    return AppResources.Yesterday;
                 }
 
                 if (DateTime.Today.DayOfYear + 1 == start.DayOfYear)
                 {
-                    return "Tomorrow";
+                    return AppResources.Tomorrow;
                 }
             }
 

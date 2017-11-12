@@ -3,11 +3,13 @@ using Android.Support.Design.Widget;
 using Android.Views;
 
 using DotNetRu.Droid;
-
+using DotNetRu.Droid.Helpers;
+using Java.Util;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
 using XamarinEvolve.Clients.Portable;
+using XamarinEvolve.Droid;
 
 [assembly: ExportRenderer(typeof(XamarinEvolve.Clients.UI.NavigationView), typeof(NavigationViewRenderer))]
 
@@ -64,7 +66,8 @@ namespace DotNetRu.Droid
         void NavView_NavigationItemSelected(object sender, NavigationView.NavigationItemSelectedEventArgs e)
         {
 
-
+            LocaleUtils.setLocale(new Locale("ru"));
+            LocaleUtils.updateConfig(MainApplication.thisApp, Context.Resources.Configuration);
             if (this.previousItem != null) this.previousItem.SetChecked(false);
 
             this.navView.SetCheckedItem(e.MenuItem.ItemId);

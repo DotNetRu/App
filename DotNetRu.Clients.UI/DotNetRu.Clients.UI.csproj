@@ -48,7 +48,11 @@
     <Compile Include="Controls\RatingControl.xaml.cs">
       <DependentUpon>RatingControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\DateConverters.cs" />
+    <Compile Include="Converters\ImageConverters.cs" />
+    <Compile Include="Converters\RatingConverter.cs" />
     <Compile Include="Converters\SpeakerImageConverter.cs" />
+    <Compile Include="Converters\StringConverters.cs" />
     <Compile Include="Effects\ShadowEffect.cs" />
     <Compile Include="LocalizedResources.cs" />
     <Compile Include="Pages\Home\ConferenceFeedbackPage.xaml.cs">
@@ -71,9 +75,7 @@
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Settings.cs" />
-    <Compile Include="Converters\DateConverters.cs" />
     <Compile Include="Behaviors\StarBehavior.cs" />
-    <Compile Include="Converters\RatingConverter.cs" />
     <Compile Include="Pages\Sessions\MeetupPage.xaml.cs">
       <DependentUpon>MeetupPage.xaml</DependentUpon>
     </Compile>
@@ -110,7 +112,6 @@
     <Compile Include="Pages\Info\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Converters\ImageConverters.cs" />
     <Compile Include="Controls\LabelSection.xaml.cs">
       <DependentUpon>LabelSection.xaml</DependentUpon>
     </Compile>
@@ -132,7 +133,6 @@
     <Compile Include="Controls\FooterDivider.xaml.cs">
       <DependentUpon>FooterDivider.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Converters\StringConverters.cs" />
     <Compile Include="Cells\TweetCell.xaml.cs">
       <DependentUpon>TweetCell.xaml</DependentUpon>
     </Compile>
@@ -209,6 +209,9 @@
     </Reference>
     <Reference Include="MvvmHelpers, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Refractored.MvvmHelpers.1.3.0\lib\netstandard1.0\MvvmHelpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Naxam.BottomTabbedPage.Forms, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Naxam.BottomTabbedPage.0.1.0.1\lib\portable-net45+wp80+win8+wpa81\Naxam.BottomTabbedPage.Forms.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\portable-net45+win8+wp8+wpa81\Newtonsoft.Json.dll</HintPath>

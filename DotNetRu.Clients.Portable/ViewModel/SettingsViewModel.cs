@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Globalization;
 using XamarinEvolve.Clients.Portable.ApplicationResources;
 using XamarinEvolve.Clients.Portable.Helpers;
+using XamarinEvolve.Clients.Portable.Interfaces;
 using XamarinEvolve.Clients.UI;
 
 namespace XamarinEvolve.Clients.Portable
@@ -36,8 +38,8 @@ namespace XamarinEvolve.Clients.Portable
 
         public List<string> Languages { get; set; } = new List<string>()
         {
-            "EN",
-            "RU",
+            "en",
+            "ru",
         };
 
         private string _SelectedLanguage;
@@ -69,6 +71,9 @@ namespace XamarinEvolve.Clients.Portable
 
         void NotifyVmProperties()
         {
+            var ci = new CultureInfo(CurrentLanguage);
+            DependencyService.Get<ILocalize>().SetLocale(ci); // set the Thread for locale-aware methods
+            AppResources.Culture = ci;
             OnPropertyChanged(nameof(AppInfo));
             OnPropertyChanged(nameof(AppVersion));
             this.AboutItems.ReplaceRange(

@@ -64,7 +64,7 @@
                                TextColor="White"
                                StyleId="MeetupModelItemCircleDate"/>
                     </Grid>
-                    <Label  Text="{Binding StartTime, Converter={StaticResource EventDayDisplayConverter}}" 
+                    <Label  Text="{Binding StartTime, Converter={StaticResource EventDayDisplayConverter}, ConverterParameter={Binding Resources[CultureInfo]}}" 
                                VerticalTextAlignment="Center" 
                                HorizontalTextAlignment="Center"
                                Style="{DynamicResource EvolveListItemDetailTextStyle}"

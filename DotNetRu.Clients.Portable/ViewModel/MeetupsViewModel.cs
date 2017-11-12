@@ -1,4 +1,8 @@
 ﻿// TODO: It's needed to group meetups not only by month but year too
+
+using XamarinEvolve.Clients.UI;
+
+
 namespace XamarinEvolve.Clients.Portable.ViewModel
 {
     using System;
@@ -34,6 +38,7 @@ namespace XamarinEvolve.Clients.Portable.ViewModel
         public MeetupsViewModel(INavigation navigation)
             : base(navigation)
         {
+            MessagingCenter.Subscribe<LocalizedResources>(this, "Test", sender => SortEvents());
             this.Title = "Meetups";
         }
 
