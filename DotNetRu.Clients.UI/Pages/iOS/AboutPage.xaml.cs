@@ -62,7 +62,7 @@
 
                     this.ListViewInfo.SelectedItem = null;
                 };
-            this.isRegistered = this.push.IsRegistered;
+            //this.isRegistered = this.push.IsRegistered;
         }
 
         public override AppPage PageType => AppPage.Information;
@@ -76,7 +76,7 @@
                 this.push.RegisterForNotifications();
             }
 
-            this.isRegistered = this.push.IsRegistered;
+            //this.isRegistered = this.push.IsRegistered;
         }
 
         public void OnResume()

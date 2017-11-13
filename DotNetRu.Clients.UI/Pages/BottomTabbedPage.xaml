@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ui="clr-namespace:XamarinEvolve.Clients.UI;assembly=XamarinEvolve.Clients.UI"
+             x:Class="XamarinEvolve.Clients.UI.Pages.BottomTabbedPage">
+    <!--Pages can be added as references or inline-->
+    <NavigationPage Title="{Binding NewsTitle}">
+        <NavigationPage.Icon>
+            <OnPlatform x:TypeArguments="FileImageSource">
+                <On Platform="iOS" Value="tab_feed.png" />
+                <On Platform="Android" Value="menu_feed.png" />
+            </OnPlatform>
+        </NavigationPage.Icon>
+        <x:Arguments>
+            <ui:NewsPage />
+        </x:Arguments>
+    </NavigationPage>
+    <NavigationPage Title="{Binding SpeakersTitle}">
+        <NavigationPage.Icon>
+            <OnPlatform x:TypeArguments="FileImageSource">
+                <On Platform="iOS" Value="tab_speakers.png" />
+                <On Platform="Android" Value="menu_speakers.png" />
+            </OnPlatform>
+        </NavigationPage.Icon>
+        <x:Arguments>
+            <ui:SpeakersPage />
+        </x:Arguments>
+    </NavigationPage>
+    <NavigationPage Title="{Binding MeetupsTitle}">
+        <NavigationPage.Icon>
+            <OnPlatform x:TypeArguments="FileImageSource">
+                <On Platform="iOS" Value="tab_events.png" />
+                <On Platform="Android" Value="menu_events.png" />
+            </OnPlatform>
+        </NavigationPage.Icon>
+        <x:Arguments>
+            <ui:MeetupsPage />
+        </x:Arguments>
+    </NavigationPage>
+    <NavigationPage Title="{Binding FriendsTitle}">
+        <NavigationPage.Icon>
+            <OnPlatform x:TypeArguments="FileImageSource">
+                <On Platform="iOS" Value="tab_sponsors.png" />
+                <On Platform="Android" Value="menu_sponsors.png" />
+            </OnPlatform>
+        </NavigationPage.Icon>
+        <x:Arguments>
+            <ui:FriendsPage />
+        </x:Arguments>
+    </NavigationPage>
+    <NavigationPage Title="{Binding AboutTitle}">
+        <NavigationPage.Icon>
+            <OnPlatform x:TypeArguments="FileImageSource">
+                <On Platform="iOS" Value="tab_info.png" />
+                <On Platform="Android" Value="menu_info.png" />
+            </OnPlatform>
+        </NavigationPage.Icon>
+        <x:Arguments>
+            <ui:SettingsPage />
+        </x:Arguments>
+    </NavigationPage>
+</TabbedPage>

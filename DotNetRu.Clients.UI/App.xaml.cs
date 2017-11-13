@@ -1,5 +1,6 @@
 ﻿using XamarinEvolve.Clients.Portable.ApplicationResources;
 using XamarinEvolve.Clients.Portable.Interfaces;
+using XamarinEvolve.Clients.UI.Pages;
 
 namespace XamarinEvolve.Clients.UI
 {
@@ -36,21 +37,22 @@ namespace XamarinEvolve.Clients.UI
             ViewModelBase.CurrentLanguage = AppResources.Culture.Name.Substring(0, 2);
             this.InitializeComponent();
             ViewModelBase.Init();
+            this.MainPage = new BottomTabbedPage();
             // The root page of your application
-            switch (Device.RuntimePlatform)
-            {
-                case Device.Android:
-                    this.MainPage = new RootPageAndroid();
-                    break;
-                case Device.iOS:
-                    this.MainPage = new EvolveNavigationPage(new RootPageiOS());
-                    break;
-                case Device.UWP:
-                    this.MainPage = new RootPageWindows();
-                    break;
-                default:
-                    throw new NotImplementedException();
-            }
+            //switch (Device.RuntimePlatform)
+            //{
+            //    case Device.Android:
+            //        this.MainPage = new RootPageAndroid();
+            //        break;
+            //    case Device.iOS:
+            //        this.MainPage = new EvolveNavigationPage(new RootPageiOS());
+            //        break;
+            //    case Device.UWP:
+            //        this.MainPage = new RootPageWindows();
+            //        break;
+            //    default:
+            //        throw new NotImplementedException();
+            //}
         }
 
         static ILogger logger;
