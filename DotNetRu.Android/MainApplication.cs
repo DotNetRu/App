@@ -65,7 +65,7 @@ namespace XamarinEvolve.Droid
         public override void OnConfigurationChanged(Configuration newConfig)
         {
             base.OnConfigurationChanged(newConfig);
-            LocaleUtils.updateConfig(this, newConfig);
+            LocaleUtils.UpdateConfig(this, newConfig);
         }
     }
 }
