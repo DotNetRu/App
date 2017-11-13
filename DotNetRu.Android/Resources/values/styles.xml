@@ -42,4 +42,6 @@
    </style>
   <style name="SplashTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
   </style>
+  <drawable name="background">#00ffffff</drawable>
+  <drawable name="selected">#0Dffffff</drawable>
 </resources>

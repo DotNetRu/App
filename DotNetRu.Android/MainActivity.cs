@@ -1,5 +1,6 @@
 ﻿using Android.Graphics;
 using Android.Support.V4.Content;
+using Android.Support.V4.Content.Res;
 using Android.Util;
 using DotNetRu.Droid.Helpers;
 using Naxam.Controls.Platform.Droid;
@@ -195,17 +196,17 @@ namespace DotNetRu.Droid
                     }
                 },
                 new int[] {
-                    Android.Graphics.Color.DarkRed, //Selected
+                    Android.Graphics.Color.Azure, //Selected
                     Android.Graphics.Color.White //Normal
                 });
 
-            BottomTabbedRenderer.BackgroundColor = new Android.Graphics.Color(0x9C, 0x27, 0xB0);
+            BottomTabbedRenderer.BackgroundColor = new Android.Graphics.Color(ResourcesCompat.GetColor(Resources, Resource.Color.primary, null));//Resources.GetColor(Resource.Color.primaryDark);
             BottomTabbedRenderer.FontSize = 12f;
             BottomTabbedRenderer.IconSize = 16;
             BottomTabbedRenderer.ItemTextColor = stateList;
             BottomTabbedRenderer.ItemIconTintList = stateList;
             //BottomTabbedRenderer.Typeface = Typeface.CreateFromAsset(this.Assets, "architep.ttf");
-            // BottomTabbedRenderer.ItemBackgroundResource = Resource.Drawable.bnv_selector;
+            BottomTabbedRenderer.ItemBackgroundResource = Resource.Drawable.bnv_selector;
             BottomTabbedRenderer.ItemSpacing = 4;
             BottomTabbedRenderer.ItemPadding = new Xamarin.Forms.Thickness(6);
             BottomTabbedRenderer.BottomBarHeight = 56;
