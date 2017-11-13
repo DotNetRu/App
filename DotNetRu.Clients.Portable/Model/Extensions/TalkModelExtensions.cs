@@ -14,7 +14,7 @@
     using XamarinEvolve.Clients.Portable;
     using XamarinEvolve.Utils.Helpers;
 
-    public static class SessionExtensions
+    public static class TalkModelExtensions
     {
         public static AppLinkEntry GetAppLink(this TalkModel talkModel)
         {

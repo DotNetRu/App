@@ -26,7 +26,7 @@
                 this.Children.Add(new EvolveNavigationPage(new FriendsPage()));
             }
 
-            this.Children.Add(new EvolveNavigationPage(new AboutPage()));
+            this.Children.Add(new EvolveNavigationPage(new SettingsPage()));
 
             MessagingService.Current.Subscribe<DeepLinkPage>(
                 "DeepLinkPage",

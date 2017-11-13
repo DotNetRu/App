@@ -18,11 +18,16 @@
 
     using XamarinEvolve.Utils;
     using XamarinEvolve.Clients.Portable;
+    using XamarinEvolve.Utils.Extensions;
     using XamarinEvolve.Utils.Helpers;
 
     public class TalkViewModel : ViewModelBase
     {
         private TalkModel talkModel;
+
+        private ICommand shareCommand;
+
+        private ICommand reminderCommand;
 
         public TalkModel TalkModel
         {
@@ -121,8 +126,6 @@
             }
         }
 
-        private ICommand reminderCommand;
-
         public ICommand ReminderCommand => this.reminderCommand
                                            ?? (this.reminderCommand = new Command(
                                                    async () => await this.ExecuteReminderCommandAsync()));
@@ -165,8 +168,6 @@
             }
         }
 
-        private ICommand shareCommand;
-
         public ICommand ShareCommand => this.shareCommand
                                         ?? (this.shareCommand = new Command(
                                                 async () => await this.ExecuteShareCommandAsync()));
@@ -174,18 +175,19 @@
         public async Task ExecuteShareCommandAsync()
         {
             this.Logger.Track(EvolveLoggerKeys.Share, "Title", this.TalkModel.Title);
-            var speakerHandles = this.TalkModel.SpeakerHandles;
-            if (!string.IsNullOrEmpty(speakerHandles))
-            {
-                speakerHandles = " by " + speakerHandles;
-            }
+            //var speakerHandles = this.TalkModel.SpeakerHandles;
+            //if (!string.IsNullOrEmpty(speakerHandles))
+            //{
+            //    speakerHandles = " by " + speakerHandles;
+            //}
 
-            var message = $"Can't wait for {this.TalkModel.Title}{speakerHandles} at {EventInfo.HashTag}!";
+            var message = $"{this.TalkModel.Title} {EventInfo.HashTag} {this.TalkModel.VideoUrl}";
 
-            if (FeatureFlags.AppLinksEnabled)
-            {
-                message += " " + this.TalkModel.GetWebUrl();
-            }
+            // TODO fix app links
+            //if (FeatureFlags.AppLinksEnabled)
+            //{
+            //    message += " " + this.TalkModel.GetWebUrl();
+            //}
 
             await CrossShare.Current.Share(new ShareMessage { Text = message });
         }
