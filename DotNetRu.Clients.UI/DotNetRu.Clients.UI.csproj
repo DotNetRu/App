@@ -54,6 +54,7 @@
     <Compile Include="Converters\SpeakerImageConverter.cs" />
     <Compile Include="Converters\StringConverters.cs" />
     <Compile Include="Effects\ShadowEffect.cs" />
+    <Compile Include="LocalizedResources.cs" />
     <Compile Include="Pages\BottomTabbedPage.xaml.cs">
       <DependentUpon>BottomTabbedPage.xaml</DependentUpon>
     </Compile>

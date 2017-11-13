@@ -38,7 +38,7 @@ namespace XamarinEvolve.Clients.Portable.ViewModel
         public MeetupsViewModel(INavigation navigation)
             : base(navigation)
         {
-            MessagingCenter.Subscribe<LocalizedResources>(this, MessageKeys.LanguageChanged, sender => SortEvents());
+            MessagingCenter.Subscribe<LocalizedResources>(this, MessageKeys.LanguageChanged, sender => SortMeetups());
             this.Title = "Meetups";
         }
 
@@ -85,7 +85,7 @@ namespace XamarinEvolve.Clients.Portable.ViewModel
         /// <summary>
         /// The sort events.
         /// </summary>
-        public void SortEvents()
+        public void SortMeetups()
         {
             this.EventsGrouped.ReplaceRange(this.Events.GroupByDate());
         }
@@ -106,7 +106,7 @@ namespace XamarinEvolve.Clients.Portable.ViewModel
 
                 this.Events?.ReplaceRange(MeetupService.GetMeetups());
 
-                this.SortEvents();
+                this.SortMeetups();
             }
             catch (Exception ex)
             {
