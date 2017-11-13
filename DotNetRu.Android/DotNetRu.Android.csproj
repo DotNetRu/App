@@ -345,12 +345,8 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <AndroidResource Include="Resources\values-ru\strings.xml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\values\strings.xml" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_evals.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_evals.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\ic_evals.png" />
@@ -626,6 +622,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xxxhdpi\friends.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values\strings.xml" />
   </ItemGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

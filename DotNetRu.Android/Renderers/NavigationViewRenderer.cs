@@ -65,9 +65,6 @@ namespace DotNetRu.Droid
 
         void NavView_NavigationItemSelected(object sender, NavigationView.NavigationItemSelectedEventArgs e)
         {
-
-            LocaleUtils.setLocale(new Locale("ru"));
-            LocaleUtils.updateConfig(MainApplication.thisApp, Context.Resources.Configuration);
             if (this.previousItem != null) this.previousItem.SetChecked(false);
 
             this.navView.SetCheckedItem(e.MenuItem.ItemId);
