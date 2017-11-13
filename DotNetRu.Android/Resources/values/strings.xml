@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+
 <resources>
-	<string name="google_app_id">741385686560</string>
+  <string name="google_app_id">741385686560</string>
   <string name="news">News</string>
 </resources>

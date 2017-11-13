@@ -1,21 +1,17 @@
 ﻿using System;
-
 using Android.Widget;
-
 using DotNetRu.Droid;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
-[assembly:ExportRenderer(typeof(SearchBar), typeof(EvolveSearchBarRenderer))]
+[assembly: ExportRenderer(typeof(SearchBar), typeof(EvolveSearchBarRenderer))]
+
 namespace DotNetRu.Droid
 {
     using Android.Views;
 
     public class EvolveSearchBarRenderer : SearchBarRenderer
     {
-        
-
         protected override void OnElementChanged(ElementChangedEventArgs<SearchBar> e)
         {
             base.OnElementChanged(e);
@@ -25,12 +21,11 @@ namespace DotNetRu.Droid
             this.UpdateSearchIcon();
             this.UpdateCursorColor();
             this.UpdateSearchPlate();
-
         }
 
-        void UpdateSearchPlate ()
+        void UpdateSearchPlate()
         {
-            var searchId = this.Control.Resources.GetIdentifier ("android:id/search_plate", null, null);
+            var searchId = this.Control.Resources.GetIdentifier("android:id/search_plate", null, null);
             if (searchId == 0)
                 return;
 
@@ -43,38 +38,38 @@ namespace DotNetRu.Droid
         }
 
 
-        void UpdateSearchIcon ()
+        void UpdateSearchIcon()
         {
-            try 
+            try
             {
-                var searchId = this.Control.Resources.GetIdentifier ("android:id/search_mag_icon", null, null);
+                var searchId = this.Control.Resources.GetIdentifier("android:id/search_mag_icon", null, null);
                 if (searchId == 0)
                     return;
 
 
-                var image = this.FindViewById<ImageView> (searchId);
+                var image = this.FindViewById<ImageView>(searchId);
                 if (image == null)
                     return;
 
                 image.SetImageResource(Resource.Drawable.icon_search);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine("Unable to get icon" + ex);
             }
         }
 
-        void UpdateCursorColor ()
+        void UpdateCursorColor()
         {
             AutoCompleteTextView textView = null;
-            try 
+            try
             {
-                var searchId = this.Control.Resources.GetIdentifier ("android:id/search_src_text", null, null);
+                var searchId = this.Control.Resources.GetIdentifier("android:id/search_src_text", null, null);
                 if (searchId == 0)
                     return;
 
 
-                textView = this.FindViewById<AutoCompleteTextView> (searchId);
+                textView = this.FindViewById<AutoCompleteTextView>(searchId);
                 if (textView == null)
                     return;
 
@@ -83,9 +78,8 @@ namespace DotNetRu.Droid
                 var theField = theClass.GetDeclaredField("mCursorDrawableRes");
                 theField.Accessible = true;
                 theField.Set(textView, Resource.Drawable.cursor_white);
-               
-            } 
-            catch (Exception ex) 
+            }
+            catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine("Unable to get icon" + ex);
             }
@@ -100,8 +94,6 @@ namespace DotNetRu.Droid
             {
                 System.Diagnostics.Debug.WriteLine("Unable to get icon" + ex);
             }
-
         }
     }
 }
-

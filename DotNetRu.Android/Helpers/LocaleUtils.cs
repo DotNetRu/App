@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 using Android.App;
 using Android.Content;
 using Android.Content.Res;
@@ -16,8 +15,8 @@ namespace DotNetRu.Droid.Helpers
 {
     public class LocaleUtils
     {
-
         private static Locale sLocale;
+
         public static void setLocale(Locale locale)
         {
             sLocale = locale;
@@ -53,6 +52,5 @@ namespace DotNetRu.Droid.Helpers
                 }
             }
         }
-
     }
 }

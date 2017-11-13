@@ -8,31 +8,23 @@ using Naxam.Controls.Platform.Droid;
 namespace DotNetRu.Droid
 {
     using System.Reflection;
-
     using Android.App;
     using Android.Content;
     using Android.Content.PM;
     using Android.OS;
-
     using FormsToolkit.Droid;
-
     using Gcm;
-
     using ImageCircle.Forms.Plugin.Droid;
-
     using Plugin.Permissions;
-
     using Refractored.XamForms.PullToRefresh.Droid;
-
     using Xamarin.Forms;
     using Xamarin.Forms.Platform.Android;
-
     using XamarinEvolve.Clients.Portable;
     using XamarinEvolve.Clients.UI;
     using XamarinEvolve.Droid;
     using XamarinEvolve.Utils.Helpers;
-
     using Debug = System.Diagnostics.Debug;
+
     [Activity(
         Label = AboutThisApp.AppName,
         Icon = "@drawable/ic_launcher",
@@ -41,48 +33,47 @@ namespace DotNetRu.Droid
         MainLauncher = true,
         ConfigurationChanges = ConfigChanges.Locale | ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     [IntentFilter(
-        new[] { Intent.ActionView },
-        Categories = new[] { Intent.CategoryDefault, Intent.CategoryBrowsable },
+        new[] {Intent.ActionView},
+        Categories = new[] {Intent.CategoryDefault, Intent.CategoryBrowsable},
         DataScheme = "http",
         DataPathPrefix = "/" + AboutThisApp.SessionsSiteSubdirectory + "/",
         DataHost = AboutThisApp.AppLinksBaseDomain)]
     [IntentFilter(
-        new[] { Intent.ActionView },
-        Categories = new[] { Intent.CategoryDefault, Intent.CategoryBrowsable },
+        new[] {Intent.ActionView},
+        Categories = new[] {Intent.CategoryDefault, Intent.CategoryBrowsable},
         DataScheme = "http",
         DataPathPrefix = "/" + AboutThisApp.SpeakersSiteSubdirectory + "/",
         DataHost = AboutThisApp.AppLinksBaseDomain)]
     [IntentFilter(
-        new[] { Intent.ActionView },
-        Categories = new[] { Intent.CategoryDefault, Intent.CategoryBrowsable },
+        new[] {Intent.ActionView},
+        Categories = new[] {Intent.CategoryDefault, Intent.CategoryBrowsable},
         DataScheme = "https",
         DataPathPrefix = "/" + AboutThisApp.SpeakersSiteSubdirectory + "/",
         DataHost = AboutThisApp.AppLinksBaseDomain)]
     [IntentFilter(
-        new[] { Intent.ActionView },
-        Categories = new[] { Intent.CategoryDefault, Intent.CategoryBrowsable },
+        new[] {Intent.ActionView},
+        Categories = new[] {Intent.CategoryDefault, Intent.CategoryBrowsable},
         DataScheme = "http",
         DataHost = AboutThisApp.AppLinksBaseDomain)]
     [IntentFilter(
-        new[] { Intent.ActionView },
-        Categories = new[] { Intent.CategoryDefault, Intent.CategoryBrowsable },
+        new[] {Intent.ActionView},
+        Categories = new[] {Intent.CategoryDefault, Intent.CategoryBrowsable},
         DataScheme = "https",
         DataHost = AboutThisApp.AppLinksBaseDomain)]
     [IntentFilter(
-        new[] { Intent.ActionView },
-        Categories = new[] { Intent.CategoryDefault, Intent.CategoryBrowsable },
+        new[] {Intent.ActionView},
+        Categories = new[] {Intent.CategoryDefault, Intent.CategoryBrowsable},
         DataScheme = "https",
         DataPathPrefix = "/" + AboutThisApp.SessionsSiteSubdirectory + "/",
         DataHost = AboutThisApp.AppLinksBaseDomain)]
-
     [IntentFilter(
-        new[] { Intent.ActionView },
-        Categories = new[] { Intent.CategoryDefault, Intent.CategoryBrowsable },
+        new[] {Intent.ActionView},
+        Categories = new[] {Intent.CategoryDefault, Intent.CategoryBrowsable},
         DataScheme = "http",
         DataHost = AboutThisApp.AppLinksBaseDomain)]
     [IntentFilter(
-        new[] { Intent.ActionView },
-        Categories = new[] { Intent.CategoryDefault, Intent.CategoryBrowsable },
+        new[] {Intent.ActionView},
+        Categories = new[] {Intent.CategoryDefault, Intent.CategoryBrowsable},
         DataScheme = "https",
         DataHost = AboutThisApp.AppLinksBaseDomain)]
     public class MainActivity : FormsAppCompatActivity
@@ -91,6 +82,7 @@ namespace DotNetRu.Droid
         {
             LocaleUtils.updateConfig(this);
         }
+
         public static MainActivity Current { get; }
 
         // GoogleApiClient client;
@@ -125,7 +117,6 @@ namespace DotNetRu.Droid
             };
 #endif
             this.LoadApplication(new App());
-
 
 
             var gpsAvailable = this.IsPlayServicesAvailable();
@@ -193,18 +184,27 @@ namespace DotNetRu.Droid
         void SetupBottomTabs()
         {
             var stateList = new Android.Content.Res.ColorStateList(
-                new int[][] {
-                    new int[] { Android.Resource.Attribute.StateChecked
+                new int[][]
+                {
+                    new int[]
+                    {
+                        Android.Resource.Attribute.StateChecked
                     },
-                    new int[] { Android.Resource.Attribute.StateEnabled
+                    new int[]
+                    {
+                        Android.Resource.Attribute.StateEnabled
                     }
                 },
-                new int[] {
+                new int[]
+                {
                     Android.Graphics.Color.Azure, //Selected
                     Android.Graphics.Color.White //Normal
                 });
 
-            BottomTabbedRenderer.BackgroundColor = new Android.Graphics.Color(ResourcesCompat.GetColor(Resources, Resource.Color.primary, null));//Resources.GetColor(Resource.Color.primaryDark);
+            BottomTabbedRenderer.BackgroundColor =
+                new Android.Graphics.Color(
+                    ResourcesCompat.GetColor(Resources, Resource.Color.primary,
+                        null)); //Resources.GetColor(Resource.Color.primaryDark);
             BottomTabbedRenderer.FontSize = 12f;
             BottomTabbedRenderer.IconSize = 16;
             BottomTabbedRenderer.ItemTextColor = stateList;
@@ -251,7 +251,5 @@ namespace DotNetRu.Droid
         {
             PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
-
     }
 }
-

@@ -1,19 +1,15 @@
 ﻿using System;
-
 using Android.App;
 using Android.Content;
-
 using Gcm;
-
 using WindowsAzure.Messaging;
-
 using XamarinEvolve.Clients.Portable;
 
 namespace XamarinEvolve.Droid
 {
-	using XamarinEvolve.Utils.Helpers;
+    using XamarinEvolve.Utils.Helpers;
 
-	[Service(Name=AboutThisApp.PackageName + ".GcmService")] // Must use the service tag
+    [Service(Name = AboutThisApp.PackageName + ".GcmService")] // Must use the service tag
     public class GcmService : GcmServiceBase
     {
         static NotificationHub hub;
@@ -24,18 +20,17 @@ namespace XamarinEvolve.Droid
             {
                 if (ApiKeys.AzureServiceBusUrl == nameof(ApiKeys.AzureServiceBusUrl))
                     return;
-                
+
                 // Call this from our main activity
-                var cs = ConnectionString.CreateUsingSharedAccessKeyWithListenAccess (
-                    new Java.Net.URI (ApiKeys.AzureServiceBusUrl),
+                var cs = ConnectionString.CreateUsingSharedAccessKeyWithListenAccess(
+                    new Java.Net.URI(ApiKeys.AzureServiceBusUrl),
                     ApiKeys.AzureKey);
 
-                hub = new NotificationHub (ApiKeys.AzureHubName, cs, context);
+                hub = new NotificationHub(ApiKeys.AzureHubName, cs, context);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ex.Data["method"] = "GcmService.Initialize();";
-
             }
         }
 
@@ -45,11 +40,11 @@ namespace XamarinEvolve.Droid
             {
                 if (ApiKeys.AzureServiceBusUrl == nameof(ApiKeys.AzureServiceBusUrl))
                     return;
-                
+
                 // Makes this easier to call from our Activity
-                GcmClient.Register (context, GcmBroadcastReceiver.SENDERIDS);
+                GcmClient.Register(context, GcmBroadcastReceiver.SENDERIDS);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ex.Data["method"] = "GcmService.Register();";
 
@@ -61,17 +56,17 @@ namespace XamarinEvolve.Droid
         {
         }
 
-        protected override void OnRegistered (Context context, string registrationId)
+        protected override void OnRegistered(Context context, string registrationId)
         {
             // Receive registration Id for sending GCM Push Notifications to
             try
             {
                 if (hub != null)
-                    hub.Register (registrationId);
+                    hub.Register(registrationId);
 
                 Settings.Current.PushRegistered = true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ex.Data["method"] = "GcmService.OnRegistered();";
 
@@ -79,20 +74,18 @@ namespace XamarinEvolve.Droid
             }
         }
 
-        protected override void OnUnRegistered (Context context, string registrationId)
+        protected override void OnUnRegistered(Context context, string registrationId)
         {
             try
             {
                 if (hub != null)
-                    hub.Unregister ();
+                    hub.Unregister();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine("Unable to unregister" + ex);
             }
-
         }
-
 
 
         protected override void OnMessage(Context context, Intent intent)
@@ -165,16 +158,15 @@ namespace XamarinEvolve.Droid
         // Console.WriteLine(ex);
         // }
         // }
-        protected override bool OnRecoverableError (Context context, string errorId)
+        protected override bool OnRecoverableError(Context context, string errorId)
         {
             // Some recoverable error happened
             return true;
         }
 
-        protected override void OnError (Context context, string errorId)
+        protected override void OnError(Context context, string errorId)
         {
             // Some more serious error happened
         }
     }
 }
-

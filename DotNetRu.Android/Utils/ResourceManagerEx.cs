@@ -19,7 +19,7 @@ namespace Naxam.Controls.Platform.Droid.Utils
             FieldInfo[] props = type.GetFields();
             FieldInfo prop = props.Select(p => p).FirstOrDefault(p => p.Name == propertyName);
             if (prop != null)
-                return (int)prop.GetValue(type);
+                return (int) prop.GetValue(type);
             return 0;
         }
     }

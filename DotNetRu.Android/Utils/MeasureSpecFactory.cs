@@ -14,7 +14,7 @@ namespace Naxam.Controls.Platform.Droid.Utils
         // benchmarked by calling 1,000,000 times in a loop on actual device
         public static int MakeMeasureSpec(int size, MeasureSpecMode mode)
         {
-            return size + (int)mode;
+            return size + (int) mode;
         }
     }
 }

@@ -23,7 +23,7 @@ namespace Naxam.Controls.Platform.Droid
         public static float ItemSpacing;
         public static ItemAlignFlags ItemAlign;
         public static Thickness ItemPadding;
-        
+
         public bool OnNavigationItemSelected(IMenuItem item)
         {
             this.SwitchPage(item);
@@ -43,7 +43,9 @@ namespace Naxam.Controls.Platform.Droid
 
     public enum ItemAlignFlags
     {
-        Default, Center, Top, Bottom
+        Default,
+        Center,
+        Top,
+        Bottom
     }
-
 }

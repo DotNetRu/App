@@ -14,6 +14,7 @@ using XamarinEvolve.Clients.UI;
 using XamarinEvolve.Clients.UI.Pages;
 
 [assembly: ExportRenderer(typeof(BottomTabbedPage), typeof(BottomTabbedRenderer))]
+
 namespace Naxam.Controls.Platform.Droid
 {
     using RelativeLayout = Android.Widget.RelativeLayout;
@@ -21,11 +22,12 @@ namespace Naxam.Controls.Platform.Droid
 
     public partial class BottomTabbedRenderer : VisualElementRenderer<BottomTabbedPage>
     {
-        public static readonly Action<IMenuItem, FileImageSource, bool> DefaultMenuItemIconSetter = (menuItem, icon, selected) =>
-    {
-        var tabIconId = ResourceManagerEx.IdFromTitle(icon, ResourceManager.DrawableClass);
-        menuItem.SetIcon(tabIconId);
-    };
+        public static readonly Action<IMenuItem, FileImageSource, bool> DefaultMenuItemIconSetter =
+            (menuItem, icon, selected) =>
+            {
+                var tabIconId = ResourceManagerEx.IdFromTitle(icon, ResourceManager.DrawableClass);
+                menuItem.SetIcon(tabIconId);
+            };
 
         public static bool ShouldUpdateSelectedIcon;
         public static Action<IMenuItem, FileImageSource, bool> MenuItemIconSetter;
@@ -42,11 +44,10 @@ namespace Naxam.Controls.Platform.Droid
 
         public BottomTabbedRenderer()
         {
-
             AutoPackage = false;
 
             barId = GenerateViewId();
-            MessagingCenter.Subscribe<SettingsPage>(this, "UIUpdate", model => { this.HandlePagesChanged();});
+            MessagingCenter.Subscribe<SettingsPage>(this, "UIUpdate", model => { this.HandlePagesChanged(); });
         }
 
         protected override void OnElementChanged(ElementChangedEventArgs<BottomTabbedPage> e)

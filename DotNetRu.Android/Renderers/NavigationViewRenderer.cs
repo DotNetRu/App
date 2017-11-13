@@ -1,13 +1,11 @@
 ﻿using Android.Runtime;
 using Android.Support.Design.Widget;
 using Android.Views;
-
 using DotNetRu.Droid;
 using DotNetRu.Droid.Helpers;
 using Java.Util;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
-
 using XamarinEvolve.Clients.Portable;
 using XamarinEvolve.Droid;
 
@@ -16,7 +14,6 @@ using XamarinEvolve.Droid;
 namespace DotNetRu.Droid
 {
     using System.ComponentModel;
-
     using View = Android.Views.View;
 
     public class NavigationViewRenderer : ViewRenderer<XamarinEvolve.Clients.UI.NavigationView, NavigationView>
@@ -32,7 +29,6 @@ namespace DotNetRu.Droid
 
         protected override void OnElementChanged(ElementChangedEventArgs<XamarinEvolve.Clients.UI.NavigationView> e)
         {
-
             base.OnElementChanged(e);
             if (e.OldElement != null || this.Element == null)
             {
@@ -65,7 +61,6 @@ namespace DotNetRu.Droid
 
         void NavView_NavigationItemSelected(object sender, NavigationView.NavigationItemSelectedEventArgs e)
         {
-
             LocaleUtils.setLocale(new Locale("ru"));
             LocaleUtils.updateConfig(MainApplication.thisApp, Context.Resources.Configuration);
             if (this.previousItem != null) this.previousItem.SetChecked(false);
@@ -78,24 +73,23 @@ namespace DotNetRu.Droid
             switch (e.MenuItem.ItemId)
             {
                 case Resource.Id.nav_feed:
-                    id = (int)AppPage.Feed;
+                    id = (int) AppPage.Feed;
                     break;
                 case Resource.Id.nav_speakers:
-                    id = (int)AppPage.Speakers;
+                    id = (int) AppPage.Speakers;
                     break;
                 case Resource.Id.nav_events:
-                    id = (int)AppPage.Meetups;
+                    id = (int) AppPage.Meetups;
                     break;
                 case Resource.Id.nav_sponsors:
-                    id = (int)AppPage.Friends;
+                    id = (int) AppPage.Friends;
                     break;
                 case Resource.Id.nav_settings:
-                    id = (int)AppPage.Settings;
+                    id = (int) AppPage.Settings;
                     break;
             }
             this.Element.OnNavigationItemSelected(
-                new XamarinEvolve.Clients.UI.NavigationItemSelectedEventArgs { Index = id });
+                new XamarinEvolve.Clients.UI.NavigationItemSelectedEventArgs {Index = id});
         }
     }
 }
-

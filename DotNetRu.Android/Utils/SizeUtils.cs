@@ -19,10 +19,10 @@ namespace Naxam.Controls.Platform.Droid.Utils
         public static Rectangle CreateRect(this Context context, int width, int height)
         {
             return new Rectangle(
-                    0, 0,
-                    context.FromPixels(width),
-                    context.FromPixels(height)
-                );
+                0, 0,
+                context.FromPixels(width),
+                context.FromPixels(height)
+            );
         }
 
         public static void HandlePagesChanged(this BottomTabbedRenderer renderer)
@@ -40,9 +40,9 @@ namespace Naxam.Controls.Platform.Droid.Utils
 
         static void EnsureTabIndex(BottomTabbedRenderer renderer)
         {
-            var rootLayout = (RelativeLayout)renderer.GetChildAt(0);
-            var bottomNav = (BottomNavigationViewEx)rootLayout.GetChildAt(1);
-            var menu = (BottomNavigationMenu)bottomNav.Menu;
+            var rootLayout = (RelativeLayout) renderer.GetChildAt(0);
+            var bottomNav = (BottomNavigationViewEx) rootLayout.GetChildAt(1);
+            var menu = (BottomNavigationMenu) bottomNav.Menu;
 
             var itemIndex = menu.FindItemIndex(bottomNav.SelectedItemId);
             var pageIndex = renderer.Element.Children.IndexOf(renderer.Element.CurrentPage);
@@ -55,10 +55,12 @@ namespace Naxam.Controls.Platform.Droid.Utils
                 {
                     BottomTabbedRenderer.MenuItemIconSetter?.Invoke(menuItem, renderer.Element.CurrentPage.Icon, true);
 
-                    if (renderer.LastSelectedIndex != pageIndex) {
+                    if (renderer.LastSelectedIndex != pageIndex)
+                    {
                         var lastSelectedPage = renderer.Element.Children[renderer.LastSelectedIndex];
                         var lastSelectedMenuItem = menu.GetItem(renderer.LastSelectedIndex);
-                        BottomTabbedRenderer.MenuItemIconSetter?.Invoke(lastSelectedMenuItem, lastSelectedPage.Icon, false);
+                        BottomTabbedRenderer.MenuItemIconSetter?.Invoke(lastSelectedMenuItem, lastSelectedPage.Icon,
+                            false);
                         renderer.LastSelectedIndex = pageIndex;
                     }
                 }
@@ -67,9 +69,9 @@ namespace Naxam.Controls.Platform.Droid.Utils
 
         public static void SwitchPage(this BottomTabbedRenderer renderer, IMenuItem item)
         {
-            var rootLayout = (RelativeLayout)renderer.GetChildAt(0);
-            var bottomNav = (BottomNavigationViewEx)rootLayout.GetChildAt(1);
-            var menu = (BottomNavigationMenu)bottomNav.Menu;
+            var rootLayout = (RelativeLayout) renderer.GetChildAt(0);
+            var bottomNav = (BottomNavigationViewEx) rootLayout.GetChildAt(1);
+            var menu = (BottomNavigationMenu) bottomNav.Menu;
 
             var index = menu.FindItemIndex(item.ItemId);
             var pageIndex = index % renderer.Element.Children.Count;
@@ -83,8 +85,8 @@ namespace Naxam.Controls.Platform.Droid.Utils
 
         public static void Layout(this BottomTabbedRenderer renderer, int width, int height)
         {
-            var rootLayout = (RelativeLayout)renderer.GetChildAt(0);
-            var bottomNav = (BottomNavigationViewEx)rootLayout.GetChildAt(1);
+            var rootLayout = (RelativeLayout) renderer.GetChildAt(0);
+            var bottomNav = (BottomNavigationViewEx) rootLayout.GetChildAt(1);
 
             var Context = renderer.Context;
 
@@ -92,7 +94,8 @@ namespace Naxam.Controls.Platform.Droid.Utils
                 MeasureSpecFactory.MakeMeasureSpec(width, MeasureSpecMode.Exactly),
                 MeasureSpecFactory.MakeMeasureSpec(height, MeasureSpecMode.AtMost));
 
-            ((IPageController)renderer.Element).ContainerArea = Context.CreateRect(rootLayout.MeasuredWidth, rootLayout.GetChildAt(0).MeasuredHeight);
+            ((IPageController) renderer.Element).ContainerArea =
+                Context.CreateRect(rootLayout.MeasuredWidth, rootLayout.GetChildAt(0).MeasuredHeight);
 
             rootLayout.Measure(
                 MeasureSpecFactory.MakeMeasureSpec(width, MeasureSpecMode.Exactly),
@@ -106,7 +109,7 @@ namespace Naxam.Controls.Platform.Droid.Utils
 
             int tabsHeight = bottomNav.MeasuredHeight;
 
-            var item = (ViewGroup)bottomNav.GetChildAt(0);
+            var item = (ViewGroup) bottomNav.GetChildAt(0);
             item.Measure(
                 MeasureSpecFactory.MakeMeasureSpec(width, MeasureSpecMode.Exactly),
                 MeasureSpecFactory.MakeMeasureSpec(tabsHeight, MeasureSpecMode.Exactly));
@@ -115,10 +118,10 @@ namespace Naxam.Controls.Platform.Droid.Utils
             int item_w = width / item.ChildCount;
             for (int i = 0; i < item.ChildCount; i++)
             {
-                var frame = (FrameLayout)item.GetChildAt(i);
+                var frame = (FrameLayout) item.GetChildAt(i);
                 frame.Measure(
-                MeasureSpecFactory.MakeMeasureSpec(item_w, MeasureSpecMode.Exactly),
-                MeasureSpecFactory.MakeMeasureSpec(tabsHeight, MeasureSpecMode.Exactly));
+                    MeasureSpecFactory.MakeMeasureSpec(item_w, MeasureSpecMode.Exactly),
+                    MeasureSpecFactory.MakeMeasureSpec(tabsHeight, MeasureSpecMode.Exactly));
                 frame.Layout(i * item_w, 0, i * item_w + item_w, tabsHeight);
 
                 var imgView = bottomNav.GetIconAt(i);
@@ -128,7 +131,7 @@ namespace Naxam.Controls.Platform.Droid.Utils
                     if (baselayout.GetType() == typeof(BaselineLayout))
                     {
                         //Container text
-                        var basel = (BaselineLayout)baselayout;
+                        var basel = (BaselineLayout) baselayout;
                         //Small text
                         var small = bottomNav.GetSmallLabelAt(i);
                         //Large text
@@ -137,40 +140,52 @@ namespace Naxam.Controls.Platform.Droid.Utils
                         //Height Container text
                         int baselH = Math.Max(small.Height, large.Height);
                         //width Container text
-                        int baselW = Math.Min(small.Width, item_w - (int)Context.ToPixels(BottomTabbedRenderer.ItemPadding.Left) - (int)Context.ToPixels(BottomTabbedRenderer.ItemPadding.Right));
+                        int baselW = Math.Min(small.Width,
+                            item_w - (int) Context.ToPixels(BottomTabbedRenderer.ItemPadding.Left) -
+                            (int) Context.ToPixels(BottomTabbedRenderer.ItemPadding.Right));
                         //Icon Height
                         int imgH = imgView.LayoutParameters.Height;
                         //Icon Width
-                        int imgW = Math.Min(imgView.LayoutParameters.Width, item_w - (int)Context.ToPixels(BottomTabbedRenderer.ItemPadding.Left) - (int)Context.ToPixels(BottomTabbedRenderer.ItemPadding.Right));
+                        int imgW = Math.Min(imgView.LayoutParameters.Width,
+                            item_w - (int) Context.ToPixels(BottomTabbedRenderer.ItemPadding.Left) -
+                            (int) Context.ToPixels(BottomTabbedRenderer.ItemPadding.Right));
 
-                        int imgTop = (tabsHeight - imgH - baselH - (int)Context.ToPixels(BottomTabbedRenderer.ItemSpacing)) / 2;
+                        int imgTop = (tabsHeight - imgH - baselH -
+                                      (int) Context.ToPixels(BottomTabbedRenderer.ItemSpacing)) / 2;
                         int imgLeft = (item_w - imgW) / 2;
-                        int topBaseLine = imgTop + imgH + (int)Context.ToPixels(BottomTabbedRenderer.ItemSpacing);
+                        int topBaseLine = imgTop + imgH + (int) Context.ToPixels(BottomTabbedRenderer.ItemSpacing);
                         int leftBaseLine = (item_w - baselW) / 2;
 
                         switch (BottomTabbedRenderer.ItemAlign)
                         {
                             case ItemAlignFlags.Default:
-                                imgTop = (int)Context.ToPixels(BottomTabbedRenderer.ItemPadding.Top);
-                                topBaseLine = tabsHeight - baselH - (int)Context.ToPixels(BottomTabbedRenderer.ItemPadding.Bottom);
+                                imgTop = (int) Context.ToPixels(BottomTabbedRenderer.ItemPadding.Top);
+                                topBaseLine = tabsHeight - baselH -
+                                              (int) Context.ToPixels(BottomTabbedRenderer.ItemPadding.Bottom);
                                 break;
                             case ItemAlignFlags.Top:
-                                imgTop = (int)Context.ToPixels(BottomTabbedRenderer.ItemPadding.Top);
-                                topBaseLine = imgTop + imgH + (int)Context.ToPixels(BottomTabbedRenderer.ItemSpacing);
+                                imgTop = (int) Context.ToPixels(BottomTabbedRenderer.ItemPadding.Top);
+                                topBaseLine = imgTop + imgH + (int) Context.ToPixels(BottomTabbedRenderer.ItemSpacing);
                                 break;
                             case ItemAlignFlags.Bottom:
-                                imgTop = tabsHeight - imgH - baselH - (int)Context.ToPixels(BottomTabbedRenderer.ItemSpacing) - (int)Context.ToPixels(BottomTabbedRenderer.ItemPadding.Bottom);
-                                topBaseLine = imgTop + imgH + (int)Context.ToPixels(BottomTabbedRenderer.ItemSpacing);
+                                imgTop = tabsHeight - imgH - baselH -
+                                         (int) Context.ToPixels(BottomTabbedRenderer.ItemSpacing) -
+                                         (int) Context.ToPixels(BottomTabbedRenderer.ItemPadding.Bottom);
+                                topBaseLine = imgTop + imgH + (int) Context.ToPixels(BottomTabbedRenderer.ItemSpacing);
                                 break;
                         }
                         //layout icon, text
-                        imgView.Measure(MeasureSpecFactory.MakeMeasureSpec(imgW, MeasureSpecMode.Exactly), MeasureSpecFactory.MakeMeasureSpec(imgH, MeasureSpecMode.Exactly));
+                        imgView.Measure(MeasureSpecFactory.MakeMeasureSpec(imgW, MeasureSpecMode.Exactly),
+                            MeasureSpecFactory.MakeMeasureSpec(imgH, MeasureSpecMode.Exactly));
                         imgView.Layout(imgLeft, imgTop, imgW + imgLeft, imgH + imgTop);
-                        basel.Measure(MeasureSpecFactory.MakeMeasureSpec(baselW, MeasureSpecMode.Exactly), MeasureSpecFactory.MakeMeasureSpec(tabsHeight, MeasureSpecMode.Exactly));
+                        basel.Measure(MeasureSpecFactory.MakeMeasureSpec(baselW, MeasureSpecMode.Exactly),
+                            MeasureSpecFactory.MakeMeasureSpec(tabsHeight, MeasureSpecMode.Exactly));
                         basel.Layout(leftBaseLine, topBaseLine, leftBaseLine + baselW, topBaseLine + baselH);
 
                         //text break
-                        var breaktext = small.Paint.BreakText(small.Text, true, item_w - (int)Context.ToPixels(BottomTabbedRenderer.ItemPadding.Right) - (int)Context.ToPixels(BottomTabbedRenderer.ItemPadding.Left), null);
+                        var breaktext = small.Paint.BreakText(small.Text, true,
+                            item_w - (int) Context.ToPixels(BottomTabbedRenderer.ItemPadding.Right) -
+                            (int) Context.ToPixels(BottomTabbedRenderer.ItemPadding.Left), null);
                         var text = small.Text;
                         if (text.Length > breaktext)
                         {
@@ -185,7 +200,7 @@ namespace Naxam.Controls.Platform.Droid.Utils
         public static void SetupTabItems(this BottomTabbedRenderer renderer, BottomNavigationViewEx bottomNav)
         {
             var Element = renderer.Element;
-            var menu = (BottomNavigationMenu)bottomNav.Menu;
+            var menu = (BottomNavigationMenu) bottomNav.Menu;
             menu.ClearAll();
 
             var tabsCount = Math.Min(Element.Children.Count, bottomNav.MaxItemCount);
@@ -198,9 +213,9 @@ namespace Naxam.Controls.Platform.Droid.Utils
             }
             if (Element.Children.Count > 0)
             {
-                bottomNav.EnableShiftingMode(false);//remove shifting mode
-                bottomNav.EnableItemShiftingMode(false);//remove shifting mode
-                bottomNav.EnableAnimation(false);//remove animation
+                bottomNav.EnableShiftingMode(false); //remove shifting mode
+                bottomNav.EnableItemShiftingMode(false); //remove shifting mode
+                bottomNav.EnableAnimation(false); //remove animation
 
                 if (BottomTabbedRenderer.Typeface != null)
                 {
@@ -219,7 +234,8 @@ namespace Naxam.Controls.Platform.Droid.Utils
             }
         }
 
-        public static BottomNavigationViewEx SetupBottomBar(this BottomTabbedRenderer renderer, Android.Widget.RelativeLayout rootLayout, BottomNavigationViewEx bottomNav, int barId)
+        public static BottomNavigationViewEx SetupBottomBar(this BottomTabbedRenderer renderer,
+            Android.Widget.RelativeLayout rootLayout, BottomNavigationViewEx bottomNav, int barId)
         {
             if (bottomNav != null)
             {
@@ -229,7 +245,9 @@ namespace Naxam.Controls.Platform.Droid.Utils
 
             var barParams = new Android.Widget.RelativeLayout.LayoutParams(
                 ViewGroup.LayoutParams.MatchParent,
-                BottomTabbedRenderer.BottomBarHeight.HasValue ? (int)rootLayout.Context.ToPixels(BottomTabbedRenderer.BottomBarHeight.Value) : ViewGroup.LayoutParams.WrapContent);
+                BottomTabbedRenderer.BottomBarHeight.HasValue
+                    ? (int) rootLayout.Context.ToPixels(BottomTabbedRenderer.BottomBarHeight.Value)
+                    : ViewGroup.LayoutParams.WrapContent);
             barParams.AddRule(LayoutRules.AlignParentBottom);
             bottomNav = new BottomNavigationViewEx(rootLayout.Context)
             {
@@ -282,13 +300,16 @@ namespace Naxam.Controls.Platform.Droid.Utils
             EnsureTabIndex(renderer);
         }
 
-        public static RelativeLayout CreateRoot(this BottomTabbedRenderer renderer, int barId, int pageContainerId, out FrameLayout pageContainer)
+        public static RelativeLayout CreateRoot(this BottomTabbedRenderer renderer, int barId, int pageContainerId,
+            out FrameLayout pageContainer)
         {
             var rootLayout = new RelativeLayout(renderer.Context)
             {
-                LayoutParameters = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent),
+                LayoutParameters = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MatchParent,
+                    ViewGroup.LayoutParams.MatchParent),
             };
-            var pageParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent);
+            var pageParams =
+                new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent);
             pageParams.AddRule(LayoutRules.Above, barId);
 
             pageContainer = new FrameLayout(renderer.Context)
