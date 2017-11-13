@@ -14,11 +14,9 @@ namespace XamarinEvolve.Droid
     public class MainApplication : Application, Application.IActivityLifecycleCallbacks
     {
 
-        public static Application thisApp { get; set; }
         public MainApplication(IntPtr handle, JniHandleOwnership transer)
             : base(handle, transer)
         {
-            thisApp = this;
         }
 
         public override void OnCreate()
