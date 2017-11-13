@@ -5,6 +5,8 @@ using Android.Util;
 using DotNetRu.Droid.Helpers;
 using Naxam.Controls.Platform.Droid;
 
+﻿using DotNetRu.Droid.Helpers;
+
 namespace DotNetRu.Droid
 {
     using System.Reflection;
