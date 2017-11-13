@@ -17,35 +17,32 @@ namespace DotNetRu.Droid.Helpers
     public class LocaleUtils
     {
 
-        private static Locale sLocale;
-        public static void setLocale(Locale locale)
+        private static Locale currentLocale;
+        public static void SetLocale(Locale locale)
         {
-            sLocale = locale;
-            if (sLocale != null)
+            currentLocale = locale;
+            if (currentLocale != null)
             {
-                Locale.Default = sLocale;
+                Locale.Default = currentLocale;
             }
         }
 
-        public static void updateConfig(ContextThemeWrapper wrapper)
+        public static void UpdateConfig(ContextThemeWrapper wrapper)
         {
-            if (sLocale != null)
+            if (currentLocale != null)
             {
-                Configuration configuration = new Configuration();
-                configuration.Locale = sLocale;
+                Configuration configuration = new Configuration {Locale = currentLocale};
                 wrapper.ApplyOverrideConfiguration(configuration);
             }
         }
 
-        public static void updateConfig(Application app, Configuration configuration)
+        public static void UpdateConfig(Application app, Configuration configuration)
         {
-            if (sLocale != null)
+            if (currentLocale != null)
             {
                 //Wrapping the configuration to avoid Activity endless loop
                 Configuration config = new Configuration(configuration);
-                // We must use the now-deprecated config.locale and res.updateConfiguration here,
-                // because the replacements aren't available till API level 24 and 17 respectively.
-                config.Locale = sLocale;
+                config.Locale = currentLocale;
                 Resources res = app.BaseContext.Resources;
                 if (res.DisplayMetrics != null)
                 {
