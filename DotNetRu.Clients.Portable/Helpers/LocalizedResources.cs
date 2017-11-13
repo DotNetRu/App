@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using XamarinEvolve.Clients.Portable;
+using XamarinEvolve.Utils.Helpers;
 
 namespace XamarinEvolve.Clients.UI
 {
@@ -43,7 +44,7 @@ namespace XamarinEvolve.Clients.UI
         {
             CurrentCultureInfo = ccm.NewCultureInfo;
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Item"));
-            MessagingCenter.Send(this, "Test");
+            MessagingCenter.Send(this, MessageKeys.LanguageChanged);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

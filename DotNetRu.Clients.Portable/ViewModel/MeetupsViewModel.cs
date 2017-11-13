@@ -38,7 +38,7 @@ namespace XamarinEvolve.Clients.Portable.ViewModel
         public MeetupsViewModel(INavigation navigation)
             : base(navigation)
         {
-            MessagingCenter.Subscribe<LocalizedResources>(this, "Test", sender => SortEvents());
+            MessagingCenter.Subscribe<LocalizedResources>(this, MessageKeys.LanguageChanged, sender => SortEvents());
             this.Title = "Meetups";
         }
 
