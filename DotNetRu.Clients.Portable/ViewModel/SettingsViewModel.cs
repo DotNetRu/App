@@ -101,13 +101,13 @@ namespace XamarinEvolve.Clients.Portable
                     {
                         Name = Resources["TermsOfUse"],
                         Command = this.LaunchBrowserCommand,
-                        Parameter = AboutThisApp.TermsOfUseUrl
+                        //Parameter = AboutThisApp.TermsOfUseUrl
                     },
                     new MenuItem
                     {
                         Name = Resources["PrivacyPolicy"],
                         Command = this.LaunchBrowserCommand,
-                        Parameter = AboutThisApp.PrivacyPolicyUrl
+                        //Parameter = AboutThisApp.PrivacyPolicyUrl
                     },
                     new MenuItem
                     {
@@ -146,13 +146,13 @@ namespace XamarinEvolve.Clients.Portable
                     {
                         Name = Resources["TermsOfUse"],
                         Command = this.LaunchBrowserCommand,
-                        Parameter = AboutThisApp.TermsOfUseUrl
+                        //Parameter = AboutThisApp.TermsOfUseUrl
                     },
                     new MenuItem
                     {
                         Name = Resources["PrivacyPolicy"],
                         Command = this.LaunchBrowserCommand,
-                        Parameter = AboutThisApp.PrivacyPolicyUrl
+                       // Parameter = AboutThisApp.PrivacyPolicyUrl
                     },
                     new MenuItem
                     {
@@ -165,8 +165,6 @@ namespace XamarinEvolve.Clients.Portable
             this.TechnologyItems.AddRange(
                 new[]
                 {
-                    new MenuItem
-                    {
                         new MenuItem
                             {
                                 Name = "Censored",
