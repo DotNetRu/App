@@ -87,8 +87,7 @@ namespace DotNetRu.Droid
     {
         public MainActivity()
         {
-
-            LocaleUtils.updateConfig(this);
+            LocaleUtils.UpdateConfig(this);
         }
         public static MainActivity Current { get; }
 
