@@ -7,12 +7,14 @@
   <style name="MyTheme" parent="MyTheme.Base">
 
     <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-    <item name="android:statusBarColor">@android:color/transparent</item>
   </style>
 
+  
+    
   <style name="SplashTheme" parent="SplashTheme.Base">
-    <item name="android:windowTranslucentNavigation">true</item>
-    <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-    <item name="android:statusBarColor">@android:color/transparent</item>
+    <!--<item name="android:windowLightStatusBar">true</item>-->
+    <item name="android:windowBackground">@drawable/splash</item>
+    <item name="colorPrimaryDark">@color/primaryDark</item>
+    <item name="android:navigationBarColor">@color/primaryDark</item>
   </style>
 </resources>

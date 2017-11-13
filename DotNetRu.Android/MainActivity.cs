@@ -37,6 +37,8 @@ namespace DotNetRu.Droid
         Label = AboutThisApp.AppName,
         Icon = "@drawable/ic_launcher",
         LaunchMode = LaunchMode.SingleTask,
+        Theme = "@style/SplashTheme",
+        MainLauncher = true,
         ConfigurationChanges = ConfigChanges.Locale | ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     [IntentFilter(
         new[] { Intent.ActionView },
@@ -87,7 +89,6 @@ namespace DotNetRu.Droid
     {
         public MainActivity()
         {
-
             LocaleUtils.updateConfig(this);
         }
         public static MainActivity Current { get; }
@@ -95,6 +96,7 @@ namespace DotNetRu.Droid
         // GoogleApiClient client;
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            SetTheme(Resource.Style.MyTheme);
             Forms.SetFlags("FastRenderers_Experimental");
 
             FormsAppCompatActivity.ToolbarResource = Resource.Layout.toolbar;
@@ -123,6 +125,8 @@ namespace DotNetRu.Droid
             };
 #endif
             this.LoadApplication(new App());
+
+
 
             var gpsAvailable = this.IsPlayServicesAvailable();
             Settings.Current.PushNotificationsEnabled = gpsAvailable;

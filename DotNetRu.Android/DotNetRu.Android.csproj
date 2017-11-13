@@ -35,7 +35,7 @@
     <RunCodeAnalysis>false</RunCodeAnalysis>
     <AssemblyName>DotNetRu.Droid</AssemblyName>
     <EmbedAssembliesIntoApk>false</EmbedAssembliesIntoApk>
-    <AndroidSupportedAbis>armeabi-v7a</AndroidSupportedAbis>
+    <AndroidSupportedAbis>armeabi-v7a;x86</AndroidSupportedAbis>
     <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
     <AndroidUseSharedRuntime>true</AndroidUseSharedRuntime>
     <BundleAssemblies>False</BundleAssemblies>
@@ -337,7 +337,6 @@
     <Compile Include="Helpers\Toaster.cs" />
     <Compile Include="Notifications\GcmBroadcastReceiver.cs" />
     <Compile Include="Notifications\GcmService.cs" />
-    <Compile Include="SplashActivity.cs" />
     <Compile Include="Renderers\EvolveSearchBarRenderer.cs" />
     <Compile Include="Backgrounding\DataRefreshService.cs" />
     <Compile Include="Backgrounding\DataRefreshServiceBinder.cs" />
@@ -354,6 +353,9 @@
       <SubType>Designer</SubType>
     </None>
     <AndroidResource Include="Resources\values-ru\strings.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\Splash.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -428,7 +430,9 @@
     <AndroidResource Include="Resources\layout\toolbar.axml" />
     <AndroidResource Include="Resources\values\colors.xml" />
     <AndroidResource Include="Resources\values\styles.xml" />
-    <AndroidResource Include="Resources\values-v21\styles.xml" />
+    <AndroidResource Include="Resources\values-v21\styles.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\layout\tabs.axml" />
     <AndroidResource Include="Resources\menu\nav_menu.xml">
       <SubType>Designer</SubType>
@@ -637,6 +641,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\bnv_selector.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_splash.png" />
   </ItemGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
