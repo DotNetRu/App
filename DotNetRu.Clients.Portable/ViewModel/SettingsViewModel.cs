@@ -42,20 +42,21 @@ namespace XamarinEvolve.Clients.Portable
             "ru",
         };
 
-        private string _SelectedLanguage;
+        private string _selectedLanguage;
 
         public string SelectedLanguage
         {
-            get { return _SelectedLanguage; }
+            get { return _selectedLanguage; }
             set
             {
-                _SelectedLanguage = value;
+                _selectedLanguage = value;
                 SetLanguage();
             }
         }
 
         private void SetLanguage()
         {
+            Helpers.Settings.CurrentLanguage = _selectedLanguage;
             CurrentLanguage = SelectedLanguage;
             MessagingCenter.Send<object, CultureChangedMessage>(this,
                 string.Empty, new CultureChangedMessage(SelectedLanguage));
@@ -120,7 +121,7 @@ namespace XamarinEvolve.Clients.Portable
         public SettingsViewModel()
         {
             MessagingCenter.Subscribe<LocalizedResources>(this, MessageKeys.LanguageChanged, sender => NotifyVmProperties());
-            _SelectedLanguage = CurrentLanguage;
+            _selectedLanguage = CurrentLanguage;
             this.AboutItems.AddRange(
                 new[]
                 {
