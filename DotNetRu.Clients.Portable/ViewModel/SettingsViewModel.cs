@@ -119,7 +119,7 @@ namespace XamarinEvolve.Clients.Portable
         }
         public SettingsViewModel()
         {
-            MessagingCenter.Subscribe<LocalizedResources>(this, "Test", sender => NotifyVmProperties());
+            MessagingCenter.Subscribe<LocalizedResources>(this, MessageKeys.LanguageChanged, sender => NotifyVmProperties());
             _SelectedLanguage = CurrentLanguage;
             this.AboutItems.AddRange(
                 new[]
