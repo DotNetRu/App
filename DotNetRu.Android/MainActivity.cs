@@ -1,4 +1,6 @@
-﻿namespace DotNetRu.Droid
+﻿using DotNetRu.Droid.Helpers;
+
+namespace DotNetRu.Droid
 {
     using System.Reflection;
 
@@ -26,12 +28,11 @@
     using XamarinEvolve.Utils.Helpers;
 
     using Debug = System.Diagnostics.Debug;
-
     [Activity(
         Label = AboutThisApp.AppName,
         Icon = "@drawable/ic_launcher",
         LaunchMode = LaunchMode.SingleTask,
-        ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+        ConfigurationChanges = ConfigChanges.Locale | ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     [IntentFilter(
         new[] { Intent.ActionView },
         Categories = new[] { Intent.CategoryDefault, Intent.CategoryBrowsable },
@@ -79,6 +80,10 @@
         DataHost = AboutThisApp.AppLinksBaseDomain)]
     public class MainActivity : FormsAppCompatActivity
     {
+        public MainActivity()
+        {
+            LocaleUtils.UpdateConfig(this);
+        }
         public static MainActivity Current { get; }
 
         // GoogleApiClient client;

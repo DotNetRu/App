@@ -5,7 +5,7 @@
     xmlns:local="clr-namespace:XamarinEvolve.Clients.UI;assembly=XamarinEvolve.Clients.UI"
     xmlns:toolkit="clr-namespace:FormsToolkit;assembly=FormsToolkit"
     x:Class="XamarinEvolve.Clients.UI.SpeakerDetailsPage"
-    Title="Speaker Info"
+    Title="{Binding Resources[SpeakerInfo]}"
     x:Name="SpeakerInfo"
     NavigationPage.BackButtonTitle="Back"
     BackgroundColor="{DynamicResource WindowBackgroundTable}">
@@ -66,7 +66,7 @@
                         <!--Biography-->
                         <local:CardView>
                             <StackLayout Spacing="0">
-                                <local:LabelSection Text="Biography"/>
+                                <local:LabelSection Text="{Binding Resources[Biography]}"/>
                                 <local:HeaderDivider/>
                                 <StackLayout Padding="{StaticResource StandardPadding}" BackgroundColor="White">
                                     <Label Text="{Binding SpeakerModel.Biography}" Style="{DynamicResource EvolveListItemTextStyle}"/>
@@ -78,7 +78,7 @@
                         <local:CardView IsVisible="{Binding FollowItems, Converter={StaticResource GenericIsVisibleConverter}}">
                             <StackLayout Spacing="0">
                                 <!--Follow-->
-                                <local:LabelSection Text="Follow"/>
+                                <local:LabelSection Text="{Binding Resources[Follow]}"/>
                                 <local:HeaderDivider/>
                                 <local:NonScrollableListView
                                     ItemsSource="{Binding FollowItems}"
@@ -119,7 +119,7 @@
                         <local:CardView IsVisible="{Binding HasAdditionalSessions}">
                             <!--Sessions-->
                             <StackLayout Spacing="0">
-                                <local:LabelSection Text="Sessions" StyleId="MoreSessionsSection"/>
+                                <local:LabelSection Text="{Binding Resources[Sessions]}" StyleId="MoreSessionsSection"/>
                                 <local:HeaderDivider/>
                                 <StackLayout IsVisible="{Binding IsBusy}"
                                              HorizontalOptions="FillAndExpand"

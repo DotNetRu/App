@@ -16,7 +16,8 @@
 
     using Xamarin.Forms;
 
-    using XamarinEvolve.Utils.Extensions;
+    using XamarinEvolve.Utils;
+    using XamarinEvolve.Clients.Portable;
     using XamarinEvolve.Utils.Helpers;
 
     public class TalkViewModel : ViewModelBase

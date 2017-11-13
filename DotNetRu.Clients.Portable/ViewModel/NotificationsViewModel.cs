@@ -13,7 +13,7 @@ namespace XamarinEvolve.Clients.Portable
 {
     using DotNetRu.DataStore.Audit.Models;
 
-    using XamarinEvolve.Utils.Extensions;
+    using XamarinEvolve.Clients.Portable;
     using XamarinEvolve.Utils.Helpers;
 
 	public class NotificationsViewModel : ViewModelBase

@@ -1,4 +1,7 @@
-﻿namespace XamarinEvolve.Clients.Portable
+﻿using System.Collections.Generic;
+using XamarinEvolve.Clients.UI;
+
+namespace XamarinEvolve.Clients.Portable
 {
     using DotNetRu.DataStore.Audit.Models;
 
@@ -11,6 +14,7 @@
     public class FriendDetailsViewModel : ViewModelBase
     {
         private MenuItem selectedFollowItem;
+        
 
         public FriendDetailsViewModel(INavigation navigation, FriendModel friendModel)
             : base(navigation)

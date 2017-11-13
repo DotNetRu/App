@@ -1,22 +1,21 @@
-﻿namespace XamarinEvolve.Clients.UI
+﻿using XamarinEvolve.Clients.Portable.ApplicationResources;
+
+namespace XamarinEvolve.Clients.UI
 {
     using System;
     using System.Diagnostics;
     using System.Globalization;
-
     using DotNetRu.DataStore.Audit.Models;
-
     using Humanizer;
-
     using Xamarin.Forms;
-
     using XamarinEvolve.Clients.Portable;
-    using XamarinEvolve.Utils.Extensions;
+    using XamarinEvolve.Clients.Portable;
 
     public class SessionTimeDisplayConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+
             try
             {
                 if (!(value is TalkModel session))
@@ -44,7 +43,6 @@
 
     public class TalkDateDisplayConverter : IValueConverter
     {
-
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             try
@@ -74,6 +72,7 @@
 
     public class EventDateDisplayConverter : IValueConverter
     {
+
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             try
@@ -139,7 +138,7 @@
                     return string.Empty;
                 }
 
-                return ((DateTime)value).ToEventTimeZone().Day;
+                return ((DateTime) value).ToEventTimeZone().Day;
             }
             catch (Exception ex)
             {
@@ -158,7 +157,6 @@
 
     public class EventDayDisplayConverter : IValueConverter
     {
-
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             try
@@ -167,8 +165,8 @@
                 {
                     return string.Empty;
                 }
-
-                return ((DateTime)value).ToEventTimeZone().DayOfWeek.ToString().Substring(0, 3).ToUpperInvariant();
+                var dayOfWeek = ((DateTime) value).ToEventTimeZone().DayOfWeek; 
+                return AppResources.Culture.DateTimeFormat.GetAbbreviatedDayName(dayOfWeek);//DateTimeFormatInfo.CurrentInfo.GetAbbreviatedDayName(dayOfWeek);
             }
             catch (Exception ex)
             {
@@ -193,19 +191,19 @@
             {
                 if (!(value is DateTime))
                 {
-                    return (Color)Application.Current.Resources["Primary"];
+                    return (Color) Application.Current.Resources["Primary"];
                 }
 
-                return DateTime.UtcNow > ((DateTime)value).ToUniversalTime()
-                           ? (Color)Application.Current.Resources["Primary"]
-                           : Color.FromHex("D3D2D2");
+                return DateTime.UtcNow > ((DateTime) value).ToUniversalTime()
+                    ? (Color) Application.Current.Resources["Primary"]
+                    : Color.FromHex("D3D2D2");
             }
             catch (Exception ex)
             {
                 Debug.WriteLine("Unable to convert: " + ex);
             }
 
-            return (Color)Application.Current.Resources["Primary"];
+            return (Color) Application.Current.Resources["Primary"];
         }
 
 
@@ -217,14 +215,13 @@
 
     public class HumanizeDateConverter : IValueConverter
     {
-
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             try
             {
                 if (value is DateTime)
                 {
-                    var date = (DateTime)value;
+                    var date = (DateTime) value;
                     if (date.Kind == DateTimeKind.Local)
                     {
                         return date.Humanize(false);

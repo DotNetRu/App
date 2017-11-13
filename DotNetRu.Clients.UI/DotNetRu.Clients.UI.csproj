@@ -48,8 +48,13 @@
     <Compile Include="Controls\RatingControl.xaml.cs">
       <DependentUpon>RatingControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\DateConverters.cs" />
+    <Compile Include="Converters\ImageConverters.cs" />
+    <Compile Include="Converters\RatingConverter.cs" />
     <Compile Include="Converters\SpeakerImageConverter.cs" />
+    <Compile Include="Converters\StringConverters.cs" />
     <Compile Include="Effects\ShadowEffect.cs" />
+    <Compile Include="LocalizedResources.cs" />
     <Compile Include="Pages\Home\ConferenceFeedbackPage.xaml.cs">
       <DependentUpon>ConferenceFeedbackPage.xaml</DependentUpon>
     </Compile>
@@ -70,9 +75,7 @@
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Settings.cs" />
-    <Compile Include="Converters\DateConverters.cs" />
     <Compile Include="Behaviors\StarBehavior.cs" />
-    <Compile Include="Converters\RatingConverter.cs" />
     <Compile Include="Pages\Sessions\MeetupPage.xaml.cs">
       <DependentUpon>MeetupPage.xaml</DependentUpon>
     </Compile>
@@ -109,7 +112,6 @@
     <Compile Include="Pages\Info\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Converters\ImageConverters.cs" />
     <Compile Include="Controls\LabelSection.xaml.cs">
       <DependentUpon>LabelSection.xaml</DependentUpon>
     </Compile>
@@ -131,7 +133,6 @@
     <Compile Include="Controls\FooterDivider.xaml.cs">
       <DependentUpon>FooterDivider.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Converters\StringConverters.cs" />
     <Compile Include="Cells\TweetCell.xaml.cs">
       <DependentUpon>TweetCell.xaml</DependentUpon>
     </Compile>
@@ -164,6 +165,7 @@
     <Compile Include="Controls\Rating3Control.xaml.cs">
       <DependentUpon>Rating3Control.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TranslateExtension.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.1.0.6508-pre3\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.1.0.6508-pre3\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
