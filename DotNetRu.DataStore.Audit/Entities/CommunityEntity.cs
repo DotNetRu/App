@@ -4,9 +4,10 @@
 
     [XmlType(AnonymousType = true)]
     [XmlRoot(Namespace = "", IsNullable = false)]
-    public class Community
+    public class CommunityEntity
     {
         public string Id { get; set; }
+
         public string Name { get; set; }
     }
 }
