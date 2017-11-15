@@ -47,6 +47,7 @@
     <Compile Include="Extensions\SpeakerEntityExtensions.cs" />
     <Compile Include="Extensions\TalkEntityExtensions.cs" />
     <Compile Include="Extensions\VenueEntityExtensions.cs" />
+    <Compile Include="Helpers\ParseHelper.cs" />
     <Compile Include="IStoreManager.cs" />
     <Compile Include="Models\BaseDataObject.cs" />
     <Compile Include="Models\Category.cs" />
@@ -58,7 +59,7 @@
     <Compile Include="Models\TalkModel.cs" />
     <Compile Include="Models\SpeakerModel.cs" />
     <Compile Include="Models\FriendModel.cs" />
-    <Compile Include="Entities\Community.cs" />
+    <Compile Include="Entities\CommunityEntity.cs" />
     <Compile Include="Entities\FriendEntity.cs" />
     <Compile Include="Entities\MeetupEntity.cs" />
     <Compile Include="Models\VenueModel.cs" />
@@ -70,14 +71,6 @@
     <Compile Include="Services\SpeakerService.cs" />
     <Compile Include="Services\TalkService.cs" />
     <Compile Include="Services\VenueService.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Storage\communities.xml" />
-    <EmbeddedResource Include="Storage\friends.xml" />
-    <EmbeddedResource Include="Storage\meetups.xml" />
-    <EmbeddedResource Include="Storage\speakers.xml" />
-    <EmbeddedResource Include="Storage\talks.xml" />
-    <EmbeddedResource Include="Storage\venues.xml" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MvvmHelpers, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -718,6 +711,14 @@
     <EmbeddedResource Include="Storage\friends\Yandex\index.xml" />
     <EmbeddedResource Include="Storage\friends\Yandex\logo.png" />
     <EmbeddedResource Include="Storage\friends\Yandex\logo.small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Storage\Communities.xml" />
+    <EmbeddedResource Include="Storage\Friends.xml" />
+    <EmbeddedResource Include="Storage\Meetups.xml" />
+    <EmbeddedResource Include="Storage\Speakers.xml" />
+    <EmbeddedResource Include="Storage\Talks.xml" />
+    <EmbeddedResource Include="Storage\Venues.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.4.0.18342\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.4.0.18342\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets')" />

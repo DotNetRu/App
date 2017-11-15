@@ -95,7 +95,7 @@
                 this.IsBusy = true;
                 this.NoSessionsFound = false;
 
-                var sessions = TalkService.GetTalks(this.MeetupModel.EventTalksIds).ToArray();
+                var sessions = TalkService.GetTalks(this.MeetupModel.EventTalksIds);
                 this.Sessions.ReplaceRange(sessions);
 
                 if (!sessions.Any())

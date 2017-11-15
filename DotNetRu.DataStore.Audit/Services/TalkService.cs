@@ -1,63 +1,32 @@
 ﻿namespace DotNetRu.DataStore.Audit.Services
 {
     using System.Collections.Generic;
-    using System.IO;
     using System.Linq;
-    using System.Reflection;
-    using System.Xml.Serialization;
 
     using DotNetRu.DataStore.Audit.Entities;
     using DotNetRu.DataStore.Audit.Extensions;
+    using DotNetRu.DataStore.Audit.Helpers;
     using DotNetRu.DataStore.Audit.Models;
 
     public static class TalkService
     {
-        public static IEnumerable<TalkModel> GetTalks()
-        {
-            var assembly = Assembly.Load(new AssemblyName("DotNetRu.DataStore.Audit"));
-            var stream = assembly.GetManifestResourceStream("DotNetRu.DataStore.Audit.Storage.talks.xml");
-            IEnumerable<TalkEntity> sessions;
-            using (var reader = new StreamReader(stream))
-            {
-                var serializer = new XmlSerializer(typeof(List<TalkEntity>), new XmlRootAttribute("Talks"));
-                var deserialized = (List<TalkEntity>)serializer.Deserialize(reader);
-                sessions = deserialized;
-            }
+        private static List<TalkModel> talks;
 
-            return sessions.Select(x => x.ToModel());
-        }
+        public static List<TalkModel> Talks => talks ?? (talks = GetTalks().ToList());
 
         public static IEnumerable<TalkModel> GetTalks(IEnumerable<string> talkIDs)
         {
-            var assembly = Assembly.Load(new AssemblyName("DotNetRu.DataStore.Audit"));
-            var stream = assembly.GetManifestResourceStream("DotNetRu.DataStore.Audit.Storage.talks.xml");
-            IEnumerable<TalkEntity> sessions;
-            using (var reader = new StreamReader(stream))
-            {
-                var serializer = new XmlSerializer(typeof(List<TalkEntity>), new XmlRootAttribute("Talks"));
-                var deserialized = (List<TalkEntity>)serializer.Deserialize(reader);
-
-                sessions = deserialized.Where(
-                    t => talkIDs.Any(talkID => talkID == t.Id));
-            }
-
-            return sessions.Select(x => x.ToModel());
+            return Talks.Where(t => talkIDs.Any(talkId => talkId == t.TalkId));
         }
 
         public static IEnumerable<TalkModel> GetTalks(string speakerId)
         {
-            var assembly = Assembly.Load(new AssemblyName("DotNetRu.DataStore.Audit"));
-            var stream = assembly.GetManifestResourceStream("DotNetRu.DataStore.Audit.Storage.talks.xml");
-            IEnumerable<TalkEntity> talkEntities;
-            using (var reader = new StreamReader(stream))
-            {
-                var serializer = new XmlSerializer(typeof(List<TalkEntity>), new XmlRootAttribute("Talks"));
-                var deserialized = (List<TalkEntity>)serializer.Deserialize(reader);
+            return Talks.Where(t => t.Speakers.Any(s => s.Id == speakerId));
+        }
 
-                talkEntities = deserialized.Where(
-                    t => t.SpeakerIds.Contains(speakerId));
-            }
-
+        private static IEnumerable<TalkModel> GetTalks()
+        {
+            var talkEntities = ParseHelper.ParseXml<TalkEntity>("Talks");
             return talkEntities.Select(x => x.ToModel());
         }
     }

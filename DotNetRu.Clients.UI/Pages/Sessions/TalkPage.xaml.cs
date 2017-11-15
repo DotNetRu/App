@@ -18,7 +18,7 @@
         /// <summary>
         /// Design-time only
         /// </summary>
-        public TalkPage() : this(TalkService.GetTalks().First())
+        public TalkPage() : this(TalkService.Talks.First())
         {
         }
 

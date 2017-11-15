@@ -99,7 +99,7 @@ namespace XamarinEvolve.Clients.Portable.ViewModel
             {
                 this.IsBusy = true;
 
-                this.Events?.ReplaceRange(MeetupService.GetMeetups());
+                this.Events?.ReplaceRange(MeetupService.Meetups);
 
                 this.SortEvents();
             }
