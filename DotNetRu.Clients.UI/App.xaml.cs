@@ -1,4 +1,8 @@
-﻿namespace XamarinEvolve.Clients.UI
+﻿using System.Globalization;
+using XamarinEvolve.Clients.Portable.ApplicationResources;
+using XamarinEvolve.Clients.Portable.Interfaces;
+
+namespace XamarinEvolve.Clients.UI
 {
     using System;
     using System.Threading.Tasks;
@@ -28,9 +32,11 @@
         public App()
         {
             current = this;
+            var ci = Portable.Helpers.Settings.CurrentLanguage == "" ? DependencyService.Get<ILocalize>().GetCurrentCultureInfo() : new CultureInfo(Portable.Helpers.Settings.CurrentLanguage);
+            AppResources.Culture = ci;
+            ViewModelBase.CurrentLanguage = AppResources.Culture.Name.Substring(0, 2);
             this.InitializeComponent();
             ViewModelBase.Init();
-
             // The root page of your application
             switch (Device.RuntimePlatform)
             {

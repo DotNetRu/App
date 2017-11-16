@@ -19,15 +19,10 @@ namespace XamarinEvolve.Clients.Portable.Helpers
 			}
 		}
 
-		#region Setting Constants
 
 		private const string SettingsKey = "settings_key";
 		private static readonly string SettingsDefault = string.Empty;
-
-		#endregion
-
-
-		public static string GeneralSettings
+        public static string GeneralSettings
 		{
 			get
 			{
@@ -40,5 +35,13 @@ namespace XamarinEvolve.Clients.Portable.Helpers
 			}
 		}
 
-	}
+	    private const string CurrentLanguageKey = "";
+	    private static readonly string CurrentLanguageDefault = "";
+
+	    public static string CurrentLanguage
+	    {
+	        get { return AppSettings.GetValueOrDefault(CurrentLanguageKey, CurrentLanguageDefault); }
+	        set { AppSettings.AddOrUpdateValue(CurrentLanguageKey, value); }
+	    }
+    }
 }

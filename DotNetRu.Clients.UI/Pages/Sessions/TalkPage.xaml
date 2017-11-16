@@ -5,7 +5,7 @@
     x:Class="XamarinEvolve.Clients.UI.TalkPage"
     xmlns:local="clr-namespace:XamarinEvolve.Clients.UI;assembly=XamarinEvolve.Clients.UI"
     xmlns:toolkit="clr-namespace:FormsToolkit;assembly=FormsToolkit"
-    Title="Talk"
+    Title="{Binding Resources[Talk]}"
     NavigationPage.BackButtonTitle="Back"
     BackgroundColor="{DynamicResource WindowBackgroundTable}">
   <ContentPage.Resources>
@@ -16,7 +16,7 @@
     </ResourceDictionary>
   </ContentPage.Resources>
   <ContentPage.ToolbarItems>
-    <ToolbarItem Icon="toolbar_share.png" Text="Share" Command="{Binding ShareCommand}"/>
+    <ToolbarItem Icon="toolbar_share.png" Text="{Binding Resources[Share]}" Command="{Binding ShareCommand}"/>
   </ContentPage.ToolbarItems>
 
   <StackLayout>
@@ -50,7 +50,7 @@
           <local:CardView IsVisible="{Binding TalkModel.Speakers, Converter={StaticResource GenericIsVisibleConverter}}">
             <!--Speakers-->
             <StackLayout Spacing="0">
-              <local:LabelSection Text="Speakers"/>
+              <local:LabelSection Text="{Binding Resources[Speakers]}"/>
               <local:HeaderDivider/>
               <StackLayout IsVisible="{Binding IsBusy}"
                            HorizontalOptions="FillAndExpand"
@@ -89,7 +89,7 @@
           <local:CardView IsVisible="{Binding ShowSessionMaterials}">
             <StackLayout Spacing="0">
               <!--Materials-->
-              <local:LabelSection Text="Materials"/>
+              <local:LabelSection Text="{Binding Resources[Materials]}"/>
               <local:HeaderDivider/>
               <local:NonScrollableListView
                   ItemsSource="{Binding SessionMaterialItems}"
@@ -180,7 +180,7 @@
           <!--Abstract-->
           <local:CardView IsVisible="{Binding TalkModel.Abstract, Converter={StaticResource GenericIsVisibleConverter}}">
             <StackLayout Spacing="0">
-              <local:LabelSection Text="Abstract"/>
+              <local:LabelSection Text="{Binding Resources[Abstract]}"/>
               <local:HeaderDivider/>
               <StackLayout Padding="{StaticResource StandardPadding}" BackgroundColor="White">
                 <Label Text="{Binding TalkModel.Abstract}" Style="{DynamicResource EvolveListItemTextStyle}" StyleId="SessionAbstract"/>

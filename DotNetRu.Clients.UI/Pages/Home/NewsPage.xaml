@@ -8,7 +8,7 @@
     xmlns:imagecircle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
     x:Class="XamarinEvolve.Clients.UI.NewsPage"
     x:Name="NewsScreen"
-    Title="{Binding Title}"
+    Title="{Binding Resources[News]}"
     Icon="tab_feed.png"
     BackgroundColor="{DynamicResource WindowBackgroundTable}">
     <ContentPage.Resources>
@@ -67,7 +67,7 @@
                   <ColumnDefinition Width="*"/>
                   <ColumnDefinition Width="34"/>
                 </Grid.ColumnDefinitions>
-                <local:LabelSection Text="{Binding SocialHeader}"/>
+                <local:LabelSection Text="{Binding Resources[Social]}"/>
                 <Grid.GestureRecognizers>
                   <TapGestureRecognizer Command="{Binding ShareCommand}"/>
                 </Grid.GestureRecognizers>
@@ -83,7 +83,7 @@
                     <OnPlatform x:TypeArguments="Color" Android="{StaticResource Accent}"/>
                   </ActivityIndicator.Color>
                 </ActivityIndicator>
-                <Label Text="Loading Social Feed..."
+                <Label Text="{Binding Resources[Loading]}"
                        HorizontalOptions="Center"
                        Style="{DynamicResource EvolveListItemTextStyle}"/>
               </StackLayout>

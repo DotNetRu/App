@@ -1,6 +1,7 @@
 ﻿using Xamarin.Forms;
 
 using XamarinEvolve.Clients.Portable;
+using XamarinEvolve.Clients.Portable.ApplicationResources;
 
 namespace XamarinEvolve.Clients.UI
 {
@@ -64,7 +65,7 @@ namespace XamarinEvolve.Clients.UI
         void MainScroll_Scrolled(object sender, ScrolledEventArgs e)
         {
             if (e.ScrollY > (this.MainStack.Height - this.SpeakerTitle.Height)) this.Title = this.SpeakerModel.FirstName;
-            else this.Title = "Speaker Info";
+            else this.Title = AppResources.SpeakerInfo;
         }
 
         protected override void OnSizeAllocated(double width, double height)

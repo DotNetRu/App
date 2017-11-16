@@ -130,6 +130,12 @@
 			<string>Icon-58</string>
 		</dict>
 	</array>
+  <key>CFBundleLocalizations</key>
+  <array>
+    <string>ru</string>
+  </array>
+  <key>CFBundleDevelopmentRegion</key>
+  <string>en</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>

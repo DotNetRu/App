@@ -1,8 +1,10 @@
 using System;
 
 using Android.App;
+using Android.Content.Res;
 using Android.OS;
 using Android.Runtime;
+using DotNetRu.Droid.Helpers;
 using Plugin.CurrentActivity;
 
 namespace XamarinEvolve.Droid
@@ -11,6 +13,7 @@ namespace XamarinEvolve.Droid
     [Application]
     public class MainApplication : Application, Application.IActivityLifecycleCallbacks
     {
+
         public MainApplication(IntPtr handle, JniHandleOwnership transer)
             : base(handle, transer)
         {
@@ -57,6 +60,12 @@ namespace XamarinEvolve.Droid
 
         public void OnActivityStopped(Activity activity)
         {
+        }
+
+        public override void OnConfigurationChanged(Configuration newConfig)
+        {
+            base.OnConfigurationChanged(newConfig);
+            LocaleUtils.UpdateConfig(this, newConfig);
         }
     }
 }
