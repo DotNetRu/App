@@ -1,8 +1,0 @@
-﻿<Speaker>
-  <Id>Vladimir-Ozerov</Id>
-  <Name>Владимир Озеров</Name>
-  <CompanyName>GridGain</CompanyName>
-  <CompanyUrl>http://www.gridgain.com/</CompanyUrl>
-  <Description>Архитектор компании GridGain. Комитер и PMC member OSS-проекта Apache Ignite. Занимается вопросами распределенных вычислений, кэширования и репликации, интеграцией с .NET/C++, разработкой модулей для экосистемы Hadoop.</Description>
-  <TwitterUrl>https://twitter.com/devozerov</TwitterUrl>
-</Speaker>

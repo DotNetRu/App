@@ -7,6 +7,12 @@
     <MapUrl>https://yandex.ru/maps/-/CBQFNFU41A</MapUrl>
   </Venue>
   <Venue>
+    <Id>Msk-DeutscheBank</Id>
+    <Name>Конференц-зал Deutsche Bank</Name>
+    <Address>Москва, ул. Беговая, 3, строение 1</Address>
+    <MapUrl>https://yandex.ru/maps/-/CBUxBRRNcA</MapUrl>
+  </Venue>
+  <Venue>
     <Id>Msk-DigitalOctober</Id>
     <Name>Digital October</Name>
     <Address>Москва, Берсеневская набережная, 6 ст3 </Address>
@@ -17,6 +23,12 @@
     <Name>Офис компании «Додо Пицца»</Name>
     <Address>Ленинская Слобода 19 строение 7</Address>
     <MapUrl>https://yandex.ru/maps/-/CBUxyJXqlB</MapUrl>
+  </Venue>
+  <Venue>
+    <Id>Msk-FINAM</Id>
+    <Name>Крыша «ФИНАМ»</Name>
+    <Address>Москва, Настасьинский пер.7 стр.2 </Address>
+    <MapUrl>https://yandex.ru/maps/-/CBaM5OQSHA</MapUrl>
   </Venue>
   <Venue>
     <Id>Msk-Kaspersky</Id>
@@ -35,6 +47,18 @@
     <Name>Конференц-зал Odin</Name>
     <Address>Москва, Ленинградский проспект, 15с18</Address>
     <MapUrl>https://yandex.ru/maps/-/CBU-Q8B7gD</MapUrl>
+  </Venue>
+  <Venue>
+    <Id>Msk-Rambler</Id>
+    <Name>Конференц-зал «Rambler&amp;Co»</Name>
+    <Address>Варшавское ш., 9, стр. 1, БЦ «Даниловская мануфактура», корпус «Ряды Солдатенкова»</Address>
+    <MapUrl>https://yandex.ru/maps/-/CBaMFMEwKD</MapUrl>
+  </Venue>
+  <Venue>
+    <Id>Msk-SberbankTechnology</Id>
+    <Name>Конференц-зал Сбербанк-Технологии</Name>
+    <Address>Москва, Новоданиловская набережная дом 10, 2 этаж</Address>
+    <MapUrl>https://yandex.ru/maps/-/CBUH42DK1C</MapUrl>
   </Venue>
   <Venue>
     <Id>Msk-Tinkoff</Id>

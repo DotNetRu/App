@@ -90,6 +90,13 @@
     <TwitterUrl>https://twitter.com/kulakovt</TwitterUrl>
   </Speaker>
   <Speaker>
+    <Id>Andrei-Kirpichev</Id>
+    <Name>Андрей Кирпичёв</Name>
+    <CompanyName>Axel</CompanyName>
+    <CompanyUrl>http://axelmwd.com/</CompanyUrl>
+    <Description>Андрей работает ведущим программистом в компании Axel. Живёт и работает по принципу «Изменения неизбежны».</Description>
+  </Speaker>
+  <Speaker>
     <Id>Andrey-Akinshin</Id>
     <Name>Андрей Акиньшин</Name>
     <CompanyName>JetBrains</CompanyName>
@@ -114,6 +121,14 @@
     <Description>Software Engineer в EPAM. В свободное время любит изучать внутренности популярных опен-сорс библиотек.</Description>
   </Speaker>
   <Speaker>
+    <Id>Andrey-Zaytsev</Id>
+    <Name>Андрей Зайцев</Name>
+    <CompanyName>Usetech</CompanyName>
+    <CompanyUrl>http://usetech.com/</CompanyUrl>
+    <Description>С .Net живёт 10 лет. За это время имел возможность посмотреть на множество проектов, продуктов, команд и практик, попробовать разные роли и поработать в командах от 2х до 100 человек.</Description>
+    <ContactsUrl>https://facebook.com/an.zaytsev</ContactsUrl>
+  </Speaker>
+  <Speaker>
     <Id>Anton-Shabanov</Id>
     <Name>Антон Шабанов</Name>
     <CompanyName>WaveAccess</CompanyName>
@@ -131,6 +146,13 @@
     <Name>Артём Журавлёв</Name>
     <CompanyName>DataArt</CompanyName>
     <CompanyUrl>http://dataart.ru/</CompanyUrl>
+  </Speaker>
+  <Speaker>
+    <Id>Daniel-Sokoluk</Id>
+    <Name>Даниил Соколюк</Name>
+    <CompanyName>Rambler&amp;Co</CompanyName>
+    <CompanyUrl>https://rambler-co.ru/</CompanyUrl>
+    <Description>Backend разработчик. Сейчас работает в Rambler&amp;Co над проектами «Афиша». Любит Open-Source, ASP.NET, Docker и высокую производительность, считает .NET Core лучшим, что случалось с .NET</Description>
   </Speaker>
   <Speaker>
     <Id>Denis-Davydov</Id>
@@ -166,6 +188,13 @@
     <BlogUrl>http://dmitry-naumov.blogspot.ru/</BlogUrl>
   </Speaker>
   <Speaker>
+    <Id>Dmitry-Tezhelnikov</Id>
+    <Name>Дмитрий Тежельников</Name>
+    <CompanyName>Deutsche Bank</CompanyName>
+    <CompanyUrl>https://www.db.com/</CompanyUrl>
+    <Description>10 лет в разработке решений на платформе .NET, язык программирования C#. В последнее время очень интересуется разработкой фронт-энда на React.JS.</Description>
+  </Speaker>
+  <Speaker>
     <Id>Dmitry-Vereskun</Id>
     <Name>Дмитрий Верескун</Name>
     <CompanyName>ROKO Labs</CompanyName>
@@ -197,6 +226,13 @@
     <ContactsUrl>https://www.linkedin.com/in/egor-grishechko</ContactsUrl>
   </Speaker>
   <Speaker>
+    <Id>Elizabeth-Holenok</Id>
+    <Name>Елизавета Голенок</Name>
+    <CompanyName>ООО «Готех»</CompanyName>
+    <CompanyUrl>http://www.gotechsoftware.com/</CompanyUrl>
+    <Description>Ведущий программист в компании ООО «Готех», занимается разработкой веб-приложений 5 лет (ASP.NET, WCF, WebForms, WebAPI, MVC), сейчас занимается вопросами оптимизации системы, так же занималась разработкой систем планирования маршрутов на C++ (бесплатформенные инерциальные навигационные системы, необитаемые подводные аппараты). В свободное время изучает «внутренности» Mono.</Description>
+  </Speaker>
+  <Speaker>
     <Id>Igor-Labutin</Id>
     <Name>Игорь Лабутин</Name>
     <CompanyName>Lanit-Tercom</CompanyName>
@@ -226,6 +262,14 @@
     <BlogUrl>http://www.engineerspock.com/</BlogUrl>
     <TwitterUrl>https://twitter.com/engineerspock</TwitterUrl>
     <HabrUrl>https://habrahabr.ru/users/engineerspock</HabrUrl>
+  </Speaker>
+  <Speaker>
+    <Id>Ivan-Kochurkin</Id>
+    <Name>Иван Кочуркин</Name>
+    <CompanyName>Positive Technologies</CompanyName>
+    <CompanyUrl>https://www.ptsecurity.com/</CompanyUrl>
+    <Description>Работает в Positive Technologies над анализаторами кода, в том числе над открытым PT.PM. Подрабатывает в Swiftify, веб-сервисе для преобразования кода Objective-C в Swift. В прошлом занимался веб-разработкой, обработкой звука и изображений. ​В свободное время пишет статьи на техническую тематику и принимает участие в разработке открытого ПО.
+  https://habrahabr.ru/users/KvanTTT/https://twitter.com/KvanTTThttp://facebook.com/ivan.kochurkin</Description>
   </Speaker>
   <Speaker>
     <Id>Ivan-Pashchenko</Id>

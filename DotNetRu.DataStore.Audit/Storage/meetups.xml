@@ -15,6 +15,21 @@
     </TalkIds>
   </Meetup>
   <Meetup>
+    <Id>MskDotNet-10</Id>
+    <Name>Встреча MskDotNet №10</Name>
+    <CommunityId>MskDotNet</CommunityId>
+    <Date>2017-05-25</Date>
+    <FriendIds>
+      <FriendId>DeutscheBank</FriendId>
+    </FriendIds>
+    <VenueId>Msk-DeutscheBank</VenueId>
+    <TalkIds>
+      <TalkId>Developing-with-Asp-NET-Core-and-React-JS</TalkId>
+      <TalkId>TDD-in-a-hard-enterprise</TalkId>
+      <TalkId>AvaloniaUI-Cross-platform-Open-Source-UI-Framework</TalkId>
+    </TalkIds>
+  </Meetup>
+  <Meetup>
     <Id>MskDotNet-11</Id>
     <Name>Встреча MskDotNet №11</Name>
     <CommunityId>MskDotNet</CommunityId>
@@ -26,6 +41,34 @@
     <TalkIds>
       <TalkId>The-load-testing-tools</TalkId>
       <TalkId>Cross-platform-server-development-tools-DotNet</TalkId>
+    </TalkIds>
+  </Meetup>
+  <Meetup>
+    <Id>MskDotNet-12</Id>
+    <Name>Встреча MskDotNet №12</Name>
+    <CommunityId>MskDotNet</CommunityId>
+    <Date>2017-09-12</Date>
+    <FriendIds>
+      <FriendId>FINAM</FriendId>
+    </FriendIds>
+    <VenueId>Msk-FINAM</VenueId>
+    <TalkIds>
+      <TalkId>Migration-to-Mono</TalkId>
+      <TalkId>Theory-and-practice-of-parsing-formal-languages</TalkId>
+    </TalkIds>
+  </Meetup>
+  <Meetup>
+    <Id>MskDotNet-13</Id>
+    <Name>Встреча MskDotNet №13</Name>
+    <CommunityId>MskDotNet</CommunityId>
+    <Date>2017-10-12</Date>
+    <FriendIds>
+      <FriendId>Rambler</FriendId>
+    </FriendIds>
+    <VenueId>Msk-Rambler</VenueId>
+    <TalkIds>
+      <TalkId>Flexible-modularity-with-AOP-tools</TalkId>
+      <TalkId>ReactJSDotNET-experience-of-server-rendering</TalkId>
     </TalkIds>
   </Meetup>
   <Meetup>
@@ -82,6 +125,20 @@
     <TalkIds>
       <TalkId>HoloLens-for-non-gaming-applications</TalkId>
       <TalkId>State-of-the-NET-Performance</TalkId>
+    </TalkIds>
+  </Meetup>
+  <Meetup>
+    <Id>MskDotNet-6</Id>
+    <Name>Встреча MskDotNet №6</Name>
+    <CommunityId>MskDotNet</CommunityId>
+    <Date>2017-01-25</Date>
+    <FriendIds>
+      <FriendId>SberbankTechnology</FriendId>
+    </FriendIds>
+    <VenueId>Msk-SberbankTechnology</VenueId>
+    <TalkIds>
+      <TalkId>Theory-and-practice-of-NET-benchmarking-1</TalkId>
+      <TalkId>Theory-and-practice-of-NET-benchmarking-2</TalkId>
     </TalkIds>
   </Meetup>
   <Meetup>

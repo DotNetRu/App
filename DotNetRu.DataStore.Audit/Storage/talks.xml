@@ -51,6 +51,16 @@
     <VideoUrl>https://www.youtube.com/watch?v=sriXY5HErxA</VideoUrl>
   </Talk>
   <Talk>
+    <Id>AvaloniaUI-Cross-platform-Open-Source-UI-Framework</Id>
+    <SpeakerIds>
+      <SpeakerId>Nikita-Tsukanov</SpeakerId>
+    </SpeakerIds>
+    <Title>AvaloniaUI Cross-platform Open Source UI Framework</Title>
+    <Description>Рассказ об AvaloniaUI, её будущем и настоящем.</Description>
+    <SlidesUrl>https://www.slideshare.net/EliasFofanov/avalonia-ui-crossplatform-open-source-ui-framework</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=UHuf009wdQo</VideoUrl>
+  </Talk>
+  <Talk>
     <Id>Basic-principles-of-micro-services</Id>
     <SpeakerIds>
       <SpeakerId>Andrey-Matveev</SpeakerId>
@@ -222,6 +232,18 @@
     <VideoUrl>https://www.youtube.com/watch?v=89-Jtc_Vh9w</VideoUrl>
   </Talk>
   <Talk>
+    <Id>Development-web-using-Asp-NET-Core-and-React-JS</Id>
+    <SpeakerIds>
+      <SpeakerId>Dmitry-Tezhelnikov</SpeakerId>
+    </SpeakerIds>
+    <Title>Разработка вэб-решений с использованием ASP.NET Core и React.JS</Title>
+    <Description>Разговор будет об эволюции в мире вэб-приложений, современных технологиях и фреймворках, которые используют в вэб-разработке сегодня.
+Будут рассмотрены основные архитектурные принципы при создании вэб-решений для разных клиентов. Как сделать и запустить бэк-энд на ASP.NET Core в Visual Studio 2017. Далее разговор будет о том, как написать и запустить фронт-энд с использованием React.JS, Redux, Routing, Bootstrap в IntelliJ IDEA 2017.
+В конце доклада небольшой взгляд в будущее - что нас ждет в вэб-разработке завтра.</Description>
+    <SlidesUrl>https://www.slideshare.net/MskDotNet/aspnetcore-reactjs</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=wg6QPyxDDho</VideoUrl>
+  </Talk>
+  <Talk>
     <Id>Domain-Driven-Design-Profit-of-Little-Blood</Id>
     <SpeakerIds>
       <SpeakerId>Alex-Merson</SpeakerId>
@@ -314,6 +336,16 @@
     <Title>F# Battle: За и Против</Title>
     <Description>Роман Неволин и Дмитрий Нестерук обсуждают F#</Description>
     <VideoUrl>https://www.youtube.com/watch?v=67-gi3Rj0kE</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>Flexible-modularity-with-AOP-tools</Id>
+    <SpeakerIds>
+      <SpeakerId>Andrei-Kirpichev</SpeakerId>
+    </SpeakerIds>
+    <Title>Гибкая модульность инструментами АОП</Title>
+    <Description>На встрече мы поговорим о том, как не бояться изменений и как быть к ним готовым. Дадим определение АОП. Рассмотрим проблемы, хорошо решаемые инструментами АОП. Построим модульную систему, применяя АОП. Сравним динамический и статический подходы в АОП. Дадим рекомендации по применению АОП. Вас ждет река теории впадающая в море практики.</Description>
+    <SlidesUrl>https://www.slideshare.net/MskDotNet/ss-81089185</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=3fycJVD85Z4</VideoUrl>
   </Talk>
   <Talk>
     <Id>Functional-NET</Id>
@@ -494,6 +526,16 @@
     <SlidesUrl>https://www.slideshare.net/SpbDotNet/microsoft-80832808</SlidesUrl>
   </Talk>
   <Talk>
+    <Id>Migration-to-Mono</Id>
+    <SpeakerIds>
+      <SpeakerId>Elizabeth-Holenok</SpeakerId>
+    </SpeakerIds>
+    <Title>Переходим на Mono или как это было</Title>
+    <Description>Если вы пишете веб-приложения только под Windows, однако рано или поздно выбор определенной ОС накладывает на вас свои ограничения, наступает время подумать о кроссплатформенной разработке веб-приложений. К чему нужно быть готовым? Mono или .Net Core? Готовы ли Вы портировать свое приложение? Елизавета расскажет об опыте перехода на Mono и о том, как это было, с какими проблемами столкнулись в первую очередь и почему. Помимо ASP.NET приложений Елизавета с коллегами так же портировали MS SQL Server под Docker. А в заключении разговор пойдет о веб-серверах для ASP.NET приложений: — XSP — Apache — nginx​</Description>
+    <SlidesUrl>https://www.slideshare.net/MskDotNet/mono-81322609</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=MrcROy5-tn0</VideoUrl>
+  </Talk>
+  <Talk>
     <Id>Modern-static-analyzers</Id>
     <SpeakerIds>
       <SpeakerId>Vladimir-Koshelev</SpeakerId>
@@ -584,6 +626,16 @@
 13 января 2016 года на NDC London мы презентовали широкой общественности наш новый продукт — кросс-платформенную IDE для разработки .NET приложений. В своей презентации я покажу как работает Rider, расскажу про продукт, что будет включать первая версия и что самое интересное — расскажу как мы сделали гибридное приложение, работающее одновременно на Java и .NET.</Description>
     <SlidesUrl>http://www.slideshare.net/yu5k3/project-rider</SlidesUrl>
     <VideoUrl>https://www.youtube.com/watch?v=wq5qvizDUIM</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>ReactJSDotNET-experience-of-server-rendering</Id>
+    <SpeakerIds>
+      <SpeakerId>Daniel-Sokoluk</SpeakerId>
+    </SpeakerIds>
+    <Title>ReactJS.NET — опыт рендеринга на сервере </Title>
+    <Description>Поговорим что такое React и зачем он нужен разработчикам, разберемся что такое ReactJS.NET и JavaScriptServices. Обсудим как интегрировать React компоненты в существующую Razor разметку или даже в WebForms. Расскажем о том какие проблемы с производительностью существуют при серверном рендеринге компонентов и как их решать.</Description>
+    <SlidesUrl>https://www.slideshare.net/MskDotNet/reactjsnet-81089090</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=lu29RO2JtG8</VideoUrl>
   </Talk>
   <Talk>
     <Id>RESTFul-API-how-and-why</Id>
@@ -745,6 +797,16 @@ And how all of these things help build zero-copy streams aka Channels/Pipelines 
     <SlidesUrl>https://www.slideshare.net/SpbDotNet/rest-api-c-swagger</SlidesUrl>
   </Talk>
   <Talk>
+    <Id>TDD-in-a-hard-enterprise</Id>
+    <SpeakerIds>
+      <SpeakerId>Andrey-Zaytsev</SpeakerId>
+    </SpeakerIds>
+    <Title>TDD в суровом энтерпрайзе</Title>
+    <Description>Разговор будет о том, когда, как и для чего писать тесты, а так же будет сказано как проходить интервью на позицию junior test automation engineer. Озвучатся мысли о том, почему TDD не взлетает, и может ли что-то быть хуже. Также будет рассмотрено на примере использование таких инструментов, как NUnit, FluentAssertions, Moq, HttpMock.</Description>
+    <SlidesUrl>https://www.slideshare.net/EliasFofanov/tdd-79115954</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=x67E1yakRR4</VideoUrl>
+  </Talk>
+  <Talk>
     <Id>The-load-testing-tools</Id>
     <SpeakerIds>
       <SpeakerId>Vyacheslav-Smirnov</SpeakerId>
@@ -753,6 +815,40 @@ And how all of these things help build zero-copy streams aka Channels/Pipelines 
     <Description>Есть три богатыря нагрузочного тестирования, и каждый инструмент хорош по-своему: Microsoft Visual Studio, HP LoadRunner и Apache JMeter. Хотели бы Вы выполнять нагрузочное тестирование удобно, бесплатно и правильно? Тогда можно взять от каждого инструмента самое лучшее. Впомогательные инструменты и структуру теста удобно взять из HP LoadRunner. Писать и отлаживать скрипт удобнее всего в Visual Studio. А подавать нагрузку, создавать контролируемое количество потоков выполнения, из Apache JMeter.​</Description>
     <SlidesUrl>https://www.slideshare.net/EliasFofanov/ss-79112646</SlidesUrl>
     <VideoUrl>https://www.youtube.com/watch?v=8wDoiyIOd14</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>Theory-and-practice-of-NET-benchmarking-1</Id>
+    <SpeakerIds>
+      <SpeakerId>Andrey-Akinshin</SpeakerId>
+    </SpeakerIds>
+    <Title>Теория и практика .NET-бенчмаркинга (часть 1 из 2)</Title>
+    <Description>Изо дня в день многие .NET-разработчики сталкиваются с проблемами производительности в своих проектах. Для их решения необходимо уметь корректно замерять время, чтобы иметь возможность сравнить эффективность разных подходов. Если речь идёт о минутах или часах, то такие замеры можно выполнять "на глаз". Если речь идёт о секундах, то с задачей хорошо справится ваш любимый профайлер. Но если речь идёт о миллисекундах, микросекундах или даже наносекундах, то у вас могут возникнуть проблемы. Замеры коротких промежутков времени - очень сложная задача, многие программисты не умеют решать её корректно. Доклад будет состоять из двух частей. В первой мы поговорим про теорию бенчмаркинга. Как это делать правильно, на что нужно обращать внимание и как не обмануть себя при анализе результатов. Во второй части посмотрим на практические примеры, в которых истинное положение дел с производительностью совсем не очевидно до проведения замеров. Разбор подобных ситуаций помогает понять сколько граблей раскидано повсюду для начинающих любителей побенчмаркать и почему сложно делать микрозамеры времени на современном железе.</Description>
+    <SeeAlsoTalkIds>
+      <TalkId>Theory-and-practice-of-NET-benchmarking-2</TalkId>
+    </SeeAlsoTalkIds>
+    <SlidesUrl>http://www.slideshare.net/AndreyAkinshin/net-25012017</SlidesUrl>
+  </Talk>
+  <Talk>
+    <Id>Theory-and-practice-of-NET-benchmarking-2</Id>
+    <SpeakerIds>
+      <SpeakerId>Andrey-Akinshin</SpeakerId>
+    </SpeakerIds>
+    <Title>Теория и практика .NET-бенчмаркинга (часть 2 из 2)</Title>
+    <Description>Вторая часть рассказа о бенчмаркинге. Изо дня в день многие .NET-разработчики сталкиваются с проблемами производительности в своих проектах. Для их решения необходимо уметь корректно замерять время, чтобы иметь возможность сравнить эффективность разных подходов. Если речь идёт о минутах или часах, то такие замеры можно выполнять "на глаз". Если речь идёт о секундах, то с задачей хорошо справится ваш любимый профайлер. Но если речь идёт о миллисекундах, микросекундах или даже наносекундах, то у вас могут возникнуть проблемы. Замеры коротких промежутков времени - очень сложная задача, многие программисты не умеют решать её корректно. Доклад будет состоять из двух частей. В первой мы поговорим про теорию бенчмаркинга. Как это делать правильно, на что нужно обращать внимание и как не обмануть себя при анализе результатов. Во второй части посмотрим на практические примеры, в которых истинное положение дел с производительностью совсем не очевидно до проведения замеров. Разбор подобных ситуаций помогает понять сколько граблей раскидано повсюду для начинающих любителей побенчмаркать и почему сложно делать микрозамеры времени на современном железе.</Description>
+    <SeeAlsoTalkIds>
+      <TalkId>Theory-and-practice-of-NET-benchmarking-1</TalkId>
+    </SeeAlsoTalkIds>
+    <SlidesUrl>http://www.slideshare.net/AndreyAkinshin/net-25012017</SlidesUrl>
+  </Talk>
+  <Talk>
+    <Id>Theory-and-practice-of-parsing-formal-languages</Id>
+    <SpeakerIds>
+      <SpeakerId>Ivan-Kochurkin</SpeakerId>
+    </SpeakerIds>
+    <Title>Теория и практика парсинга формальных языков</Title>
+    <Description>В докладе рассказывается об инструментах и практиках парсинга формальных языков: как исходного кода, так и собственных предметно-ориентированных (DSL). О том, какие бывают парсеры и проблемы при их использовании. Доклад повествует как о базовых вещах: о токенах, деревьях разбора, абстрактных синтаксических деревьях (AST), так и о продвинутых: о методах обработки препроцессорных директив и восстановления от ошибок, о парсинге островных, нечувствительных к регистру языков и фрагментов кода. Помимо парсинга в докладе затрагивается тема обработки древовидных структур. Материал доклада основан на практических задачах и акцентирован на технологиях ANTLR и Roslyn.</Description>
+    <SlidesUrl>https://www.slideshare.net/MskDotNet/ss-81322013</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=KHawyp9jE8U</VideoUrl>
   </Talk>
   <Talk>
     <Id>Theory-of-AppSec-Net</Id>
