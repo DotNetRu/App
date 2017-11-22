@@ -6,43 +6,50 @@ using XamarinEvolve.Clients.Portable;
 
 namespace XamarinEvolve.Clients.UI
 {
-	using XamarinEvolve.Utils.Helpers;
+    using XamarinEvolve.Utils.Helpers;
 
 	public partial class SettingsPage
 	{
     public override AppPage PageType => AppPage.Information;
 
-      readonly SettingsViewModel vm;
+        readonly SettingsViewModel vm;
 
-    public SettingsPage()
-    {
-        this.InitializeComponent();
+        public SettingsPage()
+        {
+            this.InitializeComponent();
 
-        this.BindingContext = this.vm = new SettingsViewModel();
-      var adjust = Device.RuntimePlatform != Device.Android ? 1 : -this.vm.AboutItems.Count + 1;
-        this.ListViewAbout.HeightRequest = (this.vm.AboutItems.Count * this.ListViewAbout.RowHeight) - adjust;
-        this.ListViewAbout.ItemTapped += (sender, e) => this.ListViewAbout.SelectedItem = null;
-      adjust = Device.RuntimePlatform != Device.Android ? 1 : -this.vm.TechnologyItems.Count + 1;
-        this.ListViewTechnology.HeightRequest = (this.vm.TechnologyItems.Count * this.ListViewTechnology.RowHeight) - adjust;
-        this.ListViewTechnology.ItemTapped += (sender, e) => this.ListViewTechnology.SelectedItem = null;
+            this.BindingContext = this.vm = new SettingsViewModel();
+            var adjust = Device.RuntimePlatform != Device.Android ? 1 : -this.vm.AboutItems.Count + 1;
+            this.ListViewAbout.HeightRequest = (this.vm.AboutItems.Count * this.ListViewAbout.RowHeight) - adjust;
+            this.ListViewAbout.ItemTapped += (sender, e) => this.ListViewAbout.SelectedItem = null;
+            adjust = Device.RuntimePlatform != Device.Android ? 1 : -this.vm.TechnologyItems.Count + 1;
+            this.ListViewTechnology.HeightRequest = (this.vm.TechnologyItems.Count * this.ListViewTechnology.RowHeight) - adjust;
+            this.ListViewTechnology.ItemTapped += (sender, e) => this.ListViewTechnology.SelectedItem = null;
+        }
+
+        bool dialogShown;
+        int count;
+
+        async void OnTapGestureRecognizerTapped(object sender, EventArgs args)
+        {
+            this.count++;
+            if (this.dialogShown || this.count < 8)
+                return;
+
+            this.dialogShown = true;
+
+            App.Logger.Track("AppCreditsFound-8MoreThan92");
+
+            await this.DisplayAlert("Credits",
+              AboutThisApp.Credits, "OK");
+        }
+
+        protected override void OnPropertyChanged(string propertyName = null)
+        {
+            base.OnPropertyChanged(propertyName);
+            if (propertyName == "Title")
+                MessagingCenter.Send(this, "UIUpdate");
+        }
     }
-
-    bool dialogShown;
-    int count;
-
-    async void OnTapGestureRecognizerTapped(object sender, EventArgs args)
-    {
-        this.count++;
-      if (this.dialogShown || this.count < 8)
-        return;
-
-        this.dialogShown = true;
-
-      App.Logger.Track("AppCreditsFound-8MoreThan92");
-
-      await this.DisplayAlert("Credits",
-        AboutThisApp.Credits, "OK");
-    }
-  }
 }
 

@@ -15,6 +15,7 @@ namespace DotNetRu.Droid
     public class EvolveSearchBarRenderer : SearchBarRenderer
     {
         
+
         protected override void OnElementChanged(ElementChangedEventArgs<SearchBar> e)
         {
             base.OnElementChanged(e);

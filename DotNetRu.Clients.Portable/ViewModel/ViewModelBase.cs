@@ -43,7 +43,15 @@ namespace XamarinEvolve.Clients.Portable
             this.Navigation = navigation;
             Resources = new LocalizedResources(typeof(ApplicationResources.AppResources), CurrentLanguage);
         }
+        //public new void OnPropertyChanged([CallerMemberName]string property = null)
+        //{
+        //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
+        //    //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(MessageKeys.LanguageChanged));
 
+
+        //}
+
+        //public new event PropertyChangedEventHandler PropertyChanged;
         /// <summary>
         /// The INIT.
         /// </summary>

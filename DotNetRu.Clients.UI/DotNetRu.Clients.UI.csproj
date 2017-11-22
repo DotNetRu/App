@@ -55,6 +55,9 @@
     <Compile Include="Converters\StringConverters.cs" />
     <Compile Include="Effects\ShadowEffect.cs" />
     <Compile Include="LocalizedResources.cs" />
+    <Compile Include="Pages\BottomTabbedPage.xaml.cs">
+      <DependentUpon>BottomTabbedPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Home\ConferenceFeedbackPage.xaml.cs">
       <DependentUpon>ConferenceFeedbackPage.xaml</DependentUpon>
     </Compile>
@@ -424,6 +427,12 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
       <LogicalName>RatingControl.xaml</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\BottomTabbedPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="..\packages\Xamarin.Forms.2.4.0.282\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.4.0.282\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets')" />

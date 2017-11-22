@@ -1,3 +1,10 @@
+﻿using Android.Graphics;
+using Android.Support.V4.Content;
+using Android.Support.V4.Content.Res;
+using Android.Util;
+using DotNetRu.Droid.Helpers;
+using Naxam.Controls.Platform.Droid;
+
 ﻿using DotNetRu.Droid.Helpers;
 
 namespace DotNetRu.Droid
@@ -93,6 +100,7 @@ namespace DotNetRu.Droid
 
             FormsAppCompatActivity.ToolbarResource = Resource.Layout.toolbar;
             FormsAppCompatActivity.TabLayoutResource = Resource.Layout.tabs;
+            SetupBottomTabs();
 
             base.OnCreate(savedInstanceState);
 
@@ -177,6 +185,60 @@ namespace DotNetRu.Droid
             // return true;
             // }
             return true;
+        }
+
+        void SetupBottomTabs()
+        {
+            var stateList = new Android.Content.Res.ColorStateList(
+                new int[][] {
+                    new int[] { Android.Resource.Attribute.StateChecked
+                    },
+                    new int[] { Android.Resource.Attribute.StateEnabled
+                    }
+                },
+                new int[] {
+                    Android.Graphics.Color.Azure, //Selected
+                    Android.Graphics.Color.White //Normal
+                });
+
+            BottomTabbedRenderer.BackgroundColor = new Android.Graphics.Color(ResourcesCompat.GetColor(Resources, Resource.Color.primary, null));//Resources.GetColor(Resource.Color.primaryDark);
+            BottomTabbedRenderer.FontSize = 12f;
+            BottomTabbedRenderer.IconSize = 16;
+            BottomTabbedRenderer.ItemTextColor = stateList;
+            BottomTabbedRenderer.ItemIconTintList = stateList;
+            //BottomTabbedRenderer.Typeface = Typeface.CreateFromAsset(this.Assets, "architep.ttf");
+            BottomTabbedRenderer.ItemBackgroundResource = Resource.Drawable.bnv_selector;
+            BottomTabbedRenderer.ItemSpacing = 4;
+            BottomTabbedRenderer.ItemPadding = new Xamarin.Forms.Thickness(6);
+            BottomTabbedRenderer.BottomBarHeight = 56;
+            BottomTabbedRenderer.ItemAlign = ItemAlignFlags.Center;
+            BottomTabbedRenderer.MenuItemIconSetter = (menuItem, iconSource, selected) =>
+            {
+                /*TODO: Make it without switch. Following variant does not work :(
+                resId = Resources.GetIdentifier(iconSource.File, "drawable", PackageName);  //returns 0 always
+                */
+                if (iconSource != null)
+                {
+                    switch (iconSource.File)
+                    {
+                        case "menu_feed.png":
+                            menuItem.SetIcon(Resource.Drawable.menu_feed);
+                            break;
+                        case "menu_speakers.png":
+                            menuItem.SetIcon(Resource.Drawable.menu_speakers);
+                            break;
+                        case "menu_events.png":
+                            menuItem.SetIcon(Resource.Drawable.menu_events);
+                            break;
+                        case "menu_sponsors.png":
+                            menuItem.SetIcon(Resource.Drawable.menu_sponsors);
+                            break;
+                        case "menu_info.png":
+                            menuItem.SetIcon(Resource.Drawable.menu_info);
+                            break;
+                    }
+                }
+            };
         }
 
         public override void OnRequestPermissionsResult(
