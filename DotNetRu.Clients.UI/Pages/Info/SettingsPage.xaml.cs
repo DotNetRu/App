@@ -48,7 +48,7 @@ namespace XamarinEvolve.Clients.UI
         {
             base.OnPropertyChanged(propertyName);
             if (propertyName == "Title")
-                MessagingCenter.Send(this, "UIUpdate");
+                MessagingCenter.Send(this, MessageKeys.UpdateTitles);
         }
     }
 }

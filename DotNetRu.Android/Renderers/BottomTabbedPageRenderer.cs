@@ -4,6 +4,7 @@ using Naxam.Controls.Platform.Droid;
 using Naxam.Controls.Platform.Droid.Utils;
 using Xamarin.Forms;
 using XamarinEvolve.Clients.UI;
+using XamarinEvolve.Utils.Helpers;
 using BottomTabbedPage = XamarinEvolve.Clients.UI.Pages.BottomTabbedPage;
 
 
@@ -15,7 +16,7 @@ namespace DotNetRu.Droid.Renderers
     {
         public BottomTabbedPageRenderer()
         {
-            MessagingCenter.Subscribe<SettingsPage>(this, "UIUpdate", model => { this.HandlePagesChanged(); });
+            MessagingCenter.Subscribe<SettingsPage>(this, MessageKeys.UpdateTitles, model => { this.HandlePagesChanged(); });
         }
     }
 }

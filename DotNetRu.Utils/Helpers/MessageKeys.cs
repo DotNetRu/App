@@ -4,6 +4,8 @@
     {
         public const string LanguageChanged = "LanguageChanged";
 
+        public const string UpdateTitles = "UpdateTitles";
+
         public const string NavigateToEvent = "navigate_event";
 
         public const string NavigateToSession = "navigate_session";

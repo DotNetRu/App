@@ -354,9 +354,6 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <AndroidResource Include="Resources\values-ru\strings.xml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
     <AndroidResource Include="Resources\drawable\Splash.axml">
       <SubType>Designer</SubType>
     </AndroidResource>

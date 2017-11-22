@@ -45,7 +45,6 @@ namespace XamarinEvolve.Clients.UI
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var t = XamarinEvolve.Clients.Portable.ApplicationResources.AppResources.Culture;
             try
             {
                 if (!(value is TalkModel session))
