@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+<forms:BottomTabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ui="clr-namespace:XamarinEvolve.Clients.UI;assembly=XamarinEvolve.Clients.UI"
+             xmlns:forms="clr-namespace:Naxam.Controls.Forms;assembly=Naxam.BottomTabbedPage.Forms"
              x:Class="XamarinEvolve.Clients.UI.Pages.BottomTabbedPage">
     <!--Pages can be added as references or inline-->
     <NavigationPage Title="{Binding NewsTitle}"  BarTextColor="White">
@@ -59,4 +60,4 @@
             <ui:SettingsPage />
         </x:Arguments>
     </NavigationPage>
-</TabbedPage>
+</forms:BottomTabbedPage>

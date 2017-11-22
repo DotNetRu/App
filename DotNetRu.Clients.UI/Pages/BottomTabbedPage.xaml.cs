@@ -12,7 +12,7 @@ using XamarinEvolve.Clients.Portable.ViewModel;
 namespace XamarinEvolve.Clients.UI.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class BottomTabbedPage : TabbedPage
+    public partial class BottomTabbedPage
     {
         public BottomTabbedPage()
         {
