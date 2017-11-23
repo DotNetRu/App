@@ -4463,9 +4463,6 @@ namespace DotNetRu.Droid
 			// aapt resource value: 0x7f080024
 			public const int mr_user_route_category_name = 2131230756;
 			
-			// aapt resource value: 0x7f080053
-			public const int news = 2131230803;
-			
 			// aapt resource value: 0x7f08004a
 			public const int password_toggle_content_description = 2131230794;
 			
