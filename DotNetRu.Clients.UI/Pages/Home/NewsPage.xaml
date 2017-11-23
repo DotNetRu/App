@@ -9,7 +9,7 @@
     x:Class="XamarinEvolve.Clients.UI.NewsPage"
     x:Name="NewsScreen"
     Title="{Binding Resources[News]}"
-    Icon="menu_feed.png"
+    Icon="tab_feed.png"
     BackgroundColor="{DynamicResource WindowBackgroundTable}">
     <ContentPage.Resources>
      <ResourceDictionary>
