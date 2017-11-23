@@ -39,8 +39,6 @@
     <Compile Include="Abstractions\ICategoryStore.cs" />
     <Compile Include="Abstractions\IEventStore.cs" />
     <Compile Include="Abstractions\INotificationStore.cs" />
-    <Compile Include="Abstractions\ISessionStore.cs" />
-    <Compile Include="Abstractions\ISpeakerStore.cs" />
     <Compile Include="Abstractions\IFriendStore.cs" />
     <Compile Include="Extensions\FriendEntityExtensions.cs" />
     <Compile Include="Extensions\MeetupEntityExtensions.cs" />
@@ -67,6 +65,7 @@
     <Compile Include="Entities\SpeakerEntity.cs" />
     <Compile Include="Entities\TalkEntity.cs" />
     <Compile Include="Entities\VenueEntity.cs" />
+    <Compile Include="Services\IEntityService.cs" />
     <Compile Include="Services\MeetupService.cs" />
     <Compile Include="Services\SpeakerService.cs" />
     <Compile Include="Services\TalkService.cs" />
