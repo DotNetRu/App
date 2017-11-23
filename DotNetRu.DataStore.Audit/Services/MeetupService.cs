@@ -18,6 +18,6 @@
         {
             var meetupEntities = ParseHelper.ParseXml<MeetupEntity>("Meetups");
             return meetupEntities.Select(x => x.ToModel());
-        }
+        }        
     }
 }
