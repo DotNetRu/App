@@ -21,7 +21,7 @@
         {
             this.InitializeComponent();
 
-            var meetupModel = MeetupService.GetMeetups().First();
+            var meetupModel = MeetupService.Meetups.First();
                 
             this.BindingContext = this.meetupViewModel = new MeetupViewModel(this.Navigation, meetupModel);
 

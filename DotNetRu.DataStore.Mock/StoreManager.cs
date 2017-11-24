@@ -37,14 +37,6 @@ namespace XamarinEvolve.DataStore.Mock
 
         public ICategoryStore CategoryStore => this._categoryStore ?? (this._categoryStore = DependencyService.Get<ICategoryStore>());
 
-        ISessionStore _sessionStore;
-
-        public ISessionStore SessionStore => this._sessionStore ?? (this._sessionStore = DependencyService.Get<ISessionStore>());
-
-        ISpeakerStore _speakerStore;
-
-        public ISpeakerStore SpeakerStore => this._speakerStore ?? (this._speakerStore = DependencyService.Get<ISpeakerStore>());
-
         IEventStore _eventStore;
 
         public IEventStore EventStore => this._eventStore ?? (this._eventStore = DependencyService.Get<IEventStore>());

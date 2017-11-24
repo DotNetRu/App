@@ -1,356 +1,543 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Meetups>
-<Meetup>
-  <Id>MskDotNet-1</Id>
-  <Name>Встреча MskDotNet №1</Name>
-  <CommunityId>MskDotNet</CommunityId>
-  <Date>2016-08-11</Date>
-  <FriendIds>
-    <FriendId>CUSTIS</FriendId>
-  </FriendIds>
-  <VenueId>Msk-CUSTIS</VenueId>
-  <TalkIds>
-    <TalkId>Concurrency-and-distributed-computing-with-Akka</TalkId>
-    <TalkId>WinDbg-and-friends</TalkId>
-  </TalkIds>
-</Meetup>
-<Meetup>
-  <Id>MskDotNet-2</Id>
-  <Name>Встреча MskDotNet №2</Name>
-  <CommunityId>MskDotNet</CommunityId>
-  <Date>2016-09-09</Date>
-  <FriendIds>
-    <FriendId>Microsoft</FriendId>
-  </FriendIds>
-  <VenueId>Msk-Microsoft</VenueId>
-  <TalkIds>
-    <TalkId>RESTFul-API-how-and-why</TalkId>
-    <TalkId>Web-Single-Sign-On-in-10-lines</TalkId>
-  </TalkIds>
-</Meetup>
-<Meetup>
-  <Id>SpbDotNet-1</Id>
-  <Name>Встреча SpbDotNet №1</Name>
-  <CommunityId>SpbDotNet</CommunityId>
-  <Date>2015-06-06</Date>
-  <FriendIds>
-    <FriendId>ITGM</FriendId>
-  </FriendIds>
-  <VenueId>Spb-House</VenueId>
-  <TalkIds>
-    <TalkId>Future-of-Net-development</TalkId>
-    <TalkId>DSL-unexpurgated</TalkId>
-    <TalkId>Dynamic-Prototyping</TalkId>
-    <TalkId>Net-Web-news</TalkId>
-  </TalkIds>
-</Meetup>
-<Meetup>
-  <Id>SpbDotNet-10</Id>
-  <Name>Встреча SpbDotNet №10</Name>
-  <CommunityId>SpbDotNet</CommunityId>
-  <Date>2016-04-02</Date>
-  <FriendIds>
-    <FriendId>ITGM</FriendId>
-  </FriendIds>
-  <VenueId>Spb-House</VenueId>
-  <TalkIds>
-    <TalkId>Machine-learning</TalkId>
-    <TalkId>Modern-static-analyzers</TalkId>
-    <TalkId>Using-static-analyzers</TalkId>
-    <TalkId>Round-table-code-analysis</TalkId>
-    <TalkId>Practice-WCF</TalkId>
-  </TalkIds>
-</Meetup>
-<Meetup>
-  <Id>SpbDotNet-11</Id>
-  <Name>Встреча SpbDotNet №11</Name>
-  <CommunityId>SpbDotNet</CommunityId>
-  <Date>2016-05-20</Date>
-  <FriendIds>
-    <FriendId>Luxoft</FriendId>
-  </FriendIds>
-  <VenueId>Spb-Osen</VenueId>
-  <TalkIds>
-    <TalkId>Data-grid</TalkId>
-    <TalkId>DotNet-and-Java</TalkId>
-    <TalkId>Ignite-in-action</TalkId>
-  </TalkIds>
-</Meetup>
-<Meetup>
-  <Id>SpbDotNet-12</Id>
-  <Name>Встреча SpbDotNet №12</Name>
-  <CommunityId>SpbDotNet</CommunityId>
-  <Date>2016-06-02</Date>
-  <FriendIds>
-    <FriendId>DotNext</FriendId>
-  </FriendIds>
-  <VenueId>Spb-Radison</VenueId>
-  <TalkIds>
-    <TalkId>Brave-CoreCLR</TalkId>
-    <TalkId>GC-Tips</TalkId>
-  </TalkIds>
-</Meetup>
-<Meetup>
-  <Id>SpbDotNet-13</Id>
-  <Name>Встреча SpbDotNet №13</Name>
-  <CommunityId>SpbDotNet</CommunityId>
-  <Date>2016-07-23</Date>
-  <FriendIds>
-    <FriendId>ITGM</FriendId>
-  </FriendIds>
-  <VenueId>Spb-House</VenueId>
-  <TalkIds>
-    <TalkId>OAuth-for-NET</TalkId>
-    <TalkId>PowerShell-in-the-name-of-good</TalkId>
-    <TalkId>WTF-is-Service-Fabric</TalkId>
-    <TalkId>Delegates-and-Events</TalkId>
-  </TalkIds>
-</Meetup>
-<Meetup>
-  <Id>SpbDotNet-14</Id>
-  <Name>Встреча SpbDotNet №14</Name>
-  <CommunityId>SpbDotNet</CommunityId>
-  <Date>2016-09-15</Date>
-  <FriendIds>
-    <FriendId>SEMrush</FriendId>
-  </FriendIds>
-  <VenueId>Spb-Ankor</VenueId>
-  <TalkIds>
-    <TalkId>Functional-NET</TalkId>
-    <TalkId>Experience-and-prospects-of-F</TalkId>
-    <TalkId>F-Battle</TalkId>
-  </TalkIds>
-</Meetup>
-<Meetup>
-  <Id>SpbDotNet-15</Id>
-  <Name>Встреча SpbDotNet №15</Name>
-  <CommunityId>SpbDotNet</CommunityId>
-  <Date>2016-11-17</Date>
-  <FriendIds>
-    <FriendId>JetBrains</FriendId>
-  </FriendIds>
-  <VenueId>Spb-Universe</VenueId>
-  <TalkIds>
-    <TalkId>Automatic-Input-Output-Matching</TalkId>
-    <TalkId>Rider-Internals</TalkId>
-  </TalkIds>
-</Meetup>
-<Meetup>
-  <Id>SpbDotNet-16</Id>
-  <Name>Встреча SpbDotNet №16</Name>
-  <CommunityId>SpbDotNet</CommunityId>
-  <Date>2016-12-03</Date>
-  <FriendIds>
-    <FriendId>ITGM</FriendId>
-  </FriendIds>
-  <VenueId>Spb-House</VenueId>
-  <TalkIds>
-    <TalkId>In-search-of-paradigm</TalkId>
-    <TalkId>Octopus-in-the-name-of-good</TalkId>
-    <TalkId>Windows-Containers</TalkId>
-    <TalkId>SQL-Server-Performance-101</TalkId>
-  </TalkIds>
-</Meetup>
-<Meetup>
-  <Id>SpbDotNet-17</Id>
-  <Name>Встреча SpbDotNet №17</Name>
-  <CommunityId>SpbDotNet</CommunityId>
-  <Date>2017-02-09</Date>
-  <FriendIds>
-    <FriendId>JetBrains</FriendId>
-  </FriendIds>
-  <VenueId>Spb-Universe</VenueId>
-  <TalkIds>
-    <TalkId>Memory-Model</TalkId>
-    <TalkId>Web-security</TalkId>
-  </TalkIds>
-</Meetup>
-<Meetup>
-  <Id>SpbDotNet-18</Id>
-  <Name>Встреча SpbDotNet №18</Name>
-  <CommunityId>SpbDotNet</CommunityId>
-  <Date>2017-03-02</Date>
-  <FriendIds>
-    <FriendId>EPAM</FriendId>
-  </FriendIds>
-  <VenueId>Spb-Welcome</VenueId>
-  <TalkIds>
-    <TalkId>EF-Core-Internals</TalkId>
-    <TalkId>UI-Automation-Tests</TalkId>
-  </TalkIds>
-</Meetup>
-<Meetup>
-  <Id>SpbDotNet-19</Id>
-  <Name>Встреча SpbDotNet №19</Name>
-  <CommunityId>SpbDotNet</CommunityId>
-  <Date>2017-04-13</Date>
-  <FriendIds>
-    <FriendId>Selectel</FriendId>
-  </FriendIds>
-  <VenueId>Spb-Selectel</VenueId>
-  <TalkIds>
-    <TalkId>Advanced-use-of-NuGet-and-MSBuild</TalkId>
-    <TalkId>EF-chips-and-pitfalls</TalkId>
-  </TalkIds>
-</Meetup>
-<Meetup>
-  <Id>SpbDotNet-2</Id>
-  <Name>Встреча SpbDotNet №2</Name>
-  <CommunityId>SpbDotNet</CommunityId>
-  <Date>2015-06-25</Date>
-  <FriendIds>
-    <FriendId>DataArt</FriendId>
-  </FriendIds>
-  <VenueId>Spb-Telekom</VenueId>
-  <TalkIds>
-    <TalkId>Theory-of-AppSec-Net</TalkId>
-    <TalkId>Practice-of-AppSec-NET</TalkId>
-  </TalkIds>
-</Meetup>
-<Meetup>
-  <Id>SpbDotNet-20</Id>
-  <Name>Встреча SpbDotNet №20</Name>
-  <CommunityId>SpbDotNet</CommunityId>
-  <Date>2017-05-14</Date>
-  <FriendIds>
-    <FriendId>ITGM</FriendId>
-  </FriendIds>
-  <VenueId>Spb-House</VenueId>
-  <TalkIds>
-    <TalkId>Functional-tricks-for-OO-code</TalkId>
-    <TalkId>CORS-in-ASP</TalkId>
-    <TalkId>DotaNetoLogia-SPb-2017</TalkId>
-    <TalkId>VM-via-F</TalkId>
-    <TalkId>Swagger</TalkId>
-  </TalkIds>
-</Meetup>
-<Meetup>
-  <Id>SpbDotNet-21</Id>
-  <Name>Встреча SpbDotNet №21</Name>
-  <CommunityId>SpbDotNet</CommunityId>
-  <Date>2017-06-15</Date>
-  <FriendIds>
-    <FriendId>Intermedia</FriendId>
-  </FriendIds>
-  <VenueId>Spb-Intermedia</VenueId>
-  <TalkIds>
-    <TalkId>Design-Pattern-Observations</TalkId>
-    <TalkId>Good-Ideas-in-Programming-Languages</TalkId>
-  </TalkIds>
-</Meetup>
-<Meetup>
-  <Id>SpbDotNet-22</Id>
-  <Name>Встреча SpbDotNet №22</Name>
-  <CommunityId>SpbDotNet</CommunityId>
-  <Date>2017-07-27</Date>
-  <FriendIds>
-    <FriendId>Tinkoff</FriendId>
-  </FriendIds>
-  <VenueId>Spb-AnyDayCafe</VenueId>
-  <TalkIds>
-    <TalkId>Roslyn-obvious</TalkId>
-    <TalkId>UWP-life</TalkId>
-  </TalkIds>
-</Meetup>
-<Meetup>
-  <Id>SpbDotNet-3</Id>
-  <Name>Встреча SpbDotNet №3</Name>
-  <CommunityId>SpbDotNet</CommunityId>
-  <Date>2015-07-22</Date>
-  <FriendIds>
-    <FriendId>JetBrains</FriendId>
-  </FriendIds>
-  <VenueId>Spb-Universe</VenueId>
-  <TalkIds>
-    <TalkId>Multitasking-apps-on-NET</TalkId>
-    <TalkId>Round-table-multi-threading</TalkId>
-  </TalkIds>
-</Meetup>
-<Meetup>
-  <Id>SpbDotNet-4</Id>
-  <Name>Встреча SpbDotNet №4</Name>
-  <CommunityId>SpbDotNet</CommunityId>
-  <Date>2015-08-25</Date>
-  <FriendIds>
-    <FriendId>Luxoft</FriendId>
-  </FriendIds>
-  <VenueId>Spb-Osen</VenueId>
-  <TalkIds>
-    <TalkId>Review-of-CSharp-6</TalkId>
-    <TalkId>Review-of-FSharp-4</TalkId>
-    <TalkId>Roslyn-Code-Analysis</TalkId>
-    <TalkId>Debugging-tools-in-Msvs-2015</TalkId>
-    <TalkId>Xamarin-mobile-apps</TalkId>
-  </TalkIds>
-</Meetup>
-<Meetup>
-  <Id>SpbDotNet-5</Id>
-  <Name>Встреча SpbDotNet №5</Name>
-  <CommunityId>SpbDotNet</CommunityId>
-  <Date>2015-10-14</Date>
-  <FriendIds>
-    <FriendId>JetBrains</FriendId>
-  </FriendIds>
-  <VenueId>Spb-Universe</VenueId>
-  <TalkIds>
-    <TalkId>How-it-works-DLR</TalkId>
-    <TalkId>Lack-of-CPlusPlus-in-CSharp-1</TalkId>
-  </TalkIds>
-</Meetup>
-<Meetup>
-  <Id>SpbDotNet-6</Id>
-  <Name>Встреча SpbDotNet №6</Name>
-  <CommunityId>SpbDotNet</CommunityId>
-  <Date>2015-11-16</Date>
-  <FriendIds>
-    <FriendId>EMC</FriendId>
-  </FriendIds>
-  <VenueId>Spb-Ostrov</VenueId>
-  <TalkIds>
-    <TalkId>Common-mistakes-in-Net-benchmarks</TalkId>
-  </TalkIds>
-</Meetup>
-<Meetup>
-  <Id>SpbDotNet-7</Id>
-  <Name>Встреча SpbDotNet №7</Name>
-  <CommunityId>SpbDotNet</CommunityId>
-  <Date>2015-11-28</Date>
-  <FriendIds>
-    <FriendId>ITGM</FriendId>
-  </FriendIds>
-  <VenueId>Spb-House</VenueId>
-  <TalkIds>
-    <TalkId>Lack-of-CPlusPlus-in-CSharp-2</TalkId>
-    <TalkId>Sandboxing-in-Net-CLR</TalkId>
-    <TalkId>Using-Apache-Cordova</TalkId>
-    <TalkId>Simple-cross-platform-Web-server</TalkId>
-  </TalkIds>
-</Meetup>
-<Meetup>
-  <Id>SpbDotNet-8</Id>
-  <Name>Встреча SpbDotNet №8</Name>
-  <CommunityId>SpbDotNet</CommunityId>
-  <Date>2015-12-22</Date>
-  <FriendIds>
-    <FriendId>DataArt</FriendId>
-  </FriendIds>
-  <VenueId>Spb-Telekom</VenueId>
-  <TalkIds>
-    <TalkId>Design-of-RESTFul-API</TalkId>
-    <TalkId>Structured-logging</TalkId>
-  </TalkIds>
-</Meetup>
-<Meetup>
-  <Id>SpbDotNet-9</Id>
-  <Name>Встреча SpbDotNet №9</Name>
-  <CommunityId>SpbDotNet</CommunityId>
-  <Date>2016-02-09</Date>
-  <FriendIds>
-    <FriendId>JetBrains</FriendId>
-  </FriendIds>
-  <VenueId>Spb-Universe</VenueId>
-  <TalkIds>
-    <TalkId>Project-Rider</TalkId>
-    <TalkId>Lack-of-CPlusPlus-in-CSharp-3</TalkId>
-  </TalkIds>
-</Meetup>
+  <Meetup>
+    <Id>MskDotNet-1</Id>
+    <Name>Встреча MskDotNet №1</Name>
+    <CommunityId>MskDotNet</CommunityId>
+    <Date>2016-08-11</Date>
+    <FriendIds>
+      <FriendId>CUSTIS</FriendId>
+    </FriendIds>
+    <VenueId>Msk-CUSTIS</VenueId>
+    <TalkIds>
+      <TalkId>Concurrency-and-distributed-computing-with-Akka</TalkId>
+      <TalkId>WinDbg-and-friends</TalkId>
+    </TalkIds>
+  </Meetup>
+  <Meetup>
+    <Id>MskDotNet-10</Id>
+    <Name>Встреча MskDotNet №10</Name>
+    <CommunityId>MskDotNet</CommunityId>
+    <Date>2017-05-25</Date>
+    <FriendIds>
+      <FriendId>DeutscheBank</FriendId>
+    </FriendIds>
+    <VenueId>Msk-DeutscheBank</VenueId>
+    <TalkIds>
+      <TalkId>Developing-with-Asp-NET-Core-and-React-JS</TalkId>
+      <TalkId>TDD-in-a-hard-enterprise</TalkId>
+      <TalkId>AvaloniaUI-Cross-platform-Open-Source-UI-Framework</TalkId>
+    </TalkIds>
+  </Meetup>
+  <Meetup>
+    <Id>MskDotNet-11</Id>
+    <Name>Встреча MskDotNet №11</Name>
+    <CommunityId>MskDotNet</CommunityId>
+    <Date>2017-06-20</Date>
+    <FriendIds>
+      <FriendId>Tinkoff</FriendId>
+    </FriendIds>
+    <VenueId>Msk-Tinkoff</VenueId>
+    <TalkIds>
+      <TalkId>The-load-testing-tools</TalkId>
+      <TalkId>Cross-platform-server-development-tools-DotNet</TalkId>
+    </TalkIds>
+  </Meetup>
+  <Meetup>
+    <Id>MskDotNet-12</Id>
+    <Name>Встреча MskDotNet №12</Name>
+    <CommunityId>MskDotNet</CommunityId>
+    <Date>2017-09-12</Date>
+    <FriendIds>
+      <FriendId>FINAM</FriendId>
+    </FriendIds>
+    <VenueId>Msk-FINAM</VenueId>
+    <TalkIds>
+      <TalkId>Migration-to-Mono</TalkId>
+      <TalkId>Theory-and-practice-of-parsing-formal-languages</TalkId>
+    </TalkIds>
+  </Meetup>
+  <Meetup>
+    <Id>MskDotNet-13</Id>
+    <Name>Встреча MskDotNet №13</Name>
+    <CommunityId>MskDotNet</CommunityId>
+    <Date>2017-10-12</Date>
+    <FriendIds>
+      <FriendId>Rambler</FriendId>
+    </FriendIds>
+    <VenueId>Msk-Rambler</VenueId>
+    <TalkIds>
+      <TalkId>Flexible-modularity-with-AOP-tools</TalkId>
+      <TalkId>ReactJSDotNET-experience-of-server-rendering</TalkId>
+    </TalkIds>
+  </Meetup>
+  <Meetup>
+    <Id>MskDotNet-2</Id>
+    <Name>Встреча MskDotNet №2</Name>
+    <CommunityId>MskDotNet</CommunityId>
+    <Date>2016-09-09</Date>
+    <FriendIds>
+      <FriendId>Microsoft</FriendId>
+    </FriendIds>
+    <VenueId>Msk-Microsoft</VenueId>
+    <TalkIds>
+      <TalkId>RESTFul-API-how-and-why</TalkId>
+      <TalkId>Web-Single-Sign-On-in-10-lines</TalkId>
+    </TalkIds>
+  </Meetup>
+  <Meetup>
+    <Id>MskDotNet-3</Id>
+    <Name>Встреча MskDotNet №3</Name>
+    <CommunityId>MskDotNet</CommunityId>
+    <Date>2016-10-13</Date>
+    <FriendIds>
+      <FriendId>Yandex</FriendId>
+    </FriendIds>
+    <VenueId>Msk-Yandex</VenueId>
+    <TalkIds>
+      <TalkId>Exceptions-handling-in-C-Sharp</TalkId>
+      <TalkId>Messaging-systems-using-MassTransit-as-an-example</TalkId>
+    </TalkIds>
+  </Meetup>
+  <Meetup>
+    <Id>MskDotNet-4</Id>
+    <Name>Встреча MskDotNet №4</Name>
+    <CommunityId>MskDotNet</CommunityId>
+    <Date>2016-11-14</Date>
+    <FriendIds>
+      <FriendId>Kaspersky</FriendId>
+    </FriendIds>
+    <VenueId>Msk-Kaspersky</VenueId>
+    <TalkIds>
+      <TalkId>What-is-useful-in-analyzing-dumps-for-NET-developers</TalkId>
+      <TalkId>Desktop-applications-optimizing-methods</TalkId>
+    </TalkIds>
+  </Meetup>
+  <Meetup>
+    <Id>MskDotNet-5</Id>
+    <Name>Встреча MskDotNet №5</Name>
+    <CommunityId>MskDotNet</CommunityId>
+    <Date>2016-12-07</Date>
+    <FriendIds>
+      <FriendId>CUSTIS</FriendId>
+    </FriendIds>
+    <VenueId>Msk-CUSTIS</VenueId>
+    <TalkIds>
+      <TalkId>HoloLens-for-non-gaming-applications</TalkId>
+      <TalkId>State-of-the-NET-Performance</TalkId>
+    </TalkIds>
+  </Meetup>
+  <Meetup>
+    <Id>MskDotNet-6</Id>
+    <Name>Встреча MskDotNet №6</Name>
+    <CommunityId>MskDotNet</CommunityId>
+    <Date>2017-01-25</Date>
+    <FriendIds>
+      <FriendId>SberbankTechnology</FriendId>
+    </FriendIds>
+    <VenueId>Msk-SberbankTechnology</VenueId>
+    <TalkIds>
+      <TalkId>Theory-and-practice-of-NET-benchmarking-1</TalkId>
+      <TalkId>Theory-and-practice-of-NET-benchmarking-2</TalkId>
+    </TalkIds>
+  </Meetup>
+  <Meetup>
+    <Id>MskDotNet-7</Id>
+    <Name>Встреча MskDotNet №7</Name>
+    <CommunityId>MskDotNet</CommunityId>
+    <Date>2017-02-21</Date>
+    <FriendIds>
+      <FriendId>Odin</FriendId>
+    </FriendIds>
+    <VenueId>Msk-Odin</VenueId>
+    <TalkIds>
+      <TalkId>Autofac-as-IoC-DI</TalkId>
+      <TalkId>Design-and-development-of-modular-applications</TalkId>
+      <TalkId>Automatic-exception-search</TalkId>
+    </TalkIds>
+  </Meetup>
+  <Meetup>
+    <Id>MskDotNet-8</Id>
+    <Name>Встреча MskDotNet №8</Name>
+    <CommunityId>MskDotNet</CommunityId>
+    <Date>2017-03-21</Date>
+    <FriendIds>
+      <FriendId>Microsoft</FriendId>
+    </FriendIds>
+    <VenueId>Msk-DigitalOctober</VenueId>
+    <TalkIds>
+      <TalkId>Things-of-the-Internet-of-Things</TalkId>
+      <TalkId>Building-a-secure-architecture-for-IoT</TalkId>
+      <TalkId>Industrial-IoT-in-practice</TalkId>
+    </TalkIds>
+  </Meetup>
+  <Meetup>
+    <Id>MskDotNet-9</Id>
+    <Name>Встреча MskDotNet №9</Name>
+    <CommunityId>MskDotNet</CommunityId>
+    <Date>2017-04-20</Date>
+    <FriendIds>
+      <FriendId>DodoPizza</FriendId>
+    </FriendIds>
+    <VenueId>Msk-DodoPizza</VenueId>
+    <TalkIds>
+      <TalkId>Basic-principles-of-micro-services</TalkId>
+      <TalkId>Configuration-in-DotNet</TalkId>
+    </TalkIds>
+  </Meetup>
+  <Meetup>
+    <Id>SarDotNet-1</Id>
+    <Name>Встреча SarDotNet №1</Name>
+    <CommunityId>SarDotNet</CommunityId>
+    <Date>2017-09-30</Date>
+    <FriendIds>
+      <FriendId>EPAM</FriendId>
+    </FriendIds>
+    <VenueId>Sar-Pioneer</VenueId>
+    <TalkIds>
+      <TalkId>Microsoft-Technologies-Current-Trends</TalkId>
+      <TalkId>Basics-of-Profiling-and-Optimizing</TalkId>
+      <TalkId>CSharp-Syntactic-Sugar</TalkId>
+    </TalkIds>
+  </Meetup>
+  <Meetup>
+    <Id>SpbDotNet-1</Id>
+    <Name>Встреча SpbDotNet №1</Name>
+    <CommunityId>SpbDotNet</CommunityId>
+    <Date>2015-06-06</Date>
+    <FriendIds>
+      <FriendId>ITGM</FriendId>
+    </FriendIds>
+    <VenueId>Spb-House</VenueId>
+    <TalkIds>
+      <TalkId>Future-of-Net-development</TalkId>
+      <TalkId>DSL-unexpurgated</TalkId>
+      <TalkId>Dynamic-Prototyping</TalkId>
+      <TalkId>Net-Web-news</TalkId>
+    </TalkIds>
+  </Meetup>
+  <Meetup>
+    <Id>SpbDotNet-10</Id>
+    <Name>Встреча SpbDotNet №10</Name>
+    <CommunityId>SpbDotNet</CommunityId>
+    <Date>2016-04-02</Date>
+    <FriendIds>
+      <FriendId>ITGM</FriendId>
+    </FriendIds>
+    <VenueId>Spb-House</VenueId>
+    <TalkIds>
+      <TalkId>Machine-learning</TalkId>
+      <TalkId>Modern-static-analyzers</TalkId>
+      <TalkId>Using-static-analyzers</TalkId>
+      <TalkId>Round-table-code-analysis</TalkId>
+      <TalkId>Practice-WCF</TalkId>
+    </TalkIds>
+  </Meetup>
+  <Meetup>
+    <Id>SpbDotNet-11</Id>
+    <Name>Встреча SpbDotNet №11</Name>
+    <CommunityId>SpbDotNet</CommunityId>
+    <Date>2016-05-20</Date>
+    <FriendIds>
+      <FriendId>Luxoft</FriendId>
+    </FriendIds>
+    <VenueId>Spb-Osen</VenueId>
+    <TalkIds>
+      <TalkId>Data-grid</TalkId>
+      <TalkId>DotNet-and-Java</TalkId>
+      <TalkId>Ignite-in-action</TalkId>
+    </TalkIds>
+  </Meetup>
+  <Meetup>
+    <Id>SpbDotNet-12</Id>
+    <Name>Встреча SpbDotNet №12</Name>
+    <CommunityId>SpbDotNet</CommunityId>
+    <Date>2016-06-02</Date>
+    <FriendIds>
+      <FriendId>DotNext</FriendId>
+    </FriendIds>
+    <VenueId>Spb-Radison</VenueId>
+    <TalkIds>
+      <TalkId>Brave-CoreCLR</TalkId>
+      <TalkId>GC-Tips</TalkId>
+    </TalkIds>
+  </Meetup>
+  <Meetup>
+    <Id>SpbDotNet-13</Id>
+    <Name>Встреча SpbDotNet №13</Name>
+    <CommunityId>SpbDotNet</CommunityId>
+    <Date>2016-07-23</Date>
+    <FriendIds>
+      <FriendId>ITGM</FriendId>
+    </FriendIds>
+    <VenueId>Spb-House</VenueId>
+    <TalkIds>
+      <TalkId>OAuth-for-NET</TalkId>
+      <TalkId>PowerShell-in-the-name-of-good</TalkId>
+      <TalkId>WTF-is-Service-Fabric</TalkId>
+      <TalkId>Delegates-and-Events</TalkId>
+    </TalkIds>
+  </Meetup>
+  <Meetup>
+    <Id>SpbDotNet-14</Id>
+    <Name>Встреча SpbDotNet №14</Name>
+    <CommunityId>SpbDotNet</CommunityId>
+    <Date>2016-09-15</Date>
+    <FriendIds>
+      <FriendId>SEMrush</FriendId>
+    </FriendIds>
+    <VenueId>Spb-Ankor</VenueId>
+    <TalkIds>
+      <TalkId>Functional-NET</TalkId>
+      <TalkId>Experience-and-prospects-of-F</TalkId>
+      <TalkId>F-Battle</TalkId>
+    </TalkIds>
+  </Meetup>
+  <Meetup>
+    <Id>SpbDotNet-15</Id>
+    <Name>Встреча SpbDotNet №15</Name>
+    <CommunityId>SpbDotNet</CommunityId>
+    <Date>2016-11-17</Date>
+    <FriendIds>
+      <FriendId>JetBrains</FriendId>
+    </FriendIds>
+    <VenueId>Spb-Universe</VenueId>
+    <TalkIds>
+      <TalkId>Automatic-Input-Output-Matching</TalkId>
+      <TalkId>Rider-Internals</TalkId>
+    </TalkIds>
+  </Meetup>
+  <Meetup>
+    <Id>SpbDotNet-16</Id>
+    <Name>Встреча SpbDotNet №16</Name>
+    <CommunityId>SpbDotNet</CommunityId>
+    <Date>2016-12-03</Date>
+    <FriendIds>
+      <FriendId>ITGM</FriendId>
+    </FriendIds>
+    <VenueId>Spb-House</VenueId>
+    <TalkIds>
+      <TalkId>In-search-of-paradigm</TalkId>
+      <TalkId>Octopus-in-the-name-of-good</TalkId>
+      <TalkId>Windows-Containers</TalkId>
+      <TalkId>SQL-Server-Performance-101</TalkId>
+    </TalkIds>
+  </Meetup>
+  <Meetup>
+    <Id>SpbDotNet-17</Id>
+    <Name>Встреча SpbDotNet №17</Name>
+    <CommunityId>SpbDotNet</CommunityId>
+    <Date>2017-02-09</Date>
+    <FriendIds>
+      <FriendId>JetBrains</FriendId>
+    </FriendIds>
+    <VenueId>Spb-Universe</VenueId>
+    <TalkIds>
+      <TalkId>Memory-Model</TalkId>
+      <TalkId>Web-security</TalkId>
+    </TalkIds>
+  </Meetup>
+  <Meetup>
+    <Id>SpbDotNet-18</Id>
+    <Name>Встреча SpbDotNet №18</Name>
+    <CommunityId>SpbDotNet</CommunityId>
+    <Date>2017-03-02</Date>
+    <FriendIds>
+      <FriendId>EPAM</FriendId>
+    </FriendIds>
+    <VenueId>Spb-Welcome</VenueId>
+    <TalkIds>
+      <TalkId>EF-Core-Internals</TalkId>
+      <TalkId>UI-Automation-Tests</TalkId>
+    </TalkIds>
+  </Meetup>
+  <Meetup>
+    <Id>SpbDotNet-19</Id>
+    <Name>Встреча SpbDotNet №19</Name>
+    <CommunityId>SpbDotNet</CommunityId>
+    <Date>2017-04-13</Date>
+    <FriendIds>
+      <FriendId>Selectel</FriendId>
+    </FriendIds>
+    <VenueId>Spb-Selectel</VenueId>
+    <TalkIds>
+      <TalkId>Advanced-use-of-NuGet-and-MSBuild</TalkId>
+      <TalkId>EF-chips-and-pitfalls</TalkId>
+    </TalkIds>
+  </Meetup>
+  <Meetup>
+    <Id>SpbDotNet-2</Id>
+    <Name>Встреча SpbDotNet №2</Name>
+    <CommunityId>SpbDotNet</CommunityId>
+    <Date>2015-06-25</Date>
+    <FriendIds>
+      <FriendId>DataArt</FriendId>
+    </FriendIds>
+    <VenueId>Spb-Telekom</VenueId>
+    <TalkIds>
+      <TalkId>Theory-of-AppSec-Net</TalkId>
+      <TalkId>Practice-of-AppSec-NET</TalkId>
+    </TalkIds>
+  </Meetup>
+  <Meetup>
+    <Id>SpbDotNet-20</Id>
+    <Name>Встреча SpbDotNet №20</Name>
+    <CommunityId>SpbDotNet</CommunityId>
+    <Date>2017-05-14</Date>
+    <FriendIds>
+      <FriendId>ITGM</FriendId>
+    </FriendIds>
+    <VenueId>Spb-House</VenueId>
+    <TalkIds>
+      <TalkId>Functional-tricks-for-OO-code</TalkId>
+      <TalkId>CORS-in-ASP</TalkId>
+      <TalkId>DotaNetoLogia-SPb-2017</TalkId>
+      <TalkId>VM-via-F</TalkId>
+      <TalkId>Swagger</TalkId>
+    </TalkIds>
+  </Meetup>
+  <Meetup>
+    <Id>SpbDotNet-21</Id>
+    <Name>Встреча SpbDotNet №21</Name>
+    <CommunityId>SpbDotNet</CommunityId>
+    <Date>2017-06-15</Date>
+    <FriendIds>
+      <FriendId>Intermedia</FriendId>
+    </FriendIds>
+    <VenueId>Spb-Intermedia</VenueId>
+    <TalkIds>
+      <TalkId>Design-Pattern-Observations</TalkId>
+      <TalkId>Good-Ideas-in-Programming-Languages</TalkId>
+    </TalkIds>
+  </Meetup>
+  <Meetup>
+    <Id>SpbDotNet-22</Id>
+    <Name>Встреча SpbDotNet №22</Name>
+    <CommunityId>SpbDotNet</CommunityId>
+    <Date>2017-07-27</Date>
+    <FriendIds>
+      <FriendId>Tinkoff</FriendId>
+    </FriendIds>
+    <VenueId>Spb-AnyDayCafe</VenueId>
+    <TalkIds>
+      <TalkId>Roslyn-obvious</TalkId>
+      <TalkId>UWP-life</TalkId>
+    </TalkIds>
+  </Meetup>
+  <Meetup>
+    <Id>SpbDotNet-23</Id>
+    <Name>Встреча SpbDotNet №23</Name>
+    <CommunityId>SpbDotNet</CommunityId>
+    <Date>2017-09-28</Date>
+    <FriendIds>
+      <FriendId>JetBrains</FriendId>
+    </FriendIds>
+    <VenueId>Spb-Universe</VenueId>
+    <TalkIds>
+      <TalkId>Async-Await-Afraid-to-Ask</TalkId>
+      <TalkId>Domain-Driven-Design-Profit-of-Little-Blood</TalkId>
+    </TalkIds>
+  </Meetup>
+  <Meetup>
+    <Id>SpbDotNet-3</Id>
+    <Name>Встреча SpbDotNet №3</Name>
+    <CommunityId>SpbDotNet</CommunityId>
+    <Date>2015-07-22</Date>
+    <FriendIds>
+      <FriendId>JetBrains</FriendId>
+    </FriendIds>
+    <VenueId>Spb-Universe</VenueId>
+    <TalkIds>
+      <TalkId>Multitasking-apps-on-NET</TalkId>
+      <TalkId>Round-table-multi-threading</TalkId>
+    </TalkIds>
+  </Meetup>
+  <Meetup>
+    <Id>SpbDotNet-4</Id>
+    <Name>Встреча SpbDotNet №4</Name>
+    <CommunityId>SpbDotNet</CommunityId>
+    <Date>2015-08-25</Date>
+    <FriendIds>
+      <FriendId>Luxoft</FriendId>
+    </FriendIds>
+    <VenueId>Spb-Osen</VenueId>
+    <TalkIds>
+      <TalkId>Review-of-CSharp-6</TalkId>
+      <TalkId>Review-of-FSharp-4</TalkId>
+      <TalkId>Roslyn-Code-Analysis</TalkId>
+      <TalkId>Debugging-tools-in-Msvs-2015</TalkId>
+      <TalkId>Xamarin-mobile-apps</TalkId>
+    </TalkIds>
+  </Meetup>
+  <Meetup>
+    <Id>SpbDotNet-5</Id>
+    <Name>Встреча SpbDotNet №5</Name>
+    <CommunityId>SpbDotNet</CommunityId>
+    <Date>2015-10-14</Date>
+    <FriendIds>
+      <FriendId>JetBrains</FriendId>
+    </FriendIds>
+    <VenueId>Spb-Universe</VenueId>
+    <TalkIds>
+      <TalkId>How-it-works-DLR</TalkId>
+      <TalkId>Lack-of-CPlusPlus-in-CSharp-1</TalkId>
+    </TalkIds>
+  </Meetup>
+  <Meetup>
+    <Id>SpbDotNet-6</Id>
+    <Name>Встреча SpbDotNet №6</Name>
+    <CommunityId>SpbDotNet</CommunityId>
+    <Date>2015-11-16</Date>
+    <FriendIds>
+      <FriendId>EMC</FriendId>
+    </FriendIds>
+    <VenueId>Spb-Ostrov</VenueId>
+    <TalkIds>
+      <TalkId>Common-mistakes-in-Net-benchmarks</TalkId>
+    </TalkIds>
+  </Meetup>
+  <Meetup>
+    <Id>SpbDotNet-7</Id>
+    <Name>Встреча SpbDotNet №7</Name>
+    <CommunityId>SpbDotNet</CommunityId>
+    <Date>2015-11-28</Date>
+    <FriendIds>
+      <FriendId>ITGM</FriendId>
+    </FriendIds>
+    <VenueId>Spb-House</VenueId>
+    <TalkIds>
+      <TalkId>Lack-of-CPlusPlus-in-CSharp-2</TalkId>
+      <TalkId>Sandboxing-in-Net-CLR</TalkId>
+      <TalkId>Using-Apache-Cordova</TalkId>
+      <TalkId>Simple-cross-platform-Web-server</TalkId>
+    </TalkIds>
+  </Meetup>
+  <Meetup>
+    <Id>SpbDotNet-8</Id>
+    <Name>Встреча SpbDotNet №8</Name>
+    <CommunityId>SpbDotNet</CommunityId>
+    <Date>2015-12-22</Date>
+    <FriendIds>
+      <FriendId>DataArt</FriendId>
+    </FriendIds>
+    <VenueId>Spb-Telekom</VenueId>
+    <TalkIds>
+      <TalkId>Design-of-RESTFul-API</TalkId>
+      <TalkId>Structured-logging</TalkId>
+    </TalkIds>
+  </Meetup>
+  <Meetup>
+    <Id>SpbDotNet-9</Id>
+    <Name>Встреча SpbDotNet №9</Name>
+    <CommunityId>SpbDotNet</CommunityId>
+    <Date>2016-02-09</Date>
+    <FriendIds>
+      <FriendId>JetBrains</FriendId>
+    </FriendIds>
+    <VenueId>Spb-Universe</VenueId>
+    <TalkIds>
+      <TalkId>Project-Rider</TalkId>
+      <TalkId>Lack-of-CPlusPlus-in-CSharp-3</TalkId>
+    </TalkIds>
+  </Meetup>
 </Meetups>

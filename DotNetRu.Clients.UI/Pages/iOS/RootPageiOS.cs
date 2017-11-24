@@ -47,13 +47,7 @@
                             case AppPage.Talk:
                                 this.Navigate(AppPage.Meetup);
                                 await this.CurrentPage.Navigation.PopToRootAsync();
-                                var session = await DependencyService.Get<ISessionStore>().GetAppIndexSession(p.Id);
-                                if (session == null)
-                                {
-                                    break;
-                                }
 
-                                await this.CurrentPage.Navigation.PushAsync(new TalkPage(session));
                                 break;
                             case AppPage.Speaker:
                                 this.Navigate(AppPage.Speakers);

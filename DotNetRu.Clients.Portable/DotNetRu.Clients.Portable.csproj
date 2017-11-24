@@ -62,7 +62,6 @@
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Interfaces\ILocalize.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Settings.cs" />
     <Compile Include="TweetHelper.cs" />
     <Compile Include="ViewModel\MeetupViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />

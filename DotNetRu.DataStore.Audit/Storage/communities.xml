@@ -1,10 +1,15 @@
-<communitites>
-<Community>
-  <Id>MskDotNet</Id>
-  <Name>MskDotNet</Name>
-</Community>
-<Community>
-  <Id>SpbDotNet</Id>
-  <Name>SpbDotNet</Name>
-</Community>
-</communitites>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Communities>
+  <Community>
+    <Id>MskDotNet</Id>
+    <Name>MskDotNet</Name>
+  </Community>
+  <Community>
+    <Id>SarDotNet</Id>
+    <Name>SarDotNet</Name>
+  </Community>
+  <Community>
+    <Id>SpbDotNet</Id>
+    <Name>SpbDotNet</Name>
+  </Community>
+</Communities>

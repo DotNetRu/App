@@ -7,6 +7,7 @@
     using System.Windows.Input;
 
     using DotNetRu.DataStore.Audit.Models;
+    using DotNetRu.DataStore.Audit.Services;
 
     using FormsToolkit;
 

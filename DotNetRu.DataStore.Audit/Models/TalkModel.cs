@@ -15,6 +15,8 @@
             this.Categories = new List<Category>();
         }
 
+        public string TalkId { get; set; }
+
         /// <summary>
         /// Gets or sets the title.
         /// </summary>

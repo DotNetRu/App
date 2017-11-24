@@ -4,8 +4,7 @@
 
     using DotNetRu.DataStore.Audit.Entities;
     using DotNetRu.DataStore.Audit.Models;
-
-    using XamarinEvolve.Clients.Portable;
+    using DotNetRu.DataStore.Audit.Services;
 
     public static class TalkEntityExtensions
     {
@@ -13,6 +12,7 @@
         {
             return new TalkModel
                        {
+                           TalkId = talkEntity.Id,
                            Title = talkEntity.Title,
                            Abstract = talkEntity.Description,
                            PresentationUrl = talkEntity.SlidesUrl,
