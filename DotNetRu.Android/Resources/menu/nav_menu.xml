@@ -1,33 +1,34 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <group android:id="@+id/nav_section_main"
-        android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_feed"
-            android:icon="@drawable/menu_feed"
-            android:title="News"/>
-        <item
-            android:id="@+id/nav_speakers"
-            android:icon="@drawable/menu_speakers"
-            android:title="Speakers" />
-        <item
-            android:id="@+id/nav_events"
-            android:icon="@drawable/menu_events"
-            android:title="Meetups" />
-    </group>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
-     <item android:title="Information" >
-        <menu>
-            <item
-                android:id="@+id/nav_sponsors"
-                android:icon="@drawable/menu_sponsors"
-                android:title="Friends"
-                android:checkable="true" />
-            <item
-                android:title="About"
-                android:icon="@drawable/menu_info"
-                android:id="@+id/nav_settings"
-                android:checkable="true" />
-        </menu>
-    </item>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+  <group android:id="@+id/nav_section_main"
+         android:checkableBehavior="single">
+    <item
+      android:id="@+id/nav_feed"
+      android:icon="@drawable/menu_feed"
+      android:title="News" />
+    <item
+      android:id="@+id/nav_speakers"
+      android:icon="@drawable/menu_speakers"
+      android:title="Speakers" />
+    <item
+      android:id="@+id/nav_events"
+      android:icon="@drawable/menu_events"
+      android:title="Meetups" />
+  </group>
+
+  <item android:title="Information">
+    <menu>
+      <item
+        android:id="@+id/nav_sponsors"
+        android:icon="@drawable/menu_sponsors"
+        android:title="Friends"
+        android:checkable="true" />
+      <item
+        android:title="About"
+        android:icon="@drawable/menu_info"
+        android:id="@+id/nav_settings"
+        android:checkable="true" />
+    </menu>
+  </item>
 </menu>

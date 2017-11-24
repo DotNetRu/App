@@ -179,6 +179,15 @@ namespace XamarinEvolve.Clients.Portable.ApplicationResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Meetup.
+        /// </summary>
+        public static string Meetup {
+            get {
+                return ResourceManager.GetString("Meetup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Meetups.
         /// </summary>
         public static string Meetups {
@@ -292,6 +301,15 @@ namespace XamarinEvolve.Clients.Portable.ApplicationResources {
         public static string TalkRecording {
             get {
                 return ResourceManager.GetString("TalkRecording", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Talks.
+        /// </summary>
+        public static string Talks {
+            get {
+                return ResourceManager.GetString("Talks", resourceCulture);
             }
         }
         

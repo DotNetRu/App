@@ -16,6 +16,7 @@ namespace DotNetRu.Droid
             Thread.CurrentThread.CurrentCulture = ci;
             Thread.CurrentThread.CurrentUICulture = ci;
         }
+
         public CultureInfo GetCurrentCultureInfo()
         {
            

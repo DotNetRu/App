@@ -63,6 +63,7 @@
     <Compile Include="Interfaces\ILocalize.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TweetHelper.cs" />
+    <Compile Include="ViewModel\BottomBarViewModel.cs" />
     <Compile Include="ViewModel\MeetupViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="Model\Extensions\TalkModelExtensions.cs" />

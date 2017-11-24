@@ -18,7 +18,7 @@ namespace XamarinEvolve.Droid.Effects
                 if (Android.OS.Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.Lollipop)
                 {
                     var control = this.Control as Android.Widget.ImageView;
-                    var effect = (ShadowEffect)this.Element.Effects.FirstOrDefault(e => e is ShadowEffect);
+                    var effect = (ShadowEffect) this.Element.Effects.FirstOrDefault(e => e is ShadowEffect);
 
                     control.Elevation = Math.Max(effect.DistanceX, effect.DistanceY);
                 }

@@ -121,7 +121,7 @@
     <value>О проекте</value>
   </data>
   <data name="AboutText" xml:space="preserve">
-    <value>Всероссийское .NET сообщество\nDotNetRu - группа независимых сообществ .NET разработчиков со всей России. Мы объединяем людей вокруг .NET платформы, чтобы способствовать обмену опытом и знаниями. Проводим регулярные встречи, чтобы делиться новостями и лучшими практиками в разработке программных продуктов. </value>
+    <value>Всероссийское .NET сообщество DotNetRu - группа независимых сообществ .NET разработчиков со всей России. Мы объединяем людей вокруг .NET платформы, чтобы способствовать обмену опытом и знаниями. Проводим регулярные встречи, чтобы делиться новостями и лучшими практиками в разработке программных продуктов. </value>
   </data>
   <data name="Abstract" xml:space="preserve">
     <value>Аннотация</value>
@@ -169,7 +169,7 @@
     <value>Лекторы</value>
   </data>
   <data name="Talk" xml:space="preserve">
-    <value>Лекция</value>
+    <value>Доклад</value>
   </data>
   <data name="TalkRecording" xml:space="preserve">
     <value>Запись лекции</value>
@@ -221,5 +221,11 @@
   </data>
   <data name="SpeakerInfo" xml:space="preserve">
     <value>Информация о лекторе</value>
+  </data>
+  <data name="Meetup" xml:space="preserve">
+    <value>Митап</value>
+  </data>
+  <data name="Talks" xml:space="preserve">
+    <value>Доклады</value>
   </data>
 </root>
