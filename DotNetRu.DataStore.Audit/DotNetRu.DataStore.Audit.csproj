@@ -69,6 +69,7 @@
     <Compile Include="Services\MeetupService.cs" />
     <Compile Include="Services\SpeakerService.cs" />
     <Compile Include="Services\TalkService.cs" />
+    <Compile Include="Services\FriendService.cs" />
     <Compile Include="Services\VenueService.cs" />
   </ItemGroup>
   <ItemGroup>
