@@ -51,14 +51,12 @@
     <NoStdLib>false</NoStdLib>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="EvolveLogger.cs" />
+    <Compile Include="DotNetRuLogger.cs" />
     <Compile Include="Helpers\AboutThisApp.cs" />
     <Compile Include="Helpers\ApiKeys.cs" />
     <Compile Include="Helpers\Constants.cs">
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
     </Compile>
-    <Compile Include="Helpers\Gravatar.cs" />
-    <Compile Include="Helpers\MD5Core.cs" />
     <Compile Include="Helpers\MessageKeys.cs" />
     <Compile Include="Helpers\PublicationSettings.cs" />
     <Compile Include="Helpers\Settings.cs" />
@@ -67,17 +65,9 @@
     <Compile Include="Helpers\FeatureFlags.cs" />
     <Compile Include="Helpers\StringExtensions.cs" />
     <Compile Include="Interfaces\IPlatformSpecificSettings.cs" />
-    <Compile Include="Helpers\Base36.cs" />
-    <Compile Include="Helpers\Base36Exceptions.cs" />
     <Compile Include="Interfaces\IPlatformSpecificDataHandler.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Plugin.GoogleAnalytics, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ksemenenko.GoogleAnalytics.1.0.3\lib\portable-net45+wp80+win8+wpa81\Plugin.GoogleAnalytics.dll</HintPath>
-    </Reference>
-    <Reference Include="Plugin.GoogleAnalytics.Abstractions, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ksemenenko.GoogleAnalytics.1.0.3\lib\portable-net45+wp80+win8+wpa81\Plugin.GoogleAnalytics.Abstractions.dll</HintPath>
-    </Reference>
     <Reference Include="Plugin.Settings, Version=3.1.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Xam.Plugins.Settings.3.1.1\lib\netstandard1.0\Plugin.Settings.dll</HintPath>
     </Reference>
