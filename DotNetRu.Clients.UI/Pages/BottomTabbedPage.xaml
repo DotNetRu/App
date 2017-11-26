@@ -5,7 +5,15 @@
              xmlns:forms="clr-namespace:Naxam.Controls.Forms;assembly=Naxam.BottomTabbedPage.Forms"
              x:Class="XamarinEvolve.Clients.UI.Pages.BottomTabbedPage">
     <!--Pages can be added as references or inline-->
-    <NavigationPage Title="{Binding NewsTitle}"  BarTextColor="White">
+    <NavigationPage Title="{Binding NewsTitle}">
+    <NavigationPage.BarTextColor>
+        <OnPlatform x:TypeArguments="Color">
+            <On Platform="iOS" Value="Black" />
+            <On Platform="Android" Value="Black" />
+        </OnPlatform>
+    </NavigationPage.BarTextColor>
+    
+      BarTextColor="White">
         <NavigationPage.Icon>
             <OnPlatform x:TypeArguments="FileImageSource">
                 <On Platform="iOS" Value="tab_feed.png" />
