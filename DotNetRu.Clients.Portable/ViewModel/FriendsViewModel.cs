@@ -1,16 +1,10 @@
 ﻿namespace XamarinEvolve.Clients.Portable
 {
     using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
-    using System.Reflection;
     using System.Windows.Input;
-    using System.Xml.Serialization;
 
-    using DotNetRu.DataStore.Audit.Entities;
-    using DotNetRu.DataStore.Audit.Extensions;
     using DotNetRu.DataStore.Audit.Models;
+    using DotNetRu.DataStore.Audit.Services;
 
     using FormsToolkit;
 
@@ -55,21 +49,6 @@
                                               ?? (this.loadFriendsCommand =
                                                       new Command(this.ExecuteLoadFriends));
 
-        private IEnumerable<FriendModel> LoadFriends()
-        {
-            var assembly = Assembly.Load(new AssemblyName("DotNetRu.DataStore.Audit"));
-            var stream = assembly.GetManifestResourceStream("DotNetRu.DataStore.Audit.Storage.friends.xml");
-            IEnumerable<FriendEntity> friendEntities;
-            using (var reader = new StreamReader(stream))
-            {
-                var xRoot = new XmlRootAttribute { ElementName = "Friends", IsNullable = false };
-                var serializer = new XmlSerializer(typeof(List<FriendEntity>), xRoot);
-                friendEntities = (List<FriendEntity>)serializer.Deserialize(reader);
-            }
-
-            return friendEntities.Select(x => x.ToModel());
-        }
-
         private void ExecuteLoadFriends()
         {
             if (this.IsBusy)
@@ -80,7 +59,7 @@
             try
             {
                 this.IsBusy = true;
-                this.Friends.ReplaceRange(this.LoadFriends()); // await StoreManager.SponsorStore.GetItemsAsync(force);
+                this.Friends.ReplaceRange(FriendService.Friends);
             }
             catch (Exception ex)
             {
