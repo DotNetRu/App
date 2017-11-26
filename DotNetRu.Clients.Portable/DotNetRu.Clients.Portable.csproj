@@ -58,7 +58,6 @@
     <Compile Include="Extensions\DateTimeExtenstions.cs" />
     <Compile Include="Helpers\CultureChangedMessage.cs" />
     <Compile Include="Helpers\LocalizedResources.cs" />
-    <Compile Include="Helpers\PlatformCulture.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Interfaces\ILocalize.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
