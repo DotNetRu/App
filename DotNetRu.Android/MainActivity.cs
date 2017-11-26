@@ -1,30 +1,34 @@
-﻿using Android.Graphics;
-using Android.Support.V4.Content;
-using Android.Support.V4.Content.Res;
-using Android.Util;
-using DotNetRu.Droid.Helpers;
-using Naxam.Controls.Platform.Droid;
-
-﻿using DotNetRu.Droid.Helpers;
-
-namespace DotNetRu.Droid
+﻿namespace DotNetRu.Droid
 {
+    //using Gcm;
     using System.Reflection;
+
     using Android.App;
     using Android.Content;
     using Android.Content.PM;
     using Android.OS;
+    using Android.Support.V4.Content.Res;
+
+    using DotNetRu.Droid.Helpers;
+
     using FormsToolkit.Droid;
-    using Gcm;
+
     using ImageCircle.Forms.Plugin.Droid;
+
+    using Naxam.Controls.Platform.Droid;
+
     using Plugin.Permissions;
+
     using Refractored.XamForms.PullToRefresh.Droid;
+
     using Xamarin.Forms;
     using Xamarin.Forms.Platform.Android;
+
     using XamarinEvolve.Clients.Portable;
     using XamarinEvolve.Clients.UI;
     using XamarinEvolve.Droid;
     using XamarinEvolve.Utils.Helpers;
+
     using Debug = System.Diagnostics.Debug;
 
     [Activity(
@@ -136,23 +140,23 @@ namespace DotNetRu.Droid
             if (!Settings.Current.PushNotificationsEnabled) return;
 #if ENABLE_TEST_CLOUD
 #else
-            this.RegisterWithGCM();
+            // this.RegisterWithGCM();
 #endif
 
             DataRefreshService.ScheduleRefresh(this);
         }
 
-        private void RegisterWithGCM()
-        {
-            // Check to ensure everything's set up right
-            GcmClient.CheckDevice(this);
-            GcmClient.CheckManifest(this);
+        //private void RegisterWithGCM()
+        //{
+        //    // Check to ensure everything's set up right
+        //    GcmClient.CheckDevice(this);
+        //    GcmClient.CheckManifest(this);
 
-            // Register for push notifications
-            Debug.WriteLine("MainActivity", "Registering...");
-            GcmService.Initialize(this);
-            GcmService.Register(this);
-        }
+        //    // Register for push notifications
+        //    Debug.WriteLine("MainActivity", "Registering...");
+        //    GcmService.Initialize(this);
+        //    GcmService.Register(this);
+        //}
 
         public bool IsPlayServicesAvailable()
         {
