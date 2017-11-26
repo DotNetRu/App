@@ -17,8 +17,6 @@
         public static bool AppToWebLinkingEnabled => true;
 
         public static bool ShowLocationInSessionCell => true;
-
-        public static bool GoogleAnalyticsEnabled => true;
     }
 }
 
