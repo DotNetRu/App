@@ -479,7 +479,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Localize.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
