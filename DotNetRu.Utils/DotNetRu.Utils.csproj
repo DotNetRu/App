@@ -51,14 +51,12 @@
     <NoStdLib>false</NoStdLib>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="EvolveLogger.cs" />
+    <Compile Include="DotNetRuLogger.cs" />
     <Compile Include="Helpers\AboutThisApp.cs" />
     <Compile Include="Helpers\ApiKeys.cs" />
     <Compile Include="Helpers\Constants.cs">
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
     </Compile>
-    <Compile Include="Helpers\Gravatar.cs" />
-    <Compile Include="Helpers\MD5Core.cs" />
     <Compile Include="Helpers\MessageKeys.cs" />
     <Compile Include="Helpers\PublicationSettings.cs" />
     <Compile Include="Helpers\Settings.cs" />
@@ -67,22 +65,14 @@
     <Compile Include="Helpers\FeatureFlags.cs" />
     <Compile Include="Helpers\StringExtensions.cs" />
     <Compile Include="Interfaces\IPlatformSpecificSettings.cs" />
-    <Compile Include="Helpers\Base36.cs" />
-    <Compile Include="Helpers\Base36Exceptions.cs" />
     <Compile Include="Interfaces\IPlatformSpecificDataHandler.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Plugin.GoogleAnalytics, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ksemenenko.GoogleAnalytics.1.0.3\lib\portable-net45+wp80+win8+wpa81\Plugin.GoogleAnalytics.dll</HintPath>
+    <Reference Include="Plugin.Settings, Version=3.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xam.Plugins.Settings.3.1.1\lib\netstandard1.0\Plugin.Settings.dll</HintPath>
     </Reference>
-    <Reference Include="Plugin.GoogleAnalytics.Abstractions, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ksemenenko.GoogleAnalytics.1.0.3\lib\portable-net45+wp80+win8+wpa81\Plugin.GoogleAnalytics.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Plugin.Settings, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xam.Plugins.Settings.3.0.1\lib\netstandard1.0\Plugin.Settings.dll</HintPath>
-    </Reference>
-    <Reference Include="Plugin.Settings.Abstractions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xam.Plugins.Settings.3.0.1\lib\netstandard1.0\Plugin.Settings.Abstractions.dll</HintPath>
+    <Reference Include="Plugin.Settings.Abstractions, Version=3.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xam.Plugins.Settings.3.1.1\lib\netstandard1.0\Plugin.Settings.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Validation, Version=2.4.0.0, Culture=neutral, PublicKeyToken=2fc06f0d701809a7, processorArchitecture=MSIL">
       <HintPath>..\packages\Validation.2.4.15\lib\portable-net45+win8+wp8+wpa81\Validation.dll</HintPath>
@@ -95,10 +85,6 @@
     </Reference>
     <Reference Include="Xamarin.Forms.Xaml, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Xamarin.Forms.2.5.0.91635\lib\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.Xaml.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Insights, Version=1.12.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xamarin.Insights.1.12.3\lib\portable-win+net45+wp80+windows8+wpa+MonoAndroid10+MonoTouch10\Xamarin.Insights.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="NodaTime">
       <HintPath>..\packages\NodaTime.1.3.2\lib\portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+XamariniOS1\NodaTime.dll</HintPath>
@@ -120,7 +106,6 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <Import Project="..\packages\Xamarin.Insights.1.12.3\build\portable-win+net45+wp80+windows8+wpa+MonoAndroid10+MonoTouch10\Xamarin.Insights.targets" Condition="Exists('..\packages\Xamarin.Insights.1.12.3\build\portable-win+net45+wp80+windows8+wpa+MonoAndroid10+MonoTouch10\Xamarin.Insights.targets')" />
   <Import Project="..\packages\Xamarin.Forms.2.3.0.34-pre1\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.0.34-pre1\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
   <Import Project="..\packages\Xamarin.Forms.2.5.0.91635\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.5.0.91635\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

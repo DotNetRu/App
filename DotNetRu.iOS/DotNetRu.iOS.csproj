@@ -196,6 +196,24 @@
     <Reference Include="LinqToTwitter.xamarin, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\linqtotwitter.4.1.0\lib\xamarin.ios\LinqToTwitter.xamarin.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AppCenter, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AppCenter.1.0.1\lib\Xamarin.iOS10\Microsoft.AppCenter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AppCenter.Analytics, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AppCenter.Analytics.1.0.1\lib\Xamarin.iOS10\Microsoft.AppCenter.Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AppCenter.Analytics.iOS.Bindings, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AppCenter.Analytics.1.0.1\lib\Xamarin.iOS10\Microsoft.AppCenter.Analytics.iOS.Bindings.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AppCenter.Crashes, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AppCenter.Crashes.1.0.1\lib\Xamarin.iOS10\Microsoft.AppCenter.Crashes.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AppCenter.Crashes.iOS.Bindings, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AppCenter.Crashes.1.0.1\lib\Xamarin.iOS10\Microsoft.AppCenter.Crashes.iOS.Bindings.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AppCenter.iOS.Bindings, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AppCenter.1.0.1\lib\Xamarin.iOS10\Microsoft.AppCenter.iOS.Bindings.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.WindowsAzure.Messaging.iOS">
       <HintPath>..\ExternalReference\Microsoft.WindowsAzure.Messaging.iOS.dll</HintPath>
@@ -225,12 +243,6 @@
     <Reference Include="Plugin.ExternalMaps.Abstractions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Xam.Plugin.ExternalMaps.4.0.1\lib\Xamarin.iOS10\Plugin.ExternalMaps.Abstractions.dll</HintPath>
     </Reference>
-    <Reference Include="Plugin.GoogleAnalytics, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ksemenenko.GoogleAnalytics.1.0.3\lib\XamariniOS10\Plugin.GoogleAnalytics.dll</HintPath>
-    </Reference>
-    <Reference Include="Plugin.GoogleAnalytics.Abstractions, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ksemenenko.GoogleAnalytics.1.0.3\lib\XamariniOS10\Plugin.GoogleAnalytics.Abstractions.dll</HintPath>
-    </Reference>
     <Reference Include="Plugin.Messaging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Xam.Plugins.Messaging.4.0.0\lib\Xamarin.iOS10\Plugin.Messaging.dll</HintPath>
     </Reference>
@@ -243,11 +255,11 @@
     <Reference Include="Plugin.Permissions.Abstractions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Plugin.Permissions.2.0.1\lib\Xamarin.iOS10\Plugin.Permissions.Abstractions.dll</HintPath>
     </Reference>
-    <Reference Include="Plugin.Settings, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xam.Plugins.Settings.3.0.1\lib\Xamarin.iOS10\Plugin.Settings.dll</HintPath>
+    <Reference Include="Plugin.Settings, Version=3.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xam.Plugins.Settings.3.1.1\lib\Xamarin.iOS10\Plugin.Settings.dll</HintPath>
     </Reference>
-    <Reference Include="Plugin.Settings.Abstractions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xam.Plugins.Settings.3.0.1\lib\Xamarin.iOS10\Plugin.Settings.Abstractions.dll</HintPath>
+    <Reference Include="Plugin.Settings.Abstractions, Version=3.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xam.Plugins.Settings.3.1.1\lib\Xamarin.iOS10\Plugin.Settings.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Plugin.Share, Version=7.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Plugin.Share.7.0.1\lib\Xamarin.iOS10\Plugin.Share.dll</HintPath>
@@ -479,7 +491,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Localize.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
