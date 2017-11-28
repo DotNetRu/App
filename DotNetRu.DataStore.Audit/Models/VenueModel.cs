@@ -1,9 +1,7 @@
 ﻿namespace DotNetRu.DataStore.Audit.Models
 {
-    public class VenueModel
+    public class VenueModel : BaseModel
     {
-        public string Id { get; set; }
-
         public string Name { get; set; }
 
         public string Address { get; set; }

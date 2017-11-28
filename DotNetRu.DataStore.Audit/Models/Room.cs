@@ -1,6 +1,6 @@
 ﻿namespace DotNetRu.DataStore.Audit.Models
 {
-    public class Room : BaseDataObject
+    public class Room : BaseModel
     {
         /// <summary>
         /// Gets or sets the name.
@@ -27,7 +27,6 @@
         public double? Longitude { get; set; }
 
         #if MOBILE
-        [Newtonsoft.Json.JsonIgnore]
         public Uri ImageUri 
         { 
             get 

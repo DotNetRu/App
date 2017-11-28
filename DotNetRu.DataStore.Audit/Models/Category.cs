@@ -2,16 +2,18 @@
 {
     using System.Collections.Generic;
 
-    using Newtonsoft.Json;
+    using MvvmHelpers;
 
-    public class Category : BaseDataObject
+    public class Category : BaseModel
     {
+        private bool enabled;
+        private bool filtered;
+
         /// <summary>
         /// Gets or sets the name that is displayed during filtering
         /// </summary>
         /// <value>The name.</value>
         public string Name { get; set; }
-
 
         /// <summary>
         /// Gets or sets the short name/code that is displayed on the sessions page.
@@ -28,22 +30,18 @@
 
         public virtual ICollection<TalkModel> Sessions { get; set; }
 
-        bool filtered;
-        [JsonIgnore]
         public bool IsFiltered
         {
             get => this.filtered;
             set => this.SetProperty(ref this.filtered, value);
         }
 
-        bool enabled;
-        [JsonIgnore]
         public bool IsEnabled
         {
             get => this.enabled;
             set => this.SetProperty(ref this.enabled, value);
         }
-        [JsonIgnore]
-        public string BadgeName => string.IsNullOrWhiteSpace(this.ShortName) ? this.Name : this.ShortName; 
+
+        public string BadgeName => string.IsNullOrWhiteSpace(this.ShortName) ? this.Name : this.ShortName;
     }
 }

@@ -2,9 +2,10 @@
 {
     using System;
     using System.Collections.Generic;
+
     using Xamarin.Forms;
 
-    public sealed class SpeakerModel : BaseDataObject
+    public sealed class SpeakerModel : BaseModel
     {
         /// <summary>
         /// Gets or sets the first name.
@@ -74,10 +75,8 @@
 
         public ICollection<TalkModel> Talks { get; set; }
 
-        [Newtonsoft.Json.JsonIgnore]
         public string FullName => $"{this.FirstName.Trim()} {this.LastName.Trim()}";
 
-        [Newtonsoft.Json.JsonIgnore]
         public string Title
         {
             get
@@ -96,7 +95,6 @@
             }
         }
 
-        [Newtonsoft.Json.JsonIgnore]
         public Uri AvatarUri
         {
             get
@@ -118,7 +116,6 @@
 
         public ImageSource PhotoImage { get; set; }
 
-        [Newtonsoft.Json.JsonIgnore]
         public Uri PhotoUri
         {
             get
