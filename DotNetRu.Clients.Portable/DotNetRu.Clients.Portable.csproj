@@ -94,7 +94,6 @@
     <Compile Include="Model\Extensions\SpeakerExtensions.cs" />
     <Compile Include="Interfaces\IAppVersionProvider.cs" />
     <Compile Include="Interfaces\IPlatformSpecificExtension.cs" />
-    <Compile Include="Interfaces\IPlatformActionWrapper.cs" />
     <Compile Include="ViewModel\ConferenceFeedbackViewModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

@@ -5,10 +5,17 @@
     using System.Linq;
     using System.Text;
 
+    using MvvmHelpers;
+
     using Xamarin.Forms;
 
-    public class TalkModel : BaseDataObject
+    public class TalkModel : BaseModel
     {
+        private const string Delimiter = "|";
+
+        private bool feedbackLeft;
+        private string haystack;
+
         public TalkModel()
         {
             this.Speakers = new List<SpeakerModel>();
@@ -85,106 +92,38 @@
         /// <summary>
         /// Gets or sets the url to the code from session
         /// </summary>
-        [Newtonsoft.Json.JsonIgnore]
         public string CodeUrl { get; set; }
 
-        private string speakerNames;
-
-        [Newtonsoft.Json.JsonIgnore]
-        public string SpeakerNames
-        {
-            get
-            {
-                if (this.speakerNames != null)
-                {
-                    return this.speakerNames;
-                }
-
-                this.speakerNames = string.Empty;
-
-                if (this.Speakers == null || this.Speakers.Count == 0)
-                {
-                    return this.speakerNames;
-                }
-
-                var allSpeakers = this.Speakers.ToArray();
-                this.speakerNames = string.Empty;
-                for (int i = 0; i < allSpeakers.Length; i++)
-                {
-                    this.speakerNames += allSpeakers[i].FullName;
-                    if (i != this.Speakers.Count - 1) this.speakerNames += ", ";
-                }
-
-                return this.speakerNames;
-            }
-        }
-
-        private string speakerHandles;
-
-        public string SpeakerHandles
-        {
-            get
-            {
-                if (this.speakerHandles != null)
-                {
-                    return this.speakerHandles;
-                }
-
-                this.speakerHandles = string.Empty;
-
-                if (this.Speakers == null || this.Speakers.Count == 0)
-                {
-                    return this.speakerHandles;
-                }
-
-                var allSpeakers = this.Speakers.ToArray();
-                this.speakerHandles = string.Empty;
-                for (int i = 0; i < allSpeakers.Length; i++)
-                {
-                    var handle = allSpeakers[i].TwitterUrl;
-                    if (!string.IsNullOrEmpty(handle))
-                    {
-                        if (i != 0)
-                        {
-                            this.speakerHandles += ", ";
-                        }
-
-                        this.speakerHandles += $"@{handle}";
-                    }
-                }
-
-                return this.speakerHandles;
-            }
-        }
-
-        [Newtonsoft.Json.JsonIgnore]
         public DateTime StartTimeOrderBy => this.StartTime ?? DateTime.MinValue;
 
-        const string delimiter = "|";
-
-        string haystack;
-
-        [Newtonsoft.Json.JsonIgnore]
         public string Haystack
         {
             get
             {
-                if (this.haystack != null) return this.haystack;
+                if (this.haystack != null)
+                {
+                    return this.haystack;
+                }
 
                 var builder = new StringBuilder();
-                builder.Append(delimiter);
+                builder.Append(Delimiter);
                 builder.Append(this.Title);
-                builder.Append(delimiter);
+                builder.Append(Delimiter);
                 if (this.Categories != null)
                 {
-                    foreach (var c in this.Categories) builder.Append($"{c.Name}{delimiter}{c.ShortName}{delimiter}");
+                    foreach (var c in this.Categories)
+                    {
+                        builder.Append($"{c.Name}{Delimiter}{c.ShortName}{Delimiter}");
+                    }
                 }
 
                 if (this.Speakers != null)
                 {
                     foreach (var p in this.Speakers)
+                    {
                         builder.Append(
-                            $"{p.FirstName} {p.LastName}{delimiter}{p.FirstName}{delimiter}{p.LastName}{delimiter}");
+                            $"{p.FirstName} {p.LastName}{Delimiter}{p.FirstName}{Delimiter}{p.LastName}{Delimiter}");
+                    }
                 }
 
                 this.haystack = builder.ToString();
@@ -194,9 +133,6 @@
 
         public ImageSource SpeakerAvatar => this.Speakers.First().AvatarImage;
 
-        bool feedbackLeft;
-
-        [Newtonsoft.Json.JsonIgnore]
         public bool FeedbackLeft
         {
             get => this.feedbackLeft;
@@ -204,7 +140,6 @@
             set => this.SetProperty(ref this.feedbackLeft, value);
         }
 
-        [Newtonsoft.Json.JsonIgnore]
         public string LevelString => $"Level: {this.Level}";
     }
 }
