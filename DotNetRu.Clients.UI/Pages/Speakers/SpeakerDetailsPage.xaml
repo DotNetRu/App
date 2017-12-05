@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
     xmlns:local="clr-namespace:XamarinEvolve.Clients.UI;assembly=XamarinEvolve.Clients.UI"
     xmlns:toolkit="clr-namespace:FormsToolkit;assembly=FormsToolkit"
+    xmlns:abstractions="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
     x:Class="XamarinEvolve.Clients.UI.SpeakerDetailsPage"
     Title="{Binding Resources[SpeakerInfo]}"
     x:Name="SpeakerInfo"
@@ -116,8 +117,8 @@
                             </StackLayout>
                         </local:CardView>
 
-                        <local:CardView IsVisible="{Binding HasAdditionalSessions}">
-                            <!--Sessions-->
+                        <!--Talks-->
+                        <local:CardView>
                             <StackLayout Spacing="0">
                                 <local:LabelSection Text="{Binding Resources[Sessions]}" StyleId="MoreSessionsSection"/>
                                 <local:HeaderDivider/>
@@ -131,21 +132,48 @@
                                             <OnPlatform x:TypeArguments="Color" Android="{StaticResource Accent}"/>
                                         </ActivityIndicator.Color>
                                     </ActivityIndicator>
-                                    <Label Text="Loading Sessions..."
+                                    <Label Text="{Binding Resources[LoadingTalks]}"
                                            HorizontalOptions="Center"
                                            Style="{DynamicResource EvolveListItemTextStyle}"/>
                                 </StackLayout>
                                 <local:NonScrollableListView
                                     x:Name="ListViewSessions"
                                     ItemsSource="{Binding Sessions}"
-                                    RowHeight="95">
+                                    RowHeight="66">
                                     <local:NonScrollableListView.SeparatorColor>
                                         <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ListSeparator}"/>
                                     </local:NonScrollableListView.SeparatorColor>
                                     <local:NonScrollableListView.ItemTemplate>
                                         <DataTemplate>
                                             <ViewCell>
-                                                <local:SessionCellView/>
+                                              <Grid Padding="{DynamicResource StandardPadding}"
+                                                    ColumnSpacing="{StaticResource StandardSpacing}">
+                                                <Grid.RowDefinitions>
+                                                  <RowDefinition Height="Auto"/>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                  <ColumnDefinition Width="Auto"/>
+                                                  <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <abstractions:CircleImage
+                                                    Grid.Column="0"
+                                                    Grid.Row="0"
+                                                    FillColor="{DynamicResource Primary}"
+                                                    Source="{Binding CommunityLogo}"
+                                                    VerticalOptions="Center"
+                                                    Aspect="AspectFill"
+                                                    WidthRequest="33"
+                                                    HeightRequest="33">
+                                                </abstractions:CircleImage>
+
+                                                <Label Grid.Row="0"
+                                                       Grid.Column="1"
+                                                       VerticalOptions="Center"
+                                                       Text="{Binding Title}"
+                                                       Style="{DynamicResource EvolveListItemTextStyle}"
+                                                       StyleId="SessionItem"/>
+                                              </Grid>
                                             </ViewCell>
                                         </DataTemplate>
                                     </local:NonScrollableListView.ItemTemplate>

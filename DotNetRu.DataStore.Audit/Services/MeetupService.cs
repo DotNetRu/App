@@ -14,6 +14,11 @@
 
         public static IEnumerable<MeetupModel> Meetups => meetups ?? (meetups = GetMeetups());
 
+        public static MeetupModel GetMeetup(string talkID)
+        {
+            return Meetups.SingleOrDefault(x => x.TalkIDs.Contains(talkID));
+        }
+
         private static IEnumerable<MeetupModel> GetMeetups()
         {
             var meetupEntities = ParseHelper.ParseXml<MeetupEntity>("Meetups");

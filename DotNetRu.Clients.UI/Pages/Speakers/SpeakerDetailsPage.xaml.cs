@@ -1,33 +1,32 @@
-﻿using Xamarin.Forms;
-
-using XamarinEvolve.Clients.Portable;
-using XamarinEvolve.Clients.Portable.ApplicationResources;
-
-namespace XamarinEvolve.Clients.UI
+﻿namespace XamarinEvolve.Clients.UI
 {
     using DotNetRu.DataStore.Audit.Models;
 
-    public partial class SpeakerDetailsPage : BasePage
+    using Xamarin.Forms;
+
+    using XamarinEvolve.Clients.Portable;
+    using XamarinEvolve.Clients.Portable.ApplicationResources;
+
+    public partial class SpeakerDetailsPage
     {
         public override AppPage PageType => AppPage.Speaker;
 
         private readonly IPlatformSpecificExtension<SpeakerModel> _extension;
 
-        SpeakerDetailsViewModel ViewModel => this.speakerDetailsViewModel ?? (this.speakerDetailsViewModel = this.BindingContext as SpeakerDetailsViewModel);
+        public SpeakerDetailsViewModel SpeakerDetailsViewModel => this.speakerDetailsViewModel
+                                             ?? (this.speakerDetailsViewModel =
+                                                     this.BindingContext as SpeakerDetailsViewModel);
 
-        SpeakerDetailsViewModel speakerDetailsViewModel;
-
-        readonly string sessionId;
+        private SpeakerDetailsViewModel speakerDetailsViewModel;
 
         public SpeakerDetailsPage(SpeakerModel speakerModel)
-            : this((string)null)
+            : this()
         {
             this.SpeakerModel = speakerModel;
         }
 
-        public SpeakerDetailsPage(string sessionId)
+        public SpeakerDetailsPage()
         {
-            this.sessionId = sessionId;
             this.InitializeComponent();
             this.MainScroll.ParallaxView = this.HeaderView;
             this._extension = DependencyService.Get<IPlatformSpecificExtension<SpeakerModel>>();
@@ -54,7 +53,7 @@ namespace XamarinEvolve.Clients.UI
 
         public SpeakerModel SpeakerModel
         {
-            get => this.ViewModel.SpeakerModel;
+            get => this.SpeakerDetailsViewModel.SpeakerModel;
             set
             {
                 this.BindingContext = new SpeakerDetailsViewModel(value);
@@ -64,8 +63,7 @@ namespace XamarinEvolve.Clients.UI
 
         void MainScroll_Scrolled(object sender, ScrolledEventArgs e)
         {
-            if (e.ScrollY > (this.MainStack.Height - this.SpeakerTitle.Height)) this.Title = this.SpeakerModel.FirstName;
-            else this.Title = AppResources.SpeakerInfo;
+            this.Title = e.ScrollY > (this.MainStack.Height - this.SpeakerTitle.Height) ? this.SpeakerModel.FirstName : AppResources.SpeakerInfo;
         }
 
         protected override void OnSizeAllocated(double width, double height)
@@ -81,9 +79,9 @@ namespace XamarinEvolve.Clients.UI
             base.OnBindingContextChanged();
             this.speakerDetailsViewModel = null;
 
-            var adjust = Device.RuntimePlatform != Device.Android ? 1 : -this.ViewModel.FollowItems.Count + 2;
+            var adjust = Device.RuntimePlatform != Device.Android ? 1 : -this.SpeakerDetailsViewModel.FollowItems.Count + 2;
             this.ListViewFollow.HeightRequest =
-                (this.ViewModel.FollowItems.Count * this.ListViewFollow.RowHeight) - adjust;
+                (this.SpeakerDetailsViewModel.FollowItems.Count * this.ListViewFollow.RowHeight) - adjust;
             this.ListViewSessions.HeightRequest = 0;
         }
 
@@ -97,16 +95,19 @@ namespace XamarinEvolve.Clients.UI
 
             this.MainScroll.Parallax();
 
-            if (this.ViewModel.Sessions?.Count > 0) return;
+            if (this.SpeakerDetailsViewModel.Sessions?.Count > 0)
+            {
+                return;
+            }
 
-            this.ViewModel.ExecuteLoadSessionsCommandAsync();
-            var adjust = Device.RuntimePlatform != Device.Android ? 1 : -this.ViewModel.Sessions.Count + 1;
+            this.SpeakerDetailsViewModel.ExecuteLoadTalksCommand();
+            var adjust = Device.RuntimePlatform != Device.Android ? 1 : -this.SpeakerDetailsViewModel.Sessions.Count + 2;
             this.ListViewSessions.HeightRequest =
-                (this.ViewModel.Sessions.Count * this.ListViewSessions.RowHeight) - adjust;
+                (this.SpeakerDetailsViewModel.Sessions.Count * this.ListViewSessions.RowHeight) - adjust;
 
             if (this._extension != null)
             {
-                await this._extension.Execute(this.ViewModel.SpeakerModel);
+                await this._extension.Execute(this.SpeakerDetailsViewModel.SpeakerModel);
             }
         }
 
