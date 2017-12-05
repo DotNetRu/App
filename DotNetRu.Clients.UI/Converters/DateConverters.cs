@@ -1,21 +1,22 @@
-﻿using XamarinEvolve.Clients.Portable.ApplicationResources;
-
-namespace XamarinEvolve.Clients.UI
+﻿namespace XamarinEvolve.Clients.UI
 {
     using System;
     using System.Diagnostics;
     using System.Globalization;
+
     using DotNetRu.DataStore.Audit.Models;
+
     using Humanizer;
+
     using Xamarin.Forms;
+
     using XamarinEvolve.Clients.Portable;
-    using XamarinEvolve.Clients.Portable;
+    using XamarinEvolve.Clients.Portable.ApplicationResources;
 
     public class SessionTimeDisplayConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-
             try
             {
                 if (!(value is TalkModel session))
@@ -33,13 +34,11 @@ namespace XamarinEvolve.Clients.UI
             return string.Empty;
         }
 
-
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }
     }
-
 
     public class TalkDateDisplayConverter : IValueConverter
     {
@@ -62,17 +61,14 @@ namespace XamarinEvolve.Clients.UI
             return string.Empty;
         }
 
-
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }
     }
 
-
     public class EventDateDisplayConverter : IValueConverter
     {
-
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             try
@@ -91,7 +87,6 @@ namespace XamarinEvolve.Clients.UI
 
             return string.Empty;
         }
-
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -120,7 +115,6 @@ namespace XamarinEvolve.Clients.UI
             return string.Empty;
         }
 
-
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
@@ -138,7 +132,7 @@ namespace XamarinEvolve.Clients.UI
                     return string.Empty;
                 }
 
-                return ((DateTime) value).ToEventTimeZone().Day;
+                return ((DateTime)value).ToEventTimeZone().Day;
             }
             catch (Exception ex)
             {
@@ -147,7 +141,6 @@ namespace XamarinEvolve.Clients.UI
 
             return string.Empty;
         }
-
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -165,8 +158,11 @@ namespace XamarinEvolve.Clients.UI
                 {
                     return string.Empty;
                 }
-                var dayOfWeek = ((DateTime) value).ToEventTimeZone().DayOfWeek; 
-                return AppResources.Culture.DateTimeFormat.GetAbbreviatedDayName(dayOfWeek);//DateTimeFormatInfo.CurrentInfo.GetAbbreviatedDayName(dayOfWeek);
+
+                var dayOfWeek = ((DateTime)value).ToEventTimeZone().DayOfWeek;
+                return AppResources.Culture.DateTimeFormat
+                    .GetAbbreviatedDayName(
+                        dayOfWeek); // DateTimeFormatInfo.CurrentInfo.GetAbbreviatedDayName(dayOfWeek);
             }
             catch (Exception ex)
             {
@@ -175,7 +171,6 @@ namespace XamarinEvolve.Clients.UI
 
             return string.Empty;
         }
-
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -191,21 +186,20 @@ namespace XamarinEvolve.Clients.UI
             {
                 if (!(value is DateTime))
                 {
-                    return (Color) Application.Current.Resources["Primary"];
+                    return (Color)Application.Current.Resources["Primary"];
                 }
 
-                return DateTime.UtcNow > ((DateTime) value).ToUniversalTime()
-                    ? (Color) Application.Current.Resources["Primary"]
-                    : Color.FromHex("D3D2D2");
+                return DateTime.UtcNow > ((DateTime)value).ToUniversalTime()
+                           ? (Color)Application.Current.Resources["Primary"]
+                           : Color.FromHex("D3D2D2");
             }
             catch (Exception ex)
             {
                 Debug.WriteLine("Unable to convert: " + ex);
             }
 
-            return (Color) Application.Current.Resources["Primary"];
+            return (Color)Application.Current.Resources["Primary"];
         }
-
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -221,7 +215,7 @@ namespace XamarinEvolve.Clients.UI
             {
                 if (value is DateTime)
                 {
-                    var date = (DateTime) value;
+                    var date = (DateTime)value;
                     if (date.Kind == DateTimeKind.Local)
                     {
                         return date.Humanize(false);
@@ -237,7 +231,6 @@ namespace XamarinEvolve.Clients.UI
 
             return string.Empty;
         }
-
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {

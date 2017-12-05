@@ -5,6 +5,8 @@
 
     public class MeetupModel : BaseModel
     {
+        public string CommunityID { get; set; }
+
         public string Title { get; set; }
 
         public string Description { get; set; }
@@ -23,6 +25,6 @@
 
         public DateTime StartTimeOrderBy => this.StartTime ?? DateTime.MinValue;
 
-        public IEnumerable<string> EventTalksIds { get; set; }
+        public IEnumerable<string> TalkIDs { get; set; }
     }
 }

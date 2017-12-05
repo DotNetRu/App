@@ -1,6 +1,6 @@
 ﻿namespace DotNetRu.Droid
 {
-    //using Gcm;
+    // using Gcm;
     using System.Reflection;
 
     using Android.App;
@@ -28,8 +28,6 @@
     using XamarinEvolve.Clients.UI;
     using XamarinEvolve.Droid;
     using XamarinEvolve.Utils.Helpers;
-
-    using Debug = System.Diagnostics.Debug;
 
     [Activity(
         Label = AboutThisApp.AppName,
@@ -94,12 +92,15 @@
         // GoogleApiClient client;
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            SetTheme(Resource.Style.MyTheme);
+#if ENABLE_LIVE_PLAYER
+#else
+            this.SetTheme(Resource.Style.MyTheme);
             Forms.SetFlags("FastRenderers_Experimental");
 
             FormsAppCompatActivity.ToolbarResource = Resource.Layout.toolbar;
             FormsAppCompatActivity.TabLayoutResource = Resource.Layout.tabs;
-            SetupBottomTabs();
+            this.SetupBottomTabs();
+#endif
 
             base.OnCreate(savedInstanceState);
 
@@ -111,7 +112,7 @@
 
             PullToRefreshLayoutRenderer.Init();
             typeof(Color).GetProperty("Accent", BindingFlags.Public | BindingFlags.Static)
-                .SetValue(null, Color.FromHex("#757575"));
+                ?.SetValue(null, Color.FromHex("#757575"));
 
             ImageCircleRenderer.Init();
 
@@ -123,7 +124,6 @@
             };
 #endif
             this.LoadApplication(new App());
-
 
             var gpsAvailable = this.IsPlayServicesAvailable();
             Settings.Current.PushNotificationsEnabled = gpsAvailable;
@@ -190,37 +190,37 @@
         void SetupBottomTabs()
         {
             var stateList = new Android.Content.Res.ColorStateList(
-                new int[][]
-                {
-                    new int[]
+                new[]
+                    {
+                    new[]
                     {
                         Android.Resource.Attribute.StateChecked
                     },
-                    new int[]
+                    new[]
                     {
                         Android.Resource.Attribute.StateEnabled
                     }
-                },
+                    },
                 new int[]
-                {
-                    Android.Graphics.Color.Azure, //Selected
-                    Android.Graphics.Color.White //Normal
+                    {
+                        Android.Graphics.Color.Azure, //Selected
+                        Android.Graphics.Color.White //Normal
                 });
 
-            BottomTabbedRenderer.BackgroundColor =
-                new Android.Graphics.Color(
-                    ResourcesCompat.GetColor(Resources, Resource.Color.primary,
-                        null)); //Resources.GetColor(Resource.Color.primaryDark);
             BottomTabbedRenderer.FontSize = 12f;
             BottomTabbedRenderer.IconSize = 16;
             BottomTabbedRenderer.ItemTextColor = stateList;
             BottomTabbedRenderer.ItemIconTintList = stateList;
-            //BottomTabbedRenderer.Typeface = Typeface.CreateFromAsset(this.Assets, "architep.ttf");
-            BottomTabbedRenderer.ItemBackgroundResource = Resource.Drawable.bnv_selector;
             BottomTabbedRenderer.ItemSpacing = 4;
-            BottomTabbedRenderer.ItemPadding = new Xamarin.Forms.Thickness(6);
+            BottomTabbedRenderer.ItemPadding = new Thickness(6);
             BottomTabbedRenderer.BottomBarHeight = 56;
             BottomTabbedRenderer.ItemAlign = ItemAlignFlags.Center;
+
+#if ENABLE_LIVE_PLAYER
+#else
+            BottomTabbedRenderer.BackgroundColor =
+                new Android.Graphics.Color(ResourcesCompat.GetColor(this.Resources, Resource.Color.primary, null));
+            BottomTabbedRenderer.ItemBackgroundResource = Resource.Drawable.bnv_selector;
             BottomTabbedRenderer.MenuItemIconSetter = (menuItem, iconSource, selected) =>
             {
                 /*TODO: Make it without switch. Following variant does not work :(
@@ -248,6 +248,7 @@
                     }
                 }
             };
+#endif
         }
 
         public override void OnRequestPermissionsResult(

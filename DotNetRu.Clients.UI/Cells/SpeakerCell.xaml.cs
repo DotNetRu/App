@@ -6,16 +6,17 @@
 
     using XamarinEvolve.Clients.Portable;
 
-    public class SpeakerCell: ViewCell
+    public class SpeakerCell : ViewCell
     {
         readonly INavigation navigation;
 
         readonly string sessionId;
-        public SpeakerCell (string sessionId, INavigation navigation = null)
+
+        public SpeakerCell(string sessionId, INavigation navigation = null)
         {
             this.sessionId = sessionId;
             this.Height = 60;
-            this.View = new SpeakerCellView ();
+            this.View = new SpeakerCellView();
             this.StyleId = "disclosure";
             this.navigation = navigation;
         }
@@ -24,7 +25,9 @@
         {
             base.OnTapped();
             if (this.navigation == null)
+            {
                 return;
+            }
 
             if (!(this.BindingContext is SpeakerModel speaker))
             {
@@ -35,21 +38,16 @@
 
             if (Device.RuntimePlatform == Device.UWP)
             {
-                await this.navigation.PushAsync(new SpeakerDetailsPageUWP(this.sessionId)
-                {
-                    SpeakerModel = speaker
-                });
+                await this.navigation.PushAsync(new SpeakerDetailsPageUWP(this.sessionId) { SpeakerModel = speaker });
             }
             else
             {
-                await this.navigation.PushAsync(new SpeakerDetailsPage(this.sessionId)
-                {
-                    SpeakerModel = speaker
-                });
+                await this.navigation.PushAsync(new SpeakerDetailsPage { SpeakerModel = speaker });
             }
         }
     }
-    public partial class SpeakerCellView : ContentView
+
+    public partial class SpeakerCellView
     {
         public SpeakerCellView()
         {

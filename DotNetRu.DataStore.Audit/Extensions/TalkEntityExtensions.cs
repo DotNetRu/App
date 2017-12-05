@@ -20,7 +20,8 @@
                            CodeUrl = talkEntity.CodeUrl,
                            ShortTitle = talkEntity.Title,
                            Speakers = SpeakerService.Speakers
-                               .Where(s => talkEntity.SpeakerIds.Any(s1 => s1 == s.Id)).ToList()
+                               .Where(s => talkEntity.SpeakerIds.Any(s1 => s1 == s.Id)).ToList(),
+                           MeetupModel = MeetupService.GetMeetup(talkEntity.Id)
                        };
         }
     }

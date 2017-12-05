@@ -1,7 +1,7 @@
 ﻿namespace XamarinEvolve.Clients.Portable
 {
     using System;
-    using System.Threading.Tasks;
+    using System.Linq;
     using System.Windows.Input;
 
     using DotNetRu.DataStore.Audit.Models;
@@ -18,20 +18,11 @@
 
     public class SpeakerDetailsViewModel : ViewModelBase
     {
+        private ICommand loadTalksCommand;
 
-        public SpeakerModel SpeakerModel { get; set; }
+        private MenuItem selectedFollowItem;
 
-        public ObservableRangeCollection<TalkModel> Sessions { get; } = new ObservableRangeCollection<TalkModel>();
-
-        public ObservableRangeCollection<MenuItem> FollowItems { get; } = new ObservableRangeCollection<MenuItem>();
-
-        private bool hasAdditionalSessions;
-
-        public bool HasAdditionalSessions
-        {
-            get => this.hasAdditionalSessions;
-            set => this.SetProperty(ref this.hasAdditionalSessions, value);
-        }
+        private TalkModel selectedTalkModel;
 
         public SpeakerDetailsViewModel(SpeakerModel speakerModel)
         {
@@ -65,8 +56,7 @@
             {
                 var profileName = speakerModel.FacebookProfileName.GetLastPartOfUrl();
                 var profileDisplayName = profileName;
-                long testProfileId;
-                if (long.TryParse(profileName, out testProfileId))
+                if (long.TryParse(profileName, out _))
                 {
                     profileDisplayName = "Facebook";
                 }
@@ -92,40 +82,15 @@
             }
         }
 
-        private ICommand loadSessionsCommand;
+        public SpeakerModel SpeakerModel { get; set; }
 
-        public ICommand LoadSessionsCommand => this.loadSessionsCommand
-                                               ?? (this.loadSessionsCommand = new Command(
-                                                       this.ExecuteLoadSessionsCommandAsync));
+        public ObservableRangeCollection<TalkModel> Sessions { get; } = new ObservableRangeCollection<TalkModel>();
 
-        public void ExecuteLoadSessionsCommandAsync()
-        {
-            if (this.IsBusy)
-            {
-                return;
-            }
+        public ObservableRangeCollection<MenuItem> FollowItems { get; } = new ObservableRangeCollection<MenuItem>();
 
-            try
-            {
-                this.IsBusy = true;
-
-                var talks = TalkService.GetTalks(this.SpeakerModel.Id);
-                this.Sessions.ReplaceRange(talks);
-
-                this.HasAdditionalSessions = this.Sessions.Count > 0;
-            }
-            catch (Exception ex)
-            {
-                this.HasAdditionalSessions = false;
-                this.Logger.Report(ex);
-            }
-            finally
-            {
-                this.IsBusy = false;
-            }
-        }
-
-        private MenuItem selectedFollowItem;
+        public ICommand LoadSessionsCommand => this.loadTalksCommand
+                                               ?? (this.loadTalksCommand = new Command(
+                                                       this.ExecuteLoadTalksCommand));
 
         public MenuItem SelectedFollowItem
         {
@@ -146,8 +111,6 @@
             }
         }
 
-        private TalkModel selectedTalkModel;
-
         public TalkModel SelectedTalkModel
         {
             get => this.selectedTalkModel;
@@ -156,13 +119,39 @@
             {
                 this.selectedTalkModel = value;
                 this.OnPropertyChanged();
-                if (this.selectedTalkModel == null) return;
+                if (this.selectedTalkModel == null)
+                {
+                    return;
+                }
 
                 MessagingService.Current.SendMessage(MessageKeys.NavigateToSession, this.selectedTalkModel);
 
                 this.SelectedTalkModel = null;
             }
         }
+
+        public void ExecuteLoadTalksCommand()
+        {
+            if (this.IsBusy)
+            {
+                return;
+            }
+
+            try
+            {
+                this.IsBusy = true;
+
+                var talks = TalkService.GetTalks(this.SpeakerModel.Id).OrderBy(talk => talk.StartTime);
+                this.Sessions.ReplaceRange(talks);
+            }
+            catch (Exception ex)
+            {
+                this.Logger.Report(ex);
+            }
+            finally
+            {
+                this.IsBusy = false;
+            }
+        }
     }
 }
-

@@ -9,13 +9,14 @@
         {
             return new MeetupModel
                        {
+                           CommunityID = meetupEntity.CommunityId,
                            Description = meetupEntity.Name,
                            IsAllDay = true,
                            Title = meetupEntity.Name,
                            StartTime = meetupEntity.Date,
                            EndTime = meetupEntity.Date,
                            VenueID = meetupEntity.VenueId,
-                           EventTalksIds = meetupEntity.TalkIds,
+                           TalkIDs = meetupEntity.TalkIds,
                        };
         }
     }
