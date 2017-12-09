@@ -268,8 +268,10 @@
     <Name>Иван Кочуркин</Name>
     <CompanyName>Positive Technologies</CompanyName>
     <CompanyUrl>https://www.ptsecurity.com/</CompanyUrl>
-    <Description>Работает в Positive Technologies над анализаторами кода, в том числе над открытым PT.PM. Подрабатывает в Swiftify, веб-сервисе для преобразования кода Objective-C в Swift. В прошлом занимался веб-разработкой, обработкой звука и изображений. ​В свободное время пишет статьи на техническую тематику и принимает участие в разработке открытого ПО.
-  https://habrahabr.ru/users/KvanTTT/https://twitter.com/KvanTTThttp://facebook.com/ivan.kochurkin</Description>
+    <Description>Работает в Positive Technologies над анализаторами кода, в том числе над открытым PT.PM. Подрабатывает в Swiftify, веб-сервисе для преобразования кода Objective-C в Swift. В прошлом занимался веб-разработкой, обработкой звука и изображений. ​В свободное время пишет статьи на техническую тематику и принимает участие в разработке открытого ПО.</Description>
+    <ContactsUrl>http://facebook.com/ivan.kochurkin</ContactsUrl>
+    <TwitterUrl>https://twitter.com/KvanTTT</TwitterUrl>
+    <HabrUrl>https://habrahabr.ru/users/KvanTTT/</HabrUrl>
   </Speaker>
   <Speaker>
     <Id>Ivan-Pashchenko</Id>

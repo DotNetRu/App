@@ -48,16 +48,16 @@
         {
             // Code for starting up the Xamarin Test Cloud Agent
 #if ENABLE_TEST_CLOUD
-            Calabash.Start();
+            //Calabash.Start();
 
-            // Mapping StyleId to iOS Labels
-            Forms.ViewInitialized += (sender, e) =>
-                {
-                    if (null != e.View.StyleId)
-                    {
-                        e.NativeView.AccessibilityIdentifier = e.View.StyleId;
-                    }
-                };
+            //// Mapping StyleId to iOS Labels
+            //Forms.ViewInitialized += (sender, e) =>
+            //    {
+            //        if (null != e.View.StyleId)
+            //        {
+            //            e.NativeView.AccessibilityIdentifier = e.View.StyleId;
+            //        }
+            //    };
 #endif
 
             Forms.Init();

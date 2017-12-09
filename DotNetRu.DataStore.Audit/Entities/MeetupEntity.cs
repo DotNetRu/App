@@ -14,6 +14,7 @@
 
         [XmlElement(DataType = "date")]
         public DateTime Date { get; set; }
+
         [XmlArrayItem("FriendId", IsNullable = false)]
         public string[] FriendIds { get; set; }
 

@@ -12,7 +12,7 @@
 
         private readonly IPushNotifications push;
 
-        private bool isRegistered;
+        private bool isPushRegistered = false;
 
         public AboutPage()
         {
@@ -62,7 +62,7 @@
 
                     this.ListViewInfo.SelectedItem = null;
                 };
-            //this.isRegistered = this.push.IsRegistered;
+            //this.isPushRegistered = this.push.IsRegistered;
         }
 
         public override AppPage PageType => AppPage.Information;
@@ -71,12 +71,12 @@
         {
             base.OnAppearing();
 
-            if (!this.isRegistered && Settings.Current.AttemptedPush)
+            if (!this.isPushRegistered && Settings.Current.AttemptedPush)
             {
                 this.push.RegisterForNotifications();
             }
 
-            //this.isRegistered = this.push.IsRegistered;
+            //this.isPushRegistered = this.push.IsRegistered;
         }
 
         public void OnResume()

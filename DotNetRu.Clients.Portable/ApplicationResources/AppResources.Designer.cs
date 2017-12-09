@@ -170,6 +170,15 @@ namespace XamarinEvolve.Clients.Portable.ApplicationResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Loading talks....
+        /// </summary>
+        public static string LoadingTalks {
+            get {
+                return ResourceManager.GetString("LoadingTalks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Materials.
         /// </summary>
         public static string Materials {
@@ -269,7 +278,7 @@ namespace XamarinEvolve.Clients.Portable.ApplicationResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Speaker Info.
+        ///   Looks up a localized string similar to Speaker.
         /// </summary>
         public static string SpeakerInfo {
             get {

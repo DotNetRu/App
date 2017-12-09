@@ -48,7 +48,7 @@
                     else
                     {
                         var speakerDetails =
-                            new SpeakerDetailsPage(this.talkViewModel.TalkModel.Id) { SpeakerModel = speaker };
+                            new SpeakerDetailsPage() { SpeakerModel = speaker };
                         destination = speakerDetails;
                     }
 

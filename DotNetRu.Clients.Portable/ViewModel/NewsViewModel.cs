@@ -49,11 +49,7 @@
             {
                 this.NextForceRefresh = DateTime.UtcNow.AddMinutes(45);
                 this.IsBusy = true;
-                var tasks = new[]
-                                {
-                                    this.ExecuteLoadNotificationsCommandAsync(), this.ExecuteLoadSocialCommandAsync(),
-                                    this.ExecuteLoadSessionsCommandAsync()
-                                };
+                var tasks = new[] { this.ExecuteLoadNotificationsCommandAsync(), this.ExecuteLoadSocialCommandAsync() };
 
                 await Task.WhenAll(tasks);
             }
@@ -121,12 +117,15 @@
         ICommand loadSessionsCommand;
 
         public ICommand LoadSessionsCommand => this.loadSessionsCommand
-                                               ?? (this.loadSessionsCommand = new Command(
-                                                       async () => await this.ExecuteLoadSessionsCommandAsync()));
+                                               ?? (this.loadSessionsCommand =
+                                                       new Command(this.ExecuteLoadSessionsCommandAsync));
 
-        private async Task ExecuteLoadSessionsCommandAsync()
+        private void ExecuteLoadSessionsCommandAsync()
         {
-            if (this.LoadingSessions) return;
+            if (this.LoadingSessions)
+            {
+                return;
+            }
 
             this.LoadingSessions = true;
 
@@ -143,7 +142,7 @@
             }
             catch (Exception ex)
             {
-                ex.Data["method"] = "ExecuteLoadSessionsCommandAsync";
+                ex.Data["method"] = "ExecuteLoadTalksCommand";
                 this.Logger.Report(ex);
                 this.NoSessions = true;
             }

@@ -5,8 +5,6 @@
     using System.Linq;
     using System.Text;
 
-    using MvvmHelpers;
-
     using Xamarin.Forms;
 
     public class TalkModel : BaseModel
@@ -24,10 +22,6 @@
 
         public string TalkId { get; set; }
 
-        /// <summary>
-        /// Gets or sets the title.
-        /// </summary>
-        /// <value>The title.</value>
         public string Title { get; set; }
 
         /// <summary>
@@ -37,41 +31,17 @@
         /// <value>The short title.</value>
         public string ShortTitle { get; set; }
 
-        /// <summary>
-        /// Gets or sets the abstract.
-        /// </summary>
-        /// <value>The abstract.</value>
         public string Abstract { get; set; }
 
-        /// <summary>
-        /// Gets or sets the speakers.
-        /// </summary>
-        /// <value>The speakers.</value>
         public ICollection<SpeakerModel> Speakers { get; set; }
 
-        /// <summary>
-        /// Gets or sets the room.
-        /// </summary>
-        /// <value>The room.</value>
         public Room Room { get; set; }
 
-        /// <summary>
-        /// Gets or sets the categories.
-        /// </summary>
-        /// <value>The main categories.</value>
         public ICollection<Category> Categories { get; set; }
 
-        /// <summary>
-        /// Gets or sets the start time.
-        /// </summary>
-        /// <value>The start time.</value>
-        public DateTime? StartTime { get; set; }
+        public DateTime? StartTime => this.MeetupModel.StartTime;
 
-        /// <summary>
-        /// Gets or sets the end time.
-        /// </summary>
-        /// <value>The end time.</value>
-        public DateTime? EndTime { get; set; }
+        public DateTime? EndTime => this.MeetupModel.EndTime;
 
         /// <summary>
         /// Gets or sets the level of the session [100 - 400]
@@ -79,22 +49,11 @@
         /// <value>The session level.</value>
         public string Level { get; set; }
 
-        /// <summary>
-        /// Gets or sets the url to the presentation material
-        /// </summary>
         public string PresentationUrl { get; set; }
 
-        /// <summary>
-        /// Gets or sets the url to the recorded session video
-        /// </summary>
         public string VideoUrl { get; set; }
 
-        /// <summary>
-        /// Gets or sets the url to the code from session
-        /// </summary>
         public string CodeUrl { get; set; }
-
-        public DateTime StartTimeOrderBy => this.StartTime ?? DateTime.MinValue;
 
         public string Haystack
         {
@@ -133,6 +92,9 @@
 
         public ImageSource SpeakerAvatar => this.Speakers.First().AvatarImage;
 
+        public ImageSource CommunityLogo => ImageSource.FromResource(
+            "DotNetRu.DataStore.Audit.Storage.logos." + this.MeetupModel.CommunityID + ".png");
+
         public bool FeedbackLeft
         {
             get => this.feedbackLeft;
@@ -140,6 +102,6 @@
             set => this.SetProperty(ref this.feedbackLeft, value);
         }
 
-        public string LevelString => $"Level: {this.Level}";
+        internal MeetupModel MeetupModel { get; set; }
     }
 }

@@ -153,6 +153,9 @@
   <data name="Loading" xml:space="preserve">
     <value>Loading Social Feed...</value>
   </data>
+  <data name="LoadingTalks" xml:space="preserve">
+    <value>Loading talks...</value>
+  </data>
   <data name="Materials" xml:space="preserve">
     <value>Materials</value>
   </data>
@@ -187,7 +190,7 @@
     <value>Social</value>
   </data>
   <data name="SpeakerInfo" xml:space="preserve">
-    <value>Speaker Info</value>
+    <value>Speaker</value>
   </data>
   <data name="Speakers" xml:space="preserve">
     <value>Speakers</value>

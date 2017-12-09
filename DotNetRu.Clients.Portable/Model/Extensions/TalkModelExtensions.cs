@@ -11,7 +11,6 @@
     using Xamarin.Forms;
 
     using XamarinEvolve.Utils;
-    using XamarinEvolve.Clients.Portable;
     using XamarinEvolve.Utils.Helpers;
 
     public static class TalkModelExtensions
@@ -159,7 +158,7 @@
                                                                category => category.Name,
                                                                filtered => filtered,
                                                                (category, filter) => filter).Any() ?? false))
-                           orderby session.StartTimeOrderBy, session.Title
+                           orderby session.StartTime, session.Title
                            group session by session.GetSortName()
                            into sessionGroup
                            select new Grouping<string, TalkModel>(sessionGroup.Key, sessionGroup)).ToList();
@@ -182,7 +181,10 @@
 
         public static IEnumerable<TalkModel> Search(this IEnumerable<TalkModel> sessions, string searchText)
         {
-            if (string.IsNullOrWhiteSpace(searchText)) return sessions;
+            if (string.IsNullOrWhiteSpace(searchText))
+            {
+                return sessions;
+            }
 
             var searchSplit = searchText.Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries);
 
