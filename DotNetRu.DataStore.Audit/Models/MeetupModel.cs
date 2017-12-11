@@ -19,9 +19,7 @@
 
         public string VenueID { get; set; }
 
-        public virtual FriendModel FriendModel { get; set; }
-
-        public bool HasSponsor => this.FriendModel != null;
+        public IEnumerable<string> FriendIDs { get; set; }
 
         public IEnumerable<string> TalkIDs { get; set; }
     }
