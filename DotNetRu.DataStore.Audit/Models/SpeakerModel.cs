@@ -23,11 +23,6 @@
         public string Biography { get; set; }
 
         /// <summary>
-        /// This is the big Hero Image (Rectangle)
-        /// </summary>
-        public string PhotoUrl { get; set; }
-
-        /// <summary>
         /// This is a small Square Image (150x150 is good)
         /// </summary>
         public string AvatarUrl { get; set; }
@@ -115,22 +110,5 @@
         public ImageSource AvatarImage { get; set; }
 
         public ImageSource PhotoImage { get; set; }
-
-        public Uri PhotoUri
-        {
-            get
-            {
-                try
-                {
-                    return new Uri(this.PhotoUrl);
-                }
-                catch
-                {
-                    // ignored
-                }
-
-                return null;
-            }
-        }
     }
 }

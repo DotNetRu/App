@@ -1,6 +1,4 @@
-﻿using XamarinEvolve.Clients.Portable.ApplicationResources;
-
-namespace XamarinEvolve.Clients.Portable
+﻿namespace XamarinEvolve.Clients.Portable
 {
     using System;
     using System.Collections.Generic;
@@ -10,27 +8,28 @@ namespace XamarinEvolve.Clients.Portable
 
     using MvvmHelpers;
 
-    using XamarinEvolve.Clients.Portable;
+    using XamarinEvolve.Clients.Portable.ApplicationResources;
+    using XamarinEvolve.Utils;
 
     public static class MeetupExtensions
     {
-        public static IEnumerable<Grouping<string, MeetupModel>> GroupByDate(this IEnumerable<MeetupModel> events)
+        public static IEnumerable<Grouping<string, MeetupModel>> GroupByMonth(this IEnumerable<MeetupModel> meetups)
         {
-            return from e in events
-                   orderby e.StartTimeOrderBy descending
-                   group e by e.GetSortName()
-                   into eventGroup
-                   select new Grouping<string, MeetupModel>(eventGroup.Key, eventGroup);
+            return from meetup in meetups
+                   orderby meetup.StartTime descending
+                   group meetup by meetup.GetMonthAndYear()
+                   into meetupGroup
+                   select new Grouping<string, MeetupModel>(meetupGroup.Key, meetupGroup);
         }
 
-        public static string GetSortName(this MeetupModel e)
+        public static string GetMonthAndYear(this MeetupModel meetupModel)
         {
-            if (!e.StartTime.HasValue || !e.EndTime.HasValue)
+            if (!meetupModel.StartTime.HasValue)
             {
                 return "TBA";
             }
 
-            var start = e.StartTime.Value.ToEventTimeZone();
+            var start = meetupModel.StartTime.Value.ToEventTimeZone();
 
             if (DateTime.Today.Year == start.Year)
             {
@@ -45,34 +44,8 @@ namespace XamarinEvolve.Clients.Portable
                 }
             }
 
-            // var monthDay = start.ToString("M");
-            var year = start.ToString("Y", AppResources.Culture);
-            return $"{year}";
-        }
-
-        public static string GetDate(this MeetupModel e)
-        {
-            if (!e.StartTime.HasValue || !e.EndTime.HasValue)
-            {
-                return "TBA";
-            }
-
-            var start = e.StartTime.Value.ToEventTimeZone();
-
-            if (DateTime.Today.Year == start.Year)
-            {
-                if (DateTime.Today.DayOfYear == start.DayOfYear)
-                {
-                    return AppResources.Today;
-                }
-
-                if (DateTime.Today.DayOfYear + 1 == start.DayOfYear)
-                {
-                    return AppResources.Tomorrow;
-                }
-            }
-
-            return start.ToString("MMMM dd, yyyy", AppResources.Culture);
+            var monthAndYear = start.ToString("MMMM yyyy", AppResources.Culture).ToTitleCase();
+            return $"{monthAndYear}";
         }
 
         public static string GetDisplayName(this MeetupModel e)
@@ -113,14 +86,12 @@ namespace XamarinEvolve.Clients.Portable
 
         public static string GetDisplayTime(this MeetupModel e)
         {
-
             if (!e.StartTime.HasValue || !e.EndTime.HasValue || e.StartTime.Value.IsTba())
             {
                 return AppResources.ToBeAnnounced;
             }
 
             var start = e.StartTime.Value.ToEventTimeZone();
-
 
             if (e.IsAllDay)
             {
@@ -135,5 +106,3 @@ namespace XamarinEvolve.Clients.Portable
         }
     }
 }
-
-

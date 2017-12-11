@@ -84,7 +84,7 @@
 
         public SpeakerModel SpeakerModel { get; set; }
 
-        public ObservableRangeCollection<TalkModel> Sessions { get; } = new ObservableRangeCollection<TalkModel>();
+        public ObservableRangeCollection<TalkModel> Talks { get; } = new ObservableRangeCollection<TalkModel>();
 
         public ObservableRangeCollection<MenuItem> FollowItems { get; } = new ObservableRangeCollection<MenuItem>();
 
@@ -142,7 +142,7 @@
                 this.IsBusy = true;
 
                 var talks = TalkService.GetTalks(this.SpeakerModel.Id).OrderBy(talk => talk.StartTime);
-                this.Sessions.ReplaceRange(talks);
+                this.Talks.ReplaceRange(talks);
             }
             catch (Exception ex)
             {

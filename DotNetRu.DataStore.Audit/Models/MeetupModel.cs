@@ -23,8 +23,6 @@
 
         public bool HasSponsor => this.FriendModel != null;
 
-        public DateTime StartTimeOrderBy => this.StartTime ?? DateTime.MinValue;
-
         public IEnumerable<string> TalkIDs { get; set; }
     }
 }

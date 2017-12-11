@@ -20,7 +20,6 @@
             Grid.Column="0"
             Grid.Row="0"
             Grid.RowSpan="3"
-            FillColor="{DynamicResource Primary}" 
             Source="{Binding SpeakerAvatar}"
             VerticalOptions="Center"
             Aspect="AspectFill"

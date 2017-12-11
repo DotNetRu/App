@@ -28,18 +28,18 @@
                       <OnPlatform x:TypeArguments="Color" Android="{StaticResource Accent}"/>
                     </ActivityIndicator.Color>
                   </ActivityIndicator>
-                  <Label Text="Loading Talks..." HorizontalOptions="Center" Style="{DynamicResource EvolveListItemTextStyle}"/>
+                  <Label Text="{Binding Resources[LoadingTalks]}" HorizontalOptions="Center" Style="{DynamicResource EvolveListItemTextStyle}"/>
                 </StackLayout>
                 <StackLayout IsVisible="{Binding NoSessionsFound}"
                               HorizontalOptions="FillAndExpand"
                               VerticalOptions="CenterAndExpand"
                               BackgroundColor="{DynamicResource WindowBackground}"
                               Padding="16,0">
-                  <Label Text="{Binding NoSessionsFoundMessage}" HorizontalOptions="Center" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand" FontSize="22" TextColor="#D3D2D2"/>
+                  <Label Text="{Binding Resources[NoTalksFound]}" HorizontalOptions="Center" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand" FontSize="22" TextColor="#D3D2D2"/>
                 </StackLayout>
                 <local:NonScrollableListView
-                    x:Name="ListViewSessions"
-                    ItemsSource="{Binding Sessions}"
+                    x:Name="ListViewTalks"
+                    ItemsSource="{Binding Talks}"
                     StyleId="SessionSpeakers"
                     RowHeight="95">
                   <local:NonScrollableListView.SeparatorColor>

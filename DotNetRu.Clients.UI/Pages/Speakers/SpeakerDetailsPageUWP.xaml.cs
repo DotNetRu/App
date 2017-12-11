@@ -85,11 +85,11 @@ namespace XamarinEvolve.Clients.UI
             this.ListViewFollow.ItemTapped += this.ListViewTapped;
             this.ListViewSessions.ItemTapped += this.ListViewTapped;
 
-            if (this.ViewModel.Sessions.Count > 0)
+            if (this.ViewModel.Talks.Count > 0)
                 return;
 
             this.ViewModel.ExecuteLoadTalksCommand();
-            this.ListViewSessions.HeightRequest = (this.ViewModel.Sessions.Count * this.ListViewSessions.RowHeight) - 1;
+            this.ListViewSessions.HeightRequest = (this.ViewModel.Talks.Count * this.ListViewSessions.RowHeight) - 1;
         }
 
         void ListViewTapped(object sender, ItemTappedEventArgs e)

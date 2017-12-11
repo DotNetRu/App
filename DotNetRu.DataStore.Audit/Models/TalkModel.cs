@@ -90,7 +90,10 @@
             }
         }
 
-        public ImageSource SpeakerAvatar => this.Speakers.First().AvatarImage;
+        public ImageSource SpeakerAvatar => this.Speakers.Count > 1
+                                                ? ImageSource.FromResource(
+                                                    "DotNetRu.DataStore.Audit.Storage.SeveralSpeakers.png")
+                                                : this.Speakers.First().AvatarImage;
 
         public ImageSource CommunityLogo => ImageSource.FromResource(
             "DotNetRu.DataStore.Audit.Storage.logos." + this.MeetupModel.CommunityID + ".png");
