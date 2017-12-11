@@ -8,8 +8,8 @@
     <OutputType>Library</OutputType>
     <RootNamespace>XamarinEvolve.Clients.UI</RootNamespace>
     <AssemblyName>XamarinEvolve.Clients.UI</AssemblyName>
-    <TargetFrameworkProfile>Profile78</TargetFrameworkProfile>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile44</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>

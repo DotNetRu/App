@@ -95,15 +95,15 @@
 
             this.MainScroll.Parallax();
 
-            if (this.SpeakerDetailsViewModel.Sessions?.Count > 0)
+            if (this.SpeakerDetailsViewModel.Talks?.Count > 0)
             {
                 return;
             }
 
             this.SpeakerDetailsViewModel.ExecuteLoadTalksCommand();
-            var adjust = Device.RuntimePlatform != Device.Android ? 1 : -this.SpeakerDetailsViewModel.Sessions.Count + 2;
+            var adjust = Device.RuntimePlatform != Device.Android ? 1 : -this.SpeakerDetailsViewModel.Talks.Count + 2;
             this.ListViewSessions.HeightRequest =
-                (this.SpeakerDetailsViewModel.Sessions.Count * this.ListViewSessions.RowHeight) - adjust;
+                (this.SpeakerDetailsViewModel.Talks.Count * this.ListViewSessions.RowHeight) - adjust;
 
             if (this._extension != null)
             {

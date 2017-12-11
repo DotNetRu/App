@@ -1,62 +1,80 @@
-﻿using System;
-namespace XamarinEvolve.Utils
+﻿namespace XamarinEvolve.Utils
 {
-	public static class StringExtensions
-	{
-		/// <summary>
-		/// Strips an url string of http(s):// prefix and a possible trailing / so it is shorter and prettier to display
-		/// </summary>
-		/// <returns>The original URL</returns>
-		/// <param name="url">Url without protocol prefix and trailing slash</param>
-		public static string StripUrlForDisplay(this string url)
-		{
-			if (url == null)
-				return null;
+    using System;
 
-			var result = url.Replace("http://", string.Empty);
-			result = result.Replace("https://", string.Empty);
-			result = result.Replace("www.", string.Empty);
-			if (result.EndsWith("/", StringComparison.CurrentCultureIgnoreCase))
-			{
-				result = result.Remove(result.Length - 1);
-			}
+    public static class StringExtensions
+    {
+        /// <summary>
+        /// Strips an url string of http(s):// prefix and a possible trailing / so it is shorter and prettier to display
+        /// </summary>
+        /// <returns>The original URL</returns>
+        /// <param name="url">Url without protocol prefix and trailing slash</param>
+        public static string StripUrlForDisplay(this string url)
+        {
+            if (url == null)
+            {
+                return null;
+            }
 
-			return result.ToLowerInvariant();
-		}
+            var result = url.Replace("http://", string.Empty);
+            result = result.Replace("https://", string.Empty);
+            result = result.Replace("www.", string.Empty);
+            if (result.EndsWith("/", StringComparison.CurrentCultureIgnoreCase))
+            {
+                result = result.Remove(result.Length - 1);
+            }
 
-		public static string CleanUpTwitter(this string name)
-		{
-			if (name == null)
-				return null;
+            return result.ToLowerInvariant();
+        }
 
-			var result = name;
-			if (name.StartsWith("http://", StringComparison.OrdinalIgnoreCase) || name.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
-			{
-				result = name.Substring(name.LastIndexOf('/') + 1);
-			}
+        public static string CleanUpTwitter(this string name)
+        {
+            if (name == null)
+            {
+                return null;
+            }
 
-			if (result.StartsWith("@", StringComparison.OrdinalIgnoreCase))
-			{
-				result = result.Remove(0, 1);
-			}
+            var result = name;
+            if (name.StartsWith("http://", StringComparison.OrdinalIgnoreCase)
+                || name.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
+            {
+                result = name.Substring(name.LastIndexOf('/') + 1);
+            }
 
-			return result;
-		}
+            if (result.StartsWith("@", StringComparison.OrdinalIgnoreCase))
+            {
+                result = result.Remove(0, 1);
+            }
 
-		public static string GetLastPartOfUrl(this string url)
-		{
-			if (url == null)
-				return null;
+            return result;
+        }
 
-			var result = url;
+        public static string GetLastPartOfUrl(this string url)
+        {
+            if (url == null)
+            {
+                return null;
+            }
 
-			if (url.LastIndexOf('/') > 0)
-			{
-				result = url.Substring(url.LastIndexOf('/') + 1);
-			}
+            var result = url;
 
-			return result;
-		}
-	}
+            if (url.LastIndexOf('/') > 0)
+            {
+                result = url.Substring(url.LastIndexOf('/') + 1);
+            }
+
+            return result;
+        }
+
+        public static string ToTitleCase(this string input)
+        {
+            switch (input)
+            {
+                case null: throw new ArgumentNullException(nameof(input));
+                case "": throw new ArgumentException($"{nameof(input)} cannot be empty", nameof(input));
+                default: return input[0].ToString().ToUpper() + input.Substring(1);
+            }
+        }
+    }
 }
 

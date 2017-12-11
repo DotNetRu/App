@@ -100,9 +100,6 @@
   <data name="PrivacyPolicy" xml:space="preserve">
     <value>Конфиденциальность</value>
   </data>
-  <data name="Sessions" xml:space="preserve">
-    <value>Сессии</value>
-  </data>
   <data name="Social" xml:space="preserve">
     <value>Социальные сети</value>
   </data>
@@ -168,5 +165,14 @@
   </data>
   <data name="Talks" xml:space="preserve">
     <value>Доклады</value>
+  </data>
+  <data name="LoadingMeetups" xml:space="preserve">
+    <value>Загрузка встреч..</value>
+  </data>
+  <data name="LoadingTalks" xml:space="preserve">
+    <value>Загрузка докладов..</value>
+  </data>
+  <data name="NoTalksFound" xml:space="preserve">
+    <value>Доклады не найдены</value>
   </data>
 </root>

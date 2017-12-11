@@ -1,11 +1,11 @@
-﻿
-namespace XamarinEvolve.Clients.Portable
+﻿namespace XamarinEvolve.Clients.Portable
 {
     using System;
     using System.Linq;
     using System.Windows.Input;
 
     using DotNetRu.DataStore.Audit.Models;
+    using DotNetRu.DataStore.Audit.Services;
 
     using FormsToolkit;
 
@@ -15,12 +15,10 @@ namespace XamarinEvolve.Clients.Portable
 
     using XamarinEvolve.Utils;
     using XamarinEvolve.Utils.Helpers;
-    using DotNetRu.DataStore.Audit.Services;
 
     public class MeetupViewModel : ViewModelBase
     {
         private bool noSessionsFound;
-        private string noSessionsFoundMessage;
 
         private TalkModel selectedTalkModel;
 
@@ -32,11 +30,10 @@ namespace XamarinEvolve.Clients.Portable
             this.MeetupModel = meetupModel;
             this.VenueModel = venueModel;
             
-
             this.TapVenueCommand = new Command(this.OnVenueTapped);
         }
 
-        public ObservableRangeCollection<TalkModel> Sessions { get; } = new ObservableRangeCollection<TalkModel>();                
+        public ObservableRangeCollection<TalkModel> Talks { get; } = new ObservableRangeCollection<TalkModel>();                
 
         public MeetupModel MeetupModel { get; set; }
 
@@ -68,22 +65,15 @@ namespace XamarinEvolve.Clients.Portable
             set => this.SetProperty(ref this.noSessionsFound, value);
         }
 
-        public string NoSessionsFoundMessage
-        {
-            get => this.noSessionsFoundMessage;
-
-            set => this.SetProperty(ref this.noSessionsFoundMessage, value);
-        }
-
         public ICommand TapVenueCommand { get; set; }
+
+        public ICommand LoadTalksCommand => this.loadSessionsCommand
+                                               ?? (this.loadSessionsCommand = new Command(this.ExecuteLoadSessions));
 
         public void OnVenueTapped()
         {
             this.LaunchBrowserCommand.Execute(this.VenueModel.MapUrl);
         }
-
-        public ICommand LoadSessionsCommand => this.loadSessionsCommand
-                                               ?? (this.loadSessionsCommand = new Command(this.ExecuteLoadSessions));
 
         private void ExecuteLoadSessions()
         {
@@ -97,12 +87,11 @@ namespace XamarinEvolve.Clients.Portable
                 this.IsBusy = true;
                 this.NoSessionsFound = false;
 
-                var sessions = TalkService.GetTalks(this.MeetupModel.TalkIDs);
-                this.Sessions.ReplaceRange(sessions);
+                var sessions = TalkService.GetTalks(this.MeetupModel.TalkIDs).ToArray();
+                this.Talks.ReplaceRange(sessions);
 
                 if (!sessions.Any())
                 {
-                    this.NoSessionsFoundMessage = "No Sessions Found";
                     this.NoSessionsFound = true;
                 }
                 else
@@ -112,7 +101,7 @@ namespace XamarinEvolve.Clients.Portable
 
                 if (Device.RuntimePlatform != Device.UWP && FeatureFlags.AppLinksEnabled)
                 {
-                    foreach (var session in this.Sessions)
+                    foreach (var session in this.Talks)
                     {
                         try
                         {
