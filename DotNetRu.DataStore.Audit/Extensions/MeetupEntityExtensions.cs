@@ -17,6 +17,7 @@
                            EndTime = meetupEntity.Date,
                            VenueID = meetupEntity.VenueId,
                            TalkIDs = meetupEntity.TalkIds,
+                           FriendIDs = meetupEntity.FriendIds
                        };
         }
     }

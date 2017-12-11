@@ -76,7 +76,6 @@
     <Compile Include="ViewModel\FriendsViewModel.cs" />
     <Compile Include="ViewModel\FriendDetailsViewModel.cs" />
     <Compile Include="ViewModel\MeetupsViewModel.cs" />
-    <Compile Include="ViewModel\EventDetailsViewModel.cs" />
     <Compile Include="Model\Extensions\MeetupExtensions.cs" />
     <Compile Include="ViewModel\NewsViewModel.cs" />
     <Compile Include="Model\Tweet.cs" />
