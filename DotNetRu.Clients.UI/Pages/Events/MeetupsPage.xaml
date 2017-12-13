@@ -19,7 +19,7 @@
    <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
      <ListView 
             x:Name="ListViewEvents"
-            ItemsSource="{Binding EventsGrouped}"
+            ItemsSource="{Binding MeetupsByMonth}"
             GroupDisplayBinding="{Binding Key}"
             IsGroupingEnabled="true"
             HasUnevenRows ="true"
@@ -110,7 +110,7 @@
                     <OnPlatform x:TypeArguments="Color" Android="{StaticResource Accent}"/>
                 </ActivityIndicator.Color>
             </ActivityIndicator>
-            <Label Text="Loading MeetupModels..." HorizontalOptions="Center" Style="{DynamicResource EvolveListItemTextStyle}"/>
+            <Label Text="{Binding Resources[LoadingMeetups]}" HorizontalOptions="Center" Style="{DynamicResource EvolveListItemTextStyle}"/>
        </StackLayout>
     </AbsoluteLayout>
 </local:BasePage>

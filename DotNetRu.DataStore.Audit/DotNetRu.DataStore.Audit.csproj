@@ -284,7 +284,9 @@
     <EmbeddedResource Include="Storage\speakers\Yuri-Volkov.avatar.jpg" />
     <EmbeddedResource Include="Storage\speakers\Yuri-Volkov.avatar.small.jpg" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Storage\SeveralSpeakers.png" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Storage\logos\EkbDotNet.png" />
     <EmbeddedResource Include="Storage\logos\KryDotNet.png" />

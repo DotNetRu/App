@@ -1,5 +1,9 @@
 ﻿namespace DotNetRu.DataStore.Audit.Models
 {
+    using System.Linq;
+
+    using DotNetRu.DataStore.Audit.Services;
+
     using Xamarin.Forms;
 
     public class FriendModel : BaseModel
@@ -27,6 +31,19 @@
         public string FacebookProfileName { get; set; }
 
         public string LinkedInUrl { get; set; }
+
+        public int NumberOfMeetups
+        {
+            get
+            {
+                if (this.Id == "JetBrains" || this.Id == "DotNext")
+                {
+                    return int.MaxValue;
+                }
+
+                return MeetupService.GetMeetups(this.Id).Count();
+            }
+        }
 
         /// <summary>
         /// Gets or sets the rank.

@@ -153,6 +153,9 @@
   <data name="Loading" xml:space="preserve">
     <value>Loading Social Feed...</value>
   </data>
+  <data name="LoadingMeetups" xml:space="preserve">
+    <value>Loading meetups..</value>
+  </data>
   <data name="LoadingTalks" xml:space="preserve">
     <value>Loading talks...</value>
   </data>
@@ -168,6 +171,9 @@
   <data name="News" xml:space="preserve">
     <value>News</value>
   </data>
+  <data name="NoTalksFound" xml:space="preserve">
+    <value>No talks found</value>
+  </data>
   <data name="OpenSource" xml:space="preserve">
     <value>Open source on Github!</value>
   </data>
@@ -179,9 +185,6 @@
   </data>
   <data name="PrivacyPolicy" xml:space="preserve">
     <value>Privacy Policy</value>
-  </data>
-  <data name="Sessions" xml:space="preserve">
-    <value>Sessions</value>
   </data>
   <data name="Share" xml:space="preserve">
     <value>Share</value>

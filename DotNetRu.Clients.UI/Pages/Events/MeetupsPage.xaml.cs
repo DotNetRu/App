@@ -1,5 +1,7 @@
 ﻿namespace XamarinEvolve.Clients.UI
 {
+    using System.Linq;
+
     using DotNetRu.DataStore.Audit.Models;
 
     using XamarinEvolve.Clients.Portable;
@@ -36,11 +38,10 @@
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            if (this.MeetupsViewModel.Events.Count == 0)
+            if (!this.MeetupsViewModel.MeetupsByMonth.Any())
             {
-                this.MeetupsViewModel.LoadEventsCommand.Execute(false);
+                this.MeetupsViewModel.LoadMeetupsCommand.Execute(false);
             }
         }
     }
 }
-

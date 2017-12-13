@@ -16,7 +16,7 @@
 
         public static IEnumerable<TalkModel> GetTalks(IEnumerable<string> talkIDs)
         {
-            return Talks.Where(t => talkIDs.Any(talkId => talkId == t.TalkId));
+            return talkIDs.Select(talkID => Talks.Single(talk => talk.TalkId == talkID));
         }
 
         public static IEnumerable<TalkModel> GetTalks(string speakerId)
