@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ui="clr-namespace:XamarinEvolve.Clients.UI;assembly=XamarinEvolve.Clients.UI"
+             x:Class="XamarinEvolve.Clients.UI.Pages.Info.TechnologiesUsed"
+             Title="Resources[TechnologyUsed]">
+    <ContentPage.Content>
+        <ui:CardView>
+            <StackLayout Spacing="0">
+                <ui:NonScrollableListView
+                    x:Name="ListViewTechnology"
+                    ItemsSource="{Binding TechnologyItems}"
+                    RowHeight="44">
+                    <ui:NonScrollableListView.SeparatorColor>
+                        <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ListSeparator}"/>
+                    </ui:NonScrollableListView.SeparatorColor>
+                    <ui:NonScrollableListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextCell Text="{Binding Name}"
+                                      Detail="{Binding Subtitle}"
+                                      Command="{Binding Command}"
+                                      CommandParameter="{Binding Parameter}"
+                                      StyleId="disclosure"/>
+                        </DataTemplate>
+                    </ui:NonScrollableListView.ItemTemplate>
+                </ui:NonScrollableListView>
+                <ui:FooterDivider/>
+                <StackLayout>
+                    <StackLayout.Padding>
+                        <OnPlatform x:TypeArguments="Thickness" iOS="16,8,16,0" Android="16,8" WinPhone="16,8"/>
+                    </StackLayout.Padding>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapGestureRecognizerTapped" />
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+            </StackLayout>
+        </ui:CardView>
+
+    </ContentPage.Content>
+</ContentPage>

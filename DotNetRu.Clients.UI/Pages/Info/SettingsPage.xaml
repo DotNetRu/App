@@ -3,11 +3,11 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="XamarinEvolve.Clients.UI.SettingsPage"
-    xmlns:local="clr-namespace:XamarinEvolve.Clients.UI;assembly=XamarinEvolve.Clients.UI"    
+    xmlns:local="clr-namespace:XamarinEvolve.Clients.UI;assembly=XamarinEvolve.Clients.UI"
     x:Name="AboutPage"
     Title="{Binding Resources[About]}"
     Icon="tab_about.png"
-    NavigationPage.BackButtonTitle="Info"    
+    NavigationPage.BackButtonTitle="Info"
     BackgroundColor="{DynamicResource WindowBackgroundTable}">
   <local:AlwaysScrollView>
     <StackLayout Spacing="0">
@@ -15,14 +15,35 @@
           BackgroundColor="{DynamicResource WindowBackgroundTable}"
           Spacing="{DynamicResource CardSpacing}"
           Padding="{DynamicResource CardPadding}">
-
         <local:CardView>
           <StackLayout Spacing="0">
+            <Image
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand"
+                Margin="0, 0, 0, 10"
+                Source="ic_splash.png"
+                Aspect="AspectFill"/>
             <local:LabelSection Text="{Binding AppInfo}"/>
             <StackLayout Spacing="10">
               <StackLayout.Padding>
                 <OnPlatform x:TypeArguments="Thickness" iOS="16,8,16,8" Android="16,8" WinPhone="16,8"/>
               </StackLayout.Padding>
+              <Button
+                  Text="{Binding Resources[Friends]}"
+                  Clicked="Friends_OnClicked"
+                  TextColor="White"
+                  HorizontalOptions="FillAndExpand"
+                  BackgroundColor="{StaticResource Primary}"
+                  StyleId="AndroidReminderButton">
+              </Button>
+              <Button
+                  Text="{Binding Resources[TechnologyUsed]}"
+                  Clicked="Technologies_OnClicked"
+                  TextColor="White"
+                  HorizontalOptions="FillAndExpand"
+                  BackgroundColor="{StaticResource Primary}"
+                  StyleId="AndroidReminderButton">
+              </Button>
               <Label Text="{Binding Resources[Language]}" />
               <Picker ItemsSource="{Binding Languages}" SelectedItem="{Binding SelectedLanguage, Mode=TwoWay}" />
               <Label Text="{Binding AppVersion}"
@@ -51,25 +72,25 @@
             <local:FooterDivider/>
           </StackLayout>
         </local:CardView>
-
         <local:CardView>
           <StackLayout Spacing="0">
-            <local:LabelSection Text="{Binding Resources[TechnologyUsed]}"/>
+            <local:LabelSection Text="{Binding Resources[OurCommunities]}"/>
             <local:HeaderDivider/>
             <local:NonScrollableListView
-                x:Name="ListViewTechnology"
-                ItemsSource="{Binding TechnologyItems}"
+                x:Name="ListViewCommunities"
+                ItemsSource="{Binding Communities}"
                 RowHeight="44">
               <local:NonScrollableListView.SeparatorColor>
                 <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ListSeparator}"/>
               </local:NonScrollableListView.SeparatorColor>
               <local:NonScrollableListView.ItemTemplate>
                 <DataTemplate>
-                  <TextCell Text="{Binding Name}"
-                             Detail="{Binding Subtitle}"
-                             Command="{Binding Command}"
-                             CommandParameter="{Binding Parameter}"
-                             StyleId="disclosure"/>
+                  <ViewCell>
+                    <StackLayout Orientation="Horizontal">
+                      <Image Source="{Binding IconSource}" WidthRequest="30" HeightRequest="30" Margin="10, 10, 15, 10" />
+                      <Label Text="{Binding Name}" Margin="10, 10, 15, 10"/>
+                    </StackLayout>
+                  </ViewCell>
                 </DataTemplate>
               </local:NonScrollableListView.ItemTemplate>
             </local:NonScrollableListView>
@@ -78,10 +99,6 @@
               <StackLayout.Padding>
                 <OnPlatform x:TypeArguments="Thickness" iOS="16,8,16,0" Android="16,8" WinPhone="16,8"/>
               </StackLayout.Padding>
-              <StackLayout.GestureRecognizers>
-                <TapGestureRecognizer
-                        Tapped="OnTapGestureRecognizerTapped" />
-              </StackLayout.GestureRecognizers>
             </StackLayout>
           </StackLayout>
         </local:CardView>

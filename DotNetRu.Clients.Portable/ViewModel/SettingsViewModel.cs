@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Globalization;
+using System.Linq;
 using XamarinEvolve.Clients.Portable.ApplicationResources;
 using XamarinEvolve.Clients.Portable.Helpers;
 using XamarinEvolve.Clients.Portable.Interfaces;
@@ -36,11 +38,13 @@ namespace XamarinEvolve.Clients.Portable
     public class SettingsViewModel : ViewModelBase
     {
 
-        public List<string> Languages { get; set; } = new List<string>()
+        private readonly Dictionary<string, string> _languageCode = new Dictionary<string, string>
         {
-            "en",
-            "ru",
+            ["English"] = "en",
+            ["Русский"] = "ru"
         };
+
+        public List<string> Languages => _languageCode.Keys.ToList();
 
         private string _selectedLanguage;
 
@@ -49,27 +53,28 @@ namespace XamarinEvolve.Clients.Portable
             get { return _selectedLanguage; }
             set
             {
-                _selectedLanguage = value;
+                SetProperty(ref _selectedLanguage, value);
                 SetLanguage();
             }
         }
 
         private void SetLanguage()
         {
-            Helpers.Settings.CurrentLanguage = _selectedLanguage;
-            CurrentLanguage = SelectedLanguage;
+            Helpers.Settings.CurrentLanguage = _languageCode[_selectedLanguage];
+            CurrentLanguage = _languageCode[_selectedLanguage];
             MessagingCenter.Send<object, CultureChangedMessage>(this,
-                string.Empty, new CultureChangedMessage(SelectedLanguage));
+                string.Empty, new CultureChangedMessage(_languageCode[_selectedLanguage]));
         }
 
         public CustomObservableCollection<MenuItem> AboutItems { get; } = new CustomObservableCollection<MenuItem>();
 
-        public ObservableRangeCollection<MenuItem> TechnologyItems { get; } = new ObservableRangeCollection<MenuItem>();
+        public CustomObservableCollection<MenuItem> Communities { get; } = new CustomObservableCollection<MenuItem>();
 
         public string Copyright => AboutThisApp.Copyright;
 
         public bool AppToWebLinkingEnabled => FeatureFlags.AppToWebLinkingEnabled;
 
+        public ImageSource BackgroundImage { get; set; }
         void NotifyVmProperties()
         {
             var ci = new CultureInfo(CurrentLanguage);
@@ -94,34 +99,50 @@ namespace XamarinEvolve.Clients.Portable
                     },
                     new MenuItem
                     {
-                        Name = Resources["OpenSource"],
+                        Name = Resources["IssueTracker"],
                         Command = this.LaunchBrowserCommand,
-                        Parameter = AboutThisApp.OpenSourceUrl
+                        Parameter = AboutThisApp.IssueTracker
+                    }
+                });
+            this.Communities.ReplaceRange(
+                new[]
+                {
+                    new MenuItem
+                    {
+                        Name = Resources["SaintPetersburg"],
+                        Command = this.LaunchBrowserCommand,
+                        IconSource = ImageSource.FromUri(new Uri(AboutThisApp.SpbLogo)),
+                        Parameter = AboutThisApp.SpbLink
                     },
                     new MenuItem
                     {
-                        Name = Resources["TermsOfUse"],
+                        Name = Resources["Krasnoyarsk"],
                         Command = this.LaunchBrowserCommand,
-                        //Parameter = AboutThisApp.TermsOfUseUrl
+                        IconSource = ImageSource.FromUri(new Uri(AboutThisApp.KrasnoyarskLogo)),
+                        Parameter = AboutThisApp.KrasnoyarskLink
                     },
                     new MenuItem
                     {
-                        Name = Resources["PrivacyPolicy"],
+                        Name = Resources["Saratov"],
                         Command = this.LaunchBrowserCommand,
-                        //Parameter = AboutThisApp.PrivacyPolicyUrl
+                        IconSource = ImageSource.FromUri(new Uri(AboutThisApp.SaratovLogo)),
+                        Parameter = AboutThisApp.SaratovLink
                     },
                     new MenuItem
                     {
-                        Name = Resources["OpenSourceNotice"],
+                        Name = Resources["Moscow"],
                         Command = this.LaunchBrowserCommand,
-                        Parameter = AboutThisApp.OpenSourceNoticeUrl
+                        IconSource = ImageSource.FromUri(new Uri(AboutThisApp.MoscowLogo)),
+                        Parameter = AboutThisApp.MoscowLink
                     }
                 });
         }
         public SettingsViewModel()
         {
             MessagingCenter.Subscribe<LocalizedResources>(this, MessageKeys.LanguageChanged, sender => NotifyVmProperties());
-            _selectedLanguage = CurrentLanguage;
+            _selectedLanguage = _languageCode.FirstOrDefault(l => l.Value == Helpers.Settings.CurrentLanguage).Value;
+            if (string.IsNullOrEmpty(_selectedLanguage))
+                _selectedLanguage = "English";
             this.AboutItems.AddRange(
                 new[]
                 {
@@ -139,123 +160,44 @@ namespace XamarinEvolve.Clients.Portable
                     },
                     new MenuItem
                     {
-                        Name = Resources["OpenSource"],
+                        Name = Resources["IssueTracker"],
                         Command = this.LaunchBrowserCommand,
-                        Parameter = AboutThisApp.OpenSourceUrl
-                    },
-                    new MenuItem
-                    {
-                        Name = Resources["TermsOfUse"],
-                        Command = this.LaunchBrowserCommand,
-                        //Parameter = AboutThisApp.TermsOfUseUrl
-                    },
-                    new MenuItem
-                    {
-                        Name = Resources["PrivacyPolicy"],
-                        Command = this.LaunchBrowserCommand,
-                       // Parameter = AboutThisApp.PrivacyPolicyUrl
-                    },
-                    new MenuItem
-                    {
-                        Name = Resources["OpenSourceNotice"],
-                        Command = this.LaunchBrowserCommand,
-                        Parameter = AboutThisApp.OpenSourceNoticeUrl
+                        Parameter = AboutThisApp.IssueTracker
                     }
                 });
 
-            this.TechnologyItems.AddRange(
+            this.Communities.AddRange(
                 new[]
                 {
-                        new MenuItem
-                            {
-                                Name = "Censored",
-                                Command = this.LaunchBrowserCommand,
-                                Parameter = "https://github.com/jamesmontemagno/Censored"
-                            },
-                        new MenuItem
-                            {
-                                Name = "Connectivity Plugin",
-                                Command = this.LaunchBrowserCommand,
-                                Parameter =
-                                    "https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/Connectivity"
-                            },
-                        new MenuItem
-                            {
-                                Name = "Humanizer",
-                                Command = this.LaunchBrowserCommand,
-                                Parameter = "https://github.com/Humanizr/Humanizer"
-                            },
-                        new MenuItem
-                            {
-                                Name = "Image Circles",
-                                Command = this.LaunchBrowserCommand,
-                                Parameter =
-                                    "https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/ImageCircle"
-                            },
-                        new MenuItem
-                            {
-                                Name = "LinqToTwitter",
-                                Command = this.LaunchBrowserCommand,
-                                Parameter = "https://github.com/JoeMayo/LinqToTwitter"
-                            },
-                        new MenuItem
-                            {
-                                Name = "Messaging Plugin",
-                                Command = this.LaunchBrowserCommand,
-                                Parameter = "https://github.com/cjlotz/Xamarin.Plugins"
-                            },
-                        new MenuItem
-                            {
-                                Name = "Mvvm Helpers",
-                                Command = this.LaunchBrowserCommand,
-                                Parameter = "https://github.com/jamesmontemagno/mvvm-helpers"
-                            },
-                        new MenuItem
-                            {
-                                Name = "Noda Time",
-                                Command = this.LaunchBrowserCommand,
-                                Parameter = "https://github.com/nodatime/nodatime"
-                            },
-                        new MenuItem
-                            {
-                                Name = "Permissions Plugin",
-                                Command = this.LaunchBrowserCommand,
-                                Parameter =
-                                    "https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/Permissions"
-                            },
-                        new MenuItem
-                            {
-                                Name = "Pull to Refresh Layout",
-                                Command = this.LaunchBrowserCommand,
-                                Parameter =
-                                    "https://github.com/jamesmontemagno/Xamarin.Forms-PullToRefreshLayout"
-                            },
-                        new MenuItem
-                            {
-                                Name = "Settings Plugin",
-                                Command = this.LaunchBrowserCommand,
-                                Parameter =
-                                    "https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/Settings"
-                            },
-                        new MenuItem
-                            {
-                                Name = "Toolkit for Xamarin.Forms",
-                                Command = this.LaunchBrowserCommand,
-                                Parameter = "https://github.com/jamesmontemagno/xamarin.forms-toolkit"
-                            },
-                        new MenuItem
-                            {
-                                Name = "Xamarin.Forms",
-                                Command = this.LaunchBrowserCommand,
-                                Parameter = "http://xamarin.com/forms"
-                            },
-                        new MenuItem
-                            {
-                                Name = "Xamarin Insights",
-                                Command = this.LaunchBrowserCommand,
-                                Parameter = "http://xamarin.com/insights"
-                            }
-                    });
+                    new MenuItem
+                    {
+                        Name = Resources["SaintPetersburg"],
+                        Command = this.LaunchBrowserCommand,
+                        IconSource = ImageSource.FromUri(new Uri(AboutThisApp.SpbLogo)),
+                        Parameter = AboutThisApp.SpbLink
+                    },
+                    new MenuItem
+                    {
+                        Name = Resources["Krasnoyarsk"],
+                        Command = this.LaunchBrowserCommand,
+                        IconSource = ImageSource.FromUri(new Uri(AboutThisApp.KrasnoyarskLogo)),
+                        Parameter = AboutThisApp.KrasnoyarskLink
+                    },
+                    new MenuItem
+                    {
+                        Name = Resources["Saratov"],
+                        Command = this.LaunchBrowserCommand,
+                        IconSource = ImageSource.FromUri(new Uri(AboutThisApp.SaratovLogo)),
+                        Parameter = AboutThisApp.SaratovLink
+                    },
+                    new MenuItem
+                    {
+                        Name = Resources["Moscow"],
+                        Command = this.LaunchBrowserCommand,
+                        IconSource = ImageSource.FromUri(new Uri(AboutThisApp.MoscowLogo)),
+                        Parameter = AboutThisApp.MoscowLink
+                    }
+                });
         }
 
         public string AppVersion => $"{Resources["Version"]} {DependencyService.Get<IAppVersionProvider>()?.AppVersion ?? "1.0"}";
