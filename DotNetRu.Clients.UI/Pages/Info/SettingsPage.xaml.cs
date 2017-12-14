@@ -3,6 +3,7 @@
 using Xamarin.Forms;
 
 using XamarinEvolve.Clients.Portable;
+using XamarinEvolve.Clients.UI.Pages.Info;
 
 namespace XamarinEvolve.Clients.UI
 {
@@ -22,27 +23,16 @@ namespace XamarinEvolve.Clients.UI
             var adjust = Device.RuntimePlatform != Device.Android ? 1 : -this.vm.AboutItems.Count + 1;
             this.ListViewAbout.HeightRequest = (this.vm.AboutItems.Count * this.ListViewAbout.RowHeight) - adjust;
             this.ListViewAbout.ItemTapped += (sender, e) => this.ListViewAbout.SelectedItem = null;
-            adjust = Device.RuntimePlatform != Device.Android ? 1 : -this.vm.TechnologyItems.Count + 1;
-            this.ListViewTechnology.HeightRequest = (this.vm.TechnologyItems.Count * this.ListViewTechnology.RowHeight) - adjust;
-            this.ListViewTechnology.ItemTapped += (sender, e) => this.ListViewTechnology.SelectedItem = null;
+
+            adjust = Device.RuntimePlatform != Device.Android ? 1 : -this.vm.Communities.Count + 1;
+            this.ListViewCommunities.HeightRequest = (this.vm.Communities.Count * this.ListViewCommunities.RowHeight) - adjust;
+            this.ListViewCommunities.ItemTapped += (sender, e) => this.ListViewCommunities.SelectedItem = null;
         }
 
         bool dialogShown;
         int count;
 
-        async void OnTapGestureRecognizerTapped(object sender, EventArgs args)
-        {
-            this.count++;
-            if (this.dialogShown || this.count < 8)
-                return;
-
-            this.dialogShown = true;
-
-            App.Logger.Track("AppCreditsFound-8MoreThan92");
-
-            await this.DisplayAlert("Credits",
-              AboutThisApp.Credits, "OK");
-        }
+   
 
         protected override void OnPropertyChanged(string propertyName = null)
         {
@@ -50,6 +40,15 @@ namespace XamarinEvolve.Clients.UI
             if (propertyName == "Title")
                 MessagingCenter.Send(this, MessageKeys.UpdateTitles);
         }
+
+	    private async void Friends_OnClicked(object sender, EventArgs e)
+	    {
+	        await NavigationService.PushAsync(this.Navigation, new FriendsPage());
+	    }
+	    private async void Technologies_OnClicked(object sender, EventArgs e)
+	    {
+	        await NavigationService.PushAsync(this.Navigation, new TechnologiesUsed());
+	    }
     }
 }
 

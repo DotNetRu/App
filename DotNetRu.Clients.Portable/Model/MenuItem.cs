@@ -1,5 +1,6 @@
 ﻿using System.Windows.Input;
 using MvvmHelpers;
+using Xamarin.Forms;
 
 namespace XamarinEvolve.Clients.Portable
 {
@@ -19,6 +20,8 @@ namespace XamarinEvolve.Clients.Portable
         }
 
         public string Icon {get;set;}
+
+        public ImageSource IconSource { get; set; }
         public string Parameter {get;set;}
 
         public AppPage Page { get; set; }

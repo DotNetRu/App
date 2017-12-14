@@ -239,9 +239,6 @@
                         case "menu_events.png":
                             menuItem.SetIcon(Resource.Drawable.menu_events);
                             break;
-                        case "menu_sponsors.png":
-                            menuItem.SetIcon(Resource.Drawable.menu_sponsors);
-                            break;
                         case "menu_info.png":
                             menuItem.SetIcon(Resource.Drawable.menu_info);
                             break;

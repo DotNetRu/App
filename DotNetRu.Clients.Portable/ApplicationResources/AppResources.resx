@@ -144,6 +144,12 @@
   <data name="Friends" xml:space="preserve">
     <value>Friends</value>
   </data>
+  <data name="IssueTracker" xml:space="preserve">
+    <value>Issue Tracker</value>
+  </data>
+  <data name="Krasnoyarsk" xml:space="preserve">
+    <value>Krasnoyarsk</value>
+  </data>
   <data name="Language" xml:space="preserve">
     <value>Language</value>
   </data>
@@ -168,23 +174,32 @@
   <data name="Meetups" xml:space="preserve">
     <value>Meetups</value>
   </data>
+  <data name="Moscow" xml:space="preserve">
+    <value>Moscow</value>
+  </data>
   <data name="News" xml:space="preserve">
     <value>News</value>
   </data>
   <data name="NoTalksFound" xml:space="preserve">
     <value>No talks found</value>
   </data>
-  <data name="OpenSource" xml:space="preserve">
-    <value>Open source on Github!</value>
-  </data>
   <data name="OpenSourceNotice" xml:space="preserve">
     <value>Open Source Notice</value>
+  </data>
+  <data name="OurCommunities" xml:space="preserve">
+    <value>Our communities</value>
   </data>
   <data name="PresentationSlides" xml:space="preserve">
     <value>Presentation Slides</value>
   </data>
   <data name="PrivacyPolicy" xml:space="preserve">
     <value>Privacy Policy</value>
+  </data>
+  <data name="SaintPetersburg" xml:space="preserve">
+    <value>Saint-Petersburg</value>
+  </data>
+  <data name="Saratov" xml:space="preserve">
+    <value>Saratov</value>
   </data>
   <data name="Share" xml:space="preserve">
     <value>Share</value>

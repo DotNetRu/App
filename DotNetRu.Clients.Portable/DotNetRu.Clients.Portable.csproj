@@ -64,6 +64,7 @@
     <Compile Include="TweetHelper.cs" />
     <Compile Include="ViewModel\BottomBarViewModel.cs" />
     <Compile Include="ViewModel\MeetupViewModel.cs" />
+    <Compile Include="ViewModel\TechnologiesUsedViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="Model\Extensions\TalkModelExtensions.cs" />
     <Compile Include="ViewModel\FilterSessionsViewModel.cs" />

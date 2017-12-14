@@ -143,6 +143,24 @@ namespace XamarinEvolve.Clients.Portable.ApplicationResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Issue Tracker.
+        /// </summary>
+        public static string IssueTracker {
+            get {
+                return ResourceManager.GetString("IssueTracker", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Krasnoyarsk.
+        /// </summary>
+        public static string Krasnoyarsk {
+            get {
+                return ResourceManager.GetString("Krasnoyarsk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Language.
         /// </summary>
         public static string Language {
@@ -215,6 +233,15 @@ namespace XamarinEvolve.Clients.Portable.ApplicationResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Moscow.
+        /// </summary>
+        public static string Moscow {
+            get {
+                return ResourceManager.GetString("Moscow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to News.
         /// </summary>
         public static string News {
@@ -233,20 +260,20 @@ namespace XamarinEvolve.Clients.Portable.ApplicationResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Open source on Github!.
-        /// </summary>
-        public static string OpenSource {
-            get {
-                return ResourceManager.GetString("OpenSource", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Open Source Notice.
         /// </summary>
         public static string OpenSourceNotice {
             get {
                 return ResourceManager.GetString("OpenSourceNotice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Our communities.
+        /// </summary>
+        public static string OurCommunities {
+            get {
+                return ResourceManager.GetString("OurCommunities", resourceCulture);
             }
         }
         
@@ -265,6 +292,24 @@ namespace XamarinEvolve.Clients.Portable.ApplicationResources {
         public static string PrivacyPolicy {
             get {
                 return ResourceManager.GetString("PrivacyPolicy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saint-Petersburg.
+        /// </summary>
+        public static string SaintPetersburg {
+            get {
+                return ResourceManager.GetString("SaintPetersburg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saratov.
+        /// </summary>
+        public static string Saratov {
+            get {
+                return ResourceManager.GetString("Saratov", resourceCulture);
             }
         }
         
