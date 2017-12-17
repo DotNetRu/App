@@ -1,8 +1,4 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using XamarinEvolve.Clients.UI;
-
-namespace XamarinEvolve.Clients.Portable
+﻿namespace XamarinEvolve.Clients.Portable
 {
     using System;
     using System.Threading.Tasks;
@@ -14,24 +10,15 @@ namespace XamarinEvolve.Clients.Portable
     using Plugin.Share;
     using Plugin.Share.Abstractions;
 
-    using Xamarin.Forms;   
+    using Xamarin.Forms;
+
+    using XamarinEvolve.Clients.UI;
 
     /// <summary>
     /// The view model base.
     /// </summary>
     public class ViewModelBase : BaseViewModel
     {
-        public static string CurrentLanguage = "en";
-        public LocalizedResources Resources
-        {
-            get;
-            private set;
-        }
-        /// <summary>
-        /// Gets the navigation.
-        /// </summary>
-        protected INavigation Navigation { get; }
-
         /// <summary>
         /// Initializes a new instance of the <see cref="ViewModelBase"/> class.
         /// </summary>
@@ -41,15 +28,17 @@ namespace XamarinEvolve.Clients.Portable
         public ViewModelBase(INavigation navigation = null)
         {
             this.Navigation = navigation;
-            Resources = new LocalizedResources(typeof(ApplicationResources.AppResources), CurrentLanguage);
+            this.Resources = new LocalizedResources(typeof(ApplicationResources.AppResources), CurrentLanguage);
         }
 
-        /// <summary>
-        /// The INIT.
-        /// </summary>
-        public static void Init()
+        public static Language CurrentLanguage { get; set; } = Language.English;
+
+        public LocalizedResources Resources
         {
+            get;
         }
+
+        protected INavigation Navigation { get; }
 
         /// <summary>
         /// Gets the logger.
