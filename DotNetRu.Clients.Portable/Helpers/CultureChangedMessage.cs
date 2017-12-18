@@ -1,23 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace XamarinEvolve.Clients.UI
+﻿namespace XamarinEvolve.Clients.UI
 {
+    using System.Globalization;
+
     public class CultureChangedMessage
     {
-        public CultureInfo NewCultureInfo { get; private set; }
-
         public CultureChangedMessage(string lngName)
             : this(new CultureInfo(lngName))
-        { }
+        {
+
+        }
 
         public CultureChangedMessage(CultureInfo newCultureInfo)
         {
-            NewCultureInfo = newCultureInfo;
+            this.NewCultureInfo = newCultureInfo;
         }
+
+        public CultureInfo NewCultureInfo { get; }
     }
 }

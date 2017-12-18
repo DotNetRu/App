@@ -22,22 +22,14 @@ namespace XamarinEvolve.Clients.Portable.Helpers
 			}
 		}
 
-	    private static readonly Language CurrentLanguageDefault = Language.English;
-
 	    public static Language? CurrentLanguage
 	    {
 	        get
 	        {
-	            string languageCode = AppSettings.GetValueOrDefault(        
-	                nameof(CurrentLanguage),
-	                string.Empty);
-
-	            if (languageCode == string.Empty)
-	            {
-	                return null;
-	            }
-
-	            return EnumExtension.GetEnumValues<Language>().Single(x => x.GetLanguageCode() == languageCode);
+	            string languageCode = AppSettings.GetValueOrDefault(nameof(CurrentLanguage), null);
+	            return languageCode == null
+	                       ? (Language?)null
+	                       : EnumExtension.GetEnumValues<Language>().Single(x => x.GetLanguageCode() == languageCode);
 	        }
 	        set
 	        {
