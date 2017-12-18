@@ -5,11 +5,9 @@
 
     public enum Language
     {
-        [Display(Name = "Русский")]
         [LanguageCode(LanguageCode = "ru")]
         Russian,
 
-        [Display(Name = "English")]
         [LanguageCode(LanguageCode = "en")]
         English
     }

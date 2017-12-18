@@ -1,6 +1,7 @@
 ﻿namespace XamarinEvolve.Clients.Portable
 {
     using System;
+    using System.Globalization;
     using System.Threading.Tasks;
     using System.Windows.Input;
 
@@ -28,10 +29,8 @@
         public ViewModelBase(INavigation navigation = null)
         {
             this.Navigation = navigation;
-            this.Resources = new LocalizedResources(typeof(ApplicationResources.AppResources), CurrentLanguage);
+            this.Resources = new LocalizedResources(typeof(ApplicationResources.AppResources), CultureInfo.CurrentUICulture);
         }
-
-        public static Language CurrentLanguage { get; set; } = Language.English;
 
         public LocalizedResources Resources
         {

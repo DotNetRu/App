@@ -40,7 +40,6 @@
                          : new CultureInfo(currentLanguage.GetLanguageCode());
 
             AppResources.Culture = cultureInfo;
-            ViewModelBase.CurrentLanguage = currentLanguage ?? Language.English;
 
             this.InitializeComponent();
 

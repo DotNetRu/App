@@ -97,18 +97,13 @@
                     this.firstLoad = false;
                     this.NewsViewModel.LoadSessionsCommand.Execute(null);
                 }
-
-                if (this.NewsViewModel.Notification == null) this.NewsViewModel.LoadNotificationsCommand.Execute(null);
             }
-
         }
-
 
         public void OnResume()
         {
             this.UpdatePage();
         }
-
     }
 }
 

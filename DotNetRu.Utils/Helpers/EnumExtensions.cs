@@ -19,11 +19,6 @@
             return info?.GetCustomAttribute<TAttribute>();
         }
 
-        public static string GetDisplayName(this Enum enumValue)
-        {
-            return enumValue.GetAttribute<DisplayAttribute>().Name;
-        }
-
         public static string GetLanguageCode(this Enum enumValue)
         {
             return enumValue.GetAttribute<LanguageCodeAttribute>().LanguageCode;

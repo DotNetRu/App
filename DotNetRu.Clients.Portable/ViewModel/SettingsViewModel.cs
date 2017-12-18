@@ -83,7 +83,7 @@
                     });
         }
 
-        public IEnumerable<string> LanguageNames => EnumExtension.GetEnumValues<Language>().Select(x => x.GetDisplayName());
+        public IList<Language> Languages => EnumExtension.GetEnumValues<Language>().ToList();
 
         public Language SelectedLanguage
         {
@@ -93,7 +93,6 @@
                 this.SetProperty(ref this.selectedLanguage, value);
 
                 Helpers.Settings.CurrentLanguage = this.selectedLanguage;
-                ViewModelBase.CurrentLanguage = this.selectedLanguage;
                 MessagingCenter.Send<object, CultureChangedMessage>(
                     this,
                     string.Empty,
@@ -118,9 +117,9 @@
 
         private void NotifyViewModel()
         {
-            var ci = new CultureInfo(CurrentLanguage.GetLanguageCode());
-            DependencyService.Get<ILocalize>().SetLocale(ci); // set the Thread for locale-aware methods
-            AppResources.Culture = ci;
+            var cultureInfo = new CultureInfo(this.SelectedLanguage.GetLanguageCode());
+            DependencyService.Get<ILocalize>().SetLocale(cultureInfo); // set the Thread for locale-aware methods
+            AppResources.Culture = cultureInfo;
 
             this.OnPropertyChanged(nameof(this.AppInfo));
             this.OnPropertyChanged(nameof(this.AppVersion));

@@ -51,7 +51,7 @@
                   StyleId="AndroidReminderButton">
               </Button>
               <Label Text="{Binding Resources[Language]}" />
-              <Picker ItemsSource="{Binding LanguageNames}" SelectedItem="{Binding SelectedLanguage, Mode=TwoWay}" />
+              <Picker ItemsSource="{Binding Languages}" SelectedItem="{Binding SelectedLanguage, Mode=TwoWay}" />
               <Label Text="{Binding AppVersion}"
                        Style="{DynamicResource EvolveListItemDetailTextStyle}"/>
               <Label Text="{Binding Copyright}"
