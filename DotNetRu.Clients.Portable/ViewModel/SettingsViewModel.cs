@@ -56,28 +56,28 @@
                             {
                                 Name = this.Resources["SaintPetersburg"],
                                 Command = this.LaunchBrowserCommand,
-                                IconSource = ImageSource.FromUri(new Uri(AboutThisApp.SpbLogo)),
+                                Icon = AboutThisApp.SpbLogo,
                                 Parameter = AboutThisApp.SpbLink
                             },
                         new MenuItem
                             {
                                 Name = this.Resources["Krasnoyarsk"],
                                 Command = this.LaunchBrowserCommand,
-                                IconSource = ImageSource.FromUri(new Uri(AboutThisApp.KrasnoyarskLogo)),
+                                Icon = AboutThisApp.KrasnoyarskLogo,
                                 Parameter = AboutThisApp.KrasnoyarskLink
                             },
                         new MenuItem
                             {
                                 Name = this.Resources["Saratov"],
                                 Command = this.LaunchBrowserCommand,
-                                IconSource = ImageSource.FromUri(new Uri(AboutThisApp.SaratovLogo)),
+                                Icon = AboutThisApp.SaratovLogo,
                                 Parameter = AboutThisApp.SaratovLink
                             },
                         new MenuItem
                             {
                                 Name = this.Resources["Moscow"],
                                 Command = this.LaunchBrowserCommand,
-                                IconSource = ImageSource.FromUri(new Uri(AboutThisApp.MoscowLogo)),
+                                Icon = AboutThisApp.MoscowLogo,
                                 Parameter = AboutThisApp.MoscowLink
                             }
                     });
@@ -154,28 +154,28 @@
                             {
                                 Name = this.Resources["SaintPetersburg"],
                                 Command = this.LaunchBrowserCommand,
-                                IconSource = ImageSource.FromUri(new Uri(AboutThisApp.SpbLogo)),
+                                Icon = AboutThisApp.SpbLogo,
                                 Parameter = AboutThisApp.SpbLink
                             },
                         new MenuItem
                             {
                                 Name = this.Resources["Krasnoyarsk"],
                                 Command = this.LaunchBrowserCommand,
-                                IconSource = ImageSource.FromUri(new Uri(AboutThisApp.KrasnoyarskLogo)),
+                                Icon = AboutThisApp.KrasnoyarskLogo,
                                 Parameter = AboutThisApp.KrasnoyarskLink
                             },
                         new MenuItem
                             {
                                 Name = this.Resources["Saratov"],
                                 Command = this.LaunchBrowserCommand,
-                                IconSource = ImageSource.FromUri(new Uri(AboutThisApp.SaratovLogo)),
+                                Icon = AboutThisApp.SaratovLogo,
                                 Parameter = AboutThisApp.SaratovLink
                             },
                         new MenuItem
                             {
                                 Name = this.Resources["Moscow"],
                                 Command = this.LaunchBrowserCommand,
-                                IconSource = ImageSource.FromUri(new Uri(AboutThisApp.MoscowLogo)),
+                                Icon = AboutThisApp.MoscowLogo,
                                 Parameter = AboutThisApp.MoscowLink
                             }
                     });

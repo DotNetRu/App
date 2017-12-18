@@ -9,6 +9,12 @@
     Icon="tab_about.png"
     NavigationPage.BackButtonTitle="Info"
     BackgroundColor="{DynamicResource WindowBackgroundTable}">
+  <local:BasePage.Resources>
+    <ResourceDictionary>
+      <local:SpeakerImageConverter x:Key="SpeakerImageConverter" />
+    </ResourceDictionary>
+  </local:BasePage.Resources>
+
   <local:AlwaysScrollView>
     <StackLayout Spacing="0">
       <StackLayout
@@ -20,9 +26,9 @@
             <Image
                 HorizontalOptions="FillAndExpand"
                 VerticalOptions="FillAndExpand"
-                Margin="0, 0, 0, 10"
+                Margin="0, 10, 0, 10"
                 Source="ic_splash.png"
-                Aspect="AspectFill"/>
+                Aspect="AspectFit"/>
             <local:LabelSection Text="{Binding AppInfo}"/>
             <StackLayout Spacing="10">
               <StackLayout.Padding>
@@ -87,7 +93,10 @@
                 <DataTemplate>
                   <ViewCell>
                     <StackLayout Orientation="Horizontal">
-                      <Image Source="{Binding IconSource}" WidthRequest="30" HeightRequest="30" Margin="10, 10, 15, 10" />
+                      <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Command}" CommandParameter="{Binding Parameter}"/>
+                      </StackLayout.GestureRecognizers>
+                      <Image Source="{Binding Icon, Converter={StaticResource SpeakerImageConverter}}" WidthRequest="30" HeightRequest="30" Margin="10, 10, 15, 10" />
                       <Label Text="{Binding Name}" Margin="10, 10, 15, 10"/>
                     </StackLayout>
                   </ViewCell>
