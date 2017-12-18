@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ui="clr-namespace:XamarinEvolve.Clients.UI;assembly=XamarinEvolve.Clients.UI"
              x:Class="XamarinEvolve.Clients.UI.Pages.Info.TechnologiesUsed"
-             Title="Resources[TechnologyUsed]">
+             Title="{Binding Resources[TechnologyUsed]}">
     <ContentPage.Content>
         <ui:CardView>
             <StackLayout Spacing="0">
