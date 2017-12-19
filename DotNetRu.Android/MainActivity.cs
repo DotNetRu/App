@@ -189,38 +189,9 @@
 
         void SetupBottomTabs()
         {
-            var stateList = new Android.Content.Res.ColorStateList(
-                new[]
-                    {
-                    new[]
-                    {
-                        Android.Resource.Attribute.StateChecked
-                    },
-                    new[]
-                    {
-                        Android.Resource.Attribute.StateEnabled
-                    }
-                    },
-                new int[]
-                    {
-                        Android.Graphics.Color.Azure, //Selected
-                        Android.Graphics.Color.White //Normal
-                });
-
-            BottomTabbedRenderer.FontSize = 12f;
-            BottomTabbedRenderer.IconSize = 16;
-            BottomTabbedRenderer.ItemTextColor = stateList;
-            BottomTabbedRenderer.ItemIconTintList = stateList;
-            BottomTabbedRenderer.ItemSpacing = 4;
-            BottomTabbedRenderer.ItemPadding = new Thickness(6);
-            BottomTabbedRenderer.BottomBarHeight = 56;
-            BottomTabbedRenderer.ItemAlign = ItemAlignFlags.Center;
-
+            BottomTabbedRenderer.ItemPadding = new Thickness(6, 6, 6, 1);
 #if ENABLE_LIVE_PLAYER
 #else
-            BottomTabbedRenderer.BackgroundColor =
-                new Android.Graphics.Color(ResourcesCompat.GetColor(this.Resources, Resource.Color.primary, null));
-            BottomTabbedRenderer.ItemBackgroundResource = Resource.Drawable.bnv_selector;
             BottomTabbedRenderer.MenuItemIconSetter = (menuItem, iconSource, selected) =>
             {
                 /*TODO: Make it without switch. Following variant does not work :(
