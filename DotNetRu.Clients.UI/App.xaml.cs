@@ -33,13 +33,14 @@
 
         public App()
         {
-            var currentLanguage = Portable.Helpers.Settings.CurrentLanguage;
+            var savedLanguage = Portable.Helpers.Settings.CurrentLanguage;
+            var uiLanguage = DependencyService.Get<ILocalize>().GetCurrentCultureInfo().TwoLetterISOLanguageName == "ru"
+                                 ? Language.Russian
+                                 : Language.English;
 
-            var cultureInfo = currentLanguage == null
-                         ? DependencyService.Get<ILocalize>().GetCurrentCultureInfo()
-                         : new CultureInfo(currentLanguage.GetLanguageCode());
+            var language = savedLanguage ?? uiLanguage;
 
-            AppResources.Culture = cultureInfo;
+            AppResources.Culture = new CultureInfo(language.GetLanguageCode());
 
             this.InitializeComponent();
 

@@ -7,7 +7,7 @@
 
     using Xamarin.Forms;
 
-    using XamarinEvolve.Clients.Portable;
+    using XamarinEvolve.Clients.Portable.ApplicationResources;
     using XamarinEvolve.Utils.Helpers;
 
     public class LocalizedResources : INotifyPropertyChanged
@@ -16,14 +16,9 @@
 
         private CultureInfo currentCultureInfo;
 
-        public LocalizedResources(Type resource, Language language)
-            : this(resource, new CultureInfo(language.GetLanguageCode()))
+        public LocalizedResources(Type resource)
         {
-        }
-
-        public LocalizedResources(Type resource, CultureInfo cultureInfo)
-        {
-            this.currentCultureInfo = cultureInfo;
+            this.currentCultureInfo = AppResources.Culture;
             this.resourceManager = new ResourceManager(resource);
 
             MessagingCenter.Subscribe<object, CultureChangedMessage>(this, string.Empty, this.OnCultureChanged);
@@ -33,9 +28,9 @@
 
         public string this[string key] => this.resourceManager.GetString(key, this.currentCultureInfo);
 
-        private void OnCultureChanged(object s, CultureChangedMessage ccm)
+        private void OnCultureChanged(object s, CultureChangedMessage cultureChangedMessage)
         {
-            this.currentCultureInfo = ccm.NewCultureInfo;
+            this.currentCultureInfo = cultureChangedMessage.NewCultureInfo;
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Item"));
             MessagingCenter.Send(this, MessageKeys.LanguageChanged);
         }

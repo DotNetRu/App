@@ -29,7 +29,10 @@
         public ViewModelBase(INavigation navigation = null)
         {
             this.Navigation = navigation;
-            this.Resources = new LocalizedResources(typeof(ApplicationResources.AppResources), CultureInfo.CurrentUICulture);
+
+
+
+            this.Resources = new LocalizedResources(typeof(ApplicationResources.AppResources));
         }
 
         public LocalizedResources Resources
