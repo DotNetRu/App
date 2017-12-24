@@ -18,12 +18,15 @@ namespace XamarinEvolve.Droid
                 var listView = this.Control as AbsListView;
 
                 if (listView == null)
+                {
                     return;
+                }
 
                 listView.SetDrawSelectorOnTop(true);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
+                // ignored
             }
         }
 

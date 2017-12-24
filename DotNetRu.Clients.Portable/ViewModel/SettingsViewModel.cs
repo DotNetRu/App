@@ -5,9 +5,11 @@
     using System.Linq;
 
     using Xamarin.Forms;
+    using Xamarin.Forms.Internals;
 
     using XamarinEvolve.Clients.Portable.ApplicationResources;
     using XamarinEvolve.Clients.Portable.Interfaces;
+    using XamarinEvolve.Clients.Portable.Model;
     using XamarinEvolve.Clients.UI;
     using XamarinEvolve.Utils;
     using XamarinEvolve.Utils.Helpers;
@@ -23,24 +25,31 @@
                 MessageKeys.LanguageChanged,
                 sender => this.NotifyViewModel());
 
+            var savedLanguage = Portable.Helpers.Settings.CurrentLanguage;
+            var uiLanguage = DependencyService.Get<ILocalize>().GetCurrentCultureInfo().TwoLetterISOLanguageName == "ru"
+                                 ? Language.Russian
+                                 : Language.English;
+
+            this.selectedLanguage = savedLanguage ?? uiLanguage;
+
             this.AboutItems.AddRange(
                 new[]
                     {
-                        new MenuItem
+                        new LocalizableMenuItem
                             {
-                                Name = this.Resources["CreatedBy"],
+                                ResourceName = "CreatedBy",
                                 Command = this.LaunchBrowserCommand,
                                 Parameter = AboutThisApp.DeveloperWebsite
                             },
-                        new MenuItem
+                        new LocalizableMenuItem
                             {
-                                Name = this.Resources["Thanks"],
+                                ResourceName = "Thanks",
                                 Command = this.LaunchBrowserCommand,
                                 Parameter = AboutThisApp.MontemagnoWebsite
                             },
-                        new MenuItem
+                        new LocalizableMenuItem
                             {
-                                Name = this.Resources["IssueTracker"],
+                                ResourceName = "IssueTracker",
                                 Command = this.LaunchBrowserCommand,
                                 Parameter = AboutThisApp.IssueTracker
                             }
@@ -49,30 +58,30 @@
             this.Communities.AddRange(
                 new[]
                     {
-                        new MenuItem
+                        new LocalizableMenuItem
                             {
-                                Name = this.Resources["SaintPetersburg"],
+                                ResourceName = "SaintPetersburg",
                                 Command = this.LaunchBrowserCommand,
                                 Icon = AboutThisApp.SpbLogo,
                                 Parameter = AboutThisApp.SpbLink
                             },
-                        new MenuItem
+                        new LocalizableMenuItem
                             {
-                                Name = this.Resources["Krasnoyarsk"],
+                                ResourceName = "Krasnoyarsk",
                                 Command = this.LaunchBrowserCommand,
                                 Icon = AboutThisApp.KrasnoyarskLogo,
                                 Parameter = AboutThisApp.KrasnoyarskLink
                             },
-                        new MenuItem
+                        new LocalizableMenuItem
                             {
-                                Name = this.Resources["Saratov"],
+                                ResourceName = "Saratov",
                                 Command = this.LaunchBrowserCommand,
                                 Icon = AboutThisApp.SaratovLogo,
                                 Parameter = AboutThisApp.SaratovLink
                             },
-                        new MenuItem
+                        new LocalizableMenuItem
                             {
-                                Name = this.Resources["Moscow"],
+                                ResourceName = "Moscow",
                                 Command = this.LaunchBrowserCommand,
                                 Icon = AboutThisApp.MoscowLogo,
                                 Parameter = AboutThisApp.MoscowLink
@@ -98,9 +107,9 @@
             }
         }
 
-        public CustomObservableCollection<MenuItem> AboutItems { get; } = new CustomObservableCollection<MenuItem>();
+        public CustomObservableCollection<LocalizableMenuItem> AboutItems { get; } = new CustomObservableCollection<LocalizableMenuItem>();
 
-        public CustomObservableCollection<MenuItem> Communities { get; } = new CustomObservableCollection<MenuItem>();
+        public CustomObservableCollection<LocalizableMenuItem> Communities { get; } = new CustomObservableCollection<LocalizableMenuItem>();
 
         public string Copyright => AboutThisApp.Copyright;
 
@@ -122,11 +131,8 @@
             this.OnPropertyChanged(nameof(this.AppInfo));
             this.OnPropertyChanged(nameof(this.AppVersion));
 
-            //foreach (var aboutItem in this.AboutItems)
-            //{
-            //    aboutItem.Name = this
-            //}
-            this.Communities.ReplaceRange(this.Communities.ToArray());
+            this.AboutItems.ForEach(x => x.Update());
+            this.Communities.ForEach(x => x.Update());
         }
     }
 }

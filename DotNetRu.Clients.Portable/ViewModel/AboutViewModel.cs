@@ -2,24 +2,19 @@
 {
     using MvvmHelpers;
 
+    using XamarinEvolve.Clients.Portable.Model;
     using XamarinEvolve.Utils;
 
     public class AboutViewModel : SettingsViewModel
     {
-        public ObservableRangeCollection<Grouping<string, MenuItem>> MenuItems { get; }
-
-        public ObservableRangeCollection<MenuItem> InfoItems { get; } = new ObservableRangeCollection<MenuItem>();
-
-        public ObservableRangeCollection<MenuItem> AccountItems { get; } = new ObservableRangeCollection<MenuItem>();
-
         public AboutViewModel()
         {
             this.AboutItems.Clear();
-            this.AboutItems.Add(new MenuItem { Name = "About this app", Icon = "icon_venue.png" });
+            this.AboutItems.Add(new LocalizableMenuItem { Name = "About this app", Icon = "icon_venue.png" });
 
             if (!FeatureFlags.SponsorsOnTabPage)
             {
-                this.InfoItems.Add(new MenuItem { Name = "Friends", Icon = "icon_venue.png", Parameter = "sponsors" });
+                this.InfoItems.Add(new LocalizableMenuItem { Name = "Friends", Icon = "icon_venue.png", Parameter = "sponsors" });
             }
 
             // pushItem.Command = new Command(
@@ -56,6 +51,7 @@
             // push.RegisterForNotifications();
             // });
         }
+
+        public ObservableRangeCollection<MenuItem> InfoItems { get; } = new ObservableRangeCollection<MenuItem>();
     }
 }
-
