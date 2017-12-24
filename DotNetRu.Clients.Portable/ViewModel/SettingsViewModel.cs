@@ -1,6 +1,5 @@
 ﻿namespace XamarinEvolve.Clients.Portable
 {
-    using System;
     using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
@@ -23,8 +22,6 @@
                 this,
                 MessageKeys.LanguageChanged,
                 sender => this.NotifyViewModel());
-
-            this.selectedLanguage = Helpers.Settings.CurrentLanguage ?? Language.English;
 
             this.AboutItems.AddRange(
                 new[]
@@ -90,13 +87,14 @@
             get => this.selectedLanguage;
             set
             {
-                this.SetProperty(ref this.selectedLanguage, value);
-
-                Helpers.Settings.CurrentLanguage = this.selectedLanguage;
-                MessagingCenter.Send<object, CultureChangedMessage>(
-                    this,
-                    string.Empty,
-                    new CultureChangedMessage(this.selectedLanguage.GetLanguageCode()));
+                if (this.SetProperty(ref this.selectedLanguage, value))
+                {
+                    Helpers.Settings.CurrentLanguage = this.selectedLanguage;
+                    MessagingCenter.Send<object, CultureChangedMessage>(
+                        this,
+                        string.Empty,
+                        new CultureChangedMessage(this.selectedLanguage.GetLanguageCode()));
+                }
             }
         }
 
@@ -124,60 +122,11 @@
             this.OnPropertyChanged(nameof(this.AppInfo));
             this.OnPropertyChanged(nameof(this.AppVersion));
 
-            this.AboutItems.ReplaceRange(
-                new[]
-                    {
-                        new MenuItem
-                            {
-                                Name = this.Resources["CreatedBy"],
-                                Command = this.LaunchBrowserCommand,
-                                Parameter = AboutThisApp.DeveloperWebsite
-                            },
-                        new MenuItem
-                            {
-                                Name = this.Resources["Thanks"],
-                                Command = this.LaunchBrowserCommand,
-                                Parameter = AboutThisApp.MontemagnoWebsite
-                            },
-                        new MenuItem
-                            {
-                                Name = this.Resources["IssueTracker"],
-                                Command = this.LaunchBrowserCommand,
-                                Parameter = AboutThisApp.IssueTracker
-                            }
-                    });
-            this.Communities.ReplaceRange(
-                new[]
-                    {
-                        new MenuItem
-                            {
-                                Name = this.Resources["SaintPetersburg"],
-                                Command = this.LaunchBrowserCommand,
-                                Icon = AboutThisApp.SpbLogo,
-                                Parameter = AboutThisApp.SpbLink
-                            },
-                        new MenuItem
-                            {
-                                Name = this.Resources["Krasnoyarsk"],
-                                Command = this.LaunchBrowserCommand,
-                                Icon = AboutThisApp.KrasnoyarskLogo,
-                                Parameter = AboutThisApp.KrasnoyarskLink
-                            },
-                        new MenuItem
-                            {
-                                Name = this.Resources["Saratov"],
-                                Command = this.LaunchBrowserCommand,
-                                Icon = AboutThisApp.SaratovLogo,
-                                Parameter = AboutThisApp.SaratovLink
-                            },
-                        new MenuItem
-                            {
-                                Name = this.Resources["Moscow"],
-                                Command = this.LaunchBrowserCommand,
-                                Icon = AboutThisApp.MoscowLogo,
-                                Parameter = AboutThisApp.MoscowLink
-                            }
-                    });
+            //foreach (var aboutItem in this.AboutItems)
+            //{
+            //    aboutItem.Name = this
+            //}
+            this.Communities.ReplaceRange(this.Communities.ToArray());
         }
     }
 }

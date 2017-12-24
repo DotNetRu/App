@@ -32,7 +32,7 @@
             <local:LabelSection Text="{Binding AppInfo}"/>
             <StackLayout Spacing="10">
               <StackLayout.Padding>
-                <OnPlatform x:TypeArguments="Thickness" iOS="16,8,16,8" Android="16,8" WinPhone="16,8"/>
+                <OnPlatform x:TypeArguments="Thickness" iOS="16,8,16,8" Android="16,8"/>
               </StackLayout.Padding>
               <Button
                   Text="{Binding Resources[Friends]}"
@@ -106,7 +106,7 @@
             <local:FooterDivider/>
             <StackLayout>
               <StackLayout.Padding>
-                <OnPlatform x:TypeArguments="Thickness" iOS="16,8,16,0" Android="16,8" WinPhone="16,8"/>
+                <OnPlatform x:TypeArguments="Thickness" iOS="16,8,16,0" Android="16,8"/>
               </StackLayout.Padding>
             </StackLayout>
           </StackLayout>
