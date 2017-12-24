@@ -30,6 +30,8 @@
 
         private void OnCultureChanged(object s, CultureChangedMessage cultureChangedMessage)
         {
+            AppResources.Culture = cultureChangedMessage.NewCultureInfo;
+
             this.currentCultureInfo = cultureChangedMessage.NewCultureInfo;
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Item"));
             MessagingCenter.Send(this, MessageKeys.LanguageChanged);
