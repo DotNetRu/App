@@ -57,6 +57,8 @@
     <Compile Include="Helpers\Constants.cs">
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
     </Compile>
+    <Compile Include="Helpers\EnumExtensions.cs" />
+    <Compile Include="Helpers\LanguageCodeAttribute.cs" />
     <Compile Include="Helpers\MessageKeys.cs" />
     <Compile Include="Helpers\PublicationSettings.cs" />
     <Compile Include="Helpers\Settings.cs" />

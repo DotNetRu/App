@@ -23,14 +23,6 @@
 
     using Device = Xamarin.Forms.Device;
 
-    public static class ViewModelLocator
-    {
-        private static MeetupViewModel meetupViewModel;
-
-        public static MeetupViewModel MeetupViewModel =>
-            meetupViewModel ?? (meetupViewModel = new MeetupViewModel(navigation: null));
-    }
-
     public partial class App
     {
         private static ILogger logger;
@@ -41,13 +33,21 @@
 
         public App()
         {
-            var ci = Portable.Helpers.Settings.CurrentLanguage == string.Empty ? DependencyService.Get<ILocalize>().GetCurrentCultureInfo() : new CultureInfo(Portable.Helpers.Settings.CurrentLanguage);
-            AppResources.Culture = ci;
-            ViewModelBase.CurrentLanguage = AppResources.Culture.Name.Substring(0, 2);
-            this.InitializeComponent();
-            ViewModelBase.Init();
+            var savedLanguage = Portable.Helpers.Settings.CurrentLanguage;
+            var uiLanguage = DependencyService.Get<ILocalize>().GetCurrentCultureInfo().TwoLetterISOLanguageName == "ru"
+                                 ? Language.Russian
+                                 : Language.English;
 
-            AppCenter.Start("ios=1e7f311f-1055-4ec9-8b00-0302015ab8ae;android=6f9a7703-8ca4-477e-9558-7e095f7d20aa;", typeof(Analytics), typeof(Crashes));
+            var language = savedLanguage ?? uiLanguage;
+
+            AppResources.Culture = new CultureInfo(language.GetLanguageCode());
+
+            this.InitializeComponent();
+
+            AppCenter.Start(
+                "ios=1e7f311f-1055-4ec9-8b00-0302015ab8ae;android=6f9a7703-8ca4-477e-9558-7e095f7d20aa;",
+                typeof(Analytics),
+                typeof(Crashes));
 
             this.MainPage = new BottomTabbedPage();
         }
@@ -189,7 +189,10 @@ $"We can send you updates through {EventInfo.EventName} via push notifications. 
                     });
 #else
                 var push = DependencyService.Get<IPushNotifications>();
-                if (push != null) await push.RegisterForNotifications();
+                if (push != null)
+                {
+                    await push.RegisterForNotifications();
+                }
 #endif
             }
         }

@@ -1,52 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Globalization;
-using System.Linq;
-using System.Resources;
-using System.Text;
-using System.Threading.Tasks;
-using Xamarin.Forms;
-using XamarinEvolve.Clients.Portable;
-using XamarinEvolve.Utils.Helpers;
-
-namespace XamarinEvolve.Clients.UI
+﻿namespace XamarinEvolve.Clients.UI
 {
+    using System;
+    using System.ComponentModel;
+    using System.Globalization;
+    using System.Resources;
+
+    using Xamarin.Forms;
+
+    using XamarinEvolve.Clients.Portable.ApplicationResources;
+    using XamarinEvolve.Utils.Helpers;
+
     public class LocalizedResources : INotifyPropertyChanged
     {
-        const string DEFAULT_LANGUAGE = "en";
+        private readonly ResourceManager resourceManager;
 
-        readonly ResourceManager ResourceManager;
-        CultureInfo CurrentCultureInfo;
+        private CultureInfo currentCultureInfo;
 
-        public string this[string key]
+        public LocalizedResources(Type resource)
         {
-            get
-            {
-                return ResourceManager.GetString(key, CurrentCultureInfo);
-            }
-        }
+            this.currentCultureInfo = AppResources.Culture;
+            this.resourceManager = new ResourceManager(resource);
 
-        public LocalizedResources(Type resource, string language = null)
-            : this(resource, new CultureInfo(language ?? DEFAULT_LANGUAGE))
-        { }
-
-        public LocalizedResources(Type resource, CultureInfo cultureInfo)
-        {
-            CurrentCultureInfo = cultureInfo;
-            ResourceManager = new ResourceManager(resource);
-
-            MessagingCenter.Subscribe<object, CultureChangedMessage>(this,
-                string.Empty, OnCultureChanged);
-        }   
-
-        private void OnCultureChanged(object s, CultureChangedMessage ccm)
-        {
-            CurrentCultureInfo = ccm.NewCultureInfo;
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Item"));
-            MessagingCenter.Send(this, MessageKeys.LanguageChanged);
+            MessagingCenter.Subscribe<object, CultureChangedMessage>(this, string.Empty, this.OnCultureChanged);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public string this[string key] => this.resourceManager.GetString(key, this.currentCultureInfo);
+
+        private void OnCultureChanged(object s, CultureChangedMessage cultureChangedMessage)
+        {
+            AppResources.Culture = cultureChangedMessage.NewCultureInfo;
+
+            this.currentCultureInfo = cultureChangedMessage.NewCultureInfo;
+            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Item"));
+            MessagingCenter.Send(this, MessageKeys.LanguageChanged);
+        }
     }
 }

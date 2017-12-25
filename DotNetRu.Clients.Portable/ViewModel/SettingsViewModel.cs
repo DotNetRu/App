@@ -1,272 +1,138 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
-using System.Globalization;
-using XamarinEvolve.Clients.Portable.ApplicationResources;
-using XamarinEvolve.Clients.Portable.Helpers;
-using XamarinEvolve.Clients.Portable.Interfaces;
-using XamarinEvolve.Clients.UI;
-
-namespace XamarinEvolve.Clients.Portable
+﻿namespace XamarinEvolve.Clients.Portable
 {
-    using MvvmHelpers;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Linq;
+
     using Xamarin.Forms;
+    using Xamarin.Forms.Internals;
+
+    using XamarinEvolve.Clients.Portable.ApplicationResources;
+    using XamarinEvolve.Clients.Portable.Interfaces;
+    using XamarinEvolve.Clients.Portable.Model;
+    using XamarinEvolve.Clients.UI;
     using XamarinEvolve.Utils;
     using XamarinEvolve.Utils.Helpers;
-    public class CustomObservableCollection<T> : ObservableRangeCollection<T>
-    {
-        public CustomObservableCollection() { }
-        public CustomObservableCollection(IEnumerable<T> items) : this()
-        {
-            foreach (var item in items)
-                this.Add(item);
-        }
-        public void ReportItemChange(T item)
-        {
-            NotifyCollectionChangedEventArgs args =
-                new NotifyCollectionChangedEventArgs(
-                    NotifyCollectionChangedAction.Replace,
-                    item,
-                    item,
-                    IndexOf(item));
-            OnCollectionChanged(args);
-        }
-    }
 
     public class SettingsViewModel : ViewModelBase
     {
+        private Language selectedLanguage;
 
-        public List<string> Languages { get; set; } = new List<string>()
+        public SettingsViewModel()
         {
-            "en",
-            "ru",
-        };
+            MessagingCenter.Subscribe<LocalizedResources>(
+                this,
+                MessageKeys.LanguageChanged,
+                sender => this.NotifyViewModel());
 
-        private string _selectedLanguage;
+            var savedLanguage = Portable.Helpers.Settings.CurrentLanguage;
+            var uiLanguage = DependencyService.Get<ILocalize>().GetCurrentCultureInfo().TwoLetterISOLanguageName == "ru"
+                                 ? Language.Russian
+                                 : Language.English;
 
-        public string SelectedLanguage
+            this.selectedLanguage = savedLanguage ?? uiLanguage;
+
+            this.AboutItems.AddRange(
+                new[]
+                    {
+                        new LocalizableMenuItem
+                            {
+                                ResourceName = "CreatedBy",
+                                Command = this.LaunchBrowserCommand,
+                                Parameter = AboutThisApp.DeveloperWebsite
+                            },
+                        new LocalizableMenuItem
+                            {
+                                ResourceName = "Thanks",
+                                Command = this.LaunchBrowserCommand,
+                                Parameter = AboutThisApp.MontemagnoWebsite
+                            },
+                        new LocalizableMenuItem
+                            {
+                                ResourceName = "IssueTracker",
+                                Command = this.LaunchBrowserCommand,
+                                Parameter = AboutThisApp.IssueTracker
+                            }
+                    });
+
+            this.Communities.AddRange(
+                new[]
+                    {
+                        new LocalizableMenuItem
+                            {
+                                ResourceName = "SaintPetersburg",
+                                Command = this.LaunchBrowserCommand,
+                                Icon = AboutThisApp.SpbLogo,
+                                Parameter = AboutThisApp.SpbLink
+                            },
+                        new LocalizableMenuItem
+                            {
+                                ResourceName = "Krasnoyarsk",
+                                Command = this.LaunchBrowserCommand,
+                                Icon = AboutThisApp.KrasnoyarskLogo,
+                                Parameter = AboutThisApp.KrasnoyarskLink
+                            },
+                        new LocalizableMenuItem
+                            {
+                                ResourceName = "Saratov",
+                                Command = this.LaunchBrowserCommand,
+                                Icon = AboutThisApp.SaratovLogo,
+                                Parameter = AboutThisApp.SaratovLink
+                            },
+                        new LocalizableMenuItem
+                            {
+                                ResourceName = "Moscow",
+                                Command = this.LaunchBrowserCommand,
+                                Icon = AboutThisApp.MoscowLogo,
+                                Parameter = AboutThisApp.MoscowLink
+                            }
+                    });
+        }
+
+        public IList<Language> Languages => EnumExtension.GetEnumValues<Language>().ToList();
+
+        public Language SelectedLanguage
         {
-            get { return _selectedLanguage; }
+            get => this.selectedLanguage;
             set
             {
-                _selectedLanguage = value;
-                SetLanguage();
+                if (this.SetProperty(ref this.selectedLanguage, value))
+                {
+                    Helpers.Settings.CurrentLanguage = this.selectedLanguage;
+                    MessagingCenter.Send<object, CultureChangedMessage>(
+                        this,
+                        string.Empty,
+                        new CultureChangedMessage(this.selectedLanguage.GetLanguageCode()));
+                }
             }
         }
 
-        private void SetLanguage()
-        {
-            Helpers.Settings.CurrentLanguage = _selectedLanguage;
-            CurrentLanguage = SelectedLanguage;
-            MessagingCenter.Send<object, CultureChangedMessage>(this,
-                string.Empty, new CultureChangedMessage(SelectedLanguage));
-        }
+        public CustomObservableCollection<LocalizableMenuItem> AboutItems { get; } = new CustomObservableCollection<LocalizableMenuItem>();
 
-        public CustomObservableCollection<MenuItem> AboutItems { get; } = new CustomObservableCollection<MenuItem>();
-
-        public ObservableRangeCollection<MenuItem> TechnologyItems { get; } = new ObservableRangeCollection<MenuItem>();
+        public CustomObservableCollection<LocalizableMenuItem> Communities { get; } = new CustomObservableCollection<LocalizableMenuItem>();
 
         public string Copyright => AboutThisApp.Copyright;
 
         public bool AppToWebLinkingEnabled => FeatureFlags.AppToWebLinkingEnabled;
 
-        void NotifyVmProperties()
+        public ImageSource BackgroundImage { get; set; }
+
+        public string AppVersion =>
+            $"{this.Resources["Version"]} {DependencyService.Get<IAppVersionProvider>()?.AppVersion ?? "1.0"}";
+
+        public string AppInfo => this.Resources["AboutText"];
+
+        private void NotifyViewModel()
         {
-            var ci = new CultureInfo(CurrentLanguage);
-            DependencyService.Get<ILocalize>().SetLocale(ci); // set the Thread for locale-aware methods
-            AppResources.Culture = ci;
-            OnPropertyChanged(nameof(AppInfo));
-            OnPropertyChanged(nameof(AppVersion));
-            this.AboutItems.ReplaceRange(
-                new[]
-                {
-                    new MenuItem
-                    {
-                        Name = Resources["CreatedBy"],
-                        Command = this.LaunchBrowserCommand,
-                        Parameter = AboutThisApp.DeveloperWebsite
-                    },
-                    new MenuItem
-                    {
-                        Name = Resources["Thanks"],
-                        Command = this.LaunchBrowserCommand,
-                        Parameter = AboutThisApp.MontemagnoWebsite
-                    },
-                    new MenuItem
-                    {
-                        Name = Resources["OpenSource"],
-                        Command = this.LaunchBrowserCommand,
-                        Parameter = AboutThisApp.OpenSourceUrl
-                    },
-                    new MenuItem
-                    {
-                        Name = Resources["TermsOfUse"],
-                        Command = this.LaunchBrowserCommand,
-                        //Parameter = AboutThisApp.TermsOfUseUrl
-                    },
-                    new MenuItem
-                    {
-                        Name = Resources["PrivacyPolicy"],
-                        Command = this.LaunchBrowserCommand,
-                        //Parameter = AboutThisApp.PrivacyPolicyUrl
-                    },
-                    new MenuItem
-                    {
-                        Name = Resources["OpenSourceNotice"],
-                        Command = this.LaunchBrowserCommand,
-                        Parameter = AboutThisApp.OpenSourceNoticeUrl
-                    }
-                });
+            var cultureInfo = new CultureInfo(this.SelectedLanguage.GetLanguageCode());
+            DependencyService.Get<ILocalize>().SetLocale(cultureInfo); // set the Thread for locale-aware methods
+            AppResources.Culture = cultureInfo;
+
+            this.OnPropertyChanged(nameof(this.AppInfo));
+            this.OnPropertyChanged(nameof(this.AppVersion));
+
+            this.AboutItems.ForEach(x => x.Update());
+            this.Communities.ForEach(x => x.Update());
         }
-        public SettingsViewModel()
-        {
-            MessagingCenter.Subscribe<LocalizedResources>(this, MessageKeys.LanguageChanged, sender => NotifyVmProperties());
-            _selectedLanguage = CurrentLanguage;
-            this.AboutItems.AddRange(
-                new[]
-                {
-                    new MenuItem
-                    {
-                        Name = Resources["CreatedBy"],
-                        Command = this.LaunchBrowserCommand,
-                        Parameter = AboutThisApp.DeveloperWebsite
-                    },
-                    new MenuItem
-                    {
-                        Name = Resources["Thanks"],
-                        Command = this.LaunchBrowserCommand,
-                        Parameter = AboutThisApp.MontemagnoWebsite
-                    },
-                    new MenuItem
-                    {
-                        Name = Resources["OpenSource"],
-                        Command = this.LaunchBrowserCommand,
-                        Parameter = AboutThisApp.OpenSourceUrl
-                    },
-                    new MenuItem
-                    {
-                        Name = Resources["TermsOfUse"],
-                        Command = this.LaunchBrowserCommand,
-                        //Parameter = AboutThisApp.TermsOfUseUrl
-                    },
-                    new MenuItem
-                    {
-                        Name = Resources["PrivacyPolicy"],
-                        Command = this.LaunchBrowserCommand,
-                       // Parameter = AboutThisApp.PrivacyPolicyUrl
-                    },
-                    new MenuItem
-                    {
-                        Name = Resources["OpenSourceNotice"],
-                        Command = this.LaunchBrowserCommand,
-                        Parameter = AboutThisApp.OpenSourceNoticeUrl
-                    }
-                });
-
-            this.TechnologyItems.AddRange(
-                new[]
-                {
-                        new MenuItem
-                            {
-                                Name = "Censored",
-                                Command = this.LaunchBrowserCommand,
-                                Parameter = "https://github.com/jamesmontemagno/Censored"
-                            },
-                        new MenuItem
-                            {
-                                Name = "Connectivity Plugin",
-                                Command = this.LaunchBrowserCommand,
-                                Parameter =
-                                    "https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/Connectivity"
-                            },
-                        new MenuItem
-                            {
-                                Name = "Humanizer",
-                                Command = this.LaunchBrowserCommand,
-                                Parameter = "https://github.com/Humanizr/Humanizer"
-                            },
-                        new MenuItem
-                            {
-                                Name = "Image Circles",
-                                Command = this.LaunchBrowserCommand,
-                                Parameter =
-                                    "https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/ImageCircle"
-                            },
-                        new MenuItem
-                            {
-                                Name = "LinqToTwitter",
-                                Command = this.LaunchBrowserCommand,
-                                Parameter = "https://github.com/JoeMayo/LinqToTwitter"
-                            },
-                        new MenuItem
-                            {
-                                Name = "Messaging Plugin",
-                                Command = this.LaunchBrowserCommand,
-                                Parameter = "https://github.com/cjlotz/Xamarin.Plugins"
-                            },
-                        new MenuItem
-                            {
-                                Name = "Mvvm Helpers",
-                                Command = this.LaunchBrowserCommand,
-                                Parameter = "https://github.com/jamesmontemagno/mvvm-helpers"
-                            },
-                        new MenuItem
-                            {
-                                Name = "Noda Time",
-                                Command = this.LaunchBrowserCommand,
-                                Parameter = "https://github.com/nodatime/nodatime"
-                            },
-                        new MenuItem
-                            {
-                                Name = "Permissions Plugin",
-                                Command = this.LaunchBrowserCommand,
-                                Parameter =
-                                    "https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/Permissions"
-                            },
-                        new MenuItem
-                            {
-                                Name = "Pull to Refresh Layout",
-                                Command = this.LaunchBrowserCommand,
-                                Parameter =
-                                    "https://github.com/jamesmontemagno/Xamarin.Forms-PullToRefreshLayout"
-                            },
-                        new MenuItem
-                            {
-                                Name = "Settings Plugin",
-                                Command = this.LaunchBrowserCommand,
-                                Parameter =
-                                    "https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/Settings"
-                            },
-                        new MenuItem
-                            {
-                                Name = "Toolkit for Xamarin.Forms",
-                                Command = this.LaunchBrowserCommand,
-                                Parameter = "https://github.com/jamesmontemagno/xamarin.forms-toolkit"
-                            },
-                        new MenuItem
-                            {
-                                Name = "Xamarin.Forms",
-                                Command = this.LaunchBrowserCommand,
-                                Parameter = "http://xamarin.com/forms"
-                            },
-                        new MenuItem
-                            {
-                                Name = "Xamarin Insights",
-                                Command = this.LaunchBrowserCommand,
-                                Parameter = "http://xamarin.com/insights"
-                            }
-                    });
-        }
-
-        public string AppVersion => $"{Resources["Version"]} {DependencyService.Get<IAppVersionProvider>()?.AppVersion ?? "1.0"}";
-
-        public string AppInfo =>
-            Resources["AboutText"];
-
-#if DEBUG
-        public bool IsDebug => true;
-#else
-		public bool IsDebug => false;
-#endif
     }
 }

@@ -45,6 +45,7 @@
     <DefineConstants>MOBILE;ENABLE_TEST_CLOUD</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Controls\AboutPageImageCell.cs" />
     <Compile Include="Controls\RatingControl.xaml.cs">
       <DependentUpon>RatingControl.xaml</DependentUpon>
     </Compile>
@@ -54,12 +55,14 @@
     <Compile Include="Converters\SpeakerImageConverter.cs" />
     <Compile Include="Converters\StringConverters.cs" />
     <Compile Include="Effects\ShadowEffect.cs" />
-    <Compile Include="LocalizedResources.cs" />
     <Compile Include="Pages\BottomTabbedPage.xaml.cs">
       <DependentUpon>BottomTabbedPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Home\ConferenceFeedbackPage.xaml.cs">
       <DependentUpon>ConferenceFeedbackPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Info\TechnologiesUsed.xaml.cs">
+      <DependentUpon>TechnologiesUsed.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Speakers\SpeakerDetailsPageUWP.xaml.cs">
       <DependentUpon>SpeakerDetailsPageUWP.xaml</DependentUpon>
@@ -168,6 +171,7 @@
       <DependentUpon>Rating3Control.xaml</DependentUpon>
     </Compile>
     <Compile Include="TranslateExtension.cs" />
+    <Compile Include="ViewModelLocator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.1.0.6508-pre3\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.1.0.6508-pre3\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
@@ -439,6 +443,15 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Pages\BottomTabbedPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\dotnetru.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\Info\TechnologiesUsed.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

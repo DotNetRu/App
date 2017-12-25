@@ -43,13 +43,16 @@
                                           ?? (this.refreshCommand = new Command(
                                                   async () => await this.ExecuteRefreshCommandAsync()));
 
-        async Task ExecuteRefreshCommandAsync()
+        private async Task ExecuteRefreshCommandAsync()
         {
             try
             {
                 this.NextForceRefresh = DateTime.UtcNow.AddMinutes(45);
                 this.IsBusy = true;
-                var tasks = new[] { this.ExecuteLoadNotificationsCommandAsync(), this.ExecuteLoadSocialCommandAsync() };
+
+                this.ExecuteLoadNotificationsCommand();
+
+                var tasks = new[] { this.ExecuteLoadSocialCommandAsync() };
 
                 await Task.WhenAll(tasks);
             }
@@ -84,16 +87,17 @@
 
         public ICommand LoadNotificationsCommand => this.loadNotificationsCommand
                                                     ?? (this.loadNotificationsCommand = new Command(
-                                                            async () =>
-                                                                await this.ExecuteLoadNotificationsCommandAsync()));
+                                                            this.ExecuteLoadNotificationsCommand));
 
-        async Task ExecuteLoadNotificationsCommandAsync()
+        private void ExecuteLoadNotificationsCommand()
         {
-            if (this.LoadingNotifications) return;
+            if (this.LoadingNotifications)
+            {
+                return;
+            }
             this.LoadingNotifications = true;
             try
             {
-                this.Notification = await this.StoreManager.NotificationStore.GetLatestNotification();
             }
             catch (Exception ex)
             {

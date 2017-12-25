@@ -14,6 +14,15 @@
         public const string CompanyName = "DotNetRu";
 
         public const string Developer = "DotNetRu Team";
+        public const string SpbLink = "https://vk.com/SpbDotNet";
+        public const string SaratovLink = "https://vk.com/SarDotNet";
+        public const string KrasnoyarskLink = "https://vk.com/KryDotNet";
+        public const string MoscowLink = "https://vk.com/MskDotNet";
+        public const string MoscowLogo = "https://pp.userapi.com/c841037/v841037572/2a77a/bPbj5VTogx8.jpg";
+        public const string KrasnoyarskLogo = "https://pp.userapi.com/c840234/v840234663/4b2cc/OQj9smuW9xg.jpg";
+        public const string SaratovLogo = "https://pp.userapi.com/c836223/v836223653/43add/XKJkgAvIqH4.jpg";
+        public const string SpbLogo = "https://pp.userapi.com/c840730/v840730906/31b0e/D7eL1rLAp3w.jpg";
+
 
         public const string DeveloperWebsite = "http://dotnet.ru";
 
@@ -31,7 +40,7 @@
 
         public const string SessionsSiteSubdirectory = "Sessies";
 
-        public const string SpeakersSiteSubdirectory = "Sprekers";
+        public const string SpeakersSiteSubdirectory = "Speakers";
 
         public const string SponsorsSiteSubdirectory = "Sponsors";
 
