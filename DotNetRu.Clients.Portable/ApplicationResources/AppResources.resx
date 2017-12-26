@@ -135,6 +135,9 @@
   <data name="CreatedBy" xml:space="preserve">
     <value>Created by DotNetRu Team with &lt;3</value>
   </data>
+  <data name="DotNetRu" xml:space="preserve">
+    <value>DotNetRu</value>
+  </data>
   <data name="Follow" xml:space="preserve">
     <value>Follow</value>
   </data>

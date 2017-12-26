@@ -23,13 +23,40 @@
           Padding="{DynamicResource CardPadding}">
         <local:CardView>
           <StackLayout Spacing="0">
-            <Image
-                HorizontalOptions="FillAndExpand"
-                VerticalOptions="FillAndExpand"
-                Margin="0, 10, 0, 10"
-                Source="ic_splash.png"
-                Aspect="AspectFit"/>
             <local:LabelSection Text="{Binding AppInfo}"/>
+            <local:LabelSection Text="{Binding Resources[OurCommunities]}"/>
+            <local:HeaderDivider/>
+            <local:NonScrollableListView
+                x:Name="ListViewCommunities"
+                ItemsSource="{Binding Communities}"
+                RowHeight="44">
+              <local:NonScrollableListView.SeparatorColor>
+                <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ListSeparator}"/>
+              </local:NonScrollableListView.SeparatorColor>
+              <local:NonScrollableListView.ItemTemplate>
+                <DataTemplate>
+                  <ViewCell>
+                    <StackLayout Orientation="Horizontal">
+                      <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Command}" CommandParameter="{Binding Parameter}"/>
+                      </StackLayout.GestureRecognizers>
+                      <Image Source="{Binding Icon, Converter={StaticResource SpeakerImageConverter}}" WidthRequest="30" HeightRequest="30" Margin="10, 10, 15, 10" />
+                      <Label Text="{Binding Name}" Margin="10, 10, 15, 10"/>
+                    </StackLayout>
+                  </ViewCell>
+                </DataTemplate>
+              </local:NonScrollableListView.ItemTemplate>
+            </local:NonScrollableListView>
+            <local:FooterDivider/>
+            <StackLayout>
+              <StackLayout.Padding>
+                <OnPlatform x:TypeArguments="Thickness" iOS="16,8,16,0" Android="16,8"/>
+              </StackLayout.Padding>
+            </StackLayout>
+          </StackLayout>
+        </local:CardView>
+        <local:CardView>
+          <StackLayout Spacing="0">
             <StackLayout Spacing="10">
               <StackLayout.Padding>
                 <OnPlatform x:TypeArguments="Thickness" iOS="16,8,16,8" Android="16,8"/>
@@ -76,39 +103,6 @@
               </local:NonScrollableListView.ItemTemplate>
             </local:NonScrollableListView>
             <local:FooterDivider/>
-          </StackLayout>
-        </local:CardView>
-        <local:CardView>
-          <StackLayout Spacing="0">
-            <local:LabelSection Text="{Binding Resources[OurCommunities]}"/>
-            <local:HeaderDivider/>
-            <local:NonScrollableListView
-                x:Name="ListViewCommunities"
-                ItemsSource="{Binding Communities}"
-                RowHeight="44">
-              <local:NonScrollableListView.SeparatorColor>
-                <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ListSeparator}"/>
-              </local:NonScrollableListView.SeparatorColor>
-              <local:NonScrollableListView.ItemTemplate>
-                <DataTemplate>
-                  <ViewCell>
-                    <StackLayout Orientation="Horizontal">
-                      <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding Command}" CommandParameter="{Binding Parameter}"/>
-                      </StackLayout.GestureRecognizers>
-                      <Image Source="{Binding Icon, Converter={StaticResource SpeakerImageConverter}}" WidthRequest="30" HeightRequest="30" Margin="10, 10, 15, 10" />
-                      <Label Text="{Binding Name}" Margin="10, 10, 15, 10"/>
-                    </StackLayout>
-                  </ViewCell>
-                </DataTemplate>
-              </local:NonScrollableListView.ItemTemplate>
-            </local:NonScrollableListView>
-            <local:FooterDivider/>
-            <StackLayout>
-              <StackLayout.Padding>
-                <OnPlatform x:TypeArguments="Thickness" iOS="16,8,16,0" Android="16,8"/>
-              </StackLayout.Padding>
-            </StackLayout>
           </StackLayout>
         </local:CardView>
       </StackLayout>
