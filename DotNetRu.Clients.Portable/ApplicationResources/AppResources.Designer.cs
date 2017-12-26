@@ -116,6 +116,15 @@ namespace DotNetRu.Clients.Portable.ApplicationResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DotNetRu.
+        /// </summary>
+        public static string DotNetRu {
+            get {
+                return ResourceManager.GetString("DotNetRu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Follow.
         /// </summary>
         public static string Follow {
