@@ -1,4 +1,6 @@
 ﻿using System;
+using DotNetRu.Clients.Portable.Interfaces;
+using DotNetRu.Clients.Portable.Model;
 using Xamarin.Forms;
 using XamarinEvolve.Clients.Portable;
 

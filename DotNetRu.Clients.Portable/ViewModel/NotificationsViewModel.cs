@@ -2,21 +2,16 @@
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-
+using DotNetRu.Clients.Portable.Extensions;
+using DotNetRu.DataStore.Audit.Models;
 using FormsToolkit;
-
 using MvvmHelpers;
-
 using Xamarin.Forms;
+using XamarinEvolve.Utils.Helpers;
 
-namespace XamarinEvolve.Clients.Portable
+namespace DotNetRu.Clients.Portable.ViewModel
 {
-    using DotNetRu.DataStore.Audit.Models;
-
-    using XamarinEvolve.Clients.Portable;
-    using XamarinEvolve.Utils.Helpers;
-
-	public class NotificationsViewModel : ViewModelBase
+    public class NotificationsViewModel : ViewModelBase
 	{
 		public NotificationsViewModel() : base()
 		{

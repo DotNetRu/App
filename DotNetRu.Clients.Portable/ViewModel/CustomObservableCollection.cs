@@ -1,10 +1,9 @@
-﻿namespace XamarinEvolve.Clients.Portable
+﻿using System.Collections.Generic;
+using System.Collections.Specialized;
+using MvvmHelpers;
+
+namespace DotNetRu.Clients.Portable.ViewModel
 {
-    using System.Collections.Generic;
-    using System.Collections.Specialized;
-
-    using MvvmHelpers;
-
     public class CustomObservableCollection<T> : ObservableRangeCollection<T>
     {
         public CustomObservableCollection()

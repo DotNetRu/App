@@ -1,3 +1,5 @@
+using DotNetRu.Clients.Portable.ViewModel;
+
 namespace XamarinEvolve.Clients.Portable.Helpers
 {
     using System.Linq;

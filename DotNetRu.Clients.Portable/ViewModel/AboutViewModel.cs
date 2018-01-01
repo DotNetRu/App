@@ -1,10 +1,9 @@
-﻿namespace XamarinEvolve.Clients.Portable
+﻿using DotNetRu.Clients.Portable.Model;
+using MvvmHelpers;
+using XamarinEvolve.Utils;
+
+namespace DotNetRu.Clients.Portable.ViewModel
 {
-    using MvvmHelpers;
-
-    using XamarinEvolve.Clients.Portable.Model;
-    using XamarinEvolve.Utils;
-
     public class AboutViewModel : SettingsViewModel
     {
         public AboutViewModel()

@@ -1,6 +1,8 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using CoreSpotlight;
+using DotNetRu.Clients.Portable.Interfaces;
+using DotNetRu.Clients.Portable.Model.Extensions;
 using Foundation;
 using Xamarin.Forms;
 using XamarinEvolve.Clients.Portable;

@@ -1,4 +1,6 @@
-﻿namespace XamarinEvolve.iOS
+﻿using DotNetRu.Clients.Portable.Model;
+
+namespace XamarinEvolve.iOS
 {
     using System;
     using System.Collections.Generic;

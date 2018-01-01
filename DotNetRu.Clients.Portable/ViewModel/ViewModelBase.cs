@@ -1,20 +1,17 @@
-﻿namespace XamarinEvolve.Clients.Portable
+﻿using System;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using DotNetRu.Clients.Portable.Helpers;
+using DotNetRu.Clients.Portable.Interfaces;
+using DotNetRu.DataStore.Audit;
+using MvvmHelpers;
+using Plugin.Share;
+using Plugin.Share.Abstractions;
+using Xamarin.Forms;
+using XamarinEvolve.Clients.Portable;
+
+namespace DotNetRu.Clients.Portable.ViewModel
 {
-    using System;
-    using System.Globalization;
-    using System.Threading.Tasks;
-    using System.Windows.Input;
-
-    using DotNetRu.DataStore.Audit;
-    using MvvmHelpers;
-
-    using Plugin.Share;
-    using Plugin.Share.Abstractions;
-
-    using Xamarin.Forms;
-
-    using XamarinEvolve.Clients.UI;
-
     /// <summary>
     /// The view model base.
     /// </summary>

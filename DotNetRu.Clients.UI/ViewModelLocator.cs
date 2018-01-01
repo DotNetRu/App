@@ -1,4 +1,6 @@
-﻿namespace XamarinEvolve.Clients.UI
+﻿using DotNetRu.Clients.Portable.ViewModel;
+
+namespace XamarinEvolve.Clients.UI
 {
     using XamarinEvolve.Clients.Portable;
 

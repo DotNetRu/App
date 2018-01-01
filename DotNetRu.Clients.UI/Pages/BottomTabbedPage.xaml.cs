@@ -1,8 +1,8 @@
-﻿namespace XamarinEvolve.Clients.UI.Pages
+﻿using DotNetRu.Clients.Portable.ViewModel;
+
+namespace XamarinEvolve.Clients.UI.Pages
 {
     using Xamarin.Forms.Xaml;
-
-    using XamarinEvolve.Clients.Portable.ViewModel;
 
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class BottomTabbedPage

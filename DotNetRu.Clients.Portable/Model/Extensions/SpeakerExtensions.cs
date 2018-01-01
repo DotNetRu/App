@@ -1,13 +1,10 @@
-﻿namespace XamarinEvolve.Clients.Portable
+﻿using System;
+using DotNetRu.DataStore.Audit.Models;
+using Xamarin.Forms;
+using XamarinEvolve.Utils.Helpers;
+
+namespace DotNetRu.Clients.Portable.Model.Extensions
 {
-    using System;
-
-    using DotNetRu.DataStore.Audit.Models;
-
-    using Xamarin.Forms;
-
-    using XamarinEvolve.Utils.Helpers;
-
     public static class SpeakerExtensions
     {
         public static AppLinkEntry GetAppLink(this SpeakerModel speakerModel)

@@ -1,10 +1,8 @@
-﻿namespace XamarinEvolve.Clients.Portable.Model
+﻿using DotNetRu.Clients.Portable.ApplicationResources;
+
+namespace DotNetRu.Clients.Portable.Model
 {
-    using XamarinEvolve.Clients.Portable.ApplicationResources;
-
-    using MenuItem = MenuItem;
-
-    public class LocalizableMenuItem : MenuItem
+    public class LocalizableMenuItem : Model.MenuItem
     {
         private string resourceName;
 

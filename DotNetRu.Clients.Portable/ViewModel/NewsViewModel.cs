@@ -1,20 +1,16 @@
-﻿namespace XamarinEvolve.Clients.Portable.ViewModel
+﻿using System;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using DotNetRu.Clients.Portable.Model;
+using DotNetRu.DataStore.Audit.Models;
+using FormsToolkit;
+using MvvmHelpers;
+using Xamarin.Forms;
+using XamarinEvolve.Utils;
+using XamarinEvolve.Utils.Helpers;
+
+namespace DotNetRu.Clients.Portable.ViewModel
 {
-    using System;
-    using System.Threading.Tasks;
-    using System.Windows.Input;
-
-    using DotNetRu.DataStore.Audit.Models;
-
-    using FormsToolkit;
-
-    using MvvmHelpers;
-
-    using Xamarin.Forms;
-
-    using XamarinEvolve.Utils;
-    using XamarinEvolve.Utils.Helpers;
-
     /// <inheritdoc />
     /// <summary>
     /// The feed view model.

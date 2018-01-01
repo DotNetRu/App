@@ -1,10 +1,14 @@
-﻿namespace XamarinEvolve.Clients.UI
+﻿using DotNetRu.Clients.Portable.Interfaces;
+using DotNetRu.Clients.Portable.Model;
+using DotNetRu.Clients.Portable.ViewModel;
+
+namespace XamarinEvolve.Clients.UI
 {
     using Xamarin.Forms;
 
     using XamarinEvolve.Clients.Portable;
 
-    using MenuItem = Portable.MenuItem;
+    using MenuItem = MenuItem;
 
     public partial class AboutPage
     {

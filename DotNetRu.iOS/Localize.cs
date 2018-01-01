@@ -4,11 +4,11 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using DotNetRu.Clients.Portable.Interfaces;
 using Foundation;
 using UIKit;
 using Xamarin.Forms;
 using XamarinEvolve.Clients.Portable.Helpers;
-using XamarinEvolve.Clients.Portable.Interfaces;
 
 [assembly: Dependency(typeof(DotNetRu.iOS.Localize))]
 
