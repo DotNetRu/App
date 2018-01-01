@@ -1,4 +1,10 @@
-﻿namespace XamarinEvolve.Clients.UI
+﻿using DotNetRu.Clients.Portable.ApplicationResources;
+using DotNetRu.Clients.Portable.Interfaces;
+using DotNetRu.Clients.Portable.Model;
+using DotNetRu.Clients.Portable.ViewModel;
+using XamarinEvolve.Clients.Portable;
+
+namespace XamarinEvolve.Clients.UI
 {
     using System;
     using System.Globalization;
@@ -15,9 +21,6 @@
 
     using Xamarin.Forms;
 
-    using XamarinEvolve.Clients.Portable;
-    using XamarinEvolve.Clients.Portable.ApplicationResources;
-    using XamarinEvolve.Clients.Portable.Interfaces;
     using XamarinEvolve.Clients.UI.Pages;
     using XamarinEvolve.Utils.Helpers;
 

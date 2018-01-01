@@ -1,4 +1,8 @@
-﻿namespace XamarinEvolve.Clients.UI
+﻿using DotNetRu.Clients.Portable.ApplicationResources;
+using DotNetRu.Clients.Portable.Extensions;
+using DotNetRu.Clients.Portable.Model.Extensions;
+
+namespace XamarinEvolve.Clients.UI
 {
     using System;
     using System.Diagnostics;
@@ -9,9 +13,6 @@
     using Humanizer;
 
     using Xamarin.Forms;
-
-    using XamarinEvolve.Clients.Portable;
-    using XamarinEvolve.Clients.Portable.ApplicationResources;
 
     public class SessionTimeDisplayConverter : IValueConverter
     {

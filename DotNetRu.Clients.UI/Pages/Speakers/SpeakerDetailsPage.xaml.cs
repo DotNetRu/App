@@ -1,11 +1,13 @@
-﻿namespace XamarinEvolve.Clients.UI
+﻿using DotNetRu.Clients.Portable.ApplicationResources;
+using DotNetRu.Clients.Portable.Interfaces;
+using DotNetRu.Clients.Portable.Model;
+using DotNetRu.Clients.Portable.ViewModel;
+
+namespace XamarinEvolve.Clients.UI
 {
     using DotNetRu.DataStore.Audit.Models;
 
     using Xamarin.Forms;
-
-    using XamarinEvolve.Clients.Portable;
-    using XamarinEvolve.Clients.Portable.ApplicationResources;
 
     public partial class SpeakerDetailsPage
     {

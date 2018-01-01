@@ -1,4 +1,5 @@
 ﻿using Android.Widget;
+using DotNetRu.Clients.Portable.Interfaces;
 using Plugin.CurrentActivity;
 using Xamarin.Forms;
 using XamarinEvolve.Clients.Portable;

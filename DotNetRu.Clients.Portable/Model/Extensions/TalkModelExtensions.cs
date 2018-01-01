@@ -1,18 +1,16 @@
-﻿namespace XamarinEvolve.Clients.Portable
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using DotNetRu.Clients.Portable.Extensions;
+using DotNetRu.DataStore.Audit.Models;
+using MvvmHelpers;
+using Xamarin.Forms;
+using XamarinEvolve.Clients.Portable;
+using XamarinEvolve.Utils;
+using XamarinEvolve.Utils.Helpers;
+
+namespace DotNetRu.Clients.Portable.Model.Extensions
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-
-    using DotNetRu.DataStore.Audit.Models;
-
-    using MvvmHelpers;
-
-    using Xamarin.Forms;
-
-    using XamarinEvolve.Utils;
-    using XamarinEvolve.Utils.Helpers;
-
     public static class TalkModelExtensions
     {
         public static AppLinkEntry GetAppLink(this TalkModel talkModel)

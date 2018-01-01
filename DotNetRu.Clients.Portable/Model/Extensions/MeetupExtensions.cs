@@ -1,16 +1,14 @@
-﻿namespace XamarinEvolve.Clients.Portable
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using DotNetRu.Clients.Portable.ApplicationResources;
+using DotNetRu.Clients.Portable.Extensions;
+using DotNetRu.DataStore.Audit.Models;
+using MvvmHelpers;
+using XamarinEvolve.Utils;
+
+namespace DotNetRu.Clients.Portable.Model.Extensions
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-
-    using DotNetRu.DataStore.Audit.Models;
-
-    using MvvmHelpers;
-
-    using XamarinEvolve.Clients.Portable.ApplicationResources;
-    using XamarinEvolve.Utils;
-
     public static class MeetupExtensions
     {
         public static IEnumerable<Grouping<string, MeetupModel>> GroupByMonth(this IEnumerable<MeetupModel> meetups)

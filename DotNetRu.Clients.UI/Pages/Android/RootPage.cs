@@ -1,4 +1,6 @@
-﻿namespace XamarinEvolve.Clients.UI
+﻿using DotNetRu.Clients.Portable.Model;
+
+namespace XamarinEvolve.Clients.UI
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;

@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using DotNetRu.Clients.Portable.Interfaces;
+using Xamarin.Forms;
 using XamarinEvolve.Clients.Portable;
 using XamarinEvolve.Droid;
 

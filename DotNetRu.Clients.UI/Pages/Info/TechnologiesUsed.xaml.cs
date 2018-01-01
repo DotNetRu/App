@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using DotNetRu.Clients.Portable.ViewModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using XamarinEvolve.Clients.Portable.ViewModel;
 using XamarinEvolve.Utils.Helpers;
 
 namespace XamarinEvolve.Clients.UI.Pages.Info

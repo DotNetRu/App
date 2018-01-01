@@ -1,21 +1,17 @@
-﻿namespace XamarinEvolve.Clients.Portable
+﻿using System;
+using System.Linq;
+using System.Windows.Input;
+using DotNetRu.DataStore.Audit.Models;
+using DotNetRu.DataStore.Audit.Services;
+using FormsToolkit;
+using MvvmHelpers;
+using Xamarin.Forms;
+using XamarinEvolve.Utils;
+using XamarinEvolve.Utils.Helpers;
+using MenuItem = DotNetRu.Clients.Portable.Model.MenuItem;
+
+namespace DotNetRu.Clients.Portable.ViewModel
 {
-    using System;
-    using System.Linq;
-    using System.Windows.Input;
-
-    using DotNetRu.DataStore.Audit.Models;
-    using DotNetRu.DataStore.Audit.Services;
-
-    using FormsToolkit;
-
-    using MvvmHelpers;
-
-    using Xamarin.Forms;
-
-    using XamarinEvolve.Utils;
-    using XamarinEvolve.Utils.Helpers;
-
     public class SpeakerDetailsViewModel : ViewModelBase
     {
         private ICommand loadTalksCommand;

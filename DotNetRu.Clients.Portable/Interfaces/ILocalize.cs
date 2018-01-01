@@ -1,7 +1,7 @@
-﻿namespace XamarinEvolve.Clients.Portable.Interfaces
-{
-    using System.Globalization;
+﻿using System.Globalization;
 
+namespace DotNetRu.Clients.Portable.Interfaces
+{
     public interface ILocalize
     {
         CultureInfo GetCurrentCultureInfo();

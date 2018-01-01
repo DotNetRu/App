@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
-using XamarinEvolve.Clients.Portable.Interfaces;
+using DotNetRu.Clients.Portable.Model;
+using DotNetRu.Clients.Portable.ViewModel;
 
 namespace XamarinEvolve.Clients.UI
 {

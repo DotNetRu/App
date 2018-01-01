@@ -1,18 +1,13 @@
-﻿namespace XamarinEvolve.Clients.Portable
+﻿using System;
+using System.Windows.Input;
+using FormsToolkit;
+using Humanizer;
+using Newtonsoft.Json;
+using Xamarin.Forms;
+using XamarinEvolve.Utils.Helpers;
+
+namespace DotNetRu.Clients.Portable.Model
 {
-    using System;
-    using System.Windows.Input;
-
-    using FormsToolkit;
-
-    using Humanizer;
-
-    using Newtonsoft.Json;
-
-    using Xamarin.Forms;
-
-    using XamarinEvolve.Utils.Helpers;
-
     public class Tweet
     {
         private string _tweetedImage;

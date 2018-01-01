@@ -1,10 +1,9 @@
-﻿namespace XamarinEvolve.Clients.Portable.ViewModel
+﻿using DotNetRu.Clients.Portable.Helpers;
+using Xamarin.Forms;
+using XamarinEvolve.Utils.Helpers;
+
+namespace DotNetRu.Clients.Portable.ViewModel
 {
-    using Xamarin.Forms;
-
-    using XamarinEvolve.Clients.UI;
-    using XamarinEvolve.Utils.Helpers;
-
     public class BottomBarViewModel : ViewModelBase
     {
         public BottomBarViewModel()
