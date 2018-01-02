@@ -2,13 +2,13 @@
 using Android.Util;
 using Android.Views;
 using Android.Widget;
+using DotNetRu.Droid.Renderers;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
-using XamarinEvolve.Droid;
 
 [assembly: ExportCell(typeof(SwitchCell), typeof(SwitchCellEx))]
 
-namespace XamarinEvolve.Droid
+namespace DotNetRu.Droid.Renderers
 {
     using View = Android.Views.View;
 

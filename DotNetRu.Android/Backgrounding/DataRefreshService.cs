@@ -1,9 +1,9 @@
-﻿namespace XamarinEvolve.Droid
-{
-    using Android.App;
-    using Android.Content;
-    using Android.Util;
+﻿using Android.App;
+using Android.Content;
+using Android.Util;
 
+namespace DotNetRu.Droid.Backgrounding
+{
     [Service(Name = "com.xamarin.xamarinevolve.DataRefreshService", Exported = true,
         Permission = "com.google.android.gms.permission.BIND_NETWORK_TASK_SERVICE")]
     [IntentFilter(new[] {"com.google.android.gms.gcm.ACTION_TASK_READY"})]

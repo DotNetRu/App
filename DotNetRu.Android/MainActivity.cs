@@ -1,4 +1,5 @@
-﻿using DotNetRu.Utils.Helpers;
+﻿using DotNetRu.Droid.Backgrounding;
+using DotNetRu.Utils.Helpers;
 
 namespace DotNetRu.Droid
 {
@@ -94,11 +95,11 @@ namespace DotNetRu.Droid
         {
 #if ENABLE_LIVE_PLAYER
 #else
-            this.SetTheme(Resource.Style.MyTheme);
+            this.SetTheme(Droid.Resources.Resource.Style.MyTheme);
             Forms.SetFlags("FastRenderers_Experimental");
 
-            FormsAppCompatActivity.ToolbarResource = Resource.Layout.toolbar;
-            FormsAppCompatActivity.TabLayoutResource = Resource.Layout.tabs;
+            FormsAppCompatActivity.ToolbarResource = Droid.Resources.Resource.Layout.toolbar;
+            FormsAppCompatActivity.TabLayoutResource = Droid.Resources.Resource.Layout.tabs;
             this.SetupBottomTabs();
 #endif
 
@@ -202,16 +203,16 @@ namespace DotNetRu.Droid
                     switch (iconSource.File)
                     {
                         case "menu_feed.png":
-                            menuItem.SetIcon(Resource.Drawable.menu_feed);
+                            menuItem.SetIcon(Droid.Resources.Resource.Drawable.menu_feed);
                             break;
                         case "menu_speakers.png":
-                            menuItem.SetIcon(Resource.Drawable.menu_speakers);
+                            menuItem.SetIcon(Droid.Resources.Resource.Drawable.menu_speakers);
                             break;
                         case "menu_events.png":
-                            menuItem.SetIcon(Resource.Drawable.menu_events);
+                            menuItem.SetIcon(Droid.Resources.Resource.Drawable.menu_events);
                             break;
                         case "menu_info.png":
-                            menuItem.SetIcon(Resource.Drawable.menu_info);
+                            menuItem.SetIcon(Droid.Resources.Resource.Drawable.menu_info);
                             break;
                     }
                 }

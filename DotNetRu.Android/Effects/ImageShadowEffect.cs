@@ -1,13 +1,13 @@
 using System;
 using System.Linq;
 using DotNetRu.Clients.UI.Effects;
+using DotNetRu.Droid.Effects;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
-using XamarinEvolve.Droid.Effects;
 
 [assembly: ExportEffect(typeof(ImageShadowEffect), "ImageShadowEffect")]
 
-namespace XamarinEvolve.Droid.Effects
+namespace DotNetRu.Droid.Effects
 {
     public class ImageShadowEffect : PlatformEffect
     {
