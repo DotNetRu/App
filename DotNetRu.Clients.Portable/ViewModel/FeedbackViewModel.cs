@@ -5,7 +5,6 @@ using DotNetRu.Utils.Helpers;
 using DotNetRu.Utils.Interfaces;
 using FormsToolkit;
 using Xamarin.Forms;
-using XamarinEvolve.Clients.Portable;
 
 namespace DotNetRu.Clients.Portable.ViewModel
 {

@@ -1,6 +1,6 @@
 using UIKit;
 
-namespace XamarinEvolve.iOS
+namespace DotNetRu.iOS
 {
 	public class Application
 	{

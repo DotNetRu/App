@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
+﻿using System.Globalization;
 using System.Threading;
 using DotNetRu.Clients.Portable.Interfaces;
 using Foundation;
-using UIKit;
+
 using Xamarin.Forms;
-using XamarinEvolve.Clients.Portable.Helpers;
 
 [assembly: Dependency(typeof(DotNetRu.iOS.Localize))]
 

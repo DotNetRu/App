@@ -1,36 +1,24 @@
-﻿using DotNetRu.Clients.Portable.Model;
+﻿using System;
+using System.Collections.Generic;
+using CoreSpotlight;
+using DotNetRu.Clients.Portable.Model;
+using DotNetRu.iOS.Renderers;
 using DotNetRu.Utils.Helpers;
 using DotNetRu.Utils.Interfaces;
+using FormsToolkit;
+using FormsToolkit.iOS;
+using Foundation;
+using Google.AppIndexing;
+using ImageCircle.Forms.Plugin.iOS;
+using Plugin.Share;
+using Refractored.XamForms.PullToRefresh.iOS;
+using Social;
+using UIKit;
+using Xamarin.Forms;
+using Xamarin.Forms.Platform.iOS;
 
-namespace XamarinEvolve.iOS
+namespace DotNetRu.iOS
 {
-    using System;
-    using System.Collections.Generic;
-
-    using CoreSpotlight;
-
-    using FormsToolkit;
-    using FormsToolkit.iOS;
-
-    using Foundation;
-
-    using Google.AppIndexing;
-
-    using ImageCircle.Forms.Plugin.iOS;
-
-    using Plugin.Share;
-
-    using Refractored.XamForms.PullToRefresh.iOS;
-
-    using Social;
-
-    using UIKit;
-
-    using Xamarin.Forms;
-    using Xamarin.Forms.Platform.iOS;
-
-    using Clients.Portable;
-
     [Register("AppDelegate")]
     public class AppDelegate : FormsApplicationDelegate
     {
