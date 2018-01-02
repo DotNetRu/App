@@ -4,6 +4,7 @@ using System.Windows.Input;
 using DotNetRu.Clients.Portable.Helpers;
 using DotNetRu.Clients.Portable.Interfaces;
 using DotNetRu.DataStore.Audit;
+using DotNetRu.Utils.Interfaces;
 using MvvmHelpers;
 using Plugin.Share;
 using Plugin.Share.Abstractions;

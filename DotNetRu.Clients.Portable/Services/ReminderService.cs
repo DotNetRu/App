@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using DotNetRu.Clients.Portable.Helpers;
 using DotNetRu.Clients.Portable.Interfaces;
+using DotNetRu.Utils.Helpers;
 using FormsToolkit;
 using Plugin.Calendars;
 using Plugin.Calendars.Abstractions;
@@ -10,7 +11,6 @@ using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using Xamarin.Forms;
 using XamarinEvolve.Clients.Portable;
-using XamarinEvolve.Utils.Helpers;
 
 namespace DotNetRu.Clients.Portable.Services
 {

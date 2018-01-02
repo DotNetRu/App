@@ -1,4 +1,6 @@
 ﻿using DotNetRu.Clients.Portable.Model;
+using DotNetRu.Utils.Helpers;
+using DotNetRu.Utils.Interfaces;
 
 namespace XamarinEvolve.iOS
 {
@@ -28,7 +30,6 @@ namespace XamarinEvolve.iOS
     using Xamarin.Forms.Platform.iOS;
 
     using Clients.Portable;
-    using Utils.Helpers;
 
     [Register("AppDelegate")]
     public class AppDelegate : FormsApplicationDelegate

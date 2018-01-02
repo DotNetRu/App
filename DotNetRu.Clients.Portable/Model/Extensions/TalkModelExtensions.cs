@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using DotNetRu.Clients.Portable.Extensions;
 using DotNetRu.DataStore.Audit.Models;
+using DotNetRu.Utils.Helpers;
 using MvvmHelpers;
 using Xamarin.Forms;
 using XamarinEvolve.Clients.Portable;
-using XamarinEvolve.Utils;
-using XamarinEvolve.Utils.Helpers;
 
 namespace DotNetRu.Clients.Portable.Model.Extensions
 {

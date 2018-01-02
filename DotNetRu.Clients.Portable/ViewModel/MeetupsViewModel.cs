@@ -4,10 +4,10 @@ using DotNetRu.Clients.Portable.Helpers;
 using DotNetRu.Clients.Portable.Model.Extensions;
 using DotNetRu.DataStore.Audit.Models;
 using DotNetRu.DataStore.Audit.Services;
+using DotNetRu.Utils.Helpers;
 using FormsToolkit;
 using MvvmHelpers;
 using Xamarin.Forms;
-using XamarinEvolve.Utils.Helpers;
 
 namespace DotNetRu.Clients.Portable.ViewModel
 {

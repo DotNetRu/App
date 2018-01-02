@@ -1,6 +1,6 @@
 ﻿using DotNetRu.Clients.Portable.Helpers;
+using DotNetRu.Utils.Helpers;
 using Xamarin.Forms;
-using XamarinEvolve.Utils.Helpers;
 
 namespace DotNetRu.Clients.Portable.ViewModel
 {

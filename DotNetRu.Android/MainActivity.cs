@@ -1,4 +1,6 @@
-﻿namespace DotNetRu.Droid
+﻿using DotNetRu.Utils.Helpers;
+
+namespace DotNetRu.Droid
 {
     // using Gcm;
     using System.Reflection;
@@ -26,7 +28,6 @@
 
     using XamarinEvolve.Clients.Portable;
     using XamarinEvolve.Droid;
-    using XamarinEvolve.Utils.Helpers;
 
     [Activity(
         Label = AboutThisApp.AppName,

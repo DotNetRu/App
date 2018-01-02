@@ -1,8 +1,8 @@
 ﻿using System;
 using DotNetRu.Clients.Portable.ViewModel;
+using DotNetRu.Utils.Helpers;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using XamarinEvolve.Utils.Helpers;
 
 namespace DotNetRu.Clients.UI.Pages.Info
 {

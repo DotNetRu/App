@@ -9,6 +9,8 @@ using DotNetRu.Clients.UI.Pages;
 using DotNetRu.Clients.UI.Pages.Home;
 using DotNetRu.Clients.UI.Pages.iOS;
 using DotNetRu.Clients.UI.Pages.Sessions;
+using DotNetRu.Utils.Helpers;
+using DotNetRu.Utils.Interfaces;
 using FormsToolkit;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
@@ -17,7 +19,6 @@ using Plugin.Connectivity;
 using Plugin.Connectivity.Abstractions;
 using Xamarin.Forms;
 using XamarinEvolve.Clients.Portable;
-using XamarinEvolve.Utils.Helpers;
 
 namespace DotNetRu.Clients.UI
 {

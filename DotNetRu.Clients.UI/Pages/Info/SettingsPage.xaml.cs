@@ -3,8 +3,8 @@ using DotNetRu.Clients.Portable.Model;
 using DotNetRu.Clients.Portable.ViewModel;
 using DotNetRu.Clients.UI.Helpers;
 using DotNetRu.Clients.UI.Pages.Friends;
+using DotNetRu.Utils.Helpers;
 using Xamarin.Forms;
-using XamarinEvolve.Utils.Helpers;
 
 namespace DotNetRu.Clients.UI.Pages.Info
 {

@@ -4,8 +4,8 @@ using System.Linq;
 using DotNetRu.Clients.Portable.ApplicationResources;
 using DotNetRu.Clients.Portable.Extensions;
 using DotNetRu.DataStore.Audit.Models;
+using DotNetRu.Utils.Helpers;
 using MvvmHelpers;
-using XamarinEvolve.Utils;
 
 namespace DotNetRu.Clients.Portable.Model.Extensions
 {

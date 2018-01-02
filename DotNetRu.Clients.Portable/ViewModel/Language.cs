@@ -1,4 +1,4 @@
-﻿using XamarinEvolve.Utils.Helpers;
+﻿using DotNetRu.Utils.Helpers;
 
 namespace DotNetRu.Clients.Portable.ViewModel
 {

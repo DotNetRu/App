@@ -3,9 +3,9 @@ using DotNetRu.Clients.Portable.Model;
 using DotNetRu.Clients.Portable.ViewModel;
 using DotNetRu.Clients.UI.Controls;
 using DotNetRu.Clients.UI.Helpers;
+using DotNetRu.Utils.Helpers;
 using FormsToolkit;
 using Xamarin.Forms;
-using XamarinEvolve.Utils.Helpers;
 
 namespace DotNetRu.Clients.UI.Pages.Home
 {

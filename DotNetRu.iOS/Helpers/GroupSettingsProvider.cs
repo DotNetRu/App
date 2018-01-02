@@ -1,4 +1,6 @@
-﻿using Foundation;
+﻿using DotNetRu.Utils.Helpers;
+using DotNetRu.Utils.Interfaces;
+using Foundation;
 using Xamarin.Forms;
 using XamarinEvolve.Clients.Portable;
 using XamarinEvolve.iOS;
@@ -7,9 +9,7 @@ using XamarinEvolve.iOS;
 
 namespace XamarinEvolve.iOS
 {
-	using XamarinEvolve.Utils.Helpers;
-
-	public class GroupSettingsProvider : IPlatformSpecificSettings
+    public class GroupSettingsProvider : IPlatformSpecificSettings
 	{
 		private readonly NSUserDefaults _groupSettings = new NSUserDefaults($"group.{AboutThisApp.PackageName}", NSUserDefaultsType.SuiteName);
 
