@@ -1,24 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<local:BasePage
+<pages:BasePage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:XamarinEvolve.Clients.UI;assembly=XamarinEvolve.Clients.UI"
-    x:Class="XamarinEvolve.Clients.UI.MeetupPage"
+    xmlns:pages="clr-namespace:DotNetRu.Clients.UI.Pages;assembly=DotNetRu.Clients.UI"
+    xmlns:controls="clr-namespace:DotNetRu.Clients.UI.Controls;assembly=DotNetRu.Clients.UI"
+    xmlns:cells="clr-namespace:DotNetRu.Clients.UI.Cells;assembly=DotNetRu.Clients.UI"
+    x:Class="DotNetRu.Clients.UI.Pages.Sessions.MeetupPage"
     x:Name="Meetup"
     Title="{Binding MeetupModel.Title}" 
     Icon="tab_sessions.png"
     BackgroundColor="{DynamicResource WindowBackground}">
   <ContentPage.Content>
     <StackLayout>
-      <local:AlwaysScrollView>
+      <controls:AlwaysScrollView>
         <StackLayout Spacing="0">
           <StackLayout BackgroundColor="{DynamicResource WindowBackgroundTable}"
                       Spacing="{DynamicResource CardSpacing}"
                       Padding="{DynamicResource CardPadding}">
-            <local:CardView>
+            <controls:CardView>
               <StackLayout Spacing="0">
-                <local:LabelSection Text="{Binding Resources[Talks]}"/>
-                <local:HeaderDivider/>
+                <controls:LabelSection Text="{Binding Resources[Talks]}"/>
+                <controls:HeaderDivider/>
                 <StackLayout IsVisible="{Binding IsBusy}">
                   <StackLayout.Orientation>
                     <OnPlatform x:TypeArguments="StackOrientation" iOS="Horizontal"/>
@@ -37,46 +39,46 @@
                               Padding="16,0">
                   <Label Text="{Binding Resources[NoTalksFound]}" HorizontalOptions="Center" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand" FontSize="22" TextColor="#D3D2D2"/>
                 </StackLayout>
-                <local:NonScrollableListView
+                <controls:NonScrollableListView
                     x:Name="ListViewTalks"
                     ItemsSource="{Binding Talks}"
                     StyleId="SessionSpeakers"
                     RowHeight="95">
-                  <local:NonScrollableListView.SeparatorColor>
+                  <controls:NonScrollableListView.SeparatorColor>
                     <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ListSeparator}"/>
-                  </local:NonScrollableListView.SeparatorColor>
-                  <local:NonScrollableListView.ItemTemplate>
+                  </controls:NonScrollableListView.SeparatorColor>
+                  <controls:NonScrollableListView.ItemTemplate>
                     <DataTemplate>
                       <ViewCell StyleId="disclosure">
-                        <local:SessionCellView />
+                        <cells:SessionCellView />
                       </ViewCell>
                     </DataTemplate>
-                  </local:NonScrollableListView.ItemTemplate>
-                </local:NonScrollableListView>
-                <local:FooterDivider/>
+                  </controls:NonScrollableListView.ItemTemplate>
+                </controls:NonScrollableListView>
+                <controls:FooterDivider/>
               </StackLayout>
-            </local:CardView>
+            </controls:CardView>
 
-            <local:CardView>
-              <local:CardView.GestureRecognizers>
+            <controls:CardView>
+              <controls:CardView.GestureRecognizers>
                   <TapGestureRecognizer Command="{Binding TapVenueCommand}"/>
-              </local:CardView.GestureRecognizers>
+              </controls:CardView.GestureRecognizers>
               <StackLayout Spacing="0">
-                <local:LabelSection Text="{Binding Resources[Venue]}"/>
-                <local:HeaderDivider/>
+                <controls:LabelSection Text="{Binding Resources[Venue]}"/>
+                <controls:HeaderDivider/>
                   <StackLayout Padding="{StaticResource StandardPadding}" BackgroundColor="White">
                       <Label Text="{Binding VenueModel.Name}" Style="{DynamicResource EvolveListItemTextStyle}" StyleId="SessionAbstract"/>
                       <Label Text="{Binding VenueModel.Address}" Style="{DynamicResource EvolveListItemTextStyle}" StyleId="SessionAbstract"/>
                   </StackLayout>
-                <local:FooterDivider/>
+                <controls:FooterDivider/>
               </StackLayout>
-            </local:CardView>            
+            </controls:CardView>            
           </StackLayout>
         </StackLayout>
-      </local:AlwaysScrollView>
+      </controls:AlwaysScrollView>
     </StackLayout>
   </ContentPage.Content>
-</local:BasePage>
+</pages:BasePage>
 
 <!--<local:CardView>
                       <StackLayout Spacing="0">

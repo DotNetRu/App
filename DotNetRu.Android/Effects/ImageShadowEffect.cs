@@ -1,8 +1,8 @@
 using System;
 using System.Linq;
+using DotNetRu.Clients.UI.Effects;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
-using XamarinEvolve.Clients.UI.Effects;
 using XamarinEvolve.Droid.Effects;
 
 [assembly: ExportEffect(typeof(ImageShadowEffect), "ImageShadowEffect")]

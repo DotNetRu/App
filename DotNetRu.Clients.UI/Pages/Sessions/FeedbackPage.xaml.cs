@@ -1,13 +1,10 @@
 ﻿using DotNetRu.Clients.Portable.Model;
 using DotNetRu.Clients.Portable.ViewModel;
+using DotNetRu.DataStore.Audit.Models;
 using Xamarin.Forms;
 
-using XamarinEvolve.Clients.Portable;
-
-namespace XamarinEvolve.Clients.UI
+namespace DotNetRu.Clients.UI.Pages.Sessions
 {
-    using DotNetRu.DataStore.Audit.Models;
-
     public partial class FeedbackPage : BasePage
 	{
 		public override AppPage PageType => AppPage.Feedback;

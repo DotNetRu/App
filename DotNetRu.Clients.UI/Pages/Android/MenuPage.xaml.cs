@@ -1,9 +1,8 @@
-﻿namespace XamarinEvolve.Clients.UI
+﻿using System.Threading.Tasks;
+using Xamarin.Forms;
+
+namespace DotNetRu.Clients.UI.Pages.Android
 {
-    using System.Threading.Tasks;
-
-    using Xamarin.Forms;
-
     public partial class MenuPage : ContentPage
     {
         readonly RootPageAndroid root;

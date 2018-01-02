@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<local:BasePage
+<pages:BasePage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="XamarinEvolve.Clients.UI.SettingsPage"
-    xmlns:local="clr-namespace:XamarinEvolve.Clients.UI;assembly=XamarinEvolve.Clients.UI"
+    x:Class="DotNetRu.Clients.UI.Pages.Info.SettingsPage"
+    xmlns:pages="clr-namespace:DotNetRu.Clients.UI.Pages;assembly=DotNetRu.Clients.UI"
+    xmlns:converters="clr-namespace:DotNetRu.Clients.UI.Converters;assembly=DotNetRu.Clients.UI"
+    xmlns:controls="clr-namespace:DotNetRu.Clients.UI.Controls;assembly=DotNetRu.Clients.UI"
     x:Name="AboutPage"
     Title="{Binding Resources[About]}"
     Icon="tab_about.png"
     NavigationPage.BackButtonTitle="Info"
     BackgroundColor="{DynamicResource WindowBackgroundTable}">
-  <local:BasePage.Resources>
+  <pages:BasePage.Resources>
     <ResourceDictionary>
-      <local:SpeakerImageConverter x:Key="SpeakerImageConverter" />
+      <converters:SpeakerImageConverter x:Key="SpeakerImageConverter" />
     </ResourceDictionary>
-  </local:BasePage.Resources>
+  </pages:BasePage.Resources>
 
-  <local:AlwaysScrollView>
+  <controls:AlwaysScrollView>
     <StackLayout Spacing="0">
       <StackLayout
           BackgroundColor="{DynamicResource WindowBackgroundTable}"
           Spacing="{DynamicResource CardSpacing}"
           Padding="{DynamicResource CardPadding}">
-        <local:CardView>
+        <controls:CardView>
           <StackLayout Spacing="0">
             <Image
                 HorizontalOptions="FillAndExpand"
@@ -29,7 +31,7 @@
                 Margin="0, 10, 0, 10"
                 Source="ic_splash.png"
                 Aspect="AspectFit"/>
-            <local:LabelSection Text="{Binding AppInfo}"/>
+            <controls:LabelSection Text="{Binding AppInfo}"/>
             <StackLayout Spacing="10">
               <StackLayout.Padding>
                 <OnPlatform x:TypeArguments="Thickness" iOS="16,8,16,8" Android="16,8"/>
@@ -57,15 +59,15 @@
               <Label Text="{Binding Copyright}"
                      Style="{DynamicResource EvolveListItemDetailTextStyle}"/>
             </StackLayout>
-            <local:HeaderDivider/>
-            <local:NonScrollableListView
+            <controls:HeaderDivider/>
+            <controls:NonScrollableListView
                 x:Name="ListViewAbout"
                 ItemsSource="{Binding AboutItems}"
                 RowHeight="44">
-              <local:NonScrollableListView.SeparatorColor>
+              <controls:NonScrollableListView.SeparatorColor>
                 <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ListSeparator}"/>
-              </local:NonScrollableListView.SeparatorColor>
-              <local:NonScrollableListView.ItemTemplate>
+              </controls:NonScrollableListView.SeparatorColor>
+              <controls:NonScrollableListView.ItemTemplate>
                 <DataTemplate>
                   <TextCell Text="{Binding Name}"
                              Detail="{Binding Subtitle}"
@@ -73,23 +75,23 @@
                              CommandParameter="{Binding Parameter}"
                              StyleId="disclosure"/>
                 </DataTemplate>
-              </local:NonScrollableListView.ItemTemplate>
-            </local:NonScrollableListView>
-            <local:FooterDivider/>
+              </controls:NonScrollableListView.ItemTemplate>
+            </controls:NonScrollableListView>
+            <controls:FooterDivider/>
           </StackLayout>
-        </local:CardView>
-        <local:CardView>
+        </controls:CardView>
+        <controls:CardView>
           <StackLayout Spacing="0">
-            <local:LabelSection Text="{Binding Resources[OurCommunities]}"/>
-            <local:HeaderDivider/>
-            <local:NonScrollableListView
+            <controls:LabelSection Text="{Binding Resources[OurCommunities]}"/>
+            <controls:HeaderDivider/>
+            <controls:NonScrollableListView
                 x:Name="ListViewCommunities"
                 ItemsSource="{Binding Communities}"
                 RowHeight="44">
-              <local:NonScrollableListView.SeparatorColor>
+              <controls:NonScrollableListView.SeparatorColor>
                 <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ListSeparator}"/>
-              </local:NonScrollableListView.SeparatorColor>
-              <local:NonScrollableListView.ItemTemplate>
+              </controls:NonScrollableListView.SeparatorColor>
+              <controls:NonScrollableListView.ItemTemplate>
                 <DataTemplate>
                   <ViewCell>
                     <StackLayout Orientation="Horizontal">
@@ -101,17 +103,17 @@
                     </StackLayout>
                   </ViewCell>
                 </DataTemplate>
-              </local:NonScrollableListView.ItemTemplate>
-            </local:NonScrollableListView>
-            <local:FooterDivider/>
+              </controls:NonScrollableListView.ItemTemplate>
+            </controls:NonScrollableListView>
+            <controls:FooterDivider/>
             <StackLayout>
               <StackLayout.Padding>
                 <OnPlatform x:TypeArguments="Thickness" iOS="16,8,16,0" Android="16,8"/>
               </StackLayout.Padding>
             </StackLayout>
           </StackLayout>
-        </local:CardView>
+        </controls:CardView>
       </StackLayout>
     </StackLayout>
-  </local:AlwaysScrollView>
-</local:BasePage>
+  </controls:AlwaysScrollView>
+</pages:BasePage>

@@ -1,19 +1,15 @@
-﻿using DotNetRu.Clients.Portable.ApplicationResources;
+﻿using System;
+using System.Diagnostics;
+using System.Globalization;
+using DotNetRu.Clients.Portable.ApplicationResources;
 using DotNetRu.Clients.Portable.Extensions;
 using DotNetRu.Clients.Portable.Model.Extensions;
+using DotNetRu.DataStore.Audit.Models;
+using Humanizer;
+using Xamarin.Forms;
 
-namespace XamarinEvolve.Clients.UI
+namespace DotNetRu.Clients.UI.Converters
 {
-    using System;
-    using System.Diagnostics;
-    using System.Globalization;
-
-    using DotNetRu.DataStore.Audit.Models;
-
-    using Humanizer;
-
-    using Xamarin.Forms;
-
     public class SessionTimeDisplayConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

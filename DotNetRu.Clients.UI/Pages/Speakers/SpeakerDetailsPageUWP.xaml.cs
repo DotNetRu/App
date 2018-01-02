@@ -1,16 +1,14 @@
-﻿using DotNetRu.Clients.Portable.Model;
+﻿using System;
+using DotNetRu.Clients.Portable.Model;
 using DotNetRu.Clients.Portable.ViewModel;
+using DotNetRu.Clients.UI.Helpers;
+using DotNetRu.Clients.UI.Pages.Sessions;
+using DotNetRu.DataStore.Audit.Models;
+using FFImageLoading.Forms;
 using Xamarin.Forms;
-using XamarinEvolve.Clients.Portable;
 
-namespace XamarinEvolve.Clients.UI
+namespace DotNetRu.Clients.UI.Pages.Speakers
 {
-    using System;
-
-    using DotNetRu.DataStore.Audit.Models;
-
-    using FFImageLoading.Forms;
-
     public partial class SpeakerDetailsPageUWP : BasePage
 	{
 		public override AppPage PageType => AppPage.Speaker;

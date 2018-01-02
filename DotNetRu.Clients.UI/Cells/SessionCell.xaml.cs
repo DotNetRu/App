@@ -1,13 +1,11 @@
 ﻿using DotNetRu.Clients.Portable.Model;
+using DotNetRu.Clients.UI.Helpers;
+using DotNetRu.Clients.UI.Pages.Sessions;
+using DotNetRu.DataStore.Audit.Models;
+using Xamarin.Forms;
 
-namespace XamarinEvolve.Clients.UI
+namespace DotNetRu.Clients.UI.Cells
 {
-    using DotNetRu.DataStore.Audit.Models;
-
-    using Xamarin.Forms;
-
-    using XamarinEvolve.Clients.Portable;
-
     public class SessionCell : ViewCell
     {
         private readonly INavigation navigation;

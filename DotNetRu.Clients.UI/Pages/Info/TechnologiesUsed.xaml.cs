@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DotNetRu.Clients.Portable.ViewModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XamarinEvolve.Utils.Helpers;
 
-namespace XamarinEvolve.Clients.UI.Pages.Info
+namespace DotNetRu.Clients.UI.Pages.Info
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TechnologiesUsed : ContentPage

@@ -1,10 +1,11 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<local:BasePage
+<pages:BasePage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="XamarinEvolve.Clients.UI.FriendDetailsPage"
-    xmlns:local="clr-namespace:XamarinEvolve.Clients.UI;assembly=XamarinEvolve.Clients.UI"
+    x:Class="DotNetRu.Clients.UI.Pages.Friends.FriendDetailsPage"
     xmlns:toolkit="clr-namespace:FormsToolkit;assembly=FormsToolkit"
+    xmlns:pages="clr-namespace:DotNetRu.Clients.UI.Pages;assembly=DotNetRu.Clients.UI"
+    xmlns:controls="clr-namespace:DotNetRu.Clients.UI.Controls;assembly=DotNetRu.Clients.UI"
     Title="{Binding Resources[Friend]}"
     
     BackgroundColor="{DynamicResource WindowBackgroundTable}">
@@ -13,14 +14,14 @@
       <toolkit:HasDataConverter x:Key="GenericIsVisibleConverter"/>
     </ResourceDictionary>
   </ContentPage.Resources>
-  <local:AlwaysScrollView>
+  <controls:AlwaysScrollView>
     <StackLayout Spacing="0">
       <StackLayout BackgroundColor="{DynamicResource WindowBackgroundTable}"
                            Spacing="{DynamicResource CardSpacing}"
                            Padding="{DynamicResource CardPadding}">
-        <local:CardView>
+        <controls:CardView>
           <StackLayout Padding="0" Spacing="0" BackgroundColor="White">
-            <local:HeaderDivider/>
+            <controls:HeaderDivider/>
             <StackLayout Padding="{StaticResource StandardPadding}" >
               <StackLayout Padding="32,16,32,0">
                 <Image
@@ -40,26 +41,26 @@
                 <Label Text="{Binding FriendModel.Description}"  Style="{DynamicResource EvolveListItemTextStyle}" StyleId="SponsorDetailDescription"/>
               </StackLayout>
             </StackLayout>
-            <local:FooterDivider/>
+            <controls:FooterDivider/>
           </StackLayout>
-        </local:CardView>
+        </controls:CardView>
 
-        <local:CardView IsVisible="{Binding FollowItems, Converter={StaticResource GenericIsVisibleConverter}}">
+        <controls:CardView IsVisible="{Binding FollowItems, Converter={StaticResource GenericIsVisibleConverter}}">
           <StackLayout Spacing="0">
             
-            <local:LabelSection Text="{Binding Resources[Links]}"/>
-            <local:HeaderDivider/>
-            <local:NonScrollableListView
+            <controls:LabelSection Text="{Binding Resources[Links]}"/>
+            <controls:HeaderDivider/>
+            <controls:NonScrollableListView
                 ItemsSource="{Binding FollowItems}"
                 VerticalOptions="Start"
                 x:Name="ListViewFollow"
                 SelectedItem="{Binding SelectedFollowItem, Mode=TwoWay}"
                 StyleId="SponsorDetailLinks"
                 RowHeight="44">
-              <local:NonScrollableListView.SeparatorColor>
+              <controls:NonScrollableListView.SeparatorColor>
                 <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ListSeparator}"/>
-              </local:NonScrollableListView.SeparatorColor>
-              <local:NonScrollableListView.ItemTemplate>
+              </controls:NonScrollableListView.SeparatorColor>
+              <controls:NonScrollableListView.ItemTemplate>
                 <DataTemplate>
                   <ViewCell StyleId="disclosure">
                     <Grid ColumnSpacing="{StaticResource StandardSpacing}">
@@ -76,12 +77,12 @@
                     </Grid>
                   </ViewCell>
                 </DataTemplate>
-              </local:NonScrollableListView.ItemTemplate>
-            </local:NonScrollableListView>
-            <local:FooterDivider/>
+              </controls:NonScrollableListView.ItemTemplate>
+            </controls:NonScrollableListView>
+            <controls:FooterDivider/>
           </StackLayout>
-        </local:CardView>
+        </controls:CardView>
       </StackLayout>
     </StackLayout>
-  </local:AlwaysScrollView>
-</local:BasePage>
+  </controls:AlwaysScrollView>
+</pages:BasePage>

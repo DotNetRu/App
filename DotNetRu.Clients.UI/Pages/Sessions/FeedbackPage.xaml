@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<local:BasePage 
+<pages:BasePage 
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:XamarinEvolve.Clients.UI;assembly=XamarinEvolve.Clients.UI"
-    xmlns:toolkit="clr-namespace:FormsToolkit;assembly=FormsToolkit" 
-    x:Class="XamarinEvolve.Clients.UI.FeedbackPage"
+    xmlns:pages="clr-namespace:DotNetRu.Clients.UI.Pages;assembly=DotNetRu.Clients.UI"
+    xmlns:converters="clr-namespace:DotNetRu.Clients.UI.Converters;assembly=DotNetRu.Clients.UI"
+    xmlns:controls="clr-namespace:DotNetRu.Clients.UI.Controls;assembly=DotNetRu.Clients.UI"
+    x:Class="DotNetRu.Clients.UI.Pages.Sessions.FeedbackPage"
     BackgroundColor="{DynamicResource WindowBackground}"
     Title="Rate Session">
     <ContentPage.Resources>
      <ResourceDictionary>
-        <local:RatingConverter x:Key="RatingConverter" />
+        <converters:RatingConverter x:Key="RatingConverter" />
      </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -39,7 +40,7 @@
                 <RowDefinition Height="20"/>
             </Grid.RowDefinitions>
 
-            <local:RatingControl x:Name="RatingControl" Grid.Column="1" />
+            <controls:RatingControl x:Name="RatingControl" Grid.Column="1" />
           </Grid>
 
             <Label Text="{Binding Source={x:Reference RatingControl},
@@ -74,4 +75,4 @@
             </Button>
             </StackLayout>
     </Grid>
-</local:BasePage>
+</pages:BasePage>
