@@ -1,16 +1,13 @@
 ﻿using System;
 using DotNetRu.Clients.UI.Cells;
+using DotNetRu.iOS.Renderers;
 using FormsToolkit.iOS;
-
 using UIKit;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
-using XamarinEvolve.iOS;
-
 [assembly:ExportRenderer(typeof(TextViewValue1), typeof(TextViewValue1Renderer))]
-namespace XamarinEvolve.iOS
+namespace DotNetRu.iOS.Renderers
 {
     public class TextViewValue1Renderer : TextCellRenderer
     {

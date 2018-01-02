@@ -12,7 +12,7 @@ using MvvmHelpers;
 using Plugin.Share;
 using Plugin.Share.Abstractions;
 using Xamarin.Forms;
-using XamarinEvolve.Clients.Portable;
+
 using MenuItem = DotNetRu.Clients.Portable.Model.MenuItem;
 
 namespace DotNetRu.Clients.Portable.ViewModel

@@ -5,14 +5,9 @@
 // Manual changes to this file will not be maintained.
 //
 
-using System;
-using System.CodeDom.Compiler;
-
 using Foundation;
 
-using UIKit;
-
-namespace XamarinEvolve.iOS
+namespace DotNetRu.iOS
 {
     [Register ("ViewController")]
     partial class ViewController

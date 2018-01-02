@@ -1,13 +1,12 @@
-﻿using DotNetRu.Utils.Helpers;
+﻿using DotNetRu.iOS.Helpers;
+using DotNetRu.Utils.Helpers;
 using DotNetRu.Utils.Interfaces;
 using Foundation;
 using Xamarin.Forms;
-using XamarinEvolve.Clients.Portable;
-using XamarinEvolve.iOS;
 
 [assembly:Dependency(typeof(GroupSettingsProvider))]
 
-namespace XamarinEvolve.iOS
+namespace DotNetRu.iOS.Helpers
 {
     public class GroupSettingsProvider : IPlatformSpecificSettings
 	{

@@ -10,7 +10,6 @@ namespace DotNetRu.Droid
     using Android.Content;
     using Android.Content.PM;
     using Android.OS;
-    using Android.Support.V4.Content.Res;
 
     using DotNetRu.Droid.Helpers;
 
@@ -28,7 +27,6 @@ namespace DotNetRu.Droid
     using Xamarin.Forms.Platform.Android;
 
     using XamarinEvolve.Clients.Portable;
-    using XamarinEvolve.Droid;
 
     [Activity(
         Label = AboutThisApp.AppName,
@@ -95,11 +93,11 @@ namespace DotNetRu.Droid
         {
 #if ENABLE_LIVE_PLAYER
 #else
-            this.SetTheme(Droid.Resources.Resource.Style.MyTheme);
+            this.SetTheme(Resource.Style.MyTheme);
             Forms.SetFlags("FastRenderers_Experimental");
 
-            FormsAppCompatActivity.ToolbarResource = Droid.Resources.Resource.Layout.toolbar;
-            FormsAppCompatActivity.TabLayoutResource = Droid.Resources.Resource.Layout.tabs;
+            FormsAppCompatActivity.ToolbarResource = Resource.Layout.toolbar;
+            FormsAppCompatActivity.TabLayoutResource = Resource.Layout.tabs;
             this.SetupBottomTabs();
 #endif
 
@@ -203,16 +201,16 @@ namespace DotNetRu.Droid
                     switch (iconSource.File)
                     {
                         case "menu_feed.png":
-                            menuItem.SetIcon(Droid.Resources.Resource.Drawable.menu_feed);
+                            menuItem.SetIcon(Resource.Drawable.menu_feed);
                             break;
                         case "menu_speakers.png":
-                            menuItem.SetIcon(Droid.Resources.Resource.Drawable.menu_speakers);
+                            menuItem.SetIcon(Resource.Drawable.menu_speakers);
                             break;
                         case "menu_events.png":
-                            menuItem.SetIcon(Droid.Resources.Resource.Drawable.menu_events);
+                            menuItem.SetIcon(Resource.Drawable.menu_events);
                             break;
                         case "menu_info.png":
-                            menuItem.SetIcon(Droid.Resources.Resource.Drawable.menu_info);
+                            menuItem.SetIcon(Resource.Drawable.menu_info);
                             break;
                     }
                 }
