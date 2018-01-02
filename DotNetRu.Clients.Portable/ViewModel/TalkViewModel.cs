@@ -5,13 +5,14 @@ using System.Windows.Input;
 using DotNetRu.Clients.Portable.Extensions;
 using DotNetRu.Clients.Portable.Services;
 using DotNetRu.DataStore.Audit.Models;
+using DotNetRu.Utils.Helpers;
+using DotNetRu.Utils.Interfaces;
 using FormsToolkit;
 using MvvmHelpers;
 using Plugin.Share;
 using Plugin.Share.Abstractions;
 using Xamarin.Forms;
 using XamarinEvolve.Clients.Portable;
-using XamarinEvolve.Utils.Helpers;
 using MenuItem = DotNetRu.Clients.Portable.Model.MenuItem;
 
 namespace DotNetRu.Clients.Portable.ViewModel

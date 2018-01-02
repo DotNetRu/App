@@ -8,11 +8,10 @@ using DotNetRu.Clients.UI.Pages.Home;
 using DotNetRu.Clients.UI.Pages.Info;
 using DotNetRu.Clients.UI.Pages.Sessions;
 using DotNetRu.Clients.UI.Pages.Speakers;
+using DotNetRu.Utils.Helpers;
 using FormsToolkit;
 using Xamarin.Forms;
 using XamarinEvolve.Clients.Portable;
-using XamarinEvolve.Utils;
-using XamarinEvolve.Utils.Helpers;
 using MenuItem = DotNetRu.Clients.Portable.Model.MenuItem;
 
 namespace DotNetRu.Clients.UI.Pages.Windows

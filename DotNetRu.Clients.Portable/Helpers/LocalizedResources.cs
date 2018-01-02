@@ -3,8 +3,8 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Resources;
 using DotNetRu.Clients.Portable.ApplicationResources;
+using DotNetRu.Utils.Helpers;
 using Xamarin.Forms;
-using XamarinEvolve.Utils.Helpers;
 
 namespace DotNetRu.Clients.Portable.Helpers
 {

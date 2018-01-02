@@ -1,7 +1,7 @@
 ﻿using System;
 using DotNetRu.DataStore.Audit.Models;
+using DotNetRu.Utils.Helpers;
 using Xamarin.Forms;
-using XamarinEvolve.Utils.Helpers;
 
 namespace DotNetRu.Clients.Portable.Model.Extensions
 {

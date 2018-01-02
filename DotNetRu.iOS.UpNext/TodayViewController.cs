@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using CoreGraphics;
-
+using DotNetRu.Utils.Helpers;
 using Foundation;
 
 using MvvmHelpers;
@@ -15,8 +15,6 @@ using UIKit;
 namespace UpNext
 {
     using DotNetRu.DataStore.Audit.Models;
-
-    using XamarinEvolve.Utils.Helpers;
 
     public partial class TodayViewController : UIViewController, INCWidgetProviding
     {

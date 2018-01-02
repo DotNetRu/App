@@ -1,7 +1,7 @@
 ﻿using DotNetRu.Clients.Portable.Interfaces;
+using DotNetRu.Utils.Helpers;
 using FormsToolkit;
 using Xamarin.Forms;
-using XamarinEvolve.Utils.Helpers;
 
 namespace DotNetRu.Clients.Portable.Helpers
 {

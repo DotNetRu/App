@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
 using DotNetRu.Clients.Portable.ApplicationResources;
+using DotNetRu.Utils.Helpers;
 using NodaTime;
-using XamarinEvolve.Utils.Helpers;
 
 namespace DotNetRu.Clients.Portable.Extensions
 {

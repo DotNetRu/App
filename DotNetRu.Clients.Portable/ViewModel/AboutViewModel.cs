@@ -1,6 +1,6 @@
 ﻿using DotNetRu.Clients.Portable.Model;
+using DotNetRu.Utils.Helpers;
 using MvvmHelpers;
-using XamarinEvolve.Utils;
 
 namespace DotNetRu.Clients.Portable.ViewModel
 {

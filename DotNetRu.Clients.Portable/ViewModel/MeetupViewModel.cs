@@ -3,11 +3,10 @@ using System.Linq;
 using System.Windows.Input;
 using DotNetRu.DataStore.Audit.Models;
 using DotNetRu.DataStore.Audit.Services;
+using DotNetRu.Utils.Helpers;
 using FormsToolkit;
 using MvvmHelpers;
 using Xamarin.Forms;
-using XamarinEvolve.Utils;
-using XamarinEvolve.Utils.Helpers;
 
 namespace DotNetRu.Clients.Portable.ViewModel
 {

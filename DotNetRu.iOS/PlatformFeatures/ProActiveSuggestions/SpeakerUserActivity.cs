@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using CoreSpotlight;
 using DotNetRu.Clients.Portable.Interfaces;
 using DotNetRu.Clients.Portable.Model.Extensions;
+using DotNetRu.Utils.Helpers;
 using Foundation;
 using Xamarin.Forms;
 using XamarinEvolve.Clients.Portable;
@@ -14,9 +15,7 @@ namespace XamarinEvolve.iOS.PlatformFeatures.ProActiveSuggestions
 {
     using DotNetRu.DataStore.Audit.Models;
 
-    using XamarinEvolve.Utils.Helpers;
-
-	public class SpeakerUserActivity : IPlatformSpecificExtension<SpeakerModel>
+    public class SpeakerUserActivity : IPlatformSpecificExtension<SpeakerModel>
 	{
 		private NSUserActivity _activity;
 
