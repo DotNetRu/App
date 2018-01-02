@@ -1,21 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
 using CoreGraphics;
+using DotNetRu.DataStore.Audit.Models;
 using DotNetRu.Utils.Helpers;
 using Foundation;
-
 using MvvmHelpers;
-
 using NotificationCenter;
-
 using UIKit;
 
-namespace UpNext
+namespace DotNetRu.iOS.UpNext
 {
-    using DotNetRu.DataStore.Audit.Models;
-
     public partial class TodayViewController : UIViewController, INCWidgetProviding
     {
         private IEnumerable<Grouping<string, TalkModel>> _data;
