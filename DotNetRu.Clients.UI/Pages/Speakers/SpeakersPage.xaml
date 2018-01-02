@@ -1,10 +1,11 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<local:BasePage 
+<pages:BasePage 
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="XamarinEvolve.Clients.UI.SpeakersPage"
-	  xmlns:local="clr-namespace:XamarinEvolve.Clients.UI;assembly=XamarinEvolve.Clients.UI"
-    Title="{Binding Resources[Speakers]}"
+    x:Class="DotNetRu.Clients.UI.Pages.Speakers.SpeakersPage"
+	  xmlns:pages="clr-namespace:DotNetRu.Clients.UI.Pages;assembly=DotNetRu.Clients.UI"
+	  xmlns:cells="clr-namespace:DotNetRu.Clients.UI.Cells;assembly=DotNetRu.Clients.UI"
+	  Title="{Binding Resources[Speakers]}"
     x:Name="SpeakersScreen"
     Icon="tab_speakers.png"
     BackgroundColor="{DynamicResource WindowBackground}">
@@ -27,7 +28,7 @@
 	      <ListView.ItemTemplate>
 	        <DataTemplate>
 	            <ViewCell StyleId="disclosure">
-	                <local:SpeakerCellView />
+	                <cells:SpeakerCellView />
 	            </ViewCell>
 	        </DataTemplate>
 	      </ListView.ItemTemplate>
@@ -47,4 +48,4 @@
 	       </StackLayout>
 	    </AbsoluteLayout>
 	</ContentPage.Content>
-</local:BasePage>
+</pages:BasePage>

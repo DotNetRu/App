@@ -1,16 +1,13 @@
-﻿using DotNetRu.Clients.Portable.Model;
+﻿using System;
+using DotNetRu.Clients.Portable.Model;
 using DotNetRu.Clients.Portable.ViewModel;
+using DotNetRu.Clients.UI.Helpers;
+using DotNetRu.Clients.UI.Pages.Friends;
+using Xamarin.Forms;
+using XamarinEvolve.Utils.Helpers;
 
-namespace XamarinEvolve.Clients.UI
+namespace DotNetRu.Clients.UI.Pages.Info
 {
-    using System;
-
-    using Xamarin.Forms;
-
-    using XamarinEvolve.Clients.Portable;
-    using XamarinEvolve.Clients.UI.Pages.Info;
-    using XamarinEvolve.Utils.Helpers;
-
     public partial class SettingsPage
     {
 

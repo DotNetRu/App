@@ -1,18 +1,22 @@
-﻿using DotNetRu.Clients.Portable.Model;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using DotNetRu.Clients.Portable.Model;
+using DotNetRu.Clients.UI.Controls;
+using DotNetRu.Clients.UI.Pages.Events;
+using DotNetRu.Clients.UI.Pages.Friends;
+using DotNetRu.Clients.UI.Pages.Home;
+using DotNetRu.Clients.UI.Pages.Info;
+using DotNetRu.Clients.UI.Pages.Sessions;
+using DotNetRu.Clients.UI.Pages.Speakers;
+using FormsToolkit;
+using Xamarin.Forms;
+using XamarinEvolve.Clients.Portable;
+using XamarinEvolve.Utils;
+using XamarinEvolve.Utils.Helpers;
+using MenuItem = DotNetRu.Clients.Portable.Model.MenuItem;
 
-namespace XamarinEvolve.Clients.UI
+namespace DotNetRu.Clients.UI.Pages.Windows
 {
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-
-    using FormsToolkit;
-
-    using Xamarin.Forms;
-
-    using XamarinEvolve.Clients.Portable;
-    using XamarinEvolve.Utils;
-    using XamarinEvolve.Utils.Helpers;
-
     using MenuItem = MenuItem;
 
     public class RootPageWindows : MasterDetailPage

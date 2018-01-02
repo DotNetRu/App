@@ -1,20 +1,19 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:ui="clr-namespace:XamarinEvolve.Clients.UI;assembly=XamarinEvolve.Clients.UI"
-             x:Class="XamarinEvolve.Clients.UI.Pages.Info.TechnologiesUsed"
+             xmlns:controls="clr-namespace:DotNetRu.Clients.UI.Controls;assembly=DotNetRu.Clients.UI"
+             x:Class="DotNetRu.Clients.UI.Pages.Info.TechnologiesUsed"
              Title="{Binding Resources[TechnologyUsed]}">
     <ContentPage.Content>
-        <ui:CardView>
+        <controls:CardView>
             <StackLayout Spacing="0">
-                <ui:NonScrollableListView
+                <controls:NonScrollableListView
                     x:Name="ListViewTechnology"
                     ItemsSource="{Binding TechnologyItems}"
                     RowHeight="44">
-                    <ui:NonScrollableListView.SeparatorColor>
+                    <controls:NonScrollableListView.SeparatorColor>
                         <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ListSeparator}"/>
-                    </ui:NonScrollableListView.SeparatorColor>
-                    <ui:NonScrollableListView.ItemTemplate>
+                    </controls:NonScrollableListView.SeparatorColor>
+                    <controls:NonScrollableListView.ItemTemplate>
                         <DataTemplate>
                             <TextCell Text="{Binding Name}"
                                       Detail="{Binding Subtitle}"
@@ -22,9 +21,9 @@
                                       CommandParameter="{Binding Parameter}"
                                       StyleId="disclosure"/>
                         </DataTemplate>
-                    </ui:NonScrollableListView.ItemTemplate>
-                </ui:NonScrollableListView>
-                <ui:FooterDivider/>
+                    </controls:NonScrollableListView.ItemTemplate>
+                </controls:NonScrollableListView>
+                <controls:FooterDivider/>
                 <StackLayout>
                     <StackLayout.Padding>
                         <OnPlatform x:TypeArguments="Thickness" iOS="16,8,16,0" Android="16,8" WinPhone="16,8"/>
@@ -35,7 +34,7 @@
                     </StackLayout.GestureRecognizers>
                 </StackLayout>
             </StackLayout>
-        </ui:CardView>
+        </controls:CardView>
 
     </ContentPage.Content>
 </ContentPage>

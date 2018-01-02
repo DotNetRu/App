@@ -7,13 +7,13 @@ using Xamarin.Forms.Xaml;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 
-[assembly: AssemblyTitle("DotNetRu.Clients.UI")]
-[assembly: AssemblyDescription("DotNetRU App")]
+[assembly: AssemblyTitle("")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("DotNetRu")]
-[assembly: AssemblyProduct("DotNetRu App")]
-[assembly: AssemblyCopyright("Copyright © 2017 DotNetRu All Rights Reserved")]
-[assembly: AssemblyTrademark("DotNetRu")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("")]
+[assembly: AssemblyCopyright("")]
+[assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
 // The assembly version has the format "{Major}.{Minor}.{Build}.{Revision}".

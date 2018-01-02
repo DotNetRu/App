@@ -24,13 +24,11 @@ namespace XamarinEvolve.iOS
 
     using UIKit;
 
-    using Xamarin;
     using Xamarin.Forms;
     using Xamarin.Forms.Platform.iOS;
 
-    using XamarinEvolve.Clients.Portable;
-    using XamarinEvolve.Clients.UI;
-    using XamarinEvolve.Utils.Helpers;
+    using Clients.Portable;
+    using Utils.Helpers;
 
     [Register("AppDelegate")]
     public class AppDelegate : FormsApplicationDelegate
@@ -68,7 +66,7 @@ namespace XamarinEvolve.iOS
 
             InitializeDependencies();
 
-            this.LoadApplication(new App());
+            this.LoadApplication(new DotNetRu.Clients.UI.App());
 
             InitializeThemeColors();
 
@@ -89,7 +87,7 @@ namespace XamarinEvolve.iOS
 
         void DidBecomeActive(NSNotification notification)
         {
-            ((App)Xamarin.Forms.Application.Current).SecondOnResume();
+            ((DotNetRu.Clients.UI.App)Xamarin.Forms.Application.Current).SecondOnResume();
         }
 
         static void InitializeDependencies()
@@ -140,7 +138,7 @@ namespace XamarinEvolve.iOS
         public override void WillEnterForeground(UIApplication uiApplication)
         {
             base.WillEnterForeground(uiApplication);
-            ((App)Xamarin.Forms.Application.Current).SecondOnResume();
+            ((DotNetRu.Clients.UI.App)Xamarin.Forms.Application.Current).SecondOnResume();
         }
 
         public override void RegisteredForRemoteNotifications(UIApplication app, NSData deviceToken)
@@ -178,7 +176,7 @@ namespace XamarinEvolve.iOS
         {
             if (!string.IsNullOrEmpty(url.AbsoluteString))
             {
-                ((App)Xamarin.Forms.Application.Current).SendOnAppLinkRequestReceived(new Uri(url.AbsoluteString));
+                ((DotNetRu.Clients.UI.App)Xamarin.Forms.Application.Current).SendOnAppLinkRequestReceived(new Uri(url.AbsoluteString));
                 return true;
             }
 
@@ -189,7 +187,7 @@ namespace XamarinEvolve.iOS
         {
             if (!string.IsNullOrEmpty(url.AbsoluteString))
             {
-                ((App)Xamarin.Forms.Application.Current).SendOnAppLinkRequestReceived(new Uri(url.AbsoluteString));
+                ((DotNetRu.Clients.UI.App)Xamarin.Forms.Application.Current).SendOnAppLinkRequestReceived(new Uri(url.AbsoluteString));
                 return true;
             }
 
@@ -204,7 +202,7 @@ namespace XamarinEvolve.iOS
         {
             if (!string.IsNullOrEmpty(url.AbsoluteString))
             {
-                ((App)Xamarin.Forms.Application.Current).SendOnAppLinkRequestReceived(new Uri(url.AbsoluteString));
+                ((DotNetRu.Clients.UI.App)Xamarin.Forms.Application.Current).SendOnAppLinkRequestReceived(new Uri(url.AbsoluteString));
                 return true;
             }
 
@@ -286,7 +284,7 @@ namespace XamarinEvolve.iOS
             }
 
             if (!string.IsNullOrEmpty(link))
-                ((App)Xamarin.Forms.Application.Current).SendOnAppLinkRequestReceived(new Uri(link));
+                ((DotNetRu.Clients.UI.App)Xamarin.Forms.Application.Current).SendOnAppLinkRequestReceived(new Uri(link));
         }
 
         // if app is already running

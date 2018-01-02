@@ -1,4 +1,4 @@
-﻿namespace XamarinEvolve.Clients.UI
+﻿namespace DotNetRu.Clients.UI.Cells
 {
     public partial class FriendCell
     {

@@ -1,9 +1,8 @@
 ﻿using System;
-
+using DotNetRu.Clients.UI.Controls;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
-using XamarinEvolve.Clients.UI;
 using XamarinEvolve.iOS;
 
 [assembly:ExportRenderer(typeof(NonScrollableListView), typeof(NonScrollableListViewRenderer))]

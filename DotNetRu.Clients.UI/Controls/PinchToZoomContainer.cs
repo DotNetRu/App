@@ -1,9 +1,8 @@
-﻿namespace XamarinEvolve.Clients.UI
+﻿using System;
+using Xamarin.Forms;
+
+namespace DotNetRu.Clients.UI.Controls
 {
-    using System;
-
-    using Xamarin.Forms;
-
     public class PinchToZoomContainer : ContentView
     {
         public PinchToZoomContainer ()

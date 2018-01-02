@@ -1,9 +1,7 @@
 ﻿using DotNetRu.Clients.Portable.ViewModel;
 
-namespace XamarinEvolve.Clients.UI
+namespace DotNetRu.Clients.UI
 {
-    using XamarinEvolve.Clients.Portable;
-
     public static class ViewModelLocator
     {
         private static MeetupViewModel meetupViewModel;

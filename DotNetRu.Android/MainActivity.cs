@@ -25,7 +25,6 @@
     using Xamarin.Forms.Platform.Android;
 
     using XamarinEvolve.Clients.Portable;
-    using XamarinEvolve.Clients.UI;
     using XamarinEvolve.Droid;
     using XamarinEvolve.Utils.Helpers;
 
@@ -123,7 +122,7 @@
                 }
             };
 #endif
-            this.LoadApplication(new App());
+            this.LoadApplication(new Clients.UI.App());
 
             var gpsAvailable = this.IsPlayServicesAvailable();
             Settings.Current.PushNotificationsEnabled = gpsAvailable;

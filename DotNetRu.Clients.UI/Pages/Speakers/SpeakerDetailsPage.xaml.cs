@@ -2,13 +2,13 @@
 using DotNetRu.Clients.Portable.Interfaces;
 using DotNetRu.Clients.Portable.Model;
 using DotNetRu.Clients.Portable.ViewModel;
+using DotNetRu.Clients.UI.Helpers;
+using DotNetRu.Clients.UI.Pages.Sessions;
+using DotNetRu.DataStore.Audit.Models;
+using Xamarin.Forms;
 
-namespace XamarinEvolve.Clients.UI
+namespace DotNetRu.Clients.UI.Pages.Speakers
 {
-    using DotNetRu.DataStore.Audit.Models;
-
-    using Xamarin.Forms;
-
     public partial class SpeakerDetailsPage
     {
         public override AppPage PageType => AppPage.Speaker;

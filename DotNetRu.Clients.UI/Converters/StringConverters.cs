@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Globalization;
-
 using Xamarin.Forms;
 
-namespace XamarinEvolve.Clients.UI
+namespace DotNetRu.Clients.UI.Converters
 {
     /// <summary>
     /// Has reminder event text converter.

@@ -1,5 +1,5 @@
 ﻿using System;
-
+using DotNetRu.Clients.UI.Cells;
 using FormsToolkit.iOS;
 
 using UIKit;
@@ -7,7 +7,6 @@ using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
-using XamarinEvolve.Clients.UI;
 using XamarinEvolve.iOS;
 
 [assembly:ExportRenderer(typeof(TextViewValue1), typeof(TextViewValue1Renderer))]
