@@ -5,14 +5,11 @@
 // Manual changes to this file may not be handled correctly.
 //
 
-using System.CodeDom.Compiler;
-
 using Foundation;
+using UIKit;
 
-namespace UpNext
+namespace DotNetRu.iOS.UpNext
 {
-    using UIKit;
-
     [Register ("TodayViewController")]
 	partial class TodayViewController
 	{
