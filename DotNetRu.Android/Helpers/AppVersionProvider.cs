@@ -1,15 +1,13 @@
-﻿using DotNetRu.Clients.Portable.Interfaces;
+﻿using Android.Content;
+using Android.Content.PM;
+using DotNetRu.Clients.Portable.Interfaces;
+using DotNetRu.Droid.Helpers;
 using Xamarin.Forms;
-using XamarinEvolve.Clients.Portable;
-using XamarinEvolve.Droid;
 
 [assembly: Dependency(typeof(AppVersionProvider))]
 
-namespace XamarinEvolve.Droid
+namespace DotNetRu.Droid.Helpers
 {
-    using Android.Content;
-    using Android.Content.PM;
-
     public class AppVersionProvider : IAppVersionProvider
     {
         public string AppVersion

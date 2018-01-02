@@ -1,6 +1,6 @@
 ﻿using Android.OS;
 
-namespace XamarinEvolve.Droid
+namespace DotNetRu.Droid.Backgrounding
 {
     public class DataRefreshServiceBinder : Binder
     {
