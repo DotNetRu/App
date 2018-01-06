@@ -25,17 +25,17 @@
           Padding="{DynamicResource CardPadding}">
         <controls:CardView>
           <StackLayout Spacing="0">
-            <local:LabelSection Text="{Binding AppInfo}"/>
-            <local:LabelSection Text="{Binding Resources[OurCommunities]}"/>
-            <local:HeaderDivider/>
-            <local:NonScrollableListView
+            <controls:LabelSection Text="{Binding AppInfo}"/>
+            <controls:LabelSection Text="{Binding Resources[OurCommunities]}"/>
+            <controls:HeaderDivider/>
+            <controls:NonScrollableListView
                 x:Name="ListViewCommunities"
                 ItemsSource="{Binding Communities}"
                 RowHeight="44">
-              <local:NonScrollableListView.SeparatorColor>
+              <controls:NonScrollableListView.SeparatorColor>
                 <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ListSeparator}"/>
-              </local:NonScrollableListView.SeparatorColor>
-              <local:NonScrollableListView.ItemTemplate>
+              </controls:NonScrollableListView.SeparatorColor>
+              <controls:NonScrollableListView.ItemTemplate>
                 <DataTemplate>
                   <ViewCell>
                     <StackLayout Orientation="Horizontal">
@@ -47,17 +47,17 @@
                     </StackLayout>
                   </ViewCell>
                 </DataTemplate>
-              </local:NonScrollableListView.ItemTemplate>
-            </local:NonScrollableListView>
-            <local:FooterDivider/>
+              </controls:NonScrollableListView.ItemTemplate>
+            </controls:NonScrollableListView>
+            <controls:FooterDivider/>
             <StackLayout>
               <StackLayout.Padding>
                 <OnPlatform x:TypeArguments="Thickness" iOS="16,8,16,0" Android="16,8"/>
               </StackLayout.Padding>
             </StackLayout>
           </StackLayout>
-        </local:CardView>
-        <local:CardView>
+        </controls:CardView>
+        <controls:CardView>
           <StackLayout Spacing="0">
             <StackLayout Spacing="10">
               <StackLayout.Padding>
@@ -102,9 +102,9 @@
                              CommandParameter="{Binding Parameter}"
                              StyleId="disclosure"/>
                 </DataTemplate>
-              </local:NonScrollableListView.ItemTemplate>
-            </local:NonScrollableListView>
-            <local:FooterDivider/>
+              </controls:NonScrollableListView.ItemTemplate>
+            </controls:NonScrollableListView>
+            <controls:FooterDivider/>
           </StackLayout>
         </controls:CardView>
       </StackLayout>
