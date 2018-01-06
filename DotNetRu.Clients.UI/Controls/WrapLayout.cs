@@ -2,7 +2,7 @@
 using System.Linq;
 using Xamarin.Forms;
 
-namespace XamarinEvolve.Clients.UI
+namespace DotNetRu.Clients.UI.Controls
 {
 	/// <summary>
 	/// Simple Layout panel which performs wrapping on the boundaries.

@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-
+using DotNetRu.Utils;
+using DotNetRu.Utils.Interfaces;
 using Xamarin.Forms;
-
-using XamarinEvolve.Clients.Portable;
 
 [assembly: Dependency(typeof(DotNetRuLogger))]
 
-namespace XamarinEvolve.Clients.Portable
+namespace DotNetRu.Utils
 {
     public class DotNetRuLogger : ILogger
     {

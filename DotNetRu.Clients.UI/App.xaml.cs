@@ -1,26 +1,27 @@
-﻿namespace XamarinEvolve.Clients.UI
+﻿using System;
+using System.Globalization;
+using System.Threading.Tasks;
+using DotNetRu.Clients.Portable.ApplicationResources;
+using DotNetRu.Clients.Portable.Interfaces;
+using DotNetRu.Clients.Portable.Model;
+using DotNetRu.Clients.Portable.ViewModel;
+using DotNetRu.Clients.UI.Pages;
+using DotNetRu.Clients.UI.Pages.Home;
+using DotNetRu.Clients.UI.Pages.iOS;
+using DotNetRu.Clients.UI.Pages.Sessions;
+using DotNetRu.Utils.Helpers;
+using DotNetRu.Utils.Interfaces;
+using FormsToolkit;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
+using Plugin.Connectivity;
+using Plugin.Connectivity.Abstractions;
+using Xamarin.Forms;
+using XamarinEvolve.Clients.Portable;
+
+namespace DotNetRu.Clients.UI
 {
-    using System;
-    using System.Globalization;
-    using System.Threading.Tasks;
-
-    using FormsToolkit;
-
-    using Microsoft.AppCenter;
-    using Microsoft.AppCenter.Analytics;
-    using Microsoft.AppCenter.Crashes;
-
-    using Plugin.Connectivity;
-    using Plugin.Connectivity.Abstractions;
-
-    using Xamarin.Forms;
-
-    using XamarinEvolve.Clients.Portable;
-    using XamarinEvolve.Clients.Portable.ApplicationResources;
-    using XamarinEvolve.Clients.Portable.Interfaces;
-    using XamarinEvolve.Clients.UI.Pages;
-    using XamarinEvolve.Utils.Helpers;
-
     using Device = Xamarin.Forms.Device;
 
     public partial class App
@@ -33,7 +34,7 @@
 
         public App()
         {
-            var savedLanguage = Portable.Helpers.Settings.CurrentLanguage;
+            var savedLanguage = XamarinEvolve.Clients.Portable.Helpers.Settings.CurrentLanguage;
             var uiLanguage = DependencyService.Get<ILocalize>().GetCurrentCultureInfo().TwoLetterISOLanguageName == "ru"
                                  ? Language.Russian
                                  : Language.English;

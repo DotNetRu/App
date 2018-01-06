@@ -1,7 +1,7 @@
-﻿namespace XamarinEvolve.Utils
-{
-    using System;
+﻿using System;
 
+namespace DotNetRu.Utils.Helpers
+{
     public static class StringExtensions
     {
         /// <summary>

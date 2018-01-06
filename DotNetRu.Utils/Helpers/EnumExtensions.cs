@@ -1,11 +1,10 @@
-﻿namespace XamarinEvolve.Utils.Helpers
-{
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.Linq;
-    using System.Reflection;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 
+namespace DotNetRu.Utils.Helpers
+{
     public static class EnumExtension
     {
         /// <summary>

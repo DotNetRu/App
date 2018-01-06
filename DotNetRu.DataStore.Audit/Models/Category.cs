@@ -2,8 +2,6 @@
 {
     using System.Collections.Generic;
 
-    using MvvmHelpers;
-
     public class Category : BaseModel
     {
         private bool enabled;

@@ -1,7 +1,7 @@
 ﻿using System;
 using UIKit;
 
-namespace XamarinEvolve.iOS.UpNext
+namespace DotNetRu.iOS.UpNext.Helpers
 {
 	public static class UIColorExtensions
 	{

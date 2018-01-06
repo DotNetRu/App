@@ -1,22 +1,16 @@
-﻿namespace XamarinEvolve.Clients.Portable
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Input;
+using DotNetRu.DataStore.Audit.Models;
+using DotNetRu.DataStore.Audit.Services;
+using DotNetRu.Utils.Helpers;
+using FormsToolkit;
+using MvvmHelpers;
+using Xamarin.Forms;
+
+namespace DotNetRu.Clients.Portable.ViewModel
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using System.Windows.Input;
-
-    using DotNetRu.DataStore.Audit.Models;
-    using DotNetRu.DataStore.Audit.Services;
-
-    using FormsToolkit;
-
-    using MvvmHelpers;
-
-    using Xamarin.Forms;
-
-    using XamarinEvolve.Utils.Helpers;
-
     public class SpeakersViewModel : ViewModelBase
     {
         public SpeakersViewModel(INavigation navigation) : base(navigation)

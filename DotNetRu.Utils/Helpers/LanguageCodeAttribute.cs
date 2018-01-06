@@ -1,7 +1,7 @@
-﻿namespace XamarinEvolve.Utils.Helpers
+﻿using System;
+
+namespace DotNetRu.Utils.Helpers
 {
-    using System;
-    
     [AttributeUsage(AttributeTargets.Field)]
     public class LanguageCodeAttribute : Attribute
     {

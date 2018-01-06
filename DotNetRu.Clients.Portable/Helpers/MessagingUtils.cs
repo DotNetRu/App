@@ -1,11 +1,11 @@
-﻿using FormsToolkit;
+﻿using DotNetRu.Clients.Portable.Interfaces;
+using DotNetRu.Utils.Helpers;
+using FormsToolkit;
 using Xamarin.Forms;
 
-namespace XamarinEvolve.Clients.Portable
+namespace DotNetRu.Clients.Portable.Helpers
 {
-	using XamarinEvolve.Utils.Helpers;
-
-	public static class MessagingUtils
+    public static class MessagingUtils
 	{
 		public static void SendOfflineMessage()
 		{

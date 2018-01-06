@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<local:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+<pages:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="XamarinEvolve.Clients.UI.ConferenceFeedbackPage"
-             xmlns:toolkit="clr-namespace:FormsToolkit;assembly=FormsToolkit"
-             xmlns:local="clr-namespace:XamarinEvolve.Clients.UI;assembly=XamarinEvolve.Clients.UI"
-             Title="{Binding Title}"
+             x:Class="DotNetRu.Clients.UI.Pages.Home.ConferenceFeedbackPage"
+             xmlns:pages="clr-namespace:DotNetRu.Clients.UI.Pages;assembly=DotNetRu.Clients.UI"
+                Title="{Binding Title}"
              NavigationPage.BackButtonTitle="Back"
              BackgroundColor="{DynamicResource WindowBackground}">
-  <ContentPage.Resources>
-    <ResourceDictionary>
-      <local:RatingConverter x:Key="RatingConverter" />
-    </ResourceDictionary>
-  </ContentPage.Resources>
 
   <ContentPage.ToolbarItems>
     <ToolbarItem Text="Cancel" Command="{Binding DoneCommand}" x:Name="ToolbarDone"/>
@@ -56,4 +50,4 @@
       </Button>
     </StackLayout>
   </Grid>
-</local:BasePage>
+</pages:BasePage>

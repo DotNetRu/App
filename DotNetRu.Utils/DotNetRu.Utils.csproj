@@ -8,8 +8,8 @@
     <ProjectGuid>{DFA0F0F6-C396-412E-86A9-E9095F71CC36}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>XamarinEvolve.Utils</RootNamespace>
-    <AssemblyName>XamarinEvolve.Utils</AssemblyName>
+    <RootNamespace>DotNetRu.Utils</RootNamespace>
+    <AssemblyName>DotNetRu.Utils</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>

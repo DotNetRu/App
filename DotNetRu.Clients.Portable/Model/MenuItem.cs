@@ -1,9 +1,8 @@
-﻿namespace XamarinEvolve.Clients.Portable
+﻿using System.Windows.Input;
+using MvvmHelpers;
+
+namespace DotNetRu.Clients.Portable.Model
 {
-    using System.Windows.Input;
-
-    using MvvmHelpers;
-
     public class MenuItem : ObservableObject
     {
         private string name;

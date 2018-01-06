@@ -1,13 +1,13 @@
 ﻿<ContentView 
     xmlns="http://xamarin.com/schemas/2014/forms" 
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-    xmlns:local="clr-namespace:XamarinEvolve.Clients.UI;assembly=XamarinEvolve.Clients.UI"
-    x:Class="XamarinEvolve.Clients.UI.FriendCell">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:DotNetRu.Clients.UI.Controls;assembly=DotNetRu.Clients.UI"
+    x:Class="DotNetRu.Clients.UI.Cells.FriendCell">
     <StackLayout Spacing="0" HeightRequest="120">
         <StackLayout.Padding>
             <OnPlatform x:TypeArguments="Thickness" iOS="0" Android="0,4" WinPhone="0"/>
         </StackLayout.Padding>
-        <local:CardView HeightRequest="120">
+        <controls:CardView HeightRequest="120">
             <Grid Padding="16" ColumnSpacing="16" BackgroundColor="White">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -27,6 +27,7 @@
                 </StackLayout>
 
             </Grid>
-        </local:CardView>
+        </controls:CardView>
     </StackLayout>
 </ContentView>
+

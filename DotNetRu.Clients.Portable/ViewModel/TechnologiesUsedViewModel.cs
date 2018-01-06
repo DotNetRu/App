@@ -1,6 +1,7 @@
-﻿using MvvmHelpers;
+﻿using DotNetRu.Clients.Portable.Model;
+using MvvmHelpers;
 
-namespace XamarinEvolve.Clients.Portable.ViewModel
+namespace DotNetRu.Clients.Portable.ViewModel
 {
     public class TechnologiesUsedViewModel : ViewModelBase
     {

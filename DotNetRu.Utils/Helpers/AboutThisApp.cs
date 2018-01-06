@@ -1,4 +1,4 @@
-﻿namespace XamarinEvolve.Utils.Helpers
+﻿namespace DotNetRu.Utils.Helpers
 {
     /// <summary>
     /// The about this app.

@@ -1,14 +1,11 @@
 ﻿using System;
-
+using DotNetRu.iOS.Renderers;
 using UIKit;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
-using XamarinEvolve.iOS;
-
 [assembly:ExportRenderer(typeof(TabbedPage), typeof(SelectedTabPageRenderer))]
-namespace XamarinEvolve.iOS
+namespace DotNetRu.iOS.Renderers
 {
     public class SelectedTabPageRenderer : TabbedRenderer
     {

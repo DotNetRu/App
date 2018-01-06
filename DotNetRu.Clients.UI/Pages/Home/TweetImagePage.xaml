@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<local:BasePage 
-	xmlns:local="clr-namespace:XamarinEvolve.Clients.UI;assembly=XamarinEvolve.Clients.UI"
+<pages:BasePage 
     xmlns="http://xamarin.com/schemas/2014/forms" 
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-    x:Class="XamarinEvolve.Clients.UI.TweetImagePage"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:DotNetRu.Clients.UI.Pages;assembly=DotNetRu.Clients.UI"
+    x:Class="DotNetRu.Clients.UI.Pages.Home.TweetImagePage"
     Title="Tweet Image">
 
     <ContentPage.Content>
@@ -24,4 +24,4 @@
     </Grid>
         
     </ContentPage.Content>
-</local:BasePage>
+</pages:BasePage>

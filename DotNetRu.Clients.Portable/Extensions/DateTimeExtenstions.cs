@@ -1,14 +1,11 @@
-﻿using XamarinEvolve.Clients.Portable.ApplicationResources;
+﻿using System;
+using System.Diagnostics;
+using DotNetRu.Clients.Portable.ApplicationResources;
+using DotNetRu.Utils.Helpers;
+using NodaTime;
 
-namespace XamarinEvolve.Clients.Portable
+namespace DotNetRu.Clients.Portable.Extensions
 {
-    using System;
-    using System.Diagnostics;
-
-    using NodaTime;
-
-    using XamarinEvolve.Utils.Helpers;
-
     /// <summary>
     /// The date time extensions.
     /// </summary>

@@ -1,11 +1,11 @@
-﻿using Foundation;
+﻿using DotNetRu.Clients.Portable.Interfaces;
+using DotNetRu.iOS.Helpers;
+using Foundation;
 using Xamarin.Forms;
-using XamarinEvolve.Clients.Portable;
-using XamarinEvolve.iOS;
 
 [assembly: Dependency(typeof(AppVersionProvider))]
 
-namespace XamarinEvolve.iOS
+namespace DotNetRu.iOS.Helpers
 {
     public class AppVersionProvider : IAppVersionProvider
     {

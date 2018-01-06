@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace XamarinEvolve.Clients.UI
+namespace DotNetRu.Clients.UI.Helpers
 {
     /// <summary>
     /// Helper navigation service to use so we don't push multiple pages at the same time.

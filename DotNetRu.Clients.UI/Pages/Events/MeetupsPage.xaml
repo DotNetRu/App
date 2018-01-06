@@ -1,19 +1,21 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<local:BasePage 
+<pages:BasePage 
     xmlns="http://xamarin.com/schemas/2014/forms" 
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-    xmlns:local="clr-namespace:XamarinEvolve.Clients.UI;assembly=XamarinEvolve.Clients.UI"    
-    x:Class="XamarinEvolve.Clients.UI.MeetupsPage"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="DotNetRu.Clients.UI.Pages.Events.MeetupsPage"
     xmlns:imagecircle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
+    xmlns:pages="clr-namespace:DotNetRu.Clients.UI.Pages;assembly=DotNetRu.Clients.UI"
+    xmlns:converters="clr-namespace:DotNetRu.Clients.UI.Converters;assembly=DotNetRu.Clients.UI"
+    xmlns:cells="clr-namespace:DotNetRu.Clients.UI.Cells;assembly=DotNetRu.Clients.UI"
     Title="{Binding Resources[Meetups]}"
     Icon="tab_events.png"   
     BackgroundColor="{DynamicResource WindowBackground}">
    <ContentPage.Resources>
      <ResourceDictionary>
-        <local:EventTimeDisplayConverter x:Key="EventTimeDisplayConverter" />
-        <local:EventDayNumberDisplayConverter x:Key="EventDayNumberDisplayConverter" />
-        <local:EventDayDisplayConverter x:Key="EventDayDisplayConverter" />
-        <local:EventColorDisplayConverter x:Key="EventColorDisplayConverter" />
+        <converters:EventTimeDisplayConverter x:Key="EventTimeDisplayConverter" />
+        <converters:EventDayNumberDisplayConverter x:Key="EventDayNumberDisplayConverter" />
+        <converters:EventDayDisplayConverter x:Key="EventDayDisplayConverter" />
+        <converters:EventColorDisplayConverter x:Key="EventColorDisplayConverter" />
      </ResourceDictionary>
     </ContentPage.Resources>
    <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
@@ -41,7 +43,7 @@
                     <ViewCell.Height>
                         <OnPlatform x:TypeArguments="x:Double" iOS="28"/>
                     </ViewCell.Height>  
-                    <local:EvolveGroupHeaderView/>
+                    <cells:EvolveGroupHeaderView/>
                 </ViewCell>
             </DataTemplate>
         </ListView.GroupHeaderTemplate>
@@ -113,4 +115,4 @@
             <Label Text="{Binding Resources[LoadingMeetups]}" HorizontalOptions="Center" Style="{DynamicResource EvolveListItemTextStyle}"/>
        </StackLayout>
     </AbsoluteLayout>
-</local:BasePage>
+</pages:BasePage>

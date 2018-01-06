@@ -1,6 +1,6 @@
 ﻿using Xamarin.Forms;
 
-namespace XamarinEvolve.Clients.UI
+namespace DotNetRu.Clients.UI.Controls
 {
     public partial class LabelSection : ContentView
     {

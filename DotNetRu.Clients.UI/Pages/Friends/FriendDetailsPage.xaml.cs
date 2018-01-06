@@ -1,15 +1,10 @@
-﻿using System;
-using System.Globalization;
-using XamarinEvolve.Clients.Portable.Interfaces;
+﻿using DotNetRu.Clients.Portable.Model;
+using DotNetRu.Clients.Portable.ViewModel;
+using DotNetRu.DataStore.Audit.Models;
+using Xamarin.Forms;
 
-namespace XamarinEvolve.Clients.UI
+namespace DotNetRu.Clients.UI.Pages.Friends
 {
-    using DotNetRu.DataStore.Audit.Models;
-
-    using Xamarin.Forms;
-
-    using XamarinEvolve.Clients.Portable;
-
     public partial class FriendDetailsPage
     {
         public override AppPage PageType => AppPage.Friend;

@@ -1,7 +1,7 @@
-﻿namespace XamarinEvolve.Utils.Helpers
-{
-    using System;
+﻿using System;
 
+namespace DotNetRu.Utils.Helpers
+{
     /// <summary>
     /// The event info.
     /// </summary>

@@ -1,8 +1,7 @@
 using System;
-
 using UIKit;
 
-namespace XamarinEvolve.iOS
+namespace DotNetRu.iOS
 {
     public partial class ViewController : UIViewController
     {

@@ -1,7 +1,7 @@
-﻿namespace XamarinEvolve.Clients.UI
-{
-    using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
+namespace DotNetRu.Clients.UI.Controls
+{
     public class NonScrollableListView : ListView
     {
         public NonScrollableListView()

@@ -1,19 +1,16 @@
-﻿namespace XamarinEvolve.Clients.Portable
+﻿using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using DotNetRu.Clients.Portable.ApplicationResources;
+using DotNetRu.Clients.Portable.Helpers;
+using DotNetRu.Clients.Portable.Interfaces;
+using DotNetRu.Clients.Portable.Model;
+using DotNetRu.Utils.Helpers;
+using Xamarin.Forms;
+using Xamarin.Forms.Internals;
+
+namespace DotNetRu.Clients.Portable.ViewModel
 {
-    using System.Collections.Generic;
-    using System.Globalization;
-    using System.Linq;
-
-    using Xamarin.Forms;
-    using Xamarin.Forms.Internals;
-
-    using XamarinEvolve.Clients.Portable.ApplicationResources;
-    using XamarinEvolve.Clients.Portable.Interfaces;
-    using XamarinEvolve.Clients.Portable.Model;
-    using XamarinEvolve.Clients.UI;
-    using XamarinEvolve.Utils;
-    using XamarinEvolve.Utils.Helpers;
-
     public class SettingsViewModel : ViewModelBase
     {
         private Language selectedLanguage;
@@ -25,7 +22,7 @@
                 MessageKeys.LanguageChanged,
                 sender => this.NotifyViewModel());
 
-            var savedLanguage = Portable.Helpers.Settings.CurrentLanguage;
+            var savedLanguage = XamarinEvolve.Clients.Portable.Helpers.Settings.CurrentLanguage;
             var uiLanguage = DependencyService.Get<ILocalize>().GetCurrentCultureInfo().TwoLetterISOLanguageName == "ru"
                                  ? Language.Russian
                                  : Language.English;
@@ -105,7 +102,7 @@
             {
                 if (this.SetProperty(ref this.selectedLanguage, value))
                 {
-                    Helpers.Settings.CurrentLanguage = this.selectedLanguage;
+                    XamarinEvolve.Clients.Portable.Helpers.Settings.CurrentLanguage = this.selectedLanguage;
                     MessagingCenter.Send<object, CultureChangedMessage>(
                         this,
                         string.Empty,

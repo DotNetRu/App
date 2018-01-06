@@ -1,17 +1,20 @@
-﻿namespace XamarinEvolve.Clients.UI
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using DotNetRu.Clients.Portable.Model;
+using DotNetRu.Clients.UI.Controls;
+using DotNetRu.Clients.UI.Pages.Events;
+using DotNetRu.Clients.UI.Pages.Friends;
+using DotNetRu.Clients.UI.Pages.Home;
+using DotNetRu.Clients.UI.Pages.Info;
+using DotNetRu.Clients.UI.Pages.Sessions;
+using DotNetRu.Clients.UI.Pages.Speakers;
+using DotNetRu.Utils.Helpers;
+using FormsToolkit;
+using Xamarin.Forms;
+using XamarinEvolve.Clients.Portable;
+
+namespace DotNetRu.Clients.UI.Pages.Android
 {
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-
-    using DotNetRu.DataStore.Audit.Abstractions;
-
-    using FormsToolkit;
-
-    using Xamarin.Forms;
-
-    using XamarinEvolve.Clients.Portable;
-    using XamarinEvolve.Utils.Helpers;
-
     public class RootPageAndroid : MasterDetailPage
     {
         private readonly Dictionary<int, EvolveNavigationPage> pages;
