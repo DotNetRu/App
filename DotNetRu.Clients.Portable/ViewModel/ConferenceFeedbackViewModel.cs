@@ -1,17 +1,15 @@
-﻿namespace XamarinEvolve.Clients.Portable
+﻿using System;
+using System.Windows.Input;
+using DotNetRu.Clients.Portable.Interfaces;
+using DotNetRu.DataStore.Audit.Models;
+using DotNetRu.Utils.Helpers;
+using DotNetRu.Utils.Interfaces;
+using FormsToolkit;
+using Xamarin.Forms;
+using XamarinEvolve.Clients.Portable;
+
+namespace DotNetRu.Clients.Portable.ViewModel
 {
-    using System;
-    using System.Threading.Tasks;
-    using System.Windows.Input;
-
-    using DotNetRu.DataStore.Audit.Models;
-
-    using FormsToolkit;
-
-    using Xamarin.Forms;
-
-    using XamarinEvolve.Utils.Helpers;
-
     public class ConferenceFeedbackViewModel : ViewModelBase
     {
         public ConferenceFeedbackViewModel(INavigation navigation)

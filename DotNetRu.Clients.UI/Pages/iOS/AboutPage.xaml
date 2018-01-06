@@ -1,65 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<local:BasePage xmlns="http://xamarin.com/schemas/2014/forms" 
+<pages:BasePage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:imagecircle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
              xmlns:toolkit="clr-namespace:FormsToolkit;assembly=FormsToolkit"
-             xmlns:local="clr-namespace:XamarinEvolve.Clients.UI;assembly=XamarinEvolve.Clients.UI"
-             x:Class="XamarinEvolve.Clients.UI.AboutPage"
+             xmlns:controls="clr-namespace:DotNetRu.Clients.UI.Controls;assembly=DotNetRu.Clients.UI"
+             xmlns:pages="clr-namespace:DotNetRu.Clients.UI.Pages;assembly=DotNetRu.Clients.UI"
+             x:Class="DotNetRu.Clients.UI.Pages.iOS.AboutPage"
              x:Name="AboutPage"
              Title="Info"
              Icon="tab_about.png"
              NavigationPage.BackButtonTitle="Info"
              BackgroundColor="{DynamicResource WindowBackgroundTable}">
-    <local:AlwaysScrollView  Grid.RowSpan="2">
+    <controls:AlwaysScrollView  Grid.RowSpan="2">
         <StackLayout Spacing="0">         
             <StackLayout 
                 BackgroundColor="{DynamicResource WindowBackgroundTable}"
                 Spacing="{DynamicResource CardSpacing}"
                 Padding="{DynamicResource CardPadding}">
                        
-                <local:CardView Padding="0,32,0,0">
+                <controls:CardView Padding="0,32,0,0">
                      <StackLayout Spacing="0">
-                        <local:HeaderDivider/>
-                        <local:NonScrollableListView 
+                        <controls:HeaderDivider/>
+                        <controls:NonScrollableListView 
                             x:Name="ListViewAbout"
                             ItemsSource="{Binding AboutItems}"
                             RowHeight="44"> 
-                            <local:NonScrollableListView.SeparatorColor>
+                            <controls:NonScrollableListView.SeparatorColor>
                                 <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ListSeparator}"/>
-                            </local:NonScrollableListView.SeparatorColor>
-                            <local:NonScrollableListView.ItemTemplate>
+                            </controls:NonScrollableListView.SeparatorColor>
+                            <controls:NonScrollableListView.ItemTemplate>
                                 <DataTemplate>
                                     <TextCell Text="{Binding Name}" 
                                                StyleId="disclosure"/>
                                 </DataTemplate>
-                            </local:NonScrollableListView.ItemTemplate>
-                        </local:NonScrollableListView>
-                        <local:FooterDivider/>
+                            </controls:NonScrollableListView.ItemTemplate>
+                        </controls:NonScrollableListView>
+                        <controls:FooterDivider/>
                     </StackLayout>
-                </local:CardView>
+                </controls:CardView>
 
-                <local:CardView>
+                <controls:CardView>
                      <StackLayout Spacing="0">
-                        <local:LabelSection Text="Application Info"/>
-                        <local:HeaderDivider/>
-                        <local:NonScrollableListView 
+                        <controls:LabelSection Text="Application Info"/>
+                        <controls:HeaderDivider/>
+                        <controls:NonScrollableListView 
                             x:Name="ListViewInfo"
                             ItemsSource="{Binding InfoItems}"
                             RowHeight="44"> 
-                            <local:NonScrollableListView.SeparatorColor>
+                            <controls:NonScrollableListView.SeparatorColor>
                                 <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ListSeparator}"/>
-                            </local:NonScrollableListView.SeparatorColor>
-                            <local:NonScrollableListView.ItemTemplate>
+                            </controls:NonScrollableListView.SeparatorColor>
+                            <controls:NonScrollableListView.ItemTemplate>
                                 <DataTemplate>
                                     <TextCell Text="{Binding Name}" 
                                                StyleId="disclosure"/>
                                 </DataTemplate>
-                            </local:NonScrollableListView.ItemTemplate>
-                        </local:NonScrollableListView>
-                        <local:FooterDivider/>
+                            </controls:NonScrollableListView.ItemTemplate>
+                        </controls:NonScrollableListView>
+                        <controls:FooterDivider/>
                     </StackLayout>
-                </local:CardView>
+                </controls:CardView>
             </StackLayout>
         </StackLayout>
-    </local:AlwaysScrollView>
-</local:BasePage>
+    </controls:AlwaysScrollView>
+</pages:BasePage>

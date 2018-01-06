@@ -1,8 +1,8 @@
 ﻿
-namespace XamarinEvolve.Clients.UI
-{
-    using Xamarin.Forms;
+using Xamarin.Forms;
 
+namespace DotNetRu.Clients.UI.Pages.Windows
+{
     public partial class MenuPageUWP
     {
         public MenuPageUWP()

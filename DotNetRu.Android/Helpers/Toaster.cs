@@ -1,12 +1,12 @@
 ﻿using Android.Widget;
+using DotNetRu.Clients.Portable.Interfaces;
+using DotNetRu.Droid.Helpers;
 using Plugin.CurrentActivity;
 using Xamarin.Forms;
-using XamarinEvolve.Clients.Portable;
-using XamarinEvolve.Droid;
 
 [assembly: Dependency(typeof(Toaster))]
 
-namespace XamarinEvolve.Droid
+namespace DotNetRu.Droid.Helpers
 {
     public class Toaster : IToast
     {

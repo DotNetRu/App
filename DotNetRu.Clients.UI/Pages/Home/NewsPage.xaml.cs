@@ -1,15 +1,14 @@
-﻿namespace XamarinEvolve.Clients.UI
+﻿using System;
+using DotNetRu.Clients.Portable.Model;
+using DotNetRu.Clients.Portable.ViewModel;
+using DotNetRu.Clients.UI.Controls;
+using DotNetRu.Clients.UI.Helpers;
+using DotNetRu.Utils.Helpers;
+using FormsToolkit;
+using Xamarin.Forms;
+
+namespace DotNetRu.Clients.UI.Pages.Home
 {
-    using System;
-
-    using FormsToolkit;
-
-    using Xamarin.Forms;
-
-    using XamarinEvolve.Clients.Portable;
-    using XamarinEvolve.Clients.Portable.ViewModel;
-    using XamarinEvolve.Utils.Helpers;
-
     public partial class NewsPage
     {
         public override AppPage PageType => AppPage.Feed;

@@ -1,4 +1,4 @@
-﻿namespace XamarinEvolve.Utils
+﻿namespace DotNetRu.Utils.Helpers
 {
     public static class FeatureFlags
     {

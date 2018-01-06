@@ -1,4 +1,4 @@
-﻿namespace XamarinEvolve.Utils.Helpers
+﻿namespace DotNetRu.Utils.Helpers
 {
     public static class MessageKeys
     {

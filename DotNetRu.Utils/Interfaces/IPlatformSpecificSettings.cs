@@ -1,4 +1,4 @@
-﻿namespace XamarinEvolve.Clients.Portable
+﻿namespace DotNetRu.Utils.Interfaces
 {
 	public interface IPlatformSpecificSettings
 	{

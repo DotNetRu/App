@@ -1,6 +1,6 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-
+using DotNetRu.Utils.Interfaces;
 using Plugin.Settings;
 using Plugin.Settings.Abstractions;
 

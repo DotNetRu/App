@@ -1,20 +1,16 @@
-﻿namespace XamarinEvolve.Clients.Portable.ViewModel
+﻿using System;
+using System.Windows.Input;
+using DotNetRu.Clients.Portable.Helpers;
+using DotNetRu.Clients.Portable.Model.Extensions;
+using DotNetRu.DataStore.Audit.Models;
+using DotNetRu.DataStore.Audit.Services;
+using DotNetRu.Utils.Helpers;
+using FormsToolkit;
+using MvvmHelpers;
+using Xamarin.Forms;
+
+namespace DotNetRu.Clients.Portable.ViewModel
 {
-    using System;
-    using System.Windows.Input;
-
-    using DotNetRu.DataStore.Audit.Models;
-    using DotNetRu.DataStore.Audit.Services;
-
-    using FormsToolkit;
-
-    using MvvmHelpers;
-
-    using Xamarin.Forms;
-
-    using XamarinEvolve.Clients.UI;
-    using XamarinEvolve.Utils.Helpers;
-
     /// <inheritdoc />
     public class MeetupsViewModel : ViewModelBase
     {

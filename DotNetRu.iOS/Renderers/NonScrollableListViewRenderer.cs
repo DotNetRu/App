@@ -1,14 +1,12 @@
 ﻿using System;
-
+using DotNetRu.Clients.UI.Controls;
+using DotNetRu.iOS.Renderers;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
-using XamarinEvolve.Clients.UI;
-using XamarinEvolve.iOS;
-
 [assembly:ExportRenderer(typeof(NonScrollableListView), typeof(NonScrollableListViewRenderer))]
 [assembly:ExportRenderer(typeof(AlwaysScrollView), typeof(AlwaysScrollViewRenderer))]
-namespace XamarinEvolve.iOS
+namespace DotNetRu.iOS.Renderers
 {
     public class NonScrollableListViewRenderer : ListViewRenderer
     {

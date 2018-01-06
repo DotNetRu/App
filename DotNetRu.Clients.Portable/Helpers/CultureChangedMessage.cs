@@ -1,7 +1,7 @@
-﻿namespace XamarinEvolve.Clients.UI
-{
-    using System.Globalization;
+﻿using System.Globalization;
 
+namespace DotNetRu.Clients.Portable.Helpers
+{
     public class CultureChangedMessage
     {
         public CultureChangedMessage(string lngName)

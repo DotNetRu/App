@@ -1,13 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using DotNetRu.DataStore.Audit.Models;
 using Xamarin.Forms;
 
-namespace XamarinEvolve.Clients.Portable
+namespace DotNetRu.Clients.Portable.ViewModel
 {
-    using DotNetRu.DataStore.Audit.Models;
-
     public class FilterSessionsViewModel : ViewModelBase
     {
         public FilterSessionsViewModel(INavigation navigation)

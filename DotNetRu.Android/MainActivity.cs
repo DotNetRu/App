@@ -1,4 +1,7 @@
-﻿namespace DotNetRu.Droid
+﻿using DotNetRu.Droid.Backgrounding;
+using DotNetRu.Utils.Helpers;
+
+namespace DotNetRu.Droid
 {
     // using Gcm;
     using System.Reflection;
@@ -7,7 +10,6 @@
     using Android.Content;
     using Android.Content.PM;
     using Android.OS;
-    using Android.Support.V4.Content.Res;
 
     using DotNetRu.Droid.Helpers;
 
@@ -25,9 +27,6 @@
     using Xamarin.Forms.Platform.Android;
 
     using XamarinEvolve.Clients.Portable;
-    using XamarinEvolve.Clients.UI;
-    using XamarinEvolve.Droid;
-    using XamarinEvolve.Utils.Helpers;
 
     [Activity(
         Label = AboutThisApp.AppName,
@@ -123,7 +122,7 @@
                 }
             };
 #endif
-            this.LoadApplication(new App());
+            this.LoadApplication(new Clients.UI.App());
 
             var gpsAvailable = this.IsPlayServicesAvailable();
             Settings.Current.PushNotificationsEnabled = gpsAvailable;

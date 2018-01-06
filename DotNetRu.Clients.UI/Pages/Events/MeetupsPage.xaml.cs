@@ -1,12 +1,12 @@
-﻿namespace XamarinEvolve.Clients.UI
+﻿using System.Linq;
+using DotNetRu.Clients.Portable.Model;
+using DotNetRu.Clients.Portable.ViewModel;
+using DotNetRu.Clients.UI.Helpers;
+using DotNetRu.Clients.UI.Pages.Sessions;
+using DotNetRu.DataStore.Audit.Models;
+
+namespace DotNetRu.Clients.UI.Pages.Events
 {
-    using System.Linq;
-
-    using DotNetRu.DataStore.Audit.Models;
-
-    using XamarinEvolve.Clients.Portable;
-    using XamarinEvolve.Clients.Portable.ViewModel;
-
     public partial class MeetupsPage
     {
         private MeetupsViewModel meetupsViewModel;

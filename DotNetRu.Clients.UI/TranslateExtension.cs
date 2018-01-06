@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Reflection;
 using System.Resources;
-using System.Text;
-using System.Threading.Tasks;
+using DotNetRu.Clients.Portable.Interfaces;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using XamarinEvolve.Clients.Portable.Interfaces;
 
-namespace XamarinEvolve.Clients.UI
+namespace DotNetRu.Clients.UI
 {
     [ContentProperty("Text")]
     class TranslateExtension : IMarkupExtension

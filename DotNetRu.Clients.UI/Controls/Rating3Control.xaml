@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             x:Class="XamarinEvolve.Clients.UI.Rating3Control"
-             xmlns:local="clr-namespace:XamarinEvolve.Clients.UI;assembly=XamarinEvolve.Clients.UI">
+             x:Class="DotNetRu.Clients.UI.Controls.Rating3Control"
+             xmlns:behaviors="clr-namespace:DotNetRu.Clients.UI.Behaviors;assembly=DotNetRu.Clients.UI">
   <ContentView.Content>
     <StackLayout Orientation="Horizontal" Spacing="{StaticResource StandardSpacing}" HorizontalOptions="Center">
       <Grid HeightRequest="24" WidthRequest="24" x:Name="StarGrid1">
         <Grid.Behaviors>
           <!--Do not remove name as it is used in binding-->
-          <local:StarBehavior x:Name="starOne" RatingChanged="OnStarRatingChanged"/>
+          <behaviors:StarBehavior x:Name="starOne" RatingChanged="OnStarRatingChanged"/>
         </Grid.Behaviors>
         <Image Source="star_outline.png" />
 
@@ -19,7 +19,7 @@
       <Grid HeightRequest="24" WidthRequest="24" HorizontalOptions="Center" x:Name="StarGrid2">
         <Grid.Behaviors>
           <!--Do not remove name as it is used in binding-->
-          <local:StarBehavior x:Name="starTwo" RatingChanged="OnStarRatingChanged"/>
+          <behaviors:StarBehavior x:Name="starTwo" RatingChanged="OnStarRatingChanged"/>
         </Grid.Behaviors>
         <Image Source="star_outline.png" />
 
@@ -30,7 +30,7 @@
       <Grid HeightRequest="24" WidthRequest="24" HorizontalOptions="Center" x:Name="StarGrid3">
         <Grid.Behaviors>
           <!--Do not remove name as it is used in binding-->
-          <local:StarBehavior x:Name="starThree" RatingChanged="OnStarRatingChanged"/>
+          <behaviors:StarBehavior x:Name="starThree" RatingChanged="OnStarRatingChanged"/>
         </Grid.Behaviors>
         <Image Source="star_outline.png" />
 

@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<local:BasePage 
+<pages:BasePage 
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-     xmlns:local="clr-namespace:XamarinEvolve.Clients.UI;assembly=XamarinEvolve.Clients.UI"
-    x:Class="XamarinEvolve.Clients.UI.FilterSessionsPage"
+     xmlns:pages="clr-namespace:DotNetRu.Clients.UI.Pages;assembly=DotNetRu.Clients.UI"
+     x:Class="DotNetRu.Clients.UI.Pages.Sessions.FilterSessionsPage"
     Title="Filter Sessions"
     
     BackgroundColor="{DynamicResource WindowBackgroundTable}">
@@ -17,4 +17,4 @@
             <!--These are dynamically added-->
         </TableSection>
     </TableView>
-</local:BasePage>
+</pages:BasePage>

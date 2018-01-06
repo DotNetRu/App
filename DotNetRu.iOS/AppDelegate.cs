@@ -1,35 +1,24 @@
-﻿namespace XamarinEvolve.iOS
+﻿using System;
+using System.Collections.Generic;
+using CoreSpotlight;
+using DotNetRu.Clients.Portable.Model;
+using DotNetRu.iOS.Renderers;
+using DotNetRu.Utils.Helpers;
+using DotNetRu.Utils.Interfaces;
+using FormsToolkit;
+using FormsToolkit.iOS;
+using Foundation;
+using Google.AppIndexing;
+using ImageCircle.Forms.Plugin.iOS;
+using Plugin.Share;
+using Refractored.XamForms.PullToRefresh.iOS;
+using Social;
+using UIKit;
+using Xamarin.Forms;
+using Xamarin.Forms.Platform.iOS;
+
+namespace DotNetRu.iOS
 {
-    using System;
-    using System.Collections.Generic;
-
-    using CoreSpotlight;
-
-    using FormsToolkit;
-    using FormsToolkit.iOS;
-
-    using Foundation;
-
-    using Google.AppIndexing;
-
-    using ImageCircle.Forms.Plugin.iOS;
-
-    using Plugin.Share;
-
-    using Refractored.XamForms.PullToRefresh.iOS;
-
-    using Social;
-
-    using UIKit;
-
-    using Xamarin;
-    using Xamarin.Forms;
-    using Xamarin.Forms.Platform.iOS;
-
-    using XamarinEvolve.Clients.Portable;
-    using XamarinEvolve.Clients.UI;
-    using XamarinEvolve.Utils.Helpers;
-
     [Register("AppDelegate")]
     public class AppDelegate : FormsApplicationDelegate
     {
@@ -66,7 +55,7 @@
 
             InitializeDependencies();
 
-            this.LoadApplication(new App());
+            this.LoadApplication(new DotNetRu.Clients.UI.App());
 
             InitializeThemeColors();
 
@@ -87,7 +76,7 @@
 
         void DidBecomeActive(NSNotification notification)
         {
-            ((App)Xamarin.Forms.Application.Current).SecondOnResume();
+            ((DotNetRu.Clients.UI.App)Xamarin.Forms.Application.Current).SecondOnResume();
         }
 
         static void InitializeDependencies()
@@ -138,7 +127,7 @@
         public override void WillEnterForeground(UIApplication uiApplication)
         {
             base.WillEnterForeground(uiApplication);
-            ((App)Xamarin.Forms.Application.Current).SecondOnResume();
+            ((DotNetRu.Clients.UI.App)Xamarin.Forms.Application.Current).SecondOnResume();
         }
 
         public override void RegisteredForRemoteNotifications(UIApplication app, NSData deviceToken)
@@ -176,7 +165,7 @@
         {
             if (!string.IsNullOrEmpty(url.AbsoluteString))
             {
-                ((App)Xamarin.Forms.Application.Current).SendOnAppLinkRequestReceived(new Uri(url.AbsoluteString));
+                ((DotNetRu.Clients.UI.App)Xamarin.Forms.Application.Current).SendOnAppLinkRequestReceived(new Uri(url.AbsoluteString));
                 return true;
             }
 
@@ -187,7 +176,7 @@
         {
             if (!string.IsNullOrEmpty(url.AbsoluteString))
             {
-                ((App)Xamarin.Forms.Application.Current).SendOnAppLinkRequestReceived(new Uri(url.AbsoluteString));
+                ((DotNetRu.Clients.UI.App)Xamarin.Forms.Application.Current).SendOnAppLinkRequestReceived(new Uri(url.AbsoluteString));
                 return true;
             }
 
@@ -202,7 +191,7 @@
         {
             if (!string.IsNullOrEmpty(url.AbsoluteString))
             {
-                ((App)Xamarin.Forms.Application.Current).SendOnAppLinkRequestReceived(new Uri(url.AbsoluteString));
+                ((DotNetRu.Clients.UI.App)Xamarin.Forms.Application.Current).SendOnAppLinkRequestReceived(new Uri(url.AbsoluteString));
                 return true;
             }
 
@@ -284,7 +273,7 @@
             }
 
             if (!string.IsNullOrEmpty(link))
-                ((App)Xamarin.Forms.Application.Current).SendOnAppLinkRequestReceived(new Uri(link));
+                ((DotNetRu.Clients.UI.App)Xamarin.Forms.Application.Current).SendOnAppLinkRequestReceived(new Uri(link));
         }
 
         // if app is already running

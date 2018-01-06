@@ -1,6 +1,7 @@
-﻿using XamarinEvolve.Clients.Portable;
+﻿using DotNetRu.Clients.Portable.Model;
+using DotNetRu.Clients.Portable.ViewModel;
 
-namespace XamarinEvolve.Clients.UI
+namespace DotNetRu.Clients.UI.Pages.Home
 {
 	public partial class NotificationsPage : BasePage
 	{

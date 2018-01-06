@@ -1,7 +1,7 @@
-﻿namespace XamarinEvolve.Clients.UI
-{
-    using XamarinEvolve.Clients.Portable;
+﻿using DotNetRu.Clients.Portable.ViewModel;
 
+namespace DotNetRu.Clients.UI
+{
     public static class ViewModelLocator
     {
         private static MeetupViewModel meetupViewModel;

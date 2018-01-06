@@ -1,16 +1,11 @@
-﻿using System.Collections.Generic;
-using XamarinEvolve.Clients.UI;
+﻿using DotNetRu.DataStore.Audit.Models;
+using DotNetRu.Utils.Helpers;
+using MvvmHelpers;
+using Xamarin.Forms;
+using MenuItem = DotNetRu.Clients.Portable.Model.MenuItem;
 
-namespace XamarinEvolve.Clients.Portable
+namespace DotNetRu.Clients.Portable.ViewModel
 {
-    using DotNetRu.DataStore.Audit.Models;
-
-    using MvvmHelpers;
-
-    using Xamarin.Forms;
-
-    using XamarinEvolve.Utils;
-
     public class FriendDetailsViewModel : ViewModelBase
     {
         private MenuItem selectedFollowItem;
