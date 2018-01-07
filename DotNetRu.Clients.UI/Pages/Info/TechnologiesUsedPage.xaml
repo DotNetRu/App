@@ -1,7 +1,7 @@
 ﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:DotNetRu.Clients.UI.Controls;assembly=DotNetRu.Clients.UI"
-             x:Class="DotNetRu.Clients.UI.Pages.Info.TechnologiesUsed"
+             x:Class="DotNetRu.Clients.UI.Pages.Info.TechnologiesUsedPage"
              Title="{Binding Resources[TechnologyUsed]}">
     <ContentPage.Content>
         <controls:CardView>

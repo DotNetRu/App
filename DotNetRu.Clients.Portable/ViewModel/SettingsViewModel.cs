@@ -1,21 +1,25 @@
-﻿using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using DotNetRu.Clients.Portable.ApplicationResources;
-using DotNetRu.Clients.Portable.Helpers;
-using DotNetRu.Clients.Portable.Interfaces;
-using DotNetRu.Clients.Portable.Model;
-using DotNetRu.Utils.Helpers;
-using Xamarin.Forms;
-using Xamarin.Forms.Internals;
-
-namespace DotNetRu.Clients.Portable.ViewModel
+﻿namespace DotNetRu.Clients.Portable.ViewModel
 {
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Linq;
+    using System.Windows.Input;
+
+    using DotNetRu.Clients.Portable.ApplicationResources;
+    using DotNetRu.Clients.Portable.Helpers;
+    using DotNetRu.Clients.Portable.Interfaces;
+    using DotNetRu.Clients.Portable.Model;
+    using DotNetRu.DataStore.Audit.Services;
+    using DotNetRu.Utils.Helpers;
+
+    using Xamarin.Forms;
+    using Xamarin.Forms.Internals;
+
     public class SettingsViewModel : ViewModelBase
     {
         private Language selectedLanguage;
 
-        public SettingsViewModel()
+        public SettingsViewModel(ICommand openTechologiesUsedCommand)
         {
             MessagingCenter.Subscribe<LocalizedResources>(
                 this,
@@ -49,6 +53,11 @@ namespace DotNetRu.Clients.Portable.ViewModel
                                 ResourceName = "IssueTracker",
                                 Command = this.LaunchBrowserCommand,
                                 Parameter = AboutThisApp.IssueTracker
+                            },
+                        new LocalizableMenuItem
+                            {
+                                ResourceName = "TechnologyUsed",
+                                Command = openTechologiesUsedCommand
                             }
                     });
 
@@ -57,31 +66,38 @@ namespace DotNetRu.Clients.Portable.ViewModel
                     {
                         new LocalizableMenuItem
                             {
+                                ResourceName = "DotNetRu",
+                                Command = this.LaunchBrowserCommand,
+                                ImageSource = LogoService.DotNetRuLogo,
+                                Parameter = AboutThisApp.DotNetRuLink
+                            }, 
+                        new LocalizableMenuItem
+                            {
                                 ResourceName = "SaintPetersburg",
                                 Command = this.LaunchBrowserCommand,
-                                Icon = AboutThisApp.SpbLogo,
+                                ImageSource = LogoService.SpbDotNetLogo,
                                 Parameter = AboutThisApp.SpbLink
-                            },
-                        new LocalizableMenuItem
-                            {
-                                ResourceName = "Krasnoyarsk",
-                                Command = this.LaunchBrowserCommand,
-                                Icon = AboutThisApp.KrasnoyarskLogo,
-                                Parameter = AboutThisApp.KrasnoyarskLink
-                            },
-                        new LocalizableMenuItem
-                            {
-                                ResourceName = "Saratov",
-                                Command = this.LaunchBrowserCommand,
-                                Icon = AboutThisApp.SaratovLogo,
-                                Parameter = AboutThisApp.SaratovLink
                             },
                         new LocalizableMenuItem
                             {
                                 ResourceName = "Moscow",
                                 Command = this.LaunchBrowserCommand,
-                                Icon = AboutThisApp.MoscowLogo,
+                                ImageSource = LogoService.MskDotNetLogo,
                                 Parameter = AboutThisApp.MoscowLink
+                            },
+                        new LocalizableMenuItem
+                            {
+                                ResourceName = "Saratov",
+                                Command = this.LaunchBrowserCommand,
+                                ImageSource = LogoService.SarDotNetLogo,
+                                Parameter = AboutThisApp.SaratovLink
+                            },
+                        new LocalizableMenuItem
+                            {
+                                ResourceName = "Krasnoyarsk",
+                                Command = this.LaunchBrowserCommand,
+                                ImageSource = LogoService.KryDotNetLogo,
+                                Parameter = AboutThisApp.KrasnoyarskLink
                             }
                     });
         }
@@ -117,15 +133,12 @@ namespace DotNetRu.Clients.Portable.ViewModel
         public string AppVersion =>
             $"{this.Resources["Version"]} {DependencyService.Get<IAppVersionProvider>()?.AppVersion ?? "1.0"}";
 
-        public string AppInfo => this.Resources["AboutText"];
-
         private void NotifyViewModel()
         {
             var cultureInfo = new CultureInfo(this.SelectedLanguage.GetLanguageCode());
             DependencyService.Get<ILocalize>().SetLocale(cultureInfo); // set the Thread for locale-aware methods
             AppResources.Culture = cultureInfo;
 
-            this.OnPropertyChanged(nameof(this.AppInfo));
             this.OnPropertyChanged(nameof(this.AppVersion));
 
             this.AboutItems.ForEach(x => x.Update());

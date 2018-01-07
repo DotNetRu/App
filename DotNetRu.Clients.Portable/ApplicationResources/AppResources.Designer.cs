@@ -71,6 +71,24 @@ namespace DotNetRu.Clients.Portable.ApplicationResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to About App.
+        /// </summary>
+        public static string AboutApp {
+            get {
+                return ResourceManager.GetString("AboutApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to About DotNetRu.
+        /// </summary>
+        public static string AboutDotNetRu {
+            get {
+                return ResourceManager.GetString("AboutDotNetRu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Russian .NET community is a group of independent communities of .NET developers from Russia. We unite people around .Net platform to contribute to the experience and knowledge exchange. We hold meetings regularly to share news and best practices in software development! .
         /// </summary>
         public static string AboutText {
@@ -112,6 +130,15 @@ namespace DotNetRu.Clients.Portable.ApplicationResources {
         public static string CreatedBy {
             get {
                 return ResourceManager.GetString("CreatedBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DotNetRu.
+        /// </summary>
+        public static string DotNetRu {
+            get {
+                return ResourceManager.GetString("DotNetRu", resourceCulture);
             }
         }
         
@@ -314,6 +341,15 @@ namespace DotNetRu.Clients.Portable.ApplicationResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select a language.
+        /// </summary>
+        public static string SelectLanguage {
+            get {
+                return ResourceManager.GetString("SelectLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Share.
         /// </summary>
         public static string Share {
@@ -395,7 +431,7 @@ namespace DotNetRu.Clients.Portable.ApplicationResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Big thanks to James Montemagno.
+        ///   Looks up a localized string similar to Inspired by James Montemagno.
         /// </summary>
         public static string Thanks {
             get {

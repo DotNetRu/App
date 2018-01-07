@@ -67,6 +67,7 @@
     <Compile Include="Entities\TalkEntity.cs" />
     <Compile Include="Entities\VenueEntity.cs" />
     <Compile Include="Services\IEntityService.cs" />
+    <Compile Include="Services\LogoService.cs" />
     <Compile Include="Services\MeetupService.cs" />
     <Compile Include="Services\SpeakerService.cs" />
     <Compile Include="Services\TalkService.cs" />
@@ -296,6 +297,9 @@
     <EmbeddedResource Include="Storage\logos\MskDotNet.png" />
     <EmbeddedResource Include="Storage\logos\SarDotNet.png" />
     <EmbeddedResource Include="Storage\logos\SpbDotNet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Storage\logos\DotNetRu.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.5.0.91635\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.5.0.91635\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets')" />
