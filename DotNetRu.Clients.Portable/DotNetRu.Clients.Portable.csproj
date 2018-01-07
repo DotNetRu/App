@@ -71,7 +71,6 @@
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="Model\Extensions\TalkModelExtensions.cs" />
     <Compile Include="ViewModel\FilterSessionsViewModel.cs" />
-    <Compile Include="ViewModel\AboutViewModel.cs" />
     <Compile Include="Model\MenuItem.cs" />
     <Compile Include="ViewModel\TalkViewModel.cs" />
     <Compile Include="ViewModel\SettingsViewModel.cs" />

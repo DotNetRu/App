@@ -5,7 +5,7 @@
              xmlns:toolkit="clr-namespace:FormsToolkit;assembly=FormsToolkit"
              xmlns:controls="clr-namespace:DotNetRu.Clients.UI.Controls;assembly=DotNetRu.Clients.UI"
              xmlns:pages="clr-namespace:DotNetRu.Clients.UI.Pages;assembly=DotNetRu.Clients.UI"
-             x:Class="DotNetRu.Clients.UI.Pages.iOS.AboutPage"
+             x:Class="DotNetRu.Clients.UI.Pages.Obsolete.AboutPage"
              x:Name="AboutPage"
              Title="Info"
              Icon="tab_about.png"

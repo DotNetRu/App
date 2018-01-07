@@ -45,7 +45,6 @@
     <DefineConstants>MOBILE;ENABLE_TEST_CLOUD</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Controls\AboutPageImageCell.cs" />
     <Compile Include="Controls\RatingControl.xaml.cs">
       <DependentUpon>RatingControl.xaml</DependentUpon>
     </Compile>
@@ -61,8 +60,8 @@
     <Compile Include="Pages\Home\ConferenceFeedbackPage.xaml.cs">
       <DependentUpon>ConferenceFeedbackPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Info\TechnologiesUsed.xaml.cs">
-      <DependentUpon>TechnologiesUsed.xaml</DependentUpon>
+    <Compile Include="Pages\Info\TechnologiesUsedPage.xaml.cs">
+      <DependentUpon>TechnologiesUsedPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Speakers\SpeakerDetailsPageUWP.xaml.cs">
       <DependentUpon>SpeakerDetailsPageUWP.xaml</DependentUpon>
@@ -77,7 +76,7 @@
     <Compile Include="Pages\Android\MenuPage.xaml.cs">
       <DependentUpon>MenuPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\iOS\AboutPage.xaml.cs">
+    <Compile Include="Pages\Obsolete\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Behaviors\StarBehavior.cs" />
@@ -281,7 +280,7 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <LogicalName>MenuPage.xaml</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pages\iOS\AboutPage.xaml">
+    <EmbeddedResource Include="Pages\Obsolete\AboutPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <LogicalName>AboutPage.xaml</LogicalName>
     </EmbeddedResource>
@@ -451,7 +450,7 @@
     <EmbeddedResource Include="Images\dotnetru.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Pages\Info\TechnologiesUsed.xaml">
+    <EmbeddedResource Include="Pages\Info\TechnologiesUsedPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
