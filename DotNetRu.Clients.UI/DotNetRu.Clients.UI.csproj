@@ -48,6 +48,7 @@
     <Compile Include="Controls\RatingControl.xaml.cs">
       <DependentUpon>RatingControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\StackLayoutList.cs" />
     <Compile Include="Converters\DateConverters.cs" />
     <Compile Include="Converters\ImageConverters.cs" />
     <Compile Include="Converters\RatingConverter.cs" />

@@ -18,7 +18,7 @@
     </ContentPage.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="200" x:Name="Row1Header"/>
+            <RowDefinition Height="Auto" x:Name="Row1Header"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid RowSpacing="0" ColumnSpacing="0" x:Name="HeaderView" BackgroundColor="{DynamicResource Primary}">
@@ -31,7 +31,7 @@
         <controls:ParallaxScrollView x:Name="MainScroll" Grid.RowSpan="2">
             <Grid RowSpacing="0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="200" x:Name="Row1Content"/>
+                    <RowDefinition Height="Auto" x:Name="Row1Content"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Grid x:Name="MainStack"
@@ -86,32 +86,28 @@
                                     ItemsSource="{Binding FollowItems}"
                                     VerticalOptions="Start"
                                     x:Name="ListViewFollow"
+                                    HasUnevenRows="True"
                                     SelectedItem="{Binding SelectedFollowItem, Mode=TwoWay}"
                                     RowHeight="44">
                                     <controls:NonScrollableListView.SeparatorColor>
                                         <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ListSeparator}"/>
                                     </controls:NonScrollableListView.SeparatorColor>
                                     <controls:NonScrollableListView.ItemTemplate>
-                                        <DataTemplate>
-                                            <ViewCell StyleId="disclosure">
-                                                <Grid ColumnSpacing="{StaticResource StandardSpacing}">
-                                                    <Grid.Padding>
-                                                        <OnPlatform x:TypeArguments="Thickness" iOS="16,12" Android="16,8"/>
-                                                    </Grid.Padding>
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="Auto"/>
-                                                        <ColumnDefinition Width="*"/>
-                                                    </Grid.ColumnDefinitions>
-                                                    <Image VerticalOptions="Center" Source="{Binding Icon}">
-                                                        <Image.IsVisible>
-                                                            <OnPlatform x:TypeArguments="x:Boolean" iOS="true" Android="true"/>
-                                                        </Image.IsVisible>
-                                                    </Image>
-                                                    <Label Grid.Column="1" VerticalOptions="Center" Style="{DynamicResource EvolveListItemTextStyle}" Text="{Binding Name}">
-													</Label>
-                                                </Grid>
-                                            </ViewCell>
-                                        </DataTemplate>
+                                      <DataTemplate>
+                                        <ViewCell StyleId="disclosure">
+                                          <Grid ColumnSpacing="{StaticResource StandardSpacing}">
+                                            <Grid.Padding>
+                                              <OnPlatform x:TypeArguments="Thickness" iOS="16,12" Android="16,8"/>
+                                            </Grid.Padding>
+                                            <Grid.ColumnDefinitions>
+                                              <ColumnDefinition Width="Auto"/>
+                                              <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Image VerticalOptions="Center" Source="{Binding Icon}"/>
+                                            <Label Grid.Column="1" VerticalOptions="Center" Style="{DynamicResource EvolveListItemTextStyle}" Text="{Binding Name}"/>
+                                          </Grid>
+                                        </ViewCell>
+                                      </DataTemplate>
                                     </controls:NonScrollableListView.ItemTemplate>
                                 </controls:NonScrollableListView>
                                 <controls:FooterDivider/>
@@ -136,17 +132,17 @@
                                     <Label Text="{Binding Resources[LoadingTalks]}"
                                            HorizontalOptions="Center"
                                            Style="{DynamicResource EvolveListItemTextStyle}"/>
-                                </StackLayout>
+                                </StackLayout>                                            
                                 <controls:NonScrollableListView
                                     x:Name="ListViewSessions"
                                     ItemsSource="{Binding Talks}"
-                                    RowHeight="66">
+                                    HasUnevenRows="True">
                                     <controls:NonScrollableListView.SeparatorColor>
                                         <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ListSeparator}"/>
                                     </controls:NonScrollableListView.SeparatorColor>
                                     <controls:NonScrollableListView.ItemTemplate>
                                         <DataTemplate>
-                                            <ViewCell>
+                                            <ViewCell Appearing="Cell_OnAppearing">
                                               <Grid Padding="{DynamicResource StandardPadding}"
                                                     ColumnSpacing="{StaticResource StandardSpacing}">
                                                 <Grid.RowDefinitions>

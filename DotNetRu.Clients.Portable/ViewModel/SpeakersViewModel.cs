@@ -1,37 +1,41 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Input;
-using DotNetRu.DataStore.Audit.Models;
-using DotNetRu.DataStore.Audit.Services;
-using DotNetRu.Utils.Helpers;
-using FormsToolkit;
-using MvvmHelpers;
-using Xamarin.Forms;
-
-namespace DotNetRu.Clients.Portable.ViewModel
+﻿namespace DotNetRu.Clients.Portable.ViewModel
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Windows.Input;
+
+    using DotNetRu.DataStore.Audit.Models;
+    using DotNetRu.DataStore.Audit.Services;
+    using DotNetRu.Utils.Helpers;
+
+    using FormsToolkit;
+
+    using MvvmHelpers;
+
+    using Xamarin.Forms;
+
     public class SpeakersViewModel : ViewModelBase
     {
-        public SpeakersViewModel(INavigation navigation) : base(navigation)
+        public SpeakersViewModel(INavigation navigation)
+            : base(navigation)
         {
         }
 
-        public ObservableRangeCollection<SpeakerModel> Speakers { get; } = new ObservableRangeCollection<SpeakerModel>();
-       
+        public ObservableRangeCollection<SpeakerModel> Speakers { get; } =
+            new ObservableRangeCollection<SpeakerModel>();
+
         #region Sorting
 
         private void SortSpeakers(IEnumerable<SpeakerModel> speakers)
         {
-            var speakersSorted = from speaker in speakers
-                                 orderby speaker.FullName
-                                 select speaker;
+            var speakersSorted = from speaker in speakers orderby speaker.FullName select speaker;
 
             this.Speakers.ReplaceRange(speakersSorted);
         }
 
         #endregion
-        
+
         private SpeakerModel selectedSpeakerModel;
 
         public SpeakerModel SelectedSpeakerModel
@@ -54,8 +58,9 @@ namespace DotNetRu.Clients.Portable.ViewModel
 
         private ICommand loadSpeakersCommand;
 
-        public ICommand LoadSpeakersCommand => this.loadSpeakersCommand ?? (this.loadSpeakersCommand =
-                new Command((f) => this.ExecuteLoadSpeakers((bool)f)));
+        public ICommand LoadSpeakersCommand =>
+            this.loadSpeakersCommand
+            ?? (this.loadSpeakersCommand = new Command((f) => this.ExecuteLoadSpeakers((bool)f)));
 
         private void ExecuteLoadSpeakers(bool force = false)
         {
@@ -69,7 +74,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
                 this.IsBusy = true;
 
                 // TODO: update data when we'll have finally managed to get them directly from github
-                if (!this.Speakers.Any() || force) 
+                if (!this.Speakers.Any() || force)
                 {
                     IEnumerable<SpeakerModel> speakers = SpeakerService.Speakers;
                     this.SortSpeakers(speakers);
