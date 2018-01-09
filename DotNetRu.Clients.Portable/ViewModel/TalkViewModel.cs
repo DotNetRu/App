@@ -1,22 +1,30 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using DotNetRu.Clients.Portable.Extensions;
-using DotNetRu.Clients.Portable.Services;
-using DotNetRu.DataStore.Audit.Models;
-using DotNetRu.Utils.Helpers;
-using DotNetRu.Utils.Interfaces;
-using FormsToolkit;
-using MvvmHelpers;
-using Plugin.Share;
-using Plugin.Share.Abstractions;
-using Xamarin.Forms;
-
-using MenuItem = DotNetRu.Clients.Portable.Model.MenuItem;
-
-namespace DotNetRu.Clients.Portable.ViewModel
+﻿namespace DotNetRu.Clients.Portable.ViewModel
 {
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Windows.Input;
+
+    using DotNetRu.Clients.Portable.Extensions;
+    using DotNetRu.Clients.Portable.Helpers;
+    using DotNetRu.Clients.Portable.Model;
+    using DotNetRu.Clients.Portable.Services;
+    using DotNetRu.DataStore.Audit.Models;
+    using DotNetRu.Utils.Helpers;
+    using DotNetRu.Utils.Interfaces;
+
+    using FormsToolkit;
+
+    using MvvmHelpers;
+
+    using Plugin.Share;
+    using Plugin.Share.Abstractions;
+
+    using Xamarin.Forms;
+    using Xamarin.Forms.Internals;
+
+    using MenuItem = Model.MenuItem;
+
     public class TalkViewModel : ViewModelBase
     {
         private TalkModel talkModel;
@@ -31,8 +39,8 @@ namespace DotNetRu.Clients.Portable.ViewModel
             set => this.SetProperty(ref this.talkModel, value);
         }
 
-        public ObservableRangeCollection<MenuItem> SessionMaterialItems { get; } =
-            new ObservableRangeCollection<MenuItem>();
+        public ObservableRangeCollection<LocalizableMenuItem> SessionMaterialItems { get; } =
+            new ObservableRangeCollection<LocalizableMenuItem>();
 
         public TalkViewModel(INavigation navigation, TalkModel talkModel)
             : base(navigation)
@@ -51,9 +59,9 @@ namespace DotNetRu.Clients.Portable.ViewModel
             if (!string.IsNullOrWhiteSpace(talkModel.PresentationUrl))
             {
                 this.SessionMaterialItems.Add(
-                    new MenuItem
+                    new LocalizableMenuItem
                         {
-                            Name = "Presentation Slides",
+                            ResourceName = "PresentationSlides",
                             Parameter = talkModel.PresentationUrl,
                             Icon = "icon_presentation.png"
                         });
@@ -62,14 +70,29 @@ namespace DotNetRu.Clients.Portable.ViewModel
             if (!string.IsNullOrWhiteSpace(talkModel.VideoUrl))
             {
                 this.SessionMaterialItems.Add(
-                    new MenuItem { Name = "Talk Recording", Parameter = talkModel.VideoUrl, Icon = "icon_video.png" });
+                    new LocalizableMenuItem
+                        {
+                            ResourceName = "TalkRecording",
+                            Parameter = talkModel.VideoUrl,
+                            Icon = "icon_video.png"
+                        });
             }
 
             if (!string.IsNullOrWhiteSpace(talkModel.CodeUrl))
             {
                 this.SessionMaterialItems.Add(
-                    new MenuItem { Name = "Code from Session", Parameter = talkModel.CodeUrl, Icon = "icon_code.png" });
+                    new LocalizableMenuItem
+                        {
+                            ResourceName = "CodeFromSession",
+                            Parameter = talkModel.CodeUrl,
+                            Icon = "icon_code.png"
+                        });
             }
+
+            MessagingCenter.Subscribe<LocalizedResources>(
+                this,
+                MessageKeys.LanguageChanged,
+                sender => this.SessionMaterialItems.ForEach(x => x.Update()));
         }
 
 
@@ -85,7 +108,10 @@ namespace DotNetRu.Clients.Portable.ViewModel
             {
                 this.selectedSessionMaterialItem = value;
                 this.OnPropertyChanged();
-                if (this.selectedSessionMaterialItem == null) return;
+                if (this.selectedSessionMaterialItem == null)
+                {
+                    return;
+                }
 
                 this.LaunchBrowserCommand.Execute(this.selectedSessionMaterialItem.Parameter);
 
@@ -114,7 +140,10 @@ namespace DotNetRu.Clients.Portable.ViewModel
             {
                 this.selectedSpeakerModel = value;
                 this.OnPropertyChanged();
-                if (this.selectedSpeakerModel == null) return;
+                if (this.selectedSpeakerModel == null)
+                {
+                    return;
+                }
 
                 MessagingService.Current.SendMessage(MessageKeys.NavigateToSpeaker, this.selectedSpeakerModel);
 
@@ -158,7 +187,10 @@ namespace DotNetRu.Clients.Portable.ViewModel
             else
             {
                 var result = await ReminderService.RemoveReminderAsync(this.TalkModel.Id);
-                if (!result) return;
+                if (!result)
+                {
+                    return;
+                }
                 this.Logger.Track(EvolveLoggerKeys.ReminderRemoved, "Title", this.TalkModel.Title);
                 this.IsReminderSet = false;
             }
@@ -168,7 +200,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
                                         ?? (this.shareCommand = new Command(
                                                 async () => await this.ExecuteShareCommandAsync()));
 
-        public async Task ExecuteShareCommandAsync()
+        private async Task ExecuteShareCommandAsync()
         {
             this.Logger.Track(EvolveLoggerKeys.Share, "Title", this.TalkModel.Title);
             //var speakerHandles = this.TalkModel.SpeakerHandles;
@@ -194,10 +226,12 @@ namespace DotNetRu.Clients.Portable.ViewModel
                                               ?? (this.loadSessionCommand = new Command(
                                                       async () => await this.ExecuteLoadSessionCommandAsync()));
 
-        public async Task ExecuteLoadSessionCommandAsync()
+        private async Task ExecuteLoadSessionCommandAsync()
         {
-
-            if (this.IsBusy) return;
+            if (this.IsBusy)
+            {
+                return;
+            }
 
             try
             {
