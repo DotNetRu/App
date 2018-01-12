@@ -9,10 +9,6 @@
     using DotNetRu.Clients.Portable.Model;
     using DotNetRu.Clients.Portable.ViewModel;
     using DotNetRu.Clients.UI.Pages;
-    using DotNetRu.Clients.UI.Pages.Home;
-    using DotNetRu.Clients.UI.Pages.iOS;
-    using DotNetRu.Clients.UI.Pages.Obsolete;
-    using DotNetRu.Clients.UI.Pages.Sessions;
     using DotNetRu.Utils.Helpers;
     using DotNetRu.Utils.Interfaces;
 
@@ -36,8 +32,6 @@
         private static ILogger logger;
 
         private bool registered;
-
-        private bool firstRun = true;
 
         public App()
         {
@@ -65,6 +59,43 @@
         public void SecondOnResume()
         {
             this.OnResume();
+        }
+
+        public new void SendOnAppLinkRequestReceived(Uri uri)
+        {
+            this.OnAppLinkRequestReceived(uri);
+        }
+
+        public async Task Finish()
+        {
+            if (Device.RuntimePlatform == Device.iOS && Settings.Current.FirstRun)
+            {
+#if ENABLE_TEST_CLOUD
+                MessagingService.Current.SendMessage<MessagingServiceQuestion>(MessageKeys.Question, new MessagingServiceQuestion
+                    {
+                        Title = "Push Notifications",
+                        Positive = "Let's do it!",
+                        Negative = "Maybe Later",
+						Question =
+$"We can send you updates through {EventInfo.EventName} via push notifications. Would you like to enable them now?",
+                        OnCompleted = async (success) =>
+                            {
+                                if(success)
+                                {
+                                    var push = DependencyService.Get<IPushNotifications>();
+                                    if(push != null)
+                                        await push.RegisterForNotifications();
+                                }
+                            }
+                    });
+#else
+                var push = DependencyService.Get<IPushNotifications>();
+                if (push != null)
+                {
+                    await push.RegisterForNotifications();
+                }
+#endif
+            }
         }
 
         protected override void OnStart()
@@ -128,86 +159,6 @@
                         var result = await task;
                         q.OnCompleted?.Invoke(result);
                     });
-
-            try
-            {
-                if (this.firstRun || Device.RuntimePlatform != Device.iOS)
-                {
-                    return;
-                }
-
-                var mainNav = this.MainPage as NavigationPage;
-
-                var rootPage = mainNav?.CurrentPage as RootPageiOS;
-
-                var rootNav = rootPage?.CurrentPage as NavigationPage;
-                if (rootNav == null)
-                {
-                    return;
-                }
-
-                if (rootNav.CurrentPage is AboutPage about)
-                {
-                    about.OnResume();
-                    return;
-                }
-
-                if (rootNav.CurrentPage is MeetupPage sessions)
-                {
-                    sessions.OnResume();
-                    return;
-                }
-
-                if (rootNav.CurrentPage is NewsPage feed)
-                {
-                    feed.OnResume();
-                }
-            }
-            catch
-            {
-                // ignored
-            }
-            finally
-            {
-                this.firstRun = false;
-            }
-        }
-
-        async Task Finish()
-        {
-            if (Device.RuntimePlatform == Device.iOS && Settings.Current.FirstRun)
-            {
-#if ENABLE_TEST_CLOUD
-                MessagingService.Current.SendMessage<MessagingServiceQuestion>(MessageKeys.Question, new MessagingServiceQuestion
-                    {
-                        Title = "Push Notifications",
-                        Positive = "Let's do it!",
-                        Negative = "Maybe Later",
-						Question =
-$"We can send you updates through {EventInfo.EventName} via push notifications. Would you like to enable them now?",
-                        OnCompleted = async (success) =>
-                            {
-                                if(success)
-                                {
-                                    var push = DependencyService.Get<IPushNotifications>();
-                                    if(push != null)
-                                        await push.RegisterForNotifications();
-                                }
-                            }
-                    });
-#else
-                var push = DependencyService.Get<IPushNotifications>();
-                if (push != null)
-                {
-                    await push.RegisterForNotifications();
-                }
-#endif
-            }
-        }
-
-        public new void SendOnAppLinkRequestReceived(Uri uri)
-        {
-            this.OnAppLinkRequestReceived(uri);
         }
 
         protected override void OnAppLinkRequestReceived(Uri uri)
@@ -270,4 +221,3 @@ $"We can send you updates through {EventInfo.EventName} via push notifications. 
         }
     }
 }
-
