@@ -66,10 +66,11 @@
               <StackLayout Spacing="0">
                 <controls:LabelSection Text="{Binding Resources[Venue]}"/>
                 <controls:HeaderDivider/>
-                  <StackLayout Padding="{StaticResource StandardPadding}" BackgroundColor="White">
-                      <Label Text="{Binding VenueModel.Name}" Style="{DynamicResource EvolveListItemTextStyle}" StyleId="SessionAbstract"/>
-                      <Label Text="{Binding VenueModel.Address}" Style="{DynamicResource EvolveListItemTextStyle}" StyleId="SessionAbstract"/>
-                  </StackLayout>
+                <StackLayout Padding="{StaticResource StandardPadding}" BackgroundColor="White">
+                  <Label Text="{Binding MeetupTime}"  Style="{DynamicResource EvolveListItemTextStyle}" StyleId="SessionAbstract"/>
+                  <Label Text="{Binding VenueModel.Name}" Style="{DynamicResource EvolveListItemTextStyle}" StyleId="SessionAbstract"/>
+                  <Label Text="{Binding VenueModel.Address}" Style="{DynamicResource EvolveListItemTextStyle}" StyleId="SessionAbstract"/>
+                </StackLayout>
                 <controls:FooterDivider/>
               </StackLayout>
             </controls:CardView>            

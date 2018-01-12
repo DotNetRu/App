@@ -1,15 +1,20 @@
-﻿using System;
-using System.Linq;
-using System.Windows.Input;
-using DotNetRu.DataStore.Audit.Models;
-using DotNetRu.DataStore.Audit.Services;
-using DotNetRu.Utils.Helpers;
-using FormsToolkit;
-using MvvmHelpers;
-using Xamarin.Forms;
-
-namespace DotNetRu.Clients.Portable.ViewModel
+﻿namespace DotNetRu.Clients.Portable.ViewModel
 {
+    using System;
+    using System.Linq;
+    using System.Windows.Input;
+
+    using DotNetRu.Clients.Portable.Helpers;
+    using DotNetRu.DataStore.Audit.Models;
+    using DotNetRu.DataStore.Audit.Services;
+    using DotNetRu.Utils.Helpers;
+
+    using FormsToolkit;
+
+    using MvvmHelpers;
+
+    using Xamarin.Forms;
+
     public class MeetupViewModel : ViewModelBase
     {
         private bool noSessionsFound;
@@ -23,7 +28,12 @@ namespace DotNetRu.Clients.Portable.ViewModel
         {
             this.MeetupModel = meetupModel;
             this.VenueModel = venueModel;
-            
+
+            MessagingCenter.Subscribe<LocalizedResources>(
+                this,
+                MessageKeys.LanguageChanged,
+                sender => this.OnPropertyChanged(nameof(this.MeetupTime)));
+
             this.TapVenueCommand = new Command(this.OnVenueTapped);
         }
 
@@ -32,6 +42,8 @@ namespace DotNetRu.Clients.Portable.ViewModel
         public MeetupModel MeetupModel { get; set; }
 
         public VenueModel VenueModel { get; set; }
+
+        public string MeetupTime => this.MeetupModel.StartTime.Value.ToString("D");
 
         public TalkModel SelectedTalkModel
         {
@@ -84,14 +96,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
                 var sessions = TalkService.GetTalks(this.MeetupModel.TalkIDs).ToArray();
                 this.Talks.ReplaceRange(sessions);
 
-                if (!sessions.Any())
-                {
-                    this.NoSessionsFound = true;
-                }
-                else
-                {
-                    this.NoSessionsFound = false;
-                }
+                this.NoSessionsFound = !sessions.Any();
 
                 if (Device.RuntimePlatform != Device.UWP && FeatureFlags.AppLinksEnabled)
                 {

@@ -1,14 +1,18 @@
-﻿using DotNetRu.Clients.Portable.ApplicationResources;
-using DotNetRu.Clients.Portable.Interfaces;
-using DotNetRu.Clients.Portable.Model;
-using DotNetRu.Clients.Portable.ViewModel;
-using DotNetRu.Clients.UI.Helpers;
-using DotNetRu.Clients.UI.Pages.Sessions;
-using DotNetRu.DataStore.Audit.Models;
-using Xamarin.Forms;
-
-namespace DotNetRu.Clients.UI.Pages.Speakers
+﻿namespace DotNetRu.Clients.UI.Pages.Speakers
 {
+    using System;
+    using System.Collections.Generic;
+
+    using DotNetRu.Clients.Portable.ApplicationResources;
+    using DotNetRu.Clients.Portable.Interfaces;
+    using DotNetRu.Clients.Portable.Model;
+    using DotNetRu.Clients.Portable.ViewModel;
+    using DotNetRu.Clients.UI.Helpers;
+    using DotNetRu.Clients.UI.Pages.Sessions;
+    using DotNetRu.DataStore.Audit.Models;
+
+    using Xamarin.Forms;
+
     public partial class SpeakerDetailsPage
     {
         public override AppPage PageType => AppPage.Speaker;
@@ -84,7 +88,6 @@ namespace DotNetRu.Clients.UI.Pages.Speakers
             var adjust = Device.RuntimePlatform != Device.Android ? 1 : -this.SpeakerDetailsViewModel.FollowItems.Count + 2;
             this.ListViewFollow.HeightRequest =
                 (this.SpeakerDetailsViewModel.FollowItems.Count * this.ListViewFollow.RowHeight) - adjust;
-            this.ListViewSessions.HeightRequest = 0;
         }
 
         protected override async void OnAppearing()
@@ -103,9 +106,8 @@ namespace DotNetRu.Clients.UI.Pages.Speakers
             }
 
             this.SpeakerDetailsViewModel.ExecuteLoadTalksCommand();
-            var adjust = Device.RuntimePlatform != Device.Android ? 1 : -this.SpeakerDetailsViewModel.Talks.Count + 2;
-            this.ListViewSessions.HeightRequest =
-                (this.SpeakerDetailsViewModel.Talks.Count * this.ListViewSessions.RowHeight) - adjust;
+
+            this.ListViewSessions.HeightRequest = 0;
 
             if (this._extension != null)
             {
@@ -133,6 +135,23 @@ namespace DotNetRu.Clients.UI.Pages.Speakers
             if (this._extension != null)
             {
                 await this._extension.Finish();
+            }
+        }
+
+        private readonly HashSet<ViewCell> viewCells = new HashSet<ViewCell>();
+
+        private void Cell_OnAppearing(object sender, EventArgs e)
+        {
+            if (sender is ViewCell viewCell)
+            {
+                if (!this.viewCells.Contains(viewCell))
+                {
+                    var sizeRequest = viewCell.View.Measure(this.ListViewSessions.Width, double.MaxValue, MeasureFlags.IncludeMargins);
+
+                    this.ListViewSessions.HeightRequest += sizeRequest.Request.Height;
+
+                    this.viewCells.Add(viewCell);
+                }
             }
         }
     }
