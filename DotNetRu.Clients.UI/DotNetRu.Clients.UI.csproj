@@ -101,7 +101,6 @@
     <Compile Include="Cells\CategoryCellView.xaml.cs">
       <DependentUpon>CategoryCellView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\iOS\RootPageiOS.cs" />
     <Compile Include="Pages\Speakers\SpeakerDetailsPage.xaml.cs">
       <DependentUpon>SpeakerDetailsPage.xaml</DependentUpon>
     </Compile>

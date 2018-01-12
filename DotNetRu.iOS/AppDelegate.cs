@@ -1,24 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using CoreSpotlight;
-using DotNetRu.Clients.Portable.Model;
-using DotNetRu.iOS.Renderers;
-using DotNetRu.Utils.Helpers;
-using DotNetRu.Utils.Interfaces;
-using FormsToolkit;
-using FormsToolkit.iOS;
-using Foundation;
-using Google.AppIndexing;
-using ImageCircle.Forms.Plugin.iOS;
-using Plugin.Share;
-using Refractored.XamForms.PullToRefresh.iOS;
-using Social;
-using UIKit;
-using Xamarin.Forms;
-using Xamarin.Forms.Platform.iOS;
-
-namespace DotNetRu.iOS
+﻿namespace DotNetRu.iOS
 {
+    using System;
+    using System.Collections.Generic;
+
+    using CoreSpotlight;
+
+    using DotNetRu.Clients.Portable.Model;
+    using DotNetRu.iOS.Renderers;
+    using DotNetRu.Utils.Helpers;
+    using DotNetRu.Utils.Interfaces;
+
+    using FormsToolkit;
+    using FormsToolkit.iOS;
+
+    using Foundation;
+
+    using Google.AppIndexing;
+
+    using ImageCircle.Forms.Plugin.iOS;
+
+    using Plugin.Share;
+
+    using Refractored.XamForms.PullToRefresh.iOS;
+
+    using Social;
+
+    using UIKit;
+
+    using Xamarin.Forms;
+    using Xamarin.Forms.Platform.iOS;
+
     [Register("AppDelegate")]
     public class AppDelegate : FormsApplicationDelegate
     {
@@ -222,13 +233,13 @@ namespace DotNetRu.iOS
                     try
                     {
 
-                        var avAlert = new UIAlertView($"{AboutThisApp.AppName} Update", alert, null, "OK", null);
-                        avAlert.Show();
+                        var uiAlertView = new UIAlertView($"{AboutThisApp.AppName} Update", alert, null, "OK", null);
+                        uiAlertView.Show();
 
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
-
+                        // ignored
                     }
 
                     Console.WriteLine("Notification: " + alert);
