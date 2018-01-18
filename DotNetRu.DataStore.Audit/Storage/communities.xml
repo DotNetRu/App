@@ -1,6 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Communities>
   <Community>
+    <Id>KryDotNet</Id>
+    <Name>KryDotNet</Name>
+  </Community>
+  <Community>
     <Id>MskDotNet</Id>
     <Name>MskDotNet</Name>
   </Community>
