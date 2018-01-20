@@ -1,9 +1,5 @@
-﻿using DotNetRu.Droid.Backgrounding;
-using DotNetRu.Utils.Helpers;
-
-namespace DotNetRu.Droid
+﻿namespace DotNetRu.Droid
 {
-    // using Gcm;
     using System.Reflection;
 
     using Android.App;
@@ -11,7 +7,11 @@ namespace DotNetRu.Droid
     using Android.Content.PM;
     using Android.OS;
 
+    using DotNetRu.Droid.Backgrounding;
     using DotNetRu.Droid.Helpers;
+    using DotNetRu.Utils.Helpers;
+
+    using FFImageLoading.Forms.Droid;
 
     using FormsToolkit.Droid;
 
@@ -114,6 +114,8 @@ namespace DotNetRu.Droid
                 ?.SetValue(null, Color.FromHex("#757575"));
 
             ImageCircleRenderer.Init();
+
+            CachedImageRenderer.Init(enableFastRenderer: true);
 
 #if ENABLE_TEST_CLOUD // Mapping StyleID to element content descriptions
             Xamarin.Forms.Forms.ViewInitialized += (object sender, Xamarin.Forms.ViewInitializedEventArgs e) => {

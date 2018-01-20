@@ -3,7 +3,6 @@
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:pull="clr-namespace:Refractored.XamForms.PullToRefresh;assembly=Refractored.XamForms.PullToRefresh"
-    xmlns:converters="clr-namespace:DotNetRu.Clients.UI.Converters;assembly=DotNetRu.Clients.UI"
     xmlns:pages="clr-namespace:DotNetRu.Clients.UI.Pages;assembly=DotNetRu.Clients.UI"
     xmlns:controls="clr-namespace:DotNetRu.Clients.UI.Controls;assembly=DotNetRu.Clients.UI"
     xmlns:cells="clr-namespace:DotNetRu.Clients.UI.Cells;assembly=DotNetRu.Clients.UI"
@@ -14,7 +13,6 @@
     BackgroundColor="{DynamicResource WindowBackgroundTable}">
     <ContentPage.Resources>
      <ResourceDictionary>
-         <converters:HumanizeDateConverter x:Key="HumanizeDateConverter" />
      </ResourceDictionary>  
     </ContentPage.Resources>
     <pull:PullToRefreshLayout
@@ -67,6 +65,9 @@
                   <ColumnDefinition Width="*"/>
                   <ColumnDefinition Width="34"/>
                 </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
                 <controls:LabelSection Text="{Binding Resources[Social]}"/>
                 <Grid.GestureRecognizers>
                   <TapGestureRecognizer Command="{Binding ShareCommand}"/>
@@ -100,16 +101,14 @@
               <controls:NonScrollableListView
                   x:Name="ListViewSocial"
                   SelectedItem="{Binding SelectedTweet, Mode=TwoWay}"
-                  ItemsSource="{Binding Tweets}">
+                  ItemsSource="{Binding Tweets}"
+                  HasUnevenRows="True">
                 <controls:NonScrollableListView.SeparatorColor>
-                  <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ListSeparator}" WinPhone="{StaticResource ListSeparator}"/>
+                  <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ListSeparator}"/>
                 </controls:NonScrollableListView.SeparatorColor>
-                <controls:NonScrollableListView.RowHeight>
-                  <OnPlatform x:TypeArguments="x:Int32" Android="145" iOS="140" WinPhone="155"/>
-                </controls:NonScrollableListView.RowHeight>
                 <controls:NonScrollableListView.ItemTemplate>
                   <DataTemplate>
-                    <ViewCell >
+                    <ViewCell>
                       <cells:TweetCell/>
                     </ViewCell>
                   </DataTemplate>
