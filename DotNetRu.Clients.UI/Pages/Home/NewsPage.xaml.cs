@@ -1,21 +1,21 @@
-﻿using System;
-using DotNetRu.Clients.Portable.Model;
-using DotNetRu.Clients.Portable.ViewModel;
-using DotNetRu.Clients.UI.Controls;
-using DotNetRu.Clients.UI.Helpers;
-using DotNetRu.Utils.Helpers;
-using FormsToolkit;
-using Xamarin.Forms;
-
-namespace DotNetRu.Clients.UI.Pages.Home
+﻿namespace DotNetRu.Clients.UI.Pages.Home
 {
+    using System;
+
+    using DotNetRu.Clients.Portable.Model;
+    using DotNetRu.Clients.Portable.ViewModel;
+    using DotNetRu.Clients.UI.Controls;
+    using DotNetRu.Clients.UI.Helpers;
+    using DotNetRu.Utils.Helpers;
+
+    using FormsToolkit;
+
+    using Xamarin.Forms;
+
     public partial class NewsPage
     {
-        public override AppPage PageType => AppPage.Feed;
-
-        public NewsViewModel NewsViewModel => this.newsViewModel ?? (this.newsViewModel = this.BindingContext as NewsViewModel);
-
         private NewsViewModel newsViewModel;
+        private bool firstLoad = true;
 
         public NewsPage()
         {
@@ -32,13 +32,11 @@ namespace DotNetRu.Clients.UI.Pages.Home
                             Command = this.NewsViewModel.RefreshCommand
                         });
             }
-
-            this.NewsViewModel.Tweets.CollectionChanged += (sender, e) =>
-                {
-                    var adjust = Device.RuntimePlatform != Device.Android ? 1 : -this.NewsViewModel.Tweets.Count + 2;
-                    this.ListViewSocial.HeightRequest = (this.NewsViewModel.Tweets.Count * this.ListViewSocial.RowHeight) - adjust;
-                };
         }
+
+        public override AppPage PageType => AppPage.Feed;
+
+        public NewsViewModel NewsViewModel => this.newsViewModel ?? (this.newsViewModel = this.BindingContext as NewsViewModel);
 
         protected override void OnAppearing()
         {
@@ -71,8 +69,6 @@ namespace DotNetRu.Clients.UI.Pages.Home
             MessagingService.Current.Unsubscribe<string>(MessageKeys.NavigateToImage);
         }
 
-        bool firstLoad = true;
-
         private void UpdatePage()
         {
             bool forceRefresh = DateTime.UtcNow > (this.NewsViewModel?.NextForceRefresh ?? DateTime.UtcNow);
@@ -81,28 +77,21 @@ namespace DotNetRu.Clients.UI.Pages.Home
 
             if (forceRefresh)
             {
-                this.NewsViewModel.RefreshCommand.Execute(null);
+                this.NewsViewModel?.RefreshCommand.Execute(null);
             }
             else
             {
-
-                if (this.NewsViewModel.Tweets.Count == 0)
+                if (this.NewsViewModel?.Tweets.Count == 0)
                 {
                     this.NewsViewModel.LoadSocialCommand.Execute(null);
                 }
 
-                if (this.firstLoad && this.NewsViewModel.Sessions.Count == 0)
+                if (this.firstLoad && this.NewsViewModel?.Sessions.Count == 0)
                 {
                     this.firstLoad = false;
                     this.NewsViewModel.LoadSessionsCommand.Execute(null);
                 }
             }
         }
-
-        public void OnResume()
-        {
-            this.UpdatePage();
-        }
     }
 }
-

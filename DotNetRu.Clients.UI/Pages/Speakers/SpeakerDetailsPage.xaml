@@ -84,11 +84,9 @@
                                 <controls:HeaderDivider/>
                                 <controls:NonScrollableListView
                                     ItemsSource="{Binding FollowItems}"
-                                    VerticalOptions="Start"
                                     x:Name="ListViewFollow"
                                     HasUnevenRows="True"
-                                    SelectedItem="{Binding SelectedFollowItem, Mode=TwoWay}"
-                                    RowHeight="44">
+                                    SelectedItem="{Binding SelectedFollowItem, Mode=TwoWay}">
                                     <controls:NonScrollableListView.SeparatorColor>
                                         <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ListSeparator}"/>
                                     </controls:NonScrollableListView.SeparatorColor>
@@ -103,7 +101,7 @@
                                               <ColumnDefinition Width="Auto"/>
                                               <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
-                                            <Image VerticalOptions="Center" Source="{Binding Icon}"/>
+                                            <Image VerticalOptions="Center" Source="{Binding Icon}" HeightRequest="30"/>
                                             <Label Grid.Column="1" VerticalOptions="Center" Style="{DynamicResource EvolveListItemTextStyle}" Text="{Binding Name}"/>
                                           </Grid>
                                         </ViewCell>
@@ -142,7 +140,7 @@
                                     </controls:NonScrollableListView.SeparatorColor>
                                     <controls:NonScrollableListView.ItemTemplate>
                                         <DataTemplate>
-                                            <ViewCell Appearing="Cell_OnAppearing">
+                                            <ViewCell>
                                               <Grid Padding="{DynamicResource StandardPadding}"
                                                     ColumnSpacing="{StaticResource StandardSpacing}">
                                                 <Grid.RowDefinitions>

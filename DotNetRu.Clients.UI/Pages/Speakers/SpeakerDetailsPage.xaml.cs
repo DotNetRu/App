@@ -1,8 +1,5 @@
 ﻿namespace DotNetRu.Clients.UI.Pages.Speakers
 {
-    using System;
-    using System.Collections.Generic;
-
     using DotNetRu.Clients.Portable.ApplicationResources;
     using DotNetRu.Clients.Portable.Interfaces;
     using DotNetRu.Clients.Portable.Model;
@@ -15,9 +12,10 @@
 
     public partial class SpeakerDetailsPage
     {
+        private readonly IPlatformSpecificExtension<SpeakerModel> _extension;
+
         public override AppPage PageType => AppPage.Speaker;
 
-        private readonly IPlatformSpecificExtension<SpeakerModel> _extension;
 
         public SpeakerDetailsViewModel SpeakerDetailsViewModel => this.speakerDetailsViewModel
                                              ?? (this.speakerDetailsViewModel =
@@ -67,7 +65,7 @@
             }
         }
 
-        void MainScroll_Scrolled(object sender, ScrolledEventArgs e)
+        private void MainScroll_Scrolled(object sender, ScrolledEventArgs e)
         {
             this.Title = e.ScrollY > (this.MainStack.Height - this.SpeakerTitle.Height) ? this.SpeakerModel.FirstName : AppResources.SpeakerInfo;
         }
@@ -84,10 +82,6 @@
         {
             base.OnBindingContextChanged();
             this.speakerDetailsViewModel = null;
-
-            var adjust = Device.RuntimePlatform != Device.Android ? 1 : -this.SpeakerDetailsViewModel.FollowItems.Count + 2;
-            this.ListViewFollow.HeightRequest =
-                (this.SpeakerDetailsViewModel.FollowItems.Count * this.ListViewFollow.RowHeight) - adjust;
         }
 
         protected override async void OnAppearing()
@@ -106,8 +100,6 @@
             }
 
             this.SpeakerDetailsViewModel.ExecuteLoadTalksCommand();
-
-            this.ListViewSessions.HeightRequest = 0;
 
             if (this._extension != null)
             {
@@ -135,23 +127,6 @@
             if (this._extension != null)
             {
                 await this._extension.Finish();
-            }
-        }
-
-        private readonly HashSet<ViewCell> viewCells = new HashSet<ViewCell>();
-
-        private void Cell_OnAppearing(object sender, EventArgs e)
-        {
-            if (sender is ViewCell viewCell)
-            {
-                if (!this.viewCells.Contains(viewCell))
-                {
-                    var sizeRequest = viewCell.View.Measure(this.ListViewSessions.Width, double.MaxValue, MeasureFlags.IncludeMargins);
-
-                    this.ListViewSessions.HeightRequest += sizeRequest.Request.Height;
-
-                    this.viewCells.Add(viewCell);
-                }
             }
         }
     }

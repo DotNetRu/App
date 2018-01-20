@@ -1,11 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DotNetRu.Clients.Portable.Model;
-using LinqToTwitter;
-
-namespace DotNetRu.Clients.Portable
+﻿namespace DotNetRu.Clients.Portable
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+
+    using DotNetRu.Clients.Portable.Model;
+
+    using LinqToTwitter;
+
     public class TweetHelper
     {
         public static async Task<List<Tweet>> Get()

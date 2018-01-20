@@ -1,15 +1,19 @@
-﻿using System;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using DotNetRu.Clients.Portable.Model;
-using DotNetRu.DataStore.Audit.Models;
-using DotNetRu.Utils.Helpers;
-using FormsToolkit;
-using MvvmHelpers;
-using Xamarin.Forms;
-
-namespace DotNetRu.Clients.Portable.ViewModel
+﻿namespace DotNetRu.Clients.Portable.ViewModel
 {
+    using System;
+    using System.Threading.Tasks;
+    using System.Windows.Input;
+
+    using DotNetRu.Clients.Portable.Model;
+    using DotNetRu.DataStore.Audit.Models;
+    using DotNetRu.Utils.Helpers;
+
+    using FormsToolkit;
+
+    using MvvmHelpers;
+
+    using Xamarin.Forms;
+
     /// <inheritdoc />
     /// <summary>
     /// The feed view model.
@@ -197,37 +201,40 @@ namespace DotNetRu.Clients.Portable.ViewModel
 
         public string SocialHeader => "Social";
 
-        ICommand buyTicketNowCommand;
+        private ICommand buyTicketNowCommand;
 
         public ICommand BuyTicketNowCommand => this.buyTicketNowCommand
                                                ?? (this.buyTicketNowCommand =
                                                        new Command(this.ExecuteBuyTicketNowCommand));
 
-        void ExecuteBuyTicketNowCommand()
+        private void ExecuteBuyTicketNowCommand()
         {
             this.LaunchBrowserCommand.Execute(EventInfo.TicketUrl);
         }
 
-        ICommand showConferenceFeedbackCommand;
+        private ICommand showConferenceFeedbackCommand;
 
         public ICommand ShowConferenceFeedbackCommand => this.showConferenceFeedbackCommand
                                                          ?? (this.showConferenceFeedbackCommand = new Command(
                                                                  this.ExecuteShowConferenceFeedbackCommand));
 
-        void ExecuteShowConferenceFeedbackCommand()
+        private void ExecuteShowConferenceFeedbackCommand()
         {
             MessagingService.Current.SendMessage(MessageKeys.NavigateToConferenceFeedback);
         }
 
-        ICommand loadSocialCommand;
+        private ICommand loadSocialCommand;
 
         public ICommand LoadSocialCommand => this.loadSocialCommand
                                              ?? (this.loadSocialCommand = new Command(
                                                      async () => await this.ExecuteLoadSocialCommandAsync()));
 
-        async Task ExecuteLoadSocialCommandAsync()
+        private async Task ExecuteLoadSocialCommandAsync()
         {
-            if (this.LoadingSocial) return;
+            if (this.LoadingSocial)
+            {
+                return;
+            }
 
             this.LoadingSocial = true;
             try
@@ -248,7 +255,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
             }
         }
 
-        bool socialError;
+        private bool socialError;
 
         public bool SocialError
         {
@@ -256,7 +263,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
             set => this.SetProperty(ref this.socialError, value);
         }
 
-        Tweet selectedTweet;
+        private Tweet selectedTweet;
 
         public Tweet SelectedTweet
         {
@@ -265,7 +272,10 @@ namespace DotNetRu.Clients.Portable.ViewModel
             {
                 this.selectedTweet = value;
                 this.OnPropertyChanged();
-                if (this.selectedTweet == null) return;
+                if (this.selectedTweet == null)
+                {
+                    return;
+                }
 
                 this.LaunchBrowserCommand.Execute(this.selectedTweet.Url);
 
