@@ -20,6 +20,7 @@ namespace DotNetRu.Utils.Helpers
 
         public static string GetLanguageCode(this Enum enumValue)
         {
+            // creturn "ru"; // for LivePlayer
             return enumValue.GetAttribute<LanguageCodeAttribute>().LanguageCode;
         }
 
