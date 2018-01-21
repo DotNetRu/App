@@ -1,47 +1,46 @@
-﻿using System;
-using System.Windows.Input;
-using DotNetRu.Utils.Helpers;
-using FormsToolkit;
-using Humanizer;
-using Newtonsoft.Json;
-using Xamarin.Forms;
-
-namespace DotNetRu.Clients.Portable.Model
+﻿namespace DotNetRu.Clients.Portable.Model
 {
+    using System;
+    using System.Windows.Input;
+
+    using DotNetRu.Utils.Helpers;
+
+    using FormsToolkit;
+
+    using Humanizer;
+
+    using Newtonsoft.Json;
+
+    using Xamarin.Forms;
+
     public class Tweet
     {
-        private string _tweetedImage;
+        private string tweetedImage;
 
-        private string _fullImage;
+        private string fullImage;
 
         [JsonIgnore]
-        public bool HasImage => !string.IsNullOrWhiteSpace(this._tweetedImage);
+        public bool HasImage => !string.IsNullOrWhiteSpace(this.tweetedImage);
 
         [JsonProperty("tweetedImage")]
         public string TweetedImage
         {
-            get => this._tweetedImage;
+            get => this.tweetedImage;
             set
             {
-                this._tweetedImage = value;
-                this._fullImage = value;
-                if (!string.IsNullOrWhiteSpace(this._tweetedImage))
+                this.tweetedImage = value;
+                this.fullImage = value;
+                if (!string.IsNullOrWhiteSpace(this.tweetedImage))
                 {
-                    this._tweetedImage += ":thumb";
+                    this.tweetedImage += ":thumb";
                 }
             }
         }
 
-        ICommand _fullImageCommand;
+        private ICommand fullImageCommand;
 
-        public ICommand FullImageCommand => this._fullImageCommand
-                                            ?? (this._fullImageCommand = new Command(this.ExecuteFullImageCommand));
-
-        void ExecuteFullImageCommand()
-        {
-            if (string.IsNullOrWhiteSpace(this._fullImage)) return;
-            MessagingService.Current.SendMessage(MessageKeys.NavigateToImage, this._fullImage);
-        }
+        public ICommand FullImageCommand => this.fullImageCommand
+                                            ?? (this.fullImageCommand = new Command(this.ExecuteFullImageCommand));
 
         [JsonProperty("text")]
         public string Text { get; set; }
@@ -91,6 +90,17 @@ namespace DotNetRu.Clients.Portable.Model
 
                 return null;
             }
+        }
+
+        public bool HasAttachedImage => !string.IsNullOrWhiteSpace(this.TweetedImage);
+
+        private void ExecuteFullImageCommand()
+        {
+            if (string.IsNullOrWhiteSpace(this.fullImage))
+            {
+                return;
+            }
+            MessagingService.Current.SendMessage(MessageKeys.NavigateToImage, this.fullImage);
         }
     }
 }
