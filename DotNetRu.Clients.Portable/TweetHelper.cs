@@ -1,10 +1,13 @@
 ﻿namespace DotNetRu.Clients.Portable
 {
+    using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Linq;
     using System.Threading.Tasks;
 
     using DotNetRu.Clients.Portable.Model;
+    using DotNetRu.Utils;
 
     using LinqToTwitter;
 
@@ -20,22 +23,23 @@
                                        new InMemoryCredentialStore
                                            {
                                                ConsumerKey =
-                                                   "t6tGj3XmaOzDQUnCIgih8gF4F",
+                                                   "ho0v2B1bimeufLqI1rA8KuLBp",
                                                ConsumerSecret =
-                                                   "EXKnUBVtGvNGQyRDtfAgEnPp2ajfT7NSBQgSai8VRIHO936BDT"
-                                           },
+                                                   "RAzIHxhkzINUxilhdr98TWTtjgFKXYzkEhaGx8WJiBPh96TXNK"
+                                       },
                                };
+                // await auth.InvalidateAsync();
                 await auth.AuthorizeAsync();
 
                 var twitterContext = new TwitterContext(auth);
 
                 var spbDotNetTweets =
-                    await (from tweet in twitterContext.Status
-                           where tweet.Type == StatusType.User && tweet.ScreenName == "spbdotnet" && tweet.IncludeMyRetweet
+                    await(from tweet in twitterContext.Status
+                           where tweet.Type == StatusType.User && tweet.ScreenName == "spbdotnet"
                            select tweet).ToListAsync();
 
                 var dotnetruTweets =
-                    await (from tweet in twitterContext.Status
+                    await(from tweet in twitterContext.Status
                            where tweet.Type == StatusType.User && tweet.ScreenName == "DotNetRu"
                            select tweet).ToListAsync();
 
@@ -61,13 +65,13 @@
                                                      "http://",
                                                      "https://")
                                                  : tweetUser.ProfileImageUrl.Replace("http://", "https://")
-                                }).OrderByDescending(x => x.CreatedDate).Take(15).ToList();
+                                }).OrderByDescending(x => x.CreatedDate).Take(10).ToList();
 
                 return tweets;
             }
-            catch
+            catch (Exception e)
             {
-                // TODO
+                new DotNetRuLogger().Report(e);
             }
 
             return new List<Tweet>();

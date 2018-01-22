@@ -1,7 +1,7 @@
-﻿using System.Globalization;
-
-namespace DotNetRu.Clients.Portable.Interfaces
+﻿namespace DotNetRu.Clients.Portable.Interfaces
 {
+    using System.Globalization;
+
     public interface ILocalize
     {
         CultureInfo GetCurrentCultureInfo();

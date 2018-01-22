@@ -48,6 +48,7 @@
     <Compile Include="Controls\RatingControl.xaml.cs">
       <DependentUpon>RatingControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\RepeaterView.cs" />
     <Compile Include="Controls\StackLayoutList.cs" />
     <Compile Include="Converters\DateConverters.cs" />
     <Compile Include="Converters\ImageConverters.cs" />
@@ -169,7 +170,6 @@
     <Compile Include="Controls\Rating3Control.xaml.cs">
       <DependentUpon>Rating3Control.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TranslateExtension.cs" />
     <Compile Include="ViewModelLocator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
