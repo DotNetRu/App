@@ -15,7 +15,7 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <forms:CachedImage Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Margin="10,0,10,0" VerticalOptions="Start" HorizontalOptions="Center" DownsampleToViewSize="true"
+            <forms:CachedImage Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Margin="10,0,10,0" VerticalOptions="Center" HorizontalOptions="Center" DownsampleToViewSize="true"
                                     Aspect="AspectFit" HeightRequest="70" WidthRequest="70" Source="{Binding Image}">
                 <forms:CachedImage.Transformations>
                     <transformations:CircleTransformation/>
@@ -23,10 +23,10 @@
             </forms:CachedImage>
 
             <StackLayout Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
-                <Label FontSize="14" TextColor="#000000" Margin="0,0,0,0" Style="{StaticResource BoldLabel}" Text="{Binding ScreenName}" />
-                <Label FontSize="14" TextColor="#6d747a" Margin="0,0,0,0" Text="{Binding ScreenName}" LineBreakMode="TailTruncation" />
+                <Label FontSize="Small" TextColor="#000000" Margin="0,0,0,0" Style="{StaticResource BoldLabel}" Text="{Binding ScreenName}" />
+                <Label FontSize="Small" TextColor="#6d747a" Margin="0,0,0,0" Text="{Binding ScreenName}" LineBreakMode="TailTruncation" />
                 <Label FontSize="8" TextColor="#6d747a" Margin="0,0,0,0" Text="•" VerticalTextAlignment="Center" />
-                <Label FontSize="14" TextColor="#6d747a" Margin="0,0,0,0" Text="{Binding DateDisplay}" />
+                <Label FontSize="Small" TextColor="#6d747a" Margin="0,0,0,0" Text="{Binding DateDisplay}" />
                 <!--<Label Style="{StaticResource FALabel}" Margin="0,0,0,0" TextColor="#6d747a" Text="&#xf107;" />-->
             </StackLayout>
             <Grid Grid.Row="1" Grid.Column="1" Margin="0,5,0,0">
@@ -34,13 +34,13 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Label Grid.Row="0" TextColor="#000000" FontSize="15" Text="{Binding Text}" />
+                <Label Grid.Row="0" TextColor="#000000" Text="{Binding Text}" />
 
-                <forms:CachedImage IsVisible="{Binding HasAttachedImage}" Grid.Row="1" HeightRequest="160" HorizontalOptions="StartAndExpand" Margin="0,10,0,10" Source="{Binding TweetedImageUri}">
+                <!--<forms:CachedImage IsVisible="{Binding HasAttachedImage}" Grid.Row="1" HorizontalOptions="Center" Margin="0,10,0,10" Source="{Binding TweetedImageUri}">
                     <forms:CachedImage.Transformations>
                         <transformations:CornersTransformation BottomLeftCornerSize="5" TopLeftCornerSize="5" BottomRightCornerSize="5" TopRightCornerSize="5" CornersTransformType="AllRounded" />
                     </forms:CachedImage.Transformations>
-                </forms:CachedImage>
+                </forms:CachedImage>-->
             </Grid>
             <!--<StackLayout Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
                 <Image Margin="0,10,50,0" HeightRequest="20" WidthRequest="20" Source="icon_comment.png" />

@@ -69,7 +69,7 @@
             MessagingService.Current.Unsubscribe<string>(MessageKeys.NavigateToImage);
         }
 
-        private void UpdatePage()
+        private async void UpdatePage()
         {
             bool forceRefresh = DateTime.UtcNow > (this.NewsViewModel?.NextForceRefresh ?? DateTime.UtcNow);
 
@@ -83,14 +83,15 @@
             {
                 if (this.NewsViewModel?.Tweets.Count == 0)
                 {
+                    // this.ListViewSocial.ItemsSource = await TweetHelper.Get().ConfigureAwait(false);
                     this.NewsViewModel.LoadSocialCommand.Execute(null);
                 }
 
-                if (this.firstLoad && this.NewsViewModel?.Sessions.Count == 0)
-                {
-                    this.firstLoad = false;
-                    this.NewsViewModel.LoadSessionsCommand.Execute(null);
-                }
+                //if (this.firstLoad && this.NewsViewModel?.Sessions.Count == 0)
+                //{
+                //    this.firstLoad = false;
+                //    this.NewsViewModel.LoadSessionsCommand.Execute(null);
+                //}
             }
         }
     }

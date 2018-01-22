@@ -62,8 +62,7 @@
             <StackLayout Spacing="0">
               <Grid>
                 <Grid.ColumnDefinitions>
-                  <ColumnDefinition Width="*"/>
-                  <ColumnDefinition Width="34"/>
+                  <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -98,6 +97,26 @@
                        HorizontalOptions="Center"
                        Style="{DynamicResource EvolveListItemTextStyle}"/>
               </StackLayout>
+              <!--<controls:StackLayoutList
+                  x:Name="StackLayoutListSocial"
+                  IsVisible="False">
+                  <controls:StackLayoutList.ItemTemplate>
+                    <DataTemplate>
+                        <cells:TweetCell/>
+                    </DataTemplate>
+                  </controls:StackLayoutList.ItemTemplate>
+              </controls:StackLayoutList>-->
+
+              <!--<controls:RepeaterView
+                  x:TypeArguments="cells:TweetCell" x:Name="StackLayoutListSocial"
+                  ItemsSource="{Binding Tweets}">
+                <controls:RepeaterView.ItemTemplate>
+                  <DataTemplate>
+                    <cells:TweetCell/>
+                  </DataTemplate>
+                </controls:RepeaterView.ItemTemplate>
+              </controls:RepeaterView>-->
+
               <controls:NonScrollableListView
                   x:Name="ListViewSocial"
                   SelectedItem="{Binding SelectedTweet, Mode=TwoWay}"
