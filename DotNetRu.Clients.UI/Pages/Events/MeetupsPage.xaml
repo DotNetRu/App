@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<pages:BasePage 
-    xmlns="http://xamarin.com/schemas/2014/forms" 
+<pages:BasePage
+    xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="DotNetRu.Clients.UI.Pages.Events.MeetupsPage"
     xmlns:imagecircle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
@@ -8,77 +8,77 @@
     xmlns:converters="clr-namespace:DotNetRu.Clients.UI.Converters;assembly=DotNetRu.Clients.UI"
     xmlns:cells="clr-namespace:DotNetRu.Clients.UI.Cells;assembly=DotNetRu.Clients.UI"
     Title="{Binding Resources[Meetups]}"
-    Icon="tab_events.png"   
+    Icon="tab_events.png"
     BackgroundColor="{DynamicResource WindowBackground}">
-   <ContentPage.Resources>
-     <ResourceDictionary>
-        <converters:EventTimeDisplayConverter x:Key="EventTimeDisplayConverter" />
-        <converters:EventDayNumberDisplayConverter x:Key="EventDayNumberDisplayConverter" />
-        <converters:EventDayDisplayConverter x:Key="EventDayDisplayConverter" />
-        <converters:EventColorDisplayConverter x:Key="EventColorDisplayConverter" />
-     </ResourceDictionary>
-    </ContentPage.Resources>
-   <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-     <ListView 
-            x:Name="ListViewEvents"
-            ItemsSource="{Binding MeetupsByMonth}"
-            GroupDisplayBinding="{Binding Key}"
-            IsGroupingEnabled="true"
-            HasUnevenRows ="true"
-            IsPullToRefreshEnabled="False"
-            RefreshCommand="{Binding ForceRefreshCommand}"
-            IsRefreshing="{Binding IsBusy, Mode=OneWay}" 
-            CachingStrategy="RecycleElement"
-            IsVisible="{Binding IsNotBusy}"
-            StyleId="MeetupModelsPageIdentifier"
-            AbsoluteLayout.LayoutFlags="All" 
-            AbsoluteLayout.LayoutBounds="0,0,1,1"
-            BackgroundColor="White">
-            <ListView.SeparatorColor>
-                <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ListSeparator}"  WinPhone="{StaticResource ListSeparator}"/>
-            </ListView.SeparatorColor>
-        <ListView.GroupHeaderTemplate>
-            <DataTemplate>
-                <ViewCell>
-                    <ViewCell.Height>
-                        <OnPlatform x:TypeArguments="x:Double" iOS="28"/>
-                    </ViewCell.Height>  
-                    <cells:EvolveGroupHeaderView/>
-                </ViewCell>
-            </DataTemplate>
-        </ListView.GroupHeaderTemplate>
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <converters:EventDateDisplayConverter x:Key="EventDateDisplayConverter" />
+      <converters:EventDayNumberDisplayConverter x:Key="EventDayNumberDisplayConverter" />
+      <converters:EventDayDisplayConverter x:Key="EventDayDisplayConverter" />
+      <converters:EventColorDisplayConverter x:Key="EventColorDisplayConverter" />
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+    <ListView
+           x:Name="ListViewEvents"
+           ItemsSource="{Binding MeetupsByMonth}"
+           GroupDisplayBinding="{Binding Key}"
+           IsGroupingEnabled="true"
+           HasUnevenRows ="true"
+           IsPullToRefreshEnabled="False"
+           RefreshCommand="{Binding ForceRefreshCommand}"
+           IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+           CachingStrategy="RecycleElement"
+           IsVisible="{Binding IsNotBusy}"
+           StyleId="MeetupModelsPageIdentifier"
+           AbsoluteLayout.LayoutFlags="All"
+           AbsoluteLayout.LayoutBounds="0,0,1,1"
+           BackgroundColor="White">
+      <ListView.SeparatorColor>
+        <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ListSeparator}"/>
+      </ListView.SeparatorColor>
+      <ListView.GroupHeaderTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <ViewCell.Height>
+              <OnPlatform x:TypeArguments="x:Double" iOS="28"/>
+            </ViewCell.Height>
+            <cells:EvolveGroupHeaderView/>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.GroupHeaderTemplate>
       <ListView.ItemTemplate>
         <DataTemplate>
           <ViewCell StyleId="disclosure">
             <Grid Padding="{StaticResource StandardPadding}" ColumnSpacing="{StaticResource StandardSpacing}">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="50"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <StackLayout Spacing="{StaticResource SmallSpacing}" VerticalOptions="Center">
-                    <Grid>
-                        <imagecircle:CircleImage WidthRequest="35" HeightRequest="35" VerticalOptions="Center" HorizontalOptions="Center"
-                            FillColor="{Binding StartTime, Converter={StaticResource EventColorDisplayConverter}}"/>
-                        <Label Text="{Binding  StartTime, Converter={StaticResource EventDayNumberDisplayConverter}}" 
-                               VerticalTextAlignment="Center" 
-                               HorizontalTextAlignment="Center"
-                               Style="{DynamicResource EvolveListItemTextStyle}"
-                               TextColor="White"
-                               StyleId="MeetupModelItemCircleDate"/>
-                    </Grid>
-                    <Label  Text="{Binding StartTime, Converter={StaticResource EventDayDisplayConverter}, ConverterParameter={Binding Resources[CultureInfo]}}" 
-                               VerticalTextAlignment="Center" 
-                               HorizontalTextAlignment="Center"
-                               Style="{DynamicResource EvolveListItemDetailTextStyle}"
-                               StyleId="MeetupModelItemDay"/>
-                </StackLayout>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="*"/>
+              </Grid.ColumnDefinitions>
+              <StackLayout Spacing="{StaticResource SmallSpacing}" VerticalOptions="Center">
+                <Grid>
+                  <imagecircle:CircleImage WidthRequest="35" HeightRequest="35" VerticalOptions="Center" HorizontalOptions="Center"
+                      FillColor="{Binding StartTime, Converter={StaticResource EventColorDisplayConverter}}"/>
+                  <Label Text="{Binding  StartTime, Converter={StaticResource EventDayNumberDisplayConverter}}"
+                         VerticalTextAlignment="Center"
+                         HorizontalTextAlignment="Center"
+                         Style="{DynamicResource EvolveListItemTextStyle}"
+                         TextColor="White"
+                         StyleId="MeetupModelItemCircleDate"/>
+                </Grid>
+                <Label  Text="{Binding StartTime, Converter={StaticResource EventDayDisplayConverter}, ConverterParameter={Binding Resources[CultureInfo]}}"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Center"
+                           Style="{DynamicResource EvolveListItemDetailTextStyle}"
+                           StyleId="MeetupModelItemDay"/>
+              </StackLayout>
 
-                <StackLayout Grid.Column="1" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
-                        <Label Text="{Binding Title}" 
-                               Style="{DynamicResource EvolveListItemTextStyle}" StyleId="MeetupModelItemTitle"/>
-                        <Label Text="{Binding ., Converter={StaticResource EventTimeDisplayConverter}}" 
-                               Style="{DynamicResource EvolveListItemDetailTextStyle}" StyleId="MeetupModelItemTime"/>
-                </StackLayout>
+              <StackLayout Grid.Column="1" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+                <Label Text="{Binding Title}"
+                       Style="{DynamicResource EvolveListItemTextStyle}" StyleId="MeetupModelItemTitle"/>
+                <Label Text="{Binding ., Converter={StaticResource EventDateDisplayConverter}}"
+                       Style="{DynamicResource EvolveListItemDetailTextStyle}" StyleId="MeetupModelItemTime"/>
+              </StackLayout>
             </Grid>
 
             <!--<Grid HeightRequest="180" BackgroundColor="{DynamicResource Primary}">
@@ -101,18 +101,18 @@
         </DataTemplate>
       </ListView.ItemTemplate>
     </ListView>
-        <StackLayout IsVisible="{Binding IsBusy}"
-                                   AbsoluteLayout.LayoutFlags="PositionProportional"
-                                   AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1">
-                                    <StackLayout.Orientation>
-                                    <OnPlatform x:TypeArguments="StackOrientation" iOS="Horizontal"/>
-                                   </StackLayout.Orientation>
-            <ActivityIndicator IsRunning="{Binding IsBusy}" >
-                <ActivityIndicator.Color>
-                    <OnPlatform x:TypeArguments="Color" Android="{StaticResource Accent}"/>
-                </ActivityIndicator.Color>
-            </ActivityIndicator>
-            <Label Text="{Binding Resources[LoadingMeetups]}" HorizontalOptions="Center" Style="{DynamicResource EvolveListItemTextStyle}"/>
-       </StackLayout>
-    </AbsoluteLayout>
+    <StackLayout IsVisible="{Binding IsBusy}"
+                               AbsoluteLayout.LayoutFlags="PositionProportional"
+                               AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1">
+      <StackLayout.Orientation>
+        <OnPlatform x:TypeArguments="StackOrientation" iOS="Horizontal"/>
+      </StackLayout.Orientation>
+      <ActivityIndicator IsRunning="{Binding IsBusy}" >
+        <ActivityIndicator.Color>
+          <OnPlatform x:TypeArguments="Color" Android="{StaticResource Accent}"/>
+        </ActivityIndicator.Color>
+      </ActivityIndicator>
+      <Label Text="{Binding Resources[LoadingMeetups]}" HorizontalOptions="Center" Style="{DynamicResource EvolveListItemTextStyle}"/>
+    </StackLayout>
+  </AbsoluteLayout>
 </pages:BasePage>

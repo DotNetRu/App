@@ -63,7 +63,7 @@
 
             var lower = arg.ToLowerInvariant();
 
-            this.Logger.Track(EvolveLoggerKeys.LaunchedBrowser, "Url", lower);
+            this.Logger.Track(DotNetRuLoggerKeys.LaunchedBrowser, "Url", lower);
 
             if (Device.RuntimePlatform == Device.iOS)
             {
