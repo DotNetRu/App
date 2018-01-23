@@ -1,15 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using DotNetRu.Clients.Portable.ApplicationResources;
-using DotNetRu.Clients.Portable.Extensions;
-using DotNetRu.DataStore.Audit.Models;
-using DotNetRu.Utils.Helpers;
-using MvvmHelpers;
-
-namespace DotNetRu.Clients.Portable.Model.Extensions
+﻿namespace DotNetRu.Clients.Portable.Model.Extensions
 {
-    public static class MeetupExtensions
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
+    using DotNetRu.Clients.Portable.ApplicationResources;
+    using DotNetRu.Clients.Portable.Extensions;
+    using DotNetRu.DataStore.Audit.Models;
+    using DotNetRu.Utils.Helpers;
+
+    using MvvmHelpers;
+
+    public static class MeetupModelExtensions
     {
         public static IEnumerable<Grouping<string, MeetupModel>> GroupByMonth(this IEnumerable<MeetupModel> meetups)
         {
@@ -46,40 +48,14 @@ namespace DotNetRu.Clients.Portable.Model.Extensions
             return $"{monthAndYear}";
         }
 
-        public static string GetDisplayName(this MeetupModel e)
+        public static string GetDisplayDate(this MeetupModel meetupModel)
         {
-            if (!e.StartTime.HasValue || !e.EndTime.HasValue || e.StartTime.Value.IsTba())
+            if (!meetupModel.StartTime.HasValue || !meetupModel.EndTime.HasValue || meetupModel.StartTime.Value.IsTba())
             {
                 return AppResources.ToBeAnnounced;
             }
 
-            var start = e.StartTime.Value.ToEventTimeZone();
-
-            if (e.IsAllDay)
-            {
-                return AppResources.AllDay;
-            }
-
-            var startString = start.ToString("t", AppResources.Culture);
-            var end = e.EndTime.Value.ToEventTimeZone();
-            var endString = end.ToString("t", AppResources.Culture);
-
-            if (DateTime.Today.Year == start.Year)
-            {
-                if (DateTime.Today.DayOfYear == start.DayOfYear)
-                {
-                    return $"{AppResources.Today} {startString}–{endString}";
-                }
-
-                if (DateTime.Today.DayOfYear + 1 == start.DayOfYear)
-                {
-                    return $"{AppResources.Tomorrow} {startString}–{endString}";
-                }
-            }
-
-            var day = start.DayOfWeek.ToString();
-            var monthDay = start.ToString("M", AppResources.Culture);
-            return $"{day}, {monthDay}, {startString}–{endString}";
+            return meetupModel.StartTime.Value.ToString("d");
         }
 
         public static string GetDisplayTime(this MeetupModel e)

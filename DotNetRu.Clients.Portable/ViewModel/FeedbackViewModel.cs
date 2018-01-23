@@ -55,7 +55,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
                     return;
                 }
 
-                this.Logger.Track(EvolveLoggerKeys.LeaveFeedback, "Title", rating.ToString());
+                this.Logger.Track(DotNetRuLoggerKeys.LeaveFeedback, "Title", rating.ToString());
 
                 MessagingService.Current.SendMessage<MessagingServiceAlert>(
                     MessageKeys.Message,

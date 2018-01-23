@@ -15,7 +15,6 @@
     public partial class NewsPage
     {
         private NewsViewModel newsViewModel;
-        private bool firstLoad = true;
 
         public NewsPage()
         {
@@ -69,7 +68,7 @@
             MessagingService.Current.Unsubscribe<string>(MessageKeys.NavigateToImage);
         }
 
-        private async void UpdatePage()
+        private void UpdatePage()
         {
             bool forceRefresh = DateTime.UtcNow > (this.NewsViewModel?.NextForceRefresh ?? DateTime.UtcNow);
 
@@ -83,15 +82,14 @@
             {
                 if (this.NewsViewModel?.Tweets.Count == 0)
                 {
-                    // this.ListViewSocial.ItemsSource = await TweetHelper.Get().ConfigureAwait(false);
                     this.NewsViewModel.LoadSocialCommand.Execute(null);
                 }
 
-                //if (this.firstLoad && this.NewsViewModel?.Sessions.Count == 0)
-                //{
-                //    this.firstLoad = false;
-                //    this.NewsViewModel.LoadSessionsCommand.Execute(null);
-                //}
+                // if (this.firstLoad && this.NewsViewModel?.Sessions.Count == 0)
+                // {
+                // this.firstLoad = false;
+                // this.NewsViewModel.LoadSessionsCommand.Execute(null);
+                // }
             }
         }
     }

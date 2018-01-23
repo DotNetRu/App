@@ -64,13 +64,6 @@
                     {
                         new LocalizableMenuItem
                             {
-                                ResourceName = "DotNetRu",
-                                Command = this.LaunchBrowserCommand,
-                                ImageSource = LogoService.DotNetRuLogo,
-                                Parameter = AboutThisApp.DotNetRuLink
-                            }, 
-                        new LocalizableMenuItem
-                            {
                                 ResourceName = "SaintPetersburg",
                                 Command = this.LaunchBrowserCommand,
                                 ImageSource = LogoService.SpbDotNetLogo,
