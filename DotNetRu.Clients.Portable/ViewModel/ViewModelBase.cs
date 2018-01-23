@@ -18,17 +18,10 @@
 
     using XamarinEvolve.Clients.Portable;
 
-    /// <summary>
-    /// The view model base.
-    /// </summary>
     public class ViewModelBase : BaseViewModel
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ViewModelBase"/> class.
-        /// </summary>
-        /// <param name="navigation">
-        /// The navigation.
-        /// </param>
+        private ICommand launchBrowserCommand;
+
         public ViewModelBase(INavigation navigation = null)
         {
             this.Navigation = navigation;
@@ -41,49 +34,18 @@
             get;
         }
 
-        protected INavigation Navigation { get; }
-
-        /// <summary>
-        /// Gets the logger.
-        /// </summary>
-        protected ILogger Logger { get; } = DependencyService.Get<ILogger>();
-
-        /// <summary>
-        /// Gets the store manager.
-        /// </summary>
-        protected IStoreManager StoreManager { get; } = DependencyService.Get<IStoreManager>();
-
-        /// <summary>
-        /// Gets the toast.
-        /// </summary>
-        protected IToast Toast { get; } = DependencyService.Get<IToast>();
-
-        /// <summary>
-        /// The settings.
-        /// </summary>
         public Settings Settings => Settings.Current;
 
-        /// <summary>
-        /// The launch browser command.
-        /// </summary>
-        ICommand launchBrowserCommand;
-
-        /// <summary>
-        /// The launch browser command.
-        /// </summary>
         public ICommand LaunchBrowserCommand => this.launchBrowserCommand
                                                 ?? (this.launchBrowserCommand = new Command<string>(
                                                         async (t) => await this.ExecuteLaunchBrowserAsync(t)));
 
-        /// <summary>
-        /// The execute launch browser async.
-        /// </summary>
-        /// <param name="arg">
-        /// The arg.
-        /// </param>
-        /// <returns>
-        /// The <see cref="Task"/>.
-        /// </returns>
+        protected INavigation Navigation { get; }
+
+        protected ILogger Logger { get; } = DependencyService.Get<ILogger>();
+
+        protected IStoreManager StoreManager { get; } = DependencyService.Get<IStoreManager>();
+
         public async Task ExecuteLaunchBrowserAsync(string arg)
         {
             if (this.IsBusy)
@@ -101,7 +63,7 @@
 
             var lower = arg.ToLowerInvariant();
 
-            this.Logger.Track(EvolveLoggerKeys.LaunchedBrowser, "Url", lower);
+            this.Logger.Track(DotNetRuLoggerKeys.LaunchedBrowser, "Url", lower);
 
             if (Device.RuntimePlatform == Device.iOS)
             {

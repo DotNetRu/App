@@ -181,7 +181,7 @@
                     return;
                 }
 
-                this.Logger.Track(EvolveLoggerKeys.ReminderAdded, "Title", this.TalkModel.Title);
+                this.Logger.Track(DotNetRuLoggerKeys.ReminderAdded, "Title", this.TalkModel.Title);
                 this.IsReminderSet = true;
             }
             else
@@ -191,7 +191,7 @@
                 {
                     return;
                 }
-                this.Logger.Track(EvolveLoggerKeys.ReminderRemoved, "Title", this.TalkModel.Title);
+                this.Logger.Track(DotNetRuLoggerKeys.ReminderRemoved, "Title", this.TalkModel.Title);
                 this.IsReminderSet = false;
             }
         }
@@ -202,7 +202,7 @@
 
         private async Task ExecuteShareCommandAsync()
         {
-            this.Logger.Track(EvolveLoggerKeys.Share, "Title", this.TalkModel.Title);
+            this.Logger.Track(DotNetRuLoggerKeys.Share, "Title", this.TalkModel.Title);
             //var speakerHandles = this.TalkModel.SpeakerHandles;
             //if (!string.IsNullOrEmpty(speakerHandles))
             //{

@@ -18,9 +18,39 @@
             this.TemplatedItems.CollectionChanged += this.TemplatedItemsOnCollectionChanged;
         }
 
+        protected override SizeRequest OnMeasure(double widthConstraint, double heightConstraint)
+        {
+            var sizeRequest = base.OnMeasure(widthConstraint, heightConstraint);
+
+            if (!this.TemplatedItems.All(cell => cell is ViewCell))
+            {
+                return sizeRequest;
+            }
+
+            double height = this.CalculateHeight();
+
+            sizeRequest.Request = new Size(sizeRequest.Request.Width, height);
+
+            return sizeRequest;
+        }
+
         private void TemplatedItemsOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs notifyCollectionChangedEventArgs)
         {
             this.UpdateListViewHeight();
+        }
+
+        private double CalculateHeight()
+        {
+            double height = 0;
+            foreach (Cell cell in this.TemplatedItems)
+            {
+                var cellSizeRequest = ((ViewCell)cell).View.Measure(this.Width, double.MaxValue, MeasureFlags.IncludeMargins);
+                // ((ViewCell)cell).View.Measure(this.Width, double.MaxValue, MeasureFlags.IncludeMargins);
+
+                height += cellSizeRequest.Request.Height;
+            }
+
+            return height;
         }
 
         private void UpdateListViewHeight()
@@ -30,15 +60,7 @@
                 return;
             }
 
-            double height = 0;
-            foreach (Cell cell in this.TemplatedItems)
-            {
-                var sizeRequest = ((ViewCell)cell).View.Measure(this.Width, double.MaxValue, MeasureFlags.IncludeMargins);
-
-                height += sizeRequest.Request.Height;
-            }
-
-            this.HeightRequest = height;
+            this.HeightRequest = this.CalculateHeight();
         }
     }
 }

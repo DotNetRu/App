@@ -48,12 +48,20 @@
     <Compile Include="Controls\RatingControl.xaml.cs">
       <DependentUpon>RatingControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\RepeaterView.cs" />
     <Compile Include="Controls\StackLayoutList.cs" />
-    <Compile Include="Converters\DateConverters.cs" />
+    <Compile Include="Converters\SessionTimeDisplayConverter.cs" />
+    <Compile Include="Converters\EventColorDisplayConverter.cs" />
+    <Compile Include="Converters\EventDateDisplayConverter.cs" />
+    <Compile Include="Converters\EventDayDisplayConverter.cs" />
+    <Compile Include="Converters\EventDayNumberDisplayConverter.cs" />
+    <Compile Include="Converters\EventTimeDisplayConverter.cs" />
+    <Compile Include="Converters\HumanizeDateConverter.cs" />
     <Compile Include="Converters\ImageConverters.cs" />
     <Compile Include="Converters\RatingConverter.cs" />
     <Compile Include="Converters\SpeakerImageConverter.cs" />
     <Compile Include="Converters\StringConverters.cs" />
+    <Compile Include="Converters\TalkDateDisplayConverter.cs" />
     <Compile Include="Effects\ShadowEffect.cs" />
     <Compile Include="Pages\BottomTabbedPage.xaml.cs">
       <DependentUpon>BottomTabbedPage.xaml</DependentUpon>
@@ -169,7 +177,6 @@
     <Compile Include="Controls\Rating3Control.xaml.cs">
       <DependentUpon>Rating3Control.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TranslateExtension.cs" />
     <Compile Include="ViewModelLocator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

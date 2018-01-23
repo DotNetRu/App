@@ -9,13 +9,14 @@ using Xamarin.Forms;
 
 namespace DotNetRu.iOS
 {
-    class Localize : ILocalize
+    public class Localize : ILocalize
     {
         public void SetLocale(CultureInfo cultureInfo)
         {
             Thread.CurrentThread.CurrentCulture = cultureInfo;
             Thread.CurrentThread.CurrentUICulture = cultureInfo;
         }
+
         public CultureInfo GetCurrentCultureInfo()
         {
             var language = "en";
@@ -24,8 +25,8 @@ namespace DotNetRu.iOS
             {
                 language = "ru";
             }
+
             return new CultureInfo(language);
         }
     }
-
 }

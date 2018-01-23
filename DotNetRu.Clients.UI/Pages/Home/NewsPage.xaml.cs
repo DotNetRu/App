@@ -15,7 +15,6 @@
     public partial class NewsPage
     {
         private NewsViewModel newsViewModel;
-        private bool firstLoad = true;
 
         public NewsPage()
         {
@@ -86,11 +85,11 @@
                     this.NewsViewModel.LoadSocialCommand.Execute(null);
                 }
 
-                if (this.firstLoad && this.NewsViewModel?.Sessions.Count == 0)
-                {
-                    this.firstLoad = false;
-                    this.NewsViewModel.LoadSessionsCommand.Execute(null);
-                }
+                // if (this.firstLoad && this.NewsViewModel?.Sessions.Count == 0)
+                // {
+                // this.firstLoad = false;
+                // this.NewsViewModel.LoadSessionsCommand.Execute(null);
+                // }
             }
         }
     }

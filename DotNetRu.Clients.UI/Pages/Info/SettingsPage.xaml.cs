@@ -8,6 +8,9 @@
     using DotNetRu.Clients.UI.Pages.Friends;
     using DotNetRu.Utils.Helpers;
 
+    using Plugin.Share;
+    using Plugin.Share.Abstractions;
+
     using Xamarin.Forms;
 
     public partial class SettingsPage
@@ -45,6 +48,28 @@
         private async void Friends_OnClicked(object sender, EventArgs e)
         {
             await NavigationService.PushAsync(this.Navigation, new FriendsPage());
+        }
+
+        private async void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
+        {
+            var primaryColor = (Color)Application.Current.Resources["Primary"];
+
+            await CrossShare.Current.OpenBrowser(
+                AboutThisApp.DotNetRuLink,
+                new BrowserOptions
+                    {
+                        ChromeShowTitle = true,
+                        ChromeToolbarColor =
+                            new ShareColor
+                                {
+                                    A = 255,
+                                    R = Convert.ToInt32(primaryColor.R),
+                                    G = Convert.ToInt32(primaryColor.G),
+                                    B = Convert.ToInt32(primaryColor.B)
+                                },
+                        UseSafariReaderMode = true,
+                        UseSafariWebViewController = true
+                    });
         }
     }
 }
