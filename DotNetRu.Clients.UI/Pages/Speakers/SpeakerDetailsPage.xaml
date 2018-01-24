@@ -18,7 +18,7 @@
     </ContentPage.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" x:Name="Row1Header"/>
+            <RowDefinition Height="200" x:Name="Row1Header"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid RowSpacing="0" ColumnSpacing="0" x:Name="HeaderView" BackgroundColor="{DynamicResource Primary}">
@@ -31,7 +31,7 @@
         <controls:ParallaxScrollView x:Name="MainScroll" Grid.RowSpan="2">
             <Grid RowSpacing="0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" x:Name="Row1Content"/>
+                    <RowDefinition Height="200" x:Name="Row1Content"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Grid x:Name="MainStack"
