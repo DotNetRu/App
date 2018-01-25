@@ -16,8 +16,7 @@ namespace DotNetRu.Droid
         }
 
         public CultureInfo GetCurrentCultureInfo()
-        {
-           
+        {           
             var androidLocale = Java.Util.Locale.Default;
             var language = androidLocale.ToString().ToLower().Contains("ru") ? "ru" : "en";
             return new CultureInfo(language);
