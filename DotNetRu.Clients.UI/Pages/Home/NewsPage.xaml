@@ -1,142 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pages:BasePage 
-    xmlns="http://xamarin.com/schemas/2014/forms" 
+<pages:BasePage
+    xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:pull="clr-namespace:Refractored.XamForms.PullToRefresh;assembly=Refractored.XamForms.PullToRefresh"
     xmlns:pages="clr-namespace:DotNetRu.Clients.UI.Pages;assembly=DotNetRu.Clients.UI"
-    xmlns:controls="clr-namespace:DotNetRu.Clients.UI.Controls;assembly=DotNetRu.Clients.UI"
     xmlns:cells="clr-namespace:DotNetRu.Clients.UI.Cells;assembly=DotNetRu.Clients.UI"
     x:Class="DotNetRu.Clients.UI.Pages.Home.NewsPage"
     x:Name="NewsScreen"
     Title="{Binding Resources[News]}"
     Icon="tab_feed.png"
     BackgroundColor="{DynamicResource WindowBackgroundTable}">
-    <ContentPage.Resources>
-     <ResourceDictionary>
-     </ResourceDictionary>  
-    </ContentPage.Resources>
-    <pull:PullToRefreshLayout
-          IsPullToRefreshEnabled="True"
-          RefreshCommand="{Binding RefreshCommand}"
-          IsRefreshing="{Binding IsBusy}"> 
-          <pull:PullToRefreshLayout.RefreshColor>
-            <OnPlatform x:TypeArguments="Color" Android="{StaticResource Primary}"/>
-          </pull:PullToRefreshLayout.RefreshColor>
-          <controls:AlwaysScrollView
-          HorizontalOptions="FillAndExpand"
-          VerticalOptions="FillAndExpand">
-        <StackLayout Spacing="{DynamicResource CardSpacing}"
-                    Padding="{DynamicResource CardPadding}">
-			<controls:CardView IsVisible="{Binding ShowBuyTicketButton}">
-                 <!--Buy now!-->
-                 <StackLayout Spacing="0" Margin="10,5,10,5">
-					<controls:LabelSection Text="Tickets" />
-                    <controls:HeaderDivider/>
-					<Button HorizontalOptions="FillAndExpand" 
-							VerticalOptions="FillAndExpand" 
-							Text="Buy your ticket now!"
-							BackgroundColor="{DynamicResource Primary}"
-							TextColor="White"
-							Command="{Binding BuyTicketNowCommand}"/>
-                    <controls:FooterDivider/>
-                </StackLayout>
-            </controls:CardView>
+  <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+    <ListView
+        x:Name="ListViewSocial"
+        SelectedItem="{Binding SelectedTweet, Mode=TwoWay}"
+        ItemsSource="{Binding Tweets}"
+        HasUnevenRows="True"
+        AbsoluteLayout.LayoutFlags="All"
+        AbsoluteLayout.LayoutBounds="0,0,1,1"
+        IsPullToRefreshEnabled="True"
+        RefreshCommand="{Binding RefreshCommand}"
+        IsRefreshing="{Binding IsBusy, Mode=OneWay}">
+      <ListView.SeparatorColor>
+        <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ListSeparator}"/>
+      </ListView.SeparatorColor>
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <cells:TweetCell/>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+    <StackLayout IsVisible="{Binding LoadingSocial}"
+                  HorizontalOptions="FillAndExpand"
+                  VerticalOptions="Center"
+                  Padding="{StaticResource StandardPadding}"
+                 AbsoluteLayout.LayoutFlags="PositionProportional"
+                 AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1">
+      <ActivityIndicator IsRunning="{Binding LoadingSocial}">
+        <ActivityIndicator.Color>
+          <OnPlatform x:TypeArguments="Color" Android="{StaticResource Accent}"/>
+        </ActivityIndicator.Color>
+      </ActivityIndicator>
+      <Label Text="{Binding Resources[Loading]}"
+              HorizontalOptions="Center"
+              Style="{DynamicResource EvolveListItemTextStyle}"/>
+    </StackLayout>
+    <StackLayout IsVisible="{Binding SocialError}"
+                  HorizontalOptions="FillAndExpand"
+                  VerticalOptions="Center"
+                    BackgroundColor="White"
+                    Padding="{StaticResource StandardPadding}">
 
-          <controls:CardView IsVisible="{Binding ShowConferenceFeedbackButton}">
-            <!--Conference feedback-->
-            <StackLayout Spacing="0" Margin="10,5,10,5">
-              <controls:LabelSection Text="Feedback" />
-              <controls:HeaderDivider/>
-              <Button HorizontalOptions="FillAndExpand"
-                  VerticalOptions="FillAndExpand"
-                  Text="We'd love to hear your feedback!"
-                  BackgroundColor="{DynamicResource Primary}"
-                  TextColor="White"
-                  Command="{Binding ShowConferenceFeedbackCommand}"/>
-              <controls:FooterDivider/>
-            </StackLayout>
-          </controls:CardView>
-
-          <controls:CardView>
-            <!--Tweets-->
-            <StackLayout Spacing="0">
-              <Grid>
-                <Grid.ColumnDefinitions>
-                  <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <controls:LabelSection Text="{Binding Resources[Social]}"/>
-                <Grid.GestureRecognizers>
-                  <TapGestureRecognizer Command="{Binding ShareCommand}"/>
-                </Grid.GestureRecognizers>
-              </Grid>
-              <controls:HeaderDivider/>
-              <StackLayout IsVisible="{Binding LoadingSocial}"
-                           HorizontalOptions="FillAndExpand"
-                           VerticalOptions="Center"
-                            BackgroundColor="White"
-                            Padding="{StaticResource StandardPadding}">
-                <ActivityIndicator IsRunning="{Binding LoadingSocial}">
-                  <ActivityIndicator.Color>
-                    <OnPlatform x:TypeArguments="Color" Android="{StaticResource Accent}"/>
-                  </ActivityIndicator.Color>
-                </ActivityIndicator>
-                <Label Text="{Binding Resources[Loading]}"
-                       HorizontalOptions="Center"
-                       Style="{DynamicResource EvolveListItemTextStyle}"/>
-              </StackLayout>
-              <StackLayout IsVisible="{Binding SocialError}"
-                            HorizontalOptions="FillAndExpand"
-                            VerticalOptions="Center"
-                             BackgroundColor="White"
-                             Padding="{StaticResource StandardPadding}">
-
-                <Label Text="Unable to load social feed"
-                       HorizontalOptions="Center"
-                       Style="{DynamicResource EvolveListItemTextStyle}"/>
-              </StackLayout>
-              <!--<controls:StackLayoutList
-                  x:Name="StackLayoutListSocial"
-                  IsVisible="False">
-                  <controls:StackLayoutList.ItemTemplate>
-                    <DataTemplate>
-                        <cells:TweetCell/>
-                    </DataTemplate>
-                  </controls:StackLayoutList.ItemTemplate>
-              </controls:StackLayoutList>-->
-
-              <!--<controls:RepeaterView
-                  x:TypeArguments="cells:TweetCell" x:Name="StackLayoutListSocial"
-                  ItemsSource="{Binding Tweets}">
-                <controls:RepeaterView.ItemTemplate>
-                  <DataTemplate>
-                    <cells:TweetCell/>
-                  </DataTemplate>
-                </controls:RepeaterView.ItemTemplate>
-              </controls:RepeaterView>-->
-
-              <controls:NonScrollableListView
-                  x:Name="ListViewSocial"
-                  SelectedItem="{Binding SelectedTweet, Mode=TwoWay}"
-                  ItemsSource="{Binding Tweets}"
-                  HasUnevenRows="True">
-                <controls:NonScrollableListView.SeparatorColor>
-                  <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ListSeparator}"/>
-                </controls:NonScrollableListView.SeparatorColor>
-                <controls:NonScrollableListView.ItemTemplate>
-                  <DataTemplate>
-                    <ViewCell>
-                      <cells:TweetCell/>
-                    </ViewCell>
-                  </DataTemplate>
-                </controls:NonScrollableListView.ItemTemplate>
-              </controls:NonScrollableListView>
-              <controls:FooterDivider/>
-            </StackLayout>
-          </controls:CardView>
-        </StackLayout>
-    </controls:AlwaysScrollView>
-    </pull:PullToRefreshLayout>
+      <Label Text="Unable to load social feed"
+              HorizontalOptions="Center"
+              Style="{DynamicResource EvolveListItemTextStyle}"/>
+    </StackLayout>
+  </AbsoluteLayout>
 </pages:BasePage>

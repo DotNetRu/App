@@ -1,18 +1,20 @@
-﻿using Xamarin.Forms;
-
-namespace DotNetRu.Clients.UI.Controls
+﻿namespace DotNetRu.Clients.UI.Controls
 {
+    using Xamarin.Forms;
+
     public class ParallaxScrollView : AlwaysScrollView
     {
+        public static readonly BindableProperty ParallaxViewProperty = BindableProperty.Create(
+            nameof(ParallaxView),
+            typeof(View),
+            typeof(ParallaxScrollView));
+
+        private double height;
+
         public ParallaxScrollView()
         {
             this.Scrolled += (sender, e) => this.Parallax();
         }
-
-
-
-        public static readonly BindableProperty ParallaxViewProperty = 
-            BindableProperty.Create(nameof(ParallaxView), typeof(View), typeof(ParallaxScrollView), null);
 
         public View ParallaxView
         {
@@ -20,11 +22,12 @@ namespace DotNetRu.Clients.UI.Controls
             set => this.SetValue(ParallaxViewProperty, value);
         }
 
-        double height;
         public void Parallax()
         {
             if (this.ParallaxView == null || Device.RuntimePlatform == Device.UWP)
+            {
                 return;
+            }
 
             if (this.height <= 0)
             {
@@ -53,4 +56,3 @@ namespace DotNetRu.Clients.UI.Controls
         }
     }
 }
-

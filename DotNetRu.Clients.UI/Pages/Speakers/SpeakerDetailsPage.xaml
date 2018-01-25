@@ -140,7 +140,7 @@
                                     </controls:NonScrollableListView.SeparatorColor>
                                     <controls:NonScrollableListView.ItemTemplate>
                                         <DataTemplate>
-                                            <ViewCell>
+                                            <ViewCell Appearing="Cell_OnAppearing">
                                               <Grid Padding="{DynamicResource StandardPadding}"
                                                     ColumnSpacing="{StaticResource StandardSpacing}">
                                                 <Grid.RowDefinitions>
