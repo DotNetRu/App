@@ -1,5 +1,7 @@
 ﻿namespace DotNetRu.Clients.UI.Pages.Speakers
 {
+    using System;
+
     using DotNetRu.Clients.Portable.ApplicationResources;
     using DotNetRu.Clients.Portable.Interfaces;
     using DotNetRu.Clients.Portable.Model;
@@ -12,14 +14,7 @@
 
     public partial class SpeakerDetailsPage
     {
-        private readonly IPlatformSpecificExtension<SpeakerModel> _extension;
-
-        public override AppPage PageType => AppPage.Speaker;
-
-
-        public SpeakerDetailsViewModel SpeakerDetailsViewModel => this.speakerDetailsViewModel
-                                             ?? (this.speakerDetailsViewModel =
-                                                     this.BindingContext as SpeakerDetailsViewModel);
+        private readonly IPlatformSpecificExtension<SpeakerModel> extension;
 
         private SpeakerDetailsViewModel speakerDetailsViewModel;
 
@@ -33,7 +28,7 @@
         {
             this.InitializeComponent();
             this.MainScroll.ParallaxView = this.HeaderView;
-            this._extension = DependencyService.Get<IPlatformSpecificExtension<SpeakerModel>>();
+            this.extension = DependencyService.Get<IPlatformSpecificExtension<SpeakerModel>>();
 
             this.ListViewSessions.ItemSelected += async (sender, e) =>
                 {
@@ -53,7 +48,18 @@
             {
                 this.Row1Header.Height = this.Row1Content.Height = 350;
             }
+
+            this.ListViewFollow.TemplatedItems.CollectionChanged += (sender, args) =>
+                {
+                    this.ListViewFollow.UpdateListViewHeight();
+                };
         }
+
+        public override AppPage PageType => AppPage.Speaker;
+
+        public SpeakerDetailsViewModel SpeakerDetailsViewModel =>
+            this.speakerDetailsViewModel
+            ?? (this.speakerDetailsViewModel = this.BindingContext as SpeakerDetailsViewModel);
 
         public SpeakerModel SpeakerModel
         {
@@ -63,11 +69,6 @@
                 this.BindingContext = new SpeakerDetailsViewModel(value);
                 this.ItemId = value?.FullName;
             }
-        }
-
-        private void MainScroll_Scrolled(object sender, ScrolledEventArgs e)
-        {
-            this.Title = e.ScrollY > (this.MainStack.Height - this.SpeakerTitle.Height) ? this.SpeakerModel.FirstName : AppResources.SpeakerInfo;
         }
 
         protected override void OnSizeAllocated(double width, double height)
@@ -84,11 +85,24 @@
             this.speakerDetailsViewModel = null;
         }
 
+        protected override async void OnDisappearing()
+        {
+            base.OnDisappearing();
+            this.ListViewFollow.ItemTapped -= this.ListViewTapped;
+            this.ListViewSessions.ItemTapped -= this.ListViewTapped;
+            this.MainScroll.Scrolled -= this.MainScrollScrolled;
+
+            if (this.extension != null)
+            {
+                await this.extension.Finish();
+            }
+        }
+
         protected override async void OnAppearing()
         {
             base.OnAppearing();
 
-            this.MainScroll.Scrolled += this.MainScroll_Scrolled;
+            this.MainScroll.Scrolled += this.MainScrollScrolled;
             this.ListViewFollow.ItemTapped += this.ListViewTapped;
             this.ListViewSessions.ItemTapped += this.ListViewTapped;
 
@@ -101,13 +115,18 @@
 
             this.SpeakerDetailsViewModel.ExecuteLoadTalksCommand();
 
-            if (this._extension != null)
+            if (this.extension != null)
             {
-                await this._extension.Execute(this.SpeakerDetailsViewModel.SpeakerModel);
+                await this.extension.Execute(this.SpeakerDetailsViewModel.SpeakerModel);
             }
         }
 
-        void ListViewTapped(object sender, ItemTappedEventArgs e)
+        private void MainScrollScrolled(object sender, ScrolledEventArgs e)
+        {
+            this.Title = e.ScrollY > (this.MainStack.Height - this.SpeakerTitle.Height) ? this.SpeakerModel.FirstName : AppResources.SpeakerInfo;
+        }
+
+        private void ListViewTapped(object sender, ItemTappedEventArgs e)
         {
             if (!(sender is ListView list))
             {
@@ -116,18 +135,11 @@
 
             list.SelectedItem = null;
         }
-
-        protected override async void OnDisappearing()
+       
+        private void Cell_OnAppearing(object sender, EventArgs e)
         {
-            base.OnDisappearing();
-            this.ListViewFollow.ItemTapped -= this.ListViewTapped;
-            this.ListViewSessions.ItemTapped -= this.ListViewTapped;
-            this.MainScroll.Scrolled -= this.MainScroll_Scrolled;
-
-            if (this._extension != null)
-            {
-                await this._extension.Finish();
-            }
+            var viewCell = (ViewCell)sender;
+            this.ListViewSessions.AdjustHeight(viewCell);
         }
     }
 }

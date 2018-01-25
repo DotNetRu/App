@@ -127,7 +127,7 @@
 
         public ICommand LoadSocialCommand =>
             this.loadSocialCommand ?? (this.loadSocialCommand =
-                                           new Command(async () => await this.ExecuteLoadSocialCommandAsync()));
+                                           new Command(async () => await this.ExecuteLoadTweetsCommandAsync()));
 
         public bool SocialError
         {
@@ -237,9 +237,7 @@
                 this.NextForceRefresh = DateTime.UtcNow.AddMinutes(45);
                 this.IsBusy = true;
 
-                this.ExecuteLoadNotificationsCommand();
-
-                await this.ExecuteLoadSocialCommandAsync();
+                await this.ExecuteLoadTweetsCommandAsync();
             }
             catch (Exception ex)
             {
@@ -252,7 +250,7 @@
             }
         }
 
-        private async Task ExecuteLoadSocialCommandAsync()
+        private async Task ExecuteLoadTweetsCommandAsync()
         {
             if (this.LoadingSocial)
             {
@@ -270,7 +268,7 @@
             catch (Exception ex)
             {
                 this.SocialError = true;
-                ex.Data["method"] = "ExecuteLoadSocialCommandAsync";
+                ex.Data["method"] = "ExecuteLoadTweetsCommandAsync";
                 this.Logger.Report(ex);
             }
             finally
