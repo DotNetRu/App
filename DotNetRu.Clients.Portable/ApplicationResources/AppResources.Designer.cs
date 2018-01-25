@@ -89,11 +89,20 @@ namespace DotNetRu.Clients.Portable.ApplicationResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Russian .NET community is a group of independent communities of .NET developers from Russia. We unite people around .Net platform to contribute to the experience and knowledge exchange. We hold meetings regularly to share news and best practices in software development! .
+        ///   Looks up a localized string similar to Russian .NET community is a group of independent communities of .NET developers from Russia..
         /// </summary>
         public static string AboutText {
             get {
                 return ResourceManager.GetString("AboutText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We unite people around .Net platform to contribute to the experience and knowledge exchange. We hold meetings regularly to share news and best practices in software development!.
+        /// </summary>
+        public static string AboutTextDetail {
+            get {
+                return ResourceManager.GetString("AboutTextDetail", resourceCulture);
             }
         }
         
