@@ -12,7 +12,7 @@
 
         public const string Developer = "DotNetRu Team";
 
-        public const string DotNetRuLink = "https://vk.com/DotNetRu";
+        public const string DotNetRuLink = "http://dotnet.ru/";
         public const string SpbLink = "https://vk.com/SpbDotNet";
         public const string SaratovLink = "https://vk.com/SarDotNet";
         public const string KrasnoyarskLink = "https://vk.com/KryDotNet";
