@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -28,7 +27,6 @@
                                                    "RAzIHxhkzINUxilhdr98TWTtjgFKXYzkEhaGx8WJiBPh96TXNK"
                                        },
                                };
-                // await auth.InvalidateAsync();
                 await auth.AuthorizeAsync();
 
                 var twitterContext = new TwitterContext(auth);
@@ -65,7 +63,7 @@
                                                      "http://",
                                                      "https://")
                                                  : tweetUser.ProfileImageUrl.Replace("http://", "https://")
-                                }).OrderByDescending(x => x.CreatedDate).Take(10).ToList();
+                                }).OrderByDescending(x => x.CreatedDate).Take(15).ToList();
 
                 return tweets;
             }
