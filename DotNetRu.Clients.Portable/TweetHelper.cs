@@ -33,45 +33,49 @@ namespace DotNetRu.Clients.Portable
 
                 var spbDotNetTweets =
                     await (from tweet in twitterContext.Status
-                        where tweet.Type == StatusType.User && tweet.ScreenName == "spbdotnet" &&
-                              tweet.TweetMode == TweetMode.Extended
-                        select tweet).ToListAsync();
+                           where tweet.Type == StatusType.User && tweet.ScreenName == "spbdotnet" &&
+                                 tweet.TweetMode == TweetMode.Extended
+                           select tweet).ToListAsync();
 
                 var dotnetruTweets =
                     await (from tweet in twitterContext.Status
-                        where tweet.Type == StatusType.User && tweet.ScreenName == "DotNetRu" &&
-                              tweet.TweetMode == TweetMode.Extended
-                        select tweet).ToListAsync();
+                           where tweet.Type == StatusType.User && tweet.ScreenName == "DotNetRu" &&
+                                 tweet.TweetMode == TweetMode.Extended
+                           select tweet).ToListAsync();
 
                 var tweets =
                 (from tweet in spbDotNetTweets.Union(dotnetruTweets)
-                    where !tweet.PossiblySensitive
-                    let tweetUser = tweet.User
-                    where tweetUser != null
-                    select new Tweet
-                    {
-                        TweetedImage =
-                            tweet.Entities?.MediaEntities.Count > 0
-                                ? tweet.Entities?.MediaEntities?[0].MediaUrlHttps ?? string.Empty
-                                : string.Empty,
-                        NumberOfLikes = tweet.FavoriteCount,
-                        NumberOfRetweets = tweet.RetweetCount,
-                        ScreenName = tweetUser?.ScreenNameResponse ?? string.Empty,
-                        Text = String.IsNullOrEmpty(tweet.RetweetedStatus.FullText)
-                            ? tweet.FullText.ConvertToUsualUrl(
-                                tweet.Entities.UrlEntities.ToDictionary(t => t.Url, t => t.DisplayUrl))
-                            : tweet.RetweetedStatus.FullText.ConvertToUsualUrl(
-                                tweet.RetweetedStatus.Entities.UrlEntities.ToDictionary(t => t.Url, t => t.DisplayUrl)),
-                        Name = tweetUser.Name,
-                        CreatedDate = tweet.CreatedAt,
-                        Url =
-                            $"https://twitter.com/{tweetUser.ScreenNameResponse}/status/{tweet.StatusID}",
-                        Image = tweet.RetweetedStatus?.User != null
-                            ? tweet.RetweetedStatus.User.ProfileImageUrl.Replace(
-                                "http://",
-                                "https://")
-                            : tweetUser.ProfileImageUrl.Replace("http://", "https://")
-                    }).OrderByDescending(x => x.CreatedDate).Take(15).ToList();
+                 where !tweet.PossiblySensitive
+                 let tweetUser = tweet.User
+                 where tweetUser != null
+                 select new Tweet
+                 {
+                     TweetedImage =
+                         tweet.Entities?.MediaEntities.Count > 0
+                             ? tweet.Entities?.MediaEntities?[0].MediaUrlHttps ?? string.Empty
+                             : string.Empty,
+                     NumberOfLikes = String.IsNullOrEmpty(tweet.RetweetedStatus.FullText) ?
+                                       tweet.FavoriteCount :
+                                       tweet.RetweetedStatus.FavoriteCount,
+                    NumberOfRetweets = String.IsNullOrEmpty(tweet.RetweetedStatus.FullText) ?
+                                             tweet.RetweetCount :
+                                             tweet.RetweetedStatus.RetweetCount,
+                     ScreenName = tweetUser?.ScreenNameResponse ?? string.Empty,
+                     Text = String.IsNullOrEmpty(tweet.RetweetedStatus.FullText)
+                         ? tweet.FullText.ConvertToUsualUrl(
+                             tweet.Entities.UrlEntities.ToDictionary(t => t.Url, t => t.DisplayUrl))
+                         : tweet.RetweetedStatus.FullText.ConvertToUsualUrl(
+                             tweet.RetweetedStatus.Entities.UrlEntities.ToDictionary(t => t.Url, t => t.DisplayUrl)),
+                     Name = tweetUser.Name,
+                     CreatedDate = tweet.CreatedAt,
+                     Url =
+                         $"https://twitter.com/{tweetUser.ScreenNameResponse}/status/{tweet.StatusID}",
+                     Image = tweet.RetweetedStatus?.User != null
+                         ? tweet.RetweetedStatus.User.ProfileImageUrl.Replace(
+                             "http://",
+                             "https://")
+                         : tweetUser.ProfileImageUrl.Replace("http://", "https://")
+                 }).OrderByDescending(x => x.CreatedDate).Take(15).ToList();
 
                 return tweets;
             }

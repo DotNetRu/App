@@ -104,7 +104,13 @@ namespace DotNetRu.Clients.Portable.ViewModel
             {
                 this.SetProperty(ref this.loadingSocial, value); 
                 OnPropertyChanged(nameof(ActivityIndicatorVisibility));
+                OnPropertyChanged(nameof(NotLoadingSocial));
             }
+        }
+
+        public bool NotLoadingSocial
+        {
+            get => !this.LoadingSocial;
         }
 
         public bool ActivityIndicatorVisibility => !Tweets.Any() && LoadingSocial;

@@ -11,6 +11,7 @@
     BackgroundColor="{DynamicResource WindowBackgroundTable}">
   <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
     <ListView
+        IsVisible="{Binding NotLoadingSocial}"
         x:Name="ListViewSocial"
         SelectedItem="{Binding SelectedTweet, Mode=TwoWay}"
         ItemsSource="{Binding Tweets}"
