@@ -32,17 +32,25 @@
             set
             {
                 this.tweetedImage = value;
-                this.fullImage = value;
-                if (!string.IsNullOrWhiteSpace(this.tweetedImage))
-                {
-                    this.tweetedImage += ":thumb";
-                }
+                //this.fullImage = value;
+                //if (!string.IsNullOrWhiteSpace(this.tweetedImage))
+                //{
+                //    this.tweetedImage += ":thumb";
+                //}
             }
         }
 
         public ICommand FullImageCommand => this.fullImageCommand
                                             ?? (this.fullImageCommand = new Command(this.ExecuteFullImageCommand));
 
+        [JsonProperty("likes")]
+        public int? NumberOfLikes { get; set; }
+
+        [JsonProperty("retweets")]
+        public int NumberOfRetweets { get; set; }
+
+        [JsonProperty("comments")]
+        public int NumberOfComments { get; set; }
         [JsonProperty("text")]
         public string Text { get; set; }
 

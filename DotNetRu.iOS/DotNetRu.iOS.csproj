@@ -462,4 +462,8 @@
   <ItemGroup>
     <BundleResource Include="Resources\ic_splash.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="loading_apple.gif" />
+    <BundleResource Include="Resources\loading_apple.gif" />
+  </ItemGroup>
 </Project>

@@ -1,4 +1,6 @@
-﻿namespace DotNetRu.Clients.Portable.ViewModel
+﻿using System.Linq;
+
+namespace DotNetRu.Clients.Portable.ViewModel
 {
     using System;
     using System.Threading.Tasks;
@@ -98,8 +100,14 @@
         public bool LoadingSocial
         {
             get => this.loadingSocial;
-            set => this.SetProperty(ref this.loadingSocial, value);
+            set
+            {
+                this.SetProperty(ref this.loadingSocial, value); 
+                OnPropertyChanged(nameof(ActivityIndicatorVisibility));
+            }
         }
+
+        public bool ActivityIndicatorVisibility => !Tweets.Any() && LoadingSocial;
 
         public bool ShowBuyTicketButton =>
             FeatureFlags.ShowBuyTicketButton && EventInfo.StartOfConference.AddDays(-1) >= DateTime.Now;
