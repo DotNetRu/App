@@ -37,99 +37,6 @@
     {
         private static UIColor primaryColor;
 
-        public override bool FinishedLaunching(UIApplication uiApplication, NSDictionary launchOptions)
-        {
-            // Code for starting up the Xamarin Test Cloud Agent
-#if ENABLE_TEST_CLOUD
-            //Calabash.Start();
-
-            //// Mapping StyleId to iOS Labels
-            //Forms.ViewInitialized += (sender, e) =>
-            //    {
-            //        if (null != e.View.StyleId)
-            //        {
-            //            e.NativeView.AccessibilityIdentifier = e.View.StyleId;
-            //        }
-            //    };
-#endif
-
-            Forms.Init();
-
-            this.SetMinimumBackgroundFetchInterval();
-
-            InitializeDependencies();
-
-            this.LoadApplication(new DotNetRu.Clients.UI.App());
-
-            InitializeThemeColors();
-
-            // Process any potential notification data from launch
-            this.ProcessNotification(launchOptions);
-
-            NSNotificationCenter.DefaultCenter.AddObserver(UIApplication.DidBecomeActiveNotification, this.DidBecomeActive);
-
-            // Get possible shortcut item
-            if (launchOptions != null)
-            {
-                this.LaunchedShortcutItem =
-                    launchOptions[UIApplication.LaunchOptionsShortcutItemKey] as UIApplicationShortcutItem;
-            }
-
-            return base.FinishedLaunching(uiApplication, launchOptions); // && shouldPerformAdditionalDelegateHandling;
-        }
-
-        private void DidBecomeActive(NSNotification notification)
-        {
-            ((Clients.UI.App)Xamarin.Forms.Application.Current).SecondOnResume();
-        }
-
-        private static void InitializeDependencies()
-        {
-            Toolkit.Init();
-
-            AppIndexing.SharedInstance.RegisterApp(PublicationSettings.iTunesAppId);
-
-            ShareImplementation.ExcludedUIActivityTypes = new List<NSString>
-                                                                           {
-                                                                               UIActivityType
-                                                                                   .PostToFacebook,
-                                                                               UIActivityType
-                                                                                   .AssignToContact,
-                                                                               UIActivityType
-                                                                                   .OpenInIBooks,
-                                                                               UIActivityType
-                                                                                   .PostToVimeo,
-                                                                               UIActivityType
-                                                                                   .PostToFlickr,
-                                                                               UIActivityType
-                                                                                   .SaveToCameraRoll
-                                                                           };
-            ImageCircleRenderer.Init();
-            NonScrollableListViewRenderer.Initialize();
-            SelectedTabPageRenderer.Initialize();
-            TextViewValue1Renderer.Init();
-            PullToRefreshLayoutRenderer.Init();
-
-            CachedImageRenderer.Init();
-        }
-
-        private static void InitializeThemeColors()
-        {
-            // Set up appearance after loading theme resources in App.xaml
-            primaryColor = ((Color)Xamarin.Forms.Application.Current.Resources["Primary"]).ToUIColor();
-            UINavigationBar.Appearance.BarTintColor =
-                ((Color)Xamarin.Forms.Application.Current.Resources["BarBackgroundColor"]).ToUIColor();
-            UINavigationBar.Appearance.TintColor = primaryColor; // Tint color of button items
-            UIBarButtonItem.Appearance.TintColor = primaryColor; // Tint color of button items
-            UITabBar.Appearance.TintColor = primaryColor;
-            UISwitch.Appearance.OnTintColor = primaryColor;
-            UIAlertView.Appearance.TintColor = primaryColor;
-
-            UIView.AppearanceWhenContainedIn(typeof(UIAlertController)).TintColor = primaryColor;
-            UIView.AppearanceWhenContainedIn(typeof(UIActivityViewController)).TintColor = primaryColor;
-            UIView.AppearanceWhenContainedIn(typeof(SLComposeViewController)).TintColor = primaryColor;
-        }
-
         public override void WillEnterForeground(UIApplication uiApplication)
         {
             base.WillEnterForeground(uiApplication);
@@ -203,6 +110,81 @@
 
             return false;
         }
+
+
+        public override bool FinishedLaunching(UIApplication uiApplication, NSDictionary launchOptions)
+        {
+            Forms.Init();
+
+            this.SetMinimumBackgroundFetchInterval();
+
+            InitializeDependencies();
+
+            this.LoadApplication(new DotNetRu.Clients.UI.App());
+
+            InitializeThemeColors();
+
+            // Process any potential notification data from launch
+            this.ProcessNotification(launchOptions);
+
+            NSNotificationCenter.DefaultCenter.AddObserver(UIApplication.DidBecomeActiveNotification, this.DidBecomeActive);
+
+            // Get possible shortcut item
+            if (launchOptions != null)
+            {
+                this.LaunchedShortcutItem =
+                    launchOptions[UIApplication.LaunchOptionsShortcutItemKey] as UIApplicationShortcutItem;
+            }
+
+            return base.FinishedLaunching(uiApplication, launchOptions); // && shouldPerformAdditionalDelegateHandling;
+        }
+
+        private static void InitializeDependencies()
+        {
+            Toolkit.Init();
+
+            AppIndexing.SharedInstance.RegisterApp(PublicationSettings.iTunesAppId);
+
+            ShareImplementation.ExcludedUIActivityTypes = new List<NSString>
+                                                              {
+                                                                  UIActivityType.PostToFacebook,
+                                                                  UIActivityType.AssignToContact,
+                                                                  UIActivityType.OpenInIBooks,
+                                                                  UIActivityType.PostToVimeo,
+                                                                  UIActivityType.PostToFlickr,
+                                                                  UIActivityType.SaveToCameraRoll
+                                                              };
+            ImageCircleRenderer.Init();
+            NonScrollableListViewRenderer.Initialize();
+            SelectedTabPageRenderer.Initialize();
+            TextViewValue1Renderer.Init();
+            PullToRefreshLayoutRenderer.Init();
+
+            CachedImageRenderer.Init();
+        }
+
+        private static void InitializeThemeColors()
+        {
+            // Set up appearance after loading theme resources in App.xaml
+            primaryColor = ((Color)Xamarin.Forms.Application.Current.Resources["Primary"]).ToUIColor();
+            UINavigationBar.Appearance.BarTintColor =
+                ((Color)Xamarin.Forms.Application.Current.Resources["BarBackgroundColor"]).ToUIColor();
+            UINavigationBar.Appearance.TintColor = primaryColor; // Tint color of button items
+            UIBarButtonItem.Appearance.TintColor = primaryColor; // Tint color of button items
+            UITabBar.Appearance.TintColor = primaryColor;
+            UISwitch.Appearance.OnTintColor = primaryColor;
+            UIAlertView.Appearance.TintColor = primaryColor;
+
+            UIView.AppearanceWhenContainedIn(typeof(UIAlertController)).TintColor = primaryColor;
+            UIView.AppearanceWhenContainedIn(typeof(UIActivityViewController)).TintColor = primaryColor;
+            UIView.AppearanceWhenContainedIn(typeof(SLComposeViewController)).TintColor = primaryColor;
+        }
+
+        private void DidBecomeActive(NSNotification notification)
+        {
+            ((Clients.UI.App)Xamarin.Forms.Application.Current).SecondOnResume();
+        }
+
 
         private void ProcessNotification(NSDictionary userInfo)
         {
