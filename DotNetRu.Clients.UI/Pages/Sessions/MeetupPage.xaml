@@ -11,10 +11,7 @@
     Icon="tab_sessions.png"
     BackgroundColor="{DynamicResource WindowBackground}">
   <ContentPage.Content>
-    <StackLayout>
-      <controls:AlwaysScrollView>
-        <StackLayout Spacing="0">
-          <StackLayout
+          <StackLayout BackgroundColor="{DynamicResource WindowBackgroundTable}"
                       Spacing="{DynamicResource CardSpacing}"
                       Padding="{DynamicResource CardPadding}">
             <controls:CardView>
@@ -76,9 +73,6 @@
               </StackLayout>
             </controls:CardView>
           </StackLayout>
-        </StackLayout>
-      </controls:AlwaysScrollView>
-    </StackLayout>
   </ContentPage.Content>
 </pages:BasePage>
 
