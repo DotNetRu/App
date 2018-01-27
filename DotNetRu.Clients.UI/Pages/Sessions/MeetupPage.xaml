@@ -14,7 +14,7 @@
     <StackLayout>
       <controls:AlwaysScrollView>
         <StackLayout Spacing="0">
-          <StackLayout BackgroundColor="{DynamicResource WindowBackgroundTable}"
+          <StackLayout
                       Spacing="{DynamicResource CardSpacing}"
                       Padding="{DynamicResource CardPadding}">
             <controls:CardView>
