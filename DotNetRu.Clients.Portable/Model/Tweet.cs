@@ -32,11 +32,6 @@
             set
             {
                 this.tweetedImage = value;
-                //this.fullImage = value;
-                //if (!string.IsNullOrWhiteSpace(this.tweetedImage))
-                //{
-                //    this.tweetedImage += ":thumb";
-                //}
             }
         }
 
