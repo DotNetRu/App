@@ -21,7 +21,7 @@
           <StackLayout Spacing="0">
             <controls:LabelSection Text="{Binding Resources[AboutDotNetRu]}"/>
             <controls:HeaderDivider/>
-            <Grid Margin="10, 10, 10, 0">
+            <Grid Margin="10, 10, 10, 0" BackgroundColor="White">
               <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -30,7 +30,6 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
               </Grid.RowDefinitions>
-              <BoxView Color="White" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="2"/>
               <Image Source="{Binding Source={x:Static local:LogoService.DotNetRuLogo}}" VerticalOptions="Center" Grid.Column="0" Grid.Row="0">
                 <Image.GestureRecognizers>
                   <TapGestureRecognizer
