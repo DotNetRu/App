@@ -31,7 +31,7 @@
         </DataTemplate>
       </ListView.ItemTemplate>
     </ListView>
-    <StackLayout IsVisible="{Binding LoadingSocial}"
+    <StackLayout IsVisible="{Binding ActivityIndicatorVisibility}"
                   HorizontalOptions="FillAndExpand"
                   VerticalOptions="Center"
                   Padding="{StaticResource StandardPadding}"
