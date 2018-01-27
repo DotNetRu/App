@@ -1,6 +1,7 @@
 ﻿namespace DotNetRu.Clients.Portable.Model
 {
     using System;
+    using System.Globalization;
     using System.Windows.Input;
 
     using DotNetRu.Utils.Helpers;
@@ -67,7 +68,7 @@
         public string SubtitleDisplay => "@" + this.ScreenName;
 
         [JsonIgnore]
-        public string DateDisplay => this.CreatedDate.Humanize();
+        public string DateDisplay => this.CreatedDate.Humanize(culture: CultureInfo.InvariantCulture);
 
         [JsonIgnore]
         public Uri TweetedImageUri
