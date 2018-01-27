@@ -21,15 +21,24 @@
           <StackLayout Spacing="0">
             <controls:LabelSection Text="{Binding Resources[AboutDotNetRu]}"/>
             <controls:HeaderDivider/>
-            <StackLayout Padding="{StaticResource StandardPadding}" Orientation="Horizontal" BackgroundColor="White">
-              <Image Source="{Binding Source={x:Static local:LogoService.DotNetRuLogo}}">
+            <Grid Margin="10, 10, 10, 0" BackgroundColor="White">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+              </Grid.ColumnDefinitions>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+              </Grid.RowDefinitions>
+              <Image Source="{Binding Source={x:Static local:LogoService.DotNetRuLogo}}" VerticalOptions="Center" Grid.Column="0" Grid.Row="0">
                 <Image.GestureRecognizers>
                   <TapGestureRecognizer
                       Tapped="TapGestureRecognizer_OnTapped"/>
                 </Image.GestureRecognizers>
               </Image>
-              <Label Text="{Binding Resources[AboutText]}" Style="{DynamicResource EvolveListItemTextStyle}"/>
-            </StackLayout>
+              <Label Text="{Binding Resources[AboutText]}" Style="{DynamicResource EvolveListItemTextStyle}" Grid.Column="1" Grid.Row="0" VerticalOptions="Center"/>
+              <Label Text="{Binding Resources[AboutTextDetail]}" Style="{DynamicResource EvolveListItemTextStyle}" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1"/>
+            </Grid>
             <controls:LabelSection Text="{Binding Resources[OurCommunities]}"/>
             <controls:NonScrollableListView
                 x:Name="ListViewCommunities"
@@ -85,17 +94,17 @@
                              StyleId="disclosure"/>
                 </DataTemplate>
               </controls:NonScrollableListView.ItemTemplate>
-            </controls:NonScrollableListView>            
+            </controls:NonScrollableListView>
             <controls:FooterDivider/>
             <StackLayout Spacing="10">
-                <StackLayout.Padding>
-                    <OnPlatform x:TypeArguments="Thickness" iOS="16,8,16,8" Android="16,8"/>
-                </StackLayout.Padding>
-                <Picker ItemsSource="{Binding Languages}" HorizontalOptions="FillAndExpand" Title="{Binding Resources[SelectLanguage]}" SelectedItem="{Binding SelectedLanguage, Mode=TwoWay}" />
-                <Label Text="{Binding AppVersion}"
-                        Style="{DynamicResource EvolveListItemDetailTextStyle}"/>
-                <Label Text="{Binding Copyright}"
-                        Style="{DynamicResource EvolveListItemDetailTextStyle}"/>
+              <StackLayout.Padding>
+                <OnPlatform x:TypeArguments="Thickness" iOS="16,8,16,8" Android="16,8"/>
+              </StackLayout.Padding>
+              <Picker ItemsSource="{Binding Languages}" HorizontalOptions="FillAndExpand" Title="{Binding Resources[SelectLanguage]}" SelectedItem="{Binding SelectedLanguage, Mode=TwoWay}" />
+              <Label Text="{Binding AppVersion}"
+                      Style="{DynamicResource EvolveListItemDetailTextStyle}"/>
+              <Label Text="{Binding Copyright}"
+                      Style="{DynamicResource EvolveListItemDetailTextStyle}"/>
             </StackLayout>
           </StackLayout>
         </controls:CardView>

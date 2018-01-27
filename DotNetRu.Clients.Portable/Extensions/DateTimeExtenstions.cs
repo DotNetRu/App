@@ -1,71 +1,36 @@
-﻿using System;
-using System.Diagnostics;
-using DotNetRu.Clients.Portable.ApplicationResources;
-using DotNetRu.Utils.Helpers;
-using NodaTime;
-
-namespace DotNetRu.Clients.Portable.Extensions
+﻿namespace DotNetRu.Clients.Portable.Extensions
 {
-    /// <summary>
-    /// The date time extensions.
-    /// </summary>
+    using System;
+    using System.Diagnostics;
+
+    using DotNetRu.Clients.Portable.ApplicationResources;
+
+    // using NodaTime;
     public static class DateTimeExtenstions
     {
-        /// <summary>
-        /// The event time zone.
-        /// </summary>
-        public static readonly DateTimeZone EventTimeZone = DateTimeZoneProviders.Tzdb[EventInfo.TimeZoneName];
-
-        /// <summary>
-        /// The to event time zone.
-        /// </summary>
-        /// <param name="utcDateTime">
-        /// The utc date time.
-        /// </param>
-        /// <param name="isUTC">
-        /// The is utc.
-        /// </param>
-        /// <returns>
-        /// The <see cref="DateTime"/>.
-        /// </returns>
+        // public static readonly DateTimeZone EventTimeZone = DateTimeZoneProviders.Tzdb[EventInfo.TimeZoneName];
         public static DateTime ToEventTimeZone(this DateTime utcDateTime, bool isUTC = true)
         {
-            if (utcDateTime == DateTime.MinValue)
-            {
-                return utcDateTime;
-            }
+            return utcDateTime;
 
-            if (isUTC && utcDateTime.Kind == DateTimeKind.Utc)
-            {
-                return Instant.FromDateTimeUtc(utcDateTime).InZone(EventTimeZone).ToDateTimeUnspecified();
-            }
+            // if (utcDateTime == DateTime.MinValue)
+            // {
+            // return utcDateTime;
+            // }
 
-            return Instant.FromDateTimeOffset(utcDateTime).InZone(EventTimeZone).ToDateTimeUnspecified();
+            // if (isUTC && utcDateTime.Kind == DateTimeKind.Utc)
+            // {
+            // return Instant.FromDateTimeUtc(utcDateTime).InZone(EventTimeZone).ToDateTimeUnspecified();
+            // }
+
+            // return Instant.FromDateTimeOffset(utcDateTime).InZone(EventTimeZone).ToDateTimeUnspecified();
         }
 
-        /// <summary>
-        /// The is tba.
-        /// </summary>
-        /// <param name="date">
-        /// The date.
-        /// </param>
-        /// <returns>
-        /// The <see cref="bool"/>.
-        /// </returns>
         public static bool IsTba(this DateTime date)
         {
             return date.ToEventTimeZone().Year == DateTime.MinValue.Year;
         }
 
-        /// <summary>
-        /// The get sort name.
-        /// </summary>
-        /// <param name="e">
-        /// The e.
-        /// </param>
-        /// <returns>
-        /// The <see cref="string"/>.
-        /// </returns>
         public static string GetSortName(this DateTime e)
         {
             var start = e.ToEventTimeZone();
@@ -92,15 +57,6 @@ namespace DotNetRu.Clients.Portable.Extensions
             return $"{monthDay}";
         }
 
-        /// <summary>
-        /// The get start day.
-        /// </summary>
-        /// <param name="date">
-        /// The date.
-        /// </param>
-        /// <returns>
-        /// The <see cref="DateTime"/>.
-        /// </returns>
         public static DateTime GetStartDay(this DateTime date)
         {
             try
