@@ -11,7 +11,7 @@
     Icon="tab_sessions.png"
     BackgroundColor="{DynamicResource WindowBackground}">
   <ContentPage.Content>
-    <ScrollView>
+    <ScrollView BackgroundColor="{DynamicResource WindowBackgroundTable}">
       <StackLayout BackgroundColor="{DynamicResource WindowBackgroundTable}"
                   Spacing="{DynamicResource CardSpacing}"
                   Padding="{DynamicResource CardPadding}">
