@@ -39,6 +39,7 @@
           IsVisible="{Binding HasAttachedImage}"
           Grid.Row="1"
           HorizontalOptions="Start"
+          HeightRequest="150"
           Margin="0,10, 10, 10"
           Source="{Binding TweetedImageUri}"
           LoadingPlaceholder="loading_apple.gif"/>
