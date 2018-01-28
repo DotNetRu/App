@@ -11,6 +11,7 @@
     BackgroundColor="{DynamicResource WindowBackgroundTable}">
   <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
     <ListView
+        IsVisible="{Binding NotLoadingSocial}"
         x:Name="ListViewSocial"
         SelectedItem="{Binding SelectedTweet, Mode=TwoWay}"
         ItemsSource="{Binding Tweets}"
@@ -31,7 +32,7 @@
         </DataTemplate>
       </ListView.ItemTemplate>
     </ListView>
-    <StackLayout IsVisible="{Binding LoadingSocial}"
+    <StackLayout IsVisible="{Binding ActivityIndicatorVisibility}"
                   HorizontalOptions="FillAndExpand"
                   VerticalOptions="Center"
                   Padding="{StaticResource StandardPadding}"
