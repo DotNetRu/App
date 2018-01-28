@@ -35,7 +35,7 @@
 
         public App()
         {
-            var savedLanguage = XamarinEvolve.Clients.Portable.Helpers.Settings.CurrentLanguage;
+            var savedLanguage = Portable.Helpers.Settings.CurrentLanguage;
             var uiLanguage = DependencyService.Get<ILocalize>().GetCurrentCultureInfo().TwoLetterISOLanguageName == "ru"
                                  ? Language.Russian
                                  : Language.English;
