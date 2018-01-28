@@ -1,13 +1,11 @@
 ﻿using System;
-using Xamarin.Forms.Platform.iOS;
-using Xamarin.Forms;
-using XamarinEvolve.iOS;
+using DotNetRu.iOS.Renderers;
 using UIKit;
-using XamarinEvolve.Clients.UI;
-using XamarinEvolve.Clients.Portable;
+using Xamarin.Forms;
+using Xamarin.Forms.Platform.iOS;
 
 [assembly:ExportRenderer(typeof(TabbedPage), typeof(SelectedTabPageRenderer))]
-namespace XamarinEvolve.iOS
+namespace DotNetRu.iOS.Renderers
 {
     public class SelectedTabPageRenderer : TabbedRenderer
     {
@@ -19,15 +17,15 @@ namespace XamarinEvolve.iOS
         public override void ViewWillAppear(bool animated)
         {
             
-            if (TabBar?.Items == null)
+            if (this.TabBar?.Items == null)
                 return;
 
-            var tabs = Element as TabbedPage;
+            var tabs = this.Element as TabbedPage;
             if (tabs != null)
             {   
-                for (int i = 0; i < TabBar.Items.Length; i++)
+                for (int i = 0; i < this.TabBar.Items.Length; i++)
                 {
-                    UpdateItem(TabBar.Items[i],  tabs.Children[i].Icon);
+                    this.UpdateItem(this.TabBar.Items[i],  tabs.Children[i].Icon);
                 }
             }
 

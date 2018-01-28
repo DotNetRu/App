@@ -5,7 +5,7 @@
     xmlns:imagecircle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
     xmlns:local="clr-namespace:XamarinEvolve.Clients.UI;assembly=XamarinEvolve.Clients.UI"
     xmlns:toolkit="clr-namespace:FormsToolkit;assembly=FormsToolkit"
-    x:Class="XamarinEvolve.Clients.UI.CategoryCellView">
+    x:Class="DotNetRu.Clients.UI.Cells.CategoryCellView">
     <ContentView.Resources>
      <ResourceDictionary>
         <toolkit:HexToColorConverter x:Key="StringToColorConverter" />

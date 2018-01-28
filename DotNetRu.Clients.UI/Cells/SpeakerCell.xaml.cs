@@ -1,59 +1,56 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using DotNetRu.Clients.Portable.Model;
+using DotNetRu.Clients.UI.Pages.Speakers;
+using DotNetRu.DataStore.Audit.Models;
 using Xamarin.Forms;
-using XamarinEvolve.DataObjects;
-using XamarinEvolve.Clients.Portable;
 
-namespace XamarinEvolve.Clients.UI
+namespace DotNetRu.Clients.UI.Cells
 {
-    using DotNetRu.DataStore.Audit.DataObjects;
-
-    public class SpeakerCell: ViewCell
+    public class SpeakerCell : ViewCell
     {
         readonly INavigation navigation;
-        string sessionId;
-        public SpeakerCell (string sessionId, INavigation navigation = null)
+
+        readonly string sessionId;
+
+        public SpeakerCell(string sessionId, INavigation navigation = null)
         {
             this.sessionId = sessionId;
-            Height = 60;
-            View = new SpeakerCellView ();
-            StyleId = "disclosure";
+            this.Height = 60;
+            this.View = new SpeakerCellView();
+            this.StyleId = "disclosure";
             this.navigation = navigation;
         }
 
         protected override async void OnTapped()
         {
             base.OnTapped();
-            if (navigation == null)
+            if (this.navigation == null)
+            {
                 return;
+            }
 
-            var speaker = BindingContext as Speaker;
-            if (speaker == null)
+            if (!(this.BindingContext is SpeakerModel speaker))
+            {
                 return;
+            }
 
             App.Logger.TrackPage(AppPage.Speaker.ToString(), speaker.FullName);
 
-            if (Device.OS == TargetPlatform.Windows || Device.OS == TargetPlatform.WinPhone)
+            if (Device.RuntimePlatform == Device.UWP)
             {
-                await navigation.PushAsync(new SpeakerDetailsPageUWP(sessionId)
-                {
-                    Speaker = speaker
-                });
+                await this.navigation.PushAsync(new SpeakerDetailsPageUWP(this.sessionId) { SpeakerModel = speaker });
             }
             else
             {
-                await navigation.PushAsync(new SpeakerDetailsPage(sessionId)
-                {
-                    Speaker = speaker
-                });
+                await this.navigation.PushAsync(new SpeakerDetailsPage { SpeakerModel = speaker });
             }
         }
     }
-    public partial class SpeakerCellView : ContentView
+
+    public partial class SpeakerCellView
     {
         public SpeakerCellView()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

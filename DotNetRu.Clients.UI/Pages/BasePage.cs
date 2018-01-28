@@ -1,8 +1,9 @@
 ﻿using System;
+using DotNetRu.Clients.Portable.Interfaces;
+using DotNetRu.Clients.Portable.Model;
 using Xamarin.Forms;
-using XamarinEvolve.Clients.Portable;
 
-namespace XamarinEvolve.Clients.UI
+namespace DotNetRu.Clients.UI.Pages
 {
 	public abstract class BasePage : ContentPage, IProvidePageInfo
 	{
@@ -13,15 +14,15 @@ namespace XamarinEvolve.Clients.UI
 
 		protected override void OnAppearing()
 		{
-			_appeared = DateTime.UtcNow;
-			App.Logger.TrackPage(PageType.ToString(), ItemId);
+		    this._appeared = DateTime.UtcNow;
+			App.Logger.TrackPage(this.PageType.ToString(), this.ItemId);
 
 			base.OnAppearing();
 		}
 
 		protected override void OnDisappearing()
 		{
-			App.Logger.TrackTimeSpent(PageType.ToString(), ItemId, DateTime.UtcNow - _appeared);
+			App.Logger.TrackTimeSpent(this.PageType.ToString(), this.ItemId, DateTime.UtcNow - this._appeared);
 			base.OnDisappearing();
 		}
 	}

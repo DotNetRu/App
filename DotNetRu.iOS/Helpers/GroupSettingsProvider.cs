@@ -1,30 +1,25 @@
-﻿using System;
+﻿using DotNetRu.iOS.Helpers;
+using DotNetRu.Utils.Helpers;
+using DotNetRu.Utils.Interfaces;
 using Foundation;
 using Xamarin.Forms;
-using XamarinEvolve.Clients.Portable;
-using XamarinEvolve.iOS;
-using XamarinEvolve.Utils;
 
 [assembly:Dependency(typeof(GroupSettingsProvider))]
 
-namespace XamarinEvolve.iOS
+namespace DotNetRu.iOS.Helpers
 {
-	using XamarinEvolve.Utils.Helpers;
-
-	public class GroupSettingsProvider : IPlatformSpecificSettings
+    public class GroupSettingsProvider : IPlatformSpecificSettings
 	{
-		private NSUserDefaults _groupSettings = new NSUserDefaults($"group.{AboutThisApp.PackageName}", NSUserDefaultsType.SuiteName);
+		private readonly NSUserDefaults _groupSettings = new NSUserDefaults($"group.{AboutThisApp.PackageName}", NSUserDefaultsType.SuiteName);
 
 		public string UserIdentifier
 		{
-			get
+			get => this._groupSettings.StringForKey(nameof(this.UserIdentifier));
+
+		    set
 			{
-				return _groupSettings.StringForKey(nameof(UserIdentifier));
-			}
-			set
-			{
-				_groupSettings.SetString(value, nameof(UserIdentifier));
-				_groupSettings.Synchronize();
+			    this._groupSettings.SetString(value, nameof(this.UserIdentifier));
+			    this._groupSettings.Synchronize();
 			}
 		}
 	}

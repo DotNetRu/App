@@ -1,50 +1,51 @@
-﻿using System;
-using System.Windows.Input;
-using Xamarin.Forms;
-using FormsToolkit;
-using Newtonsoft.Json;
-using Humanizer;
-using XamarinEvolve.Utils;
-
-namespace XamarinEvolve.Clients.Portable
+﻿namespace DotNetRu.Clients.Portable.Model
 {
-	using XamarinEvolve.Utils.Helpers;
+    using System;
+    using System.Globalization;
+    using System.Windows.Input;
 
-	public class Tweet
+    using DotNetRu.Utils.Helpers;
+
+    using FormsToolkit;
+
+    using Humanizer;
+
+    using Newtonsoft.Json;
+
+    using Xamarin.Forms;
+
+    public class Tweet
     {
-        string _tweetedImage;
-        string _fullImage;
+        private string tweetedImage;
+
+        private string fullImage;
+
+        private ICommand fullImageCommand;
 
         [JsonIgnore]
-        public bool HasImage => !string.IsNullOrWhiteSpace(_tweetedImage);
+        public bool HasImage => !string.IsNullOrWhiteSpace(this.tweetedImage);
 
         [JsonProperty("tweetedImage")]
         public string TweetedImage
         {
-            get => _tweetedImage;
+            get => this.tweetedImage;
             set
             {
-                _tweetedImage = value;
-                _fullImage = value;
-                if (!string.IsNullOrWhiteSpace(_tweetedImage))
-                {
-                    _tweetedImage += ":thumb";
-                }
+                this.tweetedImage = value;
             }
         }
 
-        ICommand _fullImageCommand;
+        public ICommand FullImageCommand => this.fullImageCommand
+                                            ?? (this.fullImageCommand = new Command(this.ExecuteFullImageCommand));
 
-        public ICommand FullImageCommand =>
-            _fullImageCommand ?? (_fullImageCommand = new Command(ExecuteFullImageCommand));
+        [JsonProperty("likes")]
+        public int? NumberOfLikes { get; set; }
 
-        void ExecuteFullImageCommand()
-        {
-            if (string.IsNullOrWhiteSpace(_fullImage))
-                return;
-            MessagingService.Current.SendMessage(MessageKeys.NavigateToImage, _fullImage);
-        }
+        [JsonProperty("retweets")]
+        public int NumberOfRetweets { get; set; }
 
+        [JsonProperty("comments")]
+        public int NumberOfComments { get; set; }
         [JsonProperty("text")]
         public string Text { get; set; }
 
@@ -64,13 +65,13 @@ namespace XamarinEvolve.Clients.Portable
         public DateTime CreatedDate { get; set; }
 
         [JsonIgnore]
-        public string TitleDisplay => Name;
+        public string TitleDisplay => this.Name;
 
         [JsonIgnore]
-        public string SubtitleDisplay => "@" + ScreenName;
+        public string SubtitleDisplay => "@" + this.ScreenName;
 
         [JsonIgnore]
-        public string DateDisplay => CreatedDate.Humanize();
+        public string DateDisplay => this.CreatedDate.Humanize(culture: CultureInfo.InvariantCulture);
 
         [JsonIgnore]
         public Uri TweetedImageUri
@@ -79,18 +80,32 @@ namespace XamarinEvolve.Clients.Portable
             {
                 try
                 {
-                    if (string.IsNullOrWhiteSpace(TweetedImage))
+                    if (string.IsNullOrWhiteSpace(this.TweetedImage))
+                    {
                         return null;
+                    }
 
-                    return new Uri(TweetedImage);
+                    return new Uri(this.TweetedImage);
                 }
                 catch
                 {
                     // TODO ignored
                 }
+
                 return null;
             }
         }
+
+        public bool HasAttachedImage => !string.IsNullOrWhiteSpace(this.TweetedImage);
+
+        private void ExecuteFullImageCommand()
+        {
+            if (string.IsNullOrWhiteSpace(this.fullImage))
+            {
+                return;
+            }
+
+            MessagingService.Current.SendMessage(MessageKeys.NavigateToImage, this.fullImage);
+        }
     }
 }
-

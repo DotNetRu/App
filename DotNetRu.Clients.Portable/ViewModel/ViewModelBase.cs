@@ -1,8 +1,13 @@
-﻿namespace XamarinEvolve.Clients.Portable
+﻿namespace DotNetRu.Clients.Portable.ViewModel
 {
     using System;
     using System.Threading.Tasks;
     using System.Windows.Input;
+
+    using DotNetRu.Clients.Portable.Helpers;
+    using DotNetRu.Clients.Portable.Interfaces;
+    using DotNetRu.DataStore.Audit;
+    using DotNetRu.Utils.Interfaces;
 
     using MvvmHelpers;
 
@@ -11,87 +16,36 @@
 
     using Xamarin.Forms;
 
-    using XamarinEvolve.DataStore.Mock.Abstractions;
-    using XamarinEvolve.DataStore.Mock.Stores;
+    using XamarinEvolve.Clients.Portable;
 
-    /// <summary>
-    /// The view model base.
-    /// </summary>
     public class ViewModelBase : BaseViewModel
     {
-        /// <summary>
-        /// Gets the navigation.
-        /// </summary>
-        protected INavigation Navigation { get; }
+        private ICommand launchBrowserCommand;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ViewModelBase"/> class.
-        /// </summary>
-        /// <param name="navigation">
-        /// The navigation.
-        /// </param>
         public ViewModelBase(INavigation navigation = null)
         {
             this.Navigation = navigation;
+
+            this.Resources = new LocalizedResources();
         }
 
-        /// <summary>
-        /// The INIT.
-        /// </summary>
-        public static void Init()
+        public LocalizedResources Resources
         {
-            DependencyService.Register<ISessionStore, SessionStore>();
-            DependencyService.Register<IFeedbackStore, FeedbackStore>();
-            DependencyService.Register<IConferenceFeedbackStore, ConferenceFeedbackStore>();
-            DependencyService.Register<ISpeakerStore, SpeakerStore>();
-            DependencyService.Register<ISponsorStore, SponsorStore>();
-            DependencyService.Register<ICategoryStore, CategoryStore>();
-            DependencyService.Register<IEventStore, EventStore>();
-            DependencyService.Register<INotificationStore, NotificationStore>();
-            DependencyService.Register<IStoreManager, DataStore.Mock.StoreManager>();
+            get;
         }
 
-        /// <summary>
-        /// Gets the logger.
-        /// </summary>
-        protected ILogger Logger { get; } = DependencyService.Get<ILogger>();
-
-        /// <summary>
-        /// Gets the store manager.
-        /// </summary>
-        protected IStoreManager StoreManager { get; } = DependencyService.Get<IStoreManager>();
-
-        /// <summary>
-        /// Gets the toast.
-        /// </summary>
-        protected IToast Toast { get; } = DependencyService.Get<IToast>();
-
-        /// <summary>
-        /// The settings.
-        /// </summary>
         public Settings Settings => Settings.Current;
 
-        /// <summary>
-        /// The launch browser command.
-        /// </summary>
-        ICommand launchBrowserCommand;
+        public ICommand LaunchBrowserCommand => this.launchBrowserCommand
+                                                ?? (this.launchBrowserCommand = new Command<string>(
+                                                        async (t) => await this.ExecuteLaunchBrowserAsync(t)));
 
-        /// <summary>
-        /// The launch browser command.
-        /// </summary>
-        public ICommand LaunchBrowserCommand => launchBrowserCommand
-                                                ?? (launchBrowserCommand = new Command<string>(
-                                                        async (t) => await ExecuteLaunchBrowserAsync(t)));
+        protected INavigation Navigation { get; }
 
-        /// <summary>
-        /// The execute launch browser async.
-        /// </summary>
-        /// <param name="arg">
-        /// The arg.
-        /// </param>
-        /// <returns>
-        /// The <see cref="Task"/>.
-        /// </returns>
+        protected ILogger Logger { get; } = DependencyService.Get<ILogger>();
+
+        protected IStoreManager StoreManager { get; } = DependencyService.Get<IStoreManager>();
+
         public async Task ExecuteLaunchBrowserAsync(string arg)
         {
             if (this.IsBusy)
@@ -109,7 +63,7 @@
 
             var lower = arg.ToLowerInvariant();
 
-            this.Logger.Track(EvolveLoggerKeys.LaunchedBrowser, "Url", lower);
+            this.Logger.Track(DotNetRuLoggerKeys.LaunchedBrowser, "Url", lower);
 
             if (Device.RuntimePlatform == Device.iOS)
             {
@@ -141,6 +95,7 @@
                         // ignored
                     }
                 }
+
                 if (lower.Contains("facebook.com"))
                 {
                     try

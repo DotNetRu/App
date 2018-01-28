@@ -1,113 +1,121 @@
-﻿using Xamarin.Forms;
-using System.Collections.Generic;
-using XamarinEvolve.Clients.Portable;
-using FormsToolkit;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using MenuItem = XamarinEvolve.Clients.Portable.MenuItem;
-using XamarinEvolve.Utils;
+using DotNetRu.Clients.Portable.Model;
+using DotNetRu.Clients.UI.Controls;
+using DotNetRu.Clients.UI.Pages.Events;
+using DotNetRu.Clients.UI.Pages.Friends;
+using DotNetRu.Clients.UI.Pages.Home;
+using DotNetRu.Clients.UI.Pages.Info;
+using DotNetRu.Clients.UI.Pages.Sessions;
+using DotNetRu.Clients.UI.Pages.Speakers;
+using DotNetRu.Utils.Helpers;
+using FormsToolkit;
+using Xamarin.Forms;
+using XamarinEvolve.Clients.Portable;
+using MenuItem = DotNetRu.Clients.Portable.Model.MenuItem;
 
-namespace XamarinEvolve.Clients.UI
+namespace DotNetRu.Clients.UI.Pages.Windows
 {
-	using XamarinEvolve.Utils.Helpers;
+    using MenuItem = MenuItem;
 
-	public class RootPageWindows : MasterDetailPage
-  {
-    Dictionary<AppPage, Page> pages;
-    MenuPageUWP menu;
-    public static bool IsDesktop { get; set; }
-
-    public RootPageWindows()
+    public class RootPageWindows : MasterDetailPage
     {
-      //MasterBehavior = MasterBehavior.Popover;
-      pages = new Dictionary<AppPage, Page>();
+        readonly Dictionary<AppPage, Page> pages;
 
-      var items = new ObservableCollection<MenuItem>();
+        readonly MenuPageUWP menu;
 
+        public static bool IsDesktop { get; set; }
 
-      items.Add(new MenuItem {Name = $"{EventInfo.EventName}", Icon = "menu_feed.png", Page = AppPage.Feed});
-      items.Add(new MenuItem {Name = "Sessions", Icon = "menu_sessions.png", Page = AppPage.Sessions});
-        items.Add(new MenuItem {Name = "Speakers", Icon = "menu_speakers.png", Page = AppPage.Speakers});
-
-        items.Add(new MenuItem { Name = "Events", Icon = "menu_events.png", Page = AppPage.Events });
-      if (FeatureFlags.SponsorsOnTabPage)
-      {
-        items.Add(new MenuItem {Name = "Sponsors", Icon = "menu_sponsors.png", Page = AppPage.Sponsors});
-      }
-
-      items.Add(new MenuItem {Name = "About", Icon = "menu_info.png", Page = AppPage.Settings});
-
-      menu = new MenuPageUWP();
-      menu.MenuList.ItemsSource = items;
-
-      menu.MenuList.ItemSelected += (sender, args) =>
-      {
-        if (menu.MenuList.SelectedItem == null)
-          return;
-
-        Device.BeginInvokeOnMainThread(() =>
+        public RootPageWindows()
         {
-          NavigateAsync(((MenuItem) menu.MenuList.SelectedItem).Page);
-          if (!IsDesktop)
-            IsPresented = false;
-        });
-      };
+            // MasterBehavior = MasterBehavior.Popover;
+            this.pages = new Dictionary<AppPage, Page>();
 
-      Master = menu;
-      NavigateAsync((int) AppPage.Feed);
-      Title = "DotNetRu App";
-    }
+            var items = new ObservableCollection<MenuItem>();
 
 
+            items.Add(new MenuItem { Name = $"{AboutThisApp.AppName}", Icon = "menu_feed.png", Page = AppPage.Feed });
+            items.Add(new MenuItem { Name = "Sessions", Icon = "menu_sessions.png", Page = AppPage.Meetup });
+            items.Add(new MenuItem { Name = "Speakers", Icon = "menu_speakers.png", Page = AppPage.Speakers });
 
-    public void NavigateAsync(AppPage menuId)
-    {
-      Page newPage = null;
-      if (!pages.ContainsKey(menuId))
-      {
-        //only cache specific pages
-        switch (menuId)
-        {
-          case AppPage.Feed: //Feed
-            pages.Add(menuId, new EvolveNavigationPage(new FeedPage()));
-            break;
-          case AppPage.Sessions: //sessions
-            pages.Add(menuId, new EvolveNavigationPage(new SessionsPage()));
-            break;
-          case AppPage.Speakers: //sessions
-            pages.Add(menuId, new EvolveNavigationPage(new SpeakersPage()));
-            break;
-          case AppPage.Events: //events
-            pages.Add(menuId, new EvolveNavigationPage(new EventsPage()));
-            break;
-          case AppPage.Sponsors: //sponsors
-            newPage = new EvolveNavigationPage(new SponsorsPage());
-            break;
-          case AppPage.Settings: //Settings
-            newPage = new EvolveNavigationPage(new SettingsPage());
-            break;
+            items.Add(new MenuItem { Name = "Meetups", Icon = "menu_events.png", Page = AppPage.Meetups });
+            if (FeatureFlags.SponsorsOnTabPage)
+            {
+                items.Add(new MenuItem { Name = "Friends", Icon = "menu_sponsors.png", Page = AppPage.Friends });
+            }
+
+            items.Add(new MenuItem { Name = "About", Icon = "menu_info.png", Page = AppPage.Settings });
+
+            this.menu = new MenuPageUWP();
+            this.menu.MenuList.ItemsSource = items;
+
+            this.menu.MenuList.ItemSelected += (sender, args) =>
+                {
+                    if (this.menu.MenuList.SelectedItem == null) return;
+
+                    Device.BeginInvokeOnMainThread(
+                        () =>
+                            {
+                                this.NavigateAsync(((MenuItem)this.menu.MenuList.SelectedItem).Page);
+                                if (!IsDesktop) this.IsPresented = false;
+                            });
+                };
+
+            this.Master = this.menu;
+            this.NavigateAsync((int)AppPage.Feed);
+            this.Title = "DotNetRu App";
         }
-      }
 
-      if (newPage == null)
-        newPage = pages[menuId];
 
-      if (newPage == null)
-        return;
 
-      Detail = newPage;
-      //await Navigation.PushAsync(newPage);
+        public void NavigateAsync(AppPage menuId)
+        {
+            Page newPage = null;
+            if (!this.pages.ContainsKey(menuId))
+            {
+                // only cache specific pages
+                switch (menuId)
+                {
+                    case AppPage.Feed: // Feed
+                        this.pages.Add(menuId, new EvolveNavigationPage(new NewsPage()));
+                        break;
+                    case AppPage.Meetup: // sessions
+                        this.pages.Add(menuId, new EvolveNavigationPage(new MeetupPage()));
+                        break;
+                    case AppPage.Speakers: // sessions
+                        this.pages.Add(menuId, new EvolveNavigationPage(new SpeakersPage()));
+                        break;
+                    case AppPage.Meetups: // events
+                        this.pages.Add(menuId, new EvolveNavigationPage(new MeetupsPage()));
+                        break;
+                    case AppPage.Friends: // sponsors
+                        newPage = new EvolveNavigationPage(new FriendsPage());
+                        break;
+                    case AppPage.Settings: // Settings
+                        newPage = new EvolveNavigationPage(new SettingsPage());
+                        break;
+                }
+            }
+
+            if (newPage == null) newPage = this.pages[menuId];
+
+            if (newPage == null) return;
+
+            this.Detail = newPage;
+
+            // await Navigation.PushAsync(newPage);
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            if (Settings.Current.FirstRun)
+            {
+                MessagingService.Current.SendMessage(MessageKeys.NavigateLogin);
+            }
+        }
     }
-
-    protected override void OnAppearing()
-    {
-      base.OnAppearing();
-
-      if (Settings.Current.FirstRun)
-      {
-        MessagingService.Current.SendMessage(MessageKeys.NavigateLogin);
-      }
-    }
-  }
 }
 
 

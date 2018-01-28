@@ -1,22 +1,12 @@
-﻿namespace XamarinEvolve.Utils.Helpers
-{
-    using System;
+﻿using System;
 
+namespace DotNetRu.Utils.Helpers
+{
     /// <summary>
     /// The event info.
     /// </summary>
     public static class EventInfo
     {
-        /// <summary>
-        /// The event short name.
-        /// </summary>
-        public const string EventShortName = "DotNetRu";
-
-        /// <summary>
-        /// The event name.
-        /// </summary>
-        public const string EventName = "DotNetRu";
-
         /// <summary>
         /// The address 1.
         /// </summary>

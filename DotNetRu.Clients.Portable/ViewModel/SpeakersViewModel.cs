@@ -1,134 +1,118 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using System.Xml.Serialization;
-using DotNetRu.DataStore.Audit.DataObjects;
-using FormsToolkit;
-using MvvmHelpers;
-using Xamarin.Forms;
-using XamarinEvolve.Utils;
-using XamarinEvolve.Utils.Helpers;
-using AuditSpeaker = DotNetRu.DataStore.Audit.Models.Speaker;
-
-namespace XamarinEvolve.Clients.Portable
+﻿namespace DotNetRu.Clients.Portable.ViewModel
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Windows.Input;
+
+    using DotNetRu.DataStore.Audit.Models;
+    using DotNetRu.DataStore.Audit.Services;
+    using DotNetRu.Utils.Helpers;
+
+    using FormsToolkit;
+
+    using MvvmHelpers;
+
+    using Xamarin.Forms;
+
     public class SpeakersViewModel : ViewModelBase
     {
-
-        public SpeakersViewModel(INavigation navigation) : base(navigation)
+        public SpeakersViewModel(INavigation navigation)
+            : base(navigation)
         {
         }
 
-        public ObservableRangeCollection<Speaker> Speakers { get; } = new ObservableRangeCollection<Speaker>();
-       
+        public ObservableRangeCollection<SpeakerModel> Speakers { get; } =
+            new ObservableRangeCollection<SpeakerModel>();
 
         #region Sorting
 
-        private void SortSpeakers(IEnumerable<Speaker> speakers)
+        private void SortSpeakers(IEnumerable<SpeakerModel> speakers)
         {
-            var speakersSorted = from speaker in speakers
-                                 orderby speaker.FullName
-                                 select speaker;
+            var speakersSorted = from speaker in speakers orderby speaker.FullName select speaker;
 
-            Speakers.ReplaceRange(speakersSorted);
+            this.Speakers.ReplaceRange(speakersSorted);
         }
 
         #endregion
 
-        #region Properties
+        private SpeakerModel selectedSpeakerModel;
 
-        private Speaker _selectedSpeaker;
-
-        public Speaker SelectedSpeaker
+        public SpeakerModel SelectedSpeakerModel
         {
-            get => _selectedSpeaker;
+            get => this.selectedSpeakerModel;
             set
             {
-                _selectedSpeaker = value;
-                OnPropertyChanged();
-                if (_selectedSpeaker == null)
+                this.selectedSpeakerModel = value;
+                this.OnPropertyChanged();
+                if (this.selectedSpeakerModel == null)
+                {
                     return;
+                }
 
-                MessagingService.Current.SendMessage(MessageKeys.NavigateToSpeaker, _selectedSpeaker);
+                MessagingService.Current.SendMessage(MessageKeys.NavigateToSpeaker, this.selectedSpeakerModel);
 
-                SelectedSpeaker = null;
+                this.SelectedSpeakerModel = null;
             }
-        }
-
-        #endregion
-
-        #region Commands
-
-        private ICommand forceRefreshCommand;
-
-        public ICommand ForceRefreshCommand =>
-            forceRefreshCommand ?? (forceRefreshCommand =
-                new Command(async () => await ExecuteForceRefreshCommandAsync()));
-
-        private async Task ExecuteForceRefreshCommandAsync()
-        {
-            await ExecuteLoadSpeakersAsync(true);
         }
 
         private ICommand loadSpeakersCommand;
 
         public ICommand LoadSpeakersCommand =>
-            loadSpeakersCommand ?? (loadSpeakersCommand =
-                new Command(async f => await ExecuteLoadSpeakersAsync((bool)f)));
+            this.loadSpeakersCommand
+            ?? (this.loadSpeakersCommand = new Command((f) => this.ExecuteLoadSpeakers((bool)f)));
 
-        private async Task<bool> ExecuteLoadSpeakersAsync(bool force = false)
+        private void ExecuteLoadSpeakers(bool force = false)
         {
-            if (IsBusy)
-                return false;
+            if (this.IsBusy)
+            {
+                return;
+            }
 
             try
             {
-                IsBusy = true;
+                this.IsBusy = true;
 
-#if DEBUG
-                await Task.Delay(1000);
-#endif
-                if (!Speakers.Any() || force) // TODO: update data when we'll have finally managed to get them directly from github
+                // TODO: update data when we'll have finally managed to get them directly from github
+                if (!this.Speakers.Any() || force)
                 {
-                    IEnumerable<Speaker> speakers = SpeakerLoaderService.Speakers; //await StoreManager.SpeakerStore.GetItemsAsync(force);
-                    SortSpeakers(speakers);
+                    IEnumerable<SpeakerModel> speakers = SpeakerService.Speakers;
+                    this.SortSpeakers(speakers);
                 }
 
+                // TODO uncomment
+                // if (Device.RuntimePlatform != Device.UWP && FeatureFlags.AppLinksEnabled)
+                // {
+                // foreach (var speaker in this.Speakers)
+                // {
+                // try
+                // {
+                // // data migration: older applinks are removed so the index is rebuilt again
+                // Application.Current.AppLinks.DeregisterLink(
+                // new Uri(
+                // $"http://{AboutThisApp.AppLinksBaseDomain}/{AboutThisApp.SpeakersSiteSubdirectory}/{speaker.Id}"));
 
-                if (Device.OS != TargetPlatform.WinPhone && Device.OS != TargetPlatform.Windows &&
-                    FeatureFlags.AppLinksEnabled)
-                    foreach (var speaker in Speakers)
-                        try
-                        {
-                            // data migration: older applinks are removed so the index is rebuilt again
-                            Application.Current.AppLinks.DeregisterLink(new Uri(
-                                $"http://{AboutThisApp.AppLinksBaseDomain}/{AboutThisApp.SpeakersSiteSubdirectory}/{speaker.Id}"));
-
-                            Application.Current.AppLinks.RegisterLink(speaker.GetAppLink());
-                        }
-                        catch (Exception applinkException)
-                        {
-                            // don't crash the app
-                            Logger.Report(applinkException, "AppLinks.RegisterLink", speaker.Id);
-                        }
+                // Application.Current.AppLinks.RegisterLink(speaker.GetAppLink());
+                // }
+                // catch (Exception applinkException)
+                // {
+                // // don't crash the app
+                // this.Logger.Report(applinkException, "AppLinks.RegisterLink", speaker.Id);
+                // }
+                // }
+                // }
             }
             catch (Exception ex)
             {
-                Logger.Report(ex, "Method", "ExecuteLoadSpeakersAsync");
+                this.Logger.Report(ex, "Method", "ExecuteLoadSpeakers");
                 MessagingService.Current.SendMessage(MessageKeys.Error, ex);
             }
             finally
             {
-                IsBusy = false;
+                this.IsBusy = false;
             }
 
-            return true;
+            return;
         }
-
-        #endregion
     }
 }

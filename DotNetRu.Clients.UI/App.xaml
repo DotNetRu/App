@@ -2,7 +2,7 @@
 <Application 
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-    x:Class="XamarinEvolve.Clients.UI.App">
+    x:Class="DotNetRu.Clients.UI.App">
     <Application.Resources>
         <ResourceDictionary>
             <Color x:Key="Primary">#68217A</Color>
@@ -23,21 +23,21 @@
             <x:Double x:Key="StandardSpacing">16</x:Double>
 
 
-            <OnPlatform x:TypeArguments="Color" Android="#F5F5F5" iOS="#EFEFF4" WinPhone="#EFEFF4" x:Key="WindowBackgroundTable"/>
-            <OnPlatform x:TypeArguments="Color" Android="#F5F5F5" iOS="White" WinPhone="White" x:Key="WindowBackground"/>
-            <OnPlatform x:TypeArguments="Color" Android="#ECECEC" iOS="#C8C7CC" WinPhone="#C8C7CC" x:Key="Divider"/>
+            <OnPlatform x:TypeArguments="Color" Android="#F5F5F5" iOS="#EFEFF4" x:Key="WindowBackgroundTable"/>
+            <OnPlatform x:TypeArguments="Color" Android="#F5F5F5" iOS="White" x:Key="WindowBackground"/>
+            <OnPlatform x:TypeArguments="Color" Android="#ECECEC" iOS="#C8C7CC" x:Key="Divider"/>
             <Color x:Key="ButtonBorder">#C8C7CC</Color>
             <Color x:Key="ListSeparator">#C8C7CC</Color>
-            <OnPlatform x:TypeArguments="Thickness" Android="8,16" iOS="0,0,0,16" WinPhone="0,0,0,16" x:Key="CardPadding"/>
-            <OnPlatform x:TypeArguments="x:Double" Android="16" iOS="0" WinPhone="0" x:Key="CardSpacing"/>
+            <OnPlatform x:TypeArguments="Thickness" Android="8,16" iOS="0,0,0,16" x:Key="CardPadding"/>
+            <OnPlatform x:TypeArguments="x:Double" Android="16" iOS="0" x:Key="CardSpacing"/>
             
-            <OnPlatform x:TypeArguments="x:Double" Android="15" iOS="15" WinPhone="13" x:Key="EvolveListItemTextStyleSize" />
-            <OnPlatform x:TypeArguments="x:Double" Android="13" iOS="12" WinPhone="13" x:Key="EvolveListItemDetailTextStyleSize" />
-            <OnPlatform x:TypeArguments="x:Double" Android="18" iOS="13" WinPhone="13" x:Key="LabelSectionFontSize" />
-            <OnPlatform x:TypeArguments="x:Double" Android="14" iOS="14" WinPhone="14" x:Key="TweetTextSize" />
-            <OnPlatform x:TypeArguments="x:Double" Android="48" iOS="48" WinPhone="48" x:Key="HugeTextSize" />
-			<OnPlatform x:TypeArguments="x:String" Android="monospace" iOS="Courier" WinPhone="verdana" x:Key="MonoSpacedTextFontFamily" />
-            <OnPlatform x:TypeArguments="Font" Android="SemiBold" iOS="SemiBold" WinPhone="SemiBold" x:Key="TweetUserTextFontWeight" />
+            <OnPlatform x:TypeArguments="x:Double" Android="15" iOS="15" x:Key="EvolveListItemTextStyleSize" />
+            <OnPlatform x:TypeArguments="x:Double" Android="13" iOS="12" x:Key="EvolveListItemDetailTextStyleSize" />
+            <OnPlatform x:TypeArguments="x:Double" Android="18" iOS="13" x:Key="LabelSectionFontSize" />
+            <OnPlatform x:TypeArguments="x:Double" Android="14" iOS="14" x:Key="TweetTextSize" />
+            <OnPlatform x:TypeArguments="x:Double" Android="48" iOS="48" x:Key="HugeTextSize" />
+			<OnPlatform x:TypeArguments="x:String" Android="monospace" iOS="Courier" x:Key="MonoSpacedTextFontFamily" />
+            <OnPlatform x:TypeArguments="Font" Android="SemiBold" iOS="SemiBold" x:Key="TweetUserTextFontWeight" />
             <OnPlatform x:TypeArguments="x:String" Android="sans-serif-light" x:Key="SectionLabelFontFamily" />
 
             <Style x:Key="TweetUserTextStyle" TargetType="Label" BaseResourceKey="ListItemDetailTextStyle">
@@ -112,6 +112,48 @@
                 <Setter Property="FontSize" Value="{DynamicResource EvolveListItemDetailTextStyleSize}" />
                 <Setter Property="TextColor" Value="{DynamicResource Primary}"/>
                 <Setter Property="FontAttributes" Value="Bold"/>
+            </Style>
+
+            <!-- Styles for common elements -->
+            <Style TargetType="Label">
+                <Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.iOS>HelveticaNeue</OnPlatform.iOS>
+                            <OnPlatform.Android>Roboto-Regular.ttf#Roboto</OnPlatform.Android>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style TargetType="Label" x:Key="BoldLabel">
+                <Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.iOS>HelveticaNeue-Bold</OnPlatform.iOS>
+                            <OnPlatform.Android>Roboto-Bold.ttf#Roboto Bold</OnPlatform.Android>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+
+            <Style TargetType="Label" x:Key="FALabel">
+                <Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.iOS>FontAwesome</OnPlatform.iOS>
+                            <OnPlatform.Android>fontawesome.ttf#FontAwesome</OnPlatform.Android>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="AddButtonStyleAndroid" TargetType="RelativeLayout">
+                <Setter Property="HeightConstraint" Value="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0,Constant=60}"/>
+                <Setter Property="WidthConstraint" Value="{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=0,Constant=60}"/>
+                <Setter Property="YConstraint" Value="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.20,Constant=0}"/>
+                <Setter Property="XConstraint" Value="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.26, Constant=0}"/>
             </Style>
         </ResourceDictionary>
     </Application.Resources>

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
@@ -35,43 +35,270 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="DataObjects\BaseDataObject.cs" />
-    <Compile Include="DataObjects\Category.cs" />
-    <Compile Include="DataObjects\ConferenceFeedback.cs" />
-    <Compile Include="DataObjects\FeaturedEvent.cs" />
-    <Compile Include="DataObjects\Feedback.cs" />
-    <Compile Include="DataObjects\Notification.cs" />
-    <Compile Include="DataObjects\Room.cs" />
-    <Compile Include="DataObjects\Session.cs" />
-    <Compile Include="DataObjects\Speaker.cs" />
-    <Compile Include="DataObjects\Sponsor.cs" />
-    <Compile Include="DataObjects\SponsorLevel.cs" />
-    <Compile Include="Models\Community.cs" />
-    <Compile Include="Models\Friend.cs" />
-    <Compile Include="Models\Meetup.cs" />
+    <PackageReference Include="Refractored.MvvmHelpers" Version="1.3.0" />
+    <PackageReference Include="Xamarin.Forms" Version="2.5.0.122203" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Abstractions\IBaseStore.cs" />
+    <Compile Include="Abstractions\ICategoryStore.cs" />
+    <Compile Include="Abstractions\IEventStore.cs" />
+    <Compile Include="Abstractions\INotificationStore.cs" />
+    <Compile Include="Abstractions\IFriendStore.cs" />
+    <Compile Include="Extensions\FriendEntityExtensions.cs" />
+    <Compile Include="Extensions\MeetupEntityExtensions.cs" />
+    <Compile Include="Extensions\SpeakerEntityExtensions.cs" />
+    <Compile Include="Extensions\TalkEntityExtensions.cs" />
+    <Compile Include="Extensions\VenueEntityExtensions.cs" />
+    <Compile Include="Helpers\ParseHelper.cs" />
+    <Compile Include="IStoreManager.cs" />
+    <Compile Include="Models\BaseModel.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\ConferenceFeedback.cs" />
+    <Compile Include="Models\IModel.cs" />
+    <Compile Include="Models\MeetupModel.cs" />
+    <Compile Include="Models\Feedback.cs" />
+    <Compile Include="Models\Notification.cs" />
+    <Compile Include="Models\Room.cs" />
+    <Compile Include="Models\TalkModel.cs" />
+    <Compile Include="Models\SpeakerModel.cs" />
+    <Compile Include="Models\FriendModel.cs" />
+    <Compile Include="Entities\CommunityEntity.cs" />
+    <Compile Include="Entities\FriendEntity.cs" />
+    <Compile Include="Entities\MeetupEntity.cs" />
+    <Compile Include="Models\VenueModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Models\Speaker.cs" />
-    <Compile Include="Models\Talk.cs" />
-    <Compile Include="Models\Venue.cs" />
+    <Compile Include="Entities\SpeakerEntity.cs" />
+    <Compile Include="Entities\TalkEntity.cs" />
+    <Compile Include="Entities\VenueEntity.cs" />
+    <Compile Include="Services\IEntityService.cs" />
+    <Compile Include="Services\LogoService.cs" />
+    <Compile Include="Services\MeetupService.cs" />
+    <Compile Include="Services\SpeakerService.cs" />
+    <Compile Include="Services\TalkService.cs" />
+    <Compile Include="Services\FriendService.cs" />
+    <Compile Include="Services\VenueService.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Storage\Communities.xml" />
+    <EmbeddedResource Include="Storage\Friends.xml" />
+    <EmbeddedResource Include="Storage\Meetups.xml" />
+    <EmbeddedResource Include="Storage\Speakers.xml" />
+    <EmbeddedResource Include="Storage\Talks.xml" />
+    <EmbeddedResource Include="Storage\Venues.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Storage\communities.xml" />
-    <EmbeddedResource Include="Storage\friends.xml" />
-    <EmbeddedResource Include="Storage\meetups.xml" />
-    <EmbeddedResource Include="Storage\speakers.xml" />
-    <EmbeddedResource Include="Storage\talks.xml" />
-    <EmbeddedResource Include="Storage\venues.xml" />
+    <EmbeddedResource Include="Storage\friends\CUSTIS.logo.png" />
+    <EmbeddedResource Include="Storage\friends\CUSTIS.logo.small.png" />
+    <EmbeddedResource Include="Storage\friends\DataArt.logo.png" />
+    <EmbeddedResource Include="Storage\friends\DataArt.logo.small.png" />
+    <EmbeddedResource Include="Storage\friends\DeutscheBank.logo.png" />
+    <EmbeddedResource Include="Storage\friends\DeutscheBank.logo.small.png" />
+    <EmbeddedResource Include="Storage\friends\DodoPizza.logo.png" />
+    <EmbeddedResource Include="Storage\friends\DodoPizza.logo.small.png" />
+    <EmbeddedResource Include="Storage\friends\DotNext.logo.png" />
+    <EmbeddedResource Include="Storage\friends\DotNext.logo.small.png" />
+    <EmbeddedResource Include="Storage\friends\EMC.logo.png" />
+    <EmbeddedResource Include="Storage\friends\EMC.logo.small.png" />
+    <EmbeddedResource Include="Storage\friends\EPAM.logo.png" />
+    <EmbeddedResource Include="Storage\friends\EPAM.logo.small.png" />
+    <EmbeddedResource Include="Storage\friends\FINAM.logo.png" />
+    <EmbeddedResource Include="Storage\friends\FINAM.logo.small.png" />
+    <EmbeddedResource Include="Storage\friends\Intermedia.logo.png" />
+    <EmbeddedResource Include="Storage\friends\Intermedia.logo.small.png" />
+    <EmbeddedResource Include="Storage\friends\ITGM.logo.png" />
+    <EmbeddedResource Include="Storage\friends\ITGM.logo.small.png" />
+    <EmbeddedResource Include="Storage\friends\JetBrains.logo.png" />
+    <EmbeddedResource Include="Storage\friends\JetBrains.logo.small.png" />
+    <EmbeddedResource Include="Storage\friends\Kaspersky.logo.png" />
+    <EmbeddedResource Include="Storage\friends\Kaspersky.logo.small.png" />
+    <EmbeddedResource Include="Storage\friends\logo.png" />
+    <EmbeddedResource Include="Storage\friends\logo.small.png" />
+    <EmbeddedResource Include="Storage\friends\Luxoft.logo.png" />
+    <EmbeddedResource Include="Storage\friends\Luxoft.logo.small.png" />
+    <EmbeddedResource Include="Storage\friends\Microsoft.logo.png" />
+    <EmbeddedResource Include="Storage\friends\Microsoft.logo.small.png" />
+    <EmbeddedResource Include="Storage\friends\Odin.logo.png" />
+    <EmbeddedResource Include="Storage\friends\Odin.logo.small.png" />
+    <EmbeddedResource Include="Storage\friends\Rambler.logo.png" />
+    <EmbeddedResource Include="Storage\friends\Rambler.logo.small.png" />
+    <EmbeddedResource Include="Storage\friends\SberbankTechnology.logo.png" />
+    <EmbeddedResource Include="Storage\friends\SberbankTechnology.logo.small.png" />
+    <EmbeddedResource Include="Storage\friends\Selectel.logo.png" />
+    <EmbeddedResource Include="Storage\friends\Selectel.logo.small.png" />
+    <EmbeddedResource Include="Storage\friends\SEMrush.logo.png" />
+    <EmbeddedResource Include="Storage\friends\SEMrush.logo.small.png" />
+    <EmbeddedResource Include="Storage\friends\Tinkoff.logo.png" />
+    <EmbeddedResource Include="Storage\friends\Tinkoff.logo.small.png" />
+    <EmbeddedResource Include="Storage\friends\Yandex.logo.png" />
+    <EmbeddedResource Include="Storage\friends\Yandex.logo.small.png" />
+    <EmbeddedResource Include="Storage\speakers\Adam-Sitnik.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Adam-Sitnik.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Alex-Merson.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Alex-Merson.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Alexander-Ivanov.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Alexander-Ivanov.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Alexander-Kugushev.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Alexander-Kugushev.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Alexander-Romanov.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Alexander-Romanov.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Alexander-Saitov.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Alexander-Saitov.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Alexander-Shapoval.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Alexander-Shapoval.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Alexander-Shelemin.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Alexander-Shelemin.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Alexander-Shvedov.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Alexander-Shvedov.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Alexander-Surkov.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Alexander-Surkov.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Anatoly-Kulakov.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Anatoly-Kulakov.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Andrei-Kirpichev.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Andrei-Kirpichev.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Andrey-Akinshin.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Andrey-Akinshin.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Andrey-Matveev.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Andrey-Matveev.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Andrey-Terekhov.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Andrey-Terekhov.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Andrey-Zaytsev.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Andrey-Zaytsev.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Anton-Shabanov.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Anton-Shabanov.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Artem-Borzilov.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Artem-Borzilov.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Artem-Zhuravlev.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Artem-Zhuravlev.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Daniel-Sokoluk.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Daniel-Sokoluk.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Denis-Davydov.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Denis-Davydov.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Dmitri-Nesteruk.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Dmitri-Nesteruk.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Dmitry-Ivanov.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Dmitry-Ivanov.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Dmitry-Naumov.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Dmitry-Naumov.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Dmitry-Tezhelnikov.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Dmitry-Tezhelnikov.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Dmitry-Vereskun.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Dmitry-Vereskun.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Dmitry-Vlasov.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Dmitry-Vlasov.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Egor-Bogatov.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Egor-Bogatov.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Egor-Grishechko.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Egor-Grishechko.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Elizabeth-Holenok.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Elizabeth-Holenok.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Igor-Labutin.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Igor-Labutin.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Igor-Yakovlev.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Igor-Yakovlev.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Ilya-Efimov.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Ilya-Efimov.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Ilya-Fofanov.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Ilya-Fofanov.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Ivan-Kochurkin.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Ivan-Kochurkin.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Ivan-Pashchenko.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Ivan-Pashchenko.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Kirill-Maurin.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Kirill-Maurin.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Mikhail-Bashurov.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Mikhail-Bashurov.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Mikhail-Filippov.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Mikhail-Filippov.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Mikhail-Shcherbakov.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Mikhail-Shcherbakov.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Nikita-Kamensky.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Nikita-Kamensky.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Nikita-Kozlov.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Nikita-Kozlov.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Nikita-Tsukanov.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Nikita-Tsukanov.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Pavel-Fedotovsky.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Pavel-Fedotovsky.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Pavel-Pritchin.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Pavel-Pritchin.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Pavel-Tupitsin.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Pavel-Tupitsin.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Peter-Timoshevsky.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Peter-Timoshevsky.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Roman-Iovlev.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Roman-Iovlev.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Roman-Nevolin.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Roman-Nevolin.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Roman-Pavuk.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Roman-Pavuk.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Sasha-Goldshtein.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Sasha-Goldshtein.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Sergey-Baltiyskiy.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Sergey-Baltiyskiy.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Sergey-Levkin.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Sergey-Levkin.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Sergey-Sentsov.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Sergey-Sentsov.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Sergey-Shchegrikovich.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Sergey-Shchegrikovich.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Sergey-Shkredov.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Sergey-Shkredov.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Stas-Pavlov.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Stas-Pavlov.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Valery-Ignatyev.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Valery-Ignatyev.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Valery-Petrov.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Valery-Petrov.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Vladimir-Kochetkov.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Vladimir-Kochetkov.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Vladimir-Koshelev.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Vladimir-Koshelev.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Vladimir-Ozerov.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Vladimir-Ozerov.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Vsevolod-Ivanov.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Vsevolod-Ivanov.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Vyacheslav-Mikhaylov.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Vyacheslav-Mikhaylov.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Vyacheslav-Smirnov.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Vyacheslav-Smirnov.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Yakov-Povar.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Yakov-Povar.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Yakov-Zhdanov.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Yakov-Zhdanov.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Yulia-Tsisyk.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Yulia-Tsisyk.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Yuri-Volkov.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Yuri-Volkov.avatar.small.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="MvvmHelpers, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Refractored.MvvmHelpers.1.3.0\lib\netstandard1.0\MvvmHelpers.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\portable-net45+win8+wp8+wpa81\Newtonsoft.Json.dll</HintPath>
-    </Reference>
+    <EmbeddedResource Include="Images\dotnetru.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <EmbeddedResource Include="Storage\SeveralSpeakers.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Storage\logos\EkbDotNet.png" />
+    <EmbeddedResource Include="Storage\logos\KryDotNet.png" />
+    <EmbeddedResource Include="Storage\logos\MskDotNet.png" />
+    <EmbeddedResource Include="Storage\logos\SarDotNet.png" />
+    <EmbeddedResource Include="Storage\logos\SpbDotNet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Storage\logos\DotNetRu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Storage\friends\Arcadia.logo.png" />
+    <EmbeddedResource Include="Storage\friends\Arcadia.logo.small.png" />
+    <EmbeddedResource Include="Storage\friends\Pilot.logo.png" />
+    <EmbeddedResource Include="Storage\friends\Pilot.logo.small.png" />
+    <EmbeddedResource Include="Storage\speakers\Artem-Akulakov.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Artem-Akulakov.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Ivan-Kozhin.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Ivan-Kozhin.avatar.small.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Stanislav-Sidristy.avatar.jpg" />
+    <EmbeddedResource Include="Storage\speakers\Stanislav-Sidristy.avatar.small.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

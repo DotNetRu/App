@@ -1,23 +1,25 @@
-﻿using System;
-using Xamarin.Forms;
-using XamarinEvolve.Droid;
-using Xamarin.Forms.Platform.Android;
-using Android.Widget;
-using Android.Content;
+﻿using Android.Content;
 using Android.Util;
 using Android.Views;
+using Android.Widget;
+using DotNetRu.Droid.Renderers;
+using Xamarin.Forms;
+using Xamarin.Forms.Platform.Android;
 
-[assembly:ExportCell(typeof(SwitchCell), typeof(SwitchCellEx))]
-namespace XamarinEvolve.Droid
+[assembly: ExportCell(typeof(SwitchCell), typeof(SwitchCellEx))]
+
+namespace DotNetRu.Droid.Renderers
 {
-    public class SwitchCellEx: SwitchCellRenderer
+    using View = Android.Views.View;
+
+    public class SwitchCellEx : SwitchCellRenderer
     {
-        protected override Android.Views.View GetCellCore(Cell item, Android.Views.View convertView, Android.Views.ViewGroup parent, Context context)
+        protected override View GetCellCore(Cell item, View convertView, ViewGroup parent, Context context)
         {
-            var cell = (LinearLayout)base.GetCellCore(item, convertView, parent, context);
+            var cell = (LinearLayout) base.GetCellCore(item, convertView, parent, context);
 
             var layout = cell.GetChildAt(1) as LinearLayout;
-            if(layout == null)
+            if (layout == null)
                 return cell;
 
             var label = layout.GetChildAt(0) as TextView;
@@ -31,19 +33,19 @@ namespace XamarinEvolve.Droid
                 return cell;
 
 
-            var layoutParams = (LinearLayout.LayoutParams)switchWidget.LayoutParameters;
+            var layoutParams = (LinearLayout.LayoutParams) switchWidget.LayoutParameters;
             layoutParams.Height = ViewGroup.LayoutParams.WrapContent;
             layoutParams.Width = ViewGroup.LayoutParams.WrapContent;
 
-            int px12 = (int)TypedValue.ApplyDimension(
+            int px12 = (int) TypedValue.ApplyDimension(
                 ComplexUnitType.Dip,
-                12f, 
+                12f,
                 context.Resources.DisplayMetrics
             );
 
-            int px8 = (int)TypedValue.ApplyDimension(
+            int px8 = (int) TypedValue.ApplyDimension(
                 ComplexUnitType.Dip,
-                8f, 
+                8f,
                 context.Resources.DisplayMetrics
             );
 
@@ -51,6 +53,5 @@ namespace XamarinEvolve.Droid
 
             return cell;
         }
-
     }
 }
