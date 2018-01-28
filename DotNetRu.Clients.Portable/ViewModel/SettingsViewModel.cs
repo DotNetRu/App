@@ -24,7 +24,7 @@
                 MessageKeys.LanguageChanged,
                 sender => this.UpdateViewModel());
 
-            var savedLanguage = XamarinEvolve.Clients.Portable.Helpers.Settings.CurrentLanguage;
+            var savedLanguage = Helpers.Settings.CurrentLanguage;
             var uiLanguage = DependencyService.Get<ILocalize>().GetCurrentCultureInfo().TwoLetterISOLanguageName == "ru"
                                  ? Language.Russian
                                  : Language.English;
@@ -102,7 +102,7 @@
             {
                 if (this.SetProperty(ref this.selectedLanguage, value))
                 {
-                    XamarinEvolve.Clients.Portable.Helpers.Settings.CurrentLanguage = this.selectedLanguage;
+                    Helpers.Settings.CurrentLanguage = this.selectedLanguage;
                     MessagingCenter.Send<object, CultureChangedMessage>(
                         this,
                         string.Empty,

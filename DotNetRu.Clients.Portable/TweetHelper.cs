@@ -75,7 +75,7 @@ namespace DotNetRu.Clients.Portable
                              "http://",
                              "https://")
                          : tweetUser.ProfileImageUrl.Replace("http://", "https://")
-                 }).OrderByDescending(x => x.CreatedDate).Take(15).ToList();
+                 }).OrderByDescending(x => x.CreatedDate).Take(20).ToList();
 
                 return tweets;
             }
