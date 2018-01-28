@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace DotNetRu.Utils.Helpers
 {
@@ -85,7 +86,7 @@ namespace DotNetRu.Utils.Helpers
             {
                 returnString.Replace(replacment.Key, replacment.Value);
             }
-            return returnString.ToString();
+            return Regex.Replace(returnString.ToString(), @"https:\/\/t\.co\/.+$", "");
         }
     }
 }
