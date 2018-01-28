@@ -21,49 +21,49 @@
   <Venue>
     <Id>Msk-DigitalOctober</Id>
     <Name>Digital October</Name>
-    <Address>Москва, Берсеневская набережная, 6 ст3 </Address>
+    <Address>Москва, Берсеневская набережная, 6, ст. 3 </Address>
     <MapUrl>https://yandex.ru/maps/-/CBUx5QsmLC</MapUrl>
   </Venue>
   <Venue>
     <Id>Msk-DodoPizza</Id>
     <Name>Офис компании «Додо Пицца»</Name>
-    <Address>Ленинская Слобода 19 строение 7</Address>
+    <Address>Москва, Ленинская Слобода, 19, строение 7</Address>
     <MapUrl>https://yandex.ru/maps/-/CBUxyJXqlB</MapUrl>
   </Venue>
   <Venue>
     <Id>Msk-FINAM</Id>
     <Name>Крыша «ФИНАМ»</Name>
-    <Address>Москва, Настасьинский пер.7 стр.2 </Address>
+    <Address>Москва, Настасьинский пер., 7, стр. 2 </Address>
     <MapUrl>https://yandex.ru/maps/-/CBaM5OQSHA</MapUrl>
   </Venue>
   <Venue>
     <Id>Msk-Kaspersky</Id>
     <Name>Конференц-зал «Байкал»</Name>
-    <Address>Москва, Ленинградское шоссе, 39А, стр.2 </Address>
+    <Address>Москва, Ленинградское шоссе, 39А, стр. 2 </Address>
     <MapUrl>https://yandex.ru/maps/-/CBUHQCR62B</MapUrl>
   </Venue>
   <Venue>
     <Id>Msk-Microsoft</Id>
     <Name>Конференц-зал «Microsoft»</Name>
-    <Address>Москва, БП Крылатские Холмы, Крылатская, 17 к1</Address>
+    <Address>Москва, БП Крылатские Холмы, Крылатская, 17, к. 1</Address>
     <MapUrl>https://yandex.ru/maps/-/CBQFR8g4WA</MapUrl>
   </Venue>
   <Venue>
     <Id>Msk-Odin</Id>
     <Name>Конференц-зал Odin</Name>
-    <Address>Москва, Ленинградский проспект, 15с18</Address>
+    <Address>Москва, Ленинградский проспект, 15, с. 18</Address>
     <MapUrl>https://yandex.ru/maps/-/CBU-Q8B7gD</MapUrl>
   </Venue>
   <Venue>
     <Id>Msk-Rambler</Id>
     <Name>Конференц-зал «Rambler&amp;Co»</Name>
-    <Address>Варшавское ш., 9, стр. 1, БЦ «Даниловская мануфактура», корпус «Ряды Солдатенкова»</Address>
+    <Address>Москва, Варшавское ш., 9, стр. 1, БЦ «Даниловская мануфактура», корпус «Ряды Солдатенкова»</Address>
     <MapUrl>https://yandex.ru/maps/-/CBaMFMEwKD</MapUrl>
   </Venue>
   <Venue>
     <Id>Msk-SberbankTechnology</Id>
     <Name>Конференц-зал Сбербанк-Технологии</Name>
-    <Address>Москва, Новоданиловская набережная дом 10, 2 этаж</Address>
+    <Address>Москва, Новоданиловская набережная, дом 10 (2 этаж)</Address>
     <MapUrl>https://yandex.ru/maps/-/CBUH42DK1C</MapUrl>
   </Venue>
   <Venue>
@@ -99,13 +99,13 @@
   <Venue>
     <Id>Spb-Arcadia</Id>
     <Name>Конференц-зал «Arcadia»</Name>
-    <Address>Санкт-Петербург, Большой Сампсониевский пр. 28, корп. 2 (7 этаж), БЦ «MEZON PLAZA»</Address>
+    <Address>Санкт-Петербург, Большой Сампсониевский пр., 28, корп. 2 (7 этаж), БЦ «MEZON PLAZA»</Address>
     <MapUrl>https://yandex.ru/maps/-/CBarNXcsgD</MapUrl>
   </Venue>
   <Venue>
     <Id>Spb-House</Id>
     <Name>КДЦ «Club House»</Name>
-    <Address>Санкт-Петербург, пр. Медиков д.3, КДЦ «Club House»</Address>
+    <Address>Санкт-Петербург, пр. Медиков, д.3, КДЦ «Club House»</Address>
     <MapUrl>https://maps.yandex.ru/-/CVHJv4NC</MapUrl>
   </Venue>
   <Venue>
@@ -117,7 +117,7 @@
   <Venue>
     <Id>Spb-Osen</Id>
     <Name>БЦ «Осень»</Name>
-    <Address>Санкт-Петербург, Свердловская наб. 44, литера Я, БЦ «Осень»</Address>
+    <Address>Санкт-Петербург, Свердловская наб., 44, литера Я, БЦ «Осень»</Address>
     <MapUrl>https://maps.yandex.ru/-/CVHJvX4I</MapUrl>
   </Venue>
   <Venue>
@@ -153,7 +153,7 @@
   <Venue>
     <Id>Spb-Welcome</Id>
     <Name>Пространство «Welcome»</Name>
-    <Address>Санкт-Петербург, Невский проспект 48 (Правое крыло ТД «Пассаж», 3 этаж, Пространство «Welcome»)</Address>
+    <Address>Санкт-Петербург, Невский проспект, 48 (3 этаж), Правое крыло ТД «Пассаж», Пространство «Welcome»</Address>
     <MapUrl>https://yandex.ru/maps/-/C6AmiV67</MapUrl>
   </Venue>
 </Venues>

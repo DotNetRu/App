@@ -967,6 +967,32 @@
     </TalkIds>
   </Meetup>
   <Meetup>
+    <Id>SpbDotNet-26</Id>
+    <Name>Встреча SpbDotNet №26</Name>
+    <CommunityId>SpbDotNet</CommunityId>
+    <Date>2018-01-31</Date>
+    <FriendIds>
+      <FriendId>Intermedia</FriendId>
+    </FriendIds>
+    <VenueId>Spb-Intermedia</VenueId>
+    <Sessions>
+      <Session>
+        <TalkId>Nancy-for-Little-Ones</TalkId>
+        <StartTime>2018-01-31T16:00:00Z</StartTime>
+        <EndTime>2018-01-31T17:00:00Z</EndTime>
+      </Session>
+      <Session>
+        <TalkId>How-we-created-DotNetRu-App</TalkId>
+        <StartTime>2018-01-31T17:30:00Z</StartTime>
+        <EndTime>2018-01-31T18:30:00Z</EndTime>
+      </Session>
+    </Sessions>
+    <TalkIds>
+      <TalkId>Nancy-for-Little-Ones</TalkId>
+      <TalkId>How-we-created-DotNetRu-App</TalkId>
+    </TalkIds>
+  </Meetup>
+  <Meetup>
     <Id>SpbDotNet-3</Id>
     <Name>Встреча SpbDotNet №3</Name>
     <CommunityId>SpbDotNet</CommunityId>
