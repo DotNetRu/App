@@ -110,7 +110,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
 
         public bool NotLoadingSocial
         {
-            get => !this.LoadingSocial;
+            get => !Tweets.Any() ? !LoadingSocial : true;
         }
 
         public bool ActivityIndicatorVisibility => !Tweets.Any() && LoadingSocial;
