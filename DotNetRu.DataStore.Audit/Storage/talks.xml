@@ -105,6 +105,7 @@
     <Description>Любой разработчик сталкивается с выбором контейнеров для хранения данных программы. При разработке на платформе .NET несомненно первыми кандидатами будут массивы и коллекции из System.Collections(.Generic). Однако мир коллекций этим не ограничивается. Существуют неизменяемые (immutable) коллекции. Встречаются коллекции, оптимизирующие потребление памяти, и т.п. Мы рассмотрим популярные (но все же далеко не всегда широко известные) пакеты коллекции предлагаемые в .NET и методы работы с ними.</Description>
     <CodeUrl>https://github.com/ilabutin/spbdotnet2017</CodeUrl>
     <SlidesUrl>https://www.slideshare.net/SpbDotNet/net-84856032</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=wVZhlsYQkf8</VideoUrl>
   </Talk>
   <Talk>
     <Id>Common-mistakes-in-Net-benchmarks</Id>
@@ -434,6 +435,23 @@
     <VideoUrl>http://www.youtube.com/watch?v=XLiw5evR6h8</VideoUrl>
   </Talk>
   <Talk>
+    <Id>How-we-created-DotNetRu-App</Id>
+    <SpeakerIds>
+      <SpeakerId>Pavel-Fedotovsky</SpeakerId>
+    </SpeakerIds>
+    <Title>Как мы разрабатывали приложение для DotNetRu на Xamarin.Forms</Title>
+    <Description>Про Xamarin.Forms наверное уже слышал каждый — после покупки Xamarin Microsoft’ом платформа довольно активно развивается. В этом докладе будет анонс приложения для сообществ DotNetRu написанного на Xamarin.Forms. Поговорим про то, как мы его разрабатывали, с какими сложностями столкнулись и как их решали. Мы рассмотрим весь цикл создания, от настройки окружения до публикации в магазины. Обязательно затронем такие темы как:
+
+
+- какие есть возможности отладки приложения;
+- как сделать общий код для разных платформ;
+- локализация;
+- мониторинг.
+
+
+Приложение отрытое и разрабатывается добровольцами. После доклада у каждого из вас будет достаточно информации, чтобы присоединиться к миру Open Source и вместе с сообществом создавать DotNetRu App.</Description>
+  </Talk>
+  <Talk>
     <Id>Ignite-in-action</Id>
     <SpeakerIds>
       <SpeakerId>Pavel-Tupitsin</SpeakerId>
@@ -512,6 +530,7 @@
     <Description>Стандартный шаблон IDisposable решает множество задач освобождения ресурсов, перед которыми стоит разработчик. Однако для многих ситуаций приходится сначала поломать мозги, а потом – пальцы, чтобы решить те или иные проблемы в очерёдности вызова Dispose. Мы поговорим о простом, но крайне эффективном шаблоне, который по сути выполняет IoC процесса Dispose: Lifetime.</Description>
     <CodeUrl>https://github.com/sidristij/dataflow</CodeUrl>
     <SlidesUrl>https://www.slideshare.net/SpbDotNet/lifetime-disposing</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=F5oOYKTFpcQ</VideoUrl>
   </Talk>
   <Talk>
     <Id>Machine-learning</Id>
@@ -586,6 +605,14 @@
     <CodeUrl>https://github.com/yuske/ParallelDemo</CodeUrl>
     <SlidesUrl>http://www.slideshare.net/yu5k3/parallel-demo</SlidesUrl>
     <VideoUrl>http://www.youtube.com/watch?v=Ogb8PuoNL_c</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>Nancy-for-Little-Ones</Id>
+    <SpeakerIds>
+      <SpeakerId>Vyacheslav-Bobik</SpeakerId>
+    </SpeakerIds>
+    <Title>NancyFx для самых маленьких</Title>
+    <Description>Про ASP.NET Core информации много, даже слишком много, и на фоне всего этого затерялся не менее хороший фреймворк NancyFx. Если вы ещё не слышали о нём, то этот доклад даст вам отличное погружение в данную платформу.</Description>
   </Talk>
   <Talk>
     <Id>Net-Web-news</Id>

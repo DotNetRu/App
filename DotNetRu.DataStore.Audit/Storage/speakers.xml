@@ -87,7 +87,8 @@
     <CompanyName>Paladyne Systems</CompanyName>
     <CompanyUrl>http://www.paladynesys.com/</CompanyUrl>
     <Description>Образовывался на роль специалиста по информационной безопасности. Зарабатывал, как суровый C++ разработчик под Linux. Когда надоело кодировать и захотелось творить, перешёл на C#. Пишет на .NET с первых его версий. Занимается проектированием и построением бизнес-приложений, распределённых и отказоустойчивых систем. Отдыхает с ES, CQRS и DDD.
-Соорганизатор сообществ .NET разработчиков в Санкт-Петербурге и Москве. Учавствует в програмном комитете DotNext – крупнейшей в России .NET конференции.</Description>
+
+Соорганизатор SpbDotNet – сообщества .NET разработчиков в Санкт-Петербурге. Учавствует в програмном комитете DotNext – крупнейшей в России .NET конференции. Царь DotNet.Ru – всероссийской группировки независимых .NET сообществ.</Description>
     <TwitterUrl>https://twitter.com/kulakovt</TwitterUrl>
   </Speaker>
   <Speaker>
@@ -359,9 +360,9 @@
   <Speaker>
     <Id>Pavel-Fedotovsky</Id>
     <Name>Павел Федотовский</Name>
-    <CompanyName>Ланит-Терком</CompanyName>
-    <CompanyUrl>http://www.lanit-tercom.com/</CompanyUrl>
-    <Description>Lead C# Developer, активно интересуется новинками .NET. Последнее время разрабатывает REST API на .NET Core. В прошлом увлекался оптимизацией .NET приложений.</Description>
+    <CompanyName>Intermedia</CompanyName>
+    <CompanyUrl>https://www.intermedia.net</CompanyUrl>
+    <Description>Lead C# Developer, активно интересуется новинками .NET. В свободное время пишет мобильные приложения на Xamarin.Forms. В прошлом разрабатывал REST API на ASP.NET Core, увлекался оптимизацией .NET приложений.</Description>
   </Speaker>
   <Speaker>
     <Id>Pavel-Pritchin</Id>
@@ -517,6 +518,14 @@
     <CompanyName>Touch Instinct</CompanyName>
     <CompanyUrl>http://touchin.ru/</CompanyUrl>
     <Description>Технический директор компании Touch Instinct.</Description>
+  </Speaker>
+  <Speaker>
+    <Id>Vyacheslav-Bobik</Id>
+    <Name>Слава Бобик</Name>
+    <CompanyName>Okmeter</CompanyName>
+    <CompanyUrl>https://okmeter.io/</CompanyUrl>
+    <Description>Разработчик .NET в прошлом, но до сих пор фанатеет от .NET и аббревиатур DDD, ES, CQRS.</Description>
+    <TwitterUrl>https://twitter.com/slavabobik</TwitterUrl>
   </Speaker>
   <Speaker>
     <Id>Vyacheslav-Mikhaylov</Id>
