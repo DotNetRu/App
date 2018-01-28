@@ -46,7 +46,7 @@ namespace DotNetRu.Clients.Portable
                 var tweets =
                 (from tweet in spbDotNetTweets.Union(dotnetruTweets)
                  where !tweet.PossiblySensitive
-                 let tweetUser = tweet.User
+                 let tweetUser = String.IsNullOrEmpty(tweet.RetweetedStatus.FullText) ? tweet.User : tweet.RetweetedStatus.User
                  where tweetUser != null
                  select new Tweet
                  {
