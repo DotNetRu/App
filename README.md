@@ -9,7 +9,7 @@
 
 Сделано командой [DotNetRu](http://dotnet.ru)
 
-Скачать под [Android](https://play.google.com/store/apps/details?id=com.dotnetru.droid), [iOS](https://itunes.apple.com/us/app/dotnetru/id1293895734?ls=1&mt=8)
+<a href="https://play.google.com/store/apps/details?id=com.dotnetru.droid" target="_blank"><img alt="Get it on Google Play" src="https://imgur.com/YQzmZi9.png" width="153" height="46"></a> <a href="https://itunes.apple.com/us/app/dotnetru/id1293895734?ls=1&mt=8" target="_blank"><img src="https://imgur.com/GdGqPMY.png" width="135" height="40"></a>
 
 ## Скриншоты
 ![ios_news](https://is3-ssl.mzstatic.com/image/thumb/Purple118/v4/12/10/1f/12101f51-09cd-a6ac-9e9c-b8f237604634/source/230x0w.png) ![android_news](https://lh3.googleusercontent.com/r99Q2BiavXCV01A5SBiExR-JB8rNiL6q4-yIRDhoslvGoB2ISg8O3X1mT2PmpWmP=h409)
