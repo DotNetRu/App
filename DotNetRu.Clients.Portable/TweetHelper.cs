@@ -1,68 +1,90 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using LinqToTwitter;
+﻿using DotNetRu.Utils.Helpers;
 
-namespace XamarinEvolve.Clients.Portable
+namespace DotNetRu.Clients.Portable
 {
-	public class TweetHelper
-	{
-		public static async Task<List<Tweet>> Get()
-		{
-			try
-			{
-			    var auth = new ApplicationOnlyAuthorizer
-			    {
-			        CredentialStore = new InMemoryCredentialStore
-			        {
-			            ConsumerKey = "t6tGj3XmaOzDQUnCIgih8gF4F",
-			            ConsumerSecret = "EXKnUBVtGvNGQyRDtfAgEnPp2ajfT7NSBQgSai8VRIHO936BDT"
-			        },
-			    };
-			    await auth.AuthorizeAsync();
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using DotNetRu.Clients.Portable.Model;
+    using DotNetRu.Utils;
+    using LinqToTwitter;
 
-			    var twitterContext = new TwitterContext(auth);
+    public class TweetHelper
+    {
+        public static async Task<List<Tweet>> Get()
+        {
+            try
+            {
+                var auth = new ApplicationOnlyAuthorizer
+                {
+                    CredentialStore =
+                        new InMemoryCredentialStore
+                        {
+                            ConsumerKey =
+                                "ho0v2B1bimeufLqI1rA8KuLBp",
+                            ConsumerSecret =
+                                "RAzIHxhkzINUxilhdr98TWTtjgFKXYzkEhaGx8WJiBPh96TXNK"
+                        },
+                };
+                await auth.AuthorizeAsync();
 
-			    var spbDotNetTweets =
-			        await
-			            (from tweet in twitterContext.Status
-			                where tweet.Type == StatusType.User &&
-			                      tweet.ScreenName == "spbdotnet"
-			                select tweet)
-			            .ToListAsync();
+                var twitterContext = new TwitterContext(auth);
 
-			    var dotnetruTweets = await (from tweet in twitterContext.Status
-			        where tweet.Type == StatusType.User &&
-			              tweet.ScreenName == "DotNetRu"
-			        select tweet).ToListAsync();
+                var spbDotNetTweets =
+                    await (from tweet in twitterContext.Status
+                           where tweet.Type == StatusType.User && tweet.ScreenName == "spbdotnet" &&
+                                 tweet.TweetMode == TweetMode.Extended
+                           select tweet).ToListAsync();
 
-                var tweets = (from tweet in spbDotNetTweets.Union(dotnetruTweets)
-                              where tweet.RetweetedStatus.StatusID == 0 && !tweet.PossiblySensitive
-                    let tweetUser = tweet.User
-                    where tweetUser != null
-                    select new Tweet
-                              {
-                                  TweetedImage = tweet.Entities?.MediaEntities.Count > 0
-                                      ? tweet.Entities?.MediaEntities?[0].MediaUrlHttps ?? string.Empty
-                                      : string.Empty,
-                                  ScreenName = tweetUser?.ScreenNameResponse ?? string.Empty,
-                                  Text = tweet.Text,
-                                  Name = tweetUser.Name,
-                                  CreatedDate = tweet.CreatedAt,
-                                  Url = $"https://twitter.com/{tweetUser.ScreenNameResponse}/status/{tweet.StatusID}",
-                                  Image = (tweet.RetweetedStatus?.User != null
-                                      ? tweet.RetweetedStatus.User.ProfileImageUrl.Replace("http://", "https://")
-                                      : tweetUser.ProfileImageUrl.Replace("http://", "https://"))
-                              }).OrderByDescending(x => x.CreatedDate).Take(15).ToList();
+                var dotnetruTweets =
+                    await (from tweet in twitterContext.Status
+                           where tweet.Type == StatusType.User && tweet.ScreenName == "DotNetRu" &&
+                                 tweet.TweetMode == TweetMode.Extended
+                           select tweet).ToListAsync();
 
-			    return tweets;
-			}
-			catch
-			{
-				// TODO
-			}
+                var tweets =
+                (from tweet in spbDotNetTweets.Union(dotnetruTweets)
+                 where !tweet.PossiblySensitive
+                 let tweetUser = String.IsNullOrEmpty(tweet.RetweetedStatus.FullText) ? tweet.User : tweet.RetweetedStatus.User
+                 where tweetUser != null
+                 select new Tweet
+                 {
+                     TweetedImage =
+                         tweet.Entities?.MediaEntities.Count > 0
+                             ? tweet.Entities?.MediaEntities?[0].MediaUrlHttps ?? string.Empty
+                             : string.Empty,
+                     NumberOfLikes = String.IsNullOrEmpty(tweet.RetweetedStatus.FullText) ?
+                                       tweet.FavoriteCount :
+                                       tweet.RetweetedStatus.FavoriteCount,
+                    NumberOfRetweets = String.IsNullOrEmpty(tweet.RetweetedStatus.FullText) ?
+                                             tweet.RetweetCount :
+                                             tweet.RetweetedStatus.RetweetCount,
+                     ScreenName = tweetUser?.ScreenNameResponse ?? string.Empty,
+                     Text = String.IsNullOrEmpty(tweet.RetweetedStatus.FullText)
+                         ? tweet.FullText.ConvertToUsualUrl(
+                             tweet.Entities.UrlEntities.ToDictionary(t => t.Url, t => t.DisplayUrl))
+                         : tweet.RetweetedStatus.FullText.ConvertToUsualUrl(
+                             tweet.RetweetedStatus.Entities.UrlEntities.ToDictionary(t => t.Url, t => t.DisplayUrl)),
+                     Name = tweetUser.Name,
+                     CreatedDate = tweet.CreatedAt,
+                     Url =
+                         $"https://twitter.com/{tweetUser.ScreenNameResponse}/status/{tweet.StatusID}",
+                     Image = tweet.RetweetedStatus?.User != null
+                         ? tweet.RetweetedStatus.User.ProfileImageUrl.Replace(
+                             "http://",
+                             "https://")
+                         : tweetUser.ProfileImageUrl.Replace("http://", "https://")
+                 }).OrderByDescending(x => x.CreatedDate).Take(20).ToList();
 
-			return new List<Tweet>();
-		}
-	}
+                return tweets;
+            }
+            catch (Exception e)
+            {
+                new DotNetRuLogger().Report(e);
+            }
+
+            return new List<Tweet>();
+        }
+    }
 }

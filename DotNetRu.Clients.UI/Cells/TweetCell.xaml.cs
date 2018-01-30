@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
-namespace XamarinEvolve.Clients.UI
+namespace DotNetRu.Clients.UI.Cells
 {
     public partial class TweetCell : ContentView
     {
         public TweetCell()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

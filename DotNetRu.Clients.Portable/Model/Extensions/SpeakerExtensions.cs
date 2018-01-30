@@ -1,49 +1,48 @@
 ﻿using System;
+using DotNetRu.DataStore.Audit.Models;
+using DotNetRu.Utils.Helpers;
 using Xamarin.Forms;
 
-namespace XamarinEvolve.Clients.Portable
+namespace DotNetRu.Clients.Portable.Model.Extensions
 {
-    using DotNetRu.DataStore.Audit.DataObjects;
+    public static class SpeakerExtensions
+    {
+        public static AppLinkEntry GetAppLink(this SpeakerModel speakerModel)
+        {
+            var url =
+                $"http://{AboutThisApp.AppLinksBaseDomain}/{AboutThisApp.SpeakersSiteSubdirectory.ToLowerInvariant()}/{speakerModel.Id}";
 
-    using XamarinEvolve.Utils.Helpers;
+            var entry = new AppLinkEntry
+                            {
+                                Title = speakerModel.FullName ?? string.Empty,
+                                Description = speakerModel.Biography ?? string.Empty,
+                                AppLinkUri = new Uri(url, UriKind.RelativeOrAbsolute),
+                                IsLinkActive = true,
+                            };
 
-	public static class SpeakerExtensions
-	{
-		public static AppLinkEntry GetAppLink(this Speaker speaker)
-		{
-			var url = $"http://{AboutThisApp.AppLinksBaseDomain}/{AboutThisApp.SpeakersSiteSubdirectory.ToLowerInvariant()}/{speaker.Id}";
+            if (Device.RuntimePlatform == Device.iOS)
+            {
+                if (!string.IsNullOrEmpty(speakerModel.AvatarUrl))
+                {
+                    entry.Thumbnail = ImageSource.FromUri(speakerModel.AvatarUri);
+                }
+                else
+                {
+                    entry.Thumbnail = ImageSource.FromFile("Icon.png");
+                }
+            }
 
-			var entry = new AppLinkEntry
-			{
-				Title = speaker.FullName ?? "",
-				Description = speaker.Biography ?? "",
-				AppLinkUri = new Uri(url, UriKind.RelativeOrAbsolute),
-				IsLinkActive = true,
-			};
+            entry.KeyValues.Add("contentType", "Speaker");
+            entry.KeyValues.Add("appName", AboutThisApp.AppName);
+            entry.KeyValues.Add("companyName", AboutThisApp.CompanyName);
 
-			if (Device.OS == TargetPlatform.iOS)
-			{
-				if (!string.IsNullOrEmpty(speaker.AvatarUrl))
-				{
-					entry.Thumbnail = ImageSource.FromUri(speaker.AvatarUri);
-				}
-				else
-				{
-					entry.Thumbnail = ImageSource.FromFile("Icon.png");
-				}
-			}
+            return entry;
+        }
 
-			entry.KeyValues.Add("contentType", "Speaker");
-			entry.KeyValues.Add("appName", AboutThisApp.AppName);
-			entry.KeyValues.Add("companyName", AboutThisApp.CompanyName);
-
-			return entry;
-		}
-
-		public static string GetWebUrl(this Speaker speaker)
-		{
-			return $"http://{AboutThisApp.AppLinksBaseDomain}/{AboutThisApp.SpeakersSiteSubdirectory}/#{speaker.Id}";
-		}
-	}
+        public static string GetWebUrl(this SpeakerModel speakerModel)
+        {
+            return $"http://{AboutThisApp.AppLinksBaseDomain}/{AboutThisApp.SpeakersSiteSubdirectory}/#{speakerModel.Id}";
+        }
+    }
 }
 

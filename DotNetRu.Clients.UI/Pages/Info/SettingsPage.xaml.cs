@@ -1,49 +1,75 @@
-﻿using System;
-using Xamarin.Forms;
-using XamarinEvolve.Clients.Portable;
-using FormsToolkit;
-using XamarinEvolve.Utils;
-
-namespace XamarinEvolve.Clients.UI
+﻿namespace DotNetRu.Clients.UI.Pages.Info
 {
-	using XamarinEvolve.Utils.Helpers;
+    using System;
 
-	public partial class SettingsPage : BasePage
-  {
-    public override AppPage PageType => AppPage.Information;
+    using DotNetRu.Clients.Portable.Model;
+    using DotNetRu.Clients.Portable.ViewModel;
+    using DotNetRu.Clients.UI.Helpers;
+    using DotNetRu.Clients.UI.Pages.Friends;
+    using DotNetRu.Utils.Helpers;
 
-    SettingsViewModel vm;
+    using Plugin.Share;
+    using Plugin.Share.Abstractions;
 
-    public SettingsPage()
+    using Xamarin.Forms;
+
+    public partial class SettingsPage
     {
-      InitializeComponent();
+        public SettingsPage()
+        {            
+            this.InitializeComponent();
 
+            var openTechnologiesUsedCommand = new Command(async () => await NavigationService.PushAsync(this.Navigation, new TechnologiesUsedPage()));
+            var settingsViewModel = new SettingsViewModel(openTechnologiesUsedCommand);
 
-      BindingContext = vm = new SettingsViewModel();
-      var adjust = Device.OS != TargetPlatform.Android ? 1 : -vm.AboutItems.Count + 1;
-      ListViewAbout.HeightRequest = (vm.AboutItems.Count * ListViewAbout.RowHeight) - adjust;
-      ListViewAbout.ItemTapped += (sender, e) => ListViewAbout.SelectedItem = null;
-      adjust = Device.OS != TargetPlatform.Android ? 1 : -vm.TechnologyItems.Count + 1;
-      ListViewTechnology.HeightRequest = (vm.TechnologyItems.Count * ListViewTechnology.RowHeight) - adjust;
-      ListViewTechnology.ItemTapped += (sender, e) => ListViewTechnology.SelectedItem = null;
+            this.BindingContext = settingsViewModel;
+
+            var adjust = Device.RuntimePlatform != Device.Android ? 1 : -settingsViewModel.AboutItems.Count + 1;
+            this.ListViewAbout.HeightRequest = (settingsViewModel.AboutItems.Count * this.ListViewAbout.RowHeight) - adjust;
+            this.ListViewAbout.ItemTapped += (sender, e) => this.ListViewAbout.SelectedItem = null;
+
+            adjust = Device.RuntimePlatform != Device.Android ? 1 : -settingsViewModel.Communities.Count + 1;
+            this.ListViewCommunities.HeightRequest =
+                (settingsViewModel.Communities.Count * this.ListViewCommunities.RowHeight) - adjust;
+            this.ListViewCommunities.ItemTapped += (sender, e) => this.ListViewCommunities.SelectedItem = null;
+        }
+
+        public override AppPage PageType => AppPage.Information;
+
+        protected override void OnPropertyChanged(string propertyName = null)
+        {
+            base.OnPropertyChanged(propertyName);
+            if (propertyName == "Title")
+            {
+                MessagingCenter.Send(this, MessageKeys.UpdateTitles);
+            }
+        }
+
+        private async void Friends_OnClicked(object sender, EventArgs e)
+        {
+            await NavigationService.PushAsync(this.Navigation, new FriendsPage());
+        }
+
+        private async void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
+        {
+            var primaryColor = (Color)Application.Current.Resources["Primary"];
+
+            await CrossShare.Current.OpenBrowser(
+                AboutThisApp.DotNetRuLink,
+                new BrowserOptions
+                    {
+                        ChromeShowTitle = true,
+                        ChromeToolbarColor =
+                            new ShareColor
+                                {
+                                    A = 255,
+                                    R = Convert.ToInt32(primaryColor.R),
+                                    G = Convert.ToInt32(primaryColor.G),
+                                    B = Convert.ToInt32(primaryColor.B)
+                                },
+                        UseSafariReaderMode = true,
+                        UseSafariWebViewController = true
+                    });
+        }
     }
-
-    bool dialogShown;
-    int count;
-
-    async void OnTapGestureRecognizerTapped(object sender, EventArgs args)
-    {
-      count++;
-      if (dialogShown || count < 8)
-        return;
-
-      dialogShown = true;
-
-      App.Logger.Track("AppCreditsFound-8MoreThan92");
-
-      await DisplayAlert("Credits",
-        AboutThisApp.Credits, "OK");
-    }
-  }
 }
-

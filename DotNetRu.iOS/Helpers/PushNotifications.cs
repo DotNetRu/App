@@ -1,13 +1,13 @@
-﻿using System;
-using XamarinEvolve.Clients.Portable;
-using UIKit;
-using System.Threading.Tasks;
-using XamarinEvolve.iOS;
-using Xamarin.Forms;
+﻿using System.Threading.Tasks;
+using DotNetRu.Clients.Portable.Interfaces;
+using DotNetRu.iOS.Helpers;
 using Foundation;
+using UIKit;
+using Xamarin.Forms;
+using XamarinEvolve.Clients.Portable;
 
 [assembly:Dependency(typeof(PushNotifications))]
-namespace XamarinEvolve.iOS
+namespace DotNetRu.iOS.Helpers
 {
     public class PushNotifications : IPushNotifications
     {
@@ -27,20 +27,15 @@ namespace XamarinEvolve.iOS
             
             return Task.FromResult(true);
         }
-        public bool IsRegistered
-        {
-            get
-            {
-                return UIApplication.SharedApplication.IsRegisteredForRemoteNotifications &&
-                    UIApplication.SharedApplication.CurrentUserNotificationSettings.Types != UIUserNotificationType.None;
-            }
-        }
 
+        public bool IsRegistered => UIApplication.SharedApplication.IsRegisteredForRemoteNotifications &&
+                                    UIApplication.SharedApplication.CurrentUserNotificationSettings.Types != UIUserNotificationType.None;
 
         public void OpenSettings()
         {
             UIApplication.SharedApplication.OpenUrl(new NSUrl(UIApplication.OpenSettingsUrlString));
         }
+
         #endregion
     }
 }

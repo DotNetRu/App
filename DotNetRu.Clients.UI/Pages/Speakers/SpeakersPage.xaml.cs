@@ -1,79 +1,77 @@
-﻿using Xamarin.Forms;
-using XamarinEvolve.Clients.Portable;
-using XamarinEvolve.DataObjects;
+﻿using DotNetRu.Clients.Portable.Model;
+using DotNetRu.Clients.Portable.ViewModel;
+using DotNetRu.Clients.UI.Helpers;
+using DotNetRu.DataStore.Audit.Models;
+using Xamarin.Forms;
 
-namespace XamarinEvolve.Clients.UI
+namespace DotNetRu.Clients.UI.Pages.Speakers
 {
-    using DotNetRu.DataStore.Audit.DataObjects;
+    public partial class SpeakersPage
+    {
+        public override AppPage PageType => AppPage.Speakers;
 
-    public partial class SpeakersPage : BasePage
-	{
-		public override AppPage PageType => AppPage.Speakers;
+        SpeakersViewModel speakersViewModel;
 
-		SpeakersViewModel vm;
-		SpeakersViewModel ViewModel => vm ?? (vm = BindingContext as SpeakersViewModel);
+        SpeakersViewModel ViewModel => this.speakersViewModel ?? (this.speakersViewModel = this.BindingContext as SpeakersViewModel);
 
-		public SpeakersPage()
-		{
-			InitializeComponent();
-			BindingContext = new SpeakersViewModel(Navigation);
+        public SpeakersPage()
+        {
+            this.InitializeComponent();
+            this.BindingContext = new SpeakersViewModel(this.Navigation);
 
-			if (Device.OS == TargetPlatform.Android)
-				ListViewSpeakers.Effects.Add(Effect.Resolve("Xpirit.ListViewSelectionOnTopEffect"));
+            if (Device.RuntimePlatform == Device.Android)
+            {
+                this.ListViewSpeakers.Effects.Add(Effect.Resolve("Xpirit.ListViewSelectionOnTopEffect"));
+            }
 
-			if (Device.OS == TargetPlatform.Windows || Device.OS == TargetPlatform.WinPhone)
-			{
-				ToolbarItems.Add(new ToolbarItem
-				{
-					Text = "Refresh",
-					Icon = "toolbar_refresh.png",
-					Command = ViewModel.ForceRefreshCommand
-				});
-			}
-			ListViewSpeakers.ItemSelected += async (sender, e) =>
-			{
-				var speaker = ListViewSpeakers.SelectedItem as Speaker;
-				if (speaker == null)
-					return;
-
-                ContentPage destination;
-
-                if (Device.OS == TargetPlatform.Windows || Device.OS == TargetPlatform.WinPhone)
+            this.ListViewSpeakers.ItemSelected += async (sender, e) =>
                 {
-					destination = new SpeakerDetailsPageUWP(speaker);
-                }
-                else
-                {
-					destination = new SpeakerDetailsPage(speaker);
-                }
+                    if (!(this.ListViewSpeakers.SelectedItem is SpeakerModel speaker))
+                    {
+                        return;
+                    }
 
-				await NavigationService.PushAsync(Navigation, destination);
-				ListViewSpeakers.SelectedItem = null;
-			};
-		}
+                    ContentPage destination;
 
-		void ListViewTapped(object sender, ItemTappedEventArgs e)
-		{
-			var list = sender as ListView;
-			if (list == null)
-				return;
-			list.SelectedItem = null;
-		}
+                    if (Device.RuntimePlatform == Device.UWP)
+                    {
+                        destination = new SpeakerDetailsPageUWP(speaker);
+                    }
+                    else
+                    {
+                        destination = new SpeakerDetailsPage(speaker);
+                    }
 
-		protected override void OnAppearing()
-		{
-			base.OnAppearing();
+                    await NavigationService.PushAsync(this.Navigation, destination);
+                    this.ListViewSpeakers.SelectedItem = null;
+                };
+        }
 
-			ListViewSpeakers.ItemTapped += ListViewTapped;
-			if (ViewModel.Speakers?.Count == 0)
-				ViewModel.LoadSpeakersCommand.Execute(true);
+        public void ListViewTapped(object sender, ItemTappedEventArgs e)
+        {
+            if (!(sender is ListView list))
+            {
+                return;
+            }
 
-		}
+            list.SelectedItem = null;
+        }
 
-		protected override void OnDisappearing()
-		{
-			base.OnDisappearing();
-			ListViewSpeakers.ItemTapped -= ListViewTapped;
-		}
-	}
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            this.ListViewSpeakers.ItemTapped += this.ListViewTapped;
+            if (this.ViewModel.Speakers?.Count == 0)
+            {
+                this.ViewModel.LoadSpeakersCommand.Execute(true);
+            }
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            this.ListViewSpeakers.ItemTapped -= this.ListViewTapped;
+        }
+    }
 }

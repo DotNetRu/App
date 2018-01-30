@@ -2,7 +2,7 @@
 <ContentView 
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-    x:Class="XamarinEvolve.Clients.UI.FooterDivider">
+    x:Class="DotNetRu.Clients.UI.Controls.FooterDivider">
     <ContentView.IsVisible>
         <OnPlatform x:TypeArguments="x:Boolean" Android="false" iOS="true" WinPhone="true"/>
     </ContentView.IsVisible>

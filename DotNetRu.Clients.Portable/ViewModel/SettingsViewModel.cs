@@ -1,196 +1,135 @@
-﻿namespace XamarinEvolve.Clients.Portable
+﻿namespace DotNetRu.Clients.Portable.ViewModel
 {
-    using MvvmHelpers;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Windows.Input;
+
+    using DotNetRu.Clients.Portable.Helpers;
+    using DotNetRu.Clients.Portable.Interfaces;
+    using DotNetRu.Clients.Portable.Model;
+    using DotNetRu.DataStore.Audit.Services;
+    using DotNetRu.Utils.Helpers;
 
     using Xamarin.Forms;
-
-    using XamarinEvolve.Utils;
-    using XamarinEvolve.Utils.Helpers;
+    using Xamarin.Forms.Internals;
 
     public class SettingsViewModel : ViewModelBase
     {
-        public ObservableRangeCollection<MenuItem> AboutItems { get; } = new ObservableRangeCollection<MenuItem>();
+        private Language selectedLanguage;
 
-        public ObservableRangeCollection<MenuItem> TechnologyItems { get; } = new ObservableRangeCollection<MenuItem>();
+        public SettingsViewModel(ICommand openTechologiesUsedCommand)
+        {
+            MessagingCenter.Subscribe<LocalizedResources>(
+                this,
+                MessageKeys.LanguageChanged,
+                sender => this.UpdateViewModel());
+
+            var savedLanguage = Helpers.Settings.CurrentLanguage;
+            var uiLanguage = DependencyService.Get<ILocalize>().GetCurrentCultureInfo().TwoLetterISOLanguageName == "ru"
+                                 ? Language.Russian
+                                 : Language.English;
+
+            this.selectedLanguage = savedLanguage ?? uiLanguage;
+
+            this.AboutItems.AddRange(
+                new[]
+                    {
+                        new LocalizableMenuItem
+                            {
+                                ResourceName = "CreatedBy",
+                                Command = this.LaunchBrowserCommand,
+                                Parameter = AboutThisApp.DeveloperWebsite
+                            },
+                        new LocalizableMenuItem
+                            {
+                                ResourceName = "Thanks",
+                                Command = this.LaunchBrowserCommand,
+                                Parameter = AboutThisApp.MontemagnoWebsite
+                            },
+                        new LocalizableMenuItem
+                            {
+                                ResourceName = "IssueTracker",
+                                Command = this.LaunchBrowserCommand,
+                                Parameter = AboutThisApp.IssueTracker
+                            },
+                        new LocalizableMenuItem
+                            {
+                                ResourceName = "TechnologyUsed",
+                                Command = openTechologiesUsedCommand
+                            }
+                    });
+
+            this.Communities.AddRange(
+                new[]
+                    {
+                        new LocalizableMenuItem
+                            {
+                                ResourceName = "SaintPetersburg",
+                                Command = this.LaunchBrowserCommand,
+                                ImageSource = LogoService.SpbDotNetLogo,
+                                Parameter = AboutThisApp.SpbLink
+                            },
+                        new LocalizableMenuItem
+                            {
+                                ResourceName = "Moscow",
+                                Command = this.LaunchBrowserCommand,
+                                ImageSource = LogoService.MskDotNetLogo,
+                                Parameter = AboutThisApp.MoscowLink
+                            },
+                        new LocalizableMenuItem
+                            {
+                                ResourceName = "Saratov",
+                                Command = this.LaunchBrowserCommand,
+                                ImageSource = LogoService.SarDotNetLogo,
+                                Parameter = AboutThisApp.SaratovLink
+                            },
+                        new LocalizableMenuItem
+                            {
+                                ResourceName = "Krasnoyarsk",
+                                Command = this.LaunchBrowserCommand,
+                                ImageSource = LogoService.KryDotNetLogo,
+                                Parameter = AboutThisApp.KrasnoyarskLink
+                            }
+                    });
+        }
+
+        public IList<Language> Languages => EnumExtension.GetEnumValues<Language>().ToList();
+
+        public Language SelectedLanguage
+        {
+            get => this.selectedLanguage;
+            set
+            {
+                if (this.SetProperty(ref this.selectedLanguage, value))
+                {
+                    Helpers.Settings.CurrentLanguage = this.selectedLanguage;
+                    MessagingCenter.Send<object, CultureChangedMessage>(
+                        this,
+                        string.Empty,
+                        new CultureChangedMessage(this.selectedLanguage.GetLanguageCode()));
+                }
+            }
+        }
+
+        public CustomObservableCollection<LocalizableMenuItem> AboutItems { get; } = new CustomObservableCollection<LocalizableMenuItem>();
+
+        public CustomObservableCollection<LocalizableMenuItem> Communities { get; } = new CustomObservableCollection<LocalizableMenuItem>();
 
         public string Copyright => AboutThisApp.Copyright;
 
         public bool AppToWebLinkingEnabled => FeatureFlags.AppToWebLinkingEnabled;
 
-        public SettingsViewModel()
+        public ImageSource BackgroundImage { get; set; }
+
+        public string AppVersion =>
+            $"{this.Resources["Version"]} {DependencyService.Get<IAppVersionProvider>()?.AppVersion ?? "1.0"}";
+
+        private void UpdateViewModel()
         {
-            AboutItems.AddRange(
-                new[]
-                    {
-                        new MenuItem
-                            {
-                                Name = $"Created by {AboutThisApp.Developer} with <3",
-                                Command = LaunchBrowserCommand,
-                                Parameter = AboutThisApp.DeveloperWebsite
-                            },
-                        new MenuItem
-                        {
-                            Name = $"Big thanks to James Montemagno!",
-                            Command = LaunchBrowserCommand,
-                            Parameter = AboutThisApp.MontemagnoWebsite
-                        },
-                        new MenuItem
-                            {
-                                Name = "Open source on GitHub!",
-                                Command = LaunchBrowserCommand,
-                                Parameter = AboutThisApp.OpenSourceUrl
-                            },
-                        new MenuItem
-                            {
-                                Name = "Terms of Use",
-                                Command = LaunchBrowserCommand,
-                                Parameter = AboutThisApp.TermsOfUseUrl
-                            },
-                        new MenuItem
-                            {
-                                Name = "Privacy Policy",
-                                Command = LaunchBrowserCommand,
-                                Parameter = AboutThisApp.PrivacyPolicyUrl
-                            },
-                        new MenuItem
-                            {
-                                Name = "Open Source Notice",
-                                Command = LaunchBrowserCommand,
-                                Parameter = AboutThisApp.OpenSourceNoticeUrl
-                            }
-                    });
+            this.OnPropertyChanged(nameof(this.AppVersion));
 
-            TechnologyItems.AddRange(
-                new[]
-                    {
-                        new MenuItem
-                            {
-                                Name = "Censored",
-                                Command = LaunchBrowserCommand,
-                                Parameter = "https://github.com/jamesmontemagno/Censored"
-                            },
-                        new MenuItem
-                            {
-                                Name = "Calendar Plugin",
-                                Command = LaunchBrowserCommand,
-                                Parameter = "https://github.com/TheAlmightyBob/Calendars"
-                            },
-                        new MenuItem
-                            {
-                                Name = "Connectivity Plugin",
-                                Command = LaunchBrowserCommand,
-                                Parameter =
-                                    "https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/Connectivity"
-                            },
-                        new MenuItem
-                            {
-                                Name = "Embedded Resource Plugin",
-                                Command = LaunchBrowserCommand,
-                                Parameter = "https://github.com/JosephHill/EmbeddedResourcePlugin"
-                            },
-                        new MenuItem
-                            {
-                                Name = "Humanizer",
-                                Command = LaunchBrowserCommand,
-                                Parameter = "https://github.com/Humanizr/Humanizer"
-                            },
-                        new MenuItem
-                            {
-                                Name = "Image Circles",
-                                Command = LaunchBrowserCommand,
-                                Parameter =
-                                    "https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/ImageCircle"
-                            },
-                        new MenuItem
-                            {
-                                Name = "Json.NET",
-                                Command = LaunchBrowserCommand,
-                                Parameter = "https://github.com/JamesNK/Newtonsoft.Json"
-                            },
-                        new MenuItem
-                            {
-                                Name = "LinqToTwitter",
-                                Command = LaunchBrowserCommand,
-                                Parameter = "https://github.com/JoeMayo/LinqToTwitter"
-                            },
-                        new MenuItem
-                            {
-                                Name = "Messaging Plugin",
-                                Command = LaunchBrowserCommand,
-                                Parameter = "https://github.com/cjlotz/Xamarin.Plugins"
-                            },
-                        new MenuItem
-                            {
-                                Name = "Mvvm Helpers",
-                                Command = LaunchBrowserCommand,
-                                Parameter = "https://github.com/jamesmontemagno/mvvm-helpers"
-                            },
-                        new MenuItem
-                            {
-                                Name = "Noda Time",
-                                Command = LaunchBrowserCommand,
-                                Parameter = "https://github.com/nodatime/nodatime"
-                            },
-                        new MenuItem
-                            {
-                                Name = "Permissions Plugin",
-                                Command = LaunchBrowserCommand,
-                                Parameter =
-                                    "https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/Permissions"
-                            },
-                        new MenuItem
-                            {
-                                Name = "PCL Storage",
-                                Command = LaunchBrowserCommand,
-                                Parameter = "https://github.com/dsplaisted/PCLStorage"
-                            },
-                        new MenuItem
-                            {
-                                Name = "Pull to Refresh Layout",
-                                Command = LaunchBrowserCommand,
-                                Parameter =
-                                    "https://github.com/jamesmontemagno/Xamarin.Forms-PullToRefreshLayout"
-                            },
-                        new MenuItem
-                            {
-                                Name = "Settings Plugin",
-                                Command = LaunchBrowserCommand,
-                                Parameter =
-                                    "https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/Settings"
-                            },
-                        new MenuItem
-                            {
-                                Name = "Toolkit for Xamarin.Forms",
-                                Command = LaunchBrowserCommand,
-                                Parameter = "https://github.com/jamesmontemagno/xamarin.forms-toolkit"
-                            },
-                        new MenuItem
-                            {
-                                Name = "Xamarin.Forms",
-                                Command = LaunchBrowserCommand,
-                                Parameter = "http://xamarin.com/forms"
-                            },
-                        new MenuItem
-                            {
-                                Name = "Xamarin Insights",
-                                Command = LaunchBrowserCommand,
-                                Parameter = "http://xamarin.com/insights"
-                            }
-                    });
+            this.AboutItems.ForEach(x => x.Update());
+            this.Communities.ForEach(x => x.Update());
         }
-
-        public string AppVersion
-        {
-            get
-            {
-                return $"Version {DependencyService.Get<IAppVersionProvider>()?.AppVersion ?? "1.0"}";
-            }
-        }
-
-#if DEBUG
-        public bool IsDebug => true;
-#else
-		public bool IsDebug => false;
-#endif
     }
 }

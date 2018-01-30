@@ -1,6 +1,6 @@
 ﻿using Xamarin.Forms;
 
-namespace XamarinEvolve.Clients.Portable
+namespace DotNetRu.Clients.Portable.Helpers
 {
 	public static class ColorConversion
 	{

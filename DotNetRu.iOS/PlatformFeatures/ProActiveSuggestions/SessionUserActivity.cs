@@ -1,85 +1,87 @@
-﻿using System.Threading.Tasks;
+﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using CoreSpotlight;
+using DotNetRu.Clients.Portable.Interfaces;
+using DotNetRu.Clients.Portable.Model.Extensions;
+using DotNetRu.DataStore.Audit.Models;
+using DotNetRu.iOS.Helpers;
+using DotNetRu.iOS.PlatformFeatures.ProActiveSuggestions;
+using DotNetRu.Utils.Helpers;
 using Foundation;
 using Xamarin.Forms;
-using XamarinEvolve.Clients.Portable;
-using XamarinEvolve.DataObjects;
-using XamarinEvolve.iOS.PlatformFeatures.ProActiveSuggestions;
-using System;
-using XamarinEvolve.Utils;
 
 [assembly: Dependency(typeof(SessionUserActivity))]
 
-namespace XamarinEvolve.iOS.PlatformFeatures.ProActiveSuggestions
+namespace DotNetRu.iOS.PlatformFeatures.ProActiveSuggestions
 {
-	using XamarinEvolve.Utils.Helpers;
-
-	public class SessionUserActivity : IPlatformSpecificExtension<Session>
+    public class SessionUserActivity : IPlatformSpecificExtension<TalkModel>
 	{
 		private NSUserActivity _activity;
 
-		public Task Execute(Session entity)
+		public Task Execute(TalkModel entity)
 		{
-			if (_activity != null)
+			if (this._activity != null)
 			{
-				_activity.Invalidate();
+			    this._activity.Invalidate();
 			}
 
-			_activity = new NSUserActivity($"{AboutThisApp.PackageName}.session")
+		    this._activity = new NSUserActivity($"{AboutThisApp.PackageName}.session")
 			{
 				Title = entity.Title,
 			};
 
-			RegisterHandoff(entity);
+		    this.RegisterHandoff(entity);
 
-			_activity.BecomeCurrent();
+		    this._activity.BecomeCurrent();
 
 			return Task.CompletedTask;
 		}
 
 		public Task Finish()
 		{
-			_activity?.ResignCurrent();
+		    this._activity?.ResignCurrent();
 			return Task.CompletedTask;
 		}
 
-		void RegisterHandoff(Session session)
+		void RegisterHandoff(TalkModel talkModel)
 		{
 			var userInfo = new NSMutableDictionary();
-			var uri = new NSString(session.GetAppLink().AppLinkUri.AbsoluteUri);
+			var uri = new NSString(talkModel.GetAppLink().AppLinkUri.AbsoluteUri);
 
 			userInfo.Add(new NSString("link"), uri);
 			userInfo.Add(new NSString("Url"), uri);
 
-			var keywords = new NSMutableSet<NSString>(new NSString(session.Title));
-			foreach (var speaker in session.Speakers)
+			var keywords = new NSMutableSet<NSString>(new NSString(talkModel.Title));
+			foreach (var speaker in talkModel.Speakers)
 			{
 				keywords.Add(new NSString(speaker.FullName));
 			}
-			foreach (var category in session.Categories)
+
+			foreach (var category in talkModel.Categories)
 			{
 				keywords.Add(new NSString(category.Name));
 			}
 
-			_activity.Keywords = new NSSet<NSString>(keywords);
-			_activity.WebPageUrl = NSUrl.FromString(session.GetWebUrl());
-			_activity.UserInfo = userInfo;
+		    this._activity.Keywords = new NSSet<NSString>(keywords);
+		    this._activity.WebPageUrl = NSUrl.FromString(talkModel.GetWebUrl());
+		    this._activity.UserInfo = userInfo;
 
 			// Provide context
 			var attributes = new CSSearchableItemAttributeSet($"{AboutThisApp.PackageName}.session");
 			attributes.Keywords = keywords.ToArray().Select(k => k.ToString()).ToArray();
-			attributes.Url = NSUrl.FromString(session.GetAppLink().AppLinkUri.AbsoluteUri);
-			if (session.StartTime.HasValue && session.StartTime > DateTime.MinValue)
+			attributes.Url = NSUrl.FromString(talkModel.GetAppLink().AppLinkUri.AbsoluteUri);
+			if (talkModel.StartTime.HasValue && talkModel.StartTime > DateTime.MinValue)
 			{
-				attributes.DueDate = session.StartTime.Value.ToNSDate();
-				attributes.StartDate = session.StartTime.Value.ToNSDate();
-				attributes.EndDate = session.EndTime.Value.ToNSDate();
+				attributes.DueDate = talkModel.StartTime.Value.ToNSDate();
+				attributes.StartDate = talkModel.StartTime.Value.ToNSDate();
+				attributes.EndDate = talkModel.EndTime.Value.ToNSDate();
 
 				attributes.ImportantDates = new[] { attributes.StartDate, attributes.EndDate };
 			}
-			_activity.ContentAttributeSet = attributes;
-			_activity.EligibleForHandoff = true;
+
+		    this._activity.ContentAttributeSet = attributes;
+		    this._activity.EligibleForHandoff = true;
 		}
 	}
 }

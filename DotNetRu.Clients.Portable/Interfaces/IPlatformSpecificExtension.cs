@@ -1,12 +1,13 @@
 ﻿using System.Threading.Tasks;
+using DotNetRu.DataStore.Audit.Models;
 
-namespace XamarinEvolve.Clients.Portable
+namespace DotNetRu.Clients.Portable.Interfaces
 {
-    using DotNetRu.DataStore.Audit.DataObjects;
+    public interface IPlatformSpecificExtension<T>
+        where T : IModel
+    {
+        Task Execute(T entity);
 
-    public interface IPlatformSpecificExtension<T> where T : IBaseDataObject
-	{
-		Task Execute(T entity);
-		Task Finish();
-	}
+        Task Finish();
+    }
 }

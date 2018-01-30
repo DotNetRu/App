@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pages:BasePage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:DotNetRu.Clients.UI.Pages;assembly=DotNetRu.Clients.UI"
+    xmlns:cells="clr-namespace:DotNetRu.Clients.UI.Cells;assembly=DotNetRu.Clients.UI"
+    x:Class="DotNetRu.Clients.UI.Pages.Home.NewsPage"
+    x:Name="NewsScreen"
+    Title="{Binding Resources[News]}"
+    Icon="tab_feed.png"
+    BackgroundColor="{DynamicResource WindowBackgroundTable}">
+  <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+    <ListView
+        IsVisible="{Binding NotLoadingSocial}"
+        x:Name="ListViewSocial"
+        SelectedItem="{Binding SelectedTweet, Mode=TwoWay}"
+        ItemsSource="{Binding Tweets}"
+        HasUnevenRows="True"
+        AbsoluteLayout.LayoutFlags="All"
+        AbsoluteLayout.LayoutBounds="0,0,1,1"
+        IsPullToRefreshEnabled="True"
+        RefreshCommand="{Binding RefreshCommand}"
+        IsRefreshing="{Binding IsBusy, Mode=OneWay}">
+      <ListView.SeparatorColor>
+        <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ListSeparator}"/>
+      </ListView.SeparatorColor>
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <cells:TweetCell/>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+    <StackLayout IsVisible="{Binding ActivityIndicatorVisibility}"
+                  HorizontalOptions="FillAndExpand"
+                  VerticalOptions="Center"
+                  Padding="{StaticResource StandardPadding}"
+                 AbsoluteLayout.LayoutFlags="PositionProportional"
+                 AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1">
+      <ActivityIndicator IsRunning="{Binding LoadingSocial}">
+        <ActivityIndicator.Color>
+          <OnPlatform x:TypeArguments="Color" Android="{StaticResource Accent}"/>
+        </ActivityIndicator.Color>
+      </ActivityIndicator>
+      <Label Text="{Binding Resources[Loading]}"
+              HorizontalOptions="Center"
+              Style="{DynamicResource EvolveListItemTextStyle}"/>
+    </StackLayout>
+    <StackLayout IsVisible="{Binding SocialError}"
+                  HorizontalOptions="FillAndExpand"
+                  VerticalOptions="Center"
+                    BackgroundColor="White"
+                    Padding="{StaticResource StandardPadding}">
+
+      <Label Text="Unable to load social feed"
+              HorizontalOptions="Center"
+              Style="{DynamicResource EvolveListItemTextStyle}"/>
+    </StackLayout>
+  </AbsoluteLayout>
+</pages:BasePage>

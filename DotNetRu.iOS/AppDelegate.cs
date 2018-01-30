@@ -1,9 +1,16 @@
-﻿namespace XamarinEvolve.iOS
+﻿namespace DotNetRu.iOS
 {
     using System;
     using System.Collections.Generic;
 
     using CoreSpotlight;
+
+    using DotNetRu.Clients.Portable.Model;
+    using DotNetRu.iOS.Renderers;
+    using DotNetRu.Utils.Helpers;
+    using DotNetRu.Utils.Interfaces;
+
+    using FFImageLoading.Forms.Touch;
 
     using FormsToolkit;
     using FormsToolkit.iOS;
@@ -12,188 +19,69 @@
 
     using Google.AppIndexing;
 
+    using ImageCircle.Forms.Plugin.iOS;
+
+    using Plugin.Share;
+
     using Refractored.XamForms.PullToRefresh.iOS;
 
     using Social;
 
     using UIKit;
 
-    using Xamarin;
     using Xamarin.Forms;
     using Xamarin.Forms.Platform.iOS;
-
-    using XamarinEvolve.Clients.Portable;
-    using XamarinEvolve.Clients.UI;
-    using XamarinEvolve.DataStore.Mock.Abstractions;
-    using XamarinEvolve.Utils.Helpers;
 
     [Register("AppDelegate")]
     public partial class AppDelegate : FormsApplicationDelegate
     {
-        public static class ShortcutIdentifier
-        {
-            public const string Tweet = AboutThisApp.PackageName + ".tweet";
-
-            public const string Announcements = AboutThisApp.PackageName + ".announcements";
-
-            public const string Events = AboutThisApp.PackageName + ".events";
-        }
-
-        internal static UIColor PrimaryColor = null;
-
-        public override bool FinishedLaunching(UIApplication uiApplication, NSDictionary launchOptions)
-        {
-//#if !ENABLE_TEST_CLOUD
-//            //if (!string.IsNullOrWhiteSpace(ApiKeys.HockeyAppiOS) && ApiKeys.HockeyAppiOS != nameof(ApiKeys.HockeyAppiOS))
-//            //{
-               
-//            //    var manager = BITHockeyManager.SharedHockeyManager;
-//            //    manager.Configure(ApiKeys.HockeyAppiOS);
-
-//            //    //Disable update manager
-//            //    manager.DisableUpdateManager = true;
-
-//            //    manager.StartManager();
-//            //    //manager.Authenticator.AuthenticateInstallation();
-                   
-//            //}
-//#endif
-//            // Code for starting up the Xamarin Test Cloud Agent
-//#if ENABLE_TEST_CLOUD
-//            Xamarin.Calabash.Start();
-//            //Mapping StyleId to iOS Labels
-//            Forms.ViewInitialized += (object sender, ViewInitializedEventArgs e) =>
-//                {
-//                    if (null != e.View.StyleId)
-//                    {
-//                        e.NativeView.AccessibilityIdentifier = e.View.StyleId;
-//                    }
-//                };
-//#endif
-
-            Forms.Init();
-
-            SetMinimumBackgroundFetchInterval();
-
-            InitializeDependencies();
-
-            LoadApplication(new App());
-
-            InitializeThemeColors();
-
-            // Process any potential notification data from launch
-            ProcessNotification(launchOptions);
-
-            NSNotificationCenter.DefaultCenter.AddObserver(UIApplication.DidBecomeActiveNotification, DidBecomeActive);
-
-            var shouldPerformAdditionalDelegateHandling = true;
-
-            // Get possible shortcut item
-            if (launchOptions != null)
-            {
-                LaunchedShortcutItem =
-                    launchOptions[UIApplication.LaunchOptionsShortcutItemKey] as UIApplicationShortcutItem;
-                shouldPerformAdditionalDelegateHandling = (LaunchedShortcutItem == null);
-            }
-
-            return base.FinishedLaunching(uiApplication, launchOptions); // && shouldPerformAdditionalDelegateHandling;
-        }
-
-        void DidBecomeActive(NSNotification notification)
-        {
-            ((XamarinEvolve.Clients.UI.App)Xamarin.Forms.Application.Current).SecondOnResume();
-        }
-
-        static void InitializeDependencies()
-        {
-            FormsMaps.Init();
-            Toolkit.Init();
-
-            AppIndexing.SharedInstance.RegisterApp(PublicationSettings.iTunesAppId);
-
-            Plugin.Share.ShareImplementation.ExcludedUIActivityTypes = new List<NSString>
-                                                                           {
-                                                                               UIActivityType
-                                                                                   .PostToFacebook,
-                                                                               UIActivityType
-                                                                                   .AssignToContact,
-                                                                               UIActivityType
-                                                                                   .OpenInIBooks,
-                                                                               UIActivityType
-                                                                                   .PostToVimeo,
-                                                                               UIActivityType
-                                                                                   .PostToFlickr,
-                                                                               UIActivityType
-                                                                                   .SaveToCameraRoll
-                                                                           };
-            ImageCircle.Forms.Plugin.iOS.ImageCircleRenderer.Init();
-            NonScrollableListViewRenderer.Initialize();
-            SelectedTabPageRenderer.Initialize();
-            TextViewValue1Renderer.Init();
-            PullToRefreshLayoutRenderer.Init();
-        }
-
-        static void InitializeThemeColors()
-        {
-            // Set up appearance after loading theme resources in App.xaml
-            PrimaryColor = ((Color)Xamarin.Forms.Application.Current.Resources["Primary"]).ToUIColor();
-            UINavigationBar.Appearance.BarTintColor =
-                ((Color)Xamarin.Forms.Application.Current.Resources["BarBackgroundColor"]).ToUIColor();
-            UINavigationBar.Appearance.TintColor = PrimaryColor; //Tint color of button items
-            UIBarButtonItem.Appearance.TintColor = PrimaryColor; //Tint color of button items
-            UITabBar.Appearance.TintColor = PrimaryColor;
-            UISwitch.Appearance.OnTintColor = PrimaryColor;
-            UIAlertView.Appearance.TintColor = PrimaryColor;
-
-            UIView.AppearanceWhenContainedIn(typeof(UIAlertController)).TintColor = PrimaryColor;
-            UIView.AppearanceWhenContainedIn(typeof(UIActivityViewController)).TintColor = PrimaryColor;
-            UIView.AppearanceWhenContainedIn(typeof(SLComposeViewController)).TintColor = PrimaryColor;
-        }
+        private static UIColor primaryColor;
 
         public override void WillEnterForeground(UIApplication uiApplication)
         {
             base.WillEnterForeground(uiApplication);
-            ((XamarinEvolve.Clients.UI.App)Xamarin.Forms.Application.Current).SecondOnResume();
+            ((DotNetRu.Clients.UI.App)Xamarin.Forms.Application.Current).SecondOnResume();
         }
 
         public override void RegisteredForRemoteNotifications(UIApplication app, NSData deviceToken)
         {
+            // #if ENABLE_TEST_CLOUD
 
-//#if ENABLE_TEST_CLOUD
-//#else
+            // #else
 
-//            if (ApiKeys.AzureServiceBusUrl == nameof(ApiKeys.AzureServiceBusUrl))
-//                return;
+            // if (ApiKeys.AzureServiceBusUrl == nameof(ApiKeys.AzureServiceBusUrl))
+            // return;
 
-//            // Connection string from your azure dashboard
-//            var cs = SBConnectionString.CreateListenAccess(
-//                new NSUrl(ApiKeys.AzureServiceBusUrl),
-//                ApiKeys.AzureKey);
+            // // Connection string from your azure dashboard
+            // var cs = SBConnectionString.CreateListenAccess(
+            // new NSUrl(ApiKeys.AzureServiceBusUrl),
+            // ApiKeys.AzureKey);
 
-//            // Register our info with Azure
-//            var hub = new SBNotificationHub (cs, ApiKeys.AzureHubName);
-//            hub.RegisterNativeAsync (deviceToken, null, err => {
-//                if (err != null)
-//                    Console.WriteLine("Error: " + err.Description);
-//                else
-//                    Console.WriteLine("Success");
-//            });
-//#endif
+            // // Register our info with Azure
+            // var hub = new SBNotificationHub (cs, ApiKeys.AzureHubName);
+            // hub.RegisterNativeAsync (deviceToken, null, err => {
+            // if (err != null)
+            // Console.WriteLine("Error: " + err.Description);
+            // else
+            // Console.WriteLine("Success");
+            // });
+            // #endif
         }
 
         public override void ReceivedRemoteNotification(UIApplication app, NSDictionary userInfo)
         {
             // Process a notification received while the app was already open
-            ProcessNotification(userInfo);
+            this.ProcessNotification(userInfo);
         }
 
         public override bool HandleOpenURL(UIApplication application, NSUrl url)
         {
             if (!string.IsNullOrEmpty(url.AbsoluteString))
             {
-                ((XamarinEvolve.Clients.UI.App)App.Current).SendOnAppLinkRequestReceived(new Uri(url.AbsoluteString));
+                ((DotNetRu.Clients.UI.App)Xamarin.Forms.Application.Current).SendOnAppLinkRequestReceived(new Uri(url.AbsoluteString));
                 return true;
             }
+
             return false;
         }
 
@@ -201,9 +89,10 @@
         {
             if (!string.IsNullOrEmpty(url.AbsoluteString))
             {
-                ((XamarinEvolve.Clients.UI.App)App.Current).SendOnAppLinkRequestReceived(new Uri(url.AbsoluteString));
+                ((DotNetRu.Clients.UI.App)Xamarin.Forms.Application.Current).SendOnAppLinkRequestReceived(new Uri(url.AbsoluteString));
                 return true;
             }
+
             return false;
         }
 
@@ -215,15 +104,94 @@
         {
             if (!string.IsNullOrEmpty(url.AbsoluteString))
             {
-                ((XamarinEvolve.Clients.UI.App)App.Current).SendOnAppLinkRequestReceived(new Uri(url.AbsoluteString));
+                ((DotNetRu.Clients.UI.App)Xamarin.Forms.Application.Current).SendOnAppLinkRequestReceived(new Uri(url.AbsoluteString));
                 return true;
             }
+
             return false;
         }
 
-        void ProcessNotification(NSDictionary userInfo)
+
+        public override bool FinishedLaunching(UIApplication uiApplication, NSDictionary launchOptions)
         {
-            if (userInfo == null) return;
+            Forms.Init();
+
+            this.SetMinimumBackgroundFetchInterval();
+
+            InitializeDependencies();
+
+            this.LoadApplication(new DotNetRu.Clients.UI.App());
+
+            InitializeThemeColors();
+
+            // Process any potential notification data from launch
+            this.ProcessNotification(launchOptions);
+
+            NSNotificationCenter.DefaultCenter.AddObserver(UIApplication.DidBecomeActiveNotification, this.DidBecomeActive);
+
+            // Get possible shortcut item
+            if (launchOptions != null)
+            {
+                this.LaunchedShortcutItem =
+                    launchOptions[UIApplication.LaunchOptionsShortcutItemKey] as UIApplicationShortcutItem;
+            }
+
+            return base.FinishedLaunching(uiApplication, launchOptions); // && shouldPerformAdditionalDelegateHandling;
+        }
+
+        private static void InitializeDependencies()
+        {
+            Toolkit.Init();
+
+            AppIndexing.SharedInstance.RegisterApp(PublicationSettings.iTunesAppId);
+
+            ShareImplementation.ExcludedUIActivityTypes = new List<NSString>
+                                                              {
+                                                                  UIActivityType.PostToFacebook,
+                                                                  UIActivityType.AssignToContact,
+                                                                  UIActivityType.OpenInIBooks,
+                                                                  UIActivityType.PostToVimeo,
+                                                                  UIActivityType.PostToFlickr,
+                                                                  UIActivityType.SaveToCameraRoll
+                                                              };
+            ImageCircleRenderer.Init();
+            NonScrollableListViewRenderer.Initialize();
+            SelectedTabPageRenderer.Initialize();
+            TextViewValue1Renderer.Init();
+            PullToRefreshLayoutRenderer.Init();
+
+            CachedImageRenderer.Init();
+        }
+
+        private static void InitializeThemeColors()
+        {
+            // Set up appearance after loading theme resources in App.xaml
+            primaryColor = ((Color)Xamarin.Forms.Application.Current.Resources["Primary"]).ToUIColor();
+            UINavigationBar.Appearance.BarTintColor =
+                ((Color)Xamarin.Forms.Application.Current.Resources["BarBackgroundColor"]).ToUIColor();
+            UINavigationBar.Appearance.TintColor = primaryColor; // Tint color of button items
+            UIBarButtonItem.Appearance.TintColor = primaryColor; // Tint color of button items
+            UITabBar.Appearance.TintColor = primaryColor;
+            UISwitch.Appearance.OnTintColor = primaryColor;
+            UIAlertView.Appearance.TintColor = primaryColor;
+
+            UIView.AppearanceWhenContainedIn(typeof(UIAlertController)).TintColor = primaryColor;
+            UIView.AppearanceWhenContainedIn(typeof(UIActivityViewController)).TintColor = primaryColor;
+            UIView.AppearanceWhenContainedIn(typeof(SLComposeViewController)).TintColor = primaryColor;
+        }
+
+        private void DidBecomeActive(NSNotification notification)
+        {
+            ((Clients.UI.App)Xamarin.Forms.Application.Current).SecondOnResume();
+        }
+
+
+        private void ProcessNotification(NSDictionary userInfo)
+        {
+            if (userInfo == null)
+            {
+                return;
+            }
 
             Console.WriteLine("Received Notification");
 
@@ -239,16 +207,15 @@
                 {
                     var alert = (NSString)aps.ObjectForKey(alertKey);
 
+                    var uiAlertView = new UIAlertView($"{AboutThisApp.AppName} Update", alert, null, "OK", null);
                     try
                     {
-
-                        var avAlert = new UIAlertView($"{EventInfo.EventName} Update", alert, null, "OK", null);
-                        avAlert.Show();
+                        uiAlertView.Show();
 
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
-
+                        // ignored
                     }
 
                     Console.WriteLine("Notification: " + alert);
@@ -265,12 +232,12 @@
             Console.WriteLine("OnActivated");
 
             // Handle any shortcut item being selected
-            HandleShortcutItem(LaunchedShortcutItem);
+            this.HandleShortcutItem(this.LaunchedShortcutItem);
 
 
 
             // Clear shortcut after it's been handled
-            LaunchedShortcutItem = null;
+            this.LaunchedShortcutItem = null;
         }
 
         void CheckForAppLink(NSUserActivity userActivity)
@@ -293,7 +260,7 @@
             }
 
             if (!string.IsNullOrEmpty(link))
-                ((XamarinEvolve.Clients.UI.App)App.Current).SendOnAppLinkRequestReceived(new Uri(link));
+                ((DotNetRu.Clients.UI.App)Xamarin.Forms.Application.Current).SendOnAppLinkRequestReceived(new Uri(link));
         }
 
         // if app is already running
@@ -303,8 +270,9 @@
             UIOperationHandler completionHandler)
         {
             Console.WriteLine("PerformActionForShortcutItem");
+
             // Perform action
-            var handled = HandleShortcutItem(shortcutItem);
+            var handled = this.HandleShortcutItem(shortcutItem);
             completionHandler(handled);
         }
 
@@ -325,21 +293,22 @@
                     if (slComposer == null)
                     {
                         new UIAlertView(
-                            "Unavailable",
-                            "Twitter is not available, please sign in on your devices settings screen.",
-                            null,
-                            "OK").Show();
+                            title: "Unavailable",
+                            message: "Twitter is not available, please sign in on your devices settings screen.",
+                            del: null,
+                            cancelButtonTitle: "OK").Show();
                     }
                     else
                     {
                         slComposer.SetInitialText(EventInfo.HashTag);
                         if (slComposer.EditButtonItem != null)
                         {
-                            slComposer.EditButtonItem.TintColor = PrimaryColor;
+                            slComposer.EditButtonItem.TintColor = primaryColor;
                         }
-                        slComposer.CompletionHandler += (result) =>
+
+                        slComposer.CompletionHandler += result =>
                             {
-                                InvokeOnMainThread(
+                                this.InvokeOnMainThread(
                                     () => UIApplication.SharedApplication.KeyWindow.RootViewController
                                         .DismissViewController(true, null));
                             };
@@ -348,21 +317,23 @@
                             slComposer,
                             true);
                     }
+
                     handled = true;
                     break;
                 case ShortcutIdentifier.Announcements:
                     Console.WriteLine("QUICKACTION: Accouncements");
-                    ContinueNavigation(AppPage.Notification);
+                    this.ContinueNavigation(AppPage.Notification);
                     handled = true;
                     break;
                 case ShortcutIdentifier.Events:
-                    Console.WriteLine("QUICKACTION: Events");
-                    ContinueNavigation(AppPage.Events);
+                    Console.WriteLine("QUICKACTION: Meetups");
+                    this.ContinueNavigation(AppPage.Meetups);
                     handled = true;
                     break;
             }
 
             Console.Write(handled);
+
             // Return results
             return handled;
         }
@@ -372,15 +343,15 @@
             Console.WriteLine("ContinueNavigation");
 
             // TODO: display UI in Forms somehow
-            System.Console.WriteLine("Show the page for " + page);
-            MessagingService.Current.SendMessage<DeepLinkPage>(
+            Console.WriteLine("Show the page for " + page);
+            MessagingService.Current.SendMessage(
                 "DeepLinkPage",
                 new DeepLinkPage { Page = page, Id = id });
         }
 
         public override void UserActivityUpdated(UIApplication application, NSUserActivity userActivity)
         {
-            CheckForAppLink(userActivity);
+            this.CheckForAppLink(userActivity);
         }
 
         public override bool ContinueUserActivity(
@@ -388,7 +359,7 @@
             NSUserActivity userActivity,
             UIApplicationRestorationHandler completionHandler)
         {
-            CheckForAppLink(userActivity);
+            this.CheckForAppLink(userActivity);
             return true;
         }
 
@@ -414,9 +385,7 @@
 
             try
             {
-                Xamarin.Forms.Forms.Init(); //need for dependency services
-                // Download data
-                var manager = DependencyService.Get<IStoreManager>();
+                Forms.Init(); // need for dependency services
             }
             catch (Exception ex)
             {

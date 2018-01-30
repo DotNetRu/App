@@ -1,13 +1,12 @@
-﻿using System;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
-namespace XamarinEvolve.Clients.UI
+namespace DotNetRu.Clients.UI.Cells
 {
     public class TextViewValue1 : TextCell
     {
         public TextViewValue1()
         {
-			DetailColor = (Color) Application.Current.Resources["DetailTextColor"];
+            this.DetailColor = (Color) Application.Current.Resources["DetailTextColor"];
         }
     }
 }
