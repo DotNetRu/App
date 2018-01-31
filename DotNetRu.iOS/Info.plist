@@ -7,7 +7,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0.0</string>
 	<key>CFBundleVersion</key>
-	<string>1.0.0</string>
+	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
@@ -130,6 +130,12 @@
 			<string>Icon-58</string>
 		</dict>
 	</array>
+  <key>CFBundleLocalizations</key>
+  <array>
+    <string>ru</string>
+  </array>
+  <key>CFBundleDevelopmentRegion</key>
+  <string>en</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>
@@ -146,7 +152,7 @@
 		<string>com.dotnetru.app.speakers</string>
 	</array>
 	<key>CFBundleDisplayName</key>
-	<string>DotNetRu App</string>
+	<string>DotNetRu</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>XSAppIconAssets</key>

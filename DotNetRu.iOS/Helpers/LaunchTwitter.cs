@@ -1,12 +1,12 @@
 ﻿using System;
-using XamarinEvolve.Clients.Portable;
+using DotNetRu.Clients.Portable.Interfaces;
+using DotNetRu.iOS.Helpers;
 using Foundation;
 using UIKit;
 using Xamarin.Forms;
-using XamarinEvolve.iOS;
 
 [assembly:Dependency(typeof(LaunchTwitter))]
-namespace XamarinEvolve.iOS
+namespace DotNetRu.iOS.Helpers
 {
     public class LaunchTwitter : ILaunchTwitter
     {
@@ -35,6 +35,7 @@ namespace XamarinEvolve.iOS
             {
                 System.Diagnostics.Debug.WriteLine("Unable to launch url " + ex);
             }
+
             return false;
         }
 
@@ -60,6 +61,7 @@ namespace XamarinEvolve.iOS
             {
                 System.Diagnostics.Debug.WriteLine("Unable to launch url " + ex);
             }
+
             return false;
         }
 

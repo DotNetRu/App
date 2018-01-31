@@ -1,21 +1,19 @@
-﻿using System;
+﻿using Android.OS;
 
-using Android.OS;
-
-namespace XamarinEvolve.Droid
+namespace DotNetRu.Droid.Backgrounding
 {
     public class DataRefreshServiceBinder : Binder
     {
-        DataRefreshService service;
+        readonly DataRefreshService service;
 
-        public DataRefreshServiceBinder (DataRefreshService service)
+        public DataRefreshServiceBinder(DataRefreshService service)
         {
             this.service = service;
         }
 
-        public DataRefreshService GetDemoService ()
+        public DataRefreshService GetDemoService()
         {
-            return service;
+            return this.service;
         }
     }
 }

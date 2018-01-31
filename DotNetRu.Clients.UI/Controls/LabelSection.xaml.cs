@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
-namespace XamarinEvolve.Clients.UI
+namespace DotNetRu.Clients.UI.Controls
 {
     public partial class LabelSection : ContentView
     {
         public LabelSection()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
 
         public static readonly BindableProperty TextProperty = 
@@ -16,8 +14,8 @@ namespace XamarinEvolve.Clients.UI
 
         public string Text
         {
-            get { return (string)GetValue(TextProperty); }
-            set { SetValue(TextProperty, value); }
+            get => (string)this.GetValue(TextProperty);
+            set => this.SetValue(TextProperty, value);
         }
 
         protected override void OnPropertyChanged(string propertyName = null)
@@ -25,7 +23,7 @@ namespace XamarinEvolve.Clients.UI
             base.OnPropertyChanged(propertyName);
             if (propertyName == TextProperty.PropertyName)
             {
-                Section.Text = Device.OS == TargetPlatform.iOS ? Text.ToUpperInvariant() : Text;
+                this.Section.Text = Device.RuntimePlatform == Device.iOS ? this.Text.ToUpperInvariant() : this.Text;
             }
         }
     }

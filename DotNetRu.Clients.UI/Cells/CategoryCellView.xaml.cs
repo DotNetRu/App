@@ -1,38 +1,36 @@
-﻿using Xamarin.Forms;
-using XamarinEvolve.DataObjects;
+﻿using DotNetRu.DataStore.Audit.Models;
+using Xamarin.Forms;
 
-namespace XamarinEvolve.Clients.UI
+namespace DotNetRu.Clients.UI.Cells
 {
-
     public class CategoryCell: ViewCell
     {
         public CategoryCell ()
         {
-            if (Device.OS == TargetPlatform.Windows || Device.OS == TargetPlatform.WinPhone)
-                Height = 50;
-            else
-                Height = 44;
-            View = new CategoryCellView ();
+            this.Height = Device.RuntimePlatform == Device.UWP ? 50 : 44;
+            this.View = new CategoryCellView ();
         }
     }
 
-    public partial class CategoryCellView : ContentView
+    public partial class CategoryCellView
     {
         public CategoryCellView()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
 
         protected override void OnBindingContextChanged()
         {
             base.OnBindingContextChanged();
-            var category = BindingContext as Category;
-            if (category == null)
+            if (!(this.BindingContext is Category category))
+            {
                 return;
+            }
+
             if (string.IsNullOrWhiteSpace(category.Color))
             {
-                Grid.SetColumn(LabelName, 0);
-                Grid.SetColumnSpan(LabelName, 2);
+                Grid.SetColumn(this.LabelName, 0);
+                Grid.SetColumnSpan(this.LabelName, 2);
             }
         }
     }

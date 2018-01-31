@@ -1,121 +1,114 @@
-﻿namespace XamarinEvolve.Clients.UI
+﻿using DotNetRu.Clients.Portable.Model;
+using DotNetRu.Clients.UI.Helpers;
+using DotNetRu.Clients.UI.Pages.Sessions;
+using DotNetRu.DataStore.Audit.Models;
+using Xamarin.Forms;
+
+namespace DotNetRu.Clients.UI.Cells
 {
-    using System.Linq;
-
-    using ImageCircle.Forms.Plugin.Abstractions;
-
-    using Xamarin.Forms;
-
-    using XamarinEvolve.Clients.Portable;
-    using XamarinEvolve.DataObjects;
-
-    public class SessionCell: ViewCell
+    public class SessionCell : ViewCell
     {
-        readonly INavigation navigation;
-        public SessionCell (INavigation navigation = null)
-        {
-            Height = 120;
-            View = new SessionCellView ();
-            this.navigation = navigation;
+        private readonly INavigation navigation;
 
+        public SessionCell(INavigation navigation = null)
+        {
+            this.Height = 120;
+            this.View = new SessionCellView();
+            this.navigation = navigation;
         }
 
         protected override async void OnTapped()
         {
             base.OnTapped();
-            if (navigation == null)
+            if (this.navigation == null)
+            {
                 return;
-            var session = BindingContext as Session;
-            if (session == null)
+            }
+
+            if (!(this.BindingContext is TalkModel session))
+            {
                 return;
-            
-            App.Logger.TrackPage(AppPage.Session.ToString(), session.Title);
-            await NavigationService.PushAsync(navigation, new SessionDetailsPage(session));
+            }
+
+            App.Logger.TrackPage(AppPage.Talk.ToString(), session.Title);
+            await NavigationService.PushAsync(this.navigation, new TalkPage(session));
         }
     }
 
-    public partial class SessionCellView : ContentView
+    public partial class SessionCellView
     {
         public SessionCellView()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
 
-        protected override void OnBindingContextChanged()
-        {
-            base.OnBindingContextChanged();
+        // private void GenerateCategoryBadges()
+        // {
+        // CategoriesPlaceholder.Children.Clear();
 
-            //GenerateCategoryBadges();
-        }
+        // var session = BindingContext as Session;
 
-    //    private void GenerateCategoryBadges()
-    //    {
-    //        CategoriesPlaceholder.Children.Clear();
+        // if (session != null)
+        // {
+        // foreach (var category in session.Categories.Take(4))
+        // {
+        // var grid = new Grid
+        // {
+        // Padding = new Thickness(0, 4),
+        // HeightRequest = 28,
+        // MinimumWidthRequest = 200,
+        // VerticalOptions = LayoutOptions.Center,
+        // HorizontalOptions = LayoutOptions.Start
+        // };
 
-    //        var session = BindingContext as Session;
+        // if (Device.RuntimePlatform == Device.iOS)
+        // {
+        // var image = new CircleImage
+        // {
+        // FillColor = Color.FromHex(category.Color),
+        // VerticalOptions = LayoutOptions.Center,
+        // HorizontalOptions = LayoutOptions.FillAndExpand,
+        // HeightRequest = 24
+        // };
 
-    //        if (session != null)
-    //        {
-				//foreach (var category in session.Categories.Take(4))
-    //            {
-    //                var grid = new Grid
-    //                {
-    //                    Padding = new Thickness(0, 4),
-    //                    HeightRequest = 28,
-    //                    MinimumWidthRequest = 200,
-    //                    VerticalOptions = LayoutOptions.Center,
-    //                    HorizontalOptions = LayoutOptions.Start
-    //                };
+        // grid.Children.Add(image);
+        // }
+        // else
+        // {
+        // var box = new BoxView
+        // {
+        // BackgroundColor = Color.FromHex(category.Color),
+        // VerticalOptions = LayoutOptions.Center,
+        // HorizontalOptions = LayoutOptions.FillAndExpand,
+        // HeightRequest = 24,
+        // };
 
-    //                if (Device.OS == TargetPlatform.iOS)
-    //                {
-    //                    var image = new CircleImage
-    //                    {
-    //                        FillColor = Color.FromHex(category.Color),
-    //                        VerticalOptions = LayoutOptions.Center,
-    //                        HorizontalOptions = LayoutOptions.FillAndExpand,
-    //                        HeightRequest = 24
-    //                    };
+        // grid.Children.Add(box);
+        // }
 
-    //                    grid.Children.Add(image);
-    //                }
-    //                else
-    //                {
-    //                    var box = new BoxView
-    //                    {
-    //                        BackgroundColor = Color.FromHex(category.Color),
-    //                        VerticalOptions = LayoutOptions.Center,
-    //                        HorizontalOptions = LayoutOptions.FillAndExpand,
-    //                        HeightRequest = 24,
-    //                    };
+        // private var label = new Label
+        // {
+        // VerticalOptions = LayoutOptions.Center,
+        // VerticalTextAlignment = TextAlignment.Center,
+        // HorizontalOptions = LayoutOptions.Start,
+        // HorizontalTextAlignment = TextAlignment.Center,
+        // FontSize = Device.GetNamedSize(NamedSize.Micro, typeof(Label)),
+        // TextColor = Color.White,
+        // Text = category.BadgeName.ToUpperInvariant(),
+        // Margin = new Thickness(5, 0),
+        // WidthRequest = 60,
+        // };
 
-    //                    grid.Children.Add(box);
-    //                }
+        // 	if (Device.RuntimePlatform == TargetPlatform.WinPhone || Device.RuntimePlatform == TargetPlatform.Windows)
+        // 	{
+        // 		label.FontSize = 10;
+        // 	}
 
-				//	var label = new Label
-				//	{
-				//		VerticalOptions = LayoutOptions.Center,
-				//		VerticalTextAlignment = TextAlignment.Center,
-				//		HorizontalOptions = LayoutOptions.Start,
-				//		HorizontalTextAlignment = TextAlignment.Center,
-				//		FontSize = Device.GetNamedSize(NamedSize.Micro, typeof(Label)),
-    //                    TextColor = Color.White,
-    //                    Text = category.BadgeName.ToUpperInvariant(),
-    //                    Margin = new Thickness(5, 0),
-				//		WidthRequest = 60,
-    //                };
+        // grid.Children.Add(label);
 
-				//	if (Device.OS == TargetPlatform.WinPhone || Device.OS == TargetPlatform.Windows)
-				//	{
-				//		label.FontSize = 10;
-				//	}
-
-    //                grid.Children.Add(label);
-
-    //                CategoriesPlaceholder.Children.Add(grid);
-    //            }
-    //        }
-    //    }
+        // CategoriesPlaceholder.Children.Add(grid);
+        // }
+        // }
+        // }
     }
 }
-

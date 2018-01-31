@@ -1,0 +1,40 @@
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:DotNetRu.Clients.UI.Controls;assembly=DotNetRu.Clients.UI"
+             x:Class="DotNetRu.Clients.UI.Pages.Info.TechnologiesUsedPage"
+             Title="{Binding Resources[TechnologyUsed]}">
+    <ContentPage.Content>
+        <controls:CardView>
+            <StackLayout Spacing="0">
+                <controls:NonScrollableListView
+                    x:Name="ListViewTechnology"
+                    ItemsSource="{Binding TechnologyItems}"
+                    RowHeight="44">
+                    <controls:NonScrollableListView.SeparatorColor>
+                        <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ListSeparator}"/>
+                    </controls:NonScrollableListView.SeparatorColor>
+                    <controls:NonScrollableListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextCell Text="{Binding Name}"
+                                      Detail="{Binding Subtitle}"
+                                      Command="{Binding Command}"
+                                      CommandParameter="{Binding Parameter}"
+                                      StyleId="disclosure"/>
+                        </DataTemplate>
+                    </controls:NonScrollableListView.ItemTemplate>
+                </controls:NonScrollableListView>
+                <controls:FooterDivider/>
+                <StackLayout>
+                    <StackLayout.Padding>
+                        <OnPlatform x:TypeArguments="Thickness" iOS="16,8,16,0" Android="16,8" WinPhone="16,8"/>
+                    </StackLayout.Padding>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="OnTapGestureRecognizerTapped" />
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+            </StackLayout>
+        </controls:CardView>
+
+    </ContentPage.Content>
+</ContentPage>

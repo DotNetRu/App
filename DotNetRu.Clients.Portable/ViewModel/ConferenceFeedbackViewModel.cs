@@ -1,158 +1,97 @@
 ﻿using System;
-using System.Threading.Tasks;
 using System.Windows.Input;
+using DotNetRu.Clients.Portable.Interfaces;
+using DotNetRu.DataStore.Audit.Models;
+using DotNetRu.Utils.Helpers;
+using DotNetRu.Utils.Interfaces;
 using FormsToolkit;
 using Xamarin.Forms;
-using XamarinEvolve.DataObjects;
+using XamarinEvolve.Clients.Portable;
 
-namespace XamarinEvolve.Clients.Portable
+namespace DotNetRu.Clients.Portable.ViewModel
 {
-	using XamarinEvolve.Utils.Helpers;
-
-	public class ConferenceFeedbackViewModel : ViewModelBase
-	{
-		public ConferenceFeedbackViewModel(INavigation navigation) : base(navigation)
-		{
-            Title = Device.RuntimePlatform == Device.Windows ? "Feedback" : "Conference Feedback";
+    public class ConferenceFeedbackViewModel : ViewModelBase
+    {
+        public ConferenceFeedbackViewModel(INavigation navigation)
+            : base(navigation)
+        {
+            this.Title = "Conference Feedback";
         }
 
-		private int _question1;
-		public int Question1
-		{
-			get { return _question1; }
-			set { SetProperty(ref _question1, value); }
-		}
+        private int _question;
 
-		private int _question2;
-		public int Question2
-		{
-			get { return _question2; }
-			set { SetProperty(ref _question2, value); }
-		}
+        public int Question
+        {
+            get => this._question;
+            set => this.SetProperty(ref this._question, value);
+        }
 
-		private int _question3;
-		public int Question3
-		{
-			get { return _question3; }
-			set { SetProperty(ref _question3, value); }
-		}
+        ICommand submitFeedbackCommand;
 
-		private int _question4;
-		public int Question4
-		{
-			get { return _question4; }
-			set { SetProperty(ref _question4, value); }
-		}
+        public ICommand SubmitFeedbackCommand => this.submitFeedbackCommand
+                                                 ?? (this.submitFeedbackCommand = new Command(
+                                                         this.ExecuteSubmitFeedbackCommandAsync));
 
-		private int _question5;
-		public int Question5
-		{
-			get { return _question5; }
-			set { SetProperty(ref _question5, value); }
-		}
+        private void ExecuteSubmitFeedbackCommandAsync()
+        {
+            if (this.IsBusy)
+            {
+                return;
+            }
 
-		private int _question6;
-		public int Question6
-		{
-			get { return _question6; }
-			set { SetProperty(ref _question6, value); }
-		}
+            this.IsBusy = true;
+            try
+            {
+                if (this.Question == 0)
+                {
+                    MessagingService.Current.SendMessage<MessagingServiceAlert>(
+                        MessageKeys.Message,
+                        new MessagingServiceAlert
+                            {
+                                Title = "Missing answers",
+                                Message = "Please provide a rating for all questions.",
+                                Cancel = "OK"
+                            });
+                    return;
+                }
 
-		private int _question7;
-		public int Question7
-		{
-			get { return _question7; }
-			set { SetProperty(ref _question7, value); }
-		}
+                this.Logger.Track(DotNetRuLoggerKeys.ConferenceFeedback);
 
-		private int _question8;
-		public int Question8
-		{
-			get { return _question8; }
-			set { SetProperty(ref _question8, value); }
-		}
+                MessagingService.Current.SendMessage<MessagingServiceAlert>(
+                    MessageKeys.Message,
+                    new MessagingServiceAlert
+                        {
+                            Title = "Feedback Received",
+                            Message =
+                                $"Thanks for the feedback!",
+                            Cancel = "OK",
+                            OnCompleted = async () =>
+                                {
+                                    await this.Navigation.PopModalAsync();
+                                    MessagingService.Current.SendMessage(
+                                        "conferencefeedback_finished");
+                                }
+                        });
 
-		private int _question9;
-		public int Question9
-		{
-			get { return _question9; }
-			set { SetProperty(ref _question9, value); }
-		}
+                var versionProvider = DependencyService.Get<IAppVersionProvider>();
 
-		private int _question10;
-		public int Question10
-		{
-			get { return _question10; }
-			set { SetProperty(ref _question10, value); }
-		}
+                var feedback = new ConferenceFeedback
+                                   {
+                                       Question1 = this.Question,
+                                       DeviceOS = Device.RuntimePlatform,
+                                       AppVersion = versionProvider.AppVersion,
+                                   };
 
-		ICommand submitFeedbackCommand;
-		public ICommand SubmitFeedbackCommand =>
-			submitFeedbackCommand ?? (submitFeedbackCommand = new Command(async () => await ExecuteSubmitFeedbackCommandAsync()));
-
-		async Task ExecuteSubmitFeedbackCommandAsync()
-		{
-			if (IsBusy)
-				return;
-
-			IsBusy = true;
-			try
-			{
-				if (Question1 == 0 || Question2 == 0 || Question3 == 0 || Question4 == 0 || Question5 == 0) // 6 and 7 can be empty
-				{
-					MessagingService.Current.SendMessage<MessagingServiceAlert>(MessageKeys.Message, new MessagingServiceAlert
-					{
-						Title = "Missing answers",
-						Message = "Please provide a rating for all questions.",
-						Cancel = "OK"
-					});
-					return;
-				}
-
-				Logger.Track(EvolveLoggerKeys.ConferenceFeedback);
-
-				MessagingService.Current.SendMessage<MessagingServiceAlert>(MessageKeys.Message, new MessagingServiceAlert
-				{
-					Title = "Feedback Received",
-					Message = $"Thanks for the feedback, we hope you had a great {EventInfo.EventName}.",
-					Cancel = "OK",
-					OnCompleted = async () =>
-					{
-						await Navigation.PopModalAsync();
-						MessagingService.Current.SendMessage("conferencefeedback_finished");
-					}
-				});
-
-				var versionProvider = DependencyService.Get<IAppVersionProvider>();
-
-				var feedback = new ConferenceFeedback
-				{
-					Question1 = Question1,
-					Question2 = Question2,
-					Question3 = Question3,
-					Question4 = Question4,
-					Question5 = Question5,
-					Question6 = Question6,
-					Question7 = Question7,
-					Question8 = Question8,
-					Question9 = Question9,
-					Question10 = Question10,
-					DeviceOS = Device.OS.ToString(),
-					AppVersion = versionProvider.AppVersion,
-				};
-
-				await StoreManager.ConferenceFeedbackStore.InsertAsync(feedback);
-
-				Settings.Current.LeaveConferenceFeedback();
-			}
-			catch (Exception ex)
-			{
-				Logger.Report(ex);
-			}
-			finally
-			{
-				IsBusy = false;
-			}
-		}
-	}
+                Settings.Current.LeaveConferenceFeedback();
+            }
+            catch (Exception ex)
+            {
+                this.Logger.Report(ex);
+            }
+            finally
+            {
+                this.IsBusy = false;
+            }
+        }
+    }
 }

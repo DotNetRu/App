@@ -1,680 +1,1090 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Talks>
-<Talk>
-  <Id>Advanced-use-of-NuGet-and-MSBuild</Id>
-  <SpeakerIds>
-    <SpeakerId>Igor-Labutin</SpeakerId>
-  </SpeakerIds>
-  <Title>Продвинутое использование NuGet и MSBuild</Title>
-  <Description>NuGet пакеты используют все. А рано или поздно приходится собрать такой пакет самому. Хорошо если это просто несколько DLL собранных вместе. Встречаются и более сложные случаи — несколько целевых версий фреймворка, специальные скрипты установки и вдобавок расширения MSBuild. Если вы разработчик библиотеки, публикуемой на nuget.org, или вы просто захотели поделиться чем-то полезным с коллегами, выложив ваш пакет на внутренний NuGet-сервер — вам нужно владеть навыками создания NuGet пакетов и помнить о тонкостях которые могут вас подстерегать. В докладе рассмотрим полный цикл создания NuGet пакета и особое внимание уделим «продвинутым» возможностям — скриптам и встраивание в MSBuild.</Description>
-  <SlidesUrl>https://www.slideshare.net/SpbDotNet/nuget-msbuild</SlidesUrl>
-  <VideoUrl>https://www.youtube.com/watch?v=GddbhA0gsdg</VideoUrl>
-</Talk>
-<Talk>
-  <Id>Automatic-Input-Output-Matching</Id>
-  <SpeakerIds>
-    <SpeakerId>Dmitri-Nesteruk</SpeakerId>
-  </SpeakerIds>
-  <Title>Automatic Input/Output Matching in .NET</Title>
-  <Description>Наверное, многие из вас сталкивались с задачей, когда нужно преобразовать один набор данных в другой, но вы понятия не имеете, какой магический обряд нужно провести чтобы звезды сложились и на выходе было именно то, что нужно. Вместо того чтобы итеративно лезть на StackOverflow и пробовать разные варианты для достижения нужной цели, Дмитрий предлагает другой вариант: использовать reflection для автоматизированного поиска нужной цепочки вызовов на основе входных и выходных данных. В этом докладе он покажет проект CallSharp который реализует как раз этот подход для вывода правильных цепочек. Мы поговорим про reflection, подводные камни произвольных вызовов всего и вся, а также возможные оптимизации и пути развития проекта.</Description>
-  <SlidesUrl>http://www.slideshare.net/DmitriNesteruk/callsharp-automatic-inputoutput-matching-in-net</SlidesUrl>
-  <VideoUrl>https://www.youtube.com/watch?v=sriXY5HErxA</VideoUrl>
-</Talk>
-<Talk>
-  <Id>Brave-CoreCLR</Id>
-  <SpeakerIds>
-    <SpeakerId>Sergey-Shchegrikovich</SpeakerId>
-  </SpeakerIds>
-  <Title>CoreCLR: Brave new world</Title>
-  <Description>В докладе расскажу про свой опыт изучения CoreCLR. Какие техники сработали для меня, а какие нет. Покажу как делать debugging для CoreCLR, SOS и Finalizer'а.</Description>
-</Talk>
-<Talk>
-  <Id>Common-mistakes-in-Net-benchmarks</Id>
-  <SpeakerIds>
-    <SpeakerId>Andrey-Akinshin</SpeakerId>
-  </SpeakerIds>
-  <Title>Распространённые ошибки оценки производительности .NET-приложений</Title>
-  <Description>Изо дня в день многие .NET-разработчики сталкиваются с проблемами производительности в своих проектах. Для их решения необходимо уметь корректно замерять время, чтобы иметь возможность сравнить эффективность разных подходов. Если речь идёт о минутах или часах, то такие замеры можно выполнять «на глаз». Если речь идёт о секундах, то с задачей хорошо справится ваш любимый профайлер. Но если речь идёт о миллисекундах, микросекундах или даже наносекундах, то у вас могут возникнуть проблемы. Замеры коротких промежутков времени — очень сложная задача, многие программисты не умеют решать её правильно. В этом докладе я расскажу о наиболее распространённых ошибках и о том, как их можно избежать.</Description>
-  <SlidesUrl>http://www.slideshare.net/yu5k3/net-55421533</SlidesUrl>
-  <VideoUrl>http://www.youtube.com/watch?v=RL21wPsiy3o</VideoUrl>
-</Talk>
-<Talk>
-  <Id>Concurrency-and-distributed-computing-with-Akka</Id>
-  <SpeakerIds>
-    <SpeakerId>Nikita-Tsukanov</SpeakerId>
-  </SpeakerIds>
-  <Title>Параллелизм и распределённые вычисления на акторах с Akka.NET</Title>
-  <Description>В современном мире уже нельзя писать код, который работает на одном компьютере на одном процессорном ядре и имеет монопольный доступ к данным. В своих приложениях мы обычно используем многопоточность для распараллеливания операций по ядрам и нескольким процессорам на сервере, а для взаимодействия между несколькими серверами различного рода RPC и REST протоколы. При этом использование данных инструментов влечёт за собой ряд трудноразрешимых проблем. Так, при написании многопоточного кода весьма проблематично безопасно и корректно организовать конкуррентный доступ к данным из разных потоков, избежать взаимных блокировок и ситуаций, когда по каким-то причинам два потока обращаются к одним и тем же данным, хотя этого при разработке системы не предполагалось. Классические же сценарии сетевого взаимодействия сильно страдают от того, что они либо не «прозрачны» при использовании и требуют дополнительной логики для преобразования запросов и ответов, либо скрывают за мнимой прозрачностью возможные подводные камни при сетевых ошибках или недоступности той стороны.
+  <Talk>
+    <Id>Advanced-use-of-NuGet-and-MSBuild</Id>
+    <SpeakerIds>
+      <SpeakerId>Igor-Labutin</SpeakerId>
+    </SpeakerIds>
+    <Title>Продвинутое использование NuGet и MSBuild</Title>
+    <Description>NuGet пакеты используют все. А рано или поздно приходится собрать такой пакет самому. Хорошо если это просто несколько DLL собранных вместе. Встречаются и более сложные случаи — несколько целевых версий фреймворка, специальные скрипты установки и вдобавок расширения MSBuild. Если вы разработчик библиотеки, публикуемой на nuget.org, или вы просто захотели поделиться чем-то полезным с коллегами, выложив ваш пакет на внутренний NuGet-сервер — вам нужно владеть навыками создания NuGet пакетов и помнить о тонкостях которые могут вас подстерегать. В докладе рассмотрим полный цикл создания NuGet пакета и особое внимание уделим «продвинутым» возможностям — скриптам и встраивание в MSBuild.</Description>
+    <SlidesUrl>https://www.slideshare.net/SpbDotNet/nuget-msbuild</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=GddbhA0gsdg</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>Async-Await-Afraid-to-Ask</Id>
+    <SpeakerIds>
+      <SpeakerId>Egor-Grishechko</SpeakerId>
+    </SpeakerIds>
+    <Title>Async/Await и всё, что вы боялись спросить</Title>
+    <Description>TAP появился достаточно давно. Однако, до сих пор вокруг него ходит много мифов и слухов. Вам приходилось задумываться как работают async/await? Или что конкретно делает ConfigureAwait(false)? В ходе доклада немножко подекомпелируем и копнём вглубь исходников. А на дессерт похоливарим о подходах и паттернах использования.</Description>
+    <SlidesUrl>https://www.slideshare.net/SpbDotNet/asyncawait-80830609</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=xeZtWG81X-E</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>Autofac-as-IoC-DI</Id>
+    <SpeakerIds>
+      <SpeakerId>Ilya-Efimov</SpeakerId>
+    </SpeakerIds>
+    <Title>IoC/DI на примере Autofac</Title>
+    <Description>Поговорим о IoC/DI в целом. Более подробно о вложенных контейнерах. Специфике IDisposable в данном контексте.</Description>
+    <SlidesUrl>https://www.slideshare.net/yuliafast/iocdi-autofac</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=6maln7uQUzI</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>Automatic-exception-search</Id>
+    <SpeakerIds>
+      <SpeakerId>Vladimir-Koshelev</SpeakerId>
+    </SpeakerIds>
+    <Title>Автоматический поиск ошибок</Title>
+    <Description>Поговорим о автоматических инструментах поиска ошибок в программах для .Net. Посмотрим на зоопарк средств статического анализа. Попробуем автоматически генерировать Unit-тесты с помощью IntelliTest.</Description>
+    <SlidesUrl>https://www.slideshare.net/yuliafast/ss-72692255</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=c8zhrtezwFs</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>Automatic-Input-Output-Matching</Id>
+    <SpeakerIds>
+      <SpeakerId>Dmitri-Nesteruk</SpeakerId>
+    </SpeakerIds>
+    <Title>Automatic Input/Output Matching in .NET</Title>
+    <Description>Наверное, многие из вас сталкивались с задачей, когда нужно преобразовать один набор данных в другой, но вы понятия не имеете, какой магический обряд нужно провести чтобы звезды сложились и на выходе было именно то, что нужно. Вместо того чтобы итеративно лезть на StackOverflow и пробовать разные варианты для достижения нужной цели, Дмитрий предлагает другой вариант: использовать reflection для автоматизированного поиска нужной цепочки вызовов на основе входных и выходных данных. В этом докладе он покажет проект CallSharp который реализует как раз этот подход для вывода правильных цепочек. Мы поговорим про reflection, подводные камни произвольных вызовов всего и вся, а также возможные оптимизации и пути развития проекта.</Description>
+    <SlidesUrl>http://www.slideshare.net/DmitriNesteruk/callsharp-automatic-inputoutput-matching-in-net</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=sriXY5HErxA</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>AvaloniaUI-Cross-platform-Open-Source-UI-Framework</Id>
+    <SpeakerIds>
+      <SpeakerId>Nikita-Tsukanov</SpeakerId>
+    </SpeakerIds>
+    <Title>AvaloniaUI Cross-platform Open Source UI Framework</Title>
+    <Description>Рассказ об AvaloniaUI, её будущем и настоящем.</Description>
+    <SlidesUrl>https://www.slideshare.net/EliasFofanov/avalonia-ui-crossplatform-open-source-ui-framework</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=UHuf009wdQo</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>Basic-principles-of-micro-services</Id>
+    <SpeakerIds>
+      <SpeakerId>Andrey-Matveev</SpeakerId>
+    </SpeakerIds>
+    <Title>Основные принципы микросервисов и их реализации</Title>
+    <Description>Разговор пойдет о том, что скрывается за модным buzzword’ом, будут рассмотрены обещанные плюсы и найдены минусы, о которых умалчивают. Зачем нужны микросервисы, пора ли отказываться от монолита и как же их делать.</Description>
+    <SlidesUrl>https://www.slideshare.net/MskDotNet/ntation</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=AIxxVseP8YM</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>Basics-of-Profiling-and-Optimizing</Id>
+    <SpeakerIds>
+      <SpeakerId>Alexander-Saitov</SpeakerId>
+    </SpeakerIds>
+    <Title>Основы профилирования и оптимизации приложений в .NET</Title>
+    <Description>Рассмотрим что такое профилирование приложения и на какие вопросы оно позволяет получить ответы. Каким условиям должно соответствовать ПО для профилирования. Как работают .NET профайлеры. Познакомимся с особенностями профилирования памяти и производительности. Обсудим возможные пути оптимизации памяти и производительности.</Description>
+    <SlidesUrl>https://www.slideshare.net/SpbDotNet/net-80832833</SlidesUrl>
+  </Talk>
+  <Talk>
+    <Id>Brave-CoreCLR</Id>
+    <SpeakerIds>
+      <SpeakerId>Sergey-Shchegrikovich</SpeakerId>
+    </SpeakerIds>
+    <Title>CoreCLR: Brave new world</Title>
+    <Description>В докладе расскажу про свой опыт изучения CoreCLR. Какие техники сработали для меня, а какие нет. Покажу как делать debugging для CoreCLR, SOS и Finalizer'а.</Description>
+  </Talk>
+  <Talk>
+    <Id>Building-a-secure-architecture-for-IoT</Id>
+    <SpeakerIds>
+      <SpeakerId>Stas-Pavlov</SpeakerId>
+    </SpeakerIds>
+    <Title>Построение безопасной архитектуры IoT решений на примере Azure IoT референсной архитектуры</Title>
+    <Description>При проектировании системы важно понять, каким угрозам эта система может подвергаться, и разработать соответствующие меры защиты при проектировании и построении её архитектуры. Особенно важно с самого начала учитывать требования безопасности при проектировании продукта. Если вы понимаете, каким образом злоумышленники могут скомпрометировать вашу систему, то это поможет еще до начала работы принять соответствующие меры по снижению рисков. В докладе на примере рефренсной архитектуры Azure IoT будет рассмотрено, каким образом можно спроектировать архитектуру соответствующую необходимому уровню безопасности.</Description>
+    <SlidesUrl>https://www.slideshare.net/MskDotNet/iot-azure-iot</SlidesUrl>
+  </Talk>
+  <Talk>
+    <Id>Collecting-Data-in-Net</Id>
+    <SpeakerIds>
+      <SpeakerId>Igor-Labutin</SpeakerId>
+    </SpeakerIds>
+    <Title>Коллекционируем данные в .NET</Title>
+    <Description>Любой разработчик сталкивается с выбором контейнеров для хранения данных программы. При разработке на платформе .NET несомненно первыми кандидатами будут массивы и коллекции из System.Collections(.Generic). Однако мир коллекций этим не ограничивается. Существуют неизменяемые (immutable) коллекции. Встречаются коллекции, оптимизирующие потребление памяти, и т.п. Мы рассмотрим популярные (но все же далеко не всегда широко известные) пакеты коллекции предлагаемые в .NET и методы работы с ними.</Description>
+    <CodeUrl>https://github.com/ilabutin/spbdotnet2017</CodeUrl>
+    <SlidesUrl>https://www.slideshare.net/SpbDotNet/net-84856032</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=wVZhlsYQkf8</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>Common-mistakes-in-Net-benchmarks</Id>
+    <SpeakerIds>
+      <SpeakerId>Andrey-Akinshin</SpeakerId>
+    </SpeakerIds>
+    <Title>Распространённые ошибки оценки производительности .NET-приложений</Title>
+    <Description>Изо дня в день многие .NET-разработчики сталкиваются с проблемами производительности в своих проектах. Для их решения необходимо уметь корректно замерять время, чтобы иметь возможность сравнить эффективность разных подходов. Если речь идёт о минутах или часах, то такие замеры можно выполнять «на глаз». Если речь идёт о секундах, то с задачей хорошо справится ваш любимый профайлер. Но если речь идёт о миллисекундах, микросекундах или даже наносекундах, то у вас могут возникнуть проблемы. Замеры коротких промежутков времени — очень сложная задача, многие программисты не умеют решать её правильно. В этом докладе я расскажу о наиболее распространённых ошибках и о том, как их можно избежать.</Description>
+    <SlidesUrl>http://www.slideshare.net/yu5k3/net-55421533</SlidesUrl>
+    <VideoUrl>http://www.youtube.com/watch?v=RL21wPsiy3o</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>Concurrency-and-distributed-computing-with-Akka</Id>
+    <SpeakerIds>
+      <SpeakerId>Nikita-Tsukanov</SpeakerId>
+    </SpeakerIds>
+    <Title>Параллелизм и распределённые вычисления на акторах с Akka.NET</Title>
+    <Description>В современном мире уже нельзя писать код, который работает на одном компьютере на одном процессорном ядре и имеет монопольный доступ к данным. В своих приложениях мы обычно используем многопоточность для распараллеливания операций по ядрам и нескольким процессорам на сервере, а для взаимодействия между несколькими серверами различного рода RPC и REST протоколы. При этом использование данных инструментов влечёт за собой ряд трудноразрешимых проблем. Так, при написании многопоточного кода весьма проблематично безопасно и корректно организовать конкуррентный доступ к данным из разных потоков, избежать взаимных блокировок и ситуаций, когда по каким-то причинам два потока обращаются к одним и тем же данным, хотя этого при разработке системы не предполагалось. Классические же сценарии сетевого взаимодействия сильно страдают от того, что они либо не «прозрачны» при использовании и требуют дополнительной логики для преобразования запросов и ответов, либо скрывают за мнимой прозрачностью возможные подводные камни при сетевых ошибках или недоступности той стороны.
 Главным же ограничением в использовании этих технологий является то, что для их внедрения необходимо существенным образом изменять имеющийся код. Вы не можете быстро «потушить» проблему, просто залив её дополнительными вычислительными мощностями, уходят часы, дни, недели на доработки кода. Акторная модель призвана избавить разработчика от мыслей о том, в каком потоке и на каком сервере выполняется код. Замена синхронных вызовов на обрабатываемые по одному синхронные сообщения позволяет писать код, одинаково хорошо работающий как в одном потоке, так и на сервере с несколькими процессорами, а механизм обеспечения сетевой прозрачности позволяет не видеть разницы между актором, запущенным локально и удалённо.
 Доклад рассчитан на неподготовленного слушателя, ранее не имевшего дело с акторами, и является улучшенной и дополненной версией доклада с питерского DotNext. Речь пойдёт непосредственно об акторной модели и её реализации в Akka.NET, особенностях юнит-тестирования, акторах с сохраняемым состоянием, а так же об интеграции всей этой машинерии с имеющимся приложением и ASP.NET.</Description>
-  <SlidesUrl>https://www.slideshare.net/yuliafast/akkanet-65045789</SlidesUrl>
-  <VideoUrl>https://www.youtube.com/watch?v=dYwFLiBhTQk</VideoUrl>
-</Talk>
-<Talk>
-  <Id>CORS-in-ASP</Id>
-  <SpeakerIds>
-    <SpeakerId>Mikhail-Bashurov</SpeakerId>
-  </SpeakerIds>
-  <Title>Особенности CORS в ASP.NET и не только</Title>
-  <Description>В современном мире микро и макросервисов фронтенд часто отделяется от бэкенда физически и возникает проблема настройки кросс-доменных запросов. Это краткий рассказ о принципах работы и некоторых подводных камнях.</Description>
-</Talk>
-<Talk>
-  <Id>Data-grid</Id>
-  <SpeakerIds>
-    <SpeakerId>Yakov-Zhdanov</SpeakerId>
-  </SpeakerIds>
-  <Title>Знакомство с In-Memory Data Grid</Title>
-  <Description>В этой части встречи мы рассмотрим основные понятия и поговорим о важнейших возможностях Apache Ignite. Вместе со слушателями мы разберемся:
+    <SlidesUrl>https://www.slideshare.net/yuliafast/akkanet-65045789</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=dYwFLiBhTQk</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>Configuration-in-DotNet</Id>
+    <SpeakerIds>
+      <SpeakerId>Pavel-Pritchin</SpeakerId>
+    </SpeakerIds>
+    <Title>Конфигурации в .NET</Title>
+    <Description>В докладе рассказывается о системе конфигурации в .Net. Как она работает на больших проектах, какие проблемы и почему все очень плохо. Какой подход мы применили в Додо Пицца, чтобы избавиться от некоторых проблем. Как изменились подходы сейчас в .Net Core. Что с конфигами в ASP.NET Core и как быть, когда кругом микросервисы.</Description>
+    <SlidesUrl>https://www.slideshare.net/MskDotNet/net-81321769</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=MlJiwwAuzdo</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>CORS-in-ASP</Id>
+    <SpeakerIds>
+      <SpeakerId>Mikhail-Bashurov</SpeakerId>
+    </SpeakerIds>
+    <Title>Особенности CORS в ASP.NET и не только</Title>
+    <Description>В современном мире микро и макросервисов фронтенд часто отделяется от бэкенда физически и возникает проблема настройки кросс-доменных запросов. Это краткий рассказ о принципах работы и некоторых подводных камнях.</Description>
+  </Talk>
+  <Talk>
+    <Id>Cross-platform-server-development-tools-DotNet</Id>
+    <SpeakerIds>
+      <SpeakerId>Denis-Davydov</SpeakerId>
+    </SpeakerIds>
+    <Title>Кроссплатформенные инструменты серверной разработки .NET</Title>
+    <Description>Расскажет, как жить, если вы хотите разрабатывать и запускать серверные приложения под .NET, не используя Windows.</Description>
+    <SlidesUrl>https://www.slideshare.net/EliasFofanov/net-79112642</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=vqCo7HIZsNU</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>CSharp-Syntactic-Sugar</Id>
+    <SpeakerIds>
+      <SpeakerId>Dmitry-Vereskun</SpeakerId>
+    </SpeakerIds>
+    <Title>Синтаксический сахар C#</Title>
+    <Description>Разберемся что нового появилось в двух последних версиях C# (6 и 7). Зачем нам всё это надо. Как написать синглтон в две строки. Правда ли, что в C# теперь можно писать в стиле JS, C++ и SQL?</Description>
+    <SlidesUrl>https://www.slideshare.net/SpbDotNet/c-80832886</SlidesUrl>
+  </Talk>
+  <Talk>
+    <Id>Data-grid</Id>
+    <SpeakerIds>
+      <SpeakerId>Yakov-Zhdanov</SpeakerId>
+    </SpeakerIds>
+    <Title>Знакомство с In-Memory Data Grid</Title>
+    <Description>В этой части встречи мы рассмотрим основные понятия и поговорим о важнейших возможностях Apache Ignite. Вместе со слушателями мы разберемся:
 
 - как строится и функционирует кластер;
 - какие API есть и что скрывается за вызовами;
 - как распределяются данные в data grid;
 - как обеспечивается отказоустойчиовость.</Description>
-  <SlidesUrl>http://www.slideshare.net/yu5k3/inmemory-data-grid</SlidesUrl>
-  <VideoUrl>https://www.youtube.com/watch?v=3gvuy30tHp0</VideoUrl>
-</Talk>
-<Talk>
-  <Id>Debugging-tools-in-Msvs-2015</Id>
-  <SpeakerIds>
-    <SpeakerId>Mikhail-Shcherbakov</SpeakerId>
-  </SpeakerIds>
-  <Title>Новые возможности диагностики и отладки в Visual Studio 2015</Title>
-  <Description>Рассмотрим на примерах новые средства диагностики и профиляции кода в Visual Studio 2015, поговорим о том, что нового появилось в отладчике и что еще хотелось бы в нем видеть. Посмотрим на магический IntelliTest и разберемся что у него под капотом и как он «изучает код .NET»</Description>
-  <SlidesUrl>http://www.slideshare.net/yu5k3/visual-studio-2015-diagnostic-and-debugging-tools</SlidesUrl>
-  <VideoUrl>http://www.youtube.com/watch?v=L_nDwDLXRuc</VideoUrl>
-</Talk>
-<Talk>
-  <Id>Delegates-and-Events</Id>
-  <SpeakerIds>
-    <SpeakerId>Mikhail-Shcherbakov</SpeakerId>
-  </SpeakerIds>
-  <Title>Что может быть проще: делегаты и события</Title>
-  <Description>Ждём...</Description>
-</Talk>
-<Talk>
-  <Id>Design-of-RESTFul-API</Id>
-  <SpeakerIds>
-    <SpeakerId>Vyacheslav-Mikhaylov</SpeakerId>
-  </SpeakerIds>
-  <Title>Подходы к проектированию RESTFul API</Title>
-  <Description>Ни один современный продукт не обходится без API. Этот API может быть внешним, для публичного использования, а может быть сугобо внутренним, но требования к созданию расширяемого, версионируемого, тестируемого, документированного программного интерфейса очень похожи. На этой встрече мы поговорим о том, как создавать подобные API, какие существуют best-practices, чего следует избегать, на что обращать внимание при проектировании.</Description>
-  <SlidesUrl>http://www.slideshare.net/yu5k3/restful-api-best-practices-versioning-design-documentation</SlidesUrl>
-  <VideoUrl>http://www.youtube.com/watch?v=SRHSIJKQnLQ</VideoUrl>
-</Talk>
-<Talk>
-  <Id>Design-Pattern-Observations</Id>
-  <SpeakerIds>
-    <SpeakerId>Dmitri-Nesteruk</SpeakerId>
-  </SpeakerIds>
-  <Title>Интересные подходы в реализации паттернов проектирования в C#</Title>
-  <Description>Паттерны возможно уже не вызывают тот ажиотаж что раньше, но это потому, что все их знают. Тем не менее, есть интересные подходы к реализации паттернов на C#, и в этом докладе Дмитрий расскажет как фичи языка (extension method-ы, динамики, и т.п.) помогают реализовать некоторые из них. Доклад сделан по мотивам его курса по паттернам проектирования на Udemy.</Description>
-  <SlidesUrl>https://www.slideshare.net/DmitriNesteruk/design-pattern-observations</SlidesUrl>
-  <VideoUrl>https://www.youtube.com/watch?v=bFZ9ytZnVmQ</VideoUrl>
-</Talk>
-<Talk>
-  <Id>DotaNetoLogia-SPb-2017</Id>
-  <SpeakerIds>
-    <SpeakerId>Anatoly-Kulakov</SpeakerId>
-  </SpeakerIds>
-  <Title>ДотаНетоЛогия: СПб 2017</Title>
-  <Description>Мир .NET сейчас развивается с космической скоростью. Каждый день возникают сотни новых проектов, лекций, личностей. Не удивительно, что большинству разработчиков очень сложно уследить за всеми новостями и идеями. Поэтому в данном докладе Анатолий соберёт для вас список лучших авторов мирового уровня, которые будут выступать на конференции DotNext Spb 2017. Для того что бы подробно рассмотреть какую активность они ведут, про что пишут в своих блогах, и действительно ли компетентны для того чтобы представлять выбранные темы на самой большой в России .NET конференции.</Description>
-  <SlidesUrl>https://www.slideshare.net/SpbDotNet/2017-76067178</SlidesUrl>
-</Talk>
-<Talk>
-  <Id>DotNet-and-Java</Id>
-  <SpeakerIds>
-    <SpeakerId>Vladimir-Ozerov</SpeakerId>
-  </SpeakerIds>
-  <Title>Заклятые друзья или как подружить .NET и Java</Title>
-  <Description>Как заставить Apache Ignite работать на .NET? Построчно спортировать с Java? Все 500 тысяч строк? Мы пошли другим путем, решив переиспользовать существующую Java-логику прямо внутри .NET процесса. В докладе я расскажу, почему мы приняли такое решение, как мы это сделали, и с какими трудностями столкнулись.</Description>
-  <SlidesUrl>http://www.slideshare.net/yu5k3/apache-ignite-net</SlidesUrl>
-</Talk>
-<Talk>
-  <Id>DSL-unexpurgated</Id>
-  <SpeakerIds>
-    <SpeakerId>Nikita-Kozlov</SpeakerId>
-  </SpeakerIds>
-  <Title>DSL без купюр</Title>
-  <Description>Три буквы, о которых многие слышали, кто-то видел, но при начальстве их не все решаются произносить. Предлагаю поговорить о DSL: domain specific language. Постараемся выяснить, как оценить все "за" и "против", и есть ли смысл придумывать свой язык. Я поделюсь личным опытом реализации DSL на основе C# + ANTLR и подводными камнями, с которыми пришлось столкнуться. Обсудим "удобную" архитектуру транслятора и пути реализации инструментов разработки языка.</Description>
-  <SlidesUrl>http://www.slideshare.net/yu5k3/dsl-49157368</SlidesUrl>
-</Talk>
-<Talk>
-  <Id>Dynamic-Prototyping</Id>
-  <SpeakerIds>
-    <SpeakerId>Dmitri-Nesteruk</SpeakerId>
-  </SpeakerIds>
-  <Title>Динамическое Прототипирование</Title>
-  <Description>Чем отличается автосервис от кардиологии? Тем что кардиолог чинит работающий движок. Динамическое прототипирование позволяет, при правильном планировании архитектуры, изменять реализации классов прямо в работающей программе. В этом докладе мы посмотрим на то как этот механизм реализован и как можно проектировать приложения так, чтобы получать максимум пользы от этого подхода.</Description>
-</Talk>
-<Talk>
-  <Id>EF-chips-and-pitfalls</Id>
-  <SpeakerIds>
-    <SpeakerId>Mikhail-Bashurov</SpeakerId>
-  </SpeakerIds>
-  <Title>Entity Framework: фишки и подводные камни</Title>
-  <Description>У каждого инструмента своя кривая обучения. Entity Framework в этом плане не исключение, с ним легко начать, но затем постепенно начинаешь спотыкаться. Михаил расскажет что может помочь человеку начинающему знакомиться с EF или желающему немного прокачать знания по нему. Будет много практического опыта, накопившегося за пару-тройку лет общения с ним.</Description>
-  <SlidesUrl>https://www.slideshare.net/SpbDotNet/entity-framework-75868404</SlidesUrl>
-  <VideoUrl>https://www.youtube.com/watch?v=Y3M826ZySDM</VideoUrl>
-</Talk>
-<Talk>
-  <Id>EF-Core-Internals</Id>
-  <SpeakerIds>
-    <SpeakerId>Andrey-Terekhov</SpeakerId>
-  </SpeakerIds>
-  <Title>Внутреннее устройство EF Core</Title>
-  <Description>Рассмотрим внутреннюю архитектуру нового EF. Посмотрим как теперь работают основные его фичи внутри. Начнем с инструментов разработчика и CLI, а закончим генерацией provider специфичных запросов. Посмотрим на точки расширения для новых провайдеров, а так же рассмотрим гипотетические возможности по написанию своего.</Description>
-  <SlidesUrl>https://www.slideshare.net/SpbDotNet/ef-core-74186664</SlidesUrl>
-</Talk>
-<Talk>
-  <Id>Experience-and-prospects-of-F</Id>
-  <SpeakerIds>
-    <SpeakerId>Dmitri-Nesteruk</SpeakerId>
-  </SpeakerIds>
-  <Title>F#: Опыт и Перспективы</Title>
-  <Description>Рассказ про то зачем нужен F#, его текущее положение в индустрии, а также примеры того, как его использовать для разных целей, в т.ч. в математике, для построения DSLей, написания парсеров/трансляторов и использование REPL-среды для ускорения разработки.</Description>
-  <SlidesUrl>http://www.slideshare.net/SpbDotNet/f-66275448</SlidesUrl>
-  <VideoUrl>https://www.youtube.com/watch?v=a4fD2Nl7R0A</VideoUrl>
-</Talk>
-<Talk>
-  <Id>F-Battle</Id>
-  <SpeakerIds>
-    <SpeakerId>Roman-Nevolin</SpeakerId>
-    <SpeakerId>Dmitri-Nesteruk</SpeakerId>
-  </SpeakerIds>
-  <Title>F# Battle: За и Против</Title>
-  <Description>Роман Неволин и Дмитрий Нестерук обсуждают F#</Description>
-  <VideoUrl>https://www.youtube.com/watch?v=67-gi3Rj0kE</VideoUrl>
-</Talk>
-<Talk>
-  <Id>Functional-NET</Id>
-  <SpeakerIds>
-    <SpeakerId>Roman-Nevolin</SpeakerId>
-  </SpeakerIds>
-  <Title>Функциональный .NET</Title>
-  <Description>Пожалуй, уже не осталось .NET разработчиков, не слышавших об F#. Но далеко не каждый понимает, что это за язык и зачем рядовому разработчику «эта ваша функциональщина». Самое время это исправить! Мы поговорим как о роли и преимуществах функционального программирования в целом, так и о его использовании в языке F#. Посмотрим на кейсы применения функционального подхода и разберем, как ФП позволяет «проапрегрейдить» ваш код.</Description>
-  <SlidesUrl>http://www.slideshare.net/ssuser939466/net-66162198</SlidesUrl>
-  <VideoUrl>https://www.youtube.com/watch?v=Y7i3fJrZyr8</VideoUrl>
-</Talk>
-<Talk>
-  <Id>Functional-tricks-for-OO-code</Id>
-  <SpeakerIds>
-    <SpeakerId>Roman-Nevolin</SpeakerId>
-  </SpeakerIds>
-  <Title>Функциональные трюки для вашего объектно-ориентированного кода</Title>
-  <Description>Вы наверняка частенько слышите о том, какая же это чудесная штука - функциональное программирование. Все эти статьи и доклады про великолепие F#, Haskell, Scala и других функциональных языков на каждом шагу... Вот только в продакшене их все не видно.
+    <SlidesUrl>http://www.slideshare.net/yu5k3/inmemory-data-grid</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=3gvuy30tHp0</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>Debugging-tools-in-Msvs-2015</Id>
+    <SpeakerIds>
+      <SpeakerId>Mikhail-Shcherbakov</SpeakerId>
+    </SpeakerIds>
+    <Title>Новые возможности диагностики и отладки в Visual Studio 2015</Title>
+    <Description>Рассмотрим на примерах новые средства диагностики и профиляции кода в Visual Studio 2015, поговорим о том, что нового появилось в отладчике и что еще хотелось бы в нем видеть. Посмотрим на магический IntelliTest и разберемся что у него под капотом и как он «изучает код .NET»</Description>
+    <SlidesUrl>http://www.slideshare.net/yu5k3/visual-studio-2015-diagnostic-and-debugging-tools</SlidesUrl>
+    <VideoUrl>http://www.youtube.com/watch?v=L_nDwDLXRuc</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>Delegates-and-Events</Id>
+    <SpeakerIds>
+      <SpeakerId>Mikhail-Shcherbakov</SpeakerId>
+    </SpeakerIds>
+    <Title>Что может быть проще: делегаты и события</Title>
+    <Description>В докладе Михаил расскажет насколько сложен и не очевиден может быть мир всем известных делегатов и событий.</Description>
+    <SlidesUrl>https://www.slideshare.net/SpbDotNet/ss-80371910</SlidesUrl>
+  </Talk>
+  <Talk>
+    <Id>Design-and-development-of-modular-applications</Id>
+    <SpeakerIds>
+      <SpeakerId>Kirill-Maurin</SpeakerId>
+    </SpeakerIds>
+    <Title>Проектирование и разработка модульных приложений</Title>
+    <Description>Кирилл хочет показать, что по вдоль и поперек изъезженной теме разработки модульных приложений есть много нового и полезного для большей части аудитории. Будет много материала из личного опыта автора с иллюстрацией из собственной микробиблиотеки с отрытым исходным кодом.</Description>
+    <SlidesUrl>https://www.slideshare.net/yuliafast/ss-72689066</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=Gd9Ze7-CIb0</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>Design-of-RESTFul-API</Id>
+    <SpeakerIds>
+      <SpeakerId>Vyacheslav-Mikhaylov</SpeakerId>
+    </SpeakerIds>
+    <Title>Подходы к проектированию RESTFul API</Title>
+    <Description>Ни один современный продукт не обходится без API. Этот API может быть внешним, для публичного использования, а может быть сугобо внутренним, но требования к созданию расширяемого, версионируемого, тестируемого, документированного программного интерфейса очень похожи. На этой встрече мы поговорим о том, как создавать подобные API, какие существуют best-practices, чего следует избегать, на что обращать внимание при проектировании.</Description>
+    <SlidesUrl>http://www.slideshare.net/yu5k3/restful-api-best-practices-versioning-design-documentation</SlidesUrl>
+    <VideoUrl>http://www.youtube.com/watch?v=SRHSIJKQnLQ</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>Design-Pattern-Observations</Id>
+    <SpeakerIds>
+      <SpeakerId>Dmitri-Nesteruk</SpeakerId>
+    </SpeakerIds>
+    <Title>Интересные подходы в реализации паттернов проектирования в C#</Title>
+    <Description>Паттерны возможно уже не вызывают тот ажиотаж что раньше, но это потому, что все их знают. Тем не менее, есть интересные подходы к реализации паттернов на C#, и в этом докладе Дмитрий расскажет как фичи языка (extension method-ы, динамики, и т.п.) помогают реализовать некоторые из них. Доклад сделан по мотивам его курса по паттернам проектирования на Udemy.</Description>
+    <SlidesUrl>https://www.slideshare.net/DmitriNesteruk/design-pattern-observations</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=bFZ9ytZnVmQ</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>Desktop-applications-optimizing-methods</Id>
+    <SpeakerIds>
+      <SpeakerId>Sergey-Sentsov</SpeakerId>
+    </SpeakerIds>
+    <Title>Приемы оптимизаций Desktop приложений</Title>
+    <Description>В докладе Сергей Сенцов, разработчкик группы разработки пользовательского интерфейса "Лаборатории Касперского", рассмотрел приемы оптимизации приложений на платформе .NET, в большей степени специфичные для desktop приложений.
+
+Для достижения максимальной скорости запуска приложения или поднятия из swap'а иногда приходится обращаться к нестандартным подходам, которые, на первый взгляд, могут идти наперекор общепринятой практике (например, отказ от emit в пользу reflection). Каждая из оптимизаций, начиная от устройства CLR, заканчивается анализом в xperf отдельных IO операций, будет подобно разобрана. В качестве результатов рассмотрены показатели реальных продуктов "Лаборатории Касперского".</Description>
+    <SlidesUrl>http://www.slideshare.net/yuliafast/desktop-68988869/</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=89-Jtc_Vh9w</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>Development-web-using-Asp-NET-Core-and-React-JS</Id>
+    <SpeakerIds>
+      <SpeakerId>Dmitry-Tezhelnikov</SpeakerId>
+    </SpeakerIds>
+    <Title>Разработка вэб-решений с использованием ASP.NET Core и React.JS</Title>
+    <Description>Разговор будет об эволюции в мире вэб-приложений, современных технологиях и фреймворках, которые используют в вэб-разработке сегодня.
+Будут рассмотрены основные архитектурные принципы при создании вэб-решений для разных клиентов. Как сделать и запустить бэк-энд на ASP.NET Core в Visual Studio 2017. Далее разговор будет о том, как написать и запустить фронт-энд с использованием React.JS, Redux, Routing, Bootstrap в IntelliJ IDEA 2017.
+В конце доклада небольшой взгляд в будущее - что нас ждет в вэб-разработке завтра.</Description>
+    <SlidesUrl>https://www.slideshare.net/MskDotNet/aspnetcore-reactjs</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=wg6QPyxDDho</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>Domain-Driven-Design-Profit-of-Little-Blood</Id>
+    <SpeakerIds>
+      <SpeakerId>Alex-Merson</SpeakerId>
+    </SpeakerIds>
+    <Title>Domain Driven Design: профит малой кровью</Title>
+    <Description>Считается, что Domain Driven Design – подход эффективный, но дорогой и сложный, а потому его применение оправдано только на очень крупных проектах. Почему это не совсем так и какие идеи подхода вы можете использовать прямо сейчас – расскажет в своем докладе Алексей.</Description>
+    <SlidesUrl>https://www.slideshare.net/SpbDotNet/domain-driven-design-80830637</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=uH1Ny6r037Q</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>DotaNetoLogia-SPb-2017</Id>
+    <SpeakerIds>
+      <SpeakerId>Anatoly-Kulakov</SpeakerId>
+    </SpeakerIds>
+    <Title>ДотаНетоЛогия: СПб 2017</Title>
+    <Description>Мир .NET сейчас развивается с космической скоростью. Каждый день возникают сотни новых проектов, лекций, личностей. Не удивительно, что большинству разработчиков очень сложно уследить за всеми новостями и идеями. Поэтому в данном докладе Анатолий соберёт для вас список лучших авторов мирового уровня, которые будут выступать на конференции DotNext Spb 2017. Для того что бы подробно рассмотреть какую активность они ведут, про что пишут в своих блогах, и действительно ли компетентны для того чтобы представлять выбранные темы на самой большой в России .NET конференции.</Description>
+    <SlidesUrl>https://www.slideshare.net/SpbDotNet/2017-76067178</SlidesUrl>
+  </Talk>
+  <Talk>
+    <Id>DotNet-and-Java</Id>
+    <SpeakerIds>
+      <SpeakerId>Vladimir-Ozerov</SpeakerId>
+    </SpeakerIds>
+    <Title>Заклятые друзья или как подружить .NET и Java</Title>
+    <Description>Как заставить Apache Ignite работать на .NET? Построчно спортировать с Java? Все 500 тысяч строк? Мы пошли другим путем, решив переиспользовать существующую Java-логику прямо внутри .NET процесса. В докладе я расскажу, почему мы приняли такое решение, как мы это сделали, и с какими трудностями столкнулись.</Description>
+    <SlidesUrl>http://www.slideshare.net/yu5k3/apache-ignite-net</SlidesUrl>
+  </Talk>
+  <Talk>
+    <Id>DSL-unexpurgated</Id>
+    <SpeakerIds>
+      <SpeakerId>Nikita-Kozlov</SpeakerId>
+    </SpeakerIds>
+    <Title>DSL без купюр</Title>
+    <Description>Три буквы, о которых многие слышали, кто-то видел, но при начальстве их не все решаются произносить. Предлагаю поговорить о DSL: domain specific language. Постараемся выяснить, как оценить все "за" и "против", и есть ли смысл придумывать свой язык. Я поделюсь личным опытом реализации DSL на основе C# + ANTLR и подводными камнями, с которыми пришлось столкнуться. Обсудим "удобную" архитектуру транслятора и пути реализации инструментов разработки языка.</Description>
+    <SlidesUrl>http://www.slideshare.net/yu5k3/dsl-49157368</SlidesUrl>
+  </Talk>
+  <Talk>
+    <Id>Dynamic-Prototyping</Id>
+    <SpeakerIds>
+      <SpeakerId>Dmitri-Nesteruk</SpeakerId>
+    </SpeakerIds>
+    <Title>Динамическое Прототипирование</Title>
+    <Description>Чем отличается автосервис от кардиологии? Тем что кардиолог чинит работающий движок. Динамическое прототипирование позволяет, при правильном планировании архитектуры, изменять реализации классов прямо в работающей программе. В этом докладе мы посмотрим на то как этот механизм реализован и как можно проектировать приложения так, чтобы получать максимум пользы от этого подхода.</Description>
+  </Talk>
+  <Talk>
+    <Id>EF-chips-and-pitfalls</Id>
+    <SpeakerIds>
+      <SpeakerId>Mikhail-Bashurov</SpeakerId>
+    </SpeakerIds>
+    <Title>Entity Framework: фишки и подводные камни</Title>
+    <Description>У каждого инструмента своя кривая обучения. Entity Framework в этом плане не исключение, с ним легко начать, но затем постепенно начинаешь спотыкаться. Михаил расскажет что может помочь человеку начинающему знакомиться с EF или желающему немного прокачать знания по нему. Будет много практического опыта, накопившегося за пару-тройку лет общения с ним.</Description>
+    <SlidesUrl>https://www.slideshare.net/SpbDotNet/entity-framework-75868404</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=Y3M826ZySDM</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>EF-Core-Internals</Id>
+    <SpeakerIds>
+      <SpeakerId>Andrey-Terekhov</SpeakerId>
+    </SpeakerIds>
+    <Title>Внутреннее устройство EF Core</Title>
+    <Description>Рассмотрим внутреннюю архитектуру нового EF. Посмотрим как теперь работают основные его фичи внутри. Начнем с инструментов разработчика и CLI, а закончим генерацией provider специфичных запросов. Посмотрим на точки расширения для новых провайдеров, а так же рассмотрим гипотетические возможности по написанию своего.</Description>
+    <SlidesUrl>https://www.slideshare.net/SpbDotNet/ef-core-74186664</SlidesUrl>
+  </Talk>
+  <Talk>
+    <Id>Exceptions-handling-in-C-Sharp</Id>
+    <SpeakerIds>
+      <SpeakerId>Ilya-Fofanov</SpeakerId>
+    </SpeakerIds>
+    <Title>Обработка ошибок в C#</Title>
+    <Description>В любой программе разработчики сталкиваются с необходимостью обработки ошибок. Основной механизм работы с ошибками в .NET Framework — это исключения. Мы поговорим о преимуществах и недостатках их использования. Вы узнаете, используются ли исключения для обработки ошибок в программном обеспечении марсохода NASA, а также о том, какие способы обработки исключений имеются в нашем распоряжении. Также обсудим, можно ли не использовать исключения для обработки ошибочных ситуаций. Приходите, будет интересно.</Description>
+    <SlidesUrl>http://www.slideshare.net/yuliafast/c-67275343</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=7YxENZS6AjQ</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>Experience-and-prospects-of-F</Id>
+    <SpeakerIds>
+      <SpeakerId>Dmitri-Nesteruk</SpeakerId>
+    </SpeakerIds>
+    <Title>F#: Опыт и Перспективы</Title>
+    <Description>Рассказ про то зачем нужен F#, его текущее положение в индустрии, а также примеры того, как его использовать для разных целей, в т.ч. в математике, для построения DSLей, написания парсеров/трансляторов и использование REPL-среды для ускорения разработки.</Description>
+    <SlidesUrl>http://www.slideshare.net/SpbDotNet/f-66275448</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=a4fD2Nl7R0A</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>F-Battle</Id>
+    <SpeakerIds>
+      <SpeakerId>Roman-Nevolin</SpeakerId>
+      <SpeakerId>Dmitri-Nesteruk</SpeakerId>
+    </SpeakerIds>
+    <Title>F# Battle: За и Против</Title>
+    <Description>Роман Неволин и Дмитрий Нестерук обсуждают F#</Description>
+    <VideoUrl>https://www.youtube.com/watch?v=67-gi3Rj0kE</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>Flexible-modularity-with-AOP-tools</Id>
+    <SpeakerIds>
+      <SpeakerId>Andrei-Kirpichev</SpeakerId>
+    </SpeakerIds>
+    <Title>Гибкая модульность инструментами АОП</Title>
+    <Description>На встрече мы поговорим о том, как не бояться изменений и как быть к ним готовым. Дадим определение АОП. Рассмотрим проблемы, хорошо решаемые инструментами АОП. Построим модульную систему, применяя АОП. Сравним динамический и статический подходы в АОП. Дадим рекомендации по применению АОП. Вас ждет река теории впадающая в море практики.</Description>
+    <SlidesUrl>https://www.slideshare.net/MskDotNet/ss-81089185</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=3fycJVD85Z4</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>FSharp-for-Data-Analysis</Id>
+    <SpeakerIds>
+      <SpeakerId>Artem-Akulakov</SpeakerId>
+    </SpeakerIds>
+    <Title>F# for Data Analysis</Title>
+    <Description>Вводный доклад об инструментах для анализа данных в .NET и F# в частности.</Description>
+    <CodeUrl>https://github.com/0xffAA/fsharp-dataanalysis-meetupmaterials</CodeUrl>
+    <SlidesUrl>https://www.slideshare.net/SpbDotNet/f-for-data-analysis</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=rmSgNJLLfSM</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>Functional-NET</Id>
+    <SpeakerIds>
+      <SpeakerId>Roman-Nevolin</SpeakerId>
+    </SpeakerIds>
+    <Title>Функциональный .NET</Title>
+    <Description>Пожалуй, уже не осталось .NET разработчиков, не слышавших об F#. Но далеко не каждый понимает, что это за язык и зачем рядовому разработчику «эта ваша функциональщина». Самое время это исправить! Мы поговорим как о роли и преимуществах функционального программирования в целом, так и о его использовании в языке F#. Посмотрим на кейсы применения функционального подхода и разберем, как ФП позволяет «проапрегрейдить» ваш код.</Description>
+    <SlidesUrl>http://www.slideshare.net/ssuser939466/net-66162198</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=Y7i3fJrZyr8</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>Functional-tricks-for-OO-code</Id>
+    <SpeakerIds>
+      <SpeakerId>Roman-Nevolin</SpeakerId>
+    </SpeakerIds>
+    <Title>Функциональные трюки для вашего объектно-ориентированного кода</Title>
+    <Description>Вы наверняка частенько слышите о том, какая же это чудесная штука - функциональное программирование. Все эти статьи и доклады про великолепие F#, Haskell, Scala и других функциональных языков на каждом шагу... Вот только в продакшене их все не видно.
 Но вы же не думаете, что функциональное программирование - это только вышеперечисленные языки? Пусть этот блиц-доклад окончательно убедит вас в обратном, показав множество прекрасных идей из функционального мира, которые можно использовать в любом современном языке - например C#.</Description>
-  <SlidesUrl>https://www.slideshare.net/SpbDotNet/ss-75966736</SlidesUrl>
-</Talk>
-<Talk>
-  <Id>Future-of-Net-development</Id>
-  <SpeakerIds>
-    <SpeakerId>Andrey-Akinshin</SpeakerId>
-  </SpeakerIds>
-  <Title>Будущее .NET-разработки</Title>
-  <Description>За последнее время Microsoft совершил революцию в .NET-мире: этот славный мир теперь кросс-платформенный, а его код превратился в сплошной open source. Появилось великое множество новых инструментов, библиотек и подходов, которые вскоре сделают жизнь .NET-разработчиков сплошным наслаждением. В этом докладе мы поговорим о будущем платформы и о том, как важно оставаться на волне новых технологий и следить за инновациями.</Description>
-</Talk>
-<Talk>
-  <Id>GC-Tips</Id>
-  <SpeakerIds>
-    <SpeakerId>Sasha-Goldshtein</SpeakerId>
-  </SpeakerIds>
-  <Title>.NET Garbage Collection Performance Tips</Title>
-  <Description>The .NET garbage collector is probably the most complex part of the CLR. Did you know gc.cpp in the CoreCLR open source project is a 1.2MB source file with over 37,000 lines of code? There are a lot of partial truths and myths about the GC’s behavior and its performance characteristics. In this talk we will unveil some of this complexity and discuss tips for application developers that can improve garbage collection performance by an order of magnitude, as well as tools for measuring this impact. We will briefly touch on object layout, allocation rates, finalization, VM fragmentation, and some other topics.</Description>
-</Talk>
-<Talk>
-  <Id>Good-Ideas-in-Programming-Languages</Id>
-  <SpeakerIds>
-    <SpeakerId>Dmitri-Nesteruk</SpeakerId>
-  </SpeakerIds>
-  <Title>Хорошие идеи в современных языках программирования</Title>
-  <Description>Прогресс не стоит на месте: старые языки вроде C# продолжают развиваться, а новые, такие как Rust и Kotlin изобилируют смелыми идеями. В этом докладе мы поговорим, о том какие же фичи современных языков являются самыми полезными и интересными, а также немного потеоретизируем на тему того, какие еще известные, но пока не реализованные, фичи были бы полезны в современных языках программирования.</Description>
-  <SlidesUrl>https://www.slideshare.net/DmitriNesteruk/good-ideas-in-programming-languages</SlidesUrl>
-  <VideoUrl>https://www.youtube.com/watch?v=WTiRddnYD9E</VideoUrl>
-</Talk>
-<Talk>
-  <Id>How-it-works-DLR</Id>
-  <SpeakerIds>
-    <SpeakerId>Igor-Yakovlev</SpeakerId>
-  </SpeakerIds>
-  <Title>Как это работает: DLR</Title>
-  <Description>С версии C# 4.0 появилась возможность использовать динамическую типизацию. Для этого, в платформу .NET была добавлена инфраструктура, позволяющая работать с объектами, тип которых не известен на этапе компиляции. Эта инфраструктура, при поддержке компиляторов и интерпретаторов, позволила обеспечить взаимодействие различных миров: статического и динамического, причем совершенно прозрачно для программиста. К сожалению, данная тема (особенно в русскоязычном сегменте интернет), раскрыта очень поверхностно. В докладе мы рассмотрим устройство динамической типизации платформы .NET с точки зрения C# и подсистемы DLR.</Description>
-  <SlidesUrl>http://www.slideshare.net/yu5k3/dlr-54012646</SlidesUrl>
-  <VideoUrl>http://www.youtube.com/watch?v=XLiw5evR6h8</VideoUrl>
-</Talk>
-<Talk>
-  <Id>Ignite-in-action</Id>
-  <SpeakerIds>
-    <SpeakerId>Pavel-Tupitsin</SpeakerId>
-  </SpeakerIds>
-  <Title>Apache Ignite.NET в действии</Title>
-  <Description>Вместе со зрителями мы с чистого листа будем писать код, запускать кластер из разнородных машин и операционных систем, показывать, как машины в кластере обмениваются данными и запускают вычисления, попутно объясняя, что происходит «под капотом». В программе: работа с данными в кэше и детали работы сериализации; SQL и LINQ запросы и их внутренности; map-reduce вычисления и запуск пользовательского кода на удалённых машинах.</Description>
-  <SlidesUrl>http://www.slideshare.net/yu5k3/apache-ignitenet</SlidesUrl>
-  <VideoUrl>https://www.youtube.com/watch?v=V2847lMqObw</VideoUrl>
-</Talk>
-<Talk>
-  <Id>In-search-of-paradigm</Id>
-  <SpeakerIds>
-    <SpeakerId>Roman-Nevolin</SpeakerId>
-  </SpeakerIds>
-  <Title>В поисках парадигмы</Title>
-  <Description>Роман делится своим опытом разработки на различных языках и неистово тролит парадигмы, программистов и программирование вообще.</Description>
-  <SlidesUrl>http://www.slideshare.net/SpbDotNet/ss-70034346</SlidesUrl>
-</Talk>
-<Talk>
-  <Id>Lack-of-CPlusPlus-in-CSharp-1</Id>
-  <SpeakerIds>
-    <SpeakerId>Sergey-Baltiyskiy</SpeakerId>
-  </SpeakerIds>
-  <Title>Когда в C# не хватает C++ (часть 1 из 3)</Title>
-  <Description>На дотнете удобно писать программы, но иногда результат работает слишком медленно, а GC начинает пробуксовывать под нагрузкой. Кажется, что блага managed-цивилизации даются слишком большой ценой, и хочется от них отказаться — но только локально! Бывает и так, что часть программы уже написана, и вовсе не на дотнете. Насколько легко подружить эти два мира? Чего можно добиться, не выходя из уютного C#? Опасен ли unsafe keyword? Означает ли COM работу с реестром? Для чего годится С++/CLI? Поговорим об этом!</Description>
-  <SeeAlsoTalkIds>
-    <TalkId>Lack-of-CPlusPlus-in-CSharp-2</TalkId>
-    <TalkId>Lack-of-CPlusPlus-in-CSharp-3</TalkId>
-  </SeeAlsoTalkIds>
-  <SlidesUrl>http://www.slideshare.net/yu5k3/c-c-54012854</SlidesUrl>
-  <VideoUrl>http://www.youtube.com/watch?v=qvE3HTajoqc</VideoUrl>
-</Talk>
-<Talk>
-  <Id>Lack-of-CPlusPlus-in-CSharp-2</Id>
-  <SpeakerIds>
-    <SpeakerId>Sergey-Baltiyskiy</SpeakerId>
-  </SpeakerIds>
-  <Title>Когда в C# не хватает C++ (часть 2 из 3)</Title>
-  <Description>Вторая часть рассказа о том, как привлечь силы native code и native memory в дотнет. В первой части мы говорили о C++/CLI и о тесной дружбе managed runtime с COM. Вернёмся к тому, что умеет сам язык C#: PInvoke и C-style pointers. В чём это проще, а в чём хитрее; почему это универсальнее; какой код на самом деле unsafe; и как построить сложную unmanaged структуру данных, не выходя из C#.</Description>
-  <SeeAlsoTalkIds>
-    <TalkId>Lack-of-CPlusPlus-in-CSharp-1</TalkId>
-    <TalkId>Lack-of-CPlusPlus-in-CSharp-3</TalkId>
-  </SeeAlsoTalkIds>
-  <SlidesUrl>http://www.slideshare.net/yu5k3/c-c-2-56315220</SlidesUrl>
-  <VideoUrl>https://www.youtube.com/watch?v=yjrmG0O5D9E</VideoUrl>
-</Talk>
-<Talk>
-  <Id>Lack-of-CPlusPlus-in-CSharp-3</Id>
-  <SpeakerIds>
-    <SpeakerId>Sergey-Baltiyskiy</SpeakerId>
-  </SpeakerIds>
-  <Title>Когда в C# не хватает C++ (часть 3 из 3)</Title>
-  <Description>Пора заканчивать эту длинную беседу о работе с native memory &amp; native code в дотнете. С нативным кодом мы разобрались (и там было много печальных вещей), на приёмы работы с памятью напрямую из C# посмотрели (тут всё гораздо лучше, но есть нюансы). Пришло время собрать из этого большую структуру данных, быстро прочитать её с диска, нарисовать к ней приличное managed API и не нагрузить GC при работе — рассказ основан на реальных событиях из жизни ReSharper 10.</Description>
-  <SeeAlsoTalkIds>
-    <TalkId>Lack-of-CPlusPlus-in-CSharp-1</TalkId>
-    <TalkId>Lack-of-CPlusPlus-in-CSharp-2</TalkId>
-  </SeeAlsoTalkIds>
-  <SlidesUrl>http://www.slideshare.net/yu5k3/c-c-3-60617635</SlidesUrl>
-  <VideoUrl>https://www.youtube.com/watch?v=kaEjNBsRnNA</VideoUrl>
-</Talk>
-<Talk>
-  <Id>Machine-learning</Id>
-  <SpeakerIds>
-    <SpeakerId>Roman-Nevolin</SpeakerId>
-  </SpeakerIds>
-  <Title>Машинное обучение на платформе .NET</Title>
-  <Description>Большинство разработчиков не задумываются о .NET как об инструменте для работы с машинным обучением. Что же, пришло время ответить на вопрос, есть ли место для машинного обучения в холодном мире дотнета, и увидеть, куда нас заведет скользкая функциональная дорожка.</Description>
-  <CodeUrl>https://github.com/nevoroman/ml-dotnet/</CodeUrl>
-  <SlidesUrl>http://www.slideshare.net/ssuser939466/net-60406933</SlidesUrl>
-  <VideoUrl>https://www.youtube.com/watch?v=rmkbb2MutOo</VideoUrl>
-</Talk>
-<Talk>
-  <Id>Memory-Model</Id>
-  <SpeakerIds>
-    <SpeakerId>Valery-Petrov</SpeakerId>
-  </SpeakerIds>
-  <Title>Модель памяти .NET</Title>
-  <Description>Современный .NET становится по-настоящему кросс-платформенным, Microsoft купила Xamarin, современные платформы многоядерные, а порог вхождения в разработку на C# весьма низкий. Также почему-то в мире .NET не сложилось практики чтения спецификаций (их заменяют видоизменённые цитаты весьма авторитетных специалистов, вырванные из контекста), что может привести к печальным последствиям.</Description>
-  <CodeUrl>https://github.com/m08pvv/MemoryModelDemos</CodeUrl>
-  <SlidesUrl>http://www.slideshare.net/SpbDotNet/net-72058691</SlidesUrl>
-  <VideoUrl>https://www.youtube.com/watch?v=m9_aBxdKrRI</VideoUrl>
-</Talk>
-<Talk>
-  <Id>Modern-static-analyzers</Id>
-  <SpeakerIds>
-    <SpeakerId>Vladimir-Koshelev</SpeakerId>
-  </SpeakerIds>
-  <Title>На что способны современные статические анализаторы для C#</Title>
-  <Description>При разработке на C# все мы используем статический анализ. Стандартные предупреждения Visual Studio, FxCop, Visual Studio Code Analysis, ReSharper и не только. Однако, многие относятся к статическому анализу как к черному ящику, выдающему непредсказуемые и нередко ложные результаты. Мы поговорим о типичных ситуациях, которые обнаруживают статические анализаторы, и о принципиальных проблемах, приводящих к ложным срабатываниям. Обсудим основные идеи, позволяющие реализовать анализ, работающий за разумное время. В заключение мы расскажем об анализаторе, который разрабатывается в ИСП РАН.</Description>
-  <SlidesUrl>http://www.slideshare.net/yu5k3/c-60617888</SlidesUrl>
-  <VideoUrl>https://www.youtube.com/watch?v=6qu1k6xF3TI</VideoUrl>
-</Talk>
-<Talk>
-  <Id>Multitasking-apps-on-NET</Id>
-  <SpeakerIds>
-    <SpeakerId>Dmitry-Ivanov</SpeakerId>
-  </SpeakerIds>
-  <Title>Итак, вы всё-таки решили писать многозадачные приложения на .NET</Title>
-  <Description>Посмотрим с разных сторон на механизмы многозадачности в .Net: с высоты птичьего полёта, в исторической перспективе и изнутри. Разберёмся с эволюцией параллельного API в .Net, дойдём до современности и поймём, как писать State of The Art Task Based Async Code. Посмотрим, как правильно синхронизироваться между потоками? А как быстро это работает? А надо ли это вообще? Напишем Interlocked-структуру. Рассмотрим, какие инструменты нам помогут в разработке многопоточного приложения.</Description>
-  <CodeUrl>https://github.com/yuske/ParallelDemo</CodeUrl>
-  <SlidesUrl>http://www.slideshare.net/yu5k3/parallel-demo</SlidesUrl>
-  <VideoUrl>http://www.youtube.com/watch?v=Ogb8PuoNL_c</VideoUrl>
-</Talk>
-<Talk>
-  <Id>Net-Web-news</Id>
-  <SpeakerIds>
-    <SpeakerId>Anton-Shabanov</SpeakerId>
-  </SpeakerIds>
-  <Title>Обзор технологических новинок в .Net с точки зрения Web-программиста</Title>
-  <Description>В докладе будет рассказано о технологических новинках в предстоящей версии .Net Framework в целом и ASP .Net 5 в частности. Уделим внимание новому резилу MVC, заявленной кроссплатформенности, отвязанности от IIS и конечно же о том, как этому всему способствует недавняя передача .Net в open-source и нынешние отношения между Microsoft и Mono. Мы так же увидим, что было привнесено в новую версию Visual Studio.</Description>
-  <SlidesUrl>http://www.slideshare.net/yu5k3/aspnet5</SlidesUrl>
-</Talk>
-<Talk>
-  <Id>OAuth-for-NET</Id>
-  <SpeakerIds>
-    <SpeakerId>Artem-Zhuravlev</SpeakerId>
-  </SpeakerIds>
-  <Title>OAuth для .NET</Title>
-  <Description>Доклад про использование OAuth на платформе .NET</Description>
-  <SlidesUrl>http://www.slideshare.net/SpbDotNet/oauth-net</SlidesUrl>
-</Talk>
-<Talk>
-  <Id>Octopus-in-the-name-of-good</Id>
-  <SpeakerIds>
-    <SpeakerId>Anatoly-Kulakov</SpeakerId>
-  </SpeakerIds>
-  <Title>Octopus Deploy во имя добра</Title>
-  <Description>Большинство .NET-разработчиков не заботятся о жизни продукта после успешного прохождения CI сервера. Но ведь это далеко не конец, следующий шаг не менее важен и сложен. Распространение продукта с учётом всех окружений, хостов и версий - именно об этом мы и поговорим. И нам поможет не сойти с ума замечательный инструмент Octopus Deploy. В ходе доклада Анатолий покажет как за 5 минут развернуть полноценную систему управления версиями и продемонстрирует базовые возможности по контролю жизненного цикла приложения.</Description>
-  <SlidesUrl>http://www.slideshare.net/SpbDotNet/octopus-deploy</SlidesUrl>
-</Talk>
-<Talk>
-  <Id>PowerShell-in-the-name-of-good</Id>
-  <SpeakerIds>
-    <SpeakerId>Anatoly-Kulakov</SpeakerId>
-  </SpeakerIds>
-  <Title>Windows PowerShell во имя добра</Title>
-  <Description>Ровно 10 лет назад была выпущена первая версия революционного средства для автоматизации - PowerShell. С тех самых пор все системные администраторы Windows яростно и неистово боготворят это чудо инженерной мысли. За многие годы стремительного развития уже
+    <SlidesUrl>https://www.slideshare.net/SpbDotNet/ss-75966736</SlidesUrl>
+  </Talk>
+  <Talk>
+    <Id>Future-of-Net-development</Id>
+    <SpeakerIds>
+      <SpeakerId>Andrey-Akinshin</SpeakerId>
+    </SpeakerIds>
+    <Title>Будущее .NET-разработки</Title>
+    <Description>За последнее время Microsoft совершил революцию в .NET-мире: этот славный мир теперь кросс-платформенный, а его код превратился в сплошной open source. Появилось великое множество новых инструментов, библиотек и подходов, которые вскоре сделают жизнь .NET-разработчиков сплошным наслаждением. В этом докладе мы поговорим о будущем платформы и о том, как важно оставаться на волне новых технологий и следить за инновациями.</Description>
+  </Talk>
+  <Talk>
+    <Id>GC-Tips</Id>
+    <SpeakerIds>
+      <SpeakerId>Sasha-Goldshtein</SpeakerId>
+    </SpeakerIds>
+    <Title>.NET Garbage Collection Performance Tips</Title>
+    <Description>The .NET garbage collector is probably the most complex part of the CLR. Did you know gc.cpp in the CoreCLR open source project is a 1.2MB source file with over 37,000 lines of code? There are a lot of partial truths and myths about the GC’s behavior and its performance characteristics. In this talk we will unveil some of this complexity and discuss tips for application developers that can improve garbage collection performance by an order of magnitude, as well as tools for measuring this impact. We will briefly touch on object layout, allocation rates, finalization, VM fragmentation, and some other topics.</Description>
+  </Talk>
+  <Talk>
+    <Id>Good-Ideas-in-Programming-Languages</Id>
+    <SpeakerIds>
+      <SpeakerId>Dmitri-Nesteruk</SpeakerId>
+    </SpeakerIds>
+    <Title>Хорошие идеи в современных языках программирования</Title>
+    <Description>Прогресс не стоит на месте: старые языки вроде C# продолжают развиваться, а новые, такие как Rust и Kotlin изобилируют смелыми идеями. В этом докладе мы поговорим, о том какие же фичи современных языков являются самыми полезными и интересными, а также немного потеоретизируем на тему того, какие еще известные, но пока не реализованные, фичи были бы полезны в современных языках программирования.</Description>
+    <SlidesUrl>https://www.slideshare.net/DmitriNesteruk/good-ideas-in-programming-languages</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=WTiRddnYD9E</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>HoloLens-for-non-gaming-applications</Id>
+    <SpeakerIds>
+      <SpeakerId>Egor-Bogatov</SpeakerId>
+    </SpeakerIds>
+    <Title>HoloLens для неигровых приложений</Title>
+    <Description>В этом докладе Егор покажет, как можно разрабатывать на C# неигровые 2D и 3D приложения/голограммы под очки смешанной реальности HoloLens без использования Unity и без опыта в геймдеве.</Description>
+    <VideoUrl>https://www.youtube.com/watch?v=fYW4mYXrfqU</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>How-it-works-DLR</Id>
+    <SpeakerIds>
+      <SpeakerId>Igor-Yakovlev</SpeakerId>
+    </SpeakerIds>
+    <Title>Как это работает: DLR</Title>
+    <Description>С версии C# 4.0 появилась возможность использовать динамическую типизацию. Для этого, в платформу .NET была добавлена инфраструктура, позволяющая работать с объектами, тип которых не известен на этапе компиляции. Эта инфраструктура, при поддержке компиляторов и интерпретаторов, позволила обеспечить взаимодействие различных миров: статического и динамического, причем совершенно прозрачно для программиста. К сожалению, данная тема (особенно в русскоязычном сегменте интернет), раскрыта очень поверхностно. В докладе мы рассмотрим устройство динамической типизации платформы .NET с точки зрения C# и подсистемы DLR.</Description>
+    <SlidesUrl>http://www.slideshare.net/yu5k3/dlr-54012646</SlidesUrl>
+    <VideoUrl>http://www.youtube.com/watch?v=XLiw5evR6h8</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>How-we-created-DotNetRu-App</Id>
+    <SpeakerIds>
+      <SpeakerId>Pavel-Fedotovsky</SpeakerId>
+    </SpeakerIds>
+    <Title>Как мы разрабатывали приложение для DotNetRu на Xamarin.Forms</Title>
+    <Description>Про Xamarin.Forms наверное уже слышал каждый — после покупки Xamarin Microsoft’ом платформа довольно активно развивается. В этом докладе будет анонс приложения для сообществ DotNetRu написанного на Xamarin.Forms. Поговорим про то, как мы его разрабатывали, с какими сложностями столкнулись и как их решали. Мы рассмотрим весь цикл создания, от настройки окружения до публикации в магазины. Обязательно затронем такие темы как:
+
+
+- какие есть возможности отладки приложения;
+- как сделать общий код для разных платформ;
+- локализация;
+- мониторинг.
+
+
+Приложение отрытое и разрабатывается добровольцами. После доклада у каждого из вас будет достаточно информации, чтобы присоединиться к миру Open Source и вместе с сообществом создавать DotNetRu App.</Description>
+  </Talk>
+  <Talk>
+    <Id>Ignite-in-action</Id>
+    <SpeakerIds>
+      <SpeakerId>Pavel-Tupitsin</SpeakerId>
+    </SpeakerIds>
+    <Title>Apache Ignite.NET в действии</Title>
+    <Description>Вместе со зрителями мы с чистого листа будем писать код, запускать кластер из разнородных машин и операционных систем, показывать, как машины в кластере обмениваются данными и запускают вычисления, попутно объясняя, что происходит «под капотом». В программе: работа с данными в кэше и детали работы сериализации; SQL и LINQ запросы и их внутренности; map-reduce вычисления и запуск пользовательского кода на удалённых машинах.</Description>
+    <SlidesUrl>http://www.slideshare.net/yu5k3/apache-ignitenet</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=V2847lMqObw</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>In-search-of-paradigm</Id>
+    <SpeakerIds>
+      <SpeakerId>Roman-Nevolin</SpeakerId>
+    </SpeakerIds>
+    <Title>В поисках парадигмы</Title>
+    <Description>Роман делится своим опытом разработки на различных языках и неистово тролит парадигмы, программистов и программирование вообще.</Description>
+    <SlidesUrl>http://www.slideshare.net/SpbDotNet/ss-70034346</SlidesUrl>
+  </Talk>
+  <Talk>
+    <Id>Industrial-IoT-in-practice</Id>
+    <SpeakerIds>
+      <SpeakerId>Peter-Timoshevsky</SpeakerId>
+    </SpeakerIds>
+    <Title>Industrial IoT на практике</Title>
+    <Description>Путь от лабораторного прототипа к промышленной эксплуатации системы IoT тернист. Разработчиков ждут неожиданные проблемы, которые не могут возникнуть в лаборатории. Доклад о том как набить себе по меньше шишек и сделать работающую систему.</Description>
+    <SlidesUrl>https://www.slideshare.net/MskDotNet/industrial-iot-73579475</SlidesUrl>
+  </Talk>
+  <Talk>
+    <Id>Lack-of-CPlusPlus-in-CSharp-1</Id>
+    <SpeakerIds>
+      <SpeakerId>Sergey-Baltiyskiy</SpeakerId>
+    </SpeakerIds>
+    <Title>Когда в C# не хватает C++ (часть 1 из 3)</Title>
+    <Description>На дотнете удобно писать программы, но иногда результат работает слишком медленно, а GC начинает пробуксовывать под нагрузкой. Кажется, что блага managed-цивилизации даются слишком большой ценой, и хочется от них отказаться — но только локально! Бывает и так, что часть программы уже написана, и вовсе не на дотнете. Насколько легко подружить эти два мира? Чего можно добиться, не выходя из уютного C#? Опасен ли unsafe keyword? Означает ли COM работу с реестром? Для чего годится С++/CLI? Поговорим об этом!</Description>
+    <SeeAlsoTalkIds>
+      <TalkId>Lack-of-CPlusPlus-in-CSharp-2</TalkId>
+      <TalkId>Lack-of-CPlusPlus-in-CSharp-3</TalkId>
+    </SeeAlsoTalkIds>
+    <SlidesUrl>http://www.slideshare.net/yu5k3/c-c-54012854</SlidesUrl>
+    <VideoUrl>http://www.youtube.com/watch?v=qvE3HTajoqc</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>Lack-of-CPlusPlus-in-CSharp-2</Id>
+    <SpeakerIds>
+      <SpeakerId>Sergey-Baltiyskiy</SpeakerId>
+    </SpeakerIds>
+    <Title>Когда в C# не хватает C++ (часть 2 из 3)</Title>
+    <Description>Вторая часть рассказа о том, как привлечь силы native code и native memory в дотнет. В первой части мы говорили о C++/CLI и о тесной дружбе managed runtime с COM. Вернёмся к тому, что умеет сам язык C#: PInvoke и C-style pointers. В чём это проще, а в чём хитрее; почему это универсальнее; какой код на самом деле unsafe; и как построить сложную unmanaged структуру данных, не выходя из C#.</Description>
+    <SeeAlsoTalkIds>
+      <TalkId>Lack-of-CPlusPlus-in-CSharp-1</TalkId>
+      <TalkId>Lack-of-CPlusPlus-in-CSharp-3</TalkId>
+    </SeeAlsoTalkIds>
+    <SlidesUrl>http://www.slideshare.net/yu5k3/c-c-2-56315220</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=yjrmG0O5D9E</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>Lack-of-CPlusPlus-in-CSharp-3</Id>
+    <SpeakerIds>
+      <SpeakerId>Sergey-Baltiyskiy</SpeakerId>
+    </SpeakerIds>
+    <Title>Когда в C# не хватает C++ (часть 3 из 3)</Title>
+    <Description>Пора заканчивать эту длинную беседу о работе с native memory &amp; native code в дотнете. С нативным кодом мы разобрались (и там было много печальных вещей), на приёмы работы с памятью напрямую из C# посмотрели (тут всё гораздо лучше, но есть нюансы). Пришло время собрать из этого большую структуру данных, быстро прочитать её с диска, нарисовать к ней приличное managed API и не нагрузить GC при работе — рассказ основан на реальных событиях из жизни ReSharper 10.</Description>
+    <SeeAlsoTalkIds>
+      <TalkId>Lack-of-CPlusPlus-in-CSharp-1</TalkId>
+      <TalkId>Lack-of-CPlusPlus-in-CSharp-2</TalkId>
+    </SeeAlsoTalkIds>
+    <SlidesUrl>http://www.slideshare.net/yu5k3/c-c-3-60617635</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=kaEjNBsRnNA</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>Lifetime-Template</Id>
+    <SpeakerIds>
+      <SpeakerId>Stanislav-Sidristy</SpeakerId>
+    </SpeakerIds>
+    <Title>Шаблон Lifetime: для сложного Disposing</Title>
+    <Description>Стандартный шаблон IDisposable решает множество задач освобождения ресурсов, перед которыми стоит разработчик. Однако для многих ситуаций приходится сначала поломать мозги, а потом – пальцы, чтобы решить те или иные проблемы в очерёдности вызова Dispose. Мы поговорим о простом, но крайне эффективном шаблоне, который по сути выполняет IoC процесса Dispose: Lifetime.</Description>
+    <CodeUrl>https://github.com/sidristij/dataflow</CodeUrl>
+    <SlidesUrl>https://www.slideshare.net/SpbDotNet/lifetime-disposing</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=F5oOYKTFpcQ</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>Machine-learning</Id>
+    <SpeakerIds>
+      <SpeakerId>Roman-Nevolin</SpeakerId>
+    </SpeakerIds>
+    <Title>Машинное обучение на платформе .NET</Title>
+    <Description>Большинство разработчиков не задумываются о .NET как об инструменте для работы с машинным обучением. Что же, пришло время ответить на вопрос, есть ли место для машинного обучения в холодном мире дотнета, и увидеть, куда нас заведет скользкая функциональная дорожка.</Description>
+    <CodeUrl>https://github.com/nevoroman/ml-dotnet/</CodeUrl>
+    <SlidesUrl>http://www.slideshare.net/ssuser939466/net-60406933</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=rmkbb2MutOo</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>Memory-Model</Id>
+    <SpeakerIds>
+      <SpeakerId>Valery-Petrov</SpeakerId>
+    </SpeakerIds>
+    <Title>Модель памяти .NET</Title>
+    <Description>Современный .NET становится по-настоящему кросс-платформенным, Microsoft купила Xamarin, современные платформы многоядерные, а порог вхождения в разработку на C# весьма низкий. Также почему-то в мире .NET не сложилось практики чтения спецификаций (их заменяют видоизменённые цитаты весьма авторитетных специалистов, вырванные из контекста), что может привести к печальным последствиям.</Description>
+    <CodeUrl>https://github.com/m08pvv/MemoryModelDemos</CodeUrl>
+    <SlidesUrl>http://www.slideshare.net/SpbDotNet/net-72058691</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=m9_aBxdKrRI</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>Messaging-systems-using-MassTransit-as-an-example</Id>
+    <SpeakerIds>
+      <SpeakerId>Yakov-Povar</SpeakerId>
+    </SpeakerIds>
+    <Title>Системы обмена сообщениями на примере MassTransit</Title>
+    <Description>Разрабатывать большие продукты непросто. Когда сложность задач и нагрузка на приложения растёт с каждым днем, старые подходы и практики иногда уже не спасают. Могут ли системы на базе асинхронного обмена сообщениями быть той серебряной пулей, которая решит все наши проблемы?
+
+В докладе Яков ответит на этот вопрос, а также расскажет, какие подходы лежат в основе таких систем и что выбрать в мире .Net для их реализации. Разговор будет о том, какие задачи помогут решить такие подходы и чего стоит избегать при их использовании.</Description>
+    <SlidesUrl>http://www.slideshare.net/yuliafast/masstransit</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=3j7ZJ1JSAHU</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>Microsoft-Technologies-Current-Trends</Id>
+    <SpeakerIds>
+      <SpeakerId>Sergey-Levkin</SpeakerId>
+    </SpeakerIds>
+    <Title>Технологии Microsoft для актуальных трендов</Title>
+    <Description>Рассмотрим куда движутся технологии и как Microsoft участвует в этом. Как тренды меняют жизнь людей.</Description>
+    <SlidesUrl>https://www.slideshare.net/SpbDotNet/microsoft-80832808</SlidesUrl>
+  </Talk>
+  <Talk>
+    <Id>Migration-to-Mono</Id>
+    <SpeakerIds>
+      <SpeakerId>Elizabeth-Holenok</SpeakerId>
+    </SpeakerIds>
+    <Title>Переходим на Mono или как это было</Title>
+    <Description>Если вы пишете веб-приложения только под Windows, однако рано или поздно выбор определенной ОС накладывает на вас свои ограничения, наступает время подумать о кроссплатформенной разработке веб-приложений. К чему нужно быть готовым? Mono или .Net Core? Готовы ли Вы портировать свое приложение? Елизавета расскажет об опыте перехода на Mono и о том, как это было, с какими проблемами столкнулись в первую очередь и почему. Помимо ASP.NET приложений Елизавета с коллегами так же портировали MS SQL Server под Docker. А в заключении разговор пойдет о веб-серверах для ASP.NET приложений: — XSP — Apache — nginx​</Description>
+    <SlidesUrl>https://www.slideshare.net/MskDotNet/mono-81322609</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=MrcROy5-tn0</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>Modern-static-analyzers</Id>
+    <SpeakerIds>
+      <SpeakerId>Vladimir-Koshelev</SpeakerId>
+    </SpeakerIds>
+    <Title>На что способны современные статические анализаторы для C#</Title>
+    <Description>При разработке на C# все мы используем статический анализ. Стандартные предупреждения Visual Studio, FxCop, Visual Studio Code Analysis, ReSharper и не только. Однако, многие относятся к статическому анализу как к черному ящику, выдающему непредсказуемые и нередко ложные результаты. Мы поговорим о типичных ситуациях, которые обнаруживают статические анализаторы, и о принципиальных проблемах, приводящих к ложным срабатываниям. Обсудим основные идеи, позволяющие реализовать анализ, работающий за разумное время. В заключение мы расскажем об анализаторе, который разрабатывается в ИСП РАН.</Description>
+    <SlidesUrl>http://www.slideshare.net/yu5k3/c-60617888</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=6qu1k6xF3TI</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>Multitasking-apps-on-NET</Id>
+    <SpeakerIds>
+      <SpeakerId>Dmitry-Ivanov</SpeakerId>
+    </SpeakerIds>
+    <Title>Итак, вы всё-таки решили писать многозадачные приложения на .NET</Title>
+    <Description>Посмотрим с разных сторон на механизмы многозадачности в .Net: с высоты птичьего полёта, в исторической перспективе и изнутри. Разберёмся с эволюцией параллельного API в .Net, дойдём до современности и поймём, как писать State of The Art Task Based Async Code. Посмотрим, как правильно синхронизироваться между потоками? А как быстро это работает? А надо ли это вообще? Напишем Interlocked-структуру. Рассмотрим, какие инструменты нам помогут в разработке многопоточного приложения.</Description>
+    <CodeUrl>https://github.com/yuske/ParallelDemo</CodeUrl>
+    <SlidesUrl>http://www.slideshare.net/yu5k3/parallel-demo</SlidesUrl>
+    <VideoUrl>http://www.youtube.com/watch?v=Ogb8PuoNL_c</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>Nancy-for-Little-Ones</Id>
+    <SpeakerIds>
+      <SpeakerId>Vyacheslav-Bobik</SpeakerId>
+    </SpeakerIds>
+    <Title>NancyFx для самых маленьких</Title>
+    <Description>Про ASP.NET Core информации много, даже слишком много, и на фоне всего этого затерялся не менее хороший фреймворк NancyFx. Если вы ещё не слышали о нём, то этот доклад даст вам отличное погружение в данную платформу.</Description>
+  </Talk>
+  <Talk>
+    <Id>Net-Web-news</Id>
+    <SpeakerIds>
+      <SpeakerId>Anton-Shabanov</SpeakerId>
+    </SpeakerIds>
+    <Title>Обзор технологических новинок в .Net с точки зрения Web-программиста</Title>
+    <Description>В докладе будет рассказано о технологических новинках в предстоящей версии .Net Framework в целом и ASP .Net 5 в частности. Уделим внимание новому резилу MVC, заявленной кроссплатформенности, отвязанности от IIS и конечно же о том, как этому всему способствует недавняя передача .Net в open-source и нынешние отношения между Microsoft и Mono. Мы так же увидим, что было привнесено в новую версию Visual Studio.</Description>
+    <SlidesUrl>http://www.slideshare.net/yu5k3/aspnet5</SlidesUrl>
+  </Talk>
+  <Talk>
+    <Id>OAuth-for-NET</Id>
+    <SpeakerIds>
+      <SpeakerId>Artem-Zhuravlev</SpeakerId>
+    </SpeakerIds>
+    <Title>OAuth для .NET</Title>
+    <Description>Доклад про использование OAuth на платформе .NET</Description>
+    <SlidesUrl>http://www.slideshare.net/SpbDotNet/oauth-net</SlidesUrl>
+  </Talk>
+  <Talk>
+    <Id>Octopus-in-the-name-of-good</Id>
+    <SpeakerIds>
+      <SpeakerId>Anatoly-Kulakov</SpeakerId>
+    </SpeakerIds>
+    <Title>Octopus Deploy во имя добра</Title>
+    <Description>Большинство .NET-разработчиков не заботятся о жизни продукта после успешного прохождения CI сервера. Но ведь это далеко не конец, следующий шаг не менее важен и сложен. Распространение продукта с учётом всех окружений, хостов и версий - именно об этом мы и поговорим. И нам поможет не сойти с ума замечательный инструмент Octopus Deploy. В ходе доклада Анатолий покажет как за 5 минут развернуть полноценную систему управления версиями и продемонстрирует базовые возможности по контролю жизненного цикла приложения.</Description>
+    <SlidesUrl>http://www.slideshare.net/SpbDotNet/octopus-deploy</SlidesUrl>
+  </Talk>
+  <Talk>
+    <Id>PowerShell-in-the-name-of-good</Id>
+    <SpeakerIds>
+      <SpeakerId>Anatoly-Kulakov</SpeakerId>
+    </SpeakerIds>
+    <Title>Windows PowerShell во имя добра</Title>
+    <Description>Ровно 10 лет назад была выпущена первая версия революционного средства для автоматизации - PowerShell. С тех самых пор все системные администраторы Windows яростно и неистово боготворят это чудо инженерной мысли. За многие годы стремительного развития уже
 не осталось преград, которые были бы не под силу новой командной строке Windows. И в этот юбилейный год мы соберёмся вместе, что бы пополнить число фанатов PowerShell новыми пользователями.
 
 В докладе мы выясним, чем так примечательна эта командная строка. Какие задачи она призвана решать. Какие средства разработки и тестирования предлагает. Познакомимся с синтаксисом и командами, окружением и инструментами, точками расширения и отладки. Узнаем как автоматизировать скучные задачи и окончательно забыть про повседневную рутину.</Description>
-  <SlidesUrl>http://www.slideshare.net/SpbDotNet/windows-powershell-65660441</SlidesUrl>
-</Talk>
-<Talk>
-  <Id>Practice-of-AppSec-NET</Id>
-  <SpeakerIds>
-    <SpeakerId>Mikhail-Shcherbakov</SpeakerId>
-  </SpeakerIds>
-  <Title>Практика Application Security .NET</Title>
-  <Description>В докладе будет рассмотрена практическая составляющая предметной области Application Security для .NET-разработчиков. Будут рассмотрены многочисленные примеры уязвимого кода, демонстрирующие недостатки, позволяющие атакующему нарушить защищенность системы с помощью различных типов атак: XSS, XXE, CSRF, Session Fixation, атак на уязвимости бизнес-логики и т.п. Посмотрим на ограниченность встроенных в .NET механизмов валидации запросов и данных.</Description>
-  <SlidesUrl>http://www.slideshare.net/yu5k3/practice-of-appsec-net</SlidesUrl>
-  <VideoUrl>https://www.youtube.com/watch?v=EzLRTVV0qp8</VideoUrl>
-</Talk>
-<Talk>
-  <Id>Practice-WCF</Id>
-  <SpeakerIds>
-    <SpeakerId>Igor-Labutin</SpeakerId>
-  </SpeakerIds>
-  <Title>WCF: Удобно или проблемно?</Title>
-  <Description>Если возникает задача обеспечения обмена данными между приложениями на платформе .NET, то WCF прочно вошел в набор инструментов которые позволяют сделать это быстро и сравнительно легко. Действительно ли это легко или эта кажущаяся легкость скрывает огромное поле граблей/проблем которые трудно заметить? В докладе я расскажу об опыте использования WCF в разработке, а также о проблемах и их решениях которые нам встретились.</Description>
-  <SlidesUrl>http://www.slideshare.net/yu5k3/wcf-60618162</SlidesUrl>
-  <VideoUrl>https://www.youtube.com/watch?v=_6MQ_TfrjBA</VideoUrl>
-</Talk>
-<Talk>
-  <Id>Project-Rider</Id>
-  <SpeakerIds>
-    <SpeakerId>Sergey-Shkredov</SpeakerId>
-  </SpeakerIds>
-  <Title>Project Rider</Title>
-  <Description>История про продукт, объединивший две мощные платформы для разработки — IntelliJ IDEA и ReSharper.
+    <SlidesUrl>http://www.slideshare.net/SpbDotNet/windows-powershell-65660441</SlidesUrl>
+  </Talk>
+  <Talk>
+    <Id>Practice-of-AppSec-NET</Id>
+    <SpeakerIds>
+      <SpeakerId>Mikhail-Shcherbakov</SpeakerId>
+    </SpeakerIds>
+    <Title>Практика Application Security .NET</Title>
+    <Description>В докладе будет рассмотрена практическая составляющая предметной области Application Security для .NET-разработчиков. Будут рассмотрены многочисленные примеры уязвимого кода, демонстрирующие недостатки, позволяющие атакующему нарушить защищенность системы с помощью различных типов атак: XSS, XXE, CSRF, Session Fixation, атак на уязвимости бизнес-логики и т.п. Посмотрим на ограниченность встроенных в .NET механизмов валидации запросов и данных.</Description>
+    <SlidesUrl>http://www.slideshare.net/yu5k3/practice-of-appsec-net</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=EzLRTVV0qp8</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>Practice-WCF</Id>
+    <SpeakerIds>
+      <SpeakerId>Igor-Labutin</SpeakerId>
+    </SpeakerIds>
+    <Title>WCF: Удобно или проблемно?</Title>
+    <Description>Если возникает задача обеспечения обмена данными между приложениями на платформе .NET, то WCF прочно вошел в набор инструментов которые позволяют сделать это быстро и сравнительно легко. Действительно ли это легко или эта кажущаяся легкость скрывает огромное поле граблей/проблем которые трудно заметить? В докладе я расскажу об опыте использования WCF в разработке, а также о проблемах и их решениях которые нам встретились.</Description>
+    <SlidesUrl>http://www.slideshare.net/yu5k3/wcf-60618162</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=_6MQ_TfrjBA</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>Project-Rider</Id>
+    <SpeakerIds>
+      <SpeakerId>Sergey-Shkredov</SpeakerId>
+    </SpeakerIds>
+    <Title>Project Rider</Title>
+    <Description>История про продукт, объединивший две мощные платформы для разработки — IntelliJ IDEA и ReSharper.
 
 13 января 2016 года на NDC London мы презентовали широкой общественности наш новый продукт — кросс-платформенную IDE для разработки .NET приложений. В своей презентации я покажу как работает Rider, расскажу про продукт, что будет включать первая версия и что самое интересное — расскажу как мы сделали гибридное приложение, работающее одновременно на Java и .NET.</Description>
-  <SlidesUrl>http://www.slideshare.net/yu5k3/project-rider</SlidesUrl>
-  <VideoUrl>https://www.youtube.com/watch?v=wq5qvizDUIM</VideoUrl>
-</Talk>
-<Talk>
-  <Id>RESTFul-API-how-and-why</Id>
-  <SpeakerIds>
-    <SpeakerId>Yulia-Tsisyk</SpeakerId>
-  </SpeakerIds>
-  <Title>RESTFul API в вашем .NET приложении: как, зачем и почему?</Title>
-  <Description>Ни один современный продукт не обходится без API. Этот API может быть внешним, для публичного использования, а может быть сугубо внутренним, но требования к созданию расширяемого, версионируемого, тестируемого, документированного программного интерфейса очень похоже. В этом докладе мы поговорим о том, как создавать подобные API на основе REST, какие существуют best-practices, чего следует избегать, на что обращать внимание при проектировании.</Description>
-  <SlidesUrl>https://www.slideshare.net/yuliafast/restful-api-net</SlidesUrl>
-  <VideoUrl>https://www.youtube.com/watch?v=fRTlpFusCj4</VideoUrl>
-</Talk>
-<Talk>
-  <Id>Review-of-CSharp-6</Id>
-  <SpeakerIds>
-    <SpeakerId>Dmitri-Nesteruk</SpeakerId>
-  </SpeakerIds>
-  <Title>Обзор C# 6</Title>
-  <Description>В этом докладе мы посмотрим на некоторые фичи C#6</Description>
-  <SlidesUrl>http://www.slideshare.net/yu5k3/whats-new-in-c-6-52144075</SlidesUrl>
-  <VideoUrl>https://www.youtube.com/watch?v=cseN8coWvfo</VideoUrl>
-</Talk>
-<Talk>
-  <Id>Review-of-FSharp-4</Id>
-  <SpeakerIds>
-    <SpeakerId>Dmitry-Vlasov</SpeakerId>
-  </SpeakerIds>
-  <Title>Обзор Visual F# 4.0</Title>
-  <Description>В этом докладе мы посмотрим на новые возможности F# 4.0</Description>
-  <VideoUrl>https://www.youtube.com/watch?v=iOItE4hR6jg</VideoUrl>
-</Talk>
-<Talk>
-  <Id>Rider-Internals</Id>
-  <SpeakerIds>
-    <SpeakerId>Andrey-Akinshin</SpeakerId>
-    <SpeakerId>Mikhail-Filippov</SpeakerId>
-  </SpeakerIds>
-  <Title>Rider: разговоры про внутренности и кроссплатформенность</Title>
-  <Description>Наверное, многие из вас слышали, что в JetBrains разрабатывается новая крутая кроссплатформенная C# IDE под названием Rider. Под капотом у неё сразу два больших продукта: ReSharper (тысячи анализаторов кода, рефакторинги, навигация, генераторы кода и прочие ништяки) и IntelliJ IDEA (просто очень хорошая IDE). Обратите внимание: один продукт написан под CLR, а другой — под JVM. Их удалось заставить работать вместе, да ещё и хорошо работать. В этом докладе мы немного расскажем вам о внутренностях райдера: будут разные интересные технологические решения, а также весёлые байки про шайтан-баги и сложности современной разработки ПО. Отдельно поговорим про то, как же удалось запустить ReSharper (здоровый энтерпрайзный C#-продукт) на Linux и MacOS поверх Mono, и к чему нужно быть готовым .NET-разработчикам, которые внезапно решили писать кроссплатформенные программы.</Description>
-  <SlidesUrl>http://www.slideshare.net/SpbDotNet/rider-69615139</SlidesUrl>
-  <VideoUrl>https://www.youtube.com/watch?v=Eb4ZgRQAaqI</VideoUrl>
-</Talk>
-<Talk>
-  <Id>Roslyn-Code-Analysis</Id>
-  <SpeakerIds>
-    <SpeakerId>Anatoly-Kulakov</SpeakerId>
-  </SpeakerIds>
-  <Title>Roslyn Code Analysis</Title>
-  <Description>Roslyn открывает возможности для появления множества интересных сервисов. Одним из таких сервисов является Code Analysis. Теперь, под старым названием, скрывается абсолютно новая переработанная концепция. Свежая платформа даёт возможность поднять качество кода на принципиально иной уровень. Революция затрагивает множество ролей от суровых сторожил и до начинающих кодировщиков, а также PM’щиков, DevOps’ов, авторов различных библиотек и их фанатов.</Description>
-  <SlidesUrl>http://www.slideshare.net/yu5k3/roslyn-code-analysis</SlidesUrl>
-  <VideoUrl>http://www.youtube.com/watch?v=RR2b2i8BSRc</VideoUrl>
-</Talk>
-<Talk>
-  <Id>Roslyn-obvious</Id>
-  <SpeakerIds>
-    <SpeakerId>Alexander-Kugushev</SpeakerId>
-  </SpeakerIds>
-  <Title>Roslyn: очевидные неочевидности</Title>
-  <Description>Разработка синтаксических анализаторов и рефакторингов с помощью Roslyn (Microsoft.CodeAnalysys) интересное и захватывющее занятие. Но путь изучения тернист, полон неожиданностей и неочевидностей. Давайте же рассмотрим основные сложности, которые вы можете встретить и составим шпаргалку, которая поможет вам в нелёгком деле синтаксического анализа.</Description>
-</Talk>
-<Talk>
-  <Id>Round-table-code-analysis</Id>
-  <SpeakerIds>
-    <SpeakerId>Vladimir-Kochetkov</SpeakerId>
-    <SpeakerId>Alexander-Shvedov</SpeakerId>
-    <SpeakerId>Vladimir-Koshelev</SpeakerId>
-    <SpeakerId>Valery-Ignatyev</SpeakerId>
-    <SpeakerId>Artem-Borzilov</SpeakerId>
-  </SpeakerIds>
-  <Title>Круглый стол по вопросам анализа кода</Title>
-  <Description>Ведущие эксперты, разрабатывающие продукты в области анализа кода, обсуждают эту тему.</Description>
-</Talk>
-<Talk>
-  <Id>Round-table-multi-threading</Id>
-  <SpeakerIds>
-    <SpeakerId>Dmitry-Ivanov</SpeakerId>
-    <SpeakerId>Dmitry-Naumov</SpeakerId>
-  </SpeakerIds>
-  <Title>Круглый стол по вопросам многопоточности</Title>
-  <Description>Наши эксперты могут ответить на ваши вопросы, и мы все вместе сможем обсудить проблемы и особенности параллельного программирования.</Description>
-</Talk>
-<Talk>
-  <Id>Sandboxing-in-Net-CLR</Id>
-  <SpeakerIds>
-    <SpeakerId>Mikhail-Shcherbakov</SpeakerId>
-  </SpeakerIds>
-  <Title>Sandboxing in .NET CLR</Title>
-  <Description>Доклад для тех, кто разрабатывает или планирует разрабатывать чувствительные к безопасности приложения, задумывается над проектированием расширяемой плагинами системы. Или просто интересуется технологиями, на основе которых построена вся модель безопасности в .NET Framework.
+    <SlidesUrl>http://www.slideshare.net/yu5k3/project-rider</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=wq5qvizDUIM</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>ReactJSDotNET-experience-of-server-rendering</Id>
+    <SpeakerIds>
+      <SpeakerId>Daniel-Sokoluk</SpeakerId>
+    </SpeakerIds>
+    <Title>ReactJS.NET — опыт рендеринга на сервере </Title>
+    <Description>Поговорим что такое React и зачем он нужен разработчикам, разберемся что такое ReactJS.NET и JavaScriptServices. Обсудим как интегрировать React компоненты в существующую Razor разметку или даже в WebForms. Расскажем о том какие проблемы с производительностью существуют при серверном рендеринге компонентов и как их решать.</Description>
+    <SlidesUrl>https://www.slideshare.net/MskDotNet/reactjsnet-81089090</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=lu29RO2JtG8</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>RESTFul-API-how-and-why</Id>
+    <SpeakerIds>
+      <SpeakerId>Yulia-Tsisyk</SpeakerId>
+    </SpeakerIds>
+    <Title>RESTFul API в вашем .NET приложении: как, зачем и почему?</Title>
+    <Description>Ни один современный продукт не обходится без API. Этот API может быть внешним, для публичного использования, а может быть сугубо внутренним, но требования к созданию расширяемого, версионируемого, тестируемого, документированного программного интерфейса очень похоже. В этом докладе мы поговорим о том, как создавать подобные API на основе REST, какие существуют best-practices, чего следует избегать, на что обращать внимание при проектировании.</Description>
+    <SlidesUrl>https://www.slideshare.net/yuliafast/restful-api-net</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=fRTlpFusCj4</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>Review-of-CSharp-6</Id>
+    <SpeakerIds>
+      <SpeakerId>Dmitri-Nesteruk</SpeakerId>
+    </SpeakerIds>
+    <Title>Обзор C# 6</Title>
+    <Description>В этом докладе мы посмотрим на некоторые фичи C#6</Description>
+    <SlidesUrl>http://www.slideshare.net/yu5k3/whats-new-in-c-6-52144075</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=cseN8coWvfo</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>Review-of-FSharp-4</Id>
+    <SpeakerIds>
+      <SpeakerId>Dmitry-Vlasov</SpeakerId>
+    </SpeakerIds>
+    <Title>Обзор Visual F# 4.0</Title>
+    <Description>В этом докладе мы посмотрим на новые возможности F# 4.0</Description>
+    <VideoUrl>https://www.youtube.com/watch?v=iOItE4hR6jg</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>Rider-Internals</Id>
+    <SpeakerIds>
+      <SpeakerId>Andrey-Akinshin</SpeakerId>
+      <SpeakerId>Mikhail-Filippov</SpeakerId>
+    </SpeakerIds>
+    <Title>Rider: разговоры про внутренности и кроссплатформенность</Title>
+    <Description>Наверное, многие из вас слышали, что в JetBrains разрабатывается новая крутая кроссплатформенная C# IDE под названием Rider. Под капотом у неё сразу два больших продукта: ReSharper (тысячи анализаторов кода, рефакторинги, навигация, генераторы кода и прочие ништяки) и IntelliJ IDEA (просто очень хорошая IDE). Обратите внимание: один продукт написан под CLR, а другой — под JVM. Их удалось заставить работать вместе, да ещё и хорошо работать. В этом докладе мы немного расскажем вам о внутренностях райдера: будут разные интересные технологические решения, а также весёлые байки про шайтан-баги и сложности современной разработки ПО. Отдельно поговорим про то, как же удалось запустить ReSharper (здоровый энтерпрайзный C#-продукт) на Linux и MacOS поверх Mono, и к чему нужно быть готовым .NET-разработчикам, которые внезапно решили писать кроссплатформенные программы.</Description>
+    <SlidesUrl>http://www.slideshare.net/SpbDotNet/rider-69615139</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=Eb4ZgRQAaqI</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>Roslyn-Code-Analysis</Id>
+    <SpeakerIds>
+      <SpeakerId>Anatoly-Kulakov</SpeakerId>
+    </SpeakerIds>
+    <Title>Roslyn Code Analysis</Title>
+    <Description>Roslyn открывает возможности для появления множества интересных сервисов. Одним из таких сервисов является Code Analysis. Теперь, под старым названием, скрывается абсолютно новая переработанная концепция. Свежая платформа даёт возможность поднять качество кода на принципиально иной уровень. Революция затрагивает множество ролей от суровых сторожил и до начинающих кодировщиков, а также PM’щиков, DevOps’ов, авторов различных библиотек и их фанатов.</Description>
+    <SlidesUrl>http://www.slideshare.net/yu5k3/roslyn-code-analysis</SlidesUrl>
+    <VideoUrl>http://www.youtube.com/watch?v=RR2b2i8BSRc</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>Roslyn-obvious</Id>
+    <SpeakerIds>
+      <SpeakerId>Alexander-Kugushev</SpeakerId>
+    </SpeakerIds>
+    <Title>Roslyn: очевидные неочевидности</Title>
+    <Description>Разработка синтаксических анализаторов и рефакторингов с помощью Roslyn (Microsoft.CodeAnalysys) интересное и захватывющее занятие. Но путь изучения тернист, полон неожиданностей и неочевидностей. Давайте же рассмотрим основные сложности, которые вы можете встретить и составим шпаргалку, которая поможет вам в нелёгком деле синтаксического анализа.</Description>
+    <SlidesUrl>https://www.slideshare.net/SpbDotNet/roslyn-78579499</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=8stwekff5YI</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>Round-table-code-analysis</Id>
+    <SpeakerIds>
+      <SpeakerId>Vladimir-Kochetkov</SpeakerId>
+      <SpeakerId>Alexander-Shvedov</SpeakerId>
+      <SpeakerId>Vladimir-Koshelev</SpeakerId>
+      <SpeakerId>Valery-Ignatyev</SpeakerId>
+      <SpeakerId>Artem-Borzilov</SpeakerId>
+    </SpeakerIds>
+    <Title>Круглый стол по вопросам анализа кода</Title>
+    <Description>Ведущие эксперты, разрабатывающие продукты в области анализа кода, обсуждают эту тему.</Description>
+  </Talk>
+  <Talk>
+    <Id>Round-table-multi-threading</Id>
+    <SpeakerIds>
+      <SpeakerId>Dmitry-Ivanov</SpeakerId>
+      <SpeakerId>Dmitry-Naumov</SpeakerId>
+    </SpeakerIds>
+    <Title>Круглый стол по вопросам многопоточности</Title>
+    <Description>Наши эксперты могут ответить на ваши вопросы, и мы все вместе сможем обсудить проблемы и особенности параллельного программирования.</Description>
+  </Talk>
+  <Talk>
+    <Id>Sandboxing-in-Net-CLR</Id>
+    <SpeakerIds>
+      <SpeakerId>Mikhail-Shcherbakov</SpeakerId>
+    </SpeakerIds>
+    <Title>Sandboxing in .NET CLR</Title>
+    <Description>Доклад для тех, кто разрабатывает или планирует разрабатывать чувствительные к безопасности приложения, задумывается над проектированием расширяемой плагинами системы. Или просто интересуется технологиями, на основе которых построена вся модель безопасности в .NET Framework.
 
 Основные компоненты архитектуры безопасности .NET FW 4.0 и последующих версий. Особенности типобезопасности в .NET CLR. Домены приложений (AppDomain) и Code Access Security. Как, где и когда нужно строить собственные песочницы (sandbox) для выполнения недоверенного кода. Как все это работает в ASP.NET. Также мы вместе создадим эксплойт для .NET Framework, который продемонстрирует выход из песочницы, и разберем, за счет каких атак это возможно.</Description>
-  <SlidesUrl>http://www.slideshare.net/yu5k3/sandboxing-in-net-clr-56315313</SlidesUrl>
-  <VideoUrl>https://www.youtube.com/watch?v=tyvquVdhWzA</VideoUrl>
-</Talk>
-<Talk>
-  <Id>Simple-cross-platform-Web-server</Id>
-  <SpeakerIds>
-    <SpeakerId>Alexander-Ivanov</SpeakerId>
-    <SpeakerId>Roman-Pavuk</SpeakerId>
-  </SpeakerIds>
-  <Title>Простой и кросс-платформенный Web-сервер на базе .Net Framework</Title>
-  <Description>Релиз ASP.NET 5 уже совсем близко. Ключевыми элементами, которые определяют архитектуру последней версии ASP.NET стали переход на новый .NET runtime, который получил название .NET Core, и реализация стандарта OWIN в ASP.NET.
+    <SlidesUrl>http://www.slideshare.net/yu5k3/sandboxing-in-net-clr-56315313</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=tyvquVdhWzA</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>Saritasa-Tools</Id>
+    <SpeakerIds>
+      <SpeakerId>Ivan-Kozhin</SpeakerId>
+    </SpeakerIds>
+    <Title>Saritasa Tools или ещё один подход к архитектуре приложения</Title>
+    <Description>Порой сложно работать с большими системами, особенно если они достались в наследство, и уж тем более если в команде много неопытных разработчиков. В таких случаях на помощь может прийти практика типовой архитектуры. Иван расскажет о подобной архитектуре и своей библиотеке «Saritasa Tools» для реализации такого рода задач.</Description>
+    <CodeUrl>https://github.com/Saritasa/SaritasaTools</CodeUrl>
+    <SlidesUrl>https://www.slideshare.net/SpbDotNet/saritasa-tools</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=7pb0PJ5EXnM</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>Simple-cross-platform-Web-server</Id>
+    <SpeakerIds>
+      <SpeakerId>Alexander-Ivanov</SpeakerId>
+      <SpeakerId>Roman-Pavuk</SpeakerId>
+    </SpeakerIds>
+    <Title>Простой и кросс-платформенный Web-сервер на базе .Net Framework</Title>
+    <Description>Релиз ASP.NET 5 уже совсем близко. Ключевыми элементами, которые определяют архитектуру последней версии ASP.NET стали переход на новый .NET runtime, который получил название .NET Core, и реализация стандарта OWIN в ASP.NET.
 В докладе представлен обзор этих ключевых технологий. Речь пойдут о проблемах, с которыми сталкиваются разработчики WEB-приложений, и о том, как они решаются благодаря .NET Core и OWIN.
 
 Также мы поделимся опытом использования стандарта OWIN в реальном, хоть и не большом, проекте. Использую реализацию OWIN, мы смогли реализовать простой и эффективный WEB-сервис, который легко разворачивается и поддерживается во время эксплуатации.</Description>
-  <SlidesUrl>http://www.slideshare.net/yu5k3/web-net-56315595</SlidesUrl>
-  <VideoUrl>https://www.youtube.com/watch?v=PbdPSlGJp48</VideoUrl>
-</Talk>
-<Talk>
-  <Id>SQL-Server-Performance-101</Id>
-  <SpeakerIds>
-    <SpeakerId>Alexander-Shelemin</SpeakerId>
-  </SpeakerIds>
-  <Title>SQL Server Performance 101</Title>
-  <Description>Как бы нам ни хотелось верить в то, что оптимизатор запросов всегда сделает всё сам, на практике нередко возникают ситуации, когда для того, чтобы добиться нужной производительности, нам приходится лезть во внутренности сервера баз данных.
+    <SlidesUrl>http://www.slideshare.net/yu5k3/web-net-56315595</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=PbdPSlGJp48</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>SQL-Server-Performance-101</Id>
+    <SpeakerIds>
+      <SpeakerId>Alexander-Shelemin</SpeakerId>
+    </SpeakerIds>
+    <Title>SQL Server Performance 101</Title>
+    <Description>Как бы нам ни хотелось верить в то, что оптимизатор запросов всегда сделает всё сам, на практике нередко возникают ситуации, когда для того, чтобы добиться нужной производительности, нам приходится лезть во внутренности сервера баз данных.
 
 В докладе мы поговорим о практических подходах к анализу перформанса SQL Server: профилировании и Extended Events, чтении планов выполнения и о том, о каких фичах SQL Server не стоит забывать в борьбе за производительность.</Description>
-  <SlidesUrl>http://www.slideshare.net/SpbDotNet/sql-server-performance-101</SlidesUrl>
-  <VideoUrl>https://www.youtube.com/watch?v=wSDMM6w-xVg</VideoUrl>
-</Talk>
-<Talk>
-  <Id>Structured-logging</Id>
-  <SpeakerIds>
-    <SpeakerId>Anatoly-Kulakov</SpeakerId>
-  </SpeakerIds>
-  <Title>Structured logging</Title>
-  <Description>Доклад рассказывает о том, как превратить кучу текстовых логов в полноценную Event Source систему. А каждому разработчику дать почувствовать себя всемогущим аналитиком. Всё это возможно благодаря структурному логированию (Structured logging), которое привносит в ваши логи семантическую составляющую. Так же будут рассмотрены основные проблемы стека ELK (Elasticsearch, Logstash, Kibana). Мы попробуем решить эти концептуальные проблемы с помощью структурного логирования. Мы так же рассмотрим как работать со структурными логами в .NET с помощью библиотеки Serilog. Решим несколько практических задач с помощью подручных средств, которые без семантики журнала были бы не подъёмны. Разберёмся со специализированным сервером Seq. И конечно же найдём пути быстрой и безболезненной миграции существующих приложений на этот чудо-стек.</Description>
-  <CodeUrl>https://github.com/AnatolyKulakov/Samples/tree/spbdotnet/StructuredLogging/Demo</CodeUrl>
-  <SlidesUrl>http://www.slideshare.net/yu5k3/structured-logging</SlidesUrl>
-  <VideoUrl>http://www.youtube.com/watch?v=f0UGDHT7ZwY</VideoUrl>
-</Talk>
-<Talk>
-  <Id>Swagger</Id>
-  <SpeakerIds>
-    <SpeakerId>Pavel-Fedotovsky</SpeakerId>
-  </SpeakerIds>
-  <Title>Документация REST API c использованием Swagger</Title>
-  <Description>Документация является важной составляющей REST API – чем она удобнее и понятнее, тем меньше времени тратят разработчики, использующие ваше API. Хорошая документация упрощает жизнь всем – разработчикам/тестерам/клиентам. В докладе Павел расскажет про его опыт работы со Swagger – популярным подходом к спецификации REST API:
+    <SlidesUrl>http://www.slideshare.net/SpbDotNet/sql-server-performance-101</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=wSDMM6w-xVg</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>State-of-the-NET-Performance</Id>
+    <SpeakerIds>
+      <SpeakerId>Adam-Sitnik</SpeakerId>
+    </SpeakerIds>
+    <Title>State of the .NET Performance</Title>
+    <Description>In this talk Adam will describe how latest changes in.NET are affecting performance.
+Adam wants to go through:
+C# 7: ref locals and ref returns, ValueTuples.
+.NET Core: Spans, Buffers, ValueTasks
+
+And how all of these things help build zero-copy streams aka Channels/Pipelines which are going to be a game changer in the next year.</Description>
+    <SlidesUrl>https://www.slideshare.net/yuliafast/adam-sitnik-state-of-the-net-performance</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=PJbTXiun2qM</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>Structured-logging</Id>
+    <SpeakerIds>
+      <SpeakerId>Anatoly-Kulakov</SpeakerId>
+    </SpeakerIds>
+    <Title>Structured logging</Title>
+    <Description>Доклад рассказывает о том, как превратить кучу текстовых логов в полноценную Event Source систему. А каждому разработчику дать почувствовать себя всемогущим аналитиком. Всё это возможно благодаря структурному логированию (Structured logging), которое привносит в ваши логи семантическую составляющую. Так же будут рассмотрены основные проблемы стека ELK (Elasticsearch, Logstash, Kibana). Мы попробуем решить эти концептуальные проблемы с помощью структурного логирования. Мы так же рассмотрим как работать со структурными логами в .NET с помощью библиотеки Serilog. Решим несколько практических задач с помощью подручных средств, которые без семантики журнала были бы не подъёмны. Разберёмся со специализированным сервером Seq. И конечно же найдём пути быстрой и безболезненной миграции существующих приложений на этот чудо-стек.</Description>
+    <CodeUrl>https://github.com/AnatolyKulakov/Samples/tree/spbdotnet/StructuredLogging/Demo</CodeUrl>
+    <SlidesUrl>http://www.slideshare.net/yu5k3/structured-logging</SlidesUrl>
+    <VideoUrl>http://www.youtube.com/watch?v=f0UGDHT7ZwY</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>Swagger</Id>
+    <SpeakerIds>
+      <SpeakerId>Pavel-Fedotovsky</SpeakerId>
+    </SpeakerIds>
+    <Title>Документация REST API c использованием Swagger</Title>
+    <Description>Документация является важной составляющей REST API – чем она удобнее и понятнее, тем меньше времени тратят разработчики, использующие ваше API. Хорошая документация упрощает жизнь всем – разработчикам/тестерам/клиентам. В докладе Павел расскажет про его опыт работы со Swagger – популярным подходом к спецификации REST API:
 - про Сode First и Design First подходы к документации, какой лучше использовать в вашем случае;
 - как сгенерировать документацию из ваших ASP.NET (Core) проектов;
 - как сгенерировать код клиента/сервера по Swagger спецификации;
 - где лучше всего хранить документацию;
 - какие подводные камни вас могут подстерегать при работе со Swagger.</Description>
-  <SlidesUrl>https://www.slideshare.net/SpbDotNet/rest-api-c-swagger</SlidesUrl>
-</Talk>
-<Talk>
-  <Id>Theory-of-AppSec-Net</Id>
-  <SpeakerIds>
-    <SpeakerId>Vladimir-Kochetkov</SpeakerId>
-  </SpeakerIds>
-  <Title>Теория Application Security .NET</Title>
-  <Description>Доклад посвящен теоретическому минимуму, которым необходимо овладеть для разработки защищенного кода .NET. Будут рассмотрены основные понятия предметной области AppSec (Application Security) и предложена классификация, позволяющая описывать их в более понятной и привычной для разработчиков форме. На базе этого, будет описана методика разработки и оценки защищенного кода, не требующая экспертных знаний в области ИБ. Применение методики будет продемонстрировано на основе уязвимостей к атакам класса инъекций (SQL/HTML/XML/XQuery/XPath Injection, Path Traversal, XXE и т.п).</Description>
-  <SlidesUrl>http://www.slideshare.net/yu5k3/an-exceptionally-simple-theory-of-appsec-net</SlidesUrl>
-  <VideoUrl>https://www.youtube.com/watch?v=-rQ3B5p5dUs</VideoUrl>
-</Talk>
-<Talk>
-  <Id>UI-Automation-Tests</Id>
-  <SpeakerIds>
-    <SpeakerId>Roman-Iovlev</SpeakerId>
-  </SpeakerIds>
-  <Title>Open Source UI Automation Tests on C#</Title>
-  <Description>Качественный продукт в современном мире, это необходимость и важное конкурентное преимущество. Основную долю продуктов сейчас составляют различные сайты и веб приложения. Чтобы обеспечить высокий уровень их качества и при этом сэкономить деньги, используется автоматизация UI. О том, какие есть подходы в этой сфере и какие инструменты позволяют сделать процесс быстрым, обеспечить высокий уровень качества и при этом получить удовольствие от процесса, и будет рассказывать Роман.</Description>
-  <SlidesUrl>https://www.slideshare.net/SpbDotNet/open-source-ui-automation-tests-on-c</SlidesUrl>
-</Talk>
-<Talk>
-  <Id>Using-Apache-Cordova</Id>
-  <SpeakerIds>
-    <SpeakerId>Anton-Shabanov</SpeakerId>
-  </SpeakerIds>
-  <Title>Использование Apache Cordova в реальном проекте</Title>
-  <Description>Доклад будет о впечатлениях C#-веб-программиста от кроссплатформенной мобильной разработки с применением Visual Studio tools for Apache Cordova. Я расскажу немного о самой платформе Apache Cordova и ее преимуществах и недостатках, а также покажу какую работу проделал MS чтобы адаптировать процесс разработки JS-приложений для смартфонов к использованию в Visual Studio.</Description>
-  <SlidesUrl>http://www.slideshare.net/yu5k3/visual-studio-tools-for-apache-cordova-56315452</SlidesUrl>
-  <VideoUrl>https://www.youtube.com/watch?v=Qwyn_x79rHc</VideoUrl>
-</Talk>
-<Talk>
-  <Id>Using-static-analyzers</Id>
-  <SpeakerIds>
-    <SpeakerId>Valery-Ignatyev</SpeakerId>
-  </SpeakerIds>
-  <Title>Сценарии использования статического анализатора</Title>
-  <Description></Description>
-  <SlidesUrl>http://www.slideshare.net/yu5k3/ss-60641619</SlidesUrl>
-  <VideoUrl>https://www.youtube.com/watch?v=k9zjmg7spEA</VideoUrl>
-</Talk>
-<Talk>
-  <Id>UWP-life</Id>
-  <SpeakerIds>
-    <SpeakerId>Nikita-Kamensky</SpeakerId>
-  </SpeakerIds>
-  <Title>Есть ли жизнь с UWP?</Title>
-  <Description>Никита расскажет о том, что такое UWP. Как платформа развивается, как современный банк разрабатывает приложения с её помощью и поддерживает различные их версии. А также мы узнаем, как необходимо реагировать на шутки от коллег.</Description>
-</Talk>
-<Talk>
-  <Id>VM-via-F</Id>
-  <SpeakerIds>
-    <SpeakerId>Yuri-Volkov</SpeakerId>
-  </SpeakerIds>
-  <Title>VM via F#</Title>
-  <Description>Рассмотрим принципы устройства всеми любимой CLR, а также подумаем, как реализовать схожую работу на функционально-направленном F#.</Description>
-  <SlidesUrl>https://www.slideshare.net/SpbDotNet/vm-via-f</SlidesUrl>
-  <VideoUrl>https://www.youtube.com/watch?v=mtYAry42MkU</VideoUrl>
-</Talk>
-<Talk>
-  <Id>Web-security</Id>
-  <SpeakerIds>
-    <SpeakerId>Mikhail-Shcherbakov</SpeakerId>
-  </SpeakerIds>
-  <Title>Разрушители легенд: web-безопасность</Title>
-  <Description>Такого выпуска не хватало на Discovery, так сделаем его вместе! Поговорим про интересные атаки и уязвимости в web-приложениях. Обсуждать будем НЕ банальные: «Linux безопаснее Windows», «Антивирус защищает от всех угроз» и т.д., а вполне конкретные технологии и атаки на них: HTTPS, XSS, XML Injection, использование криптографии с использованием примеров .NET приложений.
+    <SlidesUrl>https://www.slideshare.net/SpbDotNet/rest-api-c-swagger</SlidesUrl>
+  </Talk>
+  <Talk>
+    <Id>TDD-in-a-hard-enterprise</Id>
+    <SpeakerIds>
+      <SpeakerId>Andrey-Zaytsev</SpeakerId>
+    </SpeakerIds>
+    <Title>TDD в суровом энтерпрайзе</Title>
+    <Description>Разговор будет о том, когда, как и для чего писать тесты, а так же будет сказано как проходить интервью на позицию junior test automation engineer. Озвучатся мысли о том, почему TDD не взлетает, и может ли что-то быть хуже. Также будет рассмотрено на примере использование таких инструментов, как NUnit, FluentAssertions, Moq, HttpMock.</Description>
+    <SlidesUrl>https://www.slideshare.net/EliasFofanov/tdd-79115954</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=x67E1yakRR4</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>The-load-testing-tools</Id>
+    <SpeakerIds>
+      <SpeakerId>Vyacheslav-Smirnov</SpeakerId>
+    </SpeakerIds>
+    <Title>Инструменты нагрузочного тестирования</Title>
+    <Description>Есть три богатыря нагрузочного тестирования, и каждый инструмент хорош по-своему: Microsoft Visual Studio, HP LoadRunner и Apache JMeter. Хотели бы Вы выполнять нагрузочное тестирование удобно, бесплатно и правильно? Тогда можно взять от каждого инструмента самое лучшее. Впомогательные инструменты и структуру теста удобно взять из HP LoadRunner. Писать и отлаживать скрипт удобнее всего в Visual Studio. А подавать нагрузку, создавать контролируемое количество потоков выполнения, из Apache JMeter.​</Description>
+    <SlidesUrl>https://www.slideshare.net/EliasFofanov/ss-79112646</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=8wDoiyIOd14</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>The-Metrix-has-you</Id>
+    <SpeakerIds>
+      <SpeakerId>Anatoly-Kulakov</SpeakerId>
+    </SpeakerIds>
+    <Title>The Metrix has you...</Title>
+    <Description>Для многих разработчиков процесс релиза их продукта похож на выбрасывание слепого котёнка в пасти диких псов. После этого главная задача авторов — отбиваться от случайно долетевших до них багов. На самом деле, приложение не заканчивает свой жизненный путь в зубах пользователей, а только начинает его. И ему нужна помощь разработчиков не меньше, чем во время становления и тестирования.
+
+В этом докладе мы рассмотрим, каким образом можно наблюдать за работой продукта и его боевым окружением, научимся собирать жизненно необходимые метрики и представлять их в удобоваримом виде. Узнаем, что такое Time Series и как они могут помочь нашим и сторонним приложениям в процессе диагностики. Подробно познакомимся с лидерами рынка инструментов для мониторинга, специализированным хранилищем InfluxDB и системой визуализации данных Grafana.</Description>
+    <SlidesUrl>https://www.slideshare.net/SpbDotNet/the-metrix-has-you</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=pjmRqIgoyFE</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>Theory-and-practice-of-NET-benchmarking-1</Id>
+    <SpeakerIds>
+      <SpeakerId>Andrey-Akinshin</SpeakerId>
+    </SpeakerIds>
+    <Title>Теория и практика .NET-бенчмаркинга (часть 1 из 2)</Title>
+    <Description>Изо дня в день многие .NET-разработчики сталкиваются с проблемами производительности в своих проектах. Для их решения необходимо уметь корректно замерять время, чтобы иметь возможность сравнить эффективность разных подходов. Если речь идёт о минутах или часах, то такие замеры можно выполнять "на глаз". Если речь идёт о секундах, то с задачей хорошо справится ваш любимый профайлер. Но если речь идёт о миллисекундах, микросекундах или даже наносекундах, то у вас могут возникнуть проблемы. Замеры коротких промежутков времени - очень сложная задача, многие программисты не умеют решать её корректно. Доклад будет состоять из двух частей. В первой мы поговорим про теорию бенчмаркинга. Как это делать правильно, на что нужно обращать внимание и как не обмануть себя при анализе результатов. Во второй части посмотрим на практические примеры, в которых истинное положение дел с производительностью совсем не очевидно до проведения замеров. Разбор подобных ситуаций помогает понять сколько граблей раскидано повсюду для начинающих любителей побенчмаркать и почему сложно делать микрозамеры времени на современном железе.</Description>
+    <SeeAlsoTalkIds>
+      <TalkId>Theory-and-practice-of-NET-benchmarking-2</TalkId>
+    </SeeAlsoTalkIds>
+    <SlidesUrl>http://www.slideshare.net/AndreyAkinshin/net-25012017</SlidesUrl>
+  </Talk>
+  <Talk>
+    <Id>Theory-and-practice-of-NET-benchmarking-2</Id>
+    <SpeakerIds>
+      <SpeakerId>Andrey-Akinshin</SpeakerId>
+    </SpeakerIds>
+    <Title>Теория и практика .NET-бенчмаркинга (часть 2 из 2)</Title>
+    <Description>Вторая часть рассказа о бенчмаркинге. Изо дня в день многие .NET-разработчики сталкиваются с проблемами производительности в своих проектах. Для их решения необходимо уметь корректно замерять время, чтобы иметь возможность сравнить эффективность разных подходов. Если речь идёт о минутах или часах, то такие замеры можно выполнять "на глаз". Если речь идёт о секундах, то с задачей хорошо справится ваш любимый профайлер. Но если речь идёт о миллисекундах, микросекундах или даже наносекундах, то у вас могут возникнуть проблемы. Замеры коротких промежутков времени - очень сложная задача, многие программисты не умеют решать её корректно. Доклад будет состоять из двух частей. В первой мы поговорим про теорию бенчмаркинга. Как это делать правильно, на что нужно обращать внимание и как не обмануть себя при анализе результатов. Во второй части посмотрим на практические примеры, в которых истинное положение дел с производительностью совсем не очевидно до проведения замеров. Разбор подобных ситуаций помогает понять сколько граблей раскидано повсюду для начинающих любителей побенчмаркать и почему сложно делать микрозамеры времени на современном железе.</Description>
+    <SeeAlsoTalkIds>
+      <TalkId>Theory-and-practice-of-NET-benchmarking-1</TalkId>
+    </SeeAlsoTalkIds>
+    <SlidesUrl>http://www.slideshare.net/AndreyAkinshin/net-25012017</SlidesUrl>
+  </Talk>
+  <Talk>
+    <Id>Theory-and-practice-of-parsing-formal-languages</Id>
+    <SpeakerIds>
+      <SpeakerId>Ivan-Kochurkin</SpeakerId>
+    </SpeakerIds>
+    <Title>Теория и практика парсинга формальных языков</Title>
+    <Description>В докладе рассказывается об инструментах и практиках парсинга формальных языков: как исходного кода, так и собственных предметно-ориентированных (DSL). О том, какие бывают парсеры и проблемы при их использовании. Доклад повествует как о базовых вещах: о токенах, деревьях разбора, абстрактных синтаксических деревьях (AST), так и о продвинутых: о методах обработки препроцессорных директив и восстановления от ошибок, о парсинге островных, нечувствительных к регистру языков и фрагментов кода. Помимо парсинга в докладе затрагивается тема обработки древовидных структур. Материал доклада основан на практических задачах и акцентирован на технологиях ANTLR и Roslyn.</Description>
+    <SlidesUrl>https://www.slideshare.net/MskDotNet/ss-81322013</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=KHawyp9jE8U</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>Theory-of-AppSec-Net</Id>
+    <SpeakerIds>
+      <SpeakerId>Vladimir-Kochetkov</SpeakerId>
+    </SpeakerIds>
+    <Title>Теория Application Security .NET</Title>
+    <Description>Доклад посвящен теоретическому минимуму, которым необходимо овладеть для разработки защищенного кода .NET. Будут рассмотрены основные понятия предметной области AppSec (Application Security) и предложена классификация, позволяющая описывать их в более понятной и привычной для разработчиков форме. На базе этого, будет описана методика разработки и оценки защищенного кода, не требующая экспертных знаний в области ИБ. Применение методики будет продемонстрировано на основе уязвимостей к атакам класса инъекций (SQL/HTML/XML/XQuery/XPath Injection, Path Traversal, XXE и т.п).</Description>
+    <SlidesUrl>http://www.slideshare.net/yu5k3/an-exceptionally-simple-theory-of-appsec-net</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=-rQ3B5p5dUs</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>Things-of-the-Internet-of-Things</Id>
+    <SpeakerIds>
+      <SpeakerId>Alexander-Surkov</SpeakerId>
+    </SpeakerIds>
+    <Title>«Вещи» в «Интернете вещей»</Title>
+    <Description>Сегодня понятие интернета вещей ассоциируется с двумя направлениями: облаком и устройствами. И если об облаках говорят много, то о устройствах в концепции IoT информации намного меньше. Разговор будет о том, что же это за "вещи", какая у них роль, из чего они сделаны и как они работают.</Description>
+    <SlidesUrl>https://www.slideshare.net/MskDotNet/ss-73579592</SlidesUrl>
+  </Talk>
+  <Talk>
+    <Id>Type-Providers-without-Pain-and-Magic</Id>
+    <SpeakerIds>
+      <SpeakerId>Roman-Nevolin</SpeakerId>
+    </SpeakerIds>
+    <Title>Провайдеры типов без боли и магии</Title>
+    <Description>Newtonsoft.Json — самый популярный пакет в NuGet. А рядом с ним, на третьем месте, — Entity Framework. Пожалуй, это неплохо демонстрирует, насколько часто.NET разработчики обрабатывают разнообразные данные. И для каждого типа данных — своя библиотека, а еще куча классов-оберток, которые приходится писать ради получения всех благ строгой типизации. И делать это нужно для каждого нового источника данных.
+
+Однако F# предлагает нам другое решение вечной проблемы — провайдеры типов. Решение, которое позволяет максимально упростить работу с любыми типами данных, избавиться от написания и сопровождения классов оберток, а заодно и решить совсем другие проблемы, вроде рисования сложных графиков и работы с нейронными сетями средствами F#. Если вы хотите узнать, как использовать провайдеры типов, какие проблемы они решают, как работают и как написать собственный провайдер для ваших задач, — приходите на этот доклад!</Description>
+    <SlidesUrl>https://www.slideshare.net/SpbDotNet/ss-83963334</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=x5RbkENciMU</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>UI-Automation-Tests</Id>
+    <SpeakerIds>
+      <SpeakerId>Roman-Iovlev</SpeakerId>
+    </SpeakerIds>
+    <Title>Open Source UI Automation Tests on C#</Title>
+    <Description>Качественный продукт в современном мире, это необходимость и важное конкурентное преимущество. Основную долю продуктов сейчас составляют различные сайты и веб приложения. Чтобы обеспечить высокий уровень их качества и при этом сэкономить деньги, используется автоматизация UI. О том, какие есть подходы в этой сфере и какие инструменты позволяют сделать процесс быстрым, обеспечить высокий уровень качества и при этом получить удовольствие от процесса, и будет рассказывать Роман.</Description>
+    <SlidesUrl>https://www.slideshare.net/SpbDotNet/open-source-ui-automation-tests-on-c</SlidesUrl>
+  </Talk>
+  <Talk>
+    <Id>Using-Apache-Cordova</Id>
+    <SpeakerIds>
+      <SpeakerId>Anton-Shabanov</SpeakerId>
+    </SpeakerIds>
+    <Title>Использование Apache Cordova в реальном проекте</Title>
+    <Description>Доклад будет о впечатлениях C#-веб-программиста от кроссплатформенной мобильной разработки с применением Visual Studio tools for Apache Cordova. Я расскажу немного о самой платформе Apache Cordova и ее преимуществах и недостатках, а также покажу какую работу проделал MS чтобы адаптировать процесс разработки JS-приложений для смартфонов к использованию в Visual Studio.</Description>
+    <SlidesUrl>http://www.slideshare.net/yu5k3/visual-studio-tools-for-apache-cordova-56315452</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=Qwyn_x79rHc</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>Using-static-analyzers</Id>
+    <SpeakerIds>
+      <SpeakerId>Valery-Ignatyev</SpeakerId>
+    </SpeakerIds>
+    <Title>Сценарии использования статического анализатора</Title>
+    <SlidesUrl>http://www.slideshare.net/yu5k3/ss-60641619</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=k9zjmg7spEA</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>UWP-life</Id>
+    <SpeakerIds>
+      <SpeakerId>Nikita-Kamensky</SpeakerId>
+    </SpeakerIds>
+    <Title>Есть ли жизнь с UWP?</Title>
+    <Description>Никита расскажет о том, что такое UWP. Как платформа развивается, как современный банк разрабатывает приложения с её помощью и поддерживает различные их версии. А также мы узнаем, как необходимо реагировать на шутки от коллег.</Description>
+    <SlidesUrl>https://www.slideshare.net/SpbDotNet/uwp-78596016</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=eSlaI0MsYIY</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>VM-via-F</Id>
+    <SpeakerIds>
+      <SpeakerId>Yuri-Volkov</SpeakerId>
+    </SpeakerIds>
+    <Title>VM via F#</Title>
+    <Description>Рассмотрим принципы устройства всеми любимой CLR, а также подумаем, как реализовать схожую работу на функционально-направленном F#.</Description>
+    <SlidesUrl>https://www.slideshare.net/SpbDotNet/vm-via-f</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=mtYAry42MkU</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>Web-security</Id>
+    <SpeakerIds>
+      <SpeakerId>Mikhail-Shcherbakov</SpeakerId>
+    </SpeakerIds>
+    <Title>Разрушители легенд: web-безопасность</Title>
+    <Description>Такого выпуска не хватало на Discovery, так сделаем его вместе! Поговорим про интересные атаки и уязвимости в web-приложениях. Обсуждать будем НЕ банальные: «Linux безопаснее Windows», «Антивирус защищает от всех угроз» и т.д., а вполне конкретные технологии и атаки на них: HTTPS, XSS, XML Injection, использование криптографии с использованием примеров .NET приложений.
 
 Михаил покажет несколько демо развенчивающие мифы ИБ, которые он не раз слышал от web-программистов. Материал будет интересен в первую очередь разработчикам, пишущим защищенные web-приложения. Если у вас тоже есть чем поделиться, приносите ноутбук с демонстрацией «своего» мифа, разберём вместе.</Description>
-  <SlidesUrl>https://www.slideshare.net/yu5k3/mythbusters-web-application-security</SlidesUrl>
-  <VideoUrl>https://www.youtube.com/watch?v=MEKTiaeBzlo</VideoUrl>
-</Talk>
-<Talk>
-  <Id>Web-Single-Sign-On-in-10-lines</Id>
-  <SpeakerIds>
-    <SpeakerId>Vyacheslav-Mikhaylov</SpeakerId>
-  </SpeakerIds>
-  <Title>Как сделать Single Sign-On в веб-приложении в 10 строк кода</Title>
-  <Description>В докладе речь пойдёт о том, какие выбрать механизмы аутентификации и авторизации в приложении. Вячеслав поделится опытом использования IdentityServer и продемонстрирует способы его применения.</Description>
-  <SlidesUrl>https://www.slideshare.net/yuliafast/single-signon-10</SlidesUrl>
-</Talk>
-<Talk>
-  <Id>WinDbg-and-friends</Id>
-  <SpeakerIds>
-    <SpeakerId>Mikhail-Shcherbakov</SpeakerId>
-  </SpeakerIds>
-  <Title>WinDbg и сотоварищи</Title>
-  <Description>Поговорим о самом мощном отладчике для Windows – WinDbg. Разберем как начать использовать этот отладчик, чем он может быть полезен для.NET разработчиков. Подробней остановимся на практических моментах его применения, зачем он прикладным программистам, web-разработчикам. Посмотрим и на другие инструменты отладки, которые занимают нишу между интуитивно управляемым комбайном Visual Studio и легким, но крайне аскетичным WinDbg.</Description>
-  <SlidesUrl>https://www.slideshare.net/yu5k3/windbg-65001941</SlidesUrl>
-  <VideoUrl>https://www.youtube.com/watch?v=0gH0q9gA0dc</VideoUrl>
-</Talk>
-<Talk>
-  <Id>Windows-Containers</Id>
-  <SpeakerIds>
-    <SpeakerId>Alexander-Shapoval</SpeakerId>
-  </SpeakerIds>
-  <Title>Контейнеры Windows в Microsoft Azure и on-premise</Title>
-  <Description>Александр расскажет про механизмы контейнеризации в Windows.</Description>
-  <SlidesUrl>http://www.slideshare.net/SpbDotNet/windows-microsoft-azure-onpremise</SlidesUrl>
-  <VideoUrl>https://www.youtube.com/watch?v=XVVBFgL0-ds</VideoUrl>
-</Talk>
-<Talk>
-  <Id>WTF-is-Service-Fabric</Id>
-  <SpeakerIds>
-    <SpeakerId>Nikita-Kozlov</SpeakerId>
-    <SpeakerId>Ivan-Pashchenko</SpeakerId>
-  </SpeakerIds>
-  <Title>WTF is Service Fabric</Title>
-  <Description>Наш доклад про Microsoft Azure Service Fabric - облачную платформу, временами позволяющую легко разворачивать, скалировать и мониторить Ваши приложения.
+    <SlidesUrl>https://www.slideshare.net/yu5k3/mythbusters-web-application-security</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=MEKTiaeBzlo</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>Web-Single-Sign-On-in-10-lines</Id>
+    <SpeakerIds>
+      <SpeakerId>Vyacheslav-Mikhaylov</SpeakerId>
+    </SpeakerIds>
+    <Title>Как сделать Single Sign-On в веб-приложении в 10 строк кода</Title>
+    <Description>В докладе речь пойдёт о том, какие выбрать механизмы аутентификации и авторизации в приложении. Вячеслав поделится опытом использования IdentityServer и продемонстрирует способы его применения.</Description>
+    <SlidesUrl>https://www.slideshare.net/yuliafast/single-signon-10</SlidesUrl>
+  </Talk>
+  <Talk>
+    <Id>What-is-useful-in-analyzing-dumps-for-NET-developers</Id>
+    <SpeakerIds>
+      <SpeakerId>Alexander-Romanov</SpeakerId>
+    </SpeakerIds>
+    <Title>Что полезного в разборе дампов для .NET-разработчиков?</Title>
+    <Description>В докладе мы попробуем привнести альтернативный взгляд. Показываем, как выстроить процесс сбора дампов, их анализа и исправления, встроить его в жизненный цикл разработки вашего приложения, сделав неотъемлемой частью для диагностики как рядовых, так и уникальных случаев. Затем рассматриваем группы основных проблем (deadlocks, out of memory, access violation, logical errors, etc.), которые могут произойти с вашим приложением, а также инструменты для их анализа.
+И, конечно же, разбираем примеры каждой из проблем, которые встретились нам на практике в наших продуктах, в коде .NET и WPF:
+— Как при помощи флэшки «повесить» WPF-приложение?
+— Безопасно ли вызывать DateTime.Now?
+и другие жизненные ситуации.</Description>
+    <SlidesUrl>https://www.slideshare.net/yuliafast/net-68988751</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=EfRcC4j_764</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>WinDbg-and-friends</Id>
+    <SpeakerIds>
+      <SpeakerId>Mikhail-Shcherbakov</SpeakerId>
+    </SpeakerIds>
+    <Title>WinDbg и сотоварищи</Title>
+    <Description>Поговорим о самом мощном отладчике для Windows – WinDbg. Разберем как начать использовать этот отладчик, чем он может быть полезен для.NET разработчиков. Подробней остановимся на практических моментах его применения, зачем он прикладным программистам, web-разработчикам. Посмотрим и на другие инструменты отладки, которые занимают нишу между интуитивно управляемым комбайном Visual Studio и легким, но крайне аскетичным WinDbg.</Description>
+    <SlidesUrl>https://www.slideshare.net/yu5k3/windbg-65001941</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=0gH0q9gA0dc</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>Windows-Containers</Id>
+    <SpeakerIds>
+      <SpeakerId>Alexander-Shapoval</SpeakerId>
+    </SpeakerIds>
+    <Title>Контейнеры Windows в Microsoft Azure и on-premise</Title>
+    <Description>Александр расскажет про механизмы контейнеризации в Windows.</Description>
+    <SlidesUrl>http://www.slideshare.net/SpbDotNet/windows-microsoft-azure-onpremise</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=XVVBFgL0-ds</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>WTF-is-Service-Fabric</Id>
+    <SpeakerIds>
+      <SpeakerId>Nikita-Kozlov</SpeakerId>
+      <SpeakerId>Ivan-Pashchenko</SpeakerId>
+    </SpeakerIds>
+    <Title>WTF is Service Fabric</Title>
+    <Description>Наш доклад про Microsoft Azure Service Fabric - облачную платформу, временами позволяющую легко разворачивать, скалировать и мониторить Ваши приложения.
 
 Service Fabric - весьма свежее решение, увидевшее свет в начале 2016 года. Однако Microsoft использует платформу с 2010 года, в частности для таких облачных сервисов, как: Skype for Business, Cortana, Azure SQL.</Description>
-  <SlidesUrl>http://www.slideshare.net/SpbDotNet/wtf-is-service-fabric</SlidesUrl>
-</Talk>
-<Talk>
-  <Id>Xamarin-mobile-apps</Id>
-  <SpeakerIds>
-    <SpeakerId>Vsevolod-Ivanov</SpeakerId>
-  </SpeakerIds>
-  <Title>Разработка мобильных приложений на С# с использованием Xamarin</Title>
-  <Description>В этом докладе мы поговорим про кросс-платформенную разработку мобильных приложений на платформе Xamarin.</Description>
-  <SlidesUrl>http://www.slideshare.net/yu5k3/xamarin-52144250</SlidesUrl>
-  <VideoUrl>https://www.youtube.com/watch?v=_5qBAL5K6ls</VideoUrl>
-</Talk>
+    <SlidesUrl>http://www.slideshare.net/SpbDotNet/wtf-is-service-fabric</SlidesUrl>
+  </Talk>
+  <Talk>
+    <Id>Xamarin-mobile-apps</Id>
+    <SpeakerIds>
+      <SpeakerId>Vsevolod-Ivanov</SpeakerId>
+    </SpeakerIds>
+    <Title>Разработка мобильных приложений на С# с использованием Xamarin</Title>
+    <Description>В этом докладе мы поговорим про кросс-платформенную разработку мобильных приложений на платформе Xamarin.</Description>
+    <SlidesUrl>http://www.slideshare.net/yu5k3/xamarin-52144250</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=_5qBAL5K6ls</VideoUrl>
+  </Talk>
 </Talks>

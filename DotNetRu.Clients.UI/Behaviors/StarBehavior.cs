@@ -1,14 +1,14 @@
 ﻿using System;
-using Xamarin.Forms;
 using System.Collections.Generic;
+using Xamarin.Forms;
 
-namespace XamarinEvolve.Clients.UI
+namespace DotNetRu.Clients.UI.Behaviors
 {
     public class StarBehavior : Behavior<View>
     {
         TapGestureRecognizer tapRecognizer;
-        static List<StarBehavior> defaultBehaviors = new List<StarBehavior>();
-        static Dictionary<string, List<StarBehavior>> starGroups = new Dictionary<string, List<StarBehavior>>();
+        static readonly List<StarBehavior> defaultBehaviors = new List<StarBehavior>();
+        static readonly Dictionary<string, List<StarBehavior>> starGroups = new Dictionary<string, List<StarBehavior>>();
 
 		public event EventHandler RatingChanged;
 
@@ -21,8 +21,8 @@ namespace XamarinEvolve.Clients.UI
 
         public string GroupName
         {
-            set { SetValue(GroupNameProperty, value); }
-            get { return (string)GetValue(GroupNameProperty); }
+            get => (string)this.GetValue(GroupNameProperty);
+            set => this.SetValue(GroupNameProperty, value);
         }
 
         public static readonly BindableProperty StarRatingProperty =
@@ -32,12 +32,12 @@ namespace XamarinEvolve.Clients.UI
 
         public int StarRating
         {
+            get => (int)this.GetValue(StarRatingProperty);
             set 
-			{ 
-				SetValue(StarRatingProperty, value);
-				RatingChanged?.Invoke(this, EventArgs.Empty);
-			}
-            get { return (int)GetValue(StarRatingProperty); }
+            {
+                this.SetValue(StarRatingProperty, value);
+                this.RatingChanged?.Invoke(this, EventArgs.Empty);
+            }
         }
 
         static void OnGroupNameChanged(BindableObject bindable, object oldValue, object newValue)
@@ -47,7 +47,7 @@ namespace XamarinEvolve.Clients.UI
             string newGroupName = (string)newValue;
 
             // Remove existing behavior from Group
-            if (String.IsNullOrEmpty(oldGroupName))
+            if (string.IsNullOrEmpty(oldGroupName))
             {
                 defaultBehaviors.Remove(behavior);
             }
@@ -63,7 +63,7 @@ namespace XamarinEvolve.Clients.UI
             }
 
             // Add New Behavior to the group
-            if (String.IsNullOrEmpty(newGroupName))
+            if (string.IsNullOrEmpty(newGroupName))
             {
                 defaultBehaviors.Add(behavior);
             }
@@ -96,8 +96,8 @@ namespace XamarinEvolve.Clients.UI
 
         public bool IsStarred
         {
-            set { SetValue(IsStarredProperty, value); }
-            get { return (bool)GetValue(IsStarredProperty); }
+            get => (bool)this.GetValue(IsStarredProperty);
+            set => this.SetValue(IsStarredProperty, value);
         }
 
         static void OnIsStarredChanged(BindableObject bindable, object oldValue, object newValue)
@@ -120,6 +120,7 @@ namespace XamarinEvolve.Clients.UI
 
                 bool itemReached = false;
                 int count = 1, position = 0;
+
                 // all positions to left IsStarred = true and all position to the right is false
                 foreach (var item in behaviors)
                 {
@@ -127,14 +128,15 @@ namespace XamarinEvolve.Clients.UI
                     {
                         item.IsStarred = true;
                     }
+
                     if (item == behavior)
                     {
                         itemReached = true;
                         item.IsStarred = true;
                         position = count;
                     }
-                    if (item != behavior && itemReached)
-                        item.IsStarred = false;
+
+                    if (item != behavior && itemReached) item.IsStarred = false;
 
                     item.StarRating = position;
                     count++;
@@ -149,24 +151,24 @@ namespace XamarinEvolve.Clients.UI
 
         protected override void OnAttachedTo(View bindable)
         {
-            tapRecognizer = new TapGestureRecognizer();
-            tapRecognizer.Tapped += OnTapRecognizerTapped;
-            bindable.GestureRecognizers.Add(tapRecognizer);
+            this.tapRecognizer = new TapGestureRecognizer();
+            this.tapRecognizer.Tapped += this.OnTapRecognizerTapped;
+            bindable.GestureRecognizers.Add(this.tapRecognizer);
 		}
 
         protected override void OnDetachingFrom(View bindable)
         {
-            bindable.GestureRecognizers.Remove(tapRecognizer);
-            tapRecognizer.Tapped -= OnTapRecognizerTapped;
+            bindable.GestureRecognizers.Remove(this.tapRecognizer);
+            this.tapRecognizer.Tapped -= this.OnTapRecognizerTapped;
             defaultBehaviors.Clear();
             starGroups.Clear();
         }
 
         void OnTapRecognizerTapped(object sender, EventArgs args)
         {
-            //HACK: PropertyChange does not fire, if the value is not changed :-(
-            IsStarred = false;
-            IsStarred = true;
+            // HACK: PropertyChange does not fire, if the value is not changed :-(
+            this.IsStarred = false;
+            this.IsStarred = true;
         }
     }
 }

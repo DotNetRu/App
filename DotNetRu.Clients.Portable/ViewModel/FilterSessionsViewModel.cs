@@ -1,31 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows.Input;
+using DotNetRu.DataStore.Audit.Models;
 using Xamarin.Forms;
-using XamarinEvolve.DataObjects;
-using FormsToolkit;
 
-namespace XamarinEvolve.Clients.Portable
+namespace DotNetRu.Clients.Portable.ViewModel
 {
     public class FilterSessionsViewModel : ViewModelBase
     {
         public FilterSessionsViewModel(INavigation navigation)
             : base(navigation)
         {
-            
-            AllCategory = new Category
+            this.AllCategory = new Category
                 {
                     Name = "All",
                     IsEnabled = true,
-                    IsFiltered = Settings.ShowAllCategories
+                    IsFiltered = this.Settings.ShowAllCategories
                 };
 
-            AllCategory.PropertyChanged += (sender, e) =>
+            this.AllCategory.PropertyChanged += (sender, e) =>
             {
-                if (e.PropertyName == "IsFiltered")
-                    SetShowAllCategories(AllCategory.IsFiltered);
+                if (e.PropertyName == "IsFiltered") this.SetShowAllCategories(this.AllCategory.IsFiltered);
             };
               
         }
@@ -37,45 +32,45 @@ namespace XamarinEvolve.Clients.Portable
         private void SetShowAllCategories(bool showAll)
         {
 			// first save changes to individual filters
-			Save();
-            Settings.ShowAllCategories = showAll;
-            foreach(var category in Categories)
+            this.Save();
+            this.Settings.ShowAllCategories = showAll;
+            foreach(var category in this.Categories)
             {
-                category.IsEnabled = !Settings.ShowAllCategories;
-                category.IsFiltered = Settings.ShowAllCategories || Settings.FilteredCategories.Contains(category.Name);
+                category.IsEnabled = !this.Settings.ShowAllCategories;
+                category.IsFiltered = this.Settings.ShowAllCategories || this.Settings.FilteredCategories.Contains(category.Name);
             }
         }
 
         public async Task LoadCategoriesAsync()
         {
-            Categories.Clear();
-            var items = await StoreManager.CategoryStore.GetItemsAsync();
+            this.Categories.Clear();
+            var items = await this.StoreManager.CategoryStore.GetItemsAsync();
             try 
             {
                 if (!items.Any ())
-                    items = await StoreManager.CategoryStore.GetItemsAsync (true);
+                    items = await this.StoreManager.CategoryStore.GetItemsAsync (true);
             } 
             catch 
             {
-                items = await StoreManager.CategoryStore.GetItemsAsync (true);
+                items = await this.StoreManager.CategoryStore.GetItemsAsync (true);
             }
             
             foreach(var category in items.OrderBy(c => c.Name))
             {
-                category.IsFiltered = Settings.ShowAllCategories || Settings.FilteredCategories.Contains(category.Name); 
-                category.IsEnabled = !Settings.ShowAllCategories;
-                Categories.Add(category);
+                category.IsFiltered = this.Settings.ShowAllCategories || this.Settings.FilteredCategories.Contains(category.Name); 
+                category.IsEnabled = !this.Settings.ShowAllCategories;
+                this.Categories.Add(category);
             }
 
-            Save();
+            this.Save();
         }
 
        
         public void Save()
         {
-			if (!Settings.ShowAllCategories)
+			if (!this.Settings.ShowAllCategories)
 			{
-				Settings.FilteredCategories = string.Join("|", Categories?.Where(c => c.IsFiltered).Select(c => c.Name));
+			    this.Settings.FilteredCategories = string.Join("|", this.Categories?.Where(c => c.IsFiltered).Select(c => c.Name));
 			}
         }
     }
