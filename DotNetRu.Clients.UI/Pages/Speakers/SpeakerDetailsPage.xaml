@@ -40,7 +40,14 @@
                     <Image Source="profile_pic_shadow.png" 
                            Aspect="AspectFill"
                            HorizontalOptions="FillAndExpand" 
-                           VerticalOptions="FillAndExpand"/>
+                           VerticalOptions="FillAndExpand">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="OnTapGestureRecognizerTapped"
+                                NumberOfTapsRequired="1" />
+                        </Image.GestureRecognizers>
+    
+                    </Image>
                     <StackLayout
                          Padding="{StaticResource StandardPadding}"
                          Spacing="0"
