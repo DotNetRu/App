@@ -145,6 +145,6 @@
         private async void OnTapGestureRecognizerTapped(object sender, EventArgs args)
         {
             await NavigationService.PushAsync(Navigation, new SpeakerFacePage(SpeakerModel.PhotoImage));
-        }
+        } 
     }
 }
