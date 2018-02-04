@@ -423,16 +423,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <XamarinComponentReference Include="googleiosappindexing">
-      <Visible>False</Visible>
-      <Version>2.0.3.0</Version>
-    </XamarinComponentReference>
-    <XamarinComponentReference Include="ToastIOS">
-      <Version>1.6</Version>
-      <Visible>False</Visible>
-    </XamarinComponentReference>
-  </ItemGroup>
-  <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen~ipad.xib" />
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
