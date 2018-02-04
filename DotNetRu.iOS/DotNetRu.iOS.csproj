@@ -374,7 +374,6 @@
     <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\Icon-87.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <None Include="app.config" />
     <None Include="Info.plist">
       <SubType>Designer</SubType>
     </None>
@@ -387,7 +386,6 @@
     <Compile Include="Renderers\AlwaysScrollViewRenderer.cs" />
     <Compile Include="Renderers\TextViewValue1Renderer.cs" />
     <Compile Include="Renderers\NonScrollableListViewRenderer.cs" />
-    <Compile Include="Helpers\Toaster.cs" />
     <Compile Include="Helpers\PushNotifications.cs" />
     <Compile Include="Renderers\SelectedTabPageRenderer.cs" />
     <Compile Include="Helpers\LaunchTwitter.cs" />
