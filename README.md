@@ -51,7 +51,7 @@
 * Запустить (либо на эмуляторе, либо на реальном устройстве). Для запуска на iOS необходим Macintosh, Android можно запускать на любой системе. Инструкции по запуске на [Android](https://developer.xamarin.com/guides/android/getting_started/installation/windows/#Android_Emulator), [iOS](https://developer.xamarin.com/guides/ios/getting_started/installation/)
 
 ## Как сделать pull request
-[Инструкция](https://help.github.com/articles/creating-a-pull-request-from-a-fork/) от гитхаба (английский), [статья](https://rustycrate.ru/руководства/2016/03/07/contributing.html) на русском. В описании обязательно укажите сделанные Вами изменения
+[Инструкция](https://help.github.com/articles/creating-a-pull-request-from-a-fork/) от гитхаба (английский), [статья](https://rustycrate.ru/руководства/2016/03/07/contributing.html) на русском. Pull request направьте в ветку develop, в описании обязательно укажите сделанные Вами изменения
 
 ## Как оформить баг (вопрос, фичу)
 Для этого воспользуйтесь разделом [`Issues`](https://github.com/DotNetRu/App/issues), нажмите [`New issue`](https://github.com/DotNetRu/App/issues/new) и заполните необходимые поля
