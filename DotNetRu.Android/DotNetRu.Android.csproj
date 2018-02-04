@@ -207,7 +207,6 @@
     <Compile Include="Helpers\AppVersionProvider.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <AndroidAsset Include="Assets\fontawesome.ttf" />
     <AndroidAsset Include="Assets\Roboto-Bold.ttf" />
     <AndroidAsset Include="Assets\Roboto-Regular.ttf" />
