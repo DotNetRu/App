@@ -275,9 +275,9 @@ namespace DotNetRu.Clients.Portable.ViewModel
             try
             {
                 this.SocialError = false;
-                var tweets = await TweetHelper.Get();
+                // var tweets = await TweetHelper.Get();
 
-                this.Tweets.ReplaceRange(tweets);
+                // this.Tweets.ReplaceRange(tweets);
             }
             catch (Exception ex)
             {
