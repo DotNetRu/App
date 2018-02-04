@@ -1,49 +1,8 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <ProjectGuid>{CD2623BD-3609-4BE9-80EF-0974F3A1A27D}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>DotNetRu.Clients.UI</RootNamespace>
-    <AssemblyName>DotNetRu.Clients.UI</AssemblyName>
-    <TargetFrameworkProfile>Profile44</TargetFrameworkProfile>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
-    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-    <DefineConstants>MOBILE</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'UITest|iPhone' ">
-    <Optimize>true</Optimize>
-    <OutputPath>bin\iPhone\UITest</OutputPath>
-    <WarningLevel>4</WarningLevel>
-    <DefineConstants>MOBILE</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'UITest|AnyCPU' ">
-    <Optimize>true</Optimize>
-    <OutputPath>bin\UITest</OutputPath>
-    <WarningLevel>4</WarningLevel>
-    <DefineConstants>MOBILE;ENABLE_TEST_CLOUD</DefineConstants>
-  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="DotNetRU.BottomTabbedPage" Version="0.1.0.2" />
     <PackageReference Include="FormsToolkit" Version="2.0.1" />
@@ -65,149 +24,7 @@
     <PackageReference Include="Xamarin.Forms" Version="2.5.0.122203" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\RatingControl.xaml.cs">
-      <DependentUpon>RatingControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\RepeaterView.cs" />
-    <Compile Include="Controls\StackLayoutList.cs" />
-    <Compile Include="Converters\SessionTimeDisplayConverter.cs" />
-    <Compile Include="Converters\EventColorDisplayConverter.cs" />
-    <Compile Include="Converters\EventDateDisplayConverter.cs" />
-    <Compile Include="Converters\EventDayDisplayConverter.cs" />
-    <Compile Include="Converters\EventDayNumberDisplayConverter.cs" />
-    <Compile Include="Converters\EventTimeDisplayConverter.cs" />
-    <Compile Include="Converters\HumanizeDateConverter.cs" />
-    <Compile Include="Converters\ImageConverters.cs" />
-    <Compile Include="Converters\RatingConverter.cs" />
-    <Compile Include="Converters\SpeakerImageConverter.cs" />
-    <Compile Include="Converters\StringConverters.cs" />
-    <Compile Include="Converters\TalkDateDisplayConverter.cs" />
-    <Compile Include="Effects\ShadowEffect.cs" />
-    <Compile Include="Pages\BottomTabbedPage.xaml.cs">
-      <DependentUpon>BottomTabbedPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Home\ConferenceFeedbackPage.xaml.cs">
-      <DependentUpon>ConferenceFeedbackPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Info\TechnologiesUsedPage.xaml.cs">
-      <DependentUpon>TechnologiesUsedPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Speakers\SpeakerDetailsPageUWP.xaml.cs">
-      <DependentUpon>SpeakerDetailsPageUWP.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Windows\MenuPageUWP.xaml.cs">
-      <DependentUpon>MenuPageUWP.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Windows\RootPage.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Controls\EvolveNavigationPage.cs" />
-    <Compile Include="Pages\Android\RootPage.cs" />
-    <Compile Include="Pages\Android\MenuPage.xaml.cs">
-      <DependentUpon>MenuPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Obsolete\AboutPage.xaml.cs">
-      <DependentUpon>AboutPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Behaviors\StarBehavior.cs" />
-    <Compile Include="Pages\Sessions\MeetupPage.xaml.cs">
-      <DependentUpon>MeetupPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Sessions\FilterSessionsPage.xaml.cs">
-      <DependentUpon>FilterSessionsPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Sessions\TalkPage.xaml.cs">
-      <DependentUpon>TalkPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\NavigationView.cs" />
-    <Compile Include="Cells\TextViewValue1.cs" />
-    <Compile Include="Cells\SpeakerCell.xaml.cs">
-      <DependentUpon>SpeakerCell.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Cells\SessionCell.xaml.cs">
-      <DependentUpon>SessionCell.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Cells\CategoryCellView.xaml.cs">
-      <DependentUpon>CategoryCellView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Speakers\SpeakerDetailsPage.xaml.cs">
-      <DependentUpon>SpeakerDetailsPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Friends\FriendsPage.xaml.cs">
-      <DependentUpon>FriendsPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Friends\FriendDetailsPage.xaml.cs">
-      <DependentUpon>FriendDetailsPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Events\MeetupsPage.xaml.cs">
-      <DependentUpon>MeetupsPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Info\SettingsPage.xaml.cs">
-      <DependentUpon>SettingsPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\LabelSection.xaml.cs">
-      <DependentUpon>LabelSection.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\SectionDivider.xaml.cs">
-      <DependentUpon>SectionDivider.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\NonScrollableListView.cs" />
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\CardView.cs" />
-    <Compile Include="Cells\EvolveGroupHeaderView.xaml.cs">
-      <DependentUpon>EvolveGroupHeaderView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\ParallaxScrollView.cs" />
-    <Compile Include="Controls\HeaderDivider.xaml.cs">
-      <DependentUpon>HeaderDivider.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\FooterDivider.xaml.cs">
-      <DependentUpon>FooterDivider.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Cells\TweetCell.xaml.cs">
-      <DependentUpon>TweetCell.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Home\NewsPage.xaml.cs">
-      <DependentUpon>NewsPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Home\TweetImagePage.xaml.cs">
-      <DependentUpon>TweetImagePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Home\NotificationsPage.xaml.cs">
-      <DependentUpon>NotificationsPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Cells\FriendCell.xaml.cs">
-      <DependentUpon>FriendCell.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Cells\NotificationCell.xaml.cs">
-      <DependentUpon>NotificationCell.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Helpers\NavigationService.cs" />
-    <Compile Include="Pages\Sessions\FeedbackPage.xaml.cs">
-      <DependentUpon>FeedbackPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\AlwaysScrollView.cs" />
-    <Compile Include="Controls\PinchToZoomContainer.cs" />
-    <Compile Include="Controls\WrapLayout.cs" />
-    <Compile Include="Pages\Speakers\SpeakersPage.xaml.cs">
-      <DependentUpon>SpeakersPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\BasePage.cs" />
-    <Compile Include="Controls\Rating3Control.xaml.cs">
-      <DependentUpon>Rating3Control.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ViewModelLocator.cs" />
-    <Compile Include="Pages\Speakers\SpeakerFacePage.xaml.cs">
-      <DependentUpon>SpeakerFacePage.xaml</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
-  <ItemGroup>
-    <ProjectReference Include="..\DotNetRu.Clients.Portable\DotNetRu.Clients.Portable.csproj">
-      <Project>{434442F3-9AF2-4A19-9151-EFBD731BD367}</Project>
-      <Name>DotNetRu.Clients.Portable</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\DotNetRu.Clients.Portable\DotNetRu.Clients.Portable.csproj" />
     <ProjectReference Include="..\DotNetRu.DataStore.Audit\DotNetRu.DataStore.Audit.csproj">
       <Project>{7B4C73DF-8A4A-4AD1-92D9-A064065CDD71}</Project>
       <Name>DotNetRu.DataStore.Audit</Name>
@@ -216,12 +33,6 @@
       <Project>{dfa0f0f6-c396-412e-86a9-e9095f71cc36}</Project>
       <Name>DotNetRu.Utils</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Pages\Android\MenuPage.xaml">

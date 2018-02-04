@@ -1,93 +1,14 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DFA0F0F6-C396-412E-86A9-E9095F71CC36}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DotNetRu.Utils</RootNamespace>
-    <AssemblyName>DotNetRu.Utils</AssemblyName>
-    <DefaultLanguage>en-US</DefaultLanguage>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <TargetFrameworkProfile>Profile44</TargetFrameworkProfile>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
+    <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>
-    </DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'UITest|AnyCPU' ">
-    <Optimize>false</Optimize>
-    <OutputPath>bin\UITest</OutputPath>
-    <DefineConstants>ENABLE_TEST_CLOUD;</DefineConstants>
-    <WarningLevel>4</WarningLevel>
-    <NoStdLib>false</NoStdLib>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'UITest|iPhone' ">
-    <Optimize>false</Optimize>
-    <OutputPath>bin\iPhone\UITest</OutputPath>
-    <DefineConstants>ENABLE_TEST_CLOUD;</DefineConstants>
-    <WarningLevel>4</WarningLevel>
-    <NoStdLib>false</NoStdLib>
-  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Validation" Version="2.4.18" />
     <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
     <PackageReference Include="Xamarin.Forms" Version="2.5.0.122203" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DotNetRuLogger.cs" />
-    <Compile Include="Helpers\AboutThisApp.cs" />
-    <Compile Include="Helpers\ApiKeys.cs" />
-    <Compile Include="Helpers\Constants.cs">
-      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="Helpers\EnumExtensions.cs" />
-    <Compile Include="Helpers\LanguageCodeAttribute.cs" />
-    <Compile Include="Helpers\MessageKeys.cs" />
-    <Compile Include="Helpers\PublicationSettings.cs" />
-    <Compile Include="Helpers\Settings.cs" />
-    <Compile Include="Interfaces\ILogger.cs" />
-    <Compile Include="Interfaces\Severity.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Helpers\FeatureFlags.cs" />
-    <Compile Include="Helpers\StringExtensions.cs" />
-    <Compile Include="Interfaces\IPlatformSpecificSettings.cs" />
-    <Compile Include="Interfaces\IPlatformSpecificDataHandler.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <Reference Include="System.Xml" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-  </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>
