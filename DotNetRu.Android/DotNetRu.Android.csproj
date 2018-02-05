@@ -154,7 +154,6 @@
     <PackageReference Include="Xamarin.Android.Support.v7.Palette" Version="26.1.0.1" />
     <PackageReference Include="Xamarin.Android.Support.v7.RecyclerView" Version="26.1.0.1" />
     <PackageReference Include="Xamarin.Android.Support.Vector.Drawable" Version="26.1.0.1" />
-    <PackageReference Include="Xamarin.Build.Download" Version="0.4.7" />
     <PackageReference Include="Xamarin.FFImageLoading" Version="2.3.4" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.3.4" />
     <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.3.4" />
