@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -127,37 +127,6 @@
     <ConsolePause>false</ConsolePause>
     <CodesignKey>iPhone Developer</CodesignKey>
     <DefineConstants>ENABLE_TEST_CLOUD;MOBILE</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'UITest|iPhone' ">
-    <Optimize>true</Optimize>
-    <OutputPath>bin\iPhone\UITest</OutputPath>
-    <WarningLevel>4</WarningLevel>
-    <CodesignKey>iPhone Distribution</CodesignKey>
-    <DefineConstants>ENABLE_TEST_CLOUD;MOBILE</DefineConstants>
-    <MtouchUseLlvm>true</MtouchUseLlvm>
-    <IpaPackageName>
-    </IpaPackageName>
-    <MtouchArch>ARMv7, ARM64</MtouchArch>
-    <BuildIpa>true</BuildIpa>
-    <CodesignProvision>Automatic:InHouse</CodesignProvision>
-    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'UITest|AnyCPU' ">
-    <Optimize>true</Optimize>
-    <OutputPath>bin\UITest</OutputPath>
-    <WarningLevel>4</WarningLevel>
-    <DefineConstants>ENABLE_TEST_CLOUD;MOBILE</DefineConstants>
-    <CodesignProvision>Automatic:InHouse</CodesignProvision>
-    <CodesignKey>iPhone Distribution</CodesignKey>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'UITest|iPhoneSimulator' ">
-    <Optimize>false</Optimize>
-    <OutputPath>bin\iPhoneSimulator\UITest</OutputPath>
-    <WarningLevel>4</WarningLevel>
-    <MtouchLink>None</MtouchLink>
-    <DefineConstants>ENABLE_TEST_CLOUD;MOBILE</DefineConstants>
-    <CodesignKey>iPhone Developer</CodesignKey>
-    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <DocumentationFile>bin\Debug\DotNetRu.iOS.xml</DocumentationFile>
@@ -407,36 +376,13 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\icon_paperclip.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\icon_paperclip%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\icon_paperclip%403x.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\icon_code.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\icon_code%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\icon_code%403x.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\friends.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\ic_splash.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\loading_apple.gif" />
   </ItemGroup>
 </Project>
