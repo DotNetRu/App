@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -11,7 +11,7 @@
     <AssemblyName>XamarinEvolve.UWP</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion>10.0.10240.0</TargetPlatformVersion>
+    <TargetPlatformVersion>10.0.16299.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
@@ -178,7 +178,6 @@
     <Content Include="icon_presentation.png" />
     <Content Include="icon_video.png" />
     <Content Include="menu_evals.png" />
-    <None Include="Package.StoreAssociation.xml" />
     <Content Include="menu_speakers.png" />
     <Content Include="star_outline.png" />
     <Content Include="star_selected.png" />
@@ -190,7 +189,6 @@
     <Content Include="toolbar_share.png" />
     <None Include="packages.config" />
     <None Include="project.json" />
-    <None Include="XamarinEvolve.UWP_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -283,62 +281,21 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\XamarinEvolve.Clients.Portable\XamarinEvolve.Clients.Portable.csproj">
-      <Project>{434442f3-9af2-4a19-9151-efbd731bd367}</Project>
-      <Name>XamarinEvolve.Clients.Portable</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\XamarinEvolve.Clients.UI\XamarinEvolve.Clients.UI.csproj">
-      <Project>{cd2623bd-3609-4be9-80ef-0974f3a1a27d}</Project>
-      <Name>XamarinEvolve.Clients.UI</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\XamarinEvolve.DataStore.Abstractions\XamarinEvolve.DataStore.Abstractions.csproj">
-      <Project>{50542ac8-cd37-4e51-b946-b85049d6ec11}</Project>
-      <Name>XamarinEvolve.DataStore.Abstractions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\XamarinEvolve.DataStore.Azure\XamarinEvolve.DataStore.Azure.csproj">
-      <Project>{5087b261-9d0f-457d-ad9e-b018248f1b16}</Project>
-      <Name>XamarinEvolve.DataStore.Azure</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\XamarinEvolve.DataStore.Mock\XamarinEvolve.DataStore.Mock.csproj">
-      <Project>{4df18ed7-0e19-4866-8d9b-b1cb5c86a366}</Project>
-      <Name>XamarinEvolve.DataStore.Mock</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\XamarinEvolve.Utils\XamarinEvolve.Utils.csproj">
-      <Project>{dfa0f0f6-c396-412e-86a9-e9095f71cc36}</Project>
-      <Name>XamarinEvolve.Utils</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Renderers\" />
   </ItemGroup>
   <ItemGroup>
-    <SDKReference Include="Microsoft.VCLibs, Version=14.0">
-      <Name>Visual C++ 2015 Runtime for Universal Windows Platform Apps</Name>
-    </SDKReference>
-    <SDKReference Include="SQLite.UWP.2015, Version=3.13.0">
-      <Name>SQLite for Universal Windows Platform %28SQLite.UWP.2015, Version=3.13.0%29</Name>
-    </SDKReference>
-    <SDKReference Include="WindowsMobile, Version=10.0.10240.0">
-      <Name>Windows Mobile Extensions for the UWP</Name>
-    </SDKReference>
+    <ProjectReference Include="..\DotNetRu.Clients.Portable\DotNetRu.Clients.Portable.csproj">
+      <Project>{434442f3-9af2-4a19-9151-efbd731bd367}</Project>
+      <Name>DotNetRu.Clients.Portable</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotNetRu.Clients.UI\DotNetRu.Clients.UI.csproj">
+      <Project>{cd2623bd-3609-4be9-80ef-0974f3a1a27d}</Project>
+      <Name>DotNetRu.Clients.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotNetRu.Utils\DotNetRu.Utils.csproj">
+      <Project>{dfa0f0f6-c396-412e-86a9-e9095f71cc36}</Project>
+      <Name>DotNetRu.Utils</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-  </ItemGroup>
-  <Import Project="..\XamarinEvolve.Shared\XamarinEvolve.Shared.projitems" Label="Shared" />
-  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
-    <VisualStudioVersion>14.0</VisualStudioVersion>
-  </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>
