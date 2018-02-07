@@ -6,11 +6,13 @@
     using CoreSpotlight;
 
     using DotNetRu.Clients.Portable.Model;
+    using DotNetRu.Clients.UI;
     using DotNetRu.iOS.Renderers;
     using DotNetRu.Utils.Helpers;
     using DotNetRu.Utils.Interfaces;
 
     using FFImageLoading.Forms.Touch;
+    using FFImageLoading.Transformations;
 
     using FormsToolkit;
     using FormsToolkit.iOS;
@@ -40,32 +42,7 @@
         public override void WillEnterForeground(UIApplication uiApplication)
         {
             base.WillEnterForeground(uiApplication);
-            ((DotNetRu.Clients.UI.App)Xamarin.Forms.Application.Current).SecondOnResume();
-        }
-
-        public override void RegisteredForRemoteNotifications(UIApplication app, NSData deviceToken)
-        {
-            // #if ENABLE_TEST_CLOUD
-
-            // #else
-
-            // if (ApiKeys.AzureServiceBusUrl == nameof(ApiKeys.AzureServiceBusUrl))
-            // return;
-
-            // // Connection string from your azure dashboard
-            // var cs = SBConnectionString.CreateListenAccess(
-            // new NSUrl(ApiKeys.AzureServiceBusUrl),
-            // ApiKeys.AzureKey);
-
-            // // Register our info with Azure
-            // var hub = new SBNotificationHub (cs, ApiKeys.AzureHubName);
-            // hub.RegisterNativeAsync (deviceToken, null, err => {
-            // if (err != null)
-            // Console.WriteLine("Error: " + err.Description);
-            // else
-            // Console.WriteLine("Success");
-            // });
-            // #endif
+            ((App)Xamarin.Forms.Application.Current).SecondOnResume();
         }
 
         public override void ReceivedRemoteNotification(UIApplication app, NSDictionary userInfo)
@@ -78,7 +55,7 @@
         {
             if (!string.IsNullOrEmpty(url.AbsoluteString))
             {
-                ((DotNetRu.Clients.UI.App)Xamarin.Forms.Application.Current).SendOnAppLinkRequestReceived(new Uri(url.AbsoluteString));
+                ((App)Xamarin.Forms.Application.Current).SendOnAppLinkRequestReceived(new Uri(url.AbsoluteString));
                 return true;
             }
 
@@ -89,7 +66,7 @@
         {
             if (!string.IsNullOrEmpty(url.AbsoluteString))
             {
-                ((DotNetRu.Clients.UI.App)Xamarin.Forms.Application.Current).SendOnAppLinkRequestReceived(new Uri(url.AbsoluteString));
+                ((App)Xamarin.Forms.Application.Current).SendOnAppLinkRequestReceived(new Uri(url.AbsoluteString));
                 return true;
             }
 
@@ -104,13 +81,12 @@
         {
             if (!string.IsNullOrEmpty(url.AbsoluteString))
             {
-                ((DotNetRu.Clients.UI.App)Xamarin.Forms.Application.Current).SendOnAppLinkRequestReceived(new Uri(url.AbsoluteString));
+                ((App)Xamarin.Forms.Application.Current).SendOnAppLinkRequestReceived(new Uri(url.AbsoluteString));
                 return true;
             }
 
             return false;
         }
-
 
         public override bool FinishedLaunching(UIApplication uiApplication, NSDictionary launchOptions)
         {
@@ -120,7 +96,7 @@
 
             InitializeDependencies();
 
-            this.LoadApplication(new DotNetRu.Clients.UI.App());
+            this.LoadApplication(new App());
 
             InitializeThemeColors();
 
@@ -161,6 +137,8 @@
             PullToRefreshLayoutRenderer.Init();
 
             CachedImageRenderer.Init();
+
+            var ignore = new CircleTransformation();
         }
 
         private static void InitializeThemeColors()
@@ -182,9 +160,8 @@
 
         private void DidBecomeActive(NSNotification notification)
         {
-            ((Clients.UI.App)Xamarin.Forms.Application.Current).SecondOnResume();
+            ((App)Xamarin.Forms.Application.Current).SecondOnResume();
         }
-
 
         private void ProcessNotification(NSDictionary userInfo)
         {
@@ -260,7 +237,7 @@
             }
 
             if (!string.IsNullOrEmpty(link))
-                ((DotNetRu.Clients.UI.App)Xamarin.Forms.Application.Current).SendOnAppLinkRequestReceived(new Uri(link));
+                ((App)Xamarin.Forms.Application.Current).SendOnAppLinkRequestReceived(new Uri(link));
         }
 
         // if app is already running
