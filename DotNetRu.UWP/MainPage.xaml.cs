@@ -7,6 +7,8 @@ namespace DotNetRu.UWP
     using System;
     using System.Diagnostics;
 
+    using DotNetRu.Clients.UI.Pages.Windows;
+
     using Windows.Foundation;
     using Windows.System.Profile;
     using Windows.UI.ViewManagement;
@@ -21,11 +23,10 @@ namespace DotNetRu.UWP
         {
             InitializeComponent();
 
-            XamarinEvolve.Clients.UI.RootPageWindows.IsDesktop = AnalyticsInfo.VersionInfo.DeviceFamily == "Windows.Desktop";
+            RootPageWindows.IsDesktop = AnalyticsInfo.VersionInfo.DeviceFamily == "Windows.Desktop";
             try
             {
-                ZXing.Net.Mobile.Forms.WindowsUniversal.ZXingScannerViewRenderer.Init();
-                LoadApplication(new XamarinEvolve.Clients.UI.App());
+                LoadApplication(new Clients.UI.App());
             }
             catch (Exception e)
             {

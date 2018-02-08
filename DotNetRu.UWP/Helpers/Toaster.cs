@@ -3,8 +3,11 @@
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(Toaster))]
+
 namespace DotNetRu.UWP.Helpers
 {
+    using DotNetRu.Clients.Portable.Interfaces;
+
     using Windows.UI.Popups;
 
     using Xamarin.Forms;
