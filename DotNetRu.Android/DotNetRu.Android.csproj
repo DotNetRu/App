@@ -86,7 +86,6 @@
     <PackageReference Include="Plugin.Share" Version="7.1.1" />
     <PackageReference Include="Refractored.Controls.CircleImageView" Version="1.0.1" />
     <PackageReference Include="Refractored.MvvmHelpers" Version="1.3.0" />
-    <PackageReference Include="Validation" Version="2.4.18" />
     <PackageReference Include="Xam.Plugin.Connectivity" Version="3.1.1" />
     <PackageReference Include="Xam.Plugins.Forms.ImageCircle" Version="2.0.2" />
     <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
@@ -100,7 +99,6 @@
     <PackageReference Include="Xamarin.Android.Support.Core.Utils" Version="26.1.0.1" />
     <PackageReference Include="Xamarin.Android.Support.CustomTabs" Version="26.1.0.1" />
     <PackageReference Include="Xamarin.Android.Support.Design" Version="26.1.0.1" />
-    <PackageReference Include="Xamarin.Android.Support.Exif" Version="26.1.0.1" />
     <PackageReference Include="Xamarin.Android.Support.Fragment" Version="26.1.0.1" />
     <PackageReference Include="Xamarin.Android.Support.Media.Compat" Version="26.1.0.1" />
     <PackageReference Include="Xamarin.Android.Support.Transition" Version="26.1.0.1" />
@@ -114,13 +112,7 @@
     <PackageReference Include="Xamarin.FFImageLoading" Version="2.3.4" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.3.4" />
     <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.3.4" />
-    <PackageReference Include="Xamarin.Firebase.AppIndexing" Version="60.1142.0" />
-    <PackageReference Include="Xamarin.Firebase.Common" Version="60.1142.0" />
     <PackageReference Include="Xamarin.Forms" Version="2.5.0.122203" />
-    <PackageReference Include="Xamarin.GooglePlayServices.AppIndexing" Version="60.1142.0" />
-    <PackageReference Include="Xamarin.GooglePlayServices.Base" Version="60.1142.0" />
-    <PackageReference Include="Xamarin.GooglePlayServices.Basement" Version="60.1142.0" />
-    <PackageReference Include="Xamarin.GooglePlayServices.Tasks" Version="60.1142.0" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -141,11 +133,7 @@
     <Compile Include="Renderers\ImageCellEx.cs" />
     <Compile Include="Renderers\SwitchCellEx.cs" />
     <Compile Include="Helpers\Toaster.cs" />
-    <Compile Include="Notifications\GcmBroadcastReceiver.cs" />
-    <Compile Include="Notifications\GcmService.cs" />
     <Compile Include="Renderers\EvolveSearchBarRenderer.cs" />
-    <Compile Include="Backgrounding\DataRefreshService.cs" />
-    <Compile Include="Backgrounding\DataRefreshServiceBinder.cs" />
     <Compile Include="Helpers\ListViewSelectionOnTopEffect.cs" />
     <Compile Include="Helpers\AppVersionProvider.cs" />
   </ItemGroup>
@@ -345,6 +333,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\loading_apple.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Notifications\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
