@@ -64,8 +64,9 @@
     <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
     <Debugger>Xamarin</Debugger>
     <DebugSymbols>False</DebugSymbols>
-    <AndroidEnableMultiDex>true</AndroidEnableMultiDex>
+    <AndroidEnableMultiDex>false</AndroidEnableMultiDex>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <AndroidCreatePackagePerAbi>true</AndroidCreatePackagePerAbi>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'UITest|AnyCPU' ">
     <Optimize>true</Optimize>
@@ -198,20 +199,9 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\ic_evals.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_evals.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_evals.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_evals.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_evals.png" />
     <AndroidResource Include="Resources\drawable-hdpi\menu_evals.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\menu_evals.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\menu_evals.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\newicon.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\icon_linkapptoweb.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\icon_linkapptoweb.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\icon_linkapptoweb.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\icon_linkapptoweb.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\icon_linkapptoweb.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\menu_speakers.png" />
     <AndroidResource Include="Resources\drawable-hdpi\menu_speakers.png" />
     <AndroidResource Include="Resources\drawable-mdpi\menu_speakers.png" />
@@ -222,36 +212,6 @@
     <AndroidResource Include="Resources\drawable-xhdpi\icon_facebook.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\icon_facebook.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\icon_facebook.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\star_outline.png">
-      <DeployService-Deploy>True</DeployService-Deploy>
-    </AndroidResource>
-    <AndroidResource Include="Resources\drawable-hdpi\star_selected.png">
-      <DeployService-Deploy>True</DeployService-Deploy>
-    </AndroidResource>
-    <AndroidResource Include="Resources\drawable-mdpi\star_outline.png">
-      <DeployService-Deploy>True</DeployService-Deploy>
-    </AndroidResource>
-    <AndroidResource Include="Resources\drawable-mdpi\star_selected.png">
-      <DeployService-Deploy>True</DeployService-Deploy>
-    </AndroidResource>
-    <AndroidResource Include="Resources\drawable-xhdpi\star_outline.png">
-      <DeployService-Deploy>True</DeployService-Deploy>
-    </AndroidResource>
-    <AndroidResource Include="Resources\drawable-xhdpi\star_selected.png">
-      <DeployService-Deploy>True</DeployService-Deploy>
-    </AndroidResource>
-    <AndroidResource Include="Resources\drawable-xxhdpi\star_outline.png">
-      <DeployService-Deploy>True</DeployService-Deploy>
-    </AndroidResource>
-    <AndroidResource Include="Resources\drawable-xxhdpi\star_selected.png">
-      <DeployService-Deploy>True</DeployService-Deploy>
-    </AndroidResource>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\star_outline.png">
-      <DeployService-Deploy>True</DeployService-Deploy>
-    </AndroidResource>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\star_selected.png">
-      <DeployService-Deploy>True</DeployService-Deploy>
-    </AndroidResource>
     <AndroidResource Include="Resources\drawable-hdpi\icon_presentation.png" />
     <AndroidResource Include="Resources\drawable-hdpi\icon_video.png" />
     <AndroidResource Include="Resources\drawable-mdpi\icon_presentation.png" />
@@ -272,13 +232,6 @@
     </AndroidResource>
     <AndroidResource Include="Resources\layout\tabs.axml" />
     <AndroidResource Include="Resources\layout\drawer_header.axml" />
-    <AndroidResource Include="Resources\drawable-hdpi\heart_empty.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\heart_filled.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\heart_empty.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\heart_filled.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\heart_empty.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\heart_filled.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\menu_hacks.png" />
     <AndroidResource Include="Resources\drawable-hdpi\menu_sponsors.png" />
     <AndroidResource Include="Resources\drawable-hdpi\menu_events.png" />
     <AndroidResource Include="Resources\drawable-hdpi\menu_venue.png" />
@@ -286,9 +239,7 @@
     <AndroidResource Include="Resources\drawable-hdpi\menu_info.png" />
     <AndroidResource Include="Resources\drawable-hdpi\menu_sessions.png" />
     <AndroidResource Include="Resources\drawable-hdpi\menu_settings.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\toolbar_filter.png" />
     <AndroidResource Include="Resources\drawable-hdpi\toolbar_share.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\menu_hacks.png" />
     <AndroidResource Include="Resources\drawable-mdpi\menu_sponsors.png" />
     <AndroidResource Include="Resources\drawable-mdpi\menu_events.png" />
     <AndroidResource Include="Resources\drawable-mdpi\menu_venue.png" />
@@ -296,9 +247,7 @@
     <AndroidResource Include="Resources\drawable-mdpi\menu_info.png" />
     <AndroidResource Include="Resources\drawable-mdpi\menu_sessions.png" />
     <AndroidResource Include="Resources\drawable-mdpi\menu_settings.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\toolbar_filter.png" />
     <AndroidResource Include="Resources\drawable-mdpi\toolbar_share.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\menu_hacks.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\menu_sponsors.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\menu_events.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\menu_venue.png" />
@@ -306,7 +255,6 @@
     <AndroidResource Include="Resources\drawable-xhdpi\menu_info.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\menu_sessions.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\menu_settings.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\toolbar_filter.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\toolbar_share.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\menu_sponsors.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\menu_events.png" />
@@ -314,7 +262,6 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\menu_info.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\menu_sessions.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\menu_settings.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\toolbar_filter.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\toolbar_share.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\menu_sponsors.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\menu_events.png" />
@@ -322,7 +269,6 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\menu_info.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\menu_sessions.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\menu_settings.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\toolbar_filter.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\toolbar_share.png" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_launcher.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_launcher.png" />
@@ -331,58 +277,27 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_launcher.png" />
     <AndroidResource Include="Resources\drawable-mdpi\icon_user.png" />
     <AndroidResource Include="Resources\drawable-hdpi\menu_plan.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\menu_plan.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\menu_plan.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\menu_plan.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\menu_plan.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\toolbar_close.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\toolbar_close.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\toolbar_close.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\toolbar_close.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\toolbar_close.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\profile_generic.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\profile_generic.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\profile_generic.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\profile_generic.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\profile_generic.png" />
     <AndroidResource Include="Resources\drawable-hdpi\icon_blog.png" />
     <AndroidResource Include="Resources\drawable-hdpi\icon_linkedin.png" />
     <AndroidResource Include="Resources\drawable-hdpi\icon_twitter.png" />
     <AndroidResource Include="Resources\drawable-hdpi\icon_website.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\profile_generic_big.png" />
     <AndroidResource Include="Resources\drawable-mdpi\icon_blog.png" />
     <AndroidResource Include="Resources\drawable-mdpi\icon_linkedin.png" />
     <AndroidResource Include="Resources\drawable-mdpi\icon_twitter.png" />
     <AndroidResource Include="Resources\drawable-mdpi\icon_website.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\profile_generic_big.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\icon_blog.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\icon_linkedin.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\icon_twitter.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\icon_website.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\profile_generic_big.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\icon_blog.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\icon_linkedin.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\icon_twitter.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\icon_website.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\profile_generic_big.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\icon_blog.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\icon_linkedin.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\icon_twitter.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\icon_website.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\profile_generic_big.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\icon_sessions_big_purple.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\icon_sessions_big_purple.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\icon_sessions_big_purple.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\profile_pic_shadow.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\profile_pic_shadow.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\profile_pic_shadow.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\profile_pic_shadow.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\profile_pic_shadow.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\icon_search.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\icon_search.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\icon_search.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\icon_search.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\icon_search.png" />
     <AndroidResource Include="Resources\drawable\cursor_white.xml" />
     <AndroidResource Include="Resources\drawable\searchview_background.xml" />
   </ItemGroup>
@@ -399,33 +314,6 @@
       <Project>{dfa0f0f6-c396-412e-86a9-e9095f71cc36}</Project>
       <Name>DotNetRu.Utils</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-mdpi\heart_empty.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-mdpi\heart_filled.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\icon_sessions_big_purple.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-mdpi\icon_sessions_big_purple.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\icon_paperclip.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-mdpi\icon_paperclip.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\icon_paperclip.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\icon_paperclip.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\icon_paperclip.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-hdpi\icon_code.png" />
@@ -459,9 +347,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\bnv_selector.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\values\strings.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_splash.png" />
