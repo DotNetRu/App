@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -34,7 +34,7 @@
     <RunCodeAnalysis>false</RunCodeAnalysis>
     <AssemblyName>DotNetRu.Droid</AssemblyName>
     <EmbedAssembliesIntoApk>false</EmbedAssembliesIntoApk>
-    <AndroidSupportedAbis>armeabi-v7a;x86;x86_64</AndroidSupportedAbis>
+    <AndroidSupportedAbis>armeabi-v7a;x86</AndroidSupportedAbis>
     <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
     <AndroidUseSharedRuntime>true</AndroidUseSharedRuntime>
     <BundleAssemblies>false</BundleAssemblies>
@@ -44,6 +44,8 @@
     <AndroidEnableMultiDex>false</AndroidEnableMultiDex>
     <EnableProguard>False</EnableProguard>
     <AndroidExplicitCrunch>true</AndroidExplicitCrunch>
+    <AndroidLinkSkip>
+    </AndroidLinkSkip>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <Optimize>true</Optimize>
@@ -66,7 +68,8 @@
     <DebugSymbols>False</DebugSymbols>
     <AndroidEnableMultiDex>false</AndroidEnableMultiDex>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
-    <AndroidCreatePackagePerAbi>true</AndroidCreatePackagePerAbi>
+    <AndroidCreatePackagePerAbi>false</AndroidCreatePackagePerAbi>
+    <EnableProguard>true</EnableProguard>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="DotNetRU.BottomTabbedPage" Version="0.1.0.2" />
@@ -150,6 +153,9 @@
     <AndroidAsset Include="Assets\fontawesome.ttf" />
     <AndroidAsset Include="Assets\Roboto-Bold.ttf" />
     <AndroidAsset Include="Assets\Roboto-Regular.ttf" />
+    <ProguardConfiguration Include="proguard.cfg">
+      <SubType>Designer</SubType>
+    </ProguardConfiguration>
     <None Include="Properties\AndroidManifest.xml" />
     <AndroidResource Include="Resources\drawable\Splash.axml">
       <SubType>Designer</SubType>
