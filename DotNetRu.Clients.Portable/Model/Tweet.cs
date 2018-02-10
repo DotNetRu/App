@@ -2,25 +2,14 @@
 {
     using System;
     using System.Globalization;
-    using System.Windows.Input;
-
-    using DotNetRu.Utils.Helpers;
-
-    using FormsToolkit;
 
     using Humanizer;
 
     using Newtonsoft.Json;
 
-    using Xamarin.Forms;
-
     public class Tweet
     {
         private string tweetedImage;
-
-        private string fullImage;
-
-        private ICommand fullImageCommand;
 
         [JsonIgnore]
         public bool HasImage => !string.IsNullOrWhiteSpace(this.tweetedImage);
@@ -29,14 +18,8 @@
         public string TweetedImage
         {
             get => this.tweetedImage;
-            set
-            {
-                this.tweetedImage = value;
-            }
+            set => this.tweetedImage = value;
         }
-
-        public ICommand FullImageCommand => this.fullImageCommand
-                                            ?? (this.fullImageCommand = new Command(this.ExecuteFullImageCommand));
 
         [JsonProperty("likes")]
         public int? NumberOfLikes { get; set; }
@@ -97,15 +80,5 @@
         }
 
         public bool HasAttachedImage => !string.IsNullOrWhiteSpace(this.TweetedImage);
-
-        private void ExecuteFullImageCommand()
-        {
-            if (string.IsNullOrWhiteSpace(this.fullImage))
-            {
-                return;
-            }
-
-            MessagingService.Current.SendMessage(MessageKeys.NavigateToImage, this.fullImage);
-        }
     }
 }

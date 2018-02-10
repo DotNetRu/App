@@ -1,32 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Threading.Tasks;
-using Windows.Networking.PushNotifications;
-using Windows.ApplicationModel;
-using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-using XamarinEvolve.Clients.Portable;
-using XamarinEvolve.DataStore.Abstractions;
-using Microsoft.WindowsAzure.MobileServices;
-using System.Reflection;
-using Microsoft.HockeyApp;
-using FFImageLoading.Forms.WinUWP;
-using XamarinEvolve.Utils;
-
-namespace XamarinEvolve.UWP
+﻿namespace DotNetRu.UWP
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Reflection;
+
+    using Windows.ApplicationModel;
+    using Windows.ApplicationModel.Activation;
+    using Windows.UI;
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+    using Windows.UI.Xaml.Navigation;
+
+    using FFImageLoading.Forms.WinUWP;
+
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
@@ -39,19 +25,7 @@ namespace XamarinEvolve.UWP
         public App()
         {
             this.InitializeComponent();
-            this.Suspending += OnSuspending;
-        }
-
-        private async Task InitNotificationsAsync()
-        {
-            var channel = await PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync();
-            var storeManager = Xamarin.Forms.DependencyService.Get<IStoreManager>() as XamarinEvolve.DataStore.Azure.StoreManager;
-
-            if (storeManager == null)
-                return;
-
-            await storeManager.InitializeAsync();
-            await XamarinEvolve.DataStore.Azure.StoreManager.MobileService.GetPush().RegisterAsync(channel.Uri);
+            this.Suspending += this.OnSuspending;
         }
 
         /// <summary>
@@ -59,9 +33,8 @@ namespace XamarinEvolve.UWP
         /// will be used such as when the application is launched to open a specific file.
         /// </summary>
         /// <param name="e">Details about the launch request and process.</param>
-        protected async override void OnLaunched(LaunchActivatedEventArgs e)
+        protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
-
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
             {
@@ -69,117 +42,71 @@ namespace XamarinEvolve.UWP
             }
 #endif
 
-          
-
-            Frame rootFrame = Window.Current.Content as Frame;
-
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
-            if (rootFrame == null)
+            if (!(Window.Current.Content is Frame rootFrame))
             {
                 // Create a Frame to act as the navigation context and navigate to the first page
                 rootFrame = new Frame();
 
-                rootFrame.NavigationFailed += OnNavigationFailed;
+                rootFrame.NavigationFailed += this.OnNavigationFailed;
 
                 // you'll need to add `using System.Reflection;`
                 List<Assembly> assembliesToInclude = new List<Assembly>();
 
-                //Now, add in all the assemblies your app uses
-                assembliesToInclude.Add(typeof(Plugin.Calendars.CalendarsImplementation).GetTypeInfo().Assembly);
-                assembliesToInclude.Add(typeof(Plugin.Calendars.Abstractions.Calendar).GetTypeInfo().Assembly);
-                assembliesToInclude.Add(typeof(Censored.Censor).GetTypeInfo().Assembly);
+                // Now, add in all the assemblies your app uses
                 assembliesToInclude.Add(typeof(FormsToolkit.HasDataConverter).GetTypeInfo().Assembly);
                 assembliesToInclude.Add(typeof(Humanizer.DateHumanizeExtensions).GetTypeInfo().Assembly);
-                assembliesToInclude.Add(typeof(Microsoft.WindowsAzure.MobileServices.MobileServiceClient).GetTypeInfo().Assembly);
-                assembliesToInclude.Add(typeof(Microsoft.WindowsAzure.MobileServices.Sync.MobileServiceSyncHandler).GetTypeInfo().Assembly);
                 assembliesToInclude.Add(typeof(System.Net.Http.HttpClient).GetTypeInfo().Assembly);
                 assembliesToInclude.Add(typeof(Newtonsoft.Json.JsonConvert).GetTypeInfo().Assembly);
-                assembliesToInclude.Add(typeof(NodaTime.DateTimeZone).GetTypeInfo().Assembly);
-                assembliesToInclude.Add(typeof(PCLStorage.FileSystem).GetTypeInfo().Assembly);
                 assembliesToInclude.Add(typeof(Plugin.Permissions.PermissionsImplementation).GetTypeInfo().Assembly);
                 assembliesToInclude.Add(typeof(Plugin.Permissions.Abstractions.Permission).GetTypeInfo().Assembly);
                 assembliesToInclude.Add(typeof(Plugin.Share.ShareImplementation).GetTypeInfo().Assembly);
                 assembliesToInclude.Add(typeof(Plugin.Share.Abstractions.ShareColor).GetTypeInfo().Assembly);
                 assembliesToInclude.Add(typeof(MvvmHelpers.ObservableObject).GetTypeInfo().Assembly);
-                assembliesToInclude.Add(typeof(Refractored.XamForms.PullToRefresh.PullToRefreshLayout).GetTypeInfo().Assembly);
+                assembliesToInclude.Add(
+                    typeof(Refractored.XamForms.PullToRefresh.PullToRefreshLayout).GetTypeInfo().Assembly);
                 assembliesToInclude.Add(typeof(Plugin.Connectivity.ConnectivityImplementation).GetTypeInfo().Assembly);
-                assembliesToInclude.Add(typeof(Plugin.Connectivity.Abstractions.BaseConnectivity).GetTypeInfo().Assembly);
-                assembliesToInclude.Add(typeof(Plugin.EmbeddedResource.ResourceLoader).GetTypeInfo().Assembly);
-                assembliesToInclude.Add(typeof(Plugin.ExternalMaps.ExternalMapsImplementation).GetTypeInfo().Assembly);
-                assembliesToInclude.Add(typeof(Plugin.ExternalMaps.Abstractions.NavigationType).GetTypeInfo().Assembly);
-                assembliesToInclude.Add(typeof(ImageCircle.Forms.Plugin.UWP.ImageCircleRenderer).GetTypeInfo().Assembly);
-                assembliesToInclude.Add(typeof(ImageCircle.Forms.Plugin.Abstractions.CircleImage).GetTypeInfo().Assembly);
-                assembliesToInclude.Add(typeof(Plugin.Messaging.CrossMessaging).GetTypeInfo().Assembly);
+                assembliesToInclude.Add(
+                    typeof(Plugin.Connectivity.Abstractions.BaseConnectivity).GetTypeInfo().Assembly);
+                assembliesToInclude.Add(
+                    typeof(ImageCircle.Forms.Plugin.UWP.ImageCircleRenderer).GetTypeInfo().Assembly);
+                assembliesToInclude.Add(
+                    typeof(ImageCircle.Forms.Plugin.Abstractions.CircleImage).GetTypeInfo().Assembly);
                 assembliesToInclude.Add(typeof(Plugin.Settings.SettingsImplementation).GetTypeInfo().Assembly);
                 assembliesToInclude.Add(typeof(Plugin.Settings.Abstractions.ISettings).GetTypeInfo().Assembly);
-                assembliesToInclude.Add(typeof(Xamarin.Insights).GetTypeInfo().Assembly);
                 assembliesToInclude.Add(typeof(XamarinEvolve.Clients.Portable.Settings).GetTypeInfo().Assembly);
-                assembliesToInclude.Add(typeof(XamarinEvolve.Clients.UI.AboutPage).GetTypeInfo().Assembly);
-                assembliesToInclude.Add(typeof(XamarinEvolve.DataStore.Abstractions.ICategoryStore).GetTypeInfo().Assembly);
-                assembliesToInclude.Add(typeof(XamarinEvolve.DataStore.Azure.CategoryStore).GetTypeInfo().Assembly);
-                assembliesToInclude.Add(typeof(XamarinEvolve.DataStore.Mock.CategoryStore).GetTypeInfo().Assembly);
-                assembliesToInclude.Add(typeof(XamarinEvolve.Clients.Portable.FavoriteService).GetTypeInfo().Assembly);
-                assembliesToInclude.Add(typeof(ZXing.BarcodeReader).GetTypeInfo().Assembly);
-                assembliesToInclude.Add(typeof(ZXing.Net.Mobile.Forms.WindowsUniversal.ZXingScannerViewRenderer).GetTypeInfo().Assembly);
-                assembliesToInclude.Add(typeof(Xamarin.FormsMaps).GetTypeInfo().Assembly);
                 assembliesToInclude.Add(typeof(Xamarin.Forms.MasterDetailPage).GetTypeInfo().Assembly);
                 assembliesToInclude.Add(typeof(Xamarin.Forms.Platform.UWP.MasterDetailControl).GetTypeInfo().Assembly);
-                assembliesToInclude.Add(typeof(Windows.UI.Xaml.Automation.Peers.AccessibilityView).GetTypeInfo().Assembly);
+                assembliesToInclude.Add(
+                    typeof(Windows.UI.Xaml.Automation.Peers.AccessibilityView).GetTypeInfo().Assembly);
 
-                //assembliesToInclude.Add(typeof(FFImageLoading.Forms.CachedImage).GetTypeInfo().Assembly);
-                //assembliesToInclude.Add(typeof(FFImageLoading.FFImage).GetTypeInfo().Assembly);
-                //assembliesToInclude.Add(typeof(FFImageLoading.Transformations.CropTransformation).GetTypeInfo().Assembly);
+                // assembliesToInclude.Add(typeof(FFImageLoading.Forms.CachedImage).GetTypeInfo().Assembly);
+                // assembliesToInclude.Add(typeof(FFImageLoading.FFImage).GetTypeInfo().Assembly);
+                // assembliesToInclude.Add(typeof(FFImageLoading.Transformations.CropTransformation).GetTypeInfo().Assembly);
 
-                if (FeatureFlags.GoogleAnalyticsEnabled)
-                {
-                    assembliesToInclude.Add(typeof(Plugin.GoogleAnalytics.Tracker).GetTypeInfo().Assembly);
-                    assembliesToInclude.Add(typeof(Plugin.GoogleAnalytics.Abstractions.IDeviceInfo).GetTypeInfo().Assembly);
-                }
-
-                //Also do this for all your other 3rd party libraries
-
+                // Also do this for all your other 3rd party libraries
                 Xamarin.Forms.Forms.Init(e, assembliesToInclude);
-                Xamarin.FormsMaps.Init(ApiKeys.BingMapsUWPKey);
-                ViewModelBase.Init();
 
                 CachedImageRenderer.Init();
 
                 // If we are on mobile (Hence having the status bar API), set the status bar color to purple.
                 if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
                 {
-                    var statusBar = Windows.UI.ViewManagement.StatusBar.GetForCurrentView();
+                    // var statusBar = Windows.UI.ViewManagement.StatusBar.GetForCurrentView();
+                    // statusBar.BackgroundColor = windowsColor;
+                    // statusBar.BackgroundOpacity = 1;
 
                     // Set this to any Windows Color or ARGB value.
                     // TODO: replace with theme color (in visual studio)
 
-                    //var formsColor = (Xamarin.Forms.Color)Application.Current.Resources["Primary"];
-                    var windowsColor = Color.FromArgb(
-                        (byte)(255),
-                        (byte)(0),
-                        (byte)(120),
-                        (byte)(215));
-
-                    statusBar.BackgroundColor = windowsColor;
-                    statusBar.BackgroundOpacity = 1;
-                }
-
-                try
-                {
-                    await InitNotificationsAsync();
-                }
-                catch
-                {
-                }
-
-                if (ApiKeys.HockeyAppUWP != nameof(ApiKeys.HockeyAppUWP))
-                {
-                    HockeyClient.Current.Configure(ApiKeys.HockeyAppUWP);
+                    // var formsColor = (Xamarin.Forms.Color)Application.Current.Resources["Primary"];
+                    var windowsColor = Color.FromArgb((byte)255, (byte)0, (byte)120, (byte)215);
                 }
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
-                    //TODO: Load state from previously suspended application
+                    // TODO: Load state from previously suspended application
                 }
 
                 // Place the frame in the current Window
@@ -193,6 +120,7 @@ namespace XamarinEvolve.UWP
                 // parameter
                 rootFrame.Navigate(typeof(MainPage), e.Arguments);
             }
+
             // Ensure the current window is active
             Window.Current.Activate();
         }
@@ -217,7 +145,8 @@ namespace XamarinEvolve.UWP
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();
-            //TODO: Save application state and stop any background activity
+
+            // TODO: Save application state and stop any background activity
             deferral.Complete();
         }
     }

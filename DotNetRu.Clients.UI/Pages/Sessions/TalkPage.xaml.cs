@@ -1,16 +1,18 @@
-﻿using System.Linq;
-using DotNetRu.Clients.Portable.Interfaces;
-using DotNetRu.Clients.Portable.Model;
-using DotNetRu.Clients.Portable.ViewModel;
-using DotNetRu.Clients.UI.Controls;
-using DotNetRu.Clients.UI.Helpers;
-using DotNetRu.Clients.UI.Pages.Speakers;
-using DotNetRu.DataStore.Audit.Models;
-using DotNetRu.DataStore.Audit.Services;
-using Xamarin.Forms;
-
-namespace DotNetRu.Clients.UI.Pages.Sessions
+﻿namespace DotNetRu.Clients.UI.Pages.Sessions
 {
+    using System.Linq;
+
+    using DotNetRu.Clients.Portable.Interfaces;
+    using DotNetRu.Clients.Portable.Model;
+    using DotNetRu.Clients.Portable.ViewModel;
+    using DotNetRu.Clients.UI.Controls;
+    using DotNetRu.Clients.UI.Helpers;
+    using DotNetRu.Clients.UI.Pages.Speakers;
+    using DotNetRu.DataStore.Audit.Models;
+    using DotNetRu.DataStore.Audit.Services;
+
+    using Xamarin.Forms;
+
     public partial class TalkPage
     {
         private readonly IPlatformSpecificExtension<TalkModel> extension;
@@ -65,7 +67,6 @@ namespace DotNetRu.Clients.UI.Pages.Sessions
                         new EvolveNavigationPage(new FeedbackPage(this.ViewModel.TalkModel)));
                 };
             this.BindingContext = new TalkViewModel(this.Navigation, talkModel);
-            this.ViewModel.LoadSessionCommand.Execute(null);
         }
 
         public override AppPage PageType => AppPage.Talk;
