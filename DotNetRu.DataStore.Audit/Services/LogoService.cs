@@ -1,7 +1,9 @@
 ﻿namespace DotNetRu.DataStore.Audit.Services
 {
     using Xamarin.Forms;
+    using Xamarin.Forms.Internals;
 
+    [Preserve]
     public class LogoService
     {
         private static string logoPath = "DotNetRu.DataStore.Audit.Storage.logos.";
