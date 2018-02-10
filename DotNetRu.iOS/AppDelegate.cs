@@ -141,6 +141,7 @@
 
             CachedImageRenderer.Init();
 
+            // this is needed to tell linker to keep this type. See https://github.com/luberda-molinet/FFImageLoading/issues/462
             var ignore = new CircleTransformation();
         }
 
