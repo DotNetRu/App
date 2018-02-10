@@ -7273,9 +7273,6 @@ namespace DotNetRu.Droid
 			// aapt resource value: 0x7f0c0199
 			public const int MyTheme = 2131493273;
 			
-			// aapt resource value: 0x7f0c019c
-			public const int MyTheme_ActionBar = 2131493276;
-			
 			// aapt resource value: 0x7f0c019a
 			public const int MyTheme_Base = 2131493274;
 			
@@ -7363,11 +7360,11 @@ namespace DotNetRu.Droid
 			// aapt resource value: 0x7f0c0047
 			public const int RtlUnderlay_Widget_AppCompat_ActionButton_Overflow = 2131492935;
 			
-			// aapt resource value: 0x7f0c019d
-			public const int SplashTheme = 2131493277;
+			// aapt resource value: 0x7f0c019c
+			public const int SplashTheme = 2131493276;
 			
-			// aapt resource value: 0x7f0c019e
-			public const int SplashTheme_Base = 2131493278;
+			// aapt resource value: 0x7f0c019d
+			public const int SplashTheme_Base = 2131493277;
 			
 			// aapt resource value: 0x7f0c00de
 			public const int TextAppearance_AppCompat = 2131493086;
