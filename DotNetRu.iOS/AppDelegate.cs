@@ -25,8 +25,6 @@
 
     using Plugin.Share;
 
-    using Refractored.XamForms.PullToRefresh.iOS;
-
     using Social;
 
     using UIKit;
@@ -39,18 +37,21 @@
     {
         private static UIColor primaryColor;
 
+        /// <inheritdoc />
         public override void WillEnterForeground(UIApplication uiApplication)
         {
             base.WillEnterForeground(uiApplication);
             ((App)Xamarin.Forms.Application.Current).SecondOnResume();
         }
 
+        /// <inheritdoc />
         public override void ReceivedRemoteNotification(UIApplication app, NSDictionary userInfo)
         {
             // Process a notification received while the app was already open
             this.ProcessNotification(userInfo);
         }
 
+        /// <inheritdoc />
         public override bool HandleOpenURL(UIApplication application, NSUrl url)
         {
             if (!string.IsNullOrEmpty(url.AbsoluteString))
@@ -62,6 +63,7 @@
             return false;
         }
 
+        /// <inheritdoc />
         public override bool OpenUrl(UIApplication app, NSUrl url, NSDictionary options)
         {
             if (!string.IsNullOrEmpty(url.AbsoluteString))
@@ -73,6 +75,7 @@
             return false;
         }
 
+        /// <inheritdoc />
         public override bool OpenUrl(
             UIApplication application,
             NSUrl url,
@@ -88,6 +91,7 @@
             return false;
         }
 
+        /// <inheritdoc />
         public override bool FinishedLaunching(UIApplication uiApplication, NSDictionary launchOptions)
         {
             Forms.Init();
@@ -134,7 +138,6 @@
             NonScrollableListViewRenderer.Initialize();
             SelectedTabPageRenderer.Initialize();
             TextViewValue1Renderer.Init();
-            PullToRefreshLayoutRenderer.Init();
 
             CachedImageRenderer.Init();
 
@@ -255,11 +258,14 @@
 
         public bool HandleShortcutItem(UIApplicationShortcutItem shortcutItem)
         {
-            Console.WriteLine("HandleShortcutItem ");
+            Console.WriteLine("HandleShortcutItem");
             var handled = false;
 
             // Anything to process?
-            if (shortcutItem == null) return false;
+            if (shortcutItem == null)
+            {
+                return false;
+            }
 
             // Take action based on the shortcut type
             switch (shortcutItem.Type)
@@ -315,7 +321,7 @@
             return handled;
         }
 
-        void ContinueNavigation(AppPage page, string id = null)
+        private void ContinueNavigation(AppPage page, string id = null)
         {
             Console.WriteLine("ContinueNavigation");
 
@@ -326,11 +332,13 @@
                 new DeepLinkPage { Page = page, Id = id });
         }
 
+        /// <inheritdoc />
         public override void UserActivityUpdated(UIApplication application, NSUserActivity userActivity)
         {
             this.CheckForAppLink(userActivity);
         }
 
+        /// <inheritdoc />
         public override bool ContinueUserActivity(
             UIApplication application,
             NSUserActivity userActivity,
