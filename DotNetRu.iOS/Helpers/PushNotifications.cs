@@ -4,9 +4,9 @@ using DotNetRu.iOS.Helpers;
 using Foundation;
 using UIKit;
 using Xamarin.Forms;
-using XamarinEvolve.Clients.Portable;
 
-[assembly:Dependency(typeof(PushNotifications))]
+[assembly: Dependency(typeof(PushNotifications))]
+
 namespace DotNetRu.iOS.Helpers
 {
     public class PushNotifications : IPushNotifications
@@ -15,15 +15,12 @@ namespace DotNetRu.iOS.Helpers
 
         public Task<bool> RegisterForNotifications()
         {
-            Settings.Current.PushNotificationsEnabled = true;
-            Settings.Current.AttemptedPush = true;
-
-            var pushSettings = UIUserNotificationSettings.GetSettingsForTypes (
+            var pushSettings = UIUserNotificationSettings.GetSettingsForTypes(
                 UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound,
                 new NSSet ());
 
-            UIApplication.SharedApplication.RegisterUserNotificationSettings (pushSettings);
-            UIApplication.SharedApplication.RegisterForRemoteNotifications ();
+            UIApplication.SharedApplication.RegisterUserNotificationSettings(pushSettings);
+            UIApplication.SharedApplication.RegisterForRemoteNotifications();
             
             return Task.FromResult(true);
         }
