@@ -70,31 +70,11 @@
         {
             if (Device.RuntimePlatform == Device.iOS && Settings.Current.FirstRun)
             {
-#if ENABLE_TEST_CLOUD
-                MessagingService.Current.SendMessage<MessagingServiceQuestion>(MessageKeys.Question, new MessagingServiceQuestion
-                    {
-                        Title = "Push Notifications",
-                        Positive = "Let's do it!",
-                        Negative = "Maybe Later",
-						Question =
-$"We can send you updates through {EventInfo.EventName} via push notifications. Would you like to enable them now?",
-                        OnCompleted = async (success) =>
-                            {
-                                if(success)
-                                {
-                                    var push = DependencyService.Get<IPushNotifications>();
-                                    if(push != null)
-                                        await push.RegisterForNotifications();
-                                }
-                            }
-                    });
-#else
                 var push = DependencyService.Get<IPushNotifications>();
                 if (push != null)
                 {
                     await push.RegisterForNotifications();
                 }
-#endif
             }
         }
 
@@ -198,10 +178,6 @@ $"We can send you updates through {EventInfo.EventName} via push notifications. 
             }
 
             this.registered = false;
-            MessagingService.Current.Unsubscribe(MessageKeys.NavigateLogin);
-            MessagingService.Current.Unsubscribe<MessagingServiceQuestion>(MessageKeys.Question);
-            MessagingService.Current.Unsubscribe<MessagingServiceAlert>(MessageKeys.Message);
-            MessagingService.Current.Unsubscribe<MessagingServiceChoice>(MessageKeys.Choice);
 
             // Handle when your app sleeps
             CrossConnectivity.Current.ConnectivityChanged -= this.ConnectivityChanged;
