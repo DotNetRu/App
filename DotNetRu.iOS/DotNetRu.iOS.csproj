@@ -37,7 +37,7 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <MtouchArch>x86_64</MtouchArch>
-    <MtouchLink>None</MtouchLink>
+    <MtouchLink>SdkOnly</MtouchLink>
     <MtouchDebug>True</MtouchDebug>
     <MtouchProfiling>true</MtouchProfiling>
     <DeviceSpecificBuild>true</DeviceSpecificBuild>
@@ -74,7 +74,10 @@
     </CodesignProvision>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
     <BuildIpa>true</BuildIpa>
-    <MtouchSdkVersion>11.0</MtouchSdkVersion>
+    <MtouchSdkVersion>
+    </MtouchSdkVersion>
+    <MtouchFastDev>false</MtouchFastDev>
+    <MtouchLink>SdkOnly</MtouchLink>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <Optimize>true</Optimize>
@@ -83,10 +86,11 @@
     <WarningLevel>4</WarningLevel>
     <MtouchArch>i386</MtouchArch>
     <ConsolePause>false</ConsolePause>
-    <MtouchLink>None</MtouchLink>
+    <MtouchLink>SdkOnly</MtouchLink>
     <DefineConstants>ENABLE_TEST_CLOUD;MOBILE</DefineConstants>
     <CodesignKey>iPhone Distribution</CodesignKey>
-    <MtouchSdkVersion>9.2</MtouchSdkVersion>
+    <MtouchSdkVersion>
+    </MtouchSdkVersion>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
     <CodesignEntitlements>
     </CodesignEntitlements>
@@ -168,13 +172,6 @@
     <Reference Include="System.Web.Services" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\heart_empty.png" />
-    <BundleResource Include="Resources\heart_empty%402x.png" />
-    <BundleResource Include="Resources\heart_empty%403x.png" />
-    <BundleResource Include="Resources\heart_filled.png" />
-    <BundleResource Include="Resources\heart_filled%402x.png" />
-    <BundleResource Include="Resources\heart_filled%403x.png" />
-    <BundleResource Include="Resources\heroplaceholder.png" />
     <BundleResource Include="Resources\tab_events_selected.png" />
     <BundleResource Include="Resources\tab_events_selected%402x.png" />
     <BundleResource Include="Resources\tab_events_selected%403x.png" />
@@ -196,14 +193,6 @@
     <BundleResource Include="Resources\tab_feed.png" />
     <BundleResource Include="Resources\tab_feed%402x.png" />
     <BundleResource Include="Resources\tab_feed%403x.png" />
-    <BundleResource Include="Resources\Default-736h%403x.png" />
-    <BundleResource Include="Resources\Default-667h%402x.png" />
-    <BundleResource Include="Resources\Default-568h%402x.png" />
-    <BundleResource Include="Resources\Default.png" />
-    <BundleResource Include="Resources\Default%402x.png" />
-    <BundleResource Include="Resources\profile_generic.png" />
-    <BundleResource Include="Resources\profile_generic%402x.png" />
-    <BundleResource Include="Resources\profile_generic%403x.png" />
     <BundleResource Include="Resources\tab_sessions_selected.png" />
     <BundleResource Include="Resources\tab_sessions_selected%402x.png" />
     <BundleResource Include="Resources\tab_sessions_selected%403x.png" />
@@ -213,28 +202,6 @@
     <BundleResource Include="Resources\toolbar_overflow.png" />
     <BundleResource Include="Resources\toolbar_overflow%402x.png" />
     <BundleResource Include="Resources\toolbar_overflow%403x.png" />
-    <BundleResource Include="Resources\quickaction_announcements%402x.png" />
-    <BundleResource Include="Resources\quickaction_announcements%403x.png" />
-    <BundleResource Include="Resources\quickaction_events%402x.png" />
-    <BundleResource Include="Resources\quickaction_events%403x.png" />
-    <BundleResource Include="Resources\quickaction_mini-hacks%402x.png" />
-    <BundleResource Include="Resources\quickaction_mini-hacks%403x.png" />
-    <BundleResource Include="Resources\quickaction_tweet%402x.png" />
-    <BundleResource Include="Resources\quickaction_tweet%403x.png" />
-    <BundleResource Include="Resources\profile_generic_big.png" />
-    <BundleResource Include="Resources\profile_generic_big%402x.png" />
-    <BundleResource Include="Resources\profile_generic_big%403x.png" />
-    <BundleResource Include="Resources\icon_sessions_big_purple.png" />
-    <BundleResource Include="Resources\icon_sessions_big_purple%402x.png" />
-    <BundleResource Include="Resources\icon_sessions_big_purple%403x.png" />
-    <BundleResource Include="Resources\Icon.png" />
-    <BundleResource Include="Resources\Icon%402x.png" />
-    <BundleResource Include="Resources\Icon%403x.png" />
-    <BundleResource Include="Resources\profile_pic_shadow%403x.png" />
-    <BundleResource Include="Resources\profile_pic_shadow.png" />
-    <BundleResource Include="Resources\profile_pic_shadow%402x.png" />
-    <BundleResource Include="Resources\logo_launchscreen%402x.png" />
-    <BundleResource Include="Resources\logo_launchscreen.png" />
     <BundleResource Include="Resources\tab_speakers.png" />
     <BundleResource Include="Resources\tab_speakers%402x.png" />
     <BundleResource Include="Resources\tab_speakers%403x.png" />
@@ -256,15 +223,6 @@
     <BundleResource Include="Resources\icon_twitter.png" />
     <BundleResource Include="Resources\icon_twitter%402x.png" />
     <BundleResource Include="Resources\icon_twitter%403x.png" />
-    <BundleResource Include="Resources\Icon-58.png" />
-    <BundleResource Include="Resources\star_selected.png">
-      <DeployService-Deploy>True</DeployService-Deploy>
-      <LogicalName>star_selected.png</LogicalName>
-    </BundleResource>
-    <BundleResource Include="Resources\star_outline.png">
-      <DeployService-Deploy>True</DeployService-Deploy>
-      <LogicalName>star_outline.png</LogicalName>
-    </BundleResource>
     <BundleResource Include="Resources\icon_presentation.png" />
     <BundleResource Include="Resources\icon_presentation%402x.png" />
     <BundleResource Include="Resources\icon_presentation%403x.png" />
@@ -333,12 +291,10 @@
     <Compile Include="Renderers\AlwaysScrollViewRenderer.cs" />
     <Compile Include="Renderers\TextViewValue1Renderer.cs" />
     <Compile Include="Renderers\NonScrollableListViewRenderer.cs" />
-    <Compile Include="Helpers\PushNotifications.cs" />
     <Compile Include="Renderers\SelectedTabPageRenderer.cs" />
     <Compile Include="Helpers\LaunchTwitter.cs" />
     <Compile Include="Helpers\LaunchFacebook.cs" />
     <Compile Include="Helpers\AppVersionProvider.cs" />
-    <Compile Include="Helpers\NSDateExtensions.cs" />
     <Compile Include="Helpers\GroupSettingsProvider.cs" />
     <Compile Include="ShortcutIdentifier.cs" />
     <Compile Include="ViewController.cs" />
@@ -373,9 +329,6 @@
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\icon_paperclip.png" />
-    <BundleResource Include="Resources\icon_paperclip%402x.png" />
-    <BundleResource Include="Resources\icon_paperclip%403x.png" />
     <BundleResource Include="Resources\icon_code.png" />
     <BundleResource Include="Resources\icon_code%402x.png" />
     <BundleResource Include="Resources\icon_code%403x.png" />
