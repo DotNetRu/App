@@ -73,7 +73,6 @@
                     typeof(ImageCircle.Forms.Plugin.Abstractions.CircleImage).GetTypeInfo().Assembly);
                 assembliesToInclude.Add(typeof(Plugin.Settings.SettingsImplementation).GetTypeInfo().Assembly);
                 assembliesToInclude.Add(typeof(Plugin.Settings.Abstractions.ISettings).GetTypeInfo().Assembly);
-                assembliesToInclude.Add(typeof(XamarinEvolve.Clients.Portable.Settings).GetTypeInfo().Assembly);
                 assembliesToInclude.Add(typeof(Xamarin.Forms.MasterDetailPage).GetTypeInfo().Assembly);
                 assembliesToInclude.Add(typeof(Xamarin.Forms.Platform.UWP.MasterDetailControl).GetTypeInfo().Assembly);
                 assembliesToInclude.Add(

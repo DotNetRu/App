@@ -19,8 +19,6 @@
 
     using Foundation;
 
-    using Google.AppIndexing;
-
     using ImageCircle.Forms.Plugin.iOS;
 
     using Plugin.Share;
@@ -122,8 +120,6 @@
         private static void InitializeDependencies()
         {
             Toolkit.Init();
-
-            AppIndexing.SharedInstance.RegisterApp(PublicationSettings.iTunesAppId);
 
             ShareImplementation.ExcludedUIActivityTypes = new List<NSString>
                                                               {

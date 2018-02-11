@@ -83,7 +83,6 @@
 
         public static MainActivity Current { get; }
 
-        // GoogleApiClient client;
         protected override void OnCreate(Bundle savedInstanceState)
         {
 #if ENABLE_LIVE_PLAYER
