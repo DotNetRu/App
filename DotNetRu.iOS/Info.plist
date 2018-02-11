@@ -5,7 +5,7 @@
 	<key>CFBundleIdentifier</key>
 	<string>com.pfedotovsky.dotnetru</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.0</string>
+	<string>1.0.1</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
@@ -130,12 +130,12 @@
 			<string>Icon-58</string>
 		</dict>
 	</array>
-  <key>CFBundleLocalizations</key>
-  <array>
-    <string>ru</string>
-  </array>
-  <key>CFBundleDevelopmentRegion</key>
-  <string>en</string>
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>ru</string>
+	</array>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>
