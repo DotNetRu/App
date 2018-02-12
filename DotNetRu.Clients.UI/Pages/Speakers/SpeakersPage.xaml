@@ -1,8 +1,9 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <pages:BasePage 
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="DotNetRu.Clients.UI.Pages.Speakers.SpeakersPage"
+    xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
 	  xmlns:pages="clr-namespace:DotNetRu.Clients.UI.Pages;assembly=DotNetRu.Clients.UI"
 	  xmlns:cells="clr-namespace:DotNetRu.Clients.UI.Cells;assembly=DotNetRu.Clients.UI"
 	  Title="{Binding Resources[Speakers]}"
@@ -14,17 +15,31 @@
 	     <ListView 
 	            x:Name="ListViewSpeakers"
 	            ItemsSource="{Binding Speakers}"
-	            IsGroupingEnabled="false"
-	            HasUnevenRows ="false"
+	            IsGroupingEnabled="true"
+                GroupDisplayBinding="{Binding Key}" 
+                GroupShortNameBinding="{Binding Key}"
+	            HasUnevenRows ="true"
 	            RowHeight="90"
 	            IsPullToRefreshEnabled="false"
 	            IsRefreshing="{Binding IsBusy, Mode=OneWay}"
 	            IsVisible="{Binding IsNotBusy}"
+                android:ListView.IsFastScrollEnabled="True"
 	            AbsoluteLayout.LayoutFlags="All" 
 	            AbsoluteLayout.LayoutBounds="0,0,1,1">
 	        <ListView.SeparatorColor>
 	            <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ListSeparator}" Android="Transparent"/>
 	        </ListView.SeparatorColor>
+            <ListView.GroupHeaderTemplate>
+              <DataTemplate>
+                <ViewCell Height="25">
+                  <StackLayout VerticalOptions="FillAndExpand"
+                               Padding="5"
+                               BackgroundColor="{StaticResource Primary}">
+                    <Label Text="{Binding Key}" TextColor="White" VerticalOptions="Center"/>
+                  </StackLayout>
+                </ViewCell>
+              </DataTemplate>
+            </ListView.GroupHeaderTemplate>
 	      <ListView.ItemTemplate>
 	        <DataTemplate>
 	            <ViewCell StyleId="disclosure">
