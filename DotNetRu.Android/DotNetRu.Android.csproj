@@ -46,6 +46,8 @@
     <AndroidExplicitCrunch>true</AndroidExplicitCrunch>
     <AndroidLinkSkip>
     </AndroidLinkSkip>
+    <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
+    <AndroidTlsProvider>btls</AndroidTlsProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <Optimize>true</Optimize>
@@ -68,10 +70,13 @@
     <DebugSymbols>False</DebugSymbols>
     <AndroidEnableMultiDex>false</AndroidEnableMultiDex>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
-    <AndroidCreatePackagePerAbi>false</AndroidCreatePackagePerAbi>
+    <AndroidCreatePackagePerAbi>true</AndroidCreatePackagePerAbi>
     <EnableProguard>true</EnableProguard>
     <AotAssemblies>true</AotAssemblies>
     <EnableLLVM>true</EnableLLVM>
+    <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
+    <AndroidTlsProvider>btls</AndroidTlsProvider>
+    <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="DotNetRU.BottomTabbedPage" Version="0.1.0.2" />
