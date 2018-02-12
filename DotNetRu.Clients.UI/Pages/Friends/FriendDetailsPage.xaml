@@ -47,7 +47,7 @@
 
         <controls:CardView IsVisible="{Binding FollowItems, Converter={StaticResource GenericIsVisibleConverter}}">
           <StackLayout Spacing="0">
-            
+
             <controls:LabelSection Text="{Binding Resources[Links]}"/>
             <controls:HeaderDivider/>
             <controls:NonScrollableListView
@@ -74,6 +74,36 @@
                       <Image VerticalOptions="Center" Source="{Binding Icon}">
                       </Image>
                       <Label Grid.Column="1" VerticalOptions="Center"  Style="{DynamicResource EvolveListItemTextStyle}" Text="{Binding Name}"/>
+                    </Grid>
+                  </ViewCell>
+                </DataTemplate>
+              </controls:NonScrollableListView.ItemTemplate>
+            </controls:NonScrollableListView>
+            <controls:FooterDivider/>
+          </StackLayout>
+        </controls:CardView>
+        
+        <!--Meetups-->
+        <controls:CardView IsVisible="{Binding FriendModel.Meetups, Converter={StaticResource GenericIsVisibleConverter}}">
+          <StackLayout Spacing="0">
+            <controls:LabelSection Text="{Binding Resources[Meetups]}"/>
+            <controls:HeaderDivider/>
+            <controls:NonScrollableListView
+                ItemsSource="{Binding FriendModel.Meetups}"                
+                x:Name="ListViewMeetups"
+                StyleId="SponsorDetailLinks"
+                RowHeight="44">
+              <controls:NonScrollableListView.SeparatorColor>
+                <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ListSeparator}"/>
+              </controls:NonScrollableListView.SeparatorColor>
+              <controls:NonScrollableListView.ItemTemplate>
+                <DataTemplate>
+                  <ViewCell StyleId="disclosure"  Appearing="Cell_OnAppearing">
+                    <Grid ColumnSpacing="{StaticResource StandardSpacing}">
+                      <Grid.Padding>
+                        <OnPlatform x:TypeArguments="Thickness" iOS="16,12" Android="16,8"/>
+                      </Grid.Padding>                      
+                      <Label VerticalOptions="Center" HeightRequest="29" Style="{DynamicResource EvolveListItemTextStyle}" Text="{Binding Title}"/>
                     </Grid>
                   </ViewCell>
                 </DataTemplate>

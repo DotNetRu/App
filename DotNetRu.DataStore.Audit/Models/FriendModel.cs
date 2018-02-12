@@ -6,6 +6,8 @@
 
     using Xamarin.Forms;
 
+    using System.Collections.Generic;
+
     public class FriendModel : BaseModel
     {
         public string Name { get; set; }        
@@ -44,6 +46,8 @@
                 return MeetupService.GetMeetups(this.Id).Count();
             }
         }
+
+        public IEnumerable<MeetupModel> Meetups => MeetupService.GetMeetups(this.Id).OrderBy(m => m.StartTime);
 
         /// <summary>
         /// Gets or sets the rank.
