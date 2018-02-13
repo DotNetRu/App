@@ -5,7 +5,6 @@ using CoreSpotlight;
 using DotNetRu.Clients.Portable.Interfaces;
 using DotNetRu.Clients.Portable.Model.Extensions;
 using DotNetRu.DataStore.Audit.Models;
-using DotNetRu.iOS.Helpers;
 using DotNetRu.iOS.PlatformFeatures.ProActiveSuggestions;
 using DotNetRu.Utils.Helpers;
 using Foundation;
@@ -15,6 +14,8 @@ using Xamarin.Forms;
 
 namespace DotNetRu.iOS.PlatformFeatures.ProActiveSuggestions
 {
+    using Xamarin.Forms.Platform.iOS;
+
     public class SessionUserActivity : IPlatformSpecificExtension<TalkModel>
 	{
 		private NSUserActivity _activity;
