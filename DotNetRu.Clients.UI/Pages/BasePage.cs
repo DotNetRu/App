@@ -1,30 +1,32 @@
-﻿using System;
-using DotNetRu.Clients.Portable.Interfaces;
-using DotNetRu.Clients.Portable.Model;
-using Xamarin.Forms;
-
-namespace DotNetRu.Clients.UI.Pages
+﻿namespace DotNetRu.Clients.UI.Pages
 {
-	public abstract class BasePage : ContentPage, IProvidePageInfo
-	{
-		private DateTime _appeared;
+    using System;
 
-		public abstract AppPage PageType { get; }
-		protected string ItemId { get; set; }
+    using DotNetRu.Clients.Portable.Interfaces;
+    using DotNetRu.Clients.Portable.Model;
 
-		protected override void OnAppearing()
-		{
-		    this._appeared = DateTime.UtcNow;
-			App.Logger.TrackPage(this.PageType.ToString(), this.ItemId);
+    using Xamarin.Forms;
 
-			base.OnAppearing();
-		}
+    public abstract class BasePage : ContentPage, IProvidePageInfo
+    {
+        private DateTime appeared;
 
-		protected override void OnDisappearing()
-		{
-			App.Logger.TrackTimeSpent(this.PageType.ToString(), this.ItemId, DateTime.UtcNow - this._appeared);
-			base.OnDisappearing();
-		}
-	}
+        public abstract AppPage PageType { get; }
+
+        protected string ItemId { get; set; }
+
+        protected override void OnAppearing()
+        {
+            this.appeared = DateTime.UtcNow;
+            App.Logger.TrackPage(this.PageType.ToString(), this.ItemId);
+
+            base.OnAppearing();
+        }
+
+        protected override void OnDisappearing()
+        {
+            App.Logger.TrackTimeSpent(this.PageType.ToString(), this.ItemId, DateTime.UtcNow - this.appeared);
+            base.OnDisappearing();
+        }
+    }
 }
-
