@@ -26,2114 +26,6 @@ namespace DotNetRu.Droid
 		
 		public static void UpdateIdValues()
 		{
-			global::Naxam.Controls.Platform.Droid.Resource.Animation.abc_fade_in = global::DotNetRu.Droid.Resource.Animation.abc_fade_in;
-			global::Naxam.Controls.Platform.Droid.Resource.Animation.abc_fade_out = global::DotNetRu.Droid.Resource.Animation.abc_fade_out;
-			global::Naxam.Controls.Platform.Droid.Resource.Animation.abc_grow_fade_in_from_bottom = global::DotNetRu.Droid.Resource.Animation.abc_grow_fade_in_from_bottom;
-			global::Naxam.Controls.Platform.Droid.Resource.Animation.abc_popup_enter = global::DotNetRu.Droid.Resource.Animation.abc_popup_enter;
-			global::Naxam.Controls.Platform.Droid.Resource.Animation.abc_popup_exit = global::DotNetRu.Droid.Resource.Animation.abc_popup_exit;
-			global::Naxam.Controls.Platform.Droid.Resource.Animation.abc_shrink_fade_out_from_bottom = global::DotNetRu.Droid.Resource.Animation.abc_shrink_fade_out_from_bottom;
-			global::Naxam.Controls.Platform.Droid.Resource.Animation.abc_slide_in_bottom = global::DotNetRu.Droid.Resource.Animation.abc_slide_in_bottom;
-			global::Naxam.Controls.Platform.Droid.Resource.Animation.abc_slide_in_top = global::DotNetRu.Droid.Resource.Animation.abc_slide_in_top;
-			global::Naxam.Controls.Platform.Droid.Resource.Animation.abc_slide_out_bottom = global::DotNetRu.Droid.Resource.Animation.abc_slide_out_bottom;
-			global::Naxam.Controls.Platform.Droid.Resource.Animation.abc_slide_out_top = global::DotNetRu.Droid.Resource.Animation.abc_slide_out_top;
-			global::Naxam.Controls.Platform.Droid.Resource.Animation.design_bottom_sheet_slide_in = global::DotNetRu.Droid.Resource.Animation.design_bottom_sheet_slide_in;
-			global::Naxam.Controls.Platform.Droid.Resource.Animation.design_bottom_sheet_slide_out = global::DotNetRu.Droid.Resource.Animation.design_bottom_sheet_slide_out;
-			global::Naxam.Controls.Platform.Droid.Resource.Animation.design_snackbar_in = global::DotNetRu.Droid.Resource.Animation.design_snackbar_in;
-			global::Naxam.Controls.Platform.Droid.Resource.Animation.design_snackbar_out = global::DotNetRu.Droid.Resource.Animation.design_snackbar_out;
-			global::Naxam.Controls.Platform.Droid.Resource.Animator.design_appbar_state_list_animator = global::DotNetRu.Droid.Resource.Animator.design_appbar_state_list_animator;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.actionBarDivider = global::DotNetRu.Droid.Resource.Attribute.actionBarDivider;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.actionBarItemBackground = global::DotNetRu.Droid.Resource.Attribute.actionBarItemBackground;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.actionBarPopupTheme = global::DotNetRu.Droid.Resource.Attribute.actionBarPopupTheme;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.actionBarSize = global::DotNetRu.Droid.Resource.Attribute.actionBarSize;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.actionBarSplitStyle = global::DotNetRu.Droid.Resource.Attribute.actionBarSplitStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.actionBarStyle = global::DotNetRu.Droid.Resource.Attribute.actionBarStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.actionBarTabBarStyle = global::DotNetRu.Droid.Resource.Attribute.actionBarTabBarStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.actionBarTabStyle = global::DotNetRu.Droid.Resource.Attribute.actionBarTabStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.actionBarTabTextStyle = global::DotNetRu.Droid.Resource.Attribute.actionBarTabTextStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.actionBarTheme = global::DotNetRu.Droid.Resource.Attribute.actionBarTheme;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.actionBarWidgetTheme = global::DotNetRu.Droid.Resource.Attribute.actionBarWidgetTheme;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.actionButtonStyle = global::DotNetRu.Droid.Resource.Attribute.actionButtonStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.actionDropDownStyle = global::DotNetRu.Droid.Resource.Attribute.actionDropDownStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.actionLayout = global::DotNetRu.Droid.Resource.Attribute.actionLayout;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.actionMenuTextAppearance = global::DotNetRu.Droid.Resource.Attribute.actionMenuTextAppearance;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.actionMenuTextColor = global::DotNetRu.Droid.Resource.Attribute.actionMenuTextColor;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.actionModeBackground = global::DotNetRu.Droid.Resource.Attribute.actionModeBackground;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.actionModeCloseButtonStyle = global::DotNetRu.Droid.Resource.Attribute.actionModeCloseButtonStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.actionModeCloseDrawable = global::DotNetRu.Droid.Resource.Attribute.actionModeCloseDrawable;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.actionModeCopyDrawable = global::DotNetRu.Droid.Resource.Attribute.actionModeCopyDrawable;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.actionModeCutDrawable = global::DotNetRu.Droid.Resource.Attribute.actionModeCutDrawable;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.actionModeFindDrawable = global::DotNetRu.Droid.Resource.Attribute.actionModeFindDrawable;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.actionModePasteDrawable = global::DotNetRu.Droid.Resource.Attribute.actionModePasteDrawable;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.actionModePopupWindowStyle = global::DotNetRu.Droid.Resource.Attribute.actionModePopupWindowStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.actionModeSelectAllDrawable = global::DotNetRu.Droid.Resource.Attribute.actionModeSelectAllDrawable;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.actionModeShareDrawable = global::DotNetRu.Droid.Resource.Attribute.actionModeShareDrawable;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.actionModeSplitBackground = global::DotNetRu.Droid.Resource.Attribute.actionModeSplitBackground;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.actionModeStyle = global::DotNetRu.Droid.Resource.Attribute.actionModeStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.actionModeWebSearchDrawable = global::DotNetRu.Droid.Resource.Attribute.actionModeWebSearchDrawable;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.actionOverflowButtonStyle = global::DotNetRu.Droid.Resource.Attribute.actionOverflowButtonStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.actionOverflowMenuStyle = global::DotNetRu.Droid.Resource.Attribute.actionOverflowMenuStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.actionProviderClass = global::DotNetRu.Droid.Resource.Attribute.actionProviderClass;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.actionViewClass = global::DotNetRu.Droid.Resource.Attribute.actionViewClass;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.activityChooserViewStyle = global::DotNetRu.Droid.Resource.Attribute.activityChooserViewStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.alertDialogButtonGroupStyle = global::DotNetRu.Droid.Resource.Attribute.alertDialogButtonGroupStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.alertDialogCenterButtons = global::DotNetRu.Droid.Resource.Attribute.alertDialogCenterButtons;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.alertDialogStyle = global::DotNetRu.Droid.Resource.Attribute.alertDialogStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.alertDialogTheme = global::DotNetRu.Droid.Resource.Attribute.alertDialogTheme;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.allowStacking = global::DotNetRu.Droid.Resource.Attribute.allowStacking;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.alpha = global::DotNetRu.Droid.Resource.Attribute.alpha;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.arrowHeadLength = global::DotNetRu.Droid.Resource.Attribute.arrowHeadLength;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.arrowShaftLength = global::DotNetRu.Droid.Resource.Attribute.arrowShaftLength;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.autoCompleteTextViewStyle = global::DotNetRu.Droid.Resource.Attribute.autoCompleteTextViewStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.background = global::DotNetRu.Droid.Resource.Attribute.background;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.backgroundSplit = global::DotNetRu.Droid.Resource.Attribute.backgroundSplit;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.backgroundStacked = global::DotNetRu.Droid.Resource.Attribute.backgroundStacked;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.backgroundTint = global::DotNetRu.Droid.Resource.Attribute.backgroundTint;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.backgroundTintMode = global::DotNetRu.Droid.Resource.Attribute.backgroundTintMode;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.barLength = global::DotNetRu.Droid.Resource.Attribute.barLength;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.behavior_autoHide = global::DotNetRu.Droid.Resource.Attribute.behavior_autoHide;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.behavior_hideable = global::DotNetRu.Droid.Resource.Attribute.behavior_hideable;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.behavior_overlapTop = global::DotNetRu.Droid.Resource.Attribute.behavior_overlapTop;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.behavior_peekHeight = global::DotNetRu.Droid.Resource.Attribute.behavior_peekHeight;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.behavior_skipCollapsed = global::DotNetRu.Droid.Resource.Attribute.behavior_skipCollapsed;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.borderWidth = global::DotNetRu.Droid.Resource.Attribute.borderWidth;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.borderlessButtonStyle = global::DotNetRu.Droid.Resource.Attribute.borderlessButtonStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.bottomSheetDialogTheme = global::DotNetRu.Droid.Resource.Attribute.bottomSheetDialogTheme;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.bottomSheetStyle = global::DotNetRu.Droid.Resource.Attribute.bottomSheetStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.buttonBarButtonStyle = global::DotNetRu.Droid.Resource.Attribute.buttonBarButtonStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.buttonBarNegativeButtonStyle = global::DotNetRu.Droid.Resource.Attribute.buttonBarNegativeButtonStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.buttonBarNeutralButtonStyle = global::DotNetRu.Droid.Resource.Attribute.buttonBarNeutralButtonStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.buttonBarPositiveButtonStyle = global::DotNetRu.Droid.Resource.Attribute.buttonBarPositiveButtonStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.buttonBarStyle = global::DotNetRu.Droid.Resource.Attribute.buttonBarStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.buttonGravity = global::DotNetRu.Droid.Resource.Attribute.buttonGravity;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.buttonPanelSideLayout = global::DotNetRu.Droid.Resource.Attribute.buttonPanelSideLayout;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.buttonStyle = global::DotNetRu.Droid.Resource.Attribute.buttonStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.buttonStyleSmall = global::DotNetRu.Droid.Resource.Attribute.buttonStyleSmall;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.buttonTint = global::DotNetRu.Droid.Resource.Attribute.buttonTint;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.buttonTintMode = global::DotNetRu.Droid.Resource.Attribute.buttonTintMode;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.cardBackgroundColor = global::DotNetRu.Droid.Resource.Attribute.cardBackgroundColor;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.cardCornerRadius = global::DotNetRu.Droid.Resource.Attribute.cardCornerRadius;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.cardElevation = global::DotNetRu.Droid.Resource.Attribute.cardElevation;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.cardMaxElevation = global::DotNetRu.Droid.Resource.Attribute.cardMaxElevation;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.cardPreventCornerOverlap = global::DotNetRu.Droid.Resource.Attribute.cardPreventCornerOverlap;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.cardUseCompatPadding = global::DotNetRu.Droid.Resource.Attribute.cardUseCompatPadding;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.checkboxStyle = global::DotNetRu.Droid.Resource.Attribute.checkboxStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.checkedTextViewStyle = global::DotNetRu.Droid.Resource.Attribute.checkedTextViewStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.closeIcon = global::DotNetRu.Droid.Resource.Attribute.closeIcon;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.closeItemLayout = global::DotNetRu.Droid.Resource.Attribute.closeItemLayout;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.collapseContentDescription = global::DotNetRu.Droid.Resource.Attribute.collapseContentDescription;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.collapseIcon = global::DotNetRu.Droid.Resource.Attribute.collapseIcon;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.collapsedTitleGravity = global::DotNetRu.Droid.Resource.Attribute.collapsedTitleGravity;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.collapsedTitleTextAppearance = global::DotNetRu.Droid.Resource.Attribute.collapsedTitleTextAppearance;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.color = global::DotNetRu.Droid.Resource.Attribute.color;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.colorAccent = global::DotNetRu.Droid.Resource.Attribute.colorAccent;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.colorBackgroundFloating = global::DotNetRu.Droid.Resource.Attribute.colorBackgroundFloating;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.colorButtonNormal = global::DotNetRu.Droid.Resource.Attribute.colorButtonNormal;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.colorControlActivated = global::DotNetRu.Droid.Resource.Attribute.colorControlActivated;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.colorControlHighlight = global::DotNetRu.Droid.Resource.Attribute.colorControlHighlight;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.colorControlNormal = global::DotNetRu.Droid.Resource.Attribute.colorControlNormal;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.colorPrimary = global::DotNetRu.Droid.Resource.Attribute.colorPrimary;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.colorPrimaryDark = global::DotNetRu.Droid.Resource.Attribute.colorPrimaryDark;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.colorSwitchThumbNormal = global::DotNetRu.Droid.Resource.Attribute.colorSwitchThumbNormal;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.commitIcon = global::DotNetRu.Droid.Resource.Attribute.commitIcon;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.contentInsetEnd = global::DotNetRu.Droid.Resource.Attribute.contentInsetEnd;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.contentInsetEndWithActions = global::DotNetRu.Droid.Resource.Attribute.contentInsetEndWithActions;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.contentInsetLeft = global::DotNetRu.Droid.Resource.Attribute.contentInsetLeft;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.contentInsetRight = global::DotNetRu.Droid.Resource.Attribute.contentInsetRight;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.contentInsetStart = global::DotNetRu.Droid.Resource.Attribute.contentInsetStart;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.contentInsetStartWithNavigation = global::DotNetRu.Droid.Resource.Attribute.contentInsetStartWithNavigation;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.contentPadding = global::DotNetRu.Droid.Resource.Attribute.contentPadding;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.contentPaddingBottom = global::DotNetRu.Droid.Resource.Attribute.contentPaddingBottom;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.contentPaddingLeft = global::DotNetRu.Droid.Resource.Attribute.contentPaddingLeft;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.contentPaddingRight = global::DotNetRu.Droid.Resource.Attribute.contentPaddingRight;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.contentPaddingTop = global::DotNetRu.Droid.Resource.Attribute.contentPaddingTop;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.contentScrim = global::DotNetRu.Droid.Resource.Attribute.contentScrim;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.controlBackground = global::DotNetRu.Droid.Resource.Attribute.controlBackground;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.counterEnabled = global::DotNetRu.Droid.Resource.Attribute.counterEnabled;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.counterMaxLength = global::DotNetRu.Droid.Resource.Attribute.counterMaxLength;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.counterOverflowTextAppearance = global::DotNetRu.Droid.Resource.Attribute.counterOverflowTextAppearance;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.counterTextAppearance = global::DotNetRu.Droid.Resource.Attribute.counterTextAppearance;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.customNavigationLayout = global::DotNetRu.Droid.Resource.Attribute.customNavigationLayout;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.defaultQueryHint = global::DotNetRu.Droid.Resource.Attribute.defaultQueryHint;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.dialogPreferredPadding = global::DotNetRu.Droid.Resource.Attribute.dialogPreferredPadding;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.dialogTheme = global::DotNetRu.Droid.Resource.Attribute.dialogTheme;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.displayOptions = global::DotNetRu.Droid.Resource.Attribute.displayOptions;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.divider = global::DotNetRu.Droid.Resource.Attribute.divider;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.dividerHorizontal = global::DotNetRu.Droid.Resource.Attribute.dividerHorizontal;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.dividerPadding = global::DotNetRu.Droid.Resource.Attribute.dividerPadding;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.dividerVertical = global::DotNetRu.Droid.Resource.Attribute.dividerVertical;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.drawableSize = global::DotNetRu.Droid.Resource.Attribute.drawableSize;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.drawerArrowStyle = global::DotNetRu.Droid.Resource.Attribute.drawerArrowStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.dropDownListViewStyle = global::DotNetRu.Droid.Resource.Attribute.dropDownListViewStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.dropdownListPreferredItemHeight = global::DotNetRu.Droid.Resource.Attribute.dropdownListPreferredItemHeight;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.editTextBackground = global::DotNetRu.Droid.Resource.Attribute.editTextBackground;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.editTextColor = global::DotNetRu.Droid.Resource.Attribute.editTextColor;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.editTextStyle = global::DotNetRu.Droid.Resource.Attribute.editTextStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.elevation = global::DotNetRu.Droid.Resource.Attribute.elevation;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.errorEnabled = global::DotNetRu.Droid.Resource.Attribute.errorEnabled;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.errorTextAppearance = global::DotNetRu.Droid.Resource.Attribute.errorTextAppearance;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.expandActivityOverflowButtonDrawable = global::DotNetRu.Droid.Resource.Attribute.expandActivityOverflowButtonDrawable;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.expanded = global::DotNetRu.Droid.Resource.Attribute.expanded;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.expandedTitleGravity = global::DotNetRu.Droid.Resource.Attribute.expandedTitleGravity;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.expandedTitleMargin = global::DotNetRu.Droid.Resource.Attribute.expandedTitleMargin;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.expandedTitleMarginBottom = global::DotNetRu.Droid.Resource.Attribute.expandedTitleMarginBottom;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.expandedTitleMarginEnd = global::DotNetRu.Droid.Resource.Attribute.expandedTitleMarginEnd;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.expandedTitleMarginStart = global::DotNetRu.Droid.Resource.Attribute.expandedTitleMarginStart;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.expandedTitleMarginTop = global::DotNetRu.Droid.Resource.Attribute.expandedTitleMarginTop;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.expandedTitleTextAppearance = global::DotNetRu.Droid.Resource.Attribute.expandedTitleTextAppearance;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.externalRouteEnabledDrawable = global::DotNetRu.Droid.Resource.Attribute.externalRouteEnabledDrawable;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.fabSize = global::DotNetRu.Droid.Resource.Attribute.fabSize;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.foregroundInsidePadding = global::DotNetRu.Droid.Resource.Attribute.foregroundInsidePadding;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.gapBetweenBars = global::DotNetRu.Droid.Resource.Attribute.gapBetweenBars;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.goIcon = global::DotNetRu.Droid.Resource.Attribute.goIcon;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.headerLayout = global::DotNetRu.Droid.Resource.Attribute.headerLayout;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.height = global::DotNetRu.Droid.Resource.Attribute.height;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.hideOnContentScroll = global::DotNetRu.Droid.Resource.Attribute.hideOnContentScroll;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.hintAnimationEnabled = global::DotNetRu.Droid.Resource.Attribute.hintAnimationEnabled;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.hintEnabled = global::DotNetRu.Droid.Resource.Attribute.hintEnabled;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.hintTextAppearance = global::DotNetRu.Droid.Resource.Attribute.hintTextAppearance;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.homeAsUpIndicator = global::DotNetRu.Droid.Resource.Attribute.homeAsUpIndicator;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.homeLayout = global::DotNetRu.Droid.Resource.Attribute.homeLayout;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.icon = global::DotNetRu.Droid.Resource.Attribute.icon;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.iconifiedByDefault = global::DotNetRu.Droid.Resource.Attribute.iconifiedByDefault;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.imageButtonStyle = global::DotNetRu.Droid.Resource.Attribute.imageButtonStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.indeterminateProgressStyle = global::DotNetRu.Droid.Resource.Attribute.indeterminateProgressStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.initialActivityCount = global::DotNetRu.Droid.Resource.Attribute.initialActivityCount;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.insetForeground = global::DotNetRu.Droid.Resource.Attribute.insetForeground;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.isLightTheme = global::DotNetRu.Droid.Resource.Attribute.isLightTheme;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.itemBackground = global::DotNetRu.Droid.Resource.Attribute.itemBackground;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.itemIconTint = global::DotNetRu.Droid.Resource.Attribute.itemIconTint;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.itemPadding = global::DotNetRu.Droid.Resource.Attribute.itemPadding;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.itemTextAppearance = global::DotNetRu.Droid.Resource.Attribute.itemTextAppearance;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.itemTextColor = global::DotNetRu.Droid.Resource.Attribute.itemTextColor;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.keylines = global::DotNetRu.Droid.Resource.Attribute.keylines;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.layout = global::DotNetRu.Droid.Resource.Attribute.layout;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.layoutManager = global::DotNetRu.Droid.Resource.Attribute.layoutManager;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.layout_anchor = global::DotNetRu.Droid.Resource.Attribute.layout_anchor;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.layout_anchorGravity = global::DotNetRu.Droid.Resource.Attribute.layout_anchorGravity;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.layout_behavior = global::DotNetRu.Droid.Resource.Attribute.layout_behavior;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.layout_collapseMode = global::DotNetRu.Droid.Resource.Attribute.layout_collapseMode;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.layout_collapseParallaxMultiplier = global::DotNetRu.Droid.Resource.Attribute.layout_collapseParallaxMultiplier;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.layout_dodgeInsetEdges = global::DotNetRu.Droid.Resource.Attribute.layout_dodgeInsetEdges;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.layout_insetEdge = global::DotNetRu.Droid.Resource.Attribute.layout_insetEdge;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.layout_keyline = global::DotNetRu.Droid.Resource.Attribute.layout_keyline;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.layout_scrollFlags = global::DotNetRu.Droid.Resource.Attribute.layout_scrollFlags;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.layout_scrollInterpolator = global::DotNetRu.Droid.Resource.Attribute.layout_scrollInterpolator;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.listChoiceBackgroundIndicator = global::DotNetRu.Droid.Resource.Attribute.listChoiceBackgroundIndicator;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.listDividerAlertDialog = global::DotNetRu.Droid.Resource.Attribute.listDividerAlertDialog;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.listItemLayout = global::DotNetRu.Droid.Resource.Attribute.listItemLayout;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.listLayout = global::DotNetRu.Droid.Resource.Attribute.listLayout;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.listMenuViewStyle = global::DotNetRu.Droid.Resource.Attribute.listMenuViewStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.listPopupWindowStyle = global::DotNetRu.Droid.Resource.Attribute.listPopupWindowStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.listPreferredItemHeight = global::DotNetRu.Droid.Resource.Attribute.listPreferredItemHeight;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.listPreferredItemHeightLarge = global::DotNetRu.Droid.Resource.Attribute.listPreferredItemHeightLarge;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.listPreferredItemHeightSmall = global::DotNetRu.Droid.Resource.Attribute.listPreferredItemHeightSmall;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.listPreferredItemPaddingLeft = global::DotNetRu.Droid.Resource.Attribute.listPreferredItemPaddingLeft;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.listPreferredItemPaddingRight = global::DotNetRu.Droid.Resource.Attribute.listPreferredItemPaddingRight;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.logo = global::DotNetRu.Droid.Resource.Attribute.logo;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.logoDescription = global::DotNetRu.Droid.Resource.Attribute.logoDescription;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.maxActionInlineWidth = global::DotNetRu.Droid.Resource.Attribute.maxActionInlineWidth;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.maxButtonHeight = global::DotNetRu.Droid.Resource.Attribute.maxButtonHeight;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.measureWithLargestChild = global::DotNetRu.Droid.Resource.Attribute.measureWithLargestChild;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.mediaRouteAudioTrackDrawable = global::DotNetRu.Droid.Resource.Attribute.mediaRouteAudioTrackDrawable;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.mediaRouteButtonStyle = global::DotNetRu.Droid.Resource.Attribute.mediaRouteButtonStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.mediaRouteCloseDrawable = global::DotNetRu.Droid.Resource.Attribute.mediaRouteCloseDrawable;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.mediaRouteControlPanelThemeOverlay = global::DotNetRu.Droid.Resource.Attribute.mediaRouteControlPanelThemeOverlay;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.mediaRouteDefaultIconDrawable = global::DotNetRu.Droid.Resource.Attribute.mediaRouteDefaultIconDrawable;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.mediaRoutePauseDrawable = global::DotNetRu.Droid.Resource.Attribute.mediaRoutePauseDrawable;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.mediaRoutePlayDrawable = global::DotNetRu.Droid.Resource.Attribute.mediaRoutePlayDrawable;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.mediaRouteSpeakerGroupIconDrawable = global::DotNetRu.Droid.Resource.Attribute.mediaRouteSpeakerGroupIconDrawable;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.mediaRouteSpeakerIconDrawable = global::DotNetRu.Droid.Resource.Attribute.mediaRouteSpeakerIconDrawable;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.mediaRouteStopDrawable = global::DotNetRu.Droid.Resource.Attribute.mediaRouteStopDrawable;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.mediaRouteTheme = global::DotNetRu.Droid.Resource.Attribute.mediaRouteTheme;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.mediaRouteTvIconDrawable = global::DotNetRu.Droid.Resource.Attribute.mediaRouteTvIconDrawable;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.menu = global::DotNetRu.Droid.Resource.Attribute.menu;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.multiChoiceItemLayout = global::DotNetRu.Droid.Resource.Attribute.multiChoiceItemLayout;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.navigationContentDescription = global::DotNetRu.Droid.Resource.Attribute.navigationContentDescription;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.navigationIcon = global::DotNetRu.Droid.Resource.Attribute.navigationIcon;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.navigationMode = global::DotNetRu.Droid.Resource.Attribute.navigationMode;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.overlapAnchor = global::DotNetRu.Droid.Resource.Attribute.overlapAnchor;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.paddingBottomNoButtons = global::DotNetRu.Droid.Resource.Attribute.paddingBottomNoButtons;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.paddingEnd = global::DotNetRu.Droid.Resource.Attribute.paddingEnd;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.paddingStart = global::DotNetRu.Droid.Resource.Attribute.paddingStart;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.paddingTopNoTitle = global::DotNetRu.Droid.Resource.Attribute.paddingTopNoTitle;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.panelBackground = global::DotNetRu.Droid.Resource.Attribute.panelBackground;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.panelMenuListTheme = global::DotNetRu.Droid.Resource.Attribute.panelMenuListTheme;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.panelMenuListWidth = global::DotNetRu.Droid.Resource.Attribute.panelMenuListWidth;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.passwordToggleContentDescription = global::DotNetRu.Droid.Resource.Attribute.passwordToggleContentDescription;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.passwordToggleDrawable = global::DotNetRu.Droid.Resource.Attribute.passwordToggleDrawable;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.passwordToggleEnabled = global::DotNetRu.Droid.Resource.Attribute.passwordToggleEnabled;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.passwordToggleTint = global::DotNetRu.Droid.Resource.Attribute.passwordToggleTint;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.passwordToggleTintMode = global::DotNetRu.Droid.Resource.Attribute.passwordToggleTintMode;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.popupMenuStyle = global::DotNetRu.Droid.Resource.Attribute.popupMenuStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.popupTheme = global::DotNetRu.Droid.Resource.Attribute.popupTheme;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.popupWindowStyle = global::DotNetRu.Droid.Resource.Attribute.popupWindowStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.preserveIconSpacing = global::DotNetRu.Droid.Resource.Attribute.preserveIconSpacing;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.pressedTranslationZ = global::DotNetRu.Droid.Resource.Attribute.pressedTranslationZ;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.progressBarPadding = global::DotNetRu.Droid.Resource.Attribute.progressBarPadding;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.progressBarStyle = global::DotNetRu.Droid.Resource.Attribute.progressBarStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.queryBackground = global::DotNetRu.Droid.Resource.Attribute.queryBackground;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.queryHint = global::DotNetRu.Droid.Resource.Attribute.queryHint;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.radioButtonStyle = global::DotNetRu.Droid.Resource.Attribute.radioButtonStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.ratingBarStyle = global::DotNetRu.Droid.Resource.Attribute.ratingBarStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.ratingBarStyleIndicator = global::DotNetRu.Droid.Resource.Attribute.ratingBarStyleIndicator;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.ratingBarStyleSmall = global::DotNetRu.Droid.Resource.Attribute.ratingBarStyleSmall;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.reverseLayout = global::DotNetRu.Droid.Resource.Attribute.reverseLayout;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.rippleColor = global::DotNetRu.Droid.Resource.Attribute.rippleColor;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.scrimAnimationDuration = global::DotNetRu.Droid.Resource.Attribute.scrimAnimationDuration;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.scrimVisibleHeightTrigger = global::DotNetRu.Droid.Resource.Attribute.scrimVisibleHeightTrigger;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.searchHintIcon = global::DotNetRu.Droid.Resource.Attribute.searchHintIcon;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.searchIcon = global::DotNetRu.Droid.Resource.Attribute.searchIcon;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.searchViewStyle = global::DotNetRu.Droid.Resource.Attribute.searchViewStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.seekBarStyle = global::DotNetRu.Droid.Resource.Attribute.seekBarStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.selectableItemBackground = global::DotNetRu.Droid.Resource.Attribute.selectableItemBackground;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.selectableItemBackgroundBorderless = global::DotNetRu.Droid.Resource.Attribute.selectableItemBackgroundBorderless;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.showAsAction = global::DotNetRu.Droid.Resource.Attribute.showAsAction;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.showDividers = global::DotNetRu.Droid.Resource.Attribute.showDividers;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.showText = global::DotNetRu.Droid.Resource.Attribute.showText;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.showTitle = global::DotNetRu.Droid.Resource.Attribute.showTitle;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.singleChoiceItemLayout = global::DotNetRu.Droid.Resource.Attribute.singleChoiceItemLayout;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.spanCount = global::DotNetRu.Droid.Resource.Attribute.spanCount;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.spinBars = global::DotNetRu.Droid.Resource.Attribute.spinBars;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.spinnerDropDownItemStyle = global::DotNetRu.Droid.Resource.Attribute.spinnerDropDownItemStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.spinnerStyle = global::DotNetRu.Droid.Resource.Attribute.spinnerStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.splitTrack = global::DotNetRu.Droid.Resource.Attribute.splitTrack;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.srcCompat = global::DotNetRu.Droid.Resource.Attribute.srcCompat;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.stackFromEnd = global::DotNetRu.Droid.Resource.Attribute.stackFromEnd;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.state_above_anchor = global::DotNetRu.Droid.Resource.Attribute.state_above_anchor;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.state_collapsed = global::DotNetRu.Droid.Resource.Attribute.state_collapsed;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.state_collapsible = global::DotNetRu.Droid.Resource.Attribute.state_collapsible;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.statusBarBackground = global::DotNetRu.Droid.Resource.Attribute.statusBarBackground;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.statusBarScrim = global::DotNetRu.Droid.Resource.Attribute.statusBarScrim;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.subMenuArrow = global::DotNetRu.Droid.Resource.Attribute.subMenuArrow;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.submitBackground = global::DotNetRu.Droid.Resource.Attribute.submitBackground;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.subtitle = global::DotNetRu.Droid.Resource.Attribute.subtitle;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.subtitleTextAppearance = global::DotNetRu.Droid.Resource.Attribute.subtitleTextAppearance;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.subtitleTextColor = global::DotNetRu.Droid.Resource.Attribute.subtitleTextColor;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.subtitleTextStyle = global::DotNetRu.Droid.Resource.Attribute.subtitleTextStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.suggestionRowLayout = global::DotNetRu.Droid.Resource.Attribute.suggestionRowLayout;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.switchMinWidth = global::DotNetRu.Droid.Resource.Attribute.switchMinWidth;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.switchPadding = global::DotNetRu.Droid.Resource.Attribute.switchPadding;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.switchStyle = global::DotNetRu.Droid.Resource.Attribute.switchStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.switchTextAppearance = global::DotNetRu.Droid.Resource.Attribute.switchTextAppearance;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.tabBackground = global::DotNetRu.Droid.Resource.Attribute.tabBackground;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.tabContentStart = global::DotNetRu.Droid.Resource.Attribute.tabContentStart;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.tabGravity = global::DotNetRu.Droid.Resource.Attribute.tabGravity;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.tabIndicatorColor = global::DotNetRu.Droid.Resource.Attribute.tabIndicatorColor;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.tabIndicatorHeight = global::DotNetRu.Droid.Resource.Attribute.tabIndicatorHeight;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.tabMaxWidth = global::DotNetRu.Droid.Resource.Attribute.tabMaxWidth;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.tabMinWidth = global::DotNetRu.Droid.Resource.Attribute.tabMinWidth;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.tabMode = global::DotNetRu.Droid.Resource.Attribute.tabMode;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.tabPadding = global::DotNetRu.Droid.Resource.Attribute.tabPadding;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.tabPaddingBottom = global::DotNetRu.Droid.Resource.Attribute.tabPaddingBottom;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.tabPaddingEnd = global::DotNetRu.Droid.Resource.Attribute.tabPaddingEnd;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.tabPaddingStart = global::DotNetRu.Droid.Resource.Attribute.tabPaddingStart;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.tabPaddingTop = global::DotNetRu.Droid.Resource.Attribute.tabPaddingTop;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.tabSelectedTextColor = global::DotNetRu.Droid.Resource.Attribute.tabSelectedTextColor;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.tabTextAppearance = global::DotNetRu.Droid.Resource.Attribute.tabTextAppearance;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.tabTextColor = global::DotNetRu.Droid.Resource.Attribute.tabTextColor;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.textAllCaps = global::DotNetRu.Droid.Resource.Attribute.textAllCaps;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.textAppearanceLargePopupMenu = global::DotNetRu.Droid.Resource.Attribute.textAppearanceLargePopupMenu;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.textAppearanceListItem = global::DotNetRu.Droid.Resource.Attribute.textAppearanceListItem;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.textAppearanceListItemSecondary = global::DotNetRu.Droid.Resource.Attribute.textAppearanceListItemSecondary;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.textAppearanceListItemSmall = global::DotNetRu.Droid.Resource.Attribute.textAppearanceListItemSmall;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.textAppearancePopupMenuHeader = global::DotNetRu.Droid.Resource.Attribute.textAppearancePopupMenuHeader;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.textAppearanceSearchResultSubtitle = global::DotNetRu.Droid.Resource.Attribute.textAppearanceSearchResultSubtitle;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.textAppearanceSearchResultTitle = global::DotNetRu.Droid.Resource.Attribute.textAppearanceSearchResultTitle;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.textAppearanceSmallPopupMenu = global::DotNetRu.Droid.Resource.Attribute.textAppearanceSmallPopupMenu;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.textColorAlertDialogListItem = global::DotNetRu.Droid.Resource.Attribute.textColorAlertDialogListItem;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.textColorError = global::DotNetRu.Droid.Resource.Attribute.textColorError;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.textColorSearchUrl = global::DotNetRu.Droid.Resource.Attribute.textColorSearchUrl;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.theme = global::DotNetRu.Droid.Resource.Attribute.theme;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.thickness = global::DotNetRu.Droid.Resource.Attribute.thickness;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.thumbTextPadding = global::DotNetRu.Droid.Resource.Attribute.thumbTextPadding;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.thumbTint = global::DotNetRu.Droid.Resource.Attribute.thumbTint;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.thumbTintMode = global::DotNetRu.Droid.Resource.Attribute.thumbTintMode;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.tickMark = global::DotNetRu.Droid.Resource.Attribute.tickMark;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.tickMarkTint = global::DotNetRu.Droid.Resource.Attribute.tickMarkTint;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.tickMarkTintMode = global::DotNetRu.Droid.Resource.Attribute.tickMarkTintMode;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.tint = global::DotNetRu.Droid.Resource.Attribute.tint;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.tintMode = global::DotNetRu.Droid.Resource.Attribute.tintMode;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.title = global::DotNetRu.Droid.Resource.Attribute.title;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.titleEnabled = global::DotNetRu.Droid.Resource.Attribute.titleEnabled;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.titleMargin = global::DotNetRu.Droid.Resource.Attribute.titleMargin;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.titleMarginBottom = global::DotNetRu.Droid.Resource.Attribute.titleMarginBottom;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.titleMarginEnd = global::DotNetRu.Droid.Resource.Attribute.titleMarginEnd;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.titleMarginStart = global::DotNetRu.Droid.Resource.Attribute.titleMarginStart;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.titleMarginTop = global::DotNetRu.Droid.Resource.Attribute.titleMarginTop;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.titleMargins = global::DotNetRu.Droid.Resource.Attribute.titleMargins;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.titleTextAppearance = global::DotNetRu.Droid.Resource.Attribute.titleTextAppearance;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.titleTextColor = global::DotNetRu.Droid.Resource.Attribute.titleTextColor;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.titleTextStyle = global::DotNetRu.Droid.Resource.Attribute.titleTextStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.toolbarId = global::DotNetRu.Droid.Resource.Attribute.toolbarId;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.toolbarNavigationButtonStyle = global::DotNetRu.Droid.Resource.Attribute.toolbarNavigationButtonStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.toolbarStyle = global::DotNetRu.Droid.Resource.Attribute.toolbarStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.track = global::DotNetRu.Droid.Resource.Attribute.track;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.trackTint = global::DotNetRu.Droid.Resource.Attribute.trackTint;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.trackTintMode = global::DotNetRu.Droid.Resource.Attribute.trackTintMode;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.useCompatPadding = global::DotNetRu.Droid.Resource.Attribute.useCompatPadding;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.voiceIcon = global::DotNetRu.Droid.Resource.Attribute.voiceIcon;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.windowActionBar = global::DotNetRu.Droid.Resource.Attribute.windowActionBar;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.windowActionBarOverlay = global::DotNetRu.Droid.Resource.Attribute.windowActionBarOverlay;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.windowActionModeOverlay = global::DotNetRu.Droid.Resource.Attribute.windowActionModeOverlay;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.windowFixedHeightMajor = global::DotNetRu.Droid.Resource.Attribute.windowFixedHeightMajor;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.windowFixedHeightMinor = global::DotNetRu.Droid.Resource.Attribute.windowFixedHeightMinor;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.windowFixedWidthMajor = global::DotNetRu.Droid.Resource.Attribute.windowFixedWidthMajor;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.windowFixedWidthMinor = global::DotNetRu.Droid.Resource.Attribute.windowFixedWidthMinor;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.windowMinWidthMajor = global::DotNetRu.Droid.Resource.Attribute.windowMinWidthMajor;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.windowMinWidthMinor = global::DotNetRu.Droid.Resource.Attribute.windowMinWidthMinor;
-			global::Naxam.Controls.Platform.Droid.Resource.Attribute.windowNoTitle = global::DotNetRu.Droid.Resource.Attribute.windowNoTitle;
-			global::Naxam.Controls.Platform.Droid.Resource.Boolean.abc_action_bar_embed_tabs = global::DotNetRu.Droid.Resource.Boolean.abc_action_bar_embed_tabs;
-			global::Naxam.Controls.Platform.Droid.Resource.Boolean.abc_allow_stacked_button_bar = global::DotNetRu.Droid.Resource.Boolean.abc_allow_stacked_button_bar;
-			global::Naxam.Controls.Platform.Droid.Resource.Boolean.abc_config_actionMenuItemAllCaps = global::DotNetRu.Droid.Resource.Boolean.abc_config_actionMenuItemAllCaps;
-			global::Naxam.Controls.Platform.Droid.Resource.Boolean.abc_config_closeDialogWhenTouchOutside = global::DotNetRu.Droid.Resource.Boolean.abc_config_closeDialogWhenTouchOutside;
-			global::Naxam.Controls.Platform.Droid.Resource.Boolean.abc_config_showMenuShortcutsWhenKeyboardPresent = global::DotNetRu.Droid.Resource.Boolean.abc_config_showMenuShortcutsWhenKeyboardPresent;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.abc_background_cache_hint_selector_material_dark = global::DotNetRu.Droid.Resource.Color.abc_background_cache_hint_selector_material_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.abc_background_cache_hint_selector_material_light = global::DotNetRu.Droid.Resource.Color.abc_background_cache_hint_selector_material_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.abc_btn_colored_borderless_text_material = global::DotNetRu.Droid.Resource.Color.abc_btn_colored_borderless_text_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.abc_btn_colored_text_material = global::DotNetRu.Droid.Resource.Color.abc_btn_colored_text_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.abc_color_highlight_material = global::DotNetRu.Droid.Resource.Color.abc_color_highlight_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.abc_hint_foreground_material_dark = global::DotNetRu.Droid.Resource.Color.abc_hint_foreground_material_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.abc_hint_foreground_material_light = global::DotNetRu.Droid.Resource.Color.abc_hint_foreground_material_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.abc_input_method_navigation_guard = global::DotNetRu.Droid.Resource.Color.abc_input_method_navigation_guard;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.abc_primary_text_disable_only_material_dark = global::DotNetRu.Droid.Resource.Color.abc_primary_text_disable_only_material_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.abc_primary_text_disable_only_material_light = global::DotNetRu.Droid.Resource.Color.abc_primary_text_disable_only_material_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.abc_primary_text_material_dark = global::DotNetRu.Droid.Resource.Color.abc_primary_text_material_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.abc_primary_text_material_light = global::DotNetRu.Droid.Resource.Color.abc_primary_text_material_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.abc_search_url_text = global::DotNetRu.Droid.Resource.Color.abc_search_url_text;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.abc_search_url_text_normal = global::DotNetRu.Droid.Resource.Color.abc_search_url_text_normal;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.abc_search_url_text_pressed = global::DotNetRu.Droid.Resource.Color.abc_search_url_text_pressed;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.abc_search_url_text_selected = global::DotNetRu.Droid.Resource.Color.abc_search_url_text_selected;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.abc_secondary_text_material_dark = global::DotNetRu.Droid.Resource.Color.abc_secondary_text_material_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.abc_secondary_text_material_light = global::DotNetRu.Droid.Resource.Color.abc_secondary_text_material_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.abc_tint_btn_checkable = global::DotNetRu.Droid.Resource.Color.abc_tint_btn_checkable;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.abc_tint_default = global::DotNetRu.Droid.Resource.Color.abc_tint_default;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.abc_tint_edittext = global::DotNetRu.Droid.Resource.Color.abc_tint_edittext;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.abc_tint_seek_thumb = global::DotNetRu.Droid.Resource.Color.abc_tint_seek_thumb;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.abc_tint_spinner = global::DotNetRu.Droid.Resource.Color.abc_tint_spinner;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.abc_tint_switch_track = global::DotNetRu.Droid.Resource.Color.abc_tint_switch_track;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.accent_material_dark = global::DotNetRu.Droid.Resource.Color.accent_material_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.accent_material_light = global::DotNetRu.Droid.Resource.Color.accent_material_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.background_floating_material_dark = global::DotNetRu.Droid.Resource.Color.background_floating_material_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.background_floating_material_light = global::DotNetRu.Droid.Resource.Color.background_floating_material_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.background_material_dark = global::DotNetRu.Droid.Resource.Color.background_material_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.background_material_light = global::DotNetRu.Droid.Resource.Color.background_material_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.bright_foreground_disabled_material_dark = global::DotNetRu.Droid.Resource.Color.bright_foreground_disabled_material_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.bright_foreground_disabled_material_light = global::DotNetRu.Droid.Resource.Color.bright_foreground_disabled_material_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.bright_foreground_inverse_material_dark = global::DotNetRu.Droid.Resource.Color.bright_foreground_inverse_material_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.bright_foreground_inverse_material_light = global::DotNetRu.Droid.Resource.Color.bright_foreground_inverse_material_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.bright_foreground_material_dark = global::DotNetRu.Droid.Resource.Color.bright_foreground_material_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.bright_foreground_material_light = global::DotNetRu.Droid.Resource.Color.bright_foreground_material_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.button_material_dark = global::DotNetRu.Droid.Resource.Color.button_material_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.button_material_light = global::DotNetRu.Droid.Resource.Color.button_material_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.cardview_dark_background = global::DotNetRu.Droid.Resource.Color.cardview_dark_background;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.cardview_light_background = global::DotNetRu.Droid.Resource.Color.cardview_light_background;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.cardview_shadow_end_color = global::DotNetRu.Droid.Resource.Color.cardview_shadow_end_color;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.cardview_shadow_start_color = global::DotNetRu.Droid.Resource.Color.cardview_shadow_start_color;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.design_bottom_navigation_shadow_color = global::DotNetRu.Droid.Resource.Color.design_bottom_navigation_shadow_color;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.design_error = global::DotNetRu.Droid.Resource.Color.design_error;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.design_fab_shadow_end_color = global::DotNetRu.Droid.Resource.Color.design_fab_shadow_end_color;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.design_fab_shadow_mid_color = global::DotNetRu.Droid.Resource.Color.design_fab_shadow_mid_color;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.design_fab_shadow_start_color = global::DotNetRu.Droid.Resource.Color.design_fab_shadow_start_color;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.design_fab_stroke_end_inner_color = global::DotNetRu.Droid.Resource.Color.design_fab_stroke_end_inner_color;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.design_fab_stroke_end_outer_color = global::DotNetRu.Droid.Resource.Color.design_fab_stroke_end_outer_color;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.design_fab_stroke_top_inner_color = global::DotNetRu.Droid.Resource.Color.design_fab_stroke_top_inner_color;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.design_fab_stroke_top_outer_color = global::DotNetRu.Droid.Resource.Color.design_fab_stroke_top_outer_color;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.design_snackbar_background_color = global::DotNetRu.Droid.Resource.Color.design_snackbar_background_color;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.design_tint_password_toggle = global::DotNetRu.Droid.Resource.Color.design_tint_password_toggle;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.dim_foreground_disabled_material_dark = global::DotNetRu.Droid.Resource.Color.dim_foreground_disabled_material_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.dim_foreground_disabled_material_light = global::DotNetRu.Droid.Resource.Color.dim_foreground_disabled_material_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.dim_foreground_material_dark = global::DotNetRu.Droid.Resource.Color.dim_foreground_material_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.dim_foreground_material_light = global::DotNetRu.Droid.Resource.Color.dim_foreground_material_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.foreground_material_dark = global::DotNetRu.Droid.Resource.Color.foreground_material_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.foreground_material_light = global::DotNetRu.Droid.Resource.Color.foreground_material_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.highlighted_text_material_dark = global::DotNetRu.Droid.Resource.Color.highlighted_text_material_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.highlighted_text_material_light = global::DotNetRu.Droid.Resource.Color.highlighted_text_material_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.material_blue_grey_800 = global::DotNetRu.Droid.Resource.Color.material_blue_grey_800;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.material_blue_grey_900 = global::DotNetRu.Droid.Resource.Color.material_blue_grey_900;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.material_blue_grey_950 = global::DotNetRu.Droid.Resource.Color.material_blue_grey_950;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.material_deep_teal_200 = global::DotNetRu.Droid.Resource.Color.material_deep_teal_200;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.material_deep_teal_500 = global::DotNetRu.Droid.Resource.Color.material_deep_teal_500;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.material_grey_100 = global::DotNetRu.Droid.Resource.Color.material_grey_100;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.material_grey_300 = global::DotNetRu.Droid.Resource.Color.material_grey_300;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.material_grey_50 = global::DotNetRu.Droid.Resource.Color.material_grey_50;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.material_grey_600 = global::DotNetRu.Droid.Resource.Color.material_grey_600;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.material_grey_800 = global::DotNetRu.Droid.Resource.Color.material_grey_800;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.material_grey_850 = global::DotNetRu.Droid.Resource.Color.material_grey_850;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.material_grey_900 = global::DotNetRu.Droid.Resource.Color.material_grey_900;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.notification_action_color_filter = global::DotNetRu.Droid.Resource.Color.notification_action_color_filter;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.notification_icon_bg_color = global::DotNetRu.Droid.Resource.Color.notification_icon_bg_color;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.notification_material_background_media_default_color = global::DotNetRu.Droid.Resource.Color.notification_material_background_media_default_color;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.primary_dark_material_dark = global::DotNetRu.Droid.Resource.Color.primary_dark_material_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.primary_dark_material_light = global::DotNetRu.Droid.Resource.Color.primary_dark_material_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.primary_material_dark = global::DotNetRu.Droid.Resource.Color.primary_material_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.primary_material_light = global::DotNetRu.Droid.Resource.Color.primary_material_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.primary_text_default_material_dark = global::DotNetRu.Droid.Resource.Color.primary_text_default_material_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.primary_text_default_material_light = global::DotNetRu.Droid.Resource.Color.primary_text_default_material_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.primary_text_disabled_material_dark = global::DotNetRu.Droid.Resource.Color.primary_text_disabled_material_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.primary_text_disabled_material_light = global::DotNetRu.Droid.Resource.Color.primary_text_disabled_material_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.ripple_material_dark = global::DotNetRu.Droid.Resource.Color.ripple_material_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.ripple_material_light = global::DotNetRu.Droid.Resource.Color.ripple_material_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.secondary_text_default_material_dark = global::DotNetRu.Droid.Resource.Color.secondary_text_default_material_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.secondary_text_default_material_light = global::DotNetRu.Droid.Resource.Color.secondary_text_default_material_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.secondary_text_disabled_material_dark = global::DotNetRu.Droid.Resource.Color.secondary_text_disabled_material_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.secondary_text_disabled_material_light = global::DotNetRu.Droid.Resource.Color.secondary_text_disabled_material_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.switch_thumb_disabled_material_dark = global::DotNetRu.Droid.Resource.Color.switch_thumb_disabled_material_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.switch_thumb_disabled_material_light = global::DotNetRu.Droid.Resource.Color.switch_thumb_disabled_material_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.switch_thumb_material_dark = global::DotNetRu.Droid.Resource.Color.switch_thumb_material_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.switch_thumb_material_light = global::DotNetRu.Droid.Resource.Color.switch_thumb_material_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.switch_thumb_normal_material_dark = global::DotNetRu.Droid.Resource.Color.switch_thumb_normal_material_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Color.switch_thumb_normal_material_light = global::DotNetRu.Droid.Resource.Color.switch_thumb_normal_material_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_action_bar_content_inset_material = global::DotNetRu.Droid.Resource.Dimension.abc_action_bar_content_inset_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_action_bar_content_inset_with_nav = global::DotNetRu.Droid.Resource.Dimension.abc_action_bar_content_inset_with_nav;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_action_bar_default_height_material = global::DotNetRu.Droid.Resource.Dimension.abc_action_bar_default_height_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_action_bar_default_padding_end_material = global::DotNetRu.Droid.Resource.Dimension.abc_action_bar_default_padding_end_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_action_bar_default_padding_start_material = global::DotNetRu.Droid.Resource.Dimension.abc_action_bar_default_padding_start_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_action_bar_elevation_material = global::DotNetRu.Droid.Resource.Dimension.abc_action_bar_elevation_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_action_bar_icon_vertical_padding_material = global::DotNetRu.Droid.Resource.Dimension.abc_action_bar_icon_vertical_padding_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_action_bar_overflow_padding_end_material = global::DotNetRu.Droid.Resource.Dimension.abc_action_bar_overflow_padding_end_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_action_bar_overflow_padding_start_material = global::DotNetRu.Droid.Resource.Dimension.abc_action_bar_overflow_padding_start_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_action_bar_progress_bar_size = global::DotNetRu.Droid.Resource.Dimension.abc_action_bar_progress_bar_size;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_action_bar_stacked_max_height = global::DotNetRu.Droid.Resource.Dimension.abc_action_bar_stacked_max_height;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_action_bar_stacked_tab_max_width = global::DotNetRu.Droid.Resource.Dimension.abc_action_bar_stacked_tab_max_width;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_action_bar_subtitle_bottom_margin_material = global::DotNetRu.Droid.Resource.Dimension.abc_action_bar_subtitle_bottom_margin_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_action_bar_subtitle_top_margin_material = global::DotNetRu.Droid.Resource.Dimension.abc_action_bar_subtitle_top_margin_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_action_button_min_height_material = global::DotNetRu.Droid.Resource.Dimension.abc_action_button_min_height_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_action_button_min_width_material = global::DotNetRu.Droid.Resource.Dimension.abc_action_button_min_width_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_action_button_min_width_overflow_material = global::DotNetRu.Droid.Resource.Dimension.abc_action_button_min_width_overflow_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_alert_dialog_button_bar_height = global::DotNetRu.Droid.Resource.Dimension.abc_alert_dialog_button_bar_height;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_button_inset_horizontal_material = global::DotNetRu.Droid.Resource.Dimension.abc_button_inset_horizontal_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_button_inset_vertical_material = global::DotNetRu.Droid.Resource.Dimension.abc_button_inset_vertical_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_button_padding_horizontal_material = global::DotNetRu.Droid.Resource.Dimension.abc_button_padding_horizontal_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_button_padding_vertical_material = global::DotNetRu.Droid.Resource.Dimension.abc_button_padding_vertical_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_cascading_menus_min_smallest_width = global::DotNetRu.Droid.Resource.Dimension.abc_cascading_menus_min_smallest_width;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_config_prefDialogWidth = global::DotNetRu.Droid.Resource.Dimension.abc_config_prefDialogWidth;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_control_corner_material = global::DotNetRu.Droid.Resource.Dimension.abc_control_corner_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_control_inset_material = global::DotNetRu.Droid.Resource.Dimension.abc_control_inset_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_control_padding_material = global::DotNetRu.Droid.Resource.Dimension.abc_control_padding_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_dialog_fixed_height_major = global::DotNetRu.Droid.Resource.Dimension.abc_dialog_fixed_height_major;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_dialog_fixed_height_minor = global::DotNetRu.Droid.Resource.Dimension.abc_dialog_fixed_height_minor;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_dialog_fixed_width_major = global::DotNetRu.Droid.Resource.Dimension.abc_dialog_fixed_width_major;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_dialog_fixed_width_minor = global::DotNetRu.Droid.Resource.Dimension.abc_dialog_fixed_width_minor;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_dialog_list_padding_bottom_no_buttons = global::DotNetRu.Droid.Resource.Dimension.abc_dialog_list_padding_bottom_no_buttons;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_dialog_list_padding_top_no_title = global::DotNetRu.Droid.Resource.Dimension.abc_dialog_list_padding_top_no_title;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_dialog_min_width_major = global::DotNetRu.Droid.Resource.Dimension.abc_dialog_min_width_major;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_dialog_min_width_minor = global::DotNetRu.Droid.Resource.Dimension.abc_dialog_min_width_minor;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_dialog_padding_material = global::DotNetRu.Droid.Resource.Dimension.abc_dialog_padding_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_dialog_padding_top_material = global::DotNetRu.Droid.Resource.Dimension.abc_dialog_padding_top_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_dialog_title_divider_material = global::DotNetRu.Droid.Resource.Dimension.abc_dialog_title_divider_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_disabled_alpha_material_dark = global::DotNetRu.Droid.Resource.Dimension.abc_disabled_alpha_material_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_disabled_alpha_material_light = global::DotNetRu.Droid.Resource.Dimension.abc_disabled_alpha_material_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_dropdownitem_icon_width = global::DotNetRu.Droid.Resource.Dimension.abc_dropdownitem_icon_width;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_dropdownitem_text_padding_left = global::DotNetRu.Droid.Resource.Dimension.abc_dropdownitem_text_padding_left;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_dropdownitem_text_padding_right = global::DotNetRu.Droid.Resource.Dimension.abc_dropdownitem_text_padding_right;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_edit_text_inset_bottom_material = global::DotNetRu.Droid.Resource.Dimension.abc_edit_text_inset_bottom_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_edit_text_inset_horizontal_material = global::DotNetRu.Droid.Resource.Dimension.abc_edit_text_inset_horizontal_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_edit_text_inset_top_material = global::DotNetRu.Droid.Resource.Dimension.abc_edit_text_inset_top_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_floating_window_z = global::DotNetRu.Droid.Resource.Dimension.abc_floating_window_z;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_list_item_padding_horizontal_material = global::DotNetRu.Droid.Resource.Dimension.abc_list_item_padding_horizontal_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_panel_menu_list_width = global::DotNetRu.Droid.Resource.Dimension.abc_panel_menu_list_width;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_progress_bar_height_material = global::DotNetRu.Droid.Resource.Dimension.abc_progress_bar_height_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_search_view_preferred_height = global::DotNetRu.Droid.Resource.Dimension.abc_search_view_preferred_height;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_search_view_preferred_width = global::DotNetRu.Droid.Resource.Dimension.abc_search_view_preferred_width;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_seekbar_track_background_height_material = global::DotNetRu.Droid.Resource.Dimension.abc_seekbar_track_background_height_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_seekbar_track_progress_height_material = global::DotNetRu.Droid.Resource.Dimension.abc_seekbar_track_progress_height_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_select_dialog_padding_start_material = global::DotNetRu.Droid.Resource.Dimension.abc_select_dialog_padding_start_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_switch_padding = global::DotNetRu.Droid.Resource.Dimension.abc_switch_padding;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_text_size_body_1_material = global::DotNetRu.Droid.Resource.Dimension.abc_text_size_body_1_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_text_size_body_2_material = global::DotNetRu.Droid.Resource.Dimension.abc_text_size_body_2_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_text_size_button_material = global::DotNetRu.Droid.Resource.Dimension.abc_text_size_button_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_text_size_caption_material = global::DotNetRu.Droid.Resource.Dimension.abc_text_size_caption_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_text_size_display_1_material = global::DotNetRu.Droid.Resource.Dimension.abc_text_size_display_1_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_text_size_display_2_material = global::DotNetRu.Droid.Resource.Dimension.abc_text_size_display_2_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_text_size_display_3_material = global::DotNetRu.Droid.Resource.Dimension.abc_text_size_display_3_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_text_size_display_4_material = global::DotNetRu.Droid.Resource.Dimension.abc_text_size_display_4_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_text_size_headline_material = global::DotNetRu.Droid.Resource.Dimension.abc_text_size_headline_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_text_size_large_material = global::DotNetRu.Droid.Resource.Dimension.abc_text_size_large_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_text_size_medium_material = global::DotNetRu.Droid.Resource.Dimension.abc_text_size_medium_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_text_size_menu_header_material = global::DotNetRu.Droid.Resource.Dimension.abc_text_size_menu_header_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_text_size_menu_material = global::DotNetRu.Droid.Resource.Dimension.abc_text_size_menu_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_text_size_small_material = global::DotNetRu.Droid.Resource.Dimension.abc_text_size_small_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_text_size_subhead_material = global::DotNetRu.Droid.Resource.Dimension.abc_text_size_subhead_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_text_size_subtitle_material_toolbar = global::DotNetRu.Droid.Resource.Dimension.abc_text_size_subtitle_material_toolbar;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_text_size_title_material = global::DotNetRu.Droid.Resource.Dimension.abc_text_size_title_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.abc_text_size_title_material_toolbar = global::DotNetRu.Droid.Resource.Dimension.abc_text_size_title_material_toolbar;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.cardview_compat_inset_shadow = global::DotNetRu.Droid.Resource.Dimension.cardview_compat_inset_shadow;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.cardview_default_elevation = global::DotNetRu.Droid.Resource.Dimension.cardview_default_elevation;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.cardview_default_radius = global::DotNetRu.Droid.Resource.Dimension.cardview_default_radius;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.design_appbar_elevation = global::DotNetRu.Droid.Resource.Dimension.design_appbar_elevation;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.design_bottom_navigation_active_item_max_width = global::DotNetRu.Droid.Resource.Dimension.design_bottom_navigation_active_item_max_width;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.design_bottom_navigation_active_text_size = global::DotNetRu.Droid.Resource.Dimension.design_bottom_navigation_active_text_size;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.design_bottom_navigation_elevation = global::DotNetRu.Droid.Resource.Dimension.design_bottom_navigation_elevation;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.design_bottom_navigation_height = global::DotNetRu.Droid.Resource.Dimension.design_bottom_navigation_height;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.design_bottom_navigation_item_max_width = global::DotNetRu.Droid.Resource.Dimension.design_bottom_navigation_item_max_width;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.design_bottom_navigation_item_min_width = global::DotNetRu.Droid.Resource.Dimension.design_bottom_navigation_item_min_width;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.design_bottom_navigation_margin = global::DotNetRu.Droid.Resource.Dimension.design_bottom_navigation_margin;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.design_bottom_navigation_shadow_height = global::DotNetRu.Droid.Resource.Dimension.design_bottom_navigation_shadow_height;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.design_bottom_navigation_text_size = global::DotNetRu.Droid.Resource.Dimension.design_bottom_navigation_text_size;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.design_bottom_sheet_modal_elevation = global::DotNetRu.Droid.Resource.Dimension.design_bottom_sheet_modal_elevation;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.design_bottom_sheet_peek_height_min = global::DotNetRu.Droid.Resource.Dimension.design_bottom_sheet_peek_height_min;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.design_fab_border_width = global::DotNetRu.Droid.Resource.Dimension.design_fab_border_width;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.design_fab_elevation = global::DotNetRu.Droid.Resource.Dimension.design_fab_elevation;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.design_fab_image_size = global::DotNetRu.Droid.Resource.Dimension.design_fab_image_size;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.design_fab_size_mini = global::DotNetRu.Droid.Resource.Dimension.design_fab_size_mini;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.design_fab_size_normal = global::DotNetRu.Droid.Resource.Dimension.design_fab_size_normal;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.design_fab_translation_z_pressed = global::DotNetRu.Droid.Resource.Dimension.design_fab_translation_z_pressed;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.design_navigation_elevation = global::DotNetRu.Droid.Resource.Dimension.design_navigation_elevation;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.design_navigation_icon_padding = global::DotNetRu.Droid.Resource.Dimension.design_navigation_icon_padding;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.design_navigation_icon_size = global::DotNetRu.Droid.Resource.Dimension.design_navigation_icon_size;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.design_navigation_max_width = global::DotNetRu.Droid.Resource.Dimension.design_navigation_max_width;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.design_navigation_padding_bottom = global::DotNetRu.Droid.Resource.Dimension.design_navigation_padding_bottom;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.design_navigation_separator_vertical_padding = global::DotNetRu.Droid.Resource.Dimension.design_navigation_separator_vertical_padding;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.design_snackbar_action_inline_max_width = global::DotNetRu.Droid.Resource.Dimension.design_snackbar_action_inline_max_width;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.design_snackbar_background_corner_radius = global::DotNetRu.Droid.Resource.Dimension.design_snackbar_background_corner_radius;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.design_snackbar_elevation = global::DotNetRu.Droid.Resource.Dimension.design_snackbar_elevation;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.design_snackbar_extra_spacing_horizontal = global::DotNetRu.Droid.Resource.Dimension.design_snackbar_extra_spacing_horizontal;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.design_snackbar_max_width = global::DotNetRu.Droid.Resource.Dimension.design_snackbar_max_width;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.design_snackbar_min_width = global::DotNetRu.Droid.Resource.Dimension.design_snackbar_min_width;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.design_snackbar_padding_horizontal = global::DotNetRu.Droid.Resource.Dimension.design_snackbar_padding_horizontal;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.design_snackbar_padding_vertical = global::DotNetRu.Droid.Resource.Dimension.design_snackbar_padding_vertical;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.design_snackbar_padding_vertical_2lines = global::DotNetRu.Droid.Resource.Dimension.design_snackbar_padding_vertical_2lines;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.design_snackbar_text_size = global::DotNetRu.Droid.Resource.Dimension.design_snackbar_text_size;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.design_tab_max_width = global::DotNetRu.Droid.Resource.Dimension.design_tab_max_width;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.design_tab_scrollable_min_width = global::DotNetRu.Droid.Resource.Dimension.design_tab_scrollable_min_width;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.design_tab_text_size = global::DotNetRu.Droid.Resource.Dimension.design_tab_text_size;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.design_tab_text_size_2line = global::DotNetRu.Droid.Resource.Dimension.design_tab_text_size_2line;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.disabled_alpha_material_dark = global::DotNetRu.Droid.Resource.Dimension.disabled_alpha_material_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.disabled_alpha_material_light = global::DotNetRu.Droid.Resource.Dimension.disabled_alpha_material_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.highlight_alpha_material_colored = global::DotNetRu.Droid.Resource.Dimension.highlight_alpha_material_colored;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.highlight_alpha_material_dark = global::DotNetRu.Droid.Resource.Dimension.highlight_alpha_material_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.highlight_alpha_material_light = global::DotNetRu.Droid.Resource.Dimension.highlight_alpha_material_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.hint_alpha_material_dark = global::DotNetRu.Droid.Resource.Dimension.hint_alpha_material_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.hint_alpha_material_light = global::DotNetRu.Droid.Resource.Dimension.hint_alpha_material_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.hint_pressed_alpha_material_dark = global::DotNetRu.Droid.Resource.Dimension.hint_pressed_alpha_material_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.hint_pressed_alpha_material_light = global::DotNetRu.Droid.Resource.Dimension.hint_pressed_alpha_material_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.item_touch_helper_max_drag_scroll_per_frame = global::DotNetRu.Droid.Resource.Dimension.item_touch_helper_max_drag_scroll_per_frame;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.item_touch_helper_swipe_escape_max_velocity = global::DotNetRu.Droid.Resource.Dimension.item_touch_helper_swipe_escape_max_velocity;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.item_touch_helper_swipe_escape_velocity = global::DotNetRu.Droid.Resource.Dimension.item_touch_helper_swipe_escape_velocity;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.mr_controller_volume_group_list_item_height = global::DotNetRu.Droid.Resource.Dimension.mr_controller_volume_group_list_item_height;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.mr_controller_volume_group_list_item_icon_size = global::DotNetRu.Droid.Resource.Dimension.mr_controller_volume_group_list_item_icon_size;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.mr_controller_volume_group_list_max_height = global::DotNetRu.Droid.Resource.Dimension.mr_controller_volume_group_list_max_height;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.mr_controller_volume_group_list_padding_top = global::DotNetRu.Droid.Resource.Dimension.mr_controller_volume_group_list_padding_top;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.mr_dialog_fixed_width_major = global::DotNetRu.Droid.Resource.Dimension.mr_dialog_fixed_width_major;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.mr_dialog_fixed_width_minor = global::DotNetRu.Droid.Resource.Dimension.mr_dialog_fixed_width_minor;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.notification_action_icon_size = global::DotNetRu.Droid.Resource.Dimension.notification_action_icon_size;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.notification_action_text_size = global::DotNetRu.Droid.Resource.Dimension.notification_action_text_size;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.notification_big_circle_margin = global::DotNetRu.Droid.Resource.Dimension.notification_big_circle_margin;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.notification_content_margin_start = global::DotNetRu.Droid.Resource.Dimension.notification_content_margin_start;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.notification_large_icon_height = global::DotNetRu.Droid.Resource.Dimension.notification_large_icon_height;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.notification_large_icon_width = global::DotNetRu.Droid.Resource.Dimension.notification_large_icon_width;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.notification_main_column_padding_top = global::DotNetRu.Droid.Resource.Dimension.notification_main_column_padding_top;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.notification_media_narrow_margin = global::DotNetRu.Droid.Resource.Dimension.notification_media_narrow_margin;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.notification_right_icon_size = global::DotNetRu.Droid.Resource.Dimension.notification_right_icon_size;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.notification_right_side_padding_top = global::DotNetRu.Droid.Resource.Dimension.notification_right_side_padding_top;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.notification_small_icon_background_padding = global::DotNetRu.Droid.Resource.Dimension.notification_small_icon_background_padding;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.notification_small_icon_size_as_large = global::DotNetRu.Droid.Resource.Dimension.notification_small_icon_size_as_large;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.notification_subtext_size = global::DotNetRu.Droid.Resource.Dimension.notification_subtext_size;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.notification_top_pad = global::DotNetRu.Droid.Resource.Dimension.notification_top_pad;
-			global::Naxam.Controls.Platform.Droid.Resource.Dimension.notification_top_pad_large_text = global::DotNetRu.Droid.Resource.Dimension.notification_top_pad_large_text;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_ab_share_pack_mtrl_alpha = global::DotNetRu.Droid.Resource.Drawable.abc_ab_share_pack_mtrl_alpha;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_action_bar_item_background_material = global::DotNetRu.Droid.Resource.Drawable.abc_action_bar_item_background_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_btn_borderless_material = global::DotNetRu.Droid.Resource.Drawable.abc_btn_borderless_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_btn_check_material = global::DotNetRu.Droid.Resource.Drawable.abc_btn_check_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_btn_check_to_on_mtrl_000 = global::DotNetRu.Droid.Resource.Drawable.abc_btn_check_to_on_mtrl_000;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_btn_check_to_on_mtrl_015 = global::DotNetRu.Droid.Resource.Drawable.abc_btn_check_to_on_mtrl_015;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_btn_colored_material = global::DotNetRu.Droid.Resource.Drawable.abc_btn_colored_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_btn_default_mtrl_shape = global::DotNetRu.Droid.Resource.Drawable.abc_btn_default_mtrl_shape;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_btn_radio_material = global::DotNetRu.Droid.Resource.Drawable.abc_btn_radio_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_btn_radio_to_on_mtrl_000 = global::DotNetRu.Droid.Resource.Drawable.abc_btn_radio_to_on_mtrl_000;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_btn_radio_to_on_mtrl_015 = global::DotNetRu.Droid.Resource.Drawable.abc_btn_radio_to_on_mtrl_015;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_btn_switch_to_on_mtrl_00001 = global::DotNetRu.Droid.Resource.Drawable.abc_btn_switch_to_on_mtrl_00001;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_btn_switch_to_on_mtrl_00012 = global::DotNetRu.Droid.Resource.Drawable.abc_btn_switch_to_on_mtrl_00012;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_cab_background_internal_bg = global::DotNetRu.Droid.Resource.Drawable.abc_cab_background_internal_bg;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_cab_background_top_material = global::DotNetRu.Droid.Resource.Drawable.abc_cab_background_top_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_cab_background_top_mtrl_alpha = global::DotNetRu.Droid.Resource.Drawable.abc_cab_background_top_mtrl_alpha;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_control_background_material = global::DotNetRu.Droid.Resource.Drawable.abc_control_background_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_dialog_material_background = global::DotNetRu.Droid.Resource.Drawable.abc_dialog_material_background;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_edit_text_material = global::DotNetRu.Droid.Resource.Drawable.abc_edit_text_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_ic_ab_back_material = global::DotNetRu.Droid.Resource.Drawable.abc_ic_ab_back_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_ic_arrow_drop_right_black_24dp = global::DotNetRu.Droid.Resource.Drawable.abc_ic_arrow_drop_right_black_24dp;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_ic_clear_material = global::DotNetRu.Droid.Resource.Drawable.abc_ic_clear_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_ic_commit_search_api_mtrl_alpha = global::DotNetRu.Droid.Resource.Drawable.abc_ic_commit_search_api_mtrl_alpha;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_ic_go_search_api_material = global::DotNetRu.Droid.Resource.Drawable.abc_ic_go_search_api_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_ic_menu_copy_mtrl_am_alpha = global::DotNetRu.Droid.Resource.Drawable.abc_ic_menu_copy_mtrl_am_alpha;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_ic_menu_cut_mtrl_alpha = global::DotNetRu.Droid.Resource.Drawable.abc_ic_menu_cut_mtrl_alpha;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_ic_menu_overflow_material = global::DotNetRu.Droid.Resource.Drawable.abc_ic_menu_overflow_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_ic_menu_paste_mtrl_am_alpha = global::DotNetRu.Droid.Resource.Drawable.abc_ic_menu_paste_mtrl_am_alpha;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_ic_menu_selectall_mtrl_alpha = global::DotNetRu.Droid.Resource.Drawable.abc_ic_menu_selectall_mtrl_alpha;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_ic_menu_share_mtrl_alpha = global::DotNetRu.Droid.Resource.Drawable.abc_ic_menu_share_mtrl_alpha;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_ic_search_api_material = global::DotNetRu.Droid.Resource.Drawable.abc_ic_search_api_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_ic_star_black_16dp = global::DotNetRu.Droid.Resource.Drawable.abc_ic_star_black_16dp;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_ic_star_black_36dp = global::DotNetRu.Droid.Resource.Drawable.abc_ic_star_black_36dp;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_ic_star_black_48dp = global::DotNetRu.Droid.Resource.Drawable.abc_ic_star_black_48dp;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_ic_star_half_black_16dp = global::DotNetRu.Droid.Resource.Drawable.abc_ic_star_half_black_16dp;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_ic_star_half_black_36dp = global::DotNetRu.Droid.Resource.Drawable.abc_ic_star_half_black_36dp;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_ic_star_half_black_48dp = global::DotNetRu.Droid.Resource.Drawable.abc_ic_star_half_black_48dp;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_ic_voice_search_api_material = global::DotNetRu.Droid.Resource.Drawable.abc_ic_voice_search_api_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_item_background_holo_dark = global::DotNetRu.Droid.Resource.Drawable.abc_item_background_holo_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_item_background_holo_light = global::DotNetRu.Droid.Resource.Drawable.abc_item_background_holo_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_list_divider_mtrl_alpha = global::DotNetRu.Droid.Resource.Drawable.abc_list_divider_mtrl_alpha;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_list_focused_holo = global::DotNetRu.Droid.Resource.Drawable.abc_list_focused_holo;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_list_longpressed_holo = global::DotNetRu.Droid.Resource.Drawable.abc_list_longpressed_holo;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_list_pressed_holo_dark = global::DotNetRu.Droid.Resource.Drawable.abc_list_pressed_holo_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_list_pressed_holo_light = global::DotNetRu.Droid.Resource.Drawable.abc_list_pressed_holo_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_list_selector_background_transition_holo_dark = global::DotNetRu.Droid.Resource.Drawable.abc_list_selector_background_transition_holo_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_list_selector_background_transition_holo_light = global::DotNetRu.Droid.Resource.Drawable.abc_list_selector_background_transition_holo_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_list_selector_disabled_holo_dark = global::DotNetRu.Droid.Resource.Drawable.abc_list_selector_disabled_holo_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_list_selector_disabled_holo_light = global::DotNetRu.Droid.Resource.Drawable.abc_list_selector_disabled_holo_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_list_selector_holo_dark = global::DotNetRu.Droid.Resource.Drawable.abc_list_selector_holo_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_list_selector_holo_light = global::DotNetRu.Droid.Resource.Drawable.abc_list_selector_holo_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_menu_hardkey_panel_mtrl_mult = global::DotNetRu.Droid.Resource.Drawable.abc_menu_hardkey_panel_mtrl_mult;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_popup_background_mtrl_mult = global::DotNetRu.Droid.Resource.Drawable.abc_popup_background_mtrl_mult;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_ratingbar_indicator_material = global::DotNetRu.Droid.Resource.Drawable.abc_ratingbar_indicator_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_ratingbar_material = global::DotNetRu.Droid.Resource.Drawable.abc_ratingbar_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_ratingbar_small_material = global::DotNetRu.Droid.Resource.Drawable.abc_ratingbar_small_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_scrubber_control_off_mtrl_alpha = global::DotNetRu.Droid.Resource.Drawable.abc_scrubber_control_off_mtrl_alpha;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_scrubber_control_to_pressed_mtrl_000 = global::DotNetRu.Droid.Resource.Drawable.abc_scrubber_control_to_pressed_mtrl_000;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_scrubber_control_to_pressed_mtrl_005 = global::DotNetRu.Droid.Resource.Drawable.abc_scrubber_control_to_pressed_mtrl_005;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_scrubber_primary_mtrl_alpha = global::DotNetRu.Droid.Resource.Drawable.abc_scrubber_primary_mtrl_alpha;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_scrubber_track_mtrl_alpha = global::DotNetRu.Droid.Resource.Drawable.abc_scrubber_track_mtrl_alpha;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_seekbar_thumb_material = global::DotNetRu.Droid.Resource.Drawable.abc_seekbar_thumb_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_seekbar_tick_mark_material = global::DotNetRu.Droid.Resource.Drawable.abc_seekbar_tick_mark_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_seekbar_track_material = global::DotNetRu.Droid.Resource.Drawable.abc_seekbar_track_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_spinner_mtrl_am_alpha = global::DotNetRu.Droid.Resource.Drawable.abc_spinner_mtrl_am_alpha;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_spinner_textfield_background_material = global::DotNetRu.Droid.Resource.Drawable.abc_spinner_textfield_background_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_switch_thumb_material = global::DotNetRu.Droid.Resource.Drawable.abc_switch_thumb_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_switch_track_mtrl_alpha = global::DotNetRu.Droid.Resource.Drawable.abc_switch_track_mtrl_alpha;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_tab_indicator_material = global::DotNetRu.Droid.Resource.Drawable.abc_tab_indicator_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_tab_indicator_mtrl_alpha = global::DotNetRu.Droid.Resource.Drawable.abc_tab_indicator_mtrl_alpha;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_text_cursor_material = global::DotNetRu.Droid.Resource.Drawable.abc_text_cursor_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_text_select_handle_left_mtrl_dark = global::DotNetRu.Droid.Resource.Drawable.abc_text_select_handle_left_mtrl_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_text_select_handle_left_mtrl_light = global::DotNetRu.Droid.Resource.Drawable.abc_text_select_handle_left_mtrl_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_text_select_handle_middle_mtrl_dark = global::DotNetRu.Droid.Resource.Drawable.abc_text_select_handle_middle_mtrl_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_text_select_handle_middle_mtrl_light = global::DotNetRu.Droid.Resource.Drawable.abc_text_select_handle_middle_mtrl_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_text_select_handle_right_mtrl_dark = global::DotNetRu.Droid.Resource.Drawable.abc_text_select_handle_right_mtrl_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_text_select_handle_right_mtrl_light = global::DotNetRu.Droid.Resource.Drawable.abc_text_select_handle_right_mtrl_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_textfield_activated_mtrl_alpha = global::DotNetRu.Droid.Resource.Drawable.abc_textfield_activated_mtrl_alpha;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_textfield_default_mtrl_alpha = global::DotNetRu.Droid.Resource.Drawable.abc_textfield_default_mtrl_alpha;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_textfield_search_activated_mtrl_alpha = global::DotNetRu.Droid.Resource.Drawable.abc_textfield_search_activated_mtrl_alpha;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_textfield_search_default_mtrl_alpha = global::DotNetRu.Droid.Resource.Drawable.abc_textfield_search_default_mtrl_alpha;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_textfield_search_material = global::DotNetRu.Droid.Resource.Drawable.abc_textfield_search_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.abc_vector_test = global::DotNetRu.Droid.Resource.Drawable.abc_vector_test;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.avd_hide_password = global::DotNetRu.Droid.Resource.Drawable.avd_hide_password;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.avd_hide_password_1 = global::DotNetRu.Droid.Resource.Drawable.avd_hide_password_1;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.avd_hide_password_2 = global::DotNetRu.Droid.Resource.Drawable.avd_hide_password_2;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.avd_hide_password_3 = global::DotNetRu.Droid.Resource.Drawable.avd_hide_password_3;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.avd_show_password = global::DotNetRu.Droid.Resource.Drawable.avd_show_password;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.avd_show_password_1 = global::DotNetRu.Droid.Resource.Drawable.avd_show_password_1;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.avd_show_password_2 = global::DotNetRu.Droid.Resource.Drawable.avd_show_password_2;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.avd_show_password_3 = global::DotNetRu.Droid.Resource.Drawable.avd_show_password_3;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.border = global::DotNetRu.Droid.Resource.Drawable.border;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.design_bottom_navigation_item_background = global::DotNetRu.Droid.Resource.Drawable.design_bottom_navigation_item_background;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.design_fab_background = global::DotNetRu.Droid.Resource.Drawable.design_fab_background;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.design_ic_visibility = global::DotNetRu.Droid.Resource.Drawable.design_ic_visibility;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.design_ic_visibility_off = global::DotNetRu.Droid.Resource.Drawable.design_ic_visibility_off;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.design_password_eye = global::DotNetRu.Droid.Resource.Drawable.design_password_eye;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.design_snackbar_background = global::DotNetRu.Droid.Resource.Drawable.design_snackbar_background;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.drop_shadow = global::DotNetRu.Droid.Resource.Drawable.drop_shadow;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_audiotrack_dark = global::DotNetRu.Droid.Resource.Drawable.ic_audiotrack_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_audiotrack_light = global::DotNetRu.Droid.Resource.Drawable.ic_audiotrack_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_dialog_close_dark = global::DotNetRu.Droid.Resource.Drawable.ic_dialog_close_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_dialog_close_light = global::DotNetRu.Droid.Resource.Drawable.ic_dialog_close_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_group_collapse_00 = global::DotNetRu.Droid.Resource.Drawable.ic_group_collapse_00;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_group_collapse_01 = global::DotNetRu.Droid.Resource.Drawable.ic_group_collapse_01;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_group_collapse_02 = global::DotNetRu.Droid.Resource.Drawable.ic_group_collapse_02;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_group_collapse_03 = global::DotNetRu.Droid.Resource.Drawable.ic_group_collapse_03;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_group_collapse_04 = global::DotNetRu.Droid.Resource.Drawable.ic_group_collapse_04;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_group_collapse_05 = global::DotNetRu.Droid.Resource.Drawable.ic_group_collapse_05;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_group_collapse_06 = global::DotNetRu.Droid.Resource.Drawable.ic_group_collapse_06;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_group_collapse_07 = global::DotNetRu.Droid.Resource.Drawable.ic_group_collapse_07;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_group_collapse_08 = global::DotNetRu.Droid.Resource.Drawable.ic_group_collapse_08;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_group_collapse_09 = global::DotNetRu.Droid.Resource.Drawable.ic_group_collapse_09;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_group_collapse_10 = global::DotNetRu.Droid.Resource.Drawable.ic_group_collapse_10;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_group_collapse_11 = global::DotNetRu.Droid.Resource.Drawable.ic_group_collapse_11;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_group_collapse_12 = global::DotNetRu.Droid.Resource.Drawable.ic_group_collapse_12;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_group_collapse_13 = global::DotNetRu.Droid.Resource.Drawable.ic_group_collapse_13;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_group_collapse_14 = global::DotNetRu.Droid.Resource.Drawable.ic_group_collapse_14;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_group_collapse_15 = global::DotNetRu.Droid.Resource.Drawable.ic_group_collapse_15;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_group_expand_00 = global::DotNetRu.Droid.Resource.Drawable.ic_group_expand_00;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_group_expand_01 = global::DotNetRu.Droid.Resource.Drawable.ic_group_expand_01;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_group_expand_02 = global::DotNetRu.Droid.Resource.Drawable.ic_group_expand_02;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_group_expand_03 = global::DotNetRu.Droid.Resource.Drawable.ic_group_expand_03;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_group_expand_04 = global::DotNetRu.Droid.Resource.Drawable.ic_group_expand_04;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_group_expand_05 = global::DotNetRu.Droid.Resource.Drawable.ic_group_expand_05;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_group_expand_06 = global::DotNetRu.Droid.Resource.Drawable.ic_group_expand_06;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_group_expand_07 = global::DotNetRu.Droid.Resource.Drawable.ic_group_expand_07;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_group_expand_08 = global::DotNetRu.Droid.Resource.Drawable.ic_group_expand_08;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_group_expand_09 = global::DotNetRu.Droid.Resource.Drawable.ic_group_expand_09;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_group_expand_10 = global::DotNetRu.Droid.Resource.Drawable.ic_group_expand_10;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_group_expand_11 = global::DotNetRu.Droid.Resource.Drawable.ic_group_expand_11;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_group_expand_12 = global::DotNetRu.Droid.Resource.Drawable.ic_group_expand_12;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_group_expand_13 = global::DotNetRu.Droid.Resource.Drawable.ic_group_expand_13;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_group_expand_14 = global::DotNetRu.Droid.Resource.Drawable.ic_group_expand_14;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_group_expand_15 = global::DotNetRu.Droid.Resource.Drawable.ic_group_expand_15;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_media_pause_dark = global::DotNetRu.Droid.Resource.Drawable.ic_media_pause_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_media_pause_light = global::DotNetRu.Droid.Resource.Drawable.ic_media_pause_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_media_play_dark = global::DotNetRu.Droid.Resource.Drawable.ic_media_play_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_media_play_light = global::DotNetRu.Droid.Resource.Drawable.ic_media_play_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_media_stop_dark = global::DotNetRu.Droid.Resource.Drawable.ic_media_stop_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_media_stop_light = global::DotNetRu.Droid.Resource.Drawable.ic_media_stop_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connected_00_dark = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connected_00_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connected_00_light = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connected_00_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connected_01_dark = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connected_01_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connected_01_light = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connected_01_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connected_02_dark = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connected_02_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connected_02_light = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connected_02_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connected_03_dark = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connected_03_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connected_03_light = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connected_03_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connected_04_dark = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connected_04_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connected_04_light = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connected_04_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connected_05_dark = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connected_05_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connected_05_light = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connected_05_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connected_06_dark = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connected_06_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connected_06_light = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connected_06_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connected_07_dark = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connected_07_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connected_07_light = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connected_07_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connected_08_dark = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connected_08_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connected_08_light = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connected_08_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connected_09_dark = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connected_09_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connected_09_light = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connected_09_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connected_10_dark = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connected_10_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connected_10_light = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connected_10_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connected_11_dark = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connected_11_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connected_11_light = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connected_11_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connected_12_dark = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connected_12_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connected_12_light = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connected_12_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connected_13_dark = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connected_13_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connected_13_light = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connected_13_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connected_14_dark = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connected_14_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connected_14_light = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connected_14_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connected_15_dark = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connected_15_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connected_15_light = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connected_15_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connected_16_dark = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connected_16_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connected_16_light = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connected_16_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connected_17_dark = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connected_17_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connected_17_light = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connected_17_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connected_18_dark = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connected_18_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connected_18_light = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connected_18_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connected_19_dark = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connected_19_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connected_19_light = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connected_19_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connected_20_dark = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connected_20_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connected_20_light = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connected_20_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connected_21_dark = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connected_21_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connected_21_light = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connected_21_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connected_22_dark = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connected_22_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connected_22_light = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connected_22_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connecting_00_dark = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connecting_00_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connecting_00_light = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connecting_00_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connecting_01_dark = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connecting_01_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connecting_01_light = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connecting_01_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connecting_02_dark = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connecting_02_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connecting_02_light = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connecting_02_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connecting_03_dark = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connecting_03_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connecting_03_light = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connecting_03_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connecting_04_dark = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connecting_04_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connecting_04_light = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connecting_04_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connecting_05_dark = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connecting_05_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connecting_05_light = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connecting_05_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connecting_06_dark = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connecting_06_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connecting_06_light = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connecting_06_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connecting_07_dark = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connecting_07_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connecting_07_light = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connecting_07_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connecting_08_dark = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connecting_08_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connecting_08_light = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connecting_08_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connecting_09_dark = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connecting_09_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connecting_09_light = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connecting_09_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connecting_10_dark = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connecting_10_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connecting_10_light = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connecting_10_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connecting_11_dark = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connecting_11_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connecting_11_light = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connecting_11_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connecting_12_dark = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connecting_12_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connecting_12_light = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connecting_12_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connecting_13_dark = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connecting_13_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connecting_13_light = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connecting_13_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connecting_14_dark = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connecting_14_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connecting_14_light = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connecting_14_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connecting_15_dark = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connecting_15_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connecting_15_light = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connecting_15_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connecting_16_dark = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connecting_16_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connecting_16_light = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connecting_16_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connecting_17_dark = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connecting_17_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connecting_17_light = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connecting_17_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connecting_18_dark = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connecting_18_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connecting_18_light = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connecting_18_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connecting_19_dark = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connecting_19_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connecting_19_light = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connecting_19_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connecting_20_dark = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connecting_20_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connecting_20_light = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connecting_20_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connecting_21_dark = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connecting_21_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connecting_21_light = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connecting_21_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connecting_22_dark = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connecting_22_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_connecting_22_light = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_connecting_22_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_disabled_dark = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_disabled_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_disabled_light = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_disabled_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_disconnected_dark = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_disconnected_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_disconnected_light = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_disconnected_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_mr_button_grey = global::DotNetRu.Droid.Resource.Drawable.ic_mr_button_grey;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_vol_type_speaker_dark = global::DotNetRu.Droid.Resource.Drawable.ic_vol_type_speaker_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_vol_type_speaker_group_dark = global::DotNetRu.Droid.Resource.Drawable.ic_vol_type_speaker_group_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_vol_type_speaker_group_light = global::DotNetRu.Droid.Resource.Drawable.ic_vol_type_speaker_group_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_vol_type_speaker_light = global::DotNetRu.Droid.Resource.Drawable.ic_vol_type_speaker_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_vol_type_tv_dark = global::DotNetRu.Droid.Resource.Drawable.ic_vol_type_tv_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.ic_vol_type_tv_light = global::DotNetRu.Droid.Resource.Drawable.ic_vol_type_tv_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.mr_button_connected_dark = global::DotNetRu.Droid.Resource.Drawable.mr_button_connected_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.mr_button_connected_light = global::DotNetRu.Droid.Resource.Drawable.mr_button_connected_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.mr_button_connecting_dark = global::DotNetRu.Droid.Resource.Drawable.mr_button_connecting_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.mr_button_connecting_light = global::DotNetRu.Droid.Resource.Drawable.mr_button_connecting_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.mr_button_dark = global::DotNetRu.Droid.Resource.Drawable.mr_button_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.mr_button_light = global::DotNetRu.Droid.Resource.Drawable.mr_button_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.mr_dialog_close_dark = global::DotNetRu.Droid.Resource.Drawable.mr_dialog_close_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.mr_dialog_close_light = global::DotNetRu.Droid.Resource.Drawable.mr_dialog_close_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.mr_dialog_material_background_dark = global::DotNetRu.Droid.Resource.Drawable.mr_dialog_material_background_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.mr_dialog_material_background_light = global::DotNetRu.Droid.Resource.Drawable.mr_dialog_material_background_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.mr_group_collapse = global::DotNetRu.Droid.Resource.Drawable.mr_group_collapse;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.mr_group_expand = global::DotNetRu.Droid.Resource.Drawable.mr_group_expand;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.mr_media_pause_dark = global::DotNetRu.Droid.Resource.Drawable.mr_media_pause_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.mr_media_pause_light = global::DotNetRu.Droid.Resource.Drawable.mr_media_pause_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.mr_media_play_dark = global::DotNetRu.Droid.Resource.Drawable.mr_media_play_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.mr_media_play_light = global::DotNetRu.Droid.Resource.Drawable.mr_media_play_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.mr_media_stop_dark = global::DotNetRu.Droid.Resource.Drawable.mr_media_stop_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.mr_media_stop_light = global::DotNetRu.Droid.Resource.Drawable.mr_media_stop_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.mr_vol_type_audiotrack_dark = global::DotNetRu.Droid.Resource.Drawable.mr_vol_type_audiotrack_dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.mr_vol_type_audiotrack_light = global::DotNetRu.Droid.Resource.Drawable.mr_vol_type_audiotrack_light;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.navigation_empty_icon = global::DotNetRu.Droid.Resource.Drawable.navigation_empty_icon;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.notification_action_background = global::DotNetRu.Droid.Resource.Drawable.notification_action_background;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.notification_bg = global::DotNetRu.Droid.Resource.Drawable.notification_bg;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.notification_bg_low = global::DotNetRu.Droid.Resource.Drawable.notification_bg_low;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.notification_bg_low_normal = global::DotNetRu.Droid.Resource.Drawable.notification_bg_low_normal;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.notification_bg_low_pressed = global::DotNetRu.Droid.Resource.Drawable.notification_bg_low_pressed;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.notification_bg_normal = global::DotNetRu.Droid.Resource.Drawable.notification_bg_normal;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.notification_bg_normal_pressed = global::DotNetRu.Droid.Resource.Drawable.notification_bg_normal_pressed;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.notification_icon_background = global::DotNetRu.Droid.Resource.Drawable.notification_icon_background;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.notification_template_icon_bg = global::DotNetRu.Droid.Resource.Drawable.notification_template_icon_bg;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.notification_template_icon_low_bg = global::DotNetRu.Droid.Resource.Drawable.notification_template_icon_low_bg;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.notification_tile_bg = global::DotNetRu.Droid.Resource.Drawable.notification_tile_bg;
-			global::Naxam.Controls.Platform.Droid.Resource.Drawable.notify_panel_notification_icon_bg = global::DotNetRu.Droid.Resource.Drawable.notify_panel_notification_icon_bg;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.action0 = global::DotNetRu.Droid.Resource.Id.action0;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.action_bar = global::DotNetRu.Droid.Resource.Id.action_bar;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.action_bar_activity_content = global::DotNetRu.Droid.Resource.Id.action_bar_activity_content;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.action_bar_container = global::DotNetRu.Droid.Resource.Id.action_bar_container;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.action_bar_root = global::DotNetRu.Droid.Resource.Id.action_bar_root;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.action_bar_spinner = global::DotNetRu.Droid.Resource.Id.action_bar_spinner;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.action_bar_subtitle = global::DotNetRu.Droid.Resource.Id.action_bar_subtitle;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.action_bar_title = global::DotNetRu.Droid.Resource.Id.action_bar_title;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.action_container = global::DotNetRu.Droid.Resource.Id.action_container;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.action_context_bar = global::DotNetRu.Droid.Resource.Id.action_context_bar;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.action_divider = global::DotNetRu.Droid.Resource.Id.action_divider;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.action_image = global::DotNetRu.Droid.Resource.Id.action_image;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.action_menu_divider = global::DotNetRu.Droid.Resource.Id.action_menu_divider;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.action_menu_presenter = global::DotNetRu.Droid.Resource.Id.action_menu_presenter;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.action_mode_bar = global::DotNetRu.Droid.Resource.Id.action_mode_bar;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.action_mode_bar_stub = global::DotNetRu.Droid.Resource.Id.action_mode_bar_stub;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.action_mode_close_button = global::DotNetRu.Droid.Resource.Id.action_mode_close_button;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.action_text = global::DotNetRu.Droid.Resource.Id.action_text;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.actions = global::DotNetRu.Droid.Resource.Id.actions;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.activity_chooser_view_content = global::DotNetRu.Droid.Resource.Id.activity_chooser_view_content;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.add = global::DotNetRu.Droid.Resource.Id.add;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.alertTitle = global::DotNetRu.Droid.Resource.Id.alertTitle;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.all = global::DotNetRu.Droid.Resource.Id.all;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.always = global::DotNetRu.Droid.Resource.Id.always;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.auto = global::DotNetRu.Droid.Resource.Id.auto;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.beginning = global::DotNetRu.Droid.Resource.Id.beginning;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.bottom = global::DotNetRu.Droid.Resource.Id.bottom;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.buttonPanel = global::DotNetRu.Droid.Resource.Id.buttonPanel;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.cancel_action = global::DotNetRu.Droid.Resource.Id.cancel_action;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.center = global::DotNetRu.Droid.Resource.Id.center;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.center_horizontal = global::DotNetRu.Droid.Resource.Id.center_horizontal;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.center_vertical = global::DotNetRu.Droid.Resource.Id.center_vertical;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.checkbox = global::DotNetRu.Droid.Resource.Id.checkbox;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.chronometer = global::DotNetRu.Droid.Resource.Id.chronometer;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.clip_horizontal = global::DotNetRu.Droid.Resource.Id.clip_horizontal;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.clip_vertical = global::DotNetRu.Droid.Resource.Id.clip_vertical;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.collapseActionView = global::DotNetRu.Droid.Resource.Id.collapseActionView;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.container = global::DotNetRu.Droid.Resource.Id.container;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.contentPanel = global::DotNetRu.Droid.Resource.Id.contentPanel;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.coordinator = global::DotNetRu.Droid.Resource.Id.coordinator;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.custom = global::DotNetRu.Droid.Resource.Id.custom;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.customPanel = global::DotNetRu.Droid.Resource.Id.customPanel;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.decor_content_parent = global::DotNetRu.Droid.Resource.Id.decor_content_parent;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.default_activity_button = global::DotNetRu.Droid.Resource.Id.default_activity_button;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.design_bottom_sheet = global::DotNetRu.Droid.Resource.Id.design_bottom_sheet;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.design_menu_item_action_area = global::DotNetRu.Droid.Resource.Id.design_menu_item_action_area;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.design_menu_item_action_area_stub = global::DotNetRu.Droid.Resource.Id.design_menu_item_action_area_stub;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.design_menu_item_text = global::DotNetRu.Droid.Resource.Id.design_menu_item_text;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.design_navigation_view = global::DotNetRu.Droid.Resource.Id.design_navigation_view;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.disableHome = global::DotNetRu.Droid.Resource.Id.disableHome;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.edit_query = global::DotNetRu.Droid.Resource.Id.edit_query;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.end = global::DotNetRu.Droid.Resource.Id.end;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.end_padder = global::DotNetRu.Droid.Resource.Id.end_padder;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.enterAlways = global::DotNetRu.Droid.Resource.Id.enterAlways;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.enterAlwaysCollapsed = global::DotNetRu.Droid.Resource.Id.enterAlwaysCollapsed;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.exitUntilCollapsed = global::DotNetRu.Droid.Resource.Id.exitUntilCollapsed;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.expand_activities_button = global::DotNetRu.Droid.Resource.Id.expand_activities_button;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.expanded_menu = global::DotNetRu.Droid.Resource.Id.expanded_menu;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.fill = global::DotNetRu.Droid.Resource.Id.fill;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.fill_horizontal = global::DotNetRu.Droid.Resource.Id.fill_horizontal;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.fill_vertical = global::DotNetRu.Droid.Resource.Id.fill_vertical;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.@fixed = global::DotNetRu.Droid.Resource.Id.@fixed;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.home = global::DotNetRu.Droid.Resource.Id.home;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.homeAsUp = global::DotNetRu.Droid.Resource.Id.homeAsUp;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.icon = global::DotNetRu.Droid.Resource.Id.icon;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.icon_group = global::DotNetRu.Droid.Resource.Id.icon_group;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.ifRoom = global::DotNetRu.Droid.Resource.Id.ifRoom;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.image = global::DotNetRu.Droid.Resource.Id.image;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.info = global::DotNetRu.Droid.Resource.Id.info;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.item_touch_helper_previous_elevation = global::DotNetRu.Droid.Resource.Id.item_touch_helper_previous_elevation;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.largeLabel = global::DotNetRu.Droid.Resource.Id.largeLabel;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.left = global::DotNetRu.Droid.Resource.Id.left;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.line1 = global::DotNetRu.Droid.Resource.Id.line1;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.line3 = global::DotNetRu.Droid.Resource.Id.line3;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.listMode = global::DotNetRu.Droid.Resource.Id.listMode;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.list_item = global::DotNetRu.Droid.Resource.Id.list_item;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.masked = global::DotNetRu.Droid.Resource.Id.masked;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.media_actions = global::DotNetRu.Droid.Resource.Id.media_actions;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.middle = global::DotNetRu.Droid.Resource.Id.middle;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.mini = global::DotNetRu.Droid.Resource.Id.mini;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.mr_art = global::DotNetRu.Droid.Resource.Id.mr_art;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.mr_chooser_list = global::DotNetRu.Droid.Resource.Id.mr_chooser_list;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.mr_chooser_route_desc = global::DotNetRu.Droid.Resource.Id.mr_chooser_route_desc;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.mr_chooser_route_icon = global::DotNetRu.Droid.Resource.Id.mr_chooser_route_icon;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.mr_chooser_route_name = global::DotNetRu.Droid.Resource.Id.mr_chooser_route_name;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.mr_chooser_title = global::DotNetRu.Droid.Resource.Id.mr_chooser_title;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.mr_close = global::DotNetRu.Droid.Resource.Id.mr_close;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.mr_control_divider = global::DotNetRu.Droid.Resource.Id.mr_control_divider;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.mr_control_playback_ctrl = global::DotNetRu.Droid.Resource.Id.mr_control_playback_ctrl;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.mr_control_subtitle = global::DotNetRu.Droid.Resource.Id.mr_control_subtitle;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.mr_control_title = global::DotNetRu.Droid.Resource.Id.mr_control_title;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.mr_control_title_container = global::DotNetRu.Droid.Resource.Id.mr_control_title_container;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.mr_custom_control = global::DotNetRu.Droid.Resource.Id.mr_custom_control;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.mr_default_control = global::DotNetRu.Droid.Resource.Id.mr_default_control;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.mr_dialog_area = global::DotNetRu.Droid.Resource.Id.mr_dialog_area;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.mr_expandable_area = global::DotNetRu.Droid.Resource.Id.mr_expandable_area;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.mr_group_expand_collapse = global::DotNetRu.Droid.Resource.Id.mr_group_expand_collapse;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.mr_media_main_control = global::DotNetRu.Droid.Resource.Id.mr_media_main_control;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.mr_name = global::DotNetRu.Droid.Resource.Id.mr_name;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.mr_playback_control = global::DotNetRu.Droid.Resource.Id.mr_playback_control;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.mr_title_bar = global::DotNetRu.Droid.Resource.Id.mr_title_bar;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.mr_volume_control = global::DotNetRu.Droid.Resource.Id.mr_volume_control;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.mr_volume_group_list = global::DotNetRu.Droid.Resource.Id.mr_volume_group_list;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.mr_volume_item_icon = global::DotNetRu.Droid.Resource.Id.mr_volume_item_icon;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.mr_volume_slider = global::DotNetRu.Droid.Resource.Id.mr_volume_slider;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.multiply = global::DotNetRu.Droid.Resource.Id.multiply;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.navigation_header_container = global::DotNetRu.Droid.Resource.Id.navigation_header_container;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.never = global::DotNetRu.Droid.Resource.Id.never;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.none = global::DotNetRu.Droid.Resource.Id.none;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.normal = global::DotNetRu.Droid.Resource.Id.normal;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.notification_background = global::DotNetRu.Droid.Resource.Id.notification_background;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.notification_main_column = global::DotNetRu.Droid.Resource.Id.notification_main_column;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.notification_main_column_container = global::DotNetRu.Droid.Resource.Id.notification_main_column_container;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.parallax = global::DotNetRu.Droid.Resource.Id.parallax;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.parentPanel = global::DotNetRu.Droid.Resource.Id.parentPanel;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.pin = global::DotNetRu.Droid.Resource.Id.pin;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.progress_circular = global::DotNetRu.Droid.Resource.Id.progress_circular;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.progress_horizontal = global::DotNetRu.Droid.Resource.Id.progress_horizontal;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.radio = global::DotNetRu.Droid.Resource.Id.radio;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.right = global::DotNetRu.Droid.Resource.Id.right;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.right_icon = global::DotNetRu.Droid.Resource.Id.right_icon;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.right_side = global::DotNetRu.Droid.Resource.Id.right_side;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.screen = global::DotNetRu.Droid.Resource.Id.screen;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.scroll = global::DotNetRu.Droid.Resource.Id.scroll;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.scrollIndicatorDown = global::DotNetRu.Droid.Resource.Id.scrollIndicatorDown;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.scrollIndicatorUp = global::DotNetRu.Droid.Resource.Id.scrollIndicatorUp;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.scrollView = global::DotNetRu.Droid.Resource.Id.scrollView;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.scrollable = global::DotNetRu.Droid.Resource.Id.scrollable;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.search_badge = global::DotNetRu.Droid.Resource.Id.search_badge;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.search_bar = global::DotNetRu.Droid.Resource.Id.search_bar;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.search_button = global::DotNetRu.Droid.Resource.Id.search_button;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.search_close_btn = global::DotNetRu.Droid.Resource.Id.search_close_btn;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.search_edit_frame = global::DotNetRu.Droid.Resource.Id.search_edit_frame;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.search_go_btn = global::DotNetRu.Droid.Resource.Id.search_go_btn;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.search_mag_icon = global::DotNetRu.Droid.Resource.Id.search_mag_icon;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.search_plate = global::DotNetRu.Droid.Resource.Id.search_plate;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.search_src_text = global::DotNetRu.Droid.Resource.Id.search_src_text;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.search_voice_btn = global::DotNetRu.Droid.Resource.Id.search_voice_btn;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.select_dialog_listview = global::DotNetRu.Droid.Resource.Id.select_dialog_listview;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.shortcut = global::DotNetRu.Droid.Resource.Id.shortcut;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.showCustom = global::DotNetRu.Droid.Resource.Id.showCustom;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.showHome = global::DotNetRu.Droid.Resource.Id.showHome;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.showTitle = global::DotNetRu.Droid.Resource.Id.showTitle;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.smallLabel = global::DotNetRu.Droid.Resource.Id.smallLabel;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.snackbar_action = global::DotNetRu.Droid.Resource.Id.snackbar_action;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.snackbar_text = global::DotNetRu.Droid.Resource.Id.snackbar_text;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.snap = global::DotNetRu.Droid.Resource.Id.snap;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.spacer = global::DotNetRu.Droid.Resource.Id.spacer;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.split_action_bar = global::DotNetRu.Droid.Resource.Id.split_action_bar;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.src_atop = global::DotNetRu.Droid.Resource.Id.src_atop;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.src_in = global::DotNetRu.Droid.Resource.Id.src_in;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.src_over = global::DotNetRu.Droid.Resource.Id.src_over;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.start = global::DotNetRu.Droid.Resource.Id.start;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.status_bar_latest_event_content = global::DotNetRu.Droid.Resource.Id.status_bar_latest_event_content;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.submenuarrow = global::DotNetRu.Droid.Resource.Id.submenuarrow;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.submit_area = global::DotNetRu.Droid.Resource.Id.submit_area;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.tabMode = global::DotNetRu.Droid.Resource.Id.tabMode;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.text = global::DotNetRu.Droid.Resource.Id.text;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.text2 = global::DotNetRu.Droid.Resource.Id.text2;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.textSpacerNoButtons = global::DotNetRu.Droid.Resource.Id.textSpacerNoButtons;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.textSpacerNoTitle = global::DotNetRu.Droid.Resource.Id.textSpacerNoTitle;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.text_input_password_toggle = global::DotNetRu.Droid.Resource.Id.text_input_password_toggle;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.textinput_counter = global::DotNetRu.Droid.Resource.Id.textinput_counter;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.textinput_error = global::DotNetRu.Droid.Resource.Id.textinput_error;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.time = global::DotNetRu.Droid.Resource.Id.time;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.title = global::DotNetRu.Droid.Resource.Id.title;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.titleDividerNoCustom = global::DotNetRu.Droid.Resource.Id.titleDividerNoCustom;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.title_template = global::DotNetRu.Droid.Resource.Id.title_template;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.top = global::DotNetRu.Droid.Resource.Id.top;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.topPanel = global::DotNetRu.Droid.Resource.Id.topPanel;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.touch_outside = global::DotNetRu.Droid.Resource.Id.touch_outside;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.transition_current_scene = global::DotNetRu.Droid.Resource.Id.transition_current_scene;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.transition_scene_layoutid_cache = global::DotNetRu.Droid.Resource.Id.transition_scene_layoutid_cache;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.up = global::DotNetRu.Droid.Resource.Id.up;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.useLogo = global::DotNetRu.Droid.Resource.Id.useLogo;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.view_offset_helper = global::DotNetRu.Droid.Resource.Id.view_offset_helper;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.visible = global::DotNetRu.Droid.Resource.Id.visible;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.volume_item_container = global::DotNetRu.Droid.Resource.Id.volume_item_container;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.withText = global::DotNetRu.Droid.Resource.Id.withText;
-			global::Naxam.Controls.Platform.Droid.Resource.Id.wrap_content = global::DotNetRu.Droid.Resource.Id.wrap_content;
-			global::Naxam.Controls.Platform.Droid.Resource.Integer.abc_config_activityDefaultDur = global::DotNetRu.Droid.Resource.Integer.abc_config_activityDefaultDur;
-			global::Naxam.Controls.Platform.Droid.Resource.Integer.abc_config_activityShortDur = global::DotNetRu.Droid.Resource.Integer.abc_config_activityShortDur;
-			global::Naxam.Controls.Platform.Droid.Resource.Integer.app_bar_elevation_anim_duration = global::DotNetRu.Droid.Resource.Integer.app_bar_elevation_anim_duration;
-			global::Naxam.Controls.Platform.Droid.Resource.Integer.bottom_sheet_slide_duration = global::DotNetRu.Droid.Resource.Integer.bottom_sheet_slide_duration;
-			global::Naxam.Controls.Platform.Droid.Resource.Integer.cancel_button_image_alpha = global::DotNetRu.Droid.Resource.Integer.cancel_button_image_alpha;
-			global::Naxam.Controls.Platform.Droid.Resource.Integer.design_snackbar_text_max_lines = global::DotNetRu.Droid.Resource.Integer.design_snackbar_text_max_lines;
-			global::Naxam.Controls.Platform.Droid.Resource.Integer.hide_password_duration = global::DotNetRu.Droid.Resource.Integer.hide_password_duration;
-			global::Naxam.Controls.Platform.Droid.Resource.Integer.mr_controller_volume_group_list_animation_duration_ms = global::DotNetRu.Droid.Resource.Integer.mr_controller_volume_group_list_animation_duration_ms;
-			global::Naxam.Controls.Platform.Droid.Resource.Integer.mr_controller_volume_group_list_fade_in_duration_ms = global::DotNetRu.Droid.Resource.Integer.mr_controller_volume_group_list_fade_in_duration_ms;
-			global::Naxam.Controls.Platform.Droid.Resource.Integer.mr_controller_volume_group_list_fade_out_duration_ms = global::DotNetRu.Droid.Resource.Integer.mr_controller_volume_group_list_fade_out_duration_ms;
-			global::Naxam.Controls.Platform.Droid.Resource.Integer.show_password_duration = global::DotNetRu.Droid.Resource.Integer.show_password_duration;
-			global::Naxam.Controls.Platform.Droid.Resource.Integer.status_bar_notification_info_maxnum = global::DotNetRu.Droid.Resource.Integer.status_bar_notification_info_maxnum;
-			global::Naxam.Controls.Platform.Droid.Resource.Interpolator.mr_fast_out_slow_in = global::DotNetRu.Droid.Resource.Interpolator.mr_fast_out_slow_in;
-			global::Naxam.Controls.Platform.Droid.Resource.Interpolator.mr_linear_out_slow_in = global::DotNetRu.Droid.Resource.Interpolator.mr_linear_out_slow_in;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.abc_action_bar_title_item = global::DotNetRu.Droid.Resource.Layout.abc_action_bar_title_item;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.abc_action_bar_up_container = global::DotNetRu.Droid.Resource.Layout.abc_action_bar_up_container;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.abc_action_bar_view_list_nav_layout = global::DotNetRu.Droid.Resource.Layout.abc_action_bar_view_list_nav_layout;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.abc_action_menu_item_layout = global::DotNetRu.Droid.Resource.Layout.abc_action_menu_item_layout;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.abc_action_menu_layout = global::DotNetRu.Droid.Resource.Layout.abc_action_menu_layout;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.abc_action_mode_bar = global::DotNetRu.Droid.Resource.Layout.abc_action_mode_bar;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.abc_action_mode_close_item_material = global::DotNetRu.Droid.Resource.Layout.abc_action_mode_close_item_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.abc_activity_chooser_view = global::DotNetRu.Droid.Resource.Layout.abc_activity_chooser_view;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.abc_activity_chooser_view_list_item = global::DotNetRu.Droid.Resource.Layout.abc_activity_chooser_view_list_item;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.abc_alert_dialog_button_bar_material = global::DotNetRu.Droid.Resource.Layout.abc_alert_dialog_button_bar_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.abc_alert_dialog_material = global::DotNetRu.Droid.Resource.Layout.abc_alert_dialog_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.abc_alert_dialog_title_material = global::DotNetRu.Droid.Resource.Layout.abc_alert_dialog_title_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.abc_dialog_title_material = global::DotNetRu.Droid.Resource.Layout.abc_dialog_title_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.abc_expanded_menu_layout = global::DotNetRu.Droid.Resource.Layout.abc_expanded_menu_layout;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.abc_list_menu_item_checkbox = global::DotNetRu.Droid.Resource.Layout.abc_list_menu_item_checkbox;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.abc_list_menu_item_icon = global::DotNetRu.Droid.Resource.Layout.abc_list_menu_item_icon;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.abc_list_menu_item_layout = global::DotNetRu.Droid.Resource.Layout.abc_list_menu_item_layout;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.abc_list_menu_item_radio = global::DotNetRu.Droid.Resource.Layout.abc_list_menu_item_radio;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.abc_popup_menu_header_item_layout = global::DotNetRu.Droid.Resource.Layout.abc_popup_menu_header_item_layout;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.abc_popup_menu_item_layout = global::DotNetRu.Droid.Resource.Layout.abc_popup_menu_item_layout;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.abc_screen_content_include = global::DotNetRu.Droid.Resource.Layout.abc_screen_content_include;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.abc_screen_simple = global::DotNetRu.Droid.Resource.Layout.abc_screen_simple;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.abc_screen_simple_overlay_action_mode = global::DotNetRu.Droid.Resource.Layout.abc_screen_simple_overlay_action_mode;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.abc_screen_toolbar = global::DotNetRu.Droid.Resource.Layout.abc_screen_toolbar;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.abc_search_dropdown_item_icons_2line = global::DotNetRu.Droid.Resource.Layout.abc_search_dropdown_item_icons_2line;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.abc_search_view = global::DotNetRu.Droid.Resource.Layout.abc_search_view;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.abc_select_dialog_material = global::DotNetRu.Droid.Resource.Layout.abc_select_dialog_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.design_bottom_navigation_item = global::DotNetRu.Droid.Resource.Layout.design_bottom_navigation_item;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.design_bottom_sheet_dialog = global::DotNetRu.Droid.Resource.Layout.design_bottom_sheet_dialog;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.design_layout_snackbar = global::DotNetRu.Droid.Resource.Layout.design_layout_snackbar;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.design_layout_snackbar_include = global::DotNetRu.Droid.Resource.Layout.design_layout_snackbar_include;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.design_layout_tab_icon = global::DotNetRu.Droid.Resource.Layout.design_layout_tab_icon;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.design_layout_tab_text = global::DotNetRu.Droid.Resource.Layout.design_layout_tab_text;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.design_menu_item_action_area = global::DotNetRu.Droid.Resource.Layout.design_menu_item_action_area;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.design_navigation_item = global::DotNetRu.Droid.Resource.Layout.design_navigation_item;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.design_navigation_item_header = global::DotNetRu.Droid.Resource.Layout.design_navigation_item_header;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.design_navigation_item_separator = global::DotNetRu.Droid.Resource.Layout.design_navigation_item_separator;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.design_navigation_item_subheader = global::DotNetRu.Droid.Resource.Layout.design_navigation_item_subheader;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.design_navigation_menu = global::DotNetRu.Droid.Resource.Layout.design_navigation_menu;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.design_navigation_menu_item = global::DotNetRu.Droid.Resource.Layout.design_navigation_menu_item;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.design_text_input_password_icon = global::DotNetRu.Droid.Resource.Layout.design_text_input_password_icon;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.mr_chooser_dialog = global::DotNetRu.Droid.Resource.Layout.mr_chooser_dialog;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.mr_chooser_list_item = global::DotNetRu.Droid.Resource.Layout.mr_chooser_list_item;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.mr_controller_material_dialog_b = global::DotNetRu.Droid.Resource.Layout.mr_controller_material_dialog_b;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.mr_controller_volume_item = global::DotNetRu.Droid.Resource.Layout.mr_controller_volume_item;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.mr_playback_control = global::DotNetRu.Droid.Resource.Layout.mr_playback_control;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.mr_volume_control = global::DotNetRu.Droid.Resource.Layout.mr_volume_control;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.notification_action = global::DotNetRu.Droid.Resource.Layout.notification_action;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.notification_action_tombstone = global::DotNetRu.Droid.Resource.Layout.notification_action_tombstone;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.notification_media_action = global::DotNetRu.Droid.Resource.Layout.notification_media_action;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.notification_media_cancel_action = global::DotNetRu.Droid.Resource.Layout.notification_media_cancel_action;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.notification_template_big_media = global::DotNetRu.Droid.Resource.Layout.notification_template_big_media;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.notification_template_big_media_custom = global::DotNetRu.Droid.Resource.Layout.notification_template_big_media_custom;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.notification_template_big_media_narrow = global::DotNetRu.Droid.Resource.Layout.notification_template_big_media_narrow;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.notification_template_big_media_narrow_custom = global::DotNetRu.Droid.Resource.Layout.notification_template_big_media_narrow_custom;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.notification_template_custom_big = global::DotNetRu.Droid.Resource.Layout.notification_template_custom_big;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.notification_template_icon_group = global::DotNetRu.Droid.Resource.Layout.notification_template_icon_group;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.notification_template_lines_media = global::DotNetRu.Droid.Resource.Layout.notification_template_lines_media;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.notification_template_media = global::DotNetRu.Droid.Resource.Layout.notification_template_media;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.notification_template_media_custom = global::DotNetRu.Droid.Resource.Layout.notification_template_media_custom;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.notification_template_part_chronometer = global::DotNetRu.Droid.Resource.Layout.notification_template_part_chronometer;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.notification_template_part_time = global::DotNetRu.Droid.Resource.Layout.notification_template_part_time;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.select_dialog_item_material = global::DotNetRu.Droid.Resource.Layout.select_dialog_item_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.select_dialog_multichoice_material = global::DotNetRu.Droid.Resource.Layout.select_dialog_multichoice_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.select_dialog_singlechoice_material = global::DotNetRu.Droid.Resource.Layout.select_dialog_singlechoice_material;
-			global::Naxam.Controls.Platform.Droid.Resource.Layout.support_simple_spinner_dropdown_item = global::DotNetRu.Droid.Resource.Layout.support_simple_spinner_dropdown_item;
-			global::Naxam.Controls.Platform.Droid.Resource.String.abc_action_bar_home_description = global::DotNetRu.Droid.Resource.String.abc_action_bar_home_description;
-			global::Naxam.Controls.Platform.Droid.Resource.String.abc_action_bar_home_description_format = global::DotNetRu.Droid.Resource.String.abc_action_bar_home_description_format;
-			global::Naxam.Controls.Platform.Droid.Resource.String.abc_action_bar_home_subtitle_description_format = global::DotNetRu.Droid.Resource.String.abc_action_bar_home_subtitle_description_format;
-			global::Naxam.Controls.Platform.Droid.Resource.String.abc_action_bar_up_description = global::DotNetRu.Droid.Resource.String.abc_action_bar_up_description;
-			global::Naxam.Controls.Platform.Droid.Resource.String.abc_action_menu_overflow_description = global::DotNetRu.Droid.Resource.String.abc_action_menu_overflow_description;
-			global::Naxam.Controls.Platform.Droid.Resource.String.abc_action_mode_done = global::DotNetRu.Droid.Resource.String.abc_action_mode_done;
-			global::Naxam.Controls.Platform.Droid.Resource.String.abc_activity_chooser_view_see_all = global::DotNetRu.Droid.Resource.String.abc_activity_chooser_view_see_all;
-			global::Naxam.Controls.Platform.Droid.Resource.String.abc_activitychooserview_choose_application = global::DotNetRu.Droid.Resource.String.abc_activitychooserview_choose_application;
-			global::Naxam.Controls.Platform.Droid.Resource.String.abc_capital_off = global::DotNetRu.Droid.Resource.String.abc_capital_off;
-			global::Naxam.Controls.Platform.Droid.Resource.String.abc_capital_on = global::DotNetRu.Droid.Resource.String.abc_capital_on;
-			global::Naxam.Controls.Platform.Droid.Resource.String.abc_font_family_body_1_material = global::DotNetRu.Droid.Resource.String.abc_font_family_body_1_material;
-			global::Naxam.Controls.Platform.Droid.Resource.String.abc_font_family_body_2_material = global::DotNetRu.Droid.Resource.String.abc_font_family_body_2_material;
-			global::Naxam.Controls.Platform.Droid.Resource.String.abc_font_family_button_material = global::DotNetRu.Droid.Resource.String.abc_font_family_button_material;
-			global::Naxam.Controls.Platform.Droid.Resource.String.abc_font_family_caption_material = global::DotNetRu.Droid.Resource.String.abc_font_family_caption_material;
-			global::Naxam.Controls.Platform.Droid.Resource.String.abc_font_family_display_1_material = global::DotNetRu.Droid.Resource.String.abc_font_family_display_1_material;
-			global::Naxam.Controls.Platform.Droid.Resource.String.abc_font_family_display_2_material = global::DotNetRu.Droid.Resource.String.abc_font_family_display_2_material;
-			global::Naxam.Controls.Platform.Droid.Resource.String.abc_font_family_display_3_material = global::DotNetRu.Droid.Resource.String.abc_font_family_display_3_material;
-			global::Naxam.Controls.Platform.Droid.Resource.String.abc_font_family_display_4_material = global::DotNetRu.Droid.Resource.String.abc_font_family_display_4_material;
-			global::Naxam.Controls.Platform.Droid.Resource.String.abc_font_family_headline_material = global::DotNetRu.Droid.Resource.String.abc_font_family_headline_material;
-			global::Naxam.Controls.Platform.Droid.Resource.String.abc_font_family_menu_material = global::DotNetRu.Droid.Resource.String.abc_font_family_menu_material;
-			global::Naxam.Controls.Platform.Droid.Resource.String.abc_font_family_subhead_material = global::DotNetRu.Droid.Resource.String.abc_font_family_subhead_material;
-			global::Naxam.Controls.Platform.Droid.Resource.String.abc_font_family_title_material = global::DotNetRu.Droid.Resource.String.abc_font_family_title_material;
-			global::Naxam.Controls.Platform.Droid.Resource.String.abc_search_hint = global::DotNetRu.Droid.Resource.String.abc_search_hint;
-			global::Naxam.Controls.Platform.Droid.Resource.String.abc_searchview_description_clear = global::DotNetRu.Droid.Resource.String.abc_searchview_description_clear;
-			global::Naxam.Controls.Platform.Droid.Resource.String.abc_searchview_description_query = global::DotNetRu.Droid.Resource.String.abc_searchview_description_query;
-			global::Naxam.Controls.Platform.Droid.Resource.String.abc_searchview_description_search = global::DotNetRu.Droid.Resource.String.abc_searchview_description_search;
-			global::Naxam.Controls.Platform.Droid.Resource.String.abc_searchview_description_submit = global::DotNetRu.Droid.Resource.String.abc_searchview_description_submit;
-			global::Naxam.Controls.Platform.Droid.Resource.String.abc_searchview_description_voice = global::DotNetRu.Droid.Resource.String.abc_searchview_description_voice;
-			global::Naxam.Controls.Platform.Droid.Resource.String.abc_shareactionprovider_share_with = global::DotNetRu.Droid.Resource.String.abc_shareactionprovider_share_with;
-			global::Naxam.Controls.Platform.Droid.Resource.String.abc_shareactionprovider_share_with_application = global::DotNetRu.Droid.Resource.String.abc_shareactionprovider_share_with_application;
-			global::Naxam.Controls.Platform.Droid.Resource.String.abc_toolbar_collapse_description = global::DotNetRu.Droid.Resource.String.abc_toolbar_collapse_description;
-			global::Naxam.Controls.Platform.Droid.Resource.String.appbar_scrolling_view_behavior = global::DotNetRu.Droid.Resource.String.appbar_scrolling_view_behavior;
-			global::Naxam.Controls.Platform.Droid.Resource.String.bottom_sheet_behavior = global::DotNetRu.Droid.Resource.String.bottom_sheet_behavior;
-			global::Naxam.Controls.Platform.Droid.Resource.String.character_counter_pattern = global::DotNetRu.Droid.Resource.String.character_counter_pattern;
-			global::Naxam.Controls.Platform.Droid.Resource.String.mr_button_content_description = global::DotNetRu.Droid.Resource.String.mr_button_content_description;
-			global::Naxam.Controls.Platform.Droid.Resource.String.mr_cast_button_connected = global::DotNetRu.Droid.Resource.String.mr_cast_button_connected;
-			global::Naxam.Controls.Platform.Droid.Resource.String.mr_cast_button_connecting = global::DotNetRu.Droid.Resource.String.mr_cast_button_connecting;
-			global::Naxam.Controls.Platform.Droid.Resource.String.mr_cast_button_disconnected = global::DotNetRu.Droid.Resource.String.mr_cast_button_disconnected;
-			global::Naxam.Controls.Platform.Droid.Resource.String.mr_chooser_searching = global::DotNetRu.Droid.Resource.String.mr_chooser_searching;
-			global::Naxam.Controls.Platform.Droid.Resource.String.mr_chooser_title = global::DotNetRu.Droid.Resource.String.mr_chooser_title;
-			global::Naxam.Controls.Platform.Droid.Resource.String.mr_controller_album_art = global::DotNetRu.Droid.Resource.String.mr_controller_album_art;
-			global::Naxam.Controls.Platform.Droid.Resource.String.mr_controller_casting_screen = global::DotNetRu.Droid.Resource.String.mr_controller_casting_screen;
-			global::Naxam.Controls.Platform.Droid.Resource.String.mr_controller_close_description = global::DotNetRu.Droid.Resource.String.mr_controller_close_description;
-			global::Naxam.Controls.Platform.Droid.Resource.String.mr_controller_collapse_group = global::DotNetRu.Droid.Resource.String.mr_controller_collapse_group;
-			global::Naxam.Controls.Platform.Droid.Resource.String.mr_controller_disconnect = global::DotNetRu.Droid.Resource.String.mr_controller_disconnect;
-			global::Naxam.Controls.Platform.Droid.Resource.String.mr_controller_expand_group = global::DotNetRu.Droid.Resource.String.mr_controller_expand_group;
-			global::Naxam.Controls.Platform.Droid.Resource.String.mr_controller_no_info_available = global::DotNetRu.Droid.Resource.String.mr_controller_no_info_available;
-			global::Naxam.Controls.Platform.Droid.Resource.String.mr_controller_no_media_selected = global::DotNetRu.Droid.Resource.String.mr_controller_no_media_selected;
-			global::Naxam.Controls.Platform.Droid.Resource.String.mr_controller_pause = global::DotNetRu.Droid.Resource.String.mr_controller_pause;
-			global::Naxam.Controls.Platform.Droid.Resource.String.mr_controller_play = global::DotNetRu.Droid.Resource.String.mr_controller_play;
-			global::Naxam.Controls.Platform.Droid.Resource.String.mr_controller_stop = global::DotNetRu.Droid.Resource.String.mr_controller_stop;
-			global::Naxam.Controls.Platform.Droid.Resource.String.mr_controller_stop_casting = global::DotNetRu.Droid.Resource.String.mr_controller_stop_casting;
-			global::Naxam.Controls.Platform.Droid.Resource.String.mr_controller_volume_slider = global::DotNetRu.Droid.Resource.String.mr_controller_volume_slider;
-			global::Naxam.Controls.Platform.Droid.Resource.String.mr_system_route_name = global::DotNetRu.Droid.Resource.String.mr_system_route_name;
-			global::Naxam.Controls.Platform.Droid.Resource.String.mr_user_route_category_name = global::DotNetRu.Droid.Resource.String.mr_user_route_category_name;
-			global::Naxam.Controls.Platform.Droid.Resource.String.password_toggle_content_description = global::DotNetRu.Droid.Resource.String.password_toggle_content_description;
-			global::Naxam.Controls.Platform.Droid.Resource.String.path_password_eye = global::DotNetRu.Droid.Resource.String.path_password_eye;
-			global::Naxam.Controls.Platform.Droid.Resource.String.path_password_eye_mask_strike_through = global::DotNetRu.Droid.Resource.String.path_password_eye_mask_strike_through;
-			global::Naxam.Controls.Platform.Droid.Resource.String.path_password_eye_mask_visible = global::DotNetRu.Droid.Resource.String.path_password_eye_mask_visible;
-			global::Naxam.Controls.Platform.Droid.Resource.String.path_password_strike_through = global::DotNetRu.Droid.Resource.String.path_password_strike_through;
-			global::Naxam.Controls.Platform.Droid.Resource.String.search_menu_title = global::DotNetRu.Droid.Resource.String.search_menu_title;
-			global::Naxam.Controls.Platform.Droid.Resource.String.status_bar_notification_info_overflow = global::DotNetRu.Droid.Resource.String.status_bar_notification_info_overflow;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.AlertDialog_AppCompat = global::DotNetRu.Droid.Resource.Style.AlertDialog_AppCompat;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.AlertDialog_AppCompat_Light = global::DotNetRu.Droid.Resource.Style.AlertDialog_AppCompat_Light;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Animation_AppCompat_Dialog = global::DotNetRu.Droid.Resource.Style.Animation_AppCompat_Dialog;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Animation_AppCompat_DropDownUp = global::DotNetRu.Droid.Resource.Style.Animation_AppCompat_DropDownUp;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Animation_Design_BottomSheetDialog = global::DotNetRu.Droid.Resource.Style.Animation_Design_BottomSheetDialog;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_AlertDialog_AppCompat = global::DotNetRu.Droid.Resource.Style.Base_AlertDialog_AppCompat;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_AlertDialog_AppCompat_Light = global::DotNetRu.Droid.Resource.Style.Base_AlertDialog_AppCompat_Light;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Animation_AppCompat_Dialog = global::DotNetRu.Droid.Resource.Style.Base_Animation_AppCompat_Dialog;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Animation_AppCompat_DropDownUp = global::DotNetRu.Droid.Resource.Style.Base_Animation_AppCompat_DropDownUp;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_CardView = global::DotNetRu.Droid.Resource.Style.Base_CardView;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_DialogWindowTitle_AppCompat = global::DotNetRu.Droid.Resource.Style.Base_DialogWindowTitle_AppCompat;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_DialogWindowTitleBackground_AppCompat = global::DotNetRu.Droid.Resource.Style.Base_DialogWindowTitleBackground_AppCompat;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_TextAppearance_AppCompat = global::DotNetRu.Droid.Resource.Style.Base_TextAppearance_AppCompat;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_TextAppearance_AppCompat_Body1 = global::DotNetRu.Droid.Resource.Style.Base_TextAppearance_AppCompat_Body1;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_TextAppearance_AppCompat_Body2 = global::DotNetRu.Droid.Resource.Style.Base_TextAppearance_AppCompat_Body2;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_TextAppearance_AppCompat_Button = global::DotNetRu.Droid.Resource.Style.Base_TextAppearance_AppCompat_Button;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_TextAppearance_AppCompat_Caption = global::DotNetRu.Droid.Resource.Style.Base_TextAppearance_AppCompat_Caption;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display1 = global::DotNetRu.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display1;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display2 = global::DotNetRu.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display2;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display3 = global::DotNetRu.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display3;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display4 = global::DotNetRu.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display4;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_TextAppearance_AppCompat_Headline = global::DotNetRu.Droid.Resource.Style.Base_TextAppearance_AppCompat_Headline;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_TextAppearance_AppCompat_Inverse = global::DotNetRu.Droid.Resource.Style.Base_TextAppearance_AppCompat_Inverse;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_TextAppearance_AppCompat_Large = global::DotNetRu.Droid.Resource.Style.Base_TextAppearance_AppCompat_Large;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_TextAppearance_AppCompat_Large_Inverse = global::DotNetRu.Droid.Resource.Style.Base_TextAppearance_AppCompat_Large_Inverse;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Large = global::DotNetRu.Droid.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Large;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Small = global::DotNetRu.Droid.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Small;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_TextAppearance_AppCompat_Medium = global::DotNetRu.Droid.Resource.Style.Base_TextAppearance_AppCompat_Medium;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_TextAppearance_AppCompat_Medium_Inverse = global::DotNetRu.Droid.Resource.Style.Base_TextAppearance_AppCompat_Medium_Inverse;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_TextAppearance_AppCompat_Menu = global::DotNetRu.Droid.Resource.Style.Base_TextAppearance_AppCompat_Menu;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult = global::DotNetRu.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Subtitle = global::DotNetRu.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Subtitle;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Title = global::DotNetRu.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Title;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_TextAppearance_AppCompat_Small = global::DotNetRu.Droid.Resource.Style.Base_TextAppearance_AppCompat_Small;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_TextAppearance_AppCompat_Small_Inverse = global::DotNetRu.Droid.Resource.Style.Base_TextAppearance_AppCompat_Small_Inverse;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_TextAppearance_AppCompat_Subhead = global::DotNetRu.Droid.Resource.Style.Base_TextAppearance_AppCompat_Subhead;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_TextAppearance_AppCompat_Subhead_Inverse = global::DotNetRu.Droid.Resource.Style.Base_TextAppearance_AppCompat_Subhead_Inverse;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_TextAppearance_AppCompat_Title = global::DotNetRu.Droid.Resource.Style.Base_TextAppearance_AppCompat_Title;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_TextAppearance_AppCompat_Title_Inverse = global::DotNetRu.Droid.Resource.Style.Base_TextAppearance_AppCompat_Title_Inverse;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Menu = global::DotNetRu.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Menu;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle = global::DotNetRu.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse = global::DotNetRu.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title = global::DotNetRu.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse = global::DotNetRu.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Subtitle = global::DotNetRu.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Subtitle;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Title = global::DotNetRu.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Title;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button = global::DotNetRu.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Borderless_Colored = global::DotNetRu.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Borderless_Colored;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Colored = global::DotNetRu.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Colored;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Inverse = global::DotNetRu.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Inverse;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_DropDownItem = global::DotNetRu.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_DropDownItem;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Header = global::DotNetRu.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Header;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Large = global::DotNetRu.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Large;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Small = global::DotNetRu.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Small;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Switch = global::DotNetRu.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Switch;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_TextView_SpinnerItem = global::DotNetRu.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_TextView_SpinnerItem;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_ExpandedMenu_Item = global::DotNetRu.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_ExpandedMenu_Item;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Subtitle = global::DotNetRu.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Subtitle;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Title = global::DotNetRu.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Title;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Theme_AppCompat = global::DotNetRu.Droid.Resource.Style.Base_Theme_AppCompat;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Theme_AppCompat_CompactMenu = global::DotNetRu.Droid.Resource.Style.Base_Theme_AppCompat_CompactMenu;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Theme_AppCompat_Dialog = global::DotNetRu.Droid.Resource.Style.Base_Theme_AppCompat_Dialog;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_Alert = global::DotNetRu.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_Alert;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_FixedSize = global::DotNetRu.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_FixedSize;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_MinWidth = global::DotNetRu.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_MinWidth;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Theme_AppCompat_DialogWhenLarge = global::DotNetRu.Droid.Resource.Style.Base_Theme_AppCompat_DialogWhenLarge;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Theme_AppCompat_Light = global::DotNetRu.Droid.Resource.Style.Base_Theme_AppCompat_Light;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Theme_AppCompat_Light_DarkActionBar = global::DotNetRu.Droid.Resource.Style.Base_Theme_AppCompat_Light_DarkActionBar;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog = global::DotNetRu.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_Alert = global::DotNetRu.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_Alert;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_FixedSize = global::DotNetRu.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_FixedSize;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_MinWidth = global::DotNetRu.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_MinWidth;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Theme_AppCompat_Light_DialogWhenLarge = global::DotNetRu.Droid.Resource.Style.Base_Theme_AppCompat_Light_DialogWhenLarge;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_ThemeOverlay_AppCompat = global::DotNetRu.Droid.Resource.Style.Base_ThemeOverlay_AppCompat;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_ActionBar = global::DotNetRu.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_ActionBar;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dark = global::DotNetRu.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dark_ActionBar = global::DotNetRu.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dark_ActionBar;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dialog = global::DotNetRu.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dialog;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dialog_Alert = global::DotNetRu.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dialog_Alert;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Light = global::DotNetRu.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Light;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_V11_Theme_AppCompat_Dialog = global::DotNetRu.Droid.Resource.Style.Base_V11_Theme_AppCompat_Dialog;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_V11_Theme_AppCompat_Light_Dialog = global::DotNetRu.Droid.Resource.Style.Base_V11_Theme_AppCompat_Light_Dialog;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_V11_ThemeOverlay_AppCompat_Dialog = global::DotNetRu.Droid.Resource.Style.Base_V11_ThemeOverlay_AppCompat_Dialog;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_V12_Widget_AppCompat_AutoCompleteTextView = global::DotNetRu.Droid.Resource.Style.Base_V12_Widget_AppCompat_AutoCompleteTextView;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_V12_Widget_AppCompat_EditText = global::DotNetRu.Droid.Resource.Style.Base_V12_Widget_AppCompat_EditText;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_V21_Theme_AppCompat = global::DotNetRu.Droid.Resource.Style.Base_V21_Theme_AppCompat;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_V21_Theme_AppCompat_Dialog = global::DotNetRu.Droid.Resource.Style.Base_V21_Theme_AppCompat_Dialog;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_V21_Theme_AppCompat_Light = global::DotNetRu.Droid.Resource.Style.Base_V21_Theme_AppCompat_Light;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_V21_Theme_AppCompat_Light_Dialog = global::DotNetRu.Droid.Resource.Style.Base_V21_Theme_AppCompat_Light_Dialog;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_V21_ThemeOverlay_AppCompat_Dialog = global::DotNetRu.Droid.Resource.Style.Base_V21_ThemeOverlay_AppCompat_Dialog;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_V22_Theme_AppCompat = global::DotNetRu.Droid.Resource.Style.Base_V22_Theme_AppCompat;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_V22_Theme_AppCompat_Light = global::DotNetRu.Droid.Resource.Style.Base_V22_Theme_AppCompat_Light;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_V23_Theme_AppCompat = global::DotNetRu.Droid.Resource.Style.Base_V23_Theme_AppCompat;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_V23_Theme_AppCompat_Light = global::DotNetRu.Droid.Resource.Style.Base_V23_Theme_AppCompat_Light;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_V7_Theme_AppCompat = global::DotNetRu.Droid.Resource.Style.Base_V7_Theme_AppCompat;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_V7_Theme_AppCompat_Dialog = global::DotNetRu.Droid.Resource.Style.Base_V7_Theme_AppCompat_Dialog;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_V7_Theme_AppCompat_Light = global::DotNetRu.Droid.Resource.Style.Base_V7_Theme_AppCompat_Light;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_V7_Theme_AppCompat_Light_Dialog = global::DotNetRu.Droid.Resource.Style.Base_V7_Theme_AppCompat_Light_Dialog;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_V7_ThemeOverlay_AppCompat_Dialog = global::DotNetRu.Droid.Resource.Style.Base_V7_ThemeOverlay_AppCompat_Dialog;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_V7_Widget_AppCompat_AutoCompleteTextView = global::DotNetRu.Droid.Resource.Style.Base_V7_Widget_AppCompat_AutoCompleteTextView;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_V7_Widget_AppCompat_EditText = global::DotNetRu.Droid.Resource.Style.Base_V7_Widget_AppCompat_EditText;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_Solid = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_Solid;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabBar = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabBar;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabText = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabText;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabView = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabView;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton_CloseMode = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton_CloseMode;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton_Overflow = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton_Overflow;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_ActionMode = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_ActionMode;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_ActivityChooserView = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_ActivityChooserView;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_AutoCompleteTextView = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_AutoCompleteTextView;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_Button = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_Button;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_Button_Borderless = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_Button_Borderless;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_Button_Borderless_Colored = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_Button_Borderless_Colored;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_Button_ButtonBar_AlertDialog = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_Button_ButtonBar_AlertDialog;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_Button_Colored = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_Button_Colored;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_Button_Small = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_Button_Small;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_ButtonBar = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_ButtonBar;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_ButtonBar_AlertDialog = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_ButtonBar_AlertDialog;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_CheckBox = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_CheckBox;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_RadioButton = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_RadioButton;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_Switch = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_Switch;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle_Common = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle_Common;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_DropDownItem_Spinner = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_DropDownItem_Spinner;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_EditText = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_EditText;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_ImageButton = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_ImageButton;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_Solid = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_Solid;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabBar = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabBar;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText_Inverse = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText_Inverse;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabView = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabView;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu_Overflow = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu_Overflow;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_ListMenuView = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_ListMenuView;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_ListPopupWindow = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_ListPopupWindow;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_ListView = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_ListView;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_ListView_DropDown = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_ListView_DropDown;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_ListView_Menu = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_ListView_Menu;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_PopupMenu = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_PopupMenu;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_PopupMenu_Overflow = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_PopupMenu_Overflow;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_PopupWindow = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_PopupWindow;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_ProgressBar = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_ProgressBar;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_ProgressBar_Horizontal = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_ProgressBar_Horizontal;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_RatingBar = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_RatingBar;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_RatingBar_Indicator = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_RatingBar_Indicator;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_RatingBar_Small = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_RatingBar_Small;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_SearchView = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_SearchView;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_SearchView_ActionBar = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_SearchView_ActionBar;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_SeekBar = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_SeekBar;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_SeekBar_Discrete = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_SeekBar_Discrete;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_Spinner = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_Spinner;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_Spinner_Underlined = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_Spinner_Underlined;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_TextView_SpinnerItem = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_TextView_SpinnerItem;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_Toolbar = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_Toolbar;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_AppCompat_Toolbar_Button_Navigation = global::DotNetRu.Droid.Resource.Style.Base_Widget_AppCompat_Toolbar_Button_Navigation;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_Design_AppBarLayout = global::DotNetRu.Droid.Resource.Style.Base_Widget_Design_AppBarLayout;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Base_Widget_Design_TabLayout = global::DotNetRu.Droid.Resource.Style.Base_Widget_Design_TabLayout;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.CardView = global::DotNetRu.Droid.Resource.Style.CardView;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.CardView_Dark = global::DotNetRu.Droid.Resource.Style.CardView_Dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.CardView_Light = global::DotNetRu.Droid.Resource.Style.CardView_Light;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Platform_AppCompat = global::DotNetRu.Droid.Resource.Style.Platform_AppCompat;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Platform_AppCompat_Light = global::DotNetRu.Droid.Resource.Style.Platform_AppCompat_Light;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat = global::DotNetRu.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat_Dark = global::DotNetRu.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat_Dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat_Light = global::DotNetRu.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat_Light;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Platform_V11_AppCompat = global::DotNetRu.Droid.Resource.Style.Platform_V11_AppCompat;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Platform_V11_AppCompat_Light = global::DotNetRu.Droid.Resource.Style.Platform_V11_AppCompat_Light;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Platform_V14_AppCompat = global::DotNetRu.Droid.Resource.Style.Platform_V14_AppCompat;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Platform_V14_AppCompat_Light = global::DotNetRu.Droid.Resource.Style.Platform_V14_AppCompat_Light;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Platform_V21_AppCompat = global::DotNetRu.Droid.Resource.Style.Platform_V21_AppCompat;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Platform_V21_AppCompat_Light = global::DotNetRu.Droid.Resource.Style.Platform_V21_AppCompat_Light;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Platform_V25_AppCompat = global::DotNetRu.Droid.Resource.Style.Platform_V25_AppCompat;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Platform_V25_AppCompat_Light = global::DotNetRu.Droid.Resource.Style.Platform_V25_AppCompat_Light;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Platform_Widget_AppCompat_Spinner = global::DotNetRu.Droid.Resource.Style.Platform_Widget_AppCompat_Spinner;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.RtlOverlay_DialogWindowTitle_AppCompat = global::DotNetRu.Droid.Resource.Style.RtlOverlay_DialogWindowTitle_AppCompat;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_ActionBar_TitleItem = global::DotNetRu.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_ActionBar_TitleItem;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_DialogTitle_Icon = global::DotNetRu.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_DialogTitle_Icon;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem = global::DotNetRu.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_InternalGroup = global::DotNetRu.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_InternalGroup;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_Text = global::DotNetRu.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_Text;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown = global::DotNetRu.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon1 = global::DotNetRu.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon1;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon2 = global::DotNetRu.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon2;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Query = global::DotNetRu.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Query;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Text = global::DotNetRu.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Text;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_SearchView_MagIcon = global::DotNetRu.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_SearchView_MagIcon;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton = global::DotNetRu.Droid.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton_Overflow = global::DotNetRu.Droid.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton_Overflow;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_Body1 = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_Body1;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_Body2 = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_Body2;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_Button = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_Button;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_Caption = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_Caption;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_Display1 = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_Display1;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_Display2 = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_Display2;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_Display3 = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_Display3;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_Display4 = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_Display4;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_Headline = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_Headline;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_Inverse = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_Inverse;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_Large = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_Large;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_Large_Inverse = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_Large_Inverse;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Subtitle = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Subtitle;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Title = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Title;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Large = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Large;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Small = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Small;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_Medium = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_Medium;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_Medium_Inverse = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_Medium_Inverse;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_Menu = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_Menu;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_Notification = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_Notification;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_Notification_Info = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_Notification_Info;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_Notification_Info_Media = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_Notification_Info_Media;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_Notification_Line2 = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_Notification_Line2;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_Notification_Line2_Media = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_Notification_Line2_Media;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_Notification_Media = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_Notification_Media;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_Notification_Time = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_Notification_Time;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_Notification_Time_Media = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_Notification_Time_Media;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_Notification_Title = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_Notification_Title;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_Notification_Title_Media = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_Notification_Title_Media;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_SearchResult_Subtitle = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_SearchResult_Subtitle;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_SearchResult_Title = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_SearchResult_Title;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_Small = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_Small;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_Small_Inverse = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_Small_Inverse;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_Subhead = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_Subhead;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_Subhead_Inverse = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_Subhead_Inverse;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_Title = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_Title;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_Title_Inverse = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_Title_Inverse;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Menu = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Menu;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle_Inverse = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle_Inverse;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title_Inverse = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title_Inverse;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Borderless_Colored = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Borderless_Colored;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Colored = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Colored;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Inverse = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Inverse;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_Widget_DropDownItem = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_Widget_DropDownItem;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Header = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Header;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Large = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Large;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Small = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Small;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Switch = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Switch;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_AppCompat_Widget_TextView_SpinnerItem = global::DotNetRu.Droid.Resource.Style.TextAppearance_AppCompat_Widget_TextView_SpinnerItem;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_Design_CollapsingToolbar_Expanded = global::DotNetRu.Droid.Resource.Style.TextAppearance_Design_CollapsingToolbar_Expanded;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_Design_Counter = global::DotNetRu.Droid.Resource.Style.TextAppearance_Design_Counter;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_Design_Counter_Overflow = global::DotNetRu.Droid.Resource.Style.TextAppearance_Design_Counter_Overflow;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_Design_Error = global::DotNetRu.Droid.Resource.Style.TextAppearance_Design_Error;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_Design_Hint = global::DotNetRu.Droid.Resource.Style.TextAppearance_Design_Hint;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_Design_Snackbar_Message = global::DotNetRu.Droid.Resource.Style.TextAppearance_Design_Snackbar_Message;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_Design_Tab = global::DotNetRu.Droid.Resource.Style.TextAppearance_Design_Tab;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_MediaRouter_PrimaryText = global::DotNetRu.Droid.Resource.Style.TextAppearance_MediaRouter_PrimaryText;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_MediaRouter_SecondaryText = global::DotNetRu.Droid.Resource.Style.TextAppearance_MediaRouter_SecondaryText;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_MediaRouter_Title = global::DotNetRu.Droid.Resource.Style.TextAppearance_MediaRouter_Title;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_Widget_AppCompat_ExpandedMenu_Item = global::DotNetRu.Droid.Resource.Style.TextAppearance_Widget_AppCompat_ExpandedMenu_Item;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Subtitle = global::DotNetRu.Droid.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Subtitle;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Title = global::DotNetRu.Droid.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Title;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Theme_AppCompat = global::DotNetRu.Droid.Resource.Style.Theme_AppCompat;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Theme_AppCompat_CompactMenu = global::DotNetRu.Droid.Resource.Style.Theme_AppCompat_CompactMenu;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Theme_AppCompat_DayNight = global::DotNetRu.Droid.Resource.Style.Theme_AppCompat_DayNight;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Theme_AppCompat_DayNight_DarkActionBar = global::DotNetRu.Droid.Resource.Style.Theme_AppCompat_DayNight_DarkActionBar;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog = global::DotNetRu.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog_Alert = global::DotNetRu.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog_Alert;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog_MinWidth = global::DotNetRu.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog_MinWidth;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Theme_AppCompat_DayNight_DialogWhenLarge = global::DotNetRu.Droid.Resource.Style.Theme_AppCompat_DayNight_DialogWhenLarge;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Theme_AppCompat_DayNight_NoActionBar = global::DotNetRu.Droid.Resource.Style.Theme_AppCompat_DayNight_NoActionBar;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Theme_AppCompat_Dialog = global::DotNetRu.Droid.Resource.Style.Theme_AppCompat_Dialog;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Theme_AppCompat_Dialog_Alert = global::DotNetRu.Droid.Resource.Style.Theme_AppCompat_Dialog_Alert;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Theme_AppCompat_Dialog_MinWidth = global::DotNetRu.Droid.Resource.Style.Theme_AppCompat_Dialog_MinWidth;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Theme_AppCompat_DialogWhenLarge = global::DotNetRu.Droid.Resource.Style.Theme_AppCompat_DialogWhenLarge;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Theme_AppCompat_Light = global::DotNetRu.Droid.Resource.Style.Theme_AppCompat_Light;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Theme_AppCompat_Light_DarkActionBar = global::DotNetRu.Droid.Resource.Style.Theme_AppCompat_Light_DarkActionBar;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Theme_AppCompat_Light_Dialog = global::DotNetRu.Droid.Resource.Style.Theme_AppCompat_Light_Dialog;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Theme_AppCompat_Light_Dialog_Alert = global::DotNetRu.Droid.Resource.Style.Theme_AppCompat_Light_Dialog_Alert;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Theme_AppCompat_Light_Dialog_MinWidth = global::DotNetRu.Droid.Resource.Style.Theme_AppCompat_Light_Dialog_MinWidth;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Theme_AppCompat_Light_DialogWhenLarge = global::DotNetRu.Droid.Resource.Style.Theme_AppCompat_Light_DialogWhenLarge;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Theme_AppCompat_Light_NoActionBar = global::DotNetRu.Droid.Resource.Style.Theme_AppCompat_Light_NoActionBar;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Theme_AppCompat_NoActionBar = global::DotNetRu.Droid.Resource.Style.Theme_AppCompat_NoActionBar;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Theme_Design = global::DotNetRu.Droid.Resource.Style.Theme_Design;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Theme_Design_BottomSheetDialog = global::DotNetRu.Droid.Resource.Style.Theme_Design_BottomSheetDialog;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Theme_Design_Light = global::DotNetRu.Droid.Resource.Style.Theme_Design_Light;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Theme_Design_Light_BottomSheetDialog = global::DotNetRu.Droid.Resource.Style.Theme_Design_Light_BottomSheetDialog;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Theme_Design_Light_NoActionBar = global::DotNetRu.Droid.Resource.Style.Theme_Design_Light_NoActionBar;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Theme_Design_NoActionBar = global::DotNetRu.Droid.Resource.Style.Theme_Design_NoActionBar;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Theme_MediaRouter = global::DotNetRu.Droid.Resource.Style.Theme_MediaRouter;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Theme_MediaRouter_Light = global::DotNetRu.Droid.Resource.Style.Theme_MediaRouter_Light;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Theme_MediaRouter_Light_DarkControlPanel = global::DotNetRu.Droid.Resource.Style.Theme_MediaRouter_Light_DarkControlPanel;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Theme_MediaRouter_LightControlPanel = global::DotNetRu.Droid.Resource.Style.Theme_MediaRouter_LightControlPanel;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.ThemeOverlay_AppCompat = global::DotNetRu.Droid.Resource.Style.ThemeOverlay_AppCompat;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.ThemeOverlay_AppCompat_ActionBar = global::DotNetRu.Droid.Resource.Style.ThemeOverlay_AppCompat_ActionBar;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.ThemeOverlay_AppCompat_Dark = global::DotNetRu.Droid.Resource.Style.ThemeOverlay_AppCompat_Dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.ThemeOverlay_AppCompat_Dark_ActionBar = global::DotNetRu.Droid.Resource.Style.ThemeOverlay_AppCompat_Dark_ActionBar;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.ThemeOverlay_AppCompat_Dialog = global::DotNetRu.Droid.Resource.Style.ThemeOverlay_AppCompat_Dialog;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.ThemeOverlay_AppCompat_Dialog_Alert = global::DotNetRu.Droid.Resource.Style.ThemeOverlay_AppCompat_Dialog_Alert;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.ThemeOverlay_AppCompat_Light = global::DotNetRu.Droid.Resource.Style.ThemeOverlay_AppCompat_Light;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.ThemeOverlay_MediaRouter_Dark = global::DotNetRu.Droid.Resource.Style.ThemeOverlay_MediaRouter_Dark;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.ThemeOverlay_MediaRouter_Light = global::DotNetRu.Droid.Resource.Style.ThemeOverlay_MediaRouter_Light;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_ActionBar = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_ActionBar;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_ActionBar_Solid = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_ActionBar_Solid;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabBar = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabBar;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabText = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabText;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabView = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabView;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_ActionButton = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_ActionButton;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_ActionButton_CloseMode = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_ActionButton_CloseMode;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_ActionButton_Overflow = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_ActionButton_Overflow;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_ActionMode = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_ActionMode;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_ActivityChooserView = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_ActivityChooserView;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_AutoCompleteTextView = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_AutoCompleteTextView;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_Button = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_Button;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_Button_Borderless = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_Button_Borderless;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_Button_Borderless_Colored = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_Button_Borderless_Colored;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_Button_ButtonBar_AlertDialog = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_Button_ButtonBar_AlertDialog;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_Button_Colored = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_Button_Colored;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_Button_Small = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_Button_Small;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_ButtonBar = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_ButtonBar;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_ButtonBar_AlertDialog = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_ButtonBar_AlertDialog;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_CompoundButton_CheckBox = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_CompoundButton_CheckBox;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_CompoundButton_RadioButton = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_CompoundButton_RadioButton;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_CompoundButton_Switch = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_CompoundButton_Switch;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_DrawerArrowToggle = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_DrawerArrowToggle;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_DropDownItem_Spinner = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_DropDownItem_Spinner;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_EditText = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_EditText;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_ImageButton = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_ImageButton;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid_Inverse = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid_Inverse;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar_Inverse = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar_Inverse;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText_Inverse = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText_Inverse;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView_Inverse = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView_Inverse;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton_CloseMode = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton_CloseMode;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton_Overflow = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton_Overflow;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_Light_ActionMode_Inverse = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_Light_ActionMode_Inverse;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_Light_ActivityChooserView = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_Light_ActivityChooserView;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_Light_AutoCompleteTextView = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_Light_AutoCompleteTextView;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_Light_DropDownItem_Spinner = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_Light_DropDownItem_Spinner;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_Light_ListPopupWindow = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_Light_ListPopupWindow;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_Light_ListView_DropDown = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_Light_ListView_DropDown;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_Light_PopupMenu = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_Light_PopupMenu;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_Light_PopupMenu_Overflow = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_Light_PopupMenu_Overflow;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_Light_SearchView = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_Light_SearchView;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_Light_Spinner_DropDown_ActionBar = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_Light_Spinner_DropDown_ActionBar;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_ListMenuView = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_ListMenuView;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_ListPopupWindow = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_ListPopupWindow;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_ListView = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_ListView;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_ListView_DropDown = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_ListView_DropDown;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_ListView_Menu = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_ListView_Menu;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_PopupMenu = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_PopupMenu;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_PopupMenu_Overflow = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_PopupMenu_Overflow;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_PopupWindow = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_PopupWindow;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_ProgressBar = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_ProgressBar;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_ProgressBar_Horizontal = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_ProgressBar_Horizontal;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_RatingBar = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_RatingBar;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_RatingBar_Indicator = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_RatingBar_Indicator;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_RatingBar_Small = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_RatingBar_Small;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_SearchView = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_SearchView;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_SearchView_ActionBar = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_SearchView_ActionBar;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_SeekBar = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_SeekBar;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_SeekBar_Discrete = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_SeekBar_Discrete;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_Spinner = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_Spinner;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_Spinner_DropDown = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_Spinner_DropDown;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_Spinner_DropDown_ActionBar = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_Spinner_DropDown_ActionBar;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_Spinner_Underlined = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_Spinner_Underlined;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_TextView_SpinnerItem = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_TextView_SpinnerItem;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_Toolbar = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_Toolbar;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_AppCompat_Toolbar_Button_Navigation = global::DotNetRu.Droid.Resource.Style.Widget_AppCompat_Toolbar_Button_Navigation;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_Design_AppBarLayout = global::DotNetRu.Droid.Resource.Style.Widget_Design_AppBarLayout;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_Design_BottomNavigationView = global::DotNetRu.Droid.Resource.Style.Widget_Design_BottomNavigationView;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_Design_BottomSheet_Modal = global::DotNetRu.Droid.Resource.Style.Widget_Design_BottomSheet_Modal;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_Design_CollapsingToolbar = global::DotNetRu.Droid.Resource.Style.Widget_Design_CollapsingToolbar;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_Design_CoordinatorLayout = global::DotNetRu.Droid.Resource.Style.Widget_Design_CoordinatorLayout;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_Design_FloatingActionButton = global::DotNetRu.Droid.Resource.Style.Widget_Design_FloatingActionButton;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_Design_NavigationView = global::DotNetRu.Droid.Resource.Style.Widget_Design_NavigationView;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_Design_ScrimInsetsFrameLayout = global::DotNetRu.Droid.Resource.Style.Widget_Design_ScrimInsetsFrameLayout;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_Design_Snackbar = global::DotNetRu.Droid.Resource.Style.Widget_Design_Snackbar;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_Design_TabLayout = global::DotNetRu.Droid.Resource.Style.Widget_Design_TabLayout;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_Design_TextInputLayout = global::DotNetRu.Droid.Resource.Style.Widget_Design_TextInputLayout;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_MediaRouter_Light_MediaRouteButton = global::DotNetRu.Droid.Resource.Style.Widget_MediaRouter_Light_MediaRouteButton;
-			global::Naxam.Controls.Platform.Droid.Resource.Style.Widget_MediaRouter_MediaRouteButton = global::DotNetRu.Droid.Resource.Style.Widget_MediaRouter_MediaRouteButton;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ActionBar = global::DotNetRu.Droid.Resource.Styleable.ActionBar;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ActionBar_background = global::DotNetRu.Droid.Resource.Styleable.ActionBar_background;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ActionBar_backgroundSplit = global::DotNetRu.Droid.Resource.Styleable.ActionBar_backgroundSplit;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ActionBar_backgroundStacked = global::DotNetRu.Droid.Resource.Styleable.ActionBar_backgroundStacked;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ActionBar_contentInsetEnd = global::DotNetRu.Droid.Resource.Styleable.ActionBar_contentInsetEnd;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ActionBar_contentInsetEndWithActions = global::DotNetRu.Droid.Resource.Styleable.ActionBar_contentInsetEndWithActions;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ActionBar_contentInsetLeft = global::DotNetRu.Droid.Resource.Styleable.ActionBar_contentInsetLeft;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ActionBar_contentInsetRight = global::DotNetRu.Droid.Resource.Styleable.ActionBar_contentInsetRight;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ActionBar_contentInsetStart = global::DotNetRu.Droid.Resource.Styleable.ActionBar_contentInsetStart;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ActionBar_contentInsetStartWithNavigation = global::DotNetRu.Droid.Resource.Styleable.ActionBar_contentInsetStartWithNavigation;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ActionBar_customNavigationLayout = global::DotNetRu.Droid.Resource.Styleable.ActionBar_customNavigationLayout;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ActionBar_displayOptions = global::DotNetRu.Droid.Resource.Styleable.ActionBar_displayOptions;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ActionBar_divider = global::DotNetRu.Droid.Resource.Styleable.ActionBar_divider;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ActionBar_elevation = global::DotNetRu.Droid.Resource.Styleable.ActionBar_elevation;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ActionBar_height = global::DotNetRu.Droid.Resource.Styleable.ActionBar_height;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ActionBar_hideOnContentScroll = global::DotNetRu.Droid.Resource.Styleable.ActionBar_hideOnContentScroll;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ActionBar_homeAsUpIndicator = global::DotNetRu.Droid.Resource.Styleable.ActionBar_homeAsUpIndicator;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ActionBar_homeLayout = global::DotNetRu.Droid.Resource.Styleable.ActionBar_homeLayout;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ActionBar_icon = global::DotNetRu.Droid.Resource.Styleable.ActionBar_icon;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ActionBar_indeterminateProgressStyle = global::DotNetRu.Droid.Resource.Styleable.ActionBar_indeterminateProgressStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ActionBar_itemPadding = global::DotNetRu.Droid.Resource.Styleable.ActionBar_itemPadding;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ActionBar_logo = global::DotNetRu.Droid.Resource.Styleable.ActionBar_logo;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ActionBar_navigationMode = global::DotNetRu.Droid.Resource.Styleable.ActionBar_navigationMode;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ActionBar_popupTheme = global::DotNetRu.Droid.Resource.Styleable.ActionBar_popupTheme;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ActionBar_progressBarPadding = global::DotNetRu.Droid.Resource.Styleable.ActionBar_progressBarPadding;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ActionBar_progressBarStyle = global::DotNetRu.Droid.Resource.Styleable.ActionBar_progressBarStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ActionBar_subtitle = global::DotNetRu.Droid.Resource.Styleable.ActionBar_subtitle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ActionBar_subtitleTextStyle = global::DotNetRu.Droid.Resource.Styleable.ActionBar_subtitleTextStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ActionBar_title = global::DotNetRu.Droid.Resource.Styleable.ActionBar_title;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ActionBar_titleTextStyle = global::DotNetRu.Droid.Resource.Styleable.ActionBar_titleTextStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ActionBarLayout = global::DotNetRu.Droid.Resource.Styleable.ActionBarLayout;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ActionBarLayout_android_layout_gravity = global::DotNetRu.Droid.Resource.Styleable.ActionBarLayout_android_layout_gravity;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ActionMenuItemView = global::DotNetRu.Droid.Resource.Styleable.ActionMenuItemView;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ActionMenuItemView_android_minWidth = global::DotNetRu.Droid.Resource.Styleable.ActionMenuItemView_android_minWidth;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ActionMenuView = global::DotNetRu.Droid.Resource.Styleable.ActionMenuView;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ActionMode = global::DotNetRu.Droid.Resource.Styleable.ActionMode;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ActionMode_background = global::DotNetRu.Droid.Resource.Styleable.ActionMode_background;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ActionMode_backgroundSplit = global::DotNetRu.Droid.Resource.Styleable.ActionMode_backgroundSplit;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ActionMode_closeItemLayout = global::DotNetRu.Droid.Resource.Styleable.ActionMode_closeItemLayout;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ActionMode_height = global::DotNetRu.Droid.Resource.Styleable.ActionMode_height;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ActionMode_subtitleTextStyle = global::DotNetRu.Droid.Resource.Styleable.ActionMode_subtitleTextStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ActionMode_titleTextStyle = global::DotNetRu.Droid.Resource.Styleable.ActionMode_titleTextStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ActivityChooserView = global::DotNetRu.Droid.Resource.Styleable.ActivityChooserView;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ActivityChooserView_expandActivityOverflowButtonDrawable = global::DotNetRu.Droid.Resource.Styleable.ActivityChooserView_expandActivityOverflowButtonDrawable;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ActivityChooserView_initialActivityCount = global::DotNetRu.Droid.Resource.Styleable.ActivityChooserView_initialActivityCount;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AlertDialog = global::DotNetRu.Droid.Resource.Styleable.AlertDialog;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AlertDialog_android_layout = global::DotNetRu.Droid.Resource.Styleable.AlertDialog_android_layout;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AlertDialog_buttonPanelSideLayout = global::DotNetRu.Droid.Resource.Styleable.AlertDialog_buttonPanelSideLayout;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AlertDialog_listItemLayout = global::DotNetRu.Droid.Resource.Styleable.AlertDialog_listItemLayout;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AlertDialog_listLayout = global::DotNetRu.Droid.Resource.Styleable.AlertDialog_listLayout;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AlertDialog_multiChoiceItemLayout = global::DotNetRu.Droid.Resource.Styleable.AlertDialog_multiChoiceItemLayout;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AlertDialog_showTitle = global::DotNetRu.Droid.Resource.Styleable.AlertDialog_showTitle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AlertDialog_singleChoiceItemLayout = global::DotNetRu.Droid.Resource.Styleable.AlertDialog_singleChoiceItemLayout;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppBarLayout = global::DotNetRu.Droid.Resource.Styleable.AppBarLayout;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppBarLayout_android_background = global::DotNetRu.Droid.Resource.Styleable.AppBarLayout_android_background;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppBarLayout_elevation = global::DotNetRu.Droid.Resource.Styleable.AppBarLayout_elevation;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppBarLayout_expanded = global::DotNetRu.Droid.Resource.Styleable.AppBarLayout_expanded;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppBarLayoutStates = global::DotNetRu.Droid.Resource.Styleable.AppBarLayoutStates;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppBarLayoutStates_state_collapsed = global::DotNetRu.Droid.Resource.Styleable.AppBarLayoutStates_state_collapsed;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppBarLayoutStates_state_collapsible = global::DotNetRu.Droid.Resource.Styleable.AppBarLayoutStates_state_collapsible;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppBarLayout_Layout = global::DotNetRu.Droid.Resource.Styleable.AppBarLayout_Layout;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppBarLayout_Layout_layout_scrollFlags = global::DotNetRu.Droid.Resource.Styleable.AppBarLayout_Layout_layout_scrollFlags;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppBarLayout_Layout_layout_scrollInterpolator = global::DotNetRu.Droid.Resource.Styleable.AppBarLayout_Layout_layout_scrollInterpolator;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatImageView = global::DotNetRu.Droid.Resource.Styleable.AppCompatImageView;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatImageView_android_src = global::DotNetRu.Droid.Resource.Styleable.AppCompatImageView_android_src;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatImageView_srcCompat = global::DotNetRu.Droid.Resource.Styleable.AppCompatImageView_srcCompat;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatImageView_tint = global::DotNetRu.Droid.Resource.Styleable.AppCompatImageView_tint;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatImageView_tintMode = global::DotNetRu.Droid.Resource.Styleable.AppCompatImageView_tintMode;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatSeekBar = global::DotNetRu.Droid.Resource.Styleable.AppCompatSeekBar;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatSeekBar_android_thumb = global::DotNetRu.Droid.Resource.Styleable.AppCompatSeekBar_android_thumb;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatSeekBar_tickMark = global::DotNetRu.Droid.Resource.Styleable.AppCompatSeekBar_tickMark;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatSeekBar_tickMarkTint = global::DotNetRu.Droid.Resource.Styleable.AppCompatSeekBar_tickMarkTint;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatSeekBar_tickMarkTintMode = global::DotNetRu.Droid.Resource.Styleable.AppCompatSeekBar_tickMarkTintMode;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTextHelper = global::DotNetRu.Droid.Resource.Styleable.AppCompatTextHelper;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableBottom = global::DotNetRu.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableBottom;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableEnd = global::DotNetRu.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableEnd;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableLeft = global::DotNetRu.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableLeft;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableRight = global::DotNetRu.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableRight;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableStart = global::DotNetRu.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableStart;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableTop = global::DotNetRu.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableTop;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTextHelper_android_textAppearance = global::DotNetRu.Droid.Resource.Styleable.AppCompatTextHelper_android_textAppearance;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTextView = global::DotNetRu.Droid.Resource.Styleable.AppCompatTextView;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTextView_android_textAppearance = global::DotNetRu.Droid.Resource.Styleable.AppCompatTextView_android_textAppearance;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTextView_textAllCaps = global::DotNetRu.Droid.Resource.Styleable.AppCompatTextView_textAllCaps;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_actionBarDivider = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_actionBarDivider;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_actionBarItemBackground = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_actionBarItemBackground;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_actionBarPopupTheme = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_actionBarPopupTheme;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_actionBarSize = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_actionBarSize;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_actionBarSplitStyle = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_actionBarSplitStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_actionBarStyle = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_actionBarStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_actionBarTabBarStyle = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_actionBarTabBarStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_actionBarTabStyle = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_actionBarTabStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_actionBarTabTextStyle = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_actionBarTabTextStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_actionBarTheme = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_actionBarTheme;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_actionBarWidgetTheme = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_actionBarWidgetTheme;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_actionButtonStyle = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_actionButtonStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_actionDropDownStyle = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_actionDropDownStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_actionMenuTextAppearance = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_actionMenuTextAppearance;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_actionMenuTextColor = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_actionMenuTextColor;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_actionModeBackground = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_actionModeBackground;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_actionModeCloseButtonStyle = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_actionModeCloseButtonStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_actionModeCloseDrawable = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_actionModeCloseDrawable;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_actionModeCopyDrawable = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_actionModeCopyDrawable;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_actionModeCutDrawable = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_actionModeCutDrawable;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_actionModeFindDrawable = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_actionModeFindDrawable;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_actionModePasteDrawable = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_actionModePasteDrawable;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_actionModePopupWindowStyle = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_actionModePopupWindowStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_actionModeSelectAllDrawable = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_actionModeSelectAllDrawable;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_actionModeShareDrawable = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_actionModeShareDrawable;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_actionModeSplitBackground = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_actionModeSplitBackground;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_actionModeStyle = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_actionModeStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_actionModeWebSearchDrawable = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_actionModeWebSearchDrawable;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_actionOverflowButtonStyle = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_actionOverflowButtonStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_actionOverflowMenuStyle = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_actionOverflowMenuStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_activityChooserViewStyle = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_activityChooserViewStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_alertDialogButtonGroupStyle = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_alertDialogButtonGroupStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_alertDialogCenterButtons = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_alertDialogCenterButtons;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_alertDialogStyle = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_alertDialogStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_alertDialogTheme = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_alertDialogTheme;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_android_windowAnimationStyle = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_android_windowAnimationStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_android_windowIsFloating = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_android_windowIsFloating;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_autoCompleteTextViewStyle = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_autoCompleteTextViewStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_borderlessButtonStyle = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_borderlessButtonStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_buttonBarButtonStyle = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_buttonBarButtonStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_buttonBarNegativeButtonStyle = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_buttonBarNegativeButtonStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_buttonBarNeutralButtonStyle = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_buttonBarNeutralButtonStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_buttonBarPositiveButtonStyle = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_buttonBarPositiveButtonStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_buttonBarStyle = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_buttonBarStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_buttonStyle = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_buttonStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_buttonStyleSmall = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_buttonStyleSmall;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_checkboxStyle = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_checkboxStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_checkedTextViewStyle = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_checkedTextViewStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_colorAccent = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_colorAccent;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_colorBackgroundFloating = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_colorBackgroundFloating;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_colorButtonNormal = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_colorButtonNormal;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_colorControlActivated = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_colorControlActivated;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_colorControlHighlight = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_colorControlHighlight;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_colorControlNormal = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_colorControlNormal;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_colorPrimary = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_colorPrimary;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_colorPrimaryDark = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_colorPrimaryDark;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_colorSwitchThumbNormal = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_colorSwitchThumbNormal;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_controlBackground = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_controlBackground;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_dialogPreferredPadding = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_dialogPreferredPadding;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_dialogTheme = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_dialogTheme;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_dividerHorizontal = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_dividerHorizontal;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_dividerVertical = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_dividerVertical;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_dropDownListViewStyle = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_dropDownListViewStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_dropdownListPreferredItemHeight = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_dropdownListPreferredItemHeight;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_editTextBackground = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_editTextBackground;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_editTextColor = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_editTextColor;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_editTextStyle = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_editTextStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_homeAsUpIndicator = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_homeAsUpIndicator;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_imageButtonStyle = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_imageButtonStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_listChoiceBackgroundIndicator = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_listChoiceBackgroundIndicator;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_listDividerAlertDialog = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_listDividerAlertDialog;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_listMenuViewStyle = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_listMenuViewStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_listPopupWindowStyle = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_listPopupWindowStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeight = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeight;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeightLarge = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeightLarge;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeightSmall = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeightSmall;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingLeft = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingLeft;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingRight = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingRight;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_panelBackground = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_panelBackground;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_panelMenuListTheme = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_panelMenuListTheme;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_panelMenuListWidth = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_panelMenuListWidth;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_popupMenuStyle = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_popupMenuStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_popupWindowStyle = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_popupWindowStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_radioButtonStyle = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_radioButtonStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_ratingBarStyle = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_ratingBarStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_ratingBarStyleIndicator = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_ratingBarStyleIndicator;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_ratingBarStyleSmall = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_ratingBarStyleSmall;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_searchViewStyle = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_searchViewStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_seekBarStyle = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_seekBarStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_selectableItemBackground = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_selectableItemBackground;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_selectableItemBackgroundBorderless = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_selectableItemBackgroundBorderless;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_spinnerDropDownItemStyle = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_spinnerDropDownItemStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_spinnerStyle = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_spinnerStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_switchStyle = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_switchStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_textAppearanceLargePopupMenu = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_textAppearanceLargePopupMenu;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_textAppearanceListItem = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_textAppearanceListItem;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_textAppearanceListItemSecondary = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_textAppearanceListItemSecondary;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_textAppearanceListItemSmall = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_textAppearanceListItemSmall;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_textAppearancePopupMenuHeader = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_textAppearancePopupMenuHeader;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultSubtitle = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultSubtitle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultTitle = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultTitle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_textAppearanceSmallPopupMenu = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_textAppearanceSmallPopupMenu;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_textColorAlertDialogListItem = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_textColorAlertDialogListItem;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_textColorSearchUrl = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_textColorSearchUrl;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_toolbarNavigationButtonStyle = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_toolbarNavigationButtonStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_toolbarStyle = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_toolbarStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_windowActionBar = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_windowActionBar;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_windowActionBarOverlay = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_windowActionBarOverlay;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_windowActionModeOverlay = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_windowActionModeOverlay;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_windowFixedHeightMajor = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_windowFixedHeightMajor;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_windowFixedHeightMinor = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_windowFixedHeightMinor;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_windowFixedWidthMajor = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_windowFixedWidthMajor;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_windowFixedWidthMinor = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_windowFixedWidthMinor;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_windowMinWidthMajor = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_windowMinWidthMajor;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_windowMinWidthMinor = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_windowMinWidthMinor;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.AppCompatTheme_windowNoTitle = global::DotNetRu.Droid.Resource.Styleable.AppCompatTheme_windowNoTitle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.BottomNavigationView = global::DotNetRu.Droid.Resource.Styleable.BottomNavigationView;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.BottomNavigationView_elevation = global::DotNetRu.Droid.Resource.Styleable.BottomNavigationView_elevation;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.BottomNavigationView_itemBackground = global::DotNetRu.Droid.Resource.Styleable.BottomNavigationView_itemBackground;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.BottomNavigationView_itemIconTint = global::DotNetRu.Droid.Resource.Styleable.BottomNavigationView_itemIconTint;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.BottomNavigationView_itemTextColor = global::DotNetRu.Droid.Resource.Styleable.BottomNavigationView_itemTextColor;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.BottomNavigationView_menu = global::DotNetRu.Droid.Resource.Styleable.BottomNavigationView_menu;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.BottomSheetBehavior_Layout = global::DotNetRu.Droid.Resource.Styleable.BottomSheetBehavior_Layout;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_hideable = global::DotNetRu.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_hideable;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_peekHeight = global::DotNetRu.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_peekHeight;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_skipCollapsed = global::DotNetRu.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_skipCollapsed;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ButtonBarLayout = global::DotNetRu.Droid.Resource.Styleable.ButtonBarLayout;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ButtonBarLayout_allowStacking = global::DotNetRu.Droid.Resource.Styleable.ButtonBarLayout_allowStacking;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.CardView = global::DotNetRu.Droid.Resource.Styleable.CardView;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.CardView_android_minHeight = global::DotNetRu.Droid.Resource.Styleable.CardView_android_minHeight;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.CardView_android_minWidth = global::DotNetRu.Droid.Resource.Styleable.CardView_android_minWidth;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.CardView_cardBackgroundColor = global::DotNetRu.Droid.Resource.Styleable.CardView_cardBackgroundColor;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.CardView_cardCornerRadius = global::DotNetRu.Droid.Resource.Styleable.CardView_cardCornerRadius;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.CardView_cardElevation = global::DotNetRu.Droid.Resource.Styleable.CardView_cardElevation;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.CardView_cardMaxElevation = global::DotNetRu.Droid.Resource.Styleable.CardView_cardMaxElevation;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.CardView_cardPreventCornerOverlap = global::DotNetRu.Droid.Resource.Styleable.CardView_cardPreventCornerOverlap;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.CardView_cardUseCompatPadding = global::DotNetRu.Droid.Resource.Styleable.CardView_cardUseCompatPadding;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.CardView_contentPadding = global::DotNetRu.Droid.Resource.Styleable.CardView_contentPadding;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.CardView_contentPaddingBottom = global::DotNetRu.Droid.Resource.Styleable.CardView_contentPaddingBottom;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.CardView_contentPaddingLeft = global::DotNetRu.Droid.Resource.Styleable.CardView_contentPaddingLeft;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.CardView_contentPaddingRight = global::DotNetRu.Droid.Resource.Styleable.CardView_contentPaddingRight;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.CardView_contentPaddingTop = global::DotNetRu.Droid.Resource.Styleable.CardView_contentPaddingTop;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.CollapsingToolbarLayout = global::DotNetRu.Droid.Resource.Styleable.CollapsingToolbarLayout;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleGravity = global::DotNetRu.Droid.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleGravity;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleTextAppearance = global::DotNetRu.Droid.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleTextAppearance;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.CollapsingToolbarLayout_contentScrim = global::DotNetRu.Droid.Resource.Styleable.CollapsingToolbarLayout_contentScrim;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleGravity = global::DotNetRu.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleGravity;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMargin = global::DotNetRu.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMargin;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginBottom = global::DotNetRu.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginBottom;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginEnd = global::DotNetRu.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginEnd;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginStart = global::DotNetRu.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginStart;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginTop = global::DotNetRu.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginTop;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleTextAppearance = global::DotNetRu.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleTextAppearance;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.CollapsingToolbarLayout_scrimAnimationDuration = global::DotNetRu.Droid.Resource.Styleable.CollapsingToolbarLayout_scrimAnimationDuration;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.CollapsingToolbarLayout_scrimVisibleHeightTrigger = global::DotNetRu.Droid.Resource.Styleable.CollapsingToolbarLayout_scrimVisibleHeightTrigger;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.CollapsingToolbarLayout_statusBarScrim = global::DotNetRu.Droid.Resource.Styleable.CollapsingToolbarLayout_statusBarScrim;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.CollapsingToolbarLayout_title = global::DotNetRu.Droid.Resource.Styleable.CollapsingToolbarLayout_title;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.CollapsingToolbarLayout_titleEnabled = global::DotNetRu.Droid.Resource.Styleable.CollapsingToolbarLayout_titleEnabled;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.CollapsingToolbarLayout_toolbarId = global::DotNetRu.Droid.Resource.Styleable.CollapsingToolbarLayout_toolbarId;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.CollapsingToolbarLayout_Layout = global::DotNetRu.Droid.Resource.Styleable.CollapsingToolbarLayout_Layout;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.CollapsingToolbarLayout_Layout_layout_collapseMode = global::DotNetRu.Droid.Resource.Styleable.CollapsingToolbarLayout_Layout_layout_collapseMode;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.CollapsingToolbarLayout_Layout_layout_collapseParallaxMultiplier = global::DotNetRu.Droid.Resource.Styleable.CollapsingToolbarLayout_Layout_layout_collapseParallaxMultiplier;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ColorStateListItem = global::DotNetRu.Droid.Resource.Styleable.ColorStateListItem;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ColorStateListItem_alpha = global::DotNetRu.Droid.Resource.Styleable.ColorStateListItem_alpha;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ColorStateListItem_android_alpha = global::DotNetRu.Droid.Resource.Styleable.ColorStateListItem_android_alpha;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ColorStateListItem_android_color = global::DotNetRu.Droid.Resource.Styleable.ColorStateListItem_android_color;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.CompoundButton = global::DotNetRu.Droid.Resource.Styleable.CompoundButton;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.CompoundButton_android_button = global::DotNetRu.Droid.Resource.Styleable.CompoundButton_android_button;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.CompoundButton_buttonTint = global::DotNetRu.Droid.Resource.Styleable.CompoundButton_buttonTint;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.CompoundButton_buttonTintMode = global::DotNetRu.Droid.Resource.Styleable.CompoundButton_buttonTintMode;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.CoordinatorLayout = global::DotNetRu.Droid.Resource.Styleable.CoordinatorLayout;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.CoordinatorLayout_keylines = global::DotNetRu.Droid.Resource.Styleable.CoordinatorLayout_keylines;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.CoordinatorLayout_statusBarBackground = global::DotNetRu.Droid.Resource.Styleable.CoordinatorLayout_statusBarBackground;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.CoordinatorLayout_Layout = global::DotNetRu.Droid.Resource.Styleable.CoordinatorLayout_Layout;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.CoordinatorLayout_Layout_android_layout_gravity = global::DotNetRu.Droid.Resource.Styleable.CoordinatorLayout_Layout_android_layout_gravity;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_anchor = global::DotNetRu.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_anchor;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_anchorGravity = global::DotNetRu.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_anchorGravity;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_behavior = global::DotNetRu.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_behavior;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_dodgeInsetEdges = global::DotNetRu.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_dodgeInsetEdges;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_insetEdge = global::DotNetRu.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_insetEdge;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_keyline = global::DotNetRu.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_keyline;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.DesignTheme = global::DotNetRu.Droid.Resource.Styleable.DesignTheme;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.DesignTheme_bottomSheetDialogTheme = global::DotNetRu.Droid.Resource.Styleable.DesignTheme_bottomSheetDialogTheme;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.DesignTheme_bottomSheetStyle = global::DotNetRu.Droid.Resource.Styleable.DesignTheme_bottomSheetStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.DesignTheme_textColorError = global::DotNetRu.Droid.Resource.Styleable.DesignTheme_textColorError;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.DrawerArrowToggle = global::DotNetRu.Droid.Resource.Styleable.DrawerArrowToggle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.DrawerArrowToggle_arrowHeadLength = global::DotNetRu.Droid.Resource.Styleable.DrawerArrowToggle_arrowHeadLength;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.DrawerArrowToggle_arrowShaftLength = global::DotNetRu.Droid.Resource.Styleable.DrawerArrowToggle_arrowShaftLength;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.DrawerArrowToggle_barLength = global::DotNetRu.Droid.Resource.Styleable.DrawerArrowToggle_barLength;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.DrawerArrowToggle_color = global::DotNetRu.Droid.Resource.Styleable.DrawerArrowToggle_color;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.DrawerArrowToggle_drawableSize = global::DotNetRu.Droid.Resource.Styleable.DrawerArrowToggle_drawableSize;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.DrawerArrowToggle_gapBetweenBars = global::DotNetRu.Droid.Resource.Styleable.DrawerArrowToggle_gapBetweenBars;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.DrawerArrowToggle_spinBars = global::DotNetRu.Droid.Resource.Styleable.DrawerArrowToggle_spinBars;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.DrawerArrowToggle_thickness = global::DotNetRu.Droid.Resource.Styleable.DrawerArrowToggle_thickness;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.FloatingActionButton = global::DotNetRu.Droid.Resource.Styleable.FloatingActionButton;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.FloatingActionButton_backgroundTint = global::DotNetRu.Droid.Resource.Styleable.FloatingActionButton_backgroundTint;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.FloatingActionButton_backgroundTintMode = global::DotNetRu.Droid.Resource.Styleable.FloatingActionButton_backgroundTintMode;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.FloatingActionButton_borderWidth = global::DotNetRu.Droid.Resource.Styleable.FloatingActionButton_borderWidth;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.FloatingActionButton_elevation = global::DotNetRu.Droid.Resource.Styleable.FloatingActionButton_elevation;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.FloatingActionButton_fabSize = global::DotNetRu.Droid.Resource.Styleable.FloatingActionButton_fabSize;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.FloatingActionButton_pressedTranslationZ = global::DotNetRu.Droid.Resource.Styleable.FloatingActionButton_pressedTranslationZ;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.FloatingActionButton_rippleColor = global::DotNetRu.Droid.Resource.Styleable.FloatingActionButton_rippleColor;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.FloatingActionButton_useCompatPadding = global::DotNetRu.Droid.Resource.Styleable.FloatingActionButton_useCompatPadding;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.FloatingActionButton_Behavior_Layout = global::DotNetRu.Droid.Resource.Styleable.FloatingActionButton_Behavior_Layout;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.FloatingActionButton_Behavior_Layout_behavior_autoHide = global::DotNetRu.Droid.Resource.Styleable.FloatingActionButton_Behavior_Layout_behavior_autoHide;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ForegroundLinearLayout = global::DotNetRu.Droid.Resource.Styleable.ForegroundLinearLayout;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ForegroundLinearLayout_android_foreground = global::DotNetRu.Droid.Resource.Styleable.ForegroundLinearLayout_android_foreground;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ForegroundLinearLayout_android_foregroundGravity = global::DotNetRu.Droid.Resource.Styleable.ForegroundLinearLayout_android_foregroundGravity;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ForegroundLinearLayout_foregroundInsidePadding = global::DotNetRu.Droid.Resource.Styleable.ForegroundLinearLayout_foregroundInsidePadding;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.LinearLayoutCompat = global::DotNetRu.Droid.Resource.Styleable.LinearLayoutCompat;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.LinearLayoutCompat_android_baselineAligned = global::DotNetRu.Droid.Resource.Styleable.LinearLayoutCompat_android_baselineAligned;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.LinearLayoutCompat_android_baselineAlignedChildIndex = global::DotNetRu.Droid.Resource.Styleable.LinearLayoutCompat_android_baselineAlignedChildIndex;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.LinearLayoutCompat_android_gravity = global::DotNetRu.Droid.Resource.Styleable.LinearLayoutCompat_android_gravity;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.LinearLayoutCompat_android_orientation = global::DotNetRu.Droid.Resource.Styleable.LinearLayoutCompat_android_orientation;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.LinearLayoutCompat_android_weightSum = global::DotNetRu.Droid.Resource.Styleable.LinearLayoutCompat_android_weightSum;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.LinearLayoutCompat_divider = global::DotNetRu.Droid.Resource.Styleable.LinearLayoutCompat_divider;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.LinearLayoutCompat_dividerPadding = global::DotNetRu.Droid.Resource.Styleable.LinearLayoutCompat_dividerPadding;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.LinearLayoutCompat_measureWithLargestChild = global::DotNetRu.Droid.Resource.Styleable.LinearLayoutCompat_measureWithLargestChild;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.LinearLayoutCompat_showDividers = global::DotNetRu.Droid.Resource.Styleable.LinearLayoutCompat_showDividers;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.LinearLayoutCompat_Layout = global::DotNetRu.Droid.Resource.Styleable.LinearLayoutCompat_Layout;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_gravity = global::DotNetRu.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_gravity;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_height = global::DotNetRu.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_height;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_weight = global::DotNetRu.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_weight;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_width = global::DotNetRu.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_width;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ListPopupWindow = global::DotNetRu.Droid.Resource.Styleable.ListPopupWindow;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ListPopupWindow_android_dropDownHorizontalOffset = global::DotNetRu.Droid.Resource.Styleable.ListPopupWindow_android_dropDownHorizontalOffset;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ListPopupWindow_android_dropDownVerticalOffset = global::DotNetRu.Droid.Resource.Styleable.ListPopupWindow_android_dropDownVerticalOffset;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.MediaRouteButton = global::DotNetRu.Droid.Resource.Styleable.MediaRouteButton;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.MediaRouteButton_android_minHeight = global::DotNetRu.Droid.Resource.Styleable.MediaRouteButton_android_minHeight;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.MediaRouteButton_android_minWidth = global::DotNetRu.Droid.Resource.Styleable.MediaRouteButton_android_minWidth;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.MediaRouteButton_externalRouteEnabledDrawable = global::DotNetRu.Droid.Resource.Styleable.MediaRouteButton_externalRouteEnabledDrawable;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.MenuGroup = global::DotNetRu.Droid.Resource.Styleable.MenuGroup;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.MenuGroup_android_checkableBehavior = global::DotNetRu.Droid.Resource.Styleable.MenuGroup_android_checkableBehavior;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.MenuGroup_android_enabled = global::DotNetRu.Droid.Resource.Styleable.MenuGroup_android_enabled;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.MenuGroup_android_id = global::DotNetRu.Droid.Resource.Styleable.MenuGroup_android_id;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.MenuGroup_android_menuCategory = global::DotNetRu.Droid.Resource.Styleable.MenuGroup_android_menuCategory;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.MenuGroup_android_orderInCategory = global::DotNetRu.Droid.Resource.Styleable.MenuGroup_android_orderInCategory;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.MenuGroup_android_visible = global::DotNetRu.Droid.Resource.Styleable.MenuGroup_android_visible;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.MenuItem = global::DotNetRu.Droid.Resource.Styleable.MenuItem;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.MenuItem_actionLayout = global::DotNetRu.Droid.Resource.Styleable.MenuItem_actionLayout;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.MenuItem_actionProviderClass = global::DotNetRu.Droid.Resource.Styleable.MenuItem_actionProviderClass;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.MenuItem_actionViewClass = global::DotNetRu.Droid.Resource.Styleable.MenuItem_actionViewClass;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.MenuItem_android_alphabeticShortcut = global::DotNetRu.Droid.Resource.Styleable.MenuItem_android_alphabeticShortcut;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.MenuItem_android_checkable = global::DotNetRu.Droid.Resource.Styleable.MenuItem_android_checkable;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.MenuItem_android_checked = global::DotNetRu.Droid.Resource.Styleable.MenuItem_android_checked;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.MenuItem_android_enabled = global::DotNetRu.Droid.Resource.Styleable.MenuItem_android_enabled;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.MenuItem_android_icon = global::DotNetRu.Droid.Resource.Styleable.MenuItem_android_icon;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.MenuItem_android_id = global::DotNetRu.Droid.Resource.Styleable.MenuItem_android_id;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.MenuItem_android_menuCategory = global::DotNetRu.Droid.Resource.Styleable.MenuItem_android_menuCategory;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.MenuItem_android_numericShortcut = global::DotNetRu.Droid.Resource.Styleable.MenuItem_android_numericShortcut;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.MenuItem_android_onClick = global::DotNetRu.Droid.Resource.Styleable.MenuItem_android_onClick;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.MenuItem_android_orderInCategory = global::DotNetRu.Droid.Resource.Styleable.MenuItem_android_orderInCategory;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.MenuItem_android_title = global::DotNetRu.Droid.Resource.Styleable.MenuItem_android_title;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.MenuItem_android_titleCondensed = global::DotNetRu.Droid.Resource.Styleable.MenuItem_android_titleCondensed;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.MenuItem_android_visible = global::DotNetRu.Droid.Resource.Styleable.MenuItem_android_visible;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.MenuItem_showAsAction = global::DotNetRu.Droid.Resource.Styleable.MenuItem_showAsAction;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.MenuView = global::DotNetRu.Droid.Resource.Styleable.MenuView;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.MenuView_android_headerBackground = global::DotNetRu.Droid.Resource.Styleable.MenuView_android_headerBackground;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.MenuView_android_horizontalDivider = global::DotNetRu.Droid.Resource.Styleable.MenuView_android_horizontalDivider;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.MenuView_android_itemBackground = global::DotNetRu.Droid.Resource.Styleable.MenuView_android_itemBackground;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.MenuView_android_itemIconDisabledAlpha = global::DotNetRu.Droid.Resource.Styleable.MenuView_android_itemIconDisabledAlpha;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.MenuView_android_itemTextAppearance = global::DotNetRu.Droid.Resource.Styleable.MenuView_android_itemTextAppearance;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.MenuView_android_verticalDivider = global::DotNetRu.Droid.Resource.Styleable.MenuView_android_verticalDivider;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.MenuView_android_windowAnimationStyle = global::DotNetRu.Droid.Resource.Styleable.MenuView_android_windowAnimationStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.MenuView_preserveIconSpacing = global::DotNetRu.Droid.Resource.Styleable.MenuView_preserveIconSpacing;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.MenuView_subMenuArrow = global::DotNetRu.Droid.Resource.Styleable.MenuView_subMenuArrow;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.NavigationView = global::DotNetRu.Droid.Resource.Styleable.NavigationView;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.NavigationView_android_background = global::DotNetRu.Droid.Resource.Styleable.NavigationView_android_background;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.NavigationView_android_fitsSystemWindows = global::DotNetRu.Droid.Resource.Styleable.NavigationView_android_fitsSystemWindows;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.NavigationView_android_maxWidth = global::DotNetRu.Droid.Resource.Styleable.NavigationView_android_maxWidth;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.NavigationView_elevation = global::DotNetRu.Droid.Resource.Styleable.NavigationView_elevation;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.NavigationView_headerLayout = global::DotNetRu.Droid.Resource.Styleable.NavigationView_headerLayout;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.NavigationView_itemBackground = global::DotNetRu.Droid.Resource.Styleable.NavigationView_itemBackground;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.NavigationView_itemIconTint = global::DotNetRu.Droid.Resource.Styleable.NavigationView_itemIconTint;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.NavigationView_itemTextAppearance = global::DotNetRu.Droid.Resource.Styleable.NavigationView_itemTextAppearance;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.NavigationView_itemTextColor = global::DotNetRu.Droid.Resource.Styleable.NavigationView_itemTextColor;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.NavigationView_menu = global::DotNetRu.Droid.Resource.Styleable.NavigationView_menu;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.PopupWindow = global::DotNetRu.Droid.Resource.Styleable.PopupWindow;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.PopupWindow_android_popupAnimationStyle = global::DotNetRu.Droid.Resource.Styleable.PopupWindow_android_popupAnimationStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.PopupWindow_android_popupBackground = global::DotNetRu.Droid.Resource.Styleable.PopupWindow_android_popupBackground;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.PopupWindow_overlapAnchor = global::DotNetRu.Droid.Resource.Styleable.PopupWindow_overlapAnchor;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.PopupWindowBackgroundState = global::DotNetRu.Droid.Resource.Styleable.PopupWindowBackgroundState;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.PopupWindowBackgroundState_state_above_anchor = global::DotNetRu.Droid.Resource.Styleable.PopupWindowBackgroundState_state_above_anchor;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.RecycleListView = global::DotNetRu.Droid.Resource.Styleable.RecycleListView;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.RecycleListView_paddingBottomNoButtons = global::DotNetRu.Droid.Resource.Styleable.RecycleListView_paddingBottomNoButtons;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.RecycleListView_paddingTopNoTitle = global::DotNetRu.Droid.Resource.Styleable.RecycleListView_paddingTopNoTitle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.RecyclerView = global::DotNetRu.Droid.Resource.Styleable.RecyclerView;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.RecyclerView_android_descendantFocusability = global::DotNetRu.Droid.Resource.Styleable.RecyclerView_android_descendantFocusability;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.RecyclerView_android_orientation = global::DotNetRu.Droid.Resource.Styleable.RecyclerView_android_orientation;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.RecyclerView_layoutManager = global::DotNetRu.Droid.Resource.Styleable.RecyclerView_layoutManager;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.RecyclerView_reverseLayout = global::DotNetRu.Droid.Resource.Styleable.RecyclerView_reverseLayout;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.RecyclerView_spanCount = global::DotNetRu.Droid.Resource.Styleable.RecyclerView_spanCount;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.RecyclerView_stackFromEnd = global::DotNetRu.Droid.Resource.Styleable.RecyclerView_stackFromEnd;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ScrimInsetsFrameLayout = global::DotNetRu.Droid.Resource.Styleable.ScrimInsetsFrameLayout;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ScrimInsetsFrameLayout_insetForeground = global::DotNetRu.Droid.Resource.Styleable.ScrimInsetsFrameLayout_insetForeground;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ScrollingViewBehavior_Layout = global::DotNetRu.Droid.Resource.Styleable.ScrollingViewBehavior_Layout;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ScrollingViewBehavior_Layout_behavior_overlapTop = global::DotNetRu.Droid.Resource.Styleable.ScrollingViewBehavior_Layout_behavior_overlapTop;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.SearchView = global::DotNetRu.Droid.Resource.Styleable.SearchView;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.SearchView_android_focusable = global::DotNetRu.Droid.Resource.Styleable.SearchView_android_focusable;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.SearchView_android_imeOptions = global::DotNetRu.Droid.Resource.Styleable.SearchView_android_imeOptions;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.SearchView_android_inputType = global::DotNetRu.Droid.Resource.Styleable.SearchView_android_inputType;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.SearchView_android_maxWidth = global::DotNetRu.Droid.Resource.Styleable.SearchView_android_maxWidth;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.SearchView_closeIcon = global::DotNetRu.Droid.Resource.Styleable.SearchView_closeIcon;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.SearchView_commitIcon = global::DotNetRu.Droid.Resource.Styleable.SearchView_commitIcon;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.SearchView_defaultQueryHint = global::DotNetRu.Droid.Resource.Styleable.SearchView_defaultQueryHint;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.SearchView_goIcon = global::DotNetRu.Droid.Resource.Styleable.SearchView_goIcon;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.SearchView_iconifiedByDefault = global::DotNetRu.Droid.Resource.Styleable.SearchView_iconifiedByDefault;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.SearchView_layout = global::DotNetRu.Droid.Resource.Styleable.SearchView_layout;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.SearchView_queryBackground = global::DotNetRu.Droid.Resource.Styleable.SearchView_queryBackground;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.SearchView_queryHint = global::DotNetRu.Droid.Resource.Styleable.SearchView_queryHint;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.SearchView_searchHintIcon = global::DotNetRu.Droid.Resource.Styleable.SearchView_searchHintIcon;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.SearchView_searchIcon = global::DotNetRu.Droid.Resource.Styleable.SearchView_searchIcon;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.SearchView_submitBackground = global::DotNetRu.Droid.Resource.Styleable.SearchView_submitBackground;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.SearchView_suggestionRowLayout = global::DotNetRu.Droid.Resource.Styleable.SearchView_suggestionRowLayout;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.SearchView_voiceIcon = global::DotNetRu.Droid.Resource.Styleable.SearchView_voiceIcon;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.SnackbarLayout = global::DotNetRu.Droid.Resource.Styleable.SnackbarLayout;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.SnackbarLayout_android_maxWidth = global::DotNetRu.Droid.Resource.Styleable.SnackbarLayout_android_maxWidth;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.SnackbarLayout_elevation = global::DotNetRu.Droid.Resource.Styleable.SnackbarLayout_elevation;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.SnackbarLayout_maxActionInlineWidth = global::DotNetRu.Droid.Resource.Styleable.SnackbarLayout_maxActionInlineWidth;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.Spinner = global::DotNetRu.Droid.Resource.Styleable.Spinner;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.Spinner_android_dropDownWidth = global::DotNetRu.Droid.Resource.Styleable.Spinner_android_dropDownWidth;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.Spinner_android_entries = global::DotNetRu.Droid.Resource.Styleable.Spinner_android_entries;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.Spinner_android_popupBackground = global::DotNetRu.Droid.Resource.Styleable.Spinner_android_popupBackground;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.Spinner_android_prompt = global::DotNetRu.Droid.Resource.Styleable.Spinner_android_prompt;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.Spinner_popupTheme = global::DotNetRu.Droid.Resource.Styleable.Spinner_popupTheme;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.SwitchCompat = global::DotNetRu.Droid.Resource.Styleable.SwitchCompat;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.SwitchCompat_android_textOff = global::DotNetRu.Droid.Resource.Styleable.SwitchCompat_android_textOff;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.SwitchCompat_android_textOn = global::DotNetRu.Droid.Resource.Styleable.SwitchCompat_android_textOn;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.SwitchCompat_android_thumb = global::DotNetRu.Droid.Resource.Styleable.SwitchCompat_android_thumb;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.SwitchCompat_showText = global::DotNetRu.Droid.Resource.Styleable.SwitchCompat_showText;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.SwitchCompat_splitTrack = global::DotNetRu.Droid.Resource.Styleable.SwitchCompat_splitTrack;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.SwitchCompat_switchMinWidth = global::DotNetRu.Droid.Resource.Styleable.SwitchCompat_switchMinWidth;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.SwitchCompat_switchPadding = global::DotNetRu.Droid.Resource.Styleable.SwitchCompat_switchPadding;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.SwitchCompat_switchTextAppearance = global::DotNetRu.Droid.Resource.Styleable.SwitchCompat_switchTextAppearance;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.SwitchCompat_thumbTextPadding = global::DotNetRu.Droid.Resource.Styleable.SwitchCompat_thumbTextPadding;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.SwitchCompat_thumbTint = global::DotNetRu.Droid.Resource.Styleable.SwitchCompat_thumbTint;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.SwitchCompat_thumbTintMode = global::DotNetRu.Droid.Resource.Styleable.SwitchCompat_thumbTintMode;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.SwitchCompat_track = global::DotNetRu.Droid.Resource.Styleable.SwitchCompat_track;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.SwitchCompat_trackTint = global::DotNetRu.Droid.Resource.Styleable.SwitchCompat_trackTint;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.SwitchCompat_trackTintMode = global::DotNetRu.Droid.Resource.Styleable.SwitchCompat_trackTintMode;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.TabItem = global::DotNetRu.Droid.Resource.Styleable.TabItem;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.TabItem_android_icon = global::DotNetRu.Droid.Resource.Styleable.TabItem_android_icon;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.TabItem_android_layout = global::DotNetRu.Droid.Resource.Styleable.TabItem_android_layout;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.TabItem_android_text = global::DotNetRu.Droid.Resource.Styleable.TabItem_android_text;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.TabLayout = global::DotNetRu.Droid.Resource.Styleable.TabLayout;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.TabLayout_tabBackground = global::DotNetRu.Droid.Resource.Styleable.TabLayout_tabBackground;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.TabLayout_tabContentStart = global::DotNetRu.Droid.Resource.Styleable.TabLayout_tabContentStart;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.TabLayout_tabGravity = global::DotNetRu.Droid.Resource.Styleable.TabLayout_tabGravity;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.TabLayout_tabIndicatorColor = global::DotNetRu.Droid.Resource.Styleable.TabLayout_tabIndicatorColor;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.TabLayout_tabIndicatorHeight = global::DotNetRu.Droid.Resource.Styleable.TabLayout_tabIndicatorHeight;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.TabLayout_tabMaxWidth = global::DotNetRu.Droid.Resource.Styleable.TabLayout_tabMaxWidth;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.TabLayout_tabMinWidth = global::DotNetRu.Droid.Resource.Styleable.TabLayout_tabMinWidth;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.TabLayout_tabMode = global::DotNetRu.Droid.Resource.Styleable.TabLayout_tabMode;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.TabLayout_tabPadding = global::DotNetRu.Droid.Resource.Styleable.TabLayout_tabPadding;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.TabLayout_tabPaddingBottom = global::DotNetRu.Droid.Resource.Styleable.TabLayout_tabPaddingBottom;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.TabLayout_tabPaddingEnd = global::DotNetRu.Droid.Resource.Styleable.TabLayout_tabPaddingEnd;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.TabLayout_tabPaddingStart = global::DotNetRu.Droid.Resource.Styleable.TabLayout_tabPaddingStart;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.TabLayout_tabPaddingTop = global::DotNetRu.Droid.Resource.Styleable.TabLayout_tabPaddingTop;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.TabLayout_tabSelectedTextColor = global::DotNetRu.Droid.Resource.Styleable.TabLayout_tabSelectedTextColor;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.TabLayout_tabTextAppearance = global::DotNetRu.Droid.Resource.Styleable.TabLayout_tabTextAppearance;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.TabLayout_tabTextColor = global::DotNetRu.Droid.Resource.Styleable.TabLayout_tabTextColor;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.TextAppearance = global::DotNetRu.Droid.Resource.Styleable.TextAppearance;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.TextAppearance_android_shadowColor = global::DotNetRu.Droid.Resource.Styleable.TextAppearance_android_shadowColor;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.TextAppearance_android_shadowDx = global::DotNetRu.Droid.Resource.Styleable.TextAppearance_android_shadowDx;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.TextAppearance_android_shadowDy = global::DotNetRu.Droid.Resource.Styleable.TextAppearance_android_shadowDy;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.TextAppearance_android_shadowRadius = global::DotNetRu.Droid.Resource.Styleable.TextAppearance_android_shadowRadius;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.TextAppearance_android_textColor = global::DotNetRu.Droid.Resource.Styleable.TextAppearance_android_textColor;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.TextAppearance_android_textColorHint = global::DotNetRu.Droid.Resource.Styleable.TextAppearance_android_textColorHint;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.TextAppearance_android_textSize = global::DotNetRu.Droid.Resource.Styleable.TextAppearance_android_textSize;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.TextAppearance_android_textStyle = global::DotNetRu.Droid.Resource.Styleable.TextAppearance_android_textStyle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.TextAppearance_android_typeface = global::DotNetRu.Droid.Resource.Styleable.TextAppearance_android_typeface;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.TextAppearance_textAllCaps = global::DotNetRu.Droid.Resource.Styleable.TextAppearance_textAllCaps;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.TextInputLayout = global::DotNetRu.Droid.Resource.Styleable.TextInputLayout;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.TextInputLayout_android_hint = global::DotNetRu.Droid.Resource.Styleable.TextInputLayout_android_hint;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.TextInputLayout_android_textColorHint = global::DotNetRu.Droid.Resource.Styleable.TextInputLayout_android_textColorHint;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.TextInputLayout_counterEnabled = global::DotNetRu.Droid.Resource.Styleable.TextInputLayout_counterEnabled;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.TextInputLayout_counterMaxLength = global::DotNetRu.Droid.Resource.Styleable.TextInputLayout_counterMaxLength;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.TextInputLayout_counterOverflowTextAppearance = global::DotNetRu.Droid.Resource.Styleable.TextInputLayout_counterOverflowTextAppearance;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.TextInputLayout_counterTextAppearance = global::DotNetRu.Droid.Resource.Styleable.TextInputLayout_counterTextAppearance;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.TextInputLayout_errorEnabled = global::DotNetRu.Droid.Resource.Styleable.TextInputLayout_errorEnabled;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.TextInputLayout_errorTextAppearance = global::DotNetRu.Droid.Resource.Styleable.TextInputLayout_errorTextAppearance;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.TextInputLayout_hintAnimationEnabled = global::DotNetRu.Droid.Resource.Styleable.TextInputLayout_hintAnimationEnabled;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.TextInputLayout_hintEnabled = global::DotNetRu.Droid.Resource.Styleable.TextInputLayout_hintEnabled;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.TextInputLayout_hintTextAppearance = global::DotNetRu.Droid.Resource.Styleable.TextInputLayout_hintTextAppearance;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.TextInputLayout_passwordToggleContentDescription = global::DotNetRu.Droid.Resource.Styleable.TextInputLayout_passwordToggleContentDescription;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.TextInputLayout_passwordToggleDrawable = global::DotNetRu.Droid.Resource.Styleable.TextInputLayout_passwordToggleDrawable;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.TextInputLayout_passwordToggleEnabled = global::DotNetRu.Droid.Resource.Styleable.TextInputLayout_passwordToggleEnabled;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.TextInputLayout_passwordToggleTint = global::DotNetRu.Droid.Resource.Styleable.TextInputLayout_passwordToggleTint;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.TextInputLayout_passwordToggleTintMode = global::DotNetRu.Droid.Resource.Styleable.TextInputLayout_passwordToggleTintMode;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.Toolbar = global::DotNetRu.Droid.Resource.Styleable.Toolbar;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.Toolbar_android_gravity = global::DotNetRu.Droid.Resource.Styleable.Toolbar_android_gravity;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.Toolbar_android_minHeight = global::DotNetRu.Droid.Resource.Styleable.Toolbar_android_minHeight;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.Toolbar_buttonGravity = global::DotNetRu.Droid.Resource.Styleable.Toolbar_buttonGravity;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.Toolbar_collapseContentDescription = global::DotNetRu.Droid.Resource.Styleable.Toolbar_collapseContentDescription;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.Toolbar_collapseIcon = global::DotNetRu.Droid.Resource.Styleable.Toolbar_collapseIcon;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.Toolbar_contentInsetEnd = global::DotNetRu.Droid.Resource.Styleable.Toolbar_contentInsetEnd;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.Toolbar_contentInsetEndWithActions = global::DotNetRu.Droid.Resource.Styleable.Toolbar_contentInsetEndWithActions;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.Toolbar_contentInsetLeft = global::DotNetRu.Droid.Resource.Styleable.Toolbar_contentInsetLeft;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.Toolbar_contentInsetRight = global::DotNetRu.Droid.Resource.Styleable.Toolbar_contentInsetRight;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.Toolbar_contentInsetStart = global::DotNetRu.Droid.Resource.Styleable.Toolbar_contentInsetStart;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.Toolbar_contentInsetStartWithNavigation = global::DotNetRu.Droid.Resource.Styleable.Toolbar_contentInsetStartWithNavigation;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.Toolbar_logo = global::DotNetRu.Droid.Resource.Styleable.Toolbar_logo;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.Toolbar_logoDescription = global::DotNetRu.Droid.Resource.Styleable.Toolbar_logoDescription;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.Toolbar_maxButtonHeight = global::DotNetRu.Droid.Resource.Styleable.Toolbar_maxButtonHeight;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.Toolbar_navigationContentDescription = global::DotNetRu.Droid.Resource.Styleable.Toolbar_navigationContentDescription;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.Toolbar_navigationIcon = global::DotNetRu.Droid.Resource.Styleable.Toolbar_navigationIcon;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.Toolbar_popupTheme = global::DotNetRu.Droid.Resource.Styleable.Toolbar_popupTheme;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.Toolbar_subtitle = global::DotNetRu.Droid.Resource.Styleable.Toolbar_subtitle;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.Toolbar_subtitleTextAppearance = global::DotNetRu.Droid.Resource.Styleable.Toolbar_subtitleTextAppearance;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.Toolbar_subtitleTextColor = global::DotNetRu.Droid.Resource.Styleable.Toolbar_subtitleTextColor;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.Toolbar_title = global::DotNetRu.Droid.Resource.Styleable.Toolbar_title;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.Toolbar_titleMargin = global::DotNetRu.Droid.Resource.Styleable.Toolbar_titleMargin;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.Toolbar_titleMarginBottom = global::DotNetRu.Droid.Resource.Styleable.Toolbar_titleMarginBottom;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.Toolbar_titleMarginEnd = global::DotNetRu.Droid.Resource.Styleable.Toolbar_titleMarginEnd;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.Toolbar_titleMarginStart = global::DotNetRu.Droid.Resource.Styleable.Toolbar_titleMarginStart;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.Toolbar_titleMarginTop = global::DotNetRu.Droid.Resource.Styleable.Toolbar_titleMarginTop;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.Toolbar_titleMargins = global::DotNetRu.Droid.Resource.Styleable.Toolbar_titleMargins;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.Toolbar_titleTextAppearance = global::DotNetRu.Droid.Resource.Styleable.Toolbar_titleTextAppearance;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.Toolbar_titleTextColor = global::DotNetRu.Droid.Resource.Styleable.Toolbar_titleTextColor;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.View = global::DotNetRu.Droid.Resource.Styleable.View;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.View_android_focusable = global::DotNetRu.Droid.Resource.Styleable.View_android_focusable;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.View_android_theme = global::DotNetRu.Droid.Resource.Styleable.View_android_theme;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.View_paddingEnd = global::DotNetRu.Droid.Resource.Styleable.View_paddingEnd;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.View_paddingStart = global::DotNetRu.Droid.Resource.Styleable.View_paddingStart;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.View_theme = global::DotNetRu.Droid.Resource.Styleable.View_theme;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ViewBackgroundHelper = global::DotNetRu.Droid.Resource.Styleable.ViewBackgroundHelper;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ViewBackgroundHelper_android_background = global::DotNetRu.Droid.Resource.Styleable.ViewBackgroundHelper_android_background;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ViewBackgroundHelper_backgroundTint = global::DotNetRu.Droid.Resource.Styleable.ViewBackgroundHelper_backgroundTint;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ViewBackgroundHelper_backgroundTintMode = global::DotNetRu.Droid.Resource.Styleable.ViewBackgroundHelper_backgroundTintMode;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ViewStubCompat = global::DotNetRu.Droid.Resource.Styleable.ViewStubCompat;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ViewStubCompat_android_id = global::DotNetRu.Droid.Resource.Styleable.ViewStubCompat_android_id;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ViewStubCompat_android_inflatedId = global::DotNetRu.Droid.Resource.Styleable.ViewStubCompat_android_inflatedId;
-			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ViewStubCompat_android_layout = global::DotNetRu.Droid.Resource.Styleable.ViewStubCompat_android_layout;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::DotNetRu.Droid.Resource.Attribute.actionBarSize;
 		}
 		
@@ -4471,785 +2363,779 @@ namespace DotNetRu.Droid
 			// aapt resource value: 0x7f020053
 			public const int avd_hide_password = 2130837587;
 			
+			// aapt resource value: 0x7f020150
+			public const int avd_hide_password_1 = 2130837840;
+			
+			// aapt resource value: 0x7f020151
+			public const int avd_hide_password_2 = 2130837841;
+			
 			// aapt resource value: 0x7f020152
-			public const int avd_hide_password_1 = 2130837842;
-			
-			// aapt resource value: 0x7f020153
-			public const int avd_hide_password_2 = 2130837843;
-			
-			// aapt resource value: 0x7f020154
-			public const int avd_hide_password_3 = 2130837844;
+			public const int avd_hide_password_3 = 2130837842;
 			
 			// aapt resource value: 0x7f020054
 			public const int avd_show_password = 2130837588;
 			
+			// aapt resource value: 0x7f020153
+			public const int avd_show_password_1 = 2130837843;
+			
+			// aapt resource value: 0x7f020154
+			public const int avd_show_password_2 = 2130837844;
+			
 			// aapt resource value: 0x7f020155
-			public const int avd_show_password_1 = 2130837845;
+			public const int avd_show_password_3 = 2130837845;
 			
-			// aapt resource value: 0x7f020156
-			public const int avd_show_password_2 = 2130837846;
-			
-			// aapt resource value: 0x7f020157
-			public const int avd_show_password_3 = 2130837847;
-			
-			// aapt resource value: 0x7f020150
-			public const int background = 2130837840;
+			// aapt resource value: 0x7f02014e
+			public const int background = 2130837838;
 			
 			// aapt resource value: 0x7f020055
 			public const int bnv_selector = 2130837589;
 			
 			// aapt resource value: 0x7f020056
-			public const int border = 2130837590;
+			public const int cursor_white = 2130837590;
 			
 			// aapt resource value: 0x7f020057
-			public const int cursor_white = 2130837591;
+			public const int design_bottom_navigation_item_background = 2130837591;
 			
 			// aapt resource value: 0x7f020058
-			public const int design_bottom_navigation_item_background = 2130837592;
+			public const int design_fab_background = 2130837592;
 			
 			// aapt resource value: 0x7f020059
-			public const int design_fab_background = 2130837593;
+			public const int design_ic_visibility = 2130837593;
 			
 			// aapt resource value: 0x7f02005a
-			public const int design_ic_visibility = 2130837594;
+			public const int design_ic_visibility_off = 2130837594;
 			
 			// aapt resource value: 0x7f02005b
-			public const int design_ic_visibility_off = 2130837595;
+			public const int design_password_eye = 2130837595;
 			
 			// aapt resource value: 0x7f02005c
-			public const int design_password_eye = 2130837596;
+			public const int design_snackbar_background = 2130837596;
 			
 			// aapt resource value: 0x7f02005d
-			public const int design_snackbar_background = 2130837597;
+			public const int friends = 2130837597;
 			
 			// aapt resource value: 0x7f02005e
-			public const int drop_shadow = 2130837598;
+			public const int ic_audiotrack_dark = 2130837598;
 			
 			// aapt resource value: 0x7f02005f
-			public const int friends = 2130837599;
+			public const int ic_audiotrack_light = 2130837599;
 			
 			// aapt resource value: 0x7f020060
-			public const int ic_audiotrack_dark = 2130837600;
+			public const int ic_dialog_close_dark = 2130837600;
 			
 			// aapt resource value: 0x7f020061
-			public const int ic_audiotrack_light = 2130837601;
+			public const int ic_dialog_close_light = 2130837601;
 			
 			// aapt resource value: 0x7f020062
-			public const int ic_dialog_close_dark = 2130837602;
+			public const int ic_evals = 2130837602;
 			
 			// aapt resource value: 0x7f020063
-			public const int ic_dialog_close_light = 2130837603;
+			public const int ic_group_collapse_00 = 2130837603;
 			
 			// aapt resource value: 0x7f020064
-			public const int ic_evals = 2130837604;
+			public const int ic_group_collapse_01 = 2130837604;
 			
 			// aapt resource value: 0x7f020065
-			public const int ic_group_collapse_00 = 2130837605;
+			public const int ic_group_collapse_02 = 2130837605;
 			
 			// aapt resource value: 0x7f020066
-			public const int ic_group_collapse_01 = 2130837606;
+			public const int ic_group_collapse_03 = 2130837606;
 			
 			// aapt resource value: 0x7f020067
-			public const int ic_group_collapse_02 = 2130837607;
+			public const int ic_group_collapse_04 = 2130837607;
 			
 			// aapt resource value: 0x7f020068
-			public const int ic_group_collapse_03 = 2130837608;
+			public const int ic_group_collapse_05 = 2130837608;
 			
 			// aapt resource value: 0x7f020069
-			public const int ic_group_collapse_04 = 2130837609;
+			public const int ic_group_collapse_06 = 2130837609;
 			
 			// aapt resource value: 0x7f02006a
-			public const int ic_group_collapse_05 = 2130837610;
+			public const int ic_group_collapse_07 = 2130837610;
 			
 			// aapt resource value: 0x7f02006b
-			public const int ic_group_collapse_06 = 2130837611;
+			public const int ic_group_collapse_08 = 2130837611;
 			
 			// aapt resource value: 0x7f02006c
-			public const int ic_group_collapse_07 = 2130837612;
+			public const int ic_group_collapse_09 = 2130837612;
 			
 			// aapt resource value: 0x7f02006d
-			public const int ic_group_collapse_08 = 2130837613;
+			public const int ic_group_collapse_10 = 2130837613;
 			
 			// aapt resource value: 0x7f02006e
-			public const int ic_group_collapse_09 = 2130837614;
+			public const int ic_group_collapse_11 = 2130837614;
 			
 			// aapt resource value: 0x7f02006f
-			public const int ic_group_collapse_10 = 2130837615;
+			public const int ic_group_collapse_12 = 2130837615;
 			
 			// aapt resource value: 0x7f020070
-			public const int ic_group_collapse_11 = 2130837616;
+			public const int ic_group_collapse_13 = 2130837616;
 			
 			// aapt resource value: 0x7f020071
-			public const int ic_group_collapse_12 = 2130837617;
+			public const int ic_group_collapse_14 = 2130837617;
 			
 			// aapt resource value: 0x7f020072
-			public const int ic_group_collapse_13 = 2130837618;
+			public const int ic_group_collapse_15 = 2130837618;
 			
 			// aapt resource value: 0x7f020073
-			public const int ic_group_collapse_14 = 2130837619;
+			public const int ic_group_expand_00 = 2130837619;
 			
 			// aapt resource value: 0x7f020074
-			public const int ic_group_collapse_15 = 2130837620;
+			public const int ic_group_expand_01 = 2130837620;
 			
 			// aapt resource value: 0x7f020075
-			public const int ic_group_expand_00 = 2130837621;
+			public const int ic_group_expand_02 = 2130837621;
 			
 			// aapt resource value: 0x7f020076
-			public const int ic_group_expand_01 = 2130837622;
+			public const int ic_group_expand_03 = 2130837622;
 			
 			// aapt resource value: 0x7f020077
-			public const int ic_group_expand_02 = 2130837623;
+			public const int ic_group_expand_04 = 2130837623;
 			
 			// aapt resource value: 0x7f020078
-			public const int ic_group_expand_03 = 2130837624;
+			public const int ic_group_expand_05 = 2130837624;
 			
 			// aapt resource value: 0x7f020079
-			public const int ic_group_expand_04 = 2130837625;
+			public const int ic_group_expand_06 = 2130837625;
 			
 			// aapt resource value: 0x7f02007a
-			public const int ic_group_expand_05 = 2130837626;
+			public const int ic_group_expand_07 = 2130837626;
 			
 			// aapt resource value: 0x7f02007b
-			public const int ic_group_expand_06 = 2130837627;
+			public const int ic_group_expand_08 = 2130837627;
 			
 			// aapt resource value: 0x7f02007c
-			public const int ic_group_expand_07 = 2130837628;
+			public const int ic_group_expand_09 = 2130837628;
 			
 			// aapt resource value: 0x7f02007d
-			public const int ic_group_expand_08 = 2130837629;
+			public const int ic_group_expand_10 = 2130837629;
 			
 			// aapt resource value: 0x7f02007e
-			public const int ic_group_expand_09 = 2130837630;
+			public const int ic_group_expand_11 = 2130837630;
 			
 			// aapt resource value: 0x7f02007f
-			public const int ic_group_expand_10 = 2130837631;
+			public const int ic_group_expand_12 = 2130837631;
 			
 			// aapt resource value: 0x7f020080
-			public const int ic_group_expand_11 = 2130837632;
+			public const int ic_group_expand_13 = 2130837632;
 			
 			// aapt resource value: 0x7f020081
-			public const int ic_group_expand_12 = 2130837633;
+			public const int ic_group_expand_14 = 2130837633;
 			
 			// aapt resource value: 0x7f020082
-			public const int ic_group_expand_13 = 2130837634;
+			public const int ic_group_expand_15 = 2130837634;
 			
 			// aapt resource value: 0x7f020083
-			public const int ic_group_expand_14 = 2130837635;
+			public const int ic_launcher = 2130837635;
 			
 			// aapt resource value: 0x7f020084
-			public const int ic_group_expand_15 = 2130837636;
+			public const int ic_media_pause_dark = 2130837636;
 			
 			// aapt resource value: 0x7f020085
-			public const int ic_launcher = 2130837637;
+			public const int ic_media_pause_light = 2130837637;
 			
 			// aapt resource value: 0x7f020086
-			public const int ic_media_pause_dark = 2130837638;
+			public const int ic_media_play_dark = 2130837638;
 			
 			// aapt resource value: 0x7f020087
-			public const int ic_media_pause_light = 2130837639;
+			public const int ic_media_play_light = 2130837639;
 			
 			// aapt resource value: 0x7f020088
-			public const int ic_media_play_dark = 2130837640;
+			public const int ic_media_stop_dark = 2130837640;
 			
 			// aapt resource value: 0x7f020089
-			public const int ic_media_play_light = 2130837641;
+			public const int ic_media_stop_light = 2130837641;
 			
 			// aapt resource value: 0x7f02008a
-			public const int ic_media_stop_dark = 2130837642;
+			public const int ic_mr_button_connected_00_dark = 2130837642;
 			
 			// aapt resource value: 0x7f02008b
-			public const int ic_media_stop_light = 2130837643;
+			public const int ic_mr_button_connected_00_light = 2130837643;
 			
 			// aapt resource value: 0x7f02008c
-			public const int ic_mr_button_connected_00_dark = 2130837644;
+			public const int ic_mr_button_connected_01_dark = 2130837644;
 			
 			// aapt resource value: 0x7f02008d
-			public const int ic_mr_button_connected_00_light = 2130837645;
+			public const int ic_mr_button_connected_01_light = 2130837645;
 			
 			// aapt resource value: 0x7f02008e
-			public const int ic_mr_button_connected_01_dark = 2130837646;
+			public const int ic_mr_button_connected_02_dark = 2130837646;
 			
 			// aapt resource value: 0x7f02008f
-			public const int ic_mr_button_connected_01_light = 2130837647;
+			public const int ic_mr_button_connected_02_light = 2130837647;
 			
 			// aapt resource value: 0x7f020090
-			public const int ic_mr_button_connected_02_dark = 2130837648;
+			public const int ic_mr_button_connected_03_dark = 2130837648;
 			
 			// aapt resource value: 0x7f020091
-			public const int ic_mr_button_connected_02_light = 2130837649;
+			public const int ic_mr_button_connected_03_light = 2130837649;
 			
 			// aapt resource value: 0x7f020092
-			public const int ic_mr_button_connected_03_dark = 2130837650;
+			public const int ic_mr_button_connected_04_dark = 2130837650;
 			
 			// aapt resource value: 0x7f020093
-			public const int ic_mr_button_connected_03_light = 2130837651;
+			public const int ic_mr_button_connected_04_light = 2130837651;
 			
 			// aapt resource value: 0x7f020094
-			public const int ic_mr_button_connected_04_dark = 2130837652;
+			public const int ic_mr_button_connected_05_dark = 2130837652;
 			
 			// aapt resource value: 0x7f020095
-			public const int ic_mr_button_connected_04_light = 2130837653;
+			public const int ic_mr_button_connected_05_light = 2130837653;
 			
 			// aapt resource value: 0x7f020096
-			public const int ic_mr_button_connected_05_dark = 2130837654;
+			public const int ic_mr_button_connected_06_dark = 2130837654;
 			
 			// aapt resource value: 0x7f020097
-			public const int ic_mr_button_connected_05_light = 2130837655;
+			public const int ic_mr_button_connected_06_light = 2130837655;
 			
 			// aapt resource value: 0x7f020098
-			public const int ic_mr_button_connected_06_dark = 2130837656;
+			public const int ic_mr_button_connected_07_dark = 2130837656;
 			
 			// aapt resource value: 0x7f020099
-			public const int ic_mr_button_connected_06_light = 2130837657;
+			public const int ic_mr_button_connected_07_light = 2130837657;
 			
 			// aapt resource value: 0x7f02009a
-			public const int ic_mr_button_connected_07_dark = 2130837658;
+			public const int ic_mr_button_connected_08_dark = 2130837658;
 			
 			// aapt resource value: 0x7f02009b
-			public const int ic_mr_button_connected_07_light = 2130837659;
+			public const int ic_mr_button_connected_08_light = 2130837659;
 			
 			// aapt resource value: 0x7f02009c
-			public const int ic_mr_button_connected_08_dark = 2130837660;
+			public const int ic_mr_button_connected_09_dark = 2130837660;
 			
 			// aapt resource value: 0x7f02009d
-			public const int ic_mr_button_connected_08_light = 2130837661;
+			public const int ic_mr_button_connected_09_light = 2130837661;
 			
 			// aapt resource value: 0x7f02009e
-			public const int ic_mr_button_connected_09_dark = 2130837662;
+			public const int ic_mr_button_connected_10_dark = 2130837662;
 			
 			// aapt resource value: 0x7f02009f
-			public const int ic_mr_button_connected_09_light = 2130837663;
+			public const int ic_mr_button_connected_10_light = 2130837663;
 			
 			// aapt resource value: 0x7f0200a0
-			public const int ic_mr_button_connected_10_dark = 2130837664;
+			public const int ic_mr_button_connected_11_dark = 2130837664;
 			
 			// aapt resource value: 0x7f0200a1
-			public const int ic_mr_button_connected_10_light = 2130837665;
+			public const int ic_mr_button_connected_11_light = 2130837665;
 			
 			// aapt resource value: 0x7f0200a2
-			public const int ic_mr_button_connected_11_dark = 2130837666;
+			public const int ic_mr_button_connected_12_dark = 2130837666;
 			
 			// aapt resource value: 0x7f0200a3
-			public const int ic_mr_button_connected_11_light = 2130837667;
+			public const int ic_mr_button_connected_12_light = 2130837667;
 			
 			// aapt resource value: 0x7f0200a4
-			public const int ic_mr_button_connected_12_dark = 2130837668;
+			public const int ic_mr_button_connected_13_dark = 2130837668;
 			
 			// aapt resource value: 0x7f0200a5
-			public const int ic_mr_button_connected_12_light = 2130837669;
+			public const int ic_mr_button_connected_13_light = 2130837669;
 			
 			// aapt resource value: 0x7f0200a6
-			public const int ic_mr_button_connected_13_dark = 2130837670;
+			public const int ic_mr_button_connected_14_dark = 2130837670;
 			
 			// aapt resource value: 0x7f0200a7
-			public const int ic_mr_button_connected_13_light = 2130837671;
+			public const int ic_mr_button_connected_14_light = 2130837671;
 			
 			// aapt resource value: 0x7f0200a8
-			public const int ic_mr_button_connected_14_dark = 2130837672;
+			public const int ic_mr_button_connected_15_dark = 2130837672;
 			
 			// aapt resource value: 0x7f0200a9
-			public const int ic_mr_button_connected_14_light = 2130837673;
+			public const int ic_mr_button_connected_15_light = 2130837673;
 			
 			// aapt resource value: 0x7f0200aa
-			public const int ic_mr_button_connected_15_dark = 2130837674;
+			public const int ic_mr_button_connected_16_dark = 2130837674;
 			
 			// aapt resource value: 0x7f0200ab
-			public const int ic_mr_button_connected_15_light = 2130837675;
+			public const int ic_mr_button_connected_16_light = 2130837675;
 			
 			// aapt resource value: 0x7f0200ac
-			public const int ic_mr_button_connected_16_dark = 2130837676;
+			public const int ic_mr_button_connected_17_dark = 2130837676;
 			
 			// aapt resource value: 0x7f0200ad
-			public const int ic_mr_button_connected_16_light = 2130837677;
+			public const int ic_mr_button_connected_17_light = 2130837677;
 			
 			// aapt resource value: 0x7f0200ae
-			public const int ic_mr_button_connected_17_dark = 2130837678;
+			public const int ic_mr_button_connected_18_dark = 2130837678;
 			
 			// aapt resource value: 0x7f0200af
-			public const int ic_mr_button_connected_17_light = 2130837679;
+			public const int ic_mr_button_connected_18_light = 2130837679;
 			
 			// aapt resource value: 0x7f0200b0
-			public const int ic_mr_button_connected_18_dark = 2130837680;
+			public const int ic_mr_button_connected_19_dark = 2130837680;
 			
 			// aapt resource value: 0x7f0200b1
-			public const int ic_mr_button_connected_18_light = 2130837681;
+			public const int ic_mr_button_connected_19_light = 2130837681;
 			
 			// aapt resource value: 0x7f0200b2
-			public const int ic_mr_button_connected_19_dark = 2130837682;
+			public const int ic_mr_button_connected_20_dark = 2130837682;
 			
 			// aapt resource value: 0x7f0200b3
-			public const int ic_mr_button_connected_19_light = 2130837683;
+			public const int ic_mr_button_connected_20_light = 2130837683;
 			
 			// aapt resource value: 0x7f0200b4
-			public const int ic_mr_button_connected_20_dark = 2130837684;
+			public const int ic_mr_button_connected_21_dark = 2130837684;
 			
 			// aapt resource value: 0x7f0200b5
-			public const int ic_mr_button_connected_20_light = 2130837685;
+			public const int ic_mr_button_connected_21_light = 2130837685;
 			
 			// aapt resource value: 0x7f0200b6
-			public const int ic_mr_button_connected_21_dark = 2130837686;
+			public const int ic_mr_button_connected_22_dark = 2130837686;
 			
 			// aapt resource value: 0x7f0200b7
-			public const int ic_mr_button_connected_21_light = 2130837687;
+			public const int ic_mr_button_connected_22_light = 2130837687;
 			
 			// aapt resource value: 0x7f0200b8
-			public const int ic_mr_button_connected_22_dark = 2130837688;
+			public const int ic_mr_button_connected_23_dark = 2130837688;
 			
 			// aapt resource value: 0x7f0200b9
-			public const int ic_mr_button_connected_22_light = 2130837689;
+			public const int ic_mr_button_connected_23_light = 2130837689;
 			
 			// aapt resource value: 0x7f0200ba
-			public const int ic_mr_button_connected_23_dark = 2130837690;
+			public const int ic_mr_button_connected_24_dark = 2130837690;
 			
 			// aapt resource value: 0x7f0200bb
-			public const int ic_mr_button_connected_23_light = 2130837691;
+			public const int ic_mr_button_connected_24_light = 2130837691;
 			
 			// aapt resource value: 0x7f0200bc
-			public const int ic_mr_button_connected_24_dark = 2130837692;
+			public const int ic_mr_button_connected_25_dark = 2130837692;
 			
 			// aapt resource value: 0x7f0200bd
-			public const int ic_mr_button_connected_24_light = 2130837693;
+			public const int ic_mr_button_connected_25_light = 2130837693;
 			
 			// aapt resource value: 0x7f0200be
-			public const int ic_mr_button_connected_25_dark = 2130837694;
+			public const int ic_mr_button_connected_26_dark = 2130837694;
 			
 			// aapt resource value: 0x7f0200bf
-			public const int ic_mr_button_connected_25_light = 2130837695;
+			public const int ic_mr_button_connected_26_light = 2130837695;
 			
 			// aapt resource value: 0x7f0200c0
-			public const int ic_mr_button_connected_26_dark = 2130837696;
+			public const int ic_mr_button_connected_27_dark = 2130837696;
 			
 			// aapt resource value: 0x7f0200c1
-			public const int ic_mr_button_connected_26_light = 2130837697;
+			public const int ic_mr_button_connected_27_light = 2130837697;
 			
 			// aapt resource value: 0x7f0200c2
-			public const int ic_mr_button_connected_27_dark = 2130837698;
+			public const int ic_mr_button_connected_28_dark = 2130837698;
 			
 			// aapt resource value: 0x7f0200c3
-			public const int ic_mr_button_connected_27_light = 2130837699;
+			public const int ic_mr_button_connected_28_light = 2130837699;
 			
 			// aapt resource value: 0x7f0200c4
-			public const int ic_mr_button_connected_28_dark = 2130837700;
+			public const int ic_mr_button_connected_29_dark = 2130837700;
 			
 			// aapt resource value: 0x7f0200c5
-			public const int ic_mr_button_connected_28_light = 2130837701;
+			public const int ic_mr_button_connected_29_light = 2130837701;
 			
 			// aapt resource value: 0x7f0200c6
-			public const int ic_mr_button_connected_29_dark = 2130837702;
+			public const int ic_mr_button_connected_30_dark = 2130837702;
 			
 			// aapt resource value: 0x7f0200c7
-			public const int ic_mr_button_connected_29_light = 2130837703;
+			public const int ic_mr_button_connected_30_light = 2130837703;
 			
 			// aapt resource value: 0x7f0200c8
-			public const int ic_mr_button_connected_30_dark = 2130837704;
+			public const int ic_mr_button_connecting_00_dark = 2130837704;
 			
 			// aapt resource value: 0x7f0200c9
-			public const int ic_mr_button_connected_30_light = 2130837705;
+			public const int ic_mr_button_connecting_00_light = 2130837705;
 			
 			// aapt resource value: 0x7f0200ca
-			public const int ic_mr_button_connecting_00_dark = 2130837706;
+			public const int ic_mr_button_connecting_01_dark = 2130837706;
 			
 			// aapt resource value: 0x7f0200cb
-			public const int ic_mr_button_connecting_00_light = 2130837707;
+			public const int ic_mr_button_connecting_01_light = 2130837707;
 			
 			// aapt resource value: 0x7f0200cc
-			public const int ic_mr_button_connecting_01_dark = 2130837708;
+			public const int ic_mr_button_connecting_02_dark = 2130837708;
 			
 			// aapt resource value: 0x7f0200cd
-			public const int ic_mr_button_connecting_01_light = 2130837709;
+			public const int ic_mr_button_connecting_02_light = 2130837709;
 			
 			// aapt resource value: 0x7f0200ce
-			public const int ic_mr_button_connecting_02_dark = 2130837710;
+			public const int ic_mr_button_connecting_03_dark = 2130837710;
 			
 			// aapt resource value: 0x7f0200cf
-			public const int ic_mr_button_connecting_02_light = 2130837711;
+			public const int ic_mr_button_connecting_03_light = 2130837711;
 			
 			// aapt resource value: 0x7f0200d0
-			public const int ic_mr_button_connecting_03_dark = 2130837712;
+			public const int ic_mr_button_connecting_04_dark = 2130837712;
 			
 			// aapt resource value: 0x7f0200d1
-			public const int ic_mr_button_connecting_03_light = 2130837713;
+			public const int ic_mr_button_connecting_04_light = 2130837713;
 			
 			// aapt resource value: 0x7f0200d2
-			public const int ic_mr_button_connecting_04_dark = 2130837714;
+			public const int ic_mr_button_connecting_05_dark = 2130837714;
 			
 			// aapt resource value: 0x7f0200d3
-			public const int ic_mr_button_connecting_04_light = 2130837715;
+			public const int ic_mr_button_connecting_05_light = 2130837715;
 			
 			// aapt resource value: 0x7f0200d4
-			public const int ic_mr_button_connecting_05_dark = 2130837716;
+			public const int ic_mr_button_connecting_06_dark = 2130837716;
 			
 			// aapt resource value: 0x7f0200d5
-			public const int ic_mr_button_connecting_05_light = 2130837717;
+			public const int ic_mr_button_connecting_06_light = 2130837717;
 			
 			// aapt resource value: 0x7f0200d6
-			public const int ic_mr_button_connecting_06_dark = 2130837718;
+			public const int ic_mr_button_connecting_07_dark = 2130837718;
 			
 			// aapt resource value: 0x7f0200d7
-			public const int ic_mr_button_connecting_06_light = 2130837719;
+			public const int ic_mr_button_connecting_07_light = 2130837719;
 			
 			// aapt resource value: 0x7f0200d8
-			public const int ic_mr_button_connecting_07_dark = 2130837720;
+			public const int ic_mr_button_connecting_08_dark = 2130837720;
 			
 			// aapt resource value: 0x7f0200d9
-			public const int ic_mr_button_connecting_07_light = 2130837721;
+			public const int ic_mr_button_connecting_08_light = 2130837721;
 			
 			// aapt resource value: 0x7f0200da
-			public const int ic_mr_button_connecting_08_dark = 2130837722;
+			public const int ic_mr_button_connecting_09_dark = 2130837722;
 			
 			// aapt resource value: 0x7f0200db
-			public const int ic_mr_button_connecting_08_light = 2130837723;
+			public const int ic_mr_button_connecting_09_light = 2130837723;
 			
 			// aapt resource value: 0x7f0200dc
-			public const int ic_mr_button_connecting_09_dark = 2130837724;
+			public const int ic_mr_button_connecting_10_dark = 2130837724;
 			
 			// aapt resource value: 0x7f0200dd
-			public const int ic_mr_button_connecting_09_light = 2130837725;
+			public const int ic_mr_button_connecting_10_light = 2130837725;
 			
 			// aapt resource value: 0x7f0200de
-			public const int ic_mr_button_connecting_10_dark = 2130837726;
+			public const int ic_mr_button_connecting_11_dark = 2130837726;
 			
 			// aapt resource value: 0x7f0200df
-			public const int ic_mr_button_connecting_10_light = 2130837727;
+			public const int ic_mr_button_connecting_11_light = 2130837727;
 			
 			// aapt resource value: 0x7f0200e0
-			public const int ic_mr_button_connecting_11_dark = 2130837728;
+			public const int ic_mr_button_connecting_12_dark = 2130837728;
 			
 			// aapt resource value: 0x7f0200e1
-			public const int ic_mr_button_connecting_11_light = 2130837729;
+			public const int ic_mr_button_connecting_12_light = 2130837729;
 			
 			// aapt resource value: 0x7f0200e2
-			public const int ic_mr_button_connecting_12_dark = 2130837730;
+			public const int ic_mr_button_connecting_13_dark = 2130837730;
 			
 			// aapt resource value: 0x7f0200e3
-			public const int ic_mr_button_connecting_12_light = 2130837731;
+			public const int ic_mr_button_connecting_13_light = 2130837731;
 			
 			// aapt resource value: 0x7f0200e4
-			public const int ic_mr_button_connecting_13_dark = 2130837732;
+			public const int ic_mr_button_connecting_14_dark = 2130837732;
 			
 			// aapt resource value: 0x7f0200e5
-			public const int ic_mr_button_connecting_13_light = 2130837733;
+			public const int ic_mr_button_connecting_14_light = 2130837733;
 			
 			// aapt resource value: 0x7f0200e6
-			public const int ic_mr_button_connecting_14_dark = 2130837734;
+			public const int ic_mr_button_connecting_15_dark = 2130837734;
 			
 			// aapt resource value: 0x7f0200e7
-			public const int ic_mr_button_connecting_14_light = 2130837735;
+			public const int ic_mr_button_connecting_15_light = 2130837735;
 			
 			// aapt resource value: 0x7f0200e8
-			public const int ic_mr_button_connecting_15_dark = 2130837736;
+			public const int ic_mr_button_connecting_16_dark = 2130837736;
 			
 			// aapt resource value: 0x7f0200e9
-			public const int ic_mr_button_connecting_15_light = 2130837737;
+			public const int ic_mr_button_connecting_16_light = 2130837737;
 			
 			// aapt resource value: 0x7f0200ea
-			public const int ic_mr_button_connecting_16_dark = 2130837738;
+			public const int ic_mr_button_connecting_17_dark = 2130837738;
 			
 			// aapt resource value: 0x7f0200eb
-			public const int ic_mr_button_connecting_16_light = 2130837739;
+			public const int ic_mr_button_connecting_17_light = 2130837739;
 			
 			// aapt resource value: 0x7f0200ec
-			public const int ic_mr_button_connecting_17_dark = 2130837740;
+			public const int ic_mr_button_connecting_18_dark = 2130837740;
 			
 			// aapt resource value: 0x7f0200ed
-			public const int ic_mr_button_connecting_17_light = 2130837741;
+			public const int ic_mr_button_connecting_18_light = 2130837741;
 			
 			// aapt resource value: 0x7f0200ee
-			public const int ic_mr_button_connecting_18_dark = 2130837742;
+			public const int ic_mr_button_connecting_19_dark = 2130837742;
 			
 			// aapt resource value: 0x7f0200ef
-			public const int ic_mr_button_connecting_18_light = 2130837743;
+			public const int ic_mr_button_connecting_19_light = 2130837743;
 			
 			// aapt resource value: 0x7f0200f0
-			public const int ic_mr_button_connecting_19_dark = 2130837744;
+			public const int ic_mr_button_connecting_20_dark = 2130837744;
 			
 			// aapt resource value: 0x7f0200f1
-			public const int ic_mr_button_connecting_19_light = 2130837745;
+			public const int ic_mr_button_connecting_20_light = 2130837745;
 			
 			// aapt resource value: 0x7f0200f2
-			public const int ic_mr_button_connecting_20_dark = 2130837746;
+			public const int ic_mr_button_connecting_21_dark = 2130837746;
 			
 			// aapt resource value: 0x7f0200f3
-			public const int ic_mr_button_connecting_20_light = 2130837747;
+			public const int ic_mr_button_connecting_21_light = 2130837747;
 			
 			// aapt resource value: 0x7f0200f4
-			public const int ic_mr_button_connecting_21_dark = 2130837748;
+			public const int ic_mr_button_connecting_22_dark = 2130837748;
 			
 			// aapt resource value: 0x7f0200f5
-			public const int ic_mr_button_connecting_21_light = 2130837749;
+			public const int ic_mr_button_connecting_22_light = 2130837749;
 			
 			// aapt resource value: 0x7f0200f6
-			public const int ic_mr_button_connecting_22_dark = 2130837750;
+			public const int ic_mr_button_connecting_23_dark = 2130837750;
 			
 			// aapt resource value: 0x7f0200f7
-			public const int ic_mr_button_connecting_22_light = 2130837751;
+			public const int ic_mr_button_connecting_23_light = 2130837751;
 			
 			// aapt resource value: 0x7f0200f8
-			public const int ic_mr_button_connecting_23_dark = 2130837752;
+			public const int ic_mr_button_connecting_24_dark = 2130837752;
 			
 			// aapt resource value: 0x7f0200f9
-			public const int ic_mr_button_connecting_23_light = 2130837753;
+			public const int ic_mr_button_connecting_24_light = 2130837753;
 			
 			// aapt resource value: 0x7f0200fa
-			public const int ic_mr_button_connecting_24_dark = 2130837754;
+			public const int ic_mr_button_connecting_25_dark = 2130837754;
 			
 			// aapt resource value: 0x7f0200fb
-			public const int ic_mr_button_connecting_24_light = 2130837755;
+			public const int ic_mr_button_connecting_25_light = 2130837755;
 			
 			// aapt resource value: 0x7f0200fc
-			public const int ic_mr_button_connecting_25_dark = 2130837756;
+			public const int ic_mr_button_connecting_26_dark = 2130837756;
 			
 			// aapt resource value: 0x7f0200fd
-			public const int ic_mr_button_connecting_25_light = 2130837757;
+			public const int ic_mr_button_connecting_26_light = 2130837757;
 			
 			// aapt resource value: 0x7f0200fe
-			public const int ic_mr_button_connecting_26_dark = 2130837758;
+			public const int ic_mr_button_connecting_27_dark = 2130837758;
 			
 			// aapt resource value: 0x7f0200ff
-			public const int ic_mr_button_connecting_26_light = 2130837759;
+			public const int ic_mr_button_connecting_27_light = 2130837759;
 			
 			// aapt resource value: 0x7f020100
-			public const int ic_mr_button_connecting_27_dark = 2130837760;
+			public const int ic_mr_button_connecting_28_dark = 2130837760;
 			
 			// aapt resource value: 0x7f020101
-			public const int ic_mr_button_connecting_27_light = 2130837761;
+			public const int ic_mr_button_connecting_28_light = 2130837761;
 			
 			// aapt resource value: 0x7f020102
-			public const int ic_mr_button_connecting_28_dark = 2130837762;
+			public const int ic_mr_button_connecting_29_dark = 2130837762;
 			
 			// aapt resource value: 0x7f020103
-			public const int ic_mr_button_connecting_28_light = 2130837763;
+			public const int ic_mr_button_connecting_29_light = 2130837763;
 			
 			// aapt resource value: 0x7f020104
-			public const int ic_mr_button_connecting_29_dark = 2130837764;
+			public const int ic_mr_button_connecting_30_dark = 2130837764;
 			
 			// aapt resource value: 0x7f020105
-			public const int ic_mr_button_connecting_29_light = 2130837765;
+			public const int ic_mr_button_connecting_30_light = 2130837765;
 			
 			// aapt resource value: 0x7f020106
-			public const int ic_mr_button_connecting_30_dark = 2130837766;
+			public const int ic_mr_button_disabled_dark = 2130837766;
 			
 			// aapt resource value: 0x7f020107
-			public const int ic_mr_button_connecting_30_light = 2130837767;
+			public const int ic_mr_button_disabled_light = 2130837767;
 			
 			// aapt resource value: 0x7f020108
-			public const int ic_mr_button_disabled_dark = 2130837768;
+			public const int ic_mr_button_disconnected_dark = 2130837768;
 			
 			// aapt resource value: 0x7f020109
-			public const int ic_mr_button_disabled_light = 2130837769;
+			public const int ic_mr_button_disconnected_light = 2130837769;
 			
 			// aapt resource value: 0x7f02010a
-			public const int ic_mr_button_disconnected_dark = 2130837770;
+			public const int ic_mr_button_grey = 2130837770;
 			
 			// aapt resource value: 0x7f02010b
-			public const int ic_mr_button_disconnected_light = 2130837771;
+			public const int ic_splash = 2130837771;
 			
 			// aapt resource value: 0x7f02010c
-			public const int ic_mr_button_grey = 2130837772;
+			public const int ic_vol_type_speaker_dark = 2130837772;
 			
 			// aapt resource value: 0x7f02010d
-			public const int ic_splash = 2130837773;
+			public const int ic_vol_type_speaker_group_dark = 2130837773;
 			
 			// aapt resource value: 0x7f02010e
-			public const int ic_vol_type_speaker_dark = 2130837774;
+			public const int ic_vol_type_speaker_group_light = 2130837774;
 			
 			// aapt resource value: 0x7f02010f
-			public const int ic_vol_type_speaker_group_dark = 2130837775;
+			public const int ic_vol_type_speaker_light = 2130837775;
 			
 			// aapt resource value: 0x7f020110
-			public const int ic_vol_type_speaker_group_light = 2130837776;
+			public const int ic_vol_type_tv_dark = 2130837776;
 			
 			// aapt resource value: 0x7f020111
-			public const int ic_vol_type_speaker_light = 2130837777;
+			public const int ic_vol_type_tv_light = 2130837777;
 			
 			// aapt resource value: 0x7f020112
-			public const int ic_vol_type_tv_dark = 2130837778;
+			public const int icon_blog = 2130837778;
 			
 			// aapt resource value: 0x7f020113
-			public const int ic_vol_type_tv_light = 2130837779;
+			public const int icon_code = 2130837779;
 			
 			// aapt resource value: 0x7f020114
-			public const int icon_blog = 2130837780;
+			public const int icon_facebook = 2130837780;
 			
 			// aapt resource value: 0x7f020115
-			public const int icon_code = 2130837781;
+			public const int icon_heart = 2130837781;
 			
 			// aapt resource value: 0x7f020116
-			public const int icon_facebook = 2130837782;
+			public const int icon_linkedin = 2130837782;
 			
 			// aapt resource value: 0x7f020117
-			public const int icon_heart = 2130837783;
+			public const int icon_presentation = 2130837783;
 			
 			// aapt resource value: 0x7f020118
-			public const int icon_linkedin = 2130837784;
+			public const int icon_retweet = 2130837784;
 			
 			// aapt resource value: 0x7f020119
-			public const int icon_presentation = 2130837785;
+			public const int icon_twitter = 2130837785;
 			
 			// aapt resource value: 0x7f02011a
-			public const int icon_retweet = 2130837786;
+			public const int icon_user = 2130837786;
 			
 			// aapt resource value: 0x7f02011b
-			public const int icon_twitter = 2130837787;
+			public const int icon_video = 2130837787;
 			
 			// aapt resource value: 0x7f02011c
-			public const int icon_user = 2130837788;
+			public const int icon_website = 2130837788;
 			
 			// aapt resource value: 0x7f02011d
-			public const int icon_video = 2130837789;
+			public const int loading_apple = 2130837789;
 			
 			// aapt resource value: 0x7f02011e
-			public const int icon_website = 2130837790;
+			public const int menu_evals = 2130837790;
 			
 			// aapt resource value: 0x7f02011f
-			public const int loading_apple = 2130837791;
+			public const int menu_events = 2130837791;
 			
 			// aapt resource value: 0x7f020120
-			public const int menu_evals = 2130837792;
+			public const int menu_feed = 2130837792;
 			
 			// aapt resource value: 0x7f020121
-			public const int menu_events = 2130837793;
+			public const int menu_info = 2130837793;
 			
 			// aapt resource value: 0x7f020122
-			public const int menu_feed = 2130837794;
+			public const int menu_plan = 2130837794;
 			
 			// aapt resource value: 0x7f020123
-			public const int menu_info = 2130837795;
+			public const int menu_sessions = 2130837795;
 			
 			// aapt resource value: 0x7f020124
-			public const int menu_plan = 2130837796;
+			public const int menu_settings = 2130837796;
 			
 			// aapt resource value: 0x7f020125
-			public const int menu_sessions = 2130837797;
+			public const int menu_speakers = 2130837797;
 			
 			// aapt resource value: 0x7f020126
-			public const int menu_settings = 2130837798;
+			public const int menu_sponsors = 2130837798;
 			
 			// aapt resource value: 0x7f020127
-			public const int menu_speakers = 2130837799;
+			public const int menu_venue = 2130837799;
 			
 			// aapt resource value: 0x7f020128
-			public const int menu_sponsors = 2130837800;
+			public const int mr_button_connected_dark = 2130837800;
 			
 			// aapt resource value: 0x7f020129
-			public const int menu_venue = 2130837801;
+			public const int mr_button_connected_light = 2130837801;
 			
 			// aapt resource value: 0x7f02012a
-			public const int mr_button_connected_dark = 2130837802;
+			public const int mr_button_connecting_dark = 2130837802;
 			
 			// aapt resource value: 0x7f02012b
-			public const int mr_button_connected_light = 2130837803;
+			public const int mr_button_connecting_light = 2130837803;
 			
 			// aapt resource value: 0x7f02012c
-			public const int mr_button_connecting_dark = 2130837804;
+			public const int mr_button_dark = 2130837804;
 			
 			// aapt resource value: 0x7f02012d
-			public const int mr_button_connecting_light = 2130837805;
+			public const int mr_button_light = 2130837805;
 			
 			// aapt resource value: 0x7f02012e
-			public const int mr_button_dark = 2130837806;
+			public const int mr_dialog_close_dark = 2130837806;
 			
 			// aapt resource value: 0x7f02012f
-			public const int mr_button_light = 2130837807;
+			public const int mr_dialog_close_light = 2130837807;
 			
 			// aapt resource value: 0x7f020130
-			public const int mr_dialog_close_dark = 2130837808;
+			public const int mr_dialog_material_background_dark = 2130837808;
 			
 			// aapt resource value: 0x7f020131
-			public const int mr_dialog_close_light = 2130837809;
+			public const int mr_dialog_material_background_light = 2130837809;
 			
 			// aapt resource value: 0x7f020132
-			public const int mr_dialog_material_background_dark = 2130837810;
+			public const int mr_group_collapse = 2130837810;
 			
 			// aapt resource value: 0x7f020133
-			public const int mr_dialog_material_background_light = 2130837811;
+			public const int mr_group_expand = 2130837811;
 			
 			// aapt resource value: 0x7f020134
-			public const int mr_group_collapse = 2130837812;
+			public const int mr_media_pause_dark = 2130837812;
 			
 			// aapt resource value: 0x7f020135
-			public const int mr_group_expand = 2130837813;
+			public const int mr_media_pause_light = 2130837813;
 			
 			// aapt resource value: 0x7f020136
-			public const int mr_media_pause_dark = 2130837814;
+			public const int mr_media_play_dark = 2130837814;
 			
 			// aapt resource value: 0x7f020137
-			public const int mr_media_pause_light = 2130837815;
+			public const int mr_media_play_light = 2130837815;
 			
 			// aapt resource value: 0x7f020138
-			public const int mr_media_play_dark = 2130837816;
+			public const int mr_media_stop_dark = 2130837816;
 			
 			// aapt resource value: 0x7f020139
-			public const int mr_media_play_light = 2130837817;
+			public const int mr_media_stop_light = 2130837817;
 			
 			// aapt resource value: 0x7f02013a
-			public const int mr_media_stop_dark = 2130837818;
+			public const int mr_vol_type_audiotrack_dark = 2130837818;
 			
 			// aapt resource value: 0x7f02013b
-			public const int mr_media_stop_light = 2130837819;
+			public const int mr_vol_type_audiotrack_light = 2130837819;
 			
 			// aapt resource value: 0x7f02013c
-			public const int mr_vol_type_audiotrack_dark = 2130837820;
+			public const int navigation_empty_icon = 2130837820;
 			
 			// aapt resource value: 0x7f02013d
-			public const int mr_vol_type_audiotrack_light = 2130837821;
+			public const int notification_action_background = 2130837821;
 			
 			// aapt resource value: 0x7f02013e
-			public const int navigation_empty_icon = 2130837822;
+			public const int notification_bg = 2130837822;
 			
 			// aapt resource value: 0x7f02013f
-			public const int notification_action_background = 2130837823;
+			public const int notification_bg_low = 2130837823;
 			
 			// aapt resource value: 0x7f020140
-			public const int notification_bg = 2130837824;
+			public const int notification_bg_low_normal = 2130837824;
 			
 			// aapt resource value: 0x7f020141
-			public const int notification_bg_low = 2130837825;
+			public const int notification_bg_low_pressed = 2130837825;
 			
 			// aapt resource value: 0x7f020142
-			public const int notification_bg_low_normal = 2130837826;
+			public const int notification_bg_normal = 2130837826;
 			
 			// aapt resource value: 0x7f020143
-			public const int notification_bg_low_pressed = 2130837827;
+			public const int notification_bg_normal_pressed = 2130837827;
 			
 			// aapt resource value: 0x7f020144
-			public const int notification_bg_normal = 2130837828;
-			
-			// aapt resource value: 0x7f020145
-			public const int notification_bg_normal_pressed = 2130837829;
-			
-			// aapt resource value: 0x7f020146
-			public const int notification_icon_background = 2130837830;
-			
-			// aapt resource value: 0x7f02014e
-			public const int notification_template_icon_bg = 2130837838;
-			
-			// aapt resource value: 0x7f02014f
-			public const int notification_template_icon_low_bg = 2130837839;
-			
-			// aapt resource value: 0x7f020147
-			public const int notification_tile_bg = 2130837831;
-			
-			// aapt resource value: 0x7f020148
-			public const int notify_panel_notification_icon_bg = 2130837832;
-			
-			// aapt resource value: 0x7f020149
-			public const int searchview_background = 2130837833;
-			
-			// aapt resource value: 0x7f020151
-			public const int selected = 2130837841;
-			
-			// aapt resource value: 0x7f02014a
-			public const int Splash = 2130837834;
-			
-			// aapt resource value: 0x7f02014b
-			public const int toolbar_share = 2130837835;
+			public const int notification_icon_background = 2130837828;
 			
 			// aapt resource value: 0x7f02014c
-			public const int tooltip_frame_dark = 2130837836;
+			public const int notification_template_icon_bg = 2130837836;
 			
 			// aapt resource value: 0x7f02014d
-			public const int tooltip_frame_light = 2130837837;
+			public const int notification_template_icon_low_bg = 2130837837;
+			
+			// aapt resource value: 0x7f020145
+			public const int notification_tile_bg = 2130837829;
+			
+			// aapt resource value: 0x7f020146
+			public const int notify_panel_notification_icon_bg = 2130837830;
+			
+			// aapt resource value: 0x7f020147
+			public const int searchview_background = 2130837831;
+			
+			// aapt resource value: 0x7f02014f
+			public const int selected = 2130837839;
+			
+			// aapt resource value: 0x7f020148
+			public const int Splash = 2130837832;
+			
+			// aapt resource value: 0x7f020149
+			public const int toolbar_share = 2130837833;
+			
+			// aapt resource value: 0x7f02014a
+			public const int tooltip_frame_dark = 2130837834;
+			
+			// aapt resource value: 0x7f02014b
+			public const int tooltip_frame_light = 2130837835;
 			
 			static Drawable()
 			{
