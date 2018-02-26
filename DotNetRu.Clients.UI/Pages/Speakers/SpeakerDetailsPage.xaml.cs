@@ -2,7 +2,6 @@
 {
     using System;
 
-    using DotNetRu.Clients.Portable.ApplicationResources;
     using DotNetRu.Clients.Portable.Interfaces;
     using DotNetRu.Clients.Portable.Model;
     using DotNetRu.Clients.Portable.ViewModel;
@@ -27,7 +26,6 @@
         public SpeakerDetailsPage()
         {
             this.InitializeComponent();
-            this.MainScroll.ParallaxView = this.HeaderView;
             this.extension = DependencyService.Get<IPlatformSpecificExtension<SpeakerModel>>();
 
             this.ListViewSessions.ItemSelected += async (sender, e) =>
@@ -43,11 +41,6 @@
 
                     this.ListViewSessions.SelectedItem = null;
                 };
-
-            if (Device.Idiom != TargetIdiom.Phone)
-            {
-                this.Row1Header.Height = this.Row1Content.Height = 350;
-            }
 
             this.ListViewFollow.TemplatedItems.CollectionChanged += (sender, args) =>
                 {
@@ -71,14 +64,6 @@
             }
         }
 
-        protected override void OnSizeAllocated(double width, double height)
-        {
-            base.OnSizeAllocated(width, height);
-
-            // MainStack.HeightRequest = HeaderView.Height;
-            this.MainScroll.Parallax();
-        }
-
         protected override void OnBindingContextChanged()
         {
             base.OnBindingContextChanged();
@@ -90,7 +75,6 @@
             base.OnDisappearing();
             this.ListViewFollow.ItemTapped -= this.ListViewTapped;
             this.ListViewSessions.ItemTapped -= this.ListViewTapped;
-            this.MainScroll.Scrolled -= this.MainScrollScrolled;
 
             if (this.extension != null)
             {
@@ -102,11 +86,8 @@
         {
             base.OnAppearing();
 
-            this.MainScroll.Scrolled += this.MainScrollScrolled;
             this.ListViewFollow.ItemTapped += this.ListViewTapped;
             this.ListViewSessions.ItemTapped += this.ListViewTapped;
-
-            this.MainScroll.Parallax();
 
             if (this.SpeakerDetailsViewModel.Talks?.Count > 0)
             {
@@ -119,11 +100,6 @@
             {
                 await this.extension.Execute(this.SpeakerDetailsViewModel.SpeakerModel);
             }
-        }
-
-        private void MainScrollScrolled(object sender, ScrolledEventArgs e)
-        {
-            this.Title = e.ScrollY > (this.MainStack.Height - this.SpeakerTitle.Height) ? this.SpeakerModel.FirstName : AppResources.SpeakerInfo;
         }
 
         private void ListViewTapped(object sender, ItemTappedEventArgs e)

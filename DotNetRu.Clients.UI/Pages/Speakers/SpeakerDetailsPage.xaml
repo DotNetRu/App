@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <pages:BasePage 
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
@@ -12,152 +11,140 @@
     NavigationPage.BackButtonTitle="Back"
     BackgroundColor="{DynamicResource WindowBackgroundTable}">
     <ContentPage.Resources>
-     <ResourceDictionary>
-        <toolkit:HasDataConverter x:Key="GenericIsVisibleConverter"/>
-     </ResourceDictionary>
+        <ResourceDictionary>
+            <toolkit:HasDataConverter x:Key="GenericIsVisibleConverter"/>
+        </ResourceDictionary>
     </ContentPage.Resources>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="200" x:Name="Row1Header"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid RowSpacing="0" ColumnSpacing="0" x:Name="HeaderView" BackgroundColor="{DynamicResource Primary}">
-            <Image
-                HorizontalOptions="FillAndExpand"
-                VerticalOptions="FillAndExpand"
-                Source="{Binding SpeakerModel.PhotoImage}"
-                Aspect="AspectFill"/>
-        </Grid>
-        <controls:ParallaxScrollView x:Name="MainScroll" Grid.RowSpan="2">
-            <Grid RowSpacing="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="200" x:Name="Row1Content"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Grid x:Name="MainStack"
-                     VerticalOptions="End"
-                     HorizontalOptions="FillAndExpand">
-                    <Image Source="profile_pic_shadow.png" 
-                           Aspect="AspectFill"
-                           HorizontalOptions="FillAndExpand" 
-                           VerticalOptions="FillAndExpand">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer
+    <ScrollView>
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="250"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid 
+                Grid.Row="0"
+                VerticalOptions="End"
+                HorizontalOptions="FillAndExpand">
+                <Image
+                    HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand"
+                        Source="{Binding SpeakerModel.PhotoImage}"
+                        Aspect="AspectFill">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
                                 Tapped="OnTapGestureRecognizerTapped"
                                 NumberOfTapsRequired="1" />
-                        </Image.GestureRecognizers>
-    
-                    </Image>
-                    <StackLayout
+                    </Image.GestureRecognizers>
+                </Image>
+                <StackLayout
                          Padding="{StaticResource StandardPadding}"
                          Spacing="0"
                          VerticalOptions="End"
                          HorizontalOptions="FillAndExpand">
-                        <Label
+                    <Label
                             Text="{Binding SpeakerModel.FullName}"
                             FontSize="18"
                             TextColor="White">
-                            <Label.FontFamily>
-                                <OnPlatform x:TypeArguments="x:String" Android="sans-serif-light" iOS="HelveticaNeue-Light"/>
-                            </Label.FontFamily>
-                        </Label>
-                        <Label
+                        <Label.FontFamily>
+                            <OnPlatform x:TypeArguments="x:String" Android="sans-serif-light" iOS="HelveticaNeue-Light"/>
+                        </Label.FontFamily>
+                    </Label>
+                    <Label
                             x:Name="SpeakerTitle"
                             Text="{Binding SpeakerModel.Title}"
                             FontSize="12"
                             TextColor="White"/>
-                    </StackLayout>
-                </Grid>
-                <StackLayout Grid.Row="1" Spacing="0">
-                    <StackLayout BackgroundColor="{DynamicResource WindowBackgroundTable}"
+                </StackLayout>
+            </Grid>
+            <StackLayout Grid.Row="1" Spacing="0">
+                <StackLayout BackgroundColor="{DynamicResource WindowBackgroundTable}"
                                  Spacing="{DynamicResource CardSpacing}"
                                  Padding="{DynamicResource CardPadding}">
-                        <!--Biography-->
-                        <controls:CardView>
-                            <StackLayout Spacing="0">
-                                <controls:LabelSection Text="{Binding Resources[Biography]}"/>
-                                <controls:HeaderDivider/>
-                                <StackLayout Padding="{StaticResource StandardPadding}" BackgroundColor="White">
-                                    <Label Text="{Binding SpeakerModel.Biography}" Style="{DynamicResource EvolveListItemTextStyle}"/>
-                                </StackLayout>
-                                <controls:FooterDivider/>
+                    <!--Biography-->
+                    <controls:CardView>
+                        <StackLayout Spacing="0">
+                            <controls:LabelSection Text="{Binding Resources[Biography]}"/>
+                            <controls:HeaderDivider/>
+                            <StackLayout Padding="{StaticResource StandardPadding}" BackgroundColor="White">
+                                <Label Text="{Binding SpeakerModel.Biography}" Style="{DynamicResource EvolveListItemTextStyle}"/>
                             </StackLayout>
-                        </controls:CardView>
+                            <controls:FooterDivider/>
+                        </StackLayout>
+                    </controls:CardView>
 
-                        <controls:CardView IsVisible="{Binding FollowItems, Converter={StaticResource GenericIsVisibleConverter}}">
-                            <StackLayout Spacing="0">
-                                <!--Follow-->
-                                <controls:LabelSection Text="{Binding Resources[Follow]}"/>
-                                <controls:HeaderDivider/>
-                                <controls:NonScrollableListView
+                    <controls:CardView IsVisible="{Binding FollowItems, Converter={StaticResource GenericIsVisibleConverter}}">
+                        <StackLayout Spacing="0">
+                            <!--Follow-->
+                            <controls:LabelSection Text="{Binding Resources[Follow]}"/>
+                            <controls:HeaderDivider/>
+                            <controls:NonScrollableListView
                                     ItemsSource="{Binding FollowItems}"
                                     x:Name="ListViewFollow"
                                     HasUnevenRows="True"
                                     SelectedItem="{Binding SelectedFollowItem, Mode=TwoWay}">
-                                    <controls:NonScrollableListView.SeparatorColor>
-                                        <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ListSeparator}"/>
-                                    </controls:NonScrollableListView.SeparatorColor>
-                                    <controls:NonScrollableListView.ItemTemplate>
-                                      <DataTemplate>
+                                <controls:NonScrollableListView.SeparatorColor>
+                                    <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ListSeparator}"/>
+                                </controls:NonScrollableListView.SeparatorColor>
+                                <controls:NonScrollableListView.ItemTemplate>
+                                    <DataTemplate>
                                         <ViewCell StyleId="disclosure">
-                                          <Grid ColumnSpacing="{StaticResource StandardSpacing}">
-                                            <Grid.Padding>
-                                              <OnPlatform x:TypeArguments="Thickness" iOS="16,12" Android="16,8"/>
-                                            </Grid.Padding>
-                                            <Grid.ColumnDefinitions>
-                                              <ColumnDefinition Width="Auto"/>
-                                              <ColumnDefinition Width="*"/>
-                                            </Grid.ColumnDefinitions>
-                                            <Image VerticalOptions="Center" Source="{Binding Icon}" HeightRequest="30"/>
-                                            <Label Grid.Column="1" VerticalOptions="Center" Style="{DynamicResource EvolveListItemTextStyle}" Text="{Binding Name}"/>
-                                          </Grid>
+                                            <Grid ColumnSpacing="{StaticResource StandardSpacing}">
+                                                <Grid.Padding>
+                                                    <OnPlatform x:TypeArguments="Thickness" iOS="16,12" Android="16,8"/>
+                                                </Grid.Padding>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Image VerticalOptions="Center" Source="{Binding Icon}" HeightRequest="30"/>
+                                                <Label Grid.Column="1" VerticalOptions="Center" Style="{DynamicResource EvolveListItemTextStyle}" Text="{Binding Name}"/>
+                                            </Grid>
                                         </ViewCell>
-                                      </DataTemplate>
-                                    </controls:NonScrollableListView.ItemTemplate>
-                                </controls:NonScrollableListView>
-                                <controls:FooterDivider/>
-                            </StackLayout>
-                        </controls:CardView>
+                                    </DataTemplate>
+                                </controls:NonScrollableListView.ItemTemplate>
+                            </controls:NonScrollableListView>
+                            <controls:FooterDivider/>
+                        </StackLayout>
+                    </controls:CardView>
 
-                        <!--Talks-->
-                        <controls:CardView>
-                            <StackLayout Spacing="0">
-                                <controls:LabelSection Text="{Binding Resources[Talks]}" StyleId="MoreSessionsSection"/>
-                                <controls:HeaderDivider/>
-                                <StackLayout IsVisible="{Binding IsBusy}"
+                    <!--Talks-->
+                    <controls:CardView>
+                        <StackLayout Spacing="0">
+                            <controls:LabelSection Text="{Binding Resources[Talks]}" StyleId="MoreSessionsSection"/>
+                            <controls:HeaderDivider/>
+                            <StackLayout IsVisible="{Binding IsBusy}"
                                              HorizontalOptions="FillAndExpand"
                                              VerticalOptions="Center"
                                               BackgroundColor="White"
                                               Padding="{StaticResource StandardPadding}">
-                                    <ActivityIndicator IsRunning="{Binding IsBusy}" >
-                                        <ActivityIndicator.Color>
-                                            <OnPlatform x:TypeArguments="Color" Android="{StaticResource Accent}"/>
-                                        </ActivityIndicator.Color>
-                                    </ActivityIndicator>
-                                    <Label Text="{Binding Resources[LoadingTalks]}"
+                                <ActivityIndicator IsRunning="{Binding IsBusy}" >
+                                    <ActivityIndicator.Color>
+                                        <OnPlatform x:TypeArguments="Color" Android="{StaticResource Accent}"/>
+                                    </ActivityIndicator.Color>
+                                </ActivityIndicator>
+                                <Label Text="{Binding Resources[LoadingTalks]}"
                                            HorizontalOptions="Center"
                                            Style="{DynamicResource EvolveListItemTextStyle}"/>
-                                </StackLayout>                                            
-                                <controls:NonScrollableListView
+                            </StackLayout>
+                            <controls:NonScrollableListView
                                     x:Name="ListViewSessions"
                                     ItemsSource="{Binding Talks}"
                                     HasUnevenRows="True">
-                                    <controls:NonScrollableListView.SeparatorColor>
-                                        <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ListSeparator}"/>
-                                    </controls:NonScrollableListView.SeparatorColor>
-                                    <controls:NonScrollableListView.ItemTemplate>
-                                        <DataTemplate>
-                                            <ViewCell Appearing="Cell_OnAppearing">
-                                              <Grid Padding="{DynamicResource StandardPadding}"
+                                <controls:NonScrollableListView.SeparatorColor>
+                                    <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ListSeparator}"/>
+                                </controls:NonScrollableListView.SeparatorColor>
+                                <controls:NonScrollableListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell Appearing="Cell_OnAppearing">
+                                            <Grid Padding="{DynamicResource StandardPadding}"
                                                     ColumnSpacing="{StaticResource StandardSpacing}">
                                                 <Grid.RowDefinitions>
-                                                  <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="Auto"/>
                                                 </Grid.RowDefinitions>
                                                 <Grid.ColumnDefinitions>
-                                                  <ColumnDefinition Width="Auto"/>
-                                                  <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="*"/>
                                                 </Grid.ColumnDefinitions>
-
                                                 <abstractions:CircleImage
                                                     Grid.Column="0"
                                                     Grid.Row="0"
@@ -168,24 +155,22 @@
                                                     WidthRequest="33"
                                                     HeightRequest="33">
                                                 </abstractions:CircleImage>
-
                                                 <Label Grid.Row="0"
                                                        Grid.Column="1"
                                                        VerticalOptions="Center"
                                                        Text="{Binding Title}"
                                                        Style="{DynamicResource EvolveListItemTextStyle}"
                                                        StyleId="SessionItem"/>
-                                              </Grid>
-                                            </ViewCell>
-                                        </DataTemplate>
-                                    </controls:NonScrollableListView.ItemTemplate>
-                                </controls:NonScrollableListView>
-                                <controls:FooterDivider/>
-                            </StackLayout>
-                        </controls:CardView>
-                    </StackLayout>
+                                            </Grid>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </controls:NonScrollableListView.ItemTemplate>
+                            </controls:NonScrollableListView>
+                            <controls:FooterDivider/>
+                        </StackLayout>
+                    </controls:CardView>
                 </StackLayout>
-            </Grid>
-        </controls:ParallaxScrollView>
-    </Grid>
+            </StackLayout>
+        </Grid>
+    </ScrollView>
 </pages:BasePage>

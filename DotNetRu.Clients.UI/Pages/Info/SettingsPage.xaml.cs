@@ -20,7 +20,9 @@
             this.InitializeComponent();
 
             var openTechnologiesUsedCommand = new Command(async () => await NavigationService.PushAsync(this.Navigation, new TechnologiesUsedPage()));
-            var settingsViewModel = new SettingsViewModel(openTechnologiesUsedCommand);
+            var openCreditsCommand = new Command(async() => await this.DisplayAlert("Credits", AboutThisApp.Credits, "OK"));
+
+            var settingsViewModel = new SettingsViewModel(openTechnologiesUsedCommand, openCreditsCommand);
 
             this.BindingContext = settingsViewModel;
 
