@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
     using System.IO;
-    using System.Reflection;
     using System.Xml.Serialization;
 
     internal static class ParseHelper
@@ -10,7 +9,7 @@
         public static List<T> ParseXml<T>(string entitiesName)
             where T : class
         {
-            var assembly = Assembly.Load(new AssemblyName("DotNetRu.DataStore.Audit"));
+            var assembly = typeof(ParseHelper).Assembly;
             var stream = assembly.GetManifestResourceStream($"DotNetRu.DataStore.Audit.Storage.{entitiesName}.xml");
             List<T> entities;
             using (var reader = new StreamReader(stream))
