@@ -1,19 +1,17 @@
-﻿using DotNetRu.Clients.Portable.Model;
-using DotNetRu.Clients.Portable.ViewModel;
-using DotNetRu.Clients.UI.Helpers;
-using DotNetRu.Clients.UI.Pages.Sessions;
-using DotNetRu.DataStore.Audit.Models;
-using Xamarin.Forms;
-using System;
-
-namespace DotNetRu.Clients.UI.Pages.Friends
+﻿namespace DotNetRu.Clients.UI.Pages.Friends
 {
+    using System.Linq;
+
+    using DotNetRu.Clients.Portable.Model;
+    using DotNetRu.Clients.Portable.ViewModel;
+    using DotNetRu.Clients.UI.Helpers;
+    using DotNetRu.Clients.UI.Pages.Sessions;
+    using DotNetRu.DataStore.Audit.Models;
+
+    using Xamarin.Forms;
+
     public partial class FriendDetailsPage
     {
-        public override AppPage PageType => AppPage.Friend;
-
-        private FriendDetailsViewModel FriendDetailsViewModel => this.friendDetailsViewModel ?? (this.friendDetailsViewModel = this.BindingContext as FriendDetailsViewModel);
-
         private FriendDetailsViewModel friendDetailsViewModel;
 
         public FriendDetailsPage()
@@ -34,6 +32,7 @@ namespace DotNetRu.Clients.UI.Pages.Friends
             };            
         }
 
+        public override AppPage PageType => AppPage.Friend;
 
         public FriendModel FriendModel
         {
@@ -45,6 +44,8 @@ namespace DotNetRu.Clients.UI.Pages.Friends
             }
         }
 
+        private FriendDetailsViewModel FriendDetailsViewModel => this.friendDetailsViewModel ?? (this.friendDetailsViewModel = this.BindingContext as FriendDetailsViewModel);
+
         protected override void OnBindingContextChanged()
         {
             base.OnBindingContextChanged();
@@ -52,14 +53,10 @@ namespace DotNetRu.Clients.UI.Pages.Friends
             var adjust = Device.RuntimePlatform != Device.Android ? 1 : -this.FriendDetailsViewModel.FollowItems.Count + 1;
             this.ListViewFollow.HeightRequest =
                 (this.FriendDetailsViewModel.FollowItems.Count * this.ListViewFollow.RowHeight) - adjust;
-        }
 
-        private void Cell_OnAppearing(object sender, EventArgs e)
-        {
-            var viewCell = (ViewCell)sender;
-            this.ListViewMeetups.AdjustHeight(viewCell);
+            adjust = Device.RuntimePlatform != Device.Android ? 1 : -this.FriendDetailsViewModel.FriendModel.Meetups.Count() + 1;
+            this.ListViewMeetups.HeightRequest =
+                (this.FriendDetailsViewModel.FriendModel.Meetups.Count() * this.ListViewMeetups.RowHeight) - adjust;
         }
-
     }
 }
-
