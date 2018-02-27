@@ -359,6 +359,15 @@
     <VideoUrl>https://www.youtube.com/watch?v=3fycJVD85Z4</VideoUrl>
   </Talk>
   <Talk>
+    <Id>Fody-vs-Routine</Id>
+    <SpeakerIds>
+      <SpeakerId>Konstantin-Vasiliev</SpeakerId>
+    </SpeakerIds>
+    <Title>Fody против рутины</Title>
+    <Description>В программировании часто приходится сталкиваться с рутинными задачами, в которых довольно просто допустить ошибки. Константин расскажет, как Fody помогает с ними бороться, а также как она приносит с собой несколько дополнительных фишек.</Description>
+    <VideoUrl>https://www.youtube.com/watch?v=e-uj8SMOjh8</VideoUrl>
+  </Talk>
+  <Talk>
     <Id>FSharp-for-Data-Analysis</Id>
     <SpeakerIds>
       <SpeakerId>Artem-Akulakov</SpeakerId>
@@ -442,14 +451,14 @@
     <Title>Как мы разрабатывали приложение для DotNetRu на Xamarin.Forms</Title>
     <Description>Про Xamarin.Forms наверное уже слышал каждый — после покупки Xamarin Microsoft’ом платформа довольно активно развивается. В этом докладе будет анонс приложения для сообществ DotNetRu написанного на Xamarin.Forms. Поговорим про то, как мы его разрабатывали, с какими сложностями столкнулись и как их решали. Мы рассмотрим весь цикл создания, от настройки окружения до публикации в магазины. Обязательно затронем такие темы как:
 
-
 - какие есть возможности отладки приложения;
 - как сделать общий код для разных платформ;
 - локализация;
 - мониторинг.
 
-
 Приложение отрытое и разрабатывается добровольцами. После доклада у каждого из вас будет достаточно информации, чтобы присоединиться к миру Open Source и вместе с сообществом создавать DotNetRu App.</Description>
+    <SlidesUrl>https://www.slideshare.net/SpbDotNet/dotnetru-xamarinforms</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=qAiQyTpXFxw</VideoUrl>
   </Talk>
   <Talk>
     <Id>Ignite-in-action</Id>
@@ -533,6 +542,14 @@
     <VideoUrl>https://www.youtube.com/watch?v=F5oOYKTFpcQ</VideoUrl>
   </Talk>
   <Talk>
+    <Id>Lock-Free-Multithreading</Id>
+    <SpeakerIds>
+      <SpeakerId>Yuri-Kerbickov</SpeakerId>
+    </SpeakerIds>
+    <Title>Свобода от блокировок или lock-free многопоточность</Title>
+    <Description>Во время разработки многопоточного кода практически всегда встаёт проблема параллельного доступа к ресурсам. Благо у нас есть необходимый инструментарий для решения этой проблемы. Самым простым способом решения проблемы параллельного доступа к ресурсам являются блокировки. В большинстве разрабатываемых приложений этого достаточно. Но когда на первый план выходит производительность и быстрый отклик, то блокировки могут послужить одним из узких мест. Чтобы повысить производительность и избежать накладных расходов блокировок существуют различные подходы и алгоритмы. Самыми идеальными являются wait-free алгоритмы, но, к сожалению, на практике, ситуации в которых мы можем их использовать, встречаются довольно редко. В этом докладе рассмотрим основные алгоритмы lock-free многопоточности, поговорим о некоторых оптимизациях компилятора, а также сравним производительность lock-free и не lock-free многопоточного кода.</Description>
+  </Talk>
+  <Talk>
     <Id>Machine-learning</Id>
     <SpeakerIds>
       <SpeakerId>Roman-Nevolin</SpeakerId>
@@ -613,6 +630,8 @@
     </SpeakerIds>
     <Title>NancyFx для самых маленьких</Title>
     <Description>Про ASP.NET Core информации много, даже слишком много, и на фоне всего этого затерялся не менее хороший фреймворк NancyFx. Если вы ещё не слышали о нём, то этот доклад даст вам отличное погружение в данную платформу.</Description>
+    <SlidesUrl>https://www.slideshare.net/SpbDotNet/nancyfx</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=cs3ycQMt1OY</VideoUrl>
   </Talk>
   <Talk>
     <Id>Net-Web-news</Id>
@@ -684,6 +703,14 @@
 13 января 2016 года на NDC London мы презентовали широкой общественности наш новый продукт — кросс-платформенную IDE для разработки .NET приложений. В своей презентации я покажу как работает Rider, расскажу про продукт, что будет включать первая версия и что самое интересное — расскажу как мы сделали гибридное приложение, работающее одновременно на Java и .NET.</Description>
     <SlidesUrl>http://www.slideshare.net/yu5k3/project-rider</SlidesUrl>
     <VideoUrl>https://www.youtube.com/watch?v=wq5qvizDUIM</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>Razor-Pages</Id>
+    <SpeakerIds>
+      <SpeakerId>Stanislav-Ladokhin</SpeakerId>
+    </SpeakerIds>
+    <Title>Razor Pages: New page-based framework in ASP.NET Core</Title>
+    <Description>Razor Pages — это новый компонент платформы ASP.NET Core, который делает процесс создания веб-приложений проще, быстрее и эффективнее. Рассмотрим с чего начиналось создание Razor Pages. Какие цели ставили перед собой его создатели. Разработаем небольшое веб-приложение, демонстрирующее основные возможности фреймворка. Разберемся с тем, когда лучше его использовать. Заглянем в будущее — посмотрим что будет в новой версии.</Description>
   </Talk>
   <Talk>
     <Id>ReactJSDotNET-experience-of-server-rendering</Id>
@@ -800,6 +827,17 @@
     <VideoUrl>https://www.youtube.com/watch?v=7pb0PJ5EXnM</VideoUrl>
   </Talk>
   <Talk>
+    <Id>Sharing-Common-Assemblies</Id>
+    <SpeakerIds>
+      <SpeakerId>Stanislav-Flusov</SpeakerId>
+    </SpeakerIds>
+    <Title>Sharing общих сборок между процессами и доменами в IIS</Title>
+    <Description>В микросервисном мире становится еще более актуальным  вопрос максимально эффективного использования окружения, поскольку стоимость добавления новой единицы (сервиса) значительно дороже, чем расширение монолитного приложения. Заказчик стремится к размещению максимального числа сервисов на одной машине с целью снизить издержки.
+
+
+В данном докладе пойдет речь о механизмах позволяющих значительно снизить потребление оперативной памяти и улучшить производительность. В некоторых ситуациях речь пойдет о разах. Дополнительно слушатель узнает о различных типах памяти и случаях при которых они используются.</Description>
+  </Talk>
+  <Talk>
     <Id>Simple-cross-platform-Web-server</Id>
     <SpeakerIds>
       <SpeakerId>Alexander-Ivanov</SpeakerId>
@@ -864,6 +902,14 @@ And how all of these things help build zero-copy streams aka Channels/Pipelines 
 - где лучше всего хранить документацию;
 - какие подводные камни вас могут подстерегать при работе со Swagger.</Description>
     <SlidesUrl>https://www.slideshare.net/SpbDotNet/rest-api-c-swagger</SlidesUrl>
+  </Talk>
+  <Talk>
+    <Id>Talk-About-Blockchain</Id>
+    <SpeakerIds>
+      <SpeakerId>Egor-Grishechko</SpeakerId>
+    </SpeakerIds>
+    <Title>У вас найдётся минутка, чтобы поговорить о блокчейне?</Title>
+    <Description>Блокчейн, криптовалюта, ICO. Как много скрыто в этих словах. В рамках доклада Егор, с помощью простых примеров на C#, расскажет вам как это работает. А также поделится своим опытом и океаном боли, связанным с разработкой под Ethereum.</Description>
   </Talk>
   <Talk>
     <Id>TDD-in-a-hard-enterprise</Id>

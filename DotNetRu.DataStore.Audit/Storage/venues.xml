@@ -7,6 +7,12 @@
     <MapUrl>https://yandex.ru/maps/-/CBaLjSvrkB</MapUrl>
   </Venue>
   <Venue>
+    <Id>Kzn-IT-Park.xml</Id>
+    <Name>ИТ-парк</Name>
+    <Address>Казань, ул. Петербургская, 52 (2 этаж, Переговорная №3)</Address>
+    <MapUrl>https://yandex.ru/maps/-/CBeSfRud3A</MapUrl>
+  </Venue>
+  <Venue>
     <Id>Msk-CUSTIS</Id>
     <Name>Конференц-зал «CUSTIS»</Name>
     <Address>Москва, ул.Лесная, 43 (6 этаж)</Address>

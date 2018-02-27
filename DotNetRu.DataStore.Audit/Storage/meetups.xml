@@ -27,6 +27,52 @@
     </TalkIds>
   </Meetup>
   <Meetup>
+    <Id>KryDotNet-2</Id>
+    <Name>Встреча KryDotNet №2</Name>
+    <CommunityId>KryDotNet</CommunityId>
+    <Date>2018-02-18</Date>
+    <FriendIds>
+      <FriendId>Pilot</FriendId>
+    </FriendIds>
+    <VenueId>Kry-Furgon</VenueId>
+    <Sessions>
+      <Session>
+        <TalkId>Fody-vs-Routine</TalkId>
+        <StartTime>2018-02-18T09:00:00Z</StartTime>
+        <EndTime>2018-02-18T10:30:00Z</EndTime>
+      </Session>
+    </Sessions>
+    <TalkIds>
+      <TalkId>Fody-vs-Routine</TalkId>
+    </TalkIds>
+  </Meetup>
+  <Meetup>
+    <Id>KznDotNet-1</Id>
+    <Name>Встреча KznDotNet №1</Name>
+    <CommunityId>KznDotNet</CommunityId>
+    <Date>2018-03-15</Date>
+    <FriendIds>
+      <FriendId>ICL</FriendId>
+    </FriendIds>
+    <VenueId>Kzn-IT-Park.xml</VenueId>
+    <Sessions>
+      <Session>
+        <TalkId>Lock-Free-Multithreading</TalkId>
+        <StartTime>2018-03-15T15:30:00Z</StartTime>
+        <EndTime>2018-03-15T16:30:00Z</EndTime>
+      </Session>
+      <Session>
+        <TalkId>Razor-Pages</TalkId>
+        <StartTime>2018-03-15T16:45:00Z</StartTime>
+        <EndTime>2018-03-15T17:45:00Z</EndTime>
+      </Session>
+    </Sessions>
+    <TalkIds>
+      <TalkId>Lock-Free-Multithreading</TalkId>
+      <TalkId>Razor-Pages</TalkId>
+    </TalkIds>
+  </Meetup>
+  <Meetup>
     <Id>MskDotNet-1</Id>
     <Name>Встреча MskDotNet №1</Name>
     <CommunityId>MskDotNet</CommunityId>
@@ -990,6 +1036,32 @@
     <TalkIds>
       <TalkId>Nancy-for-Little-Ones</TalkId>
       <TalkId>How-we-created-DotNetRu-App</TalkId>
+    </TalkIds>
+  </Meetup>
+  <Meetup>
+    <Id>SpbDotNet-27</Id>
+    <Name>Встреча SpbDotNet №27</Name>
+    <CommunityId>SpbDotNet</CommunityId>
+    <Date>2018-02-28</Date>
+    <FriendIds>
+      <FriendId>Arcadia</FriendId>
+    </FriendIds>
+    <VenueId>Spb-Arcadia</VenueId>
+    <Sessions>
+      <Session>
+        <TalkId>Sharing-Common-Assemblies</TalkId>
+        <StartTime>2018-02-28T16:00:00Z</StartTime>
+        <EndTime>2018-02-28T17:00:00Z</EndTime>
+      </Session>
+      <Session>
+        <TalkId>Talk-About-Blockchain</TalkId>
+        <StartTime>2018-02-28T17:30:00Z</StartTime>
+        <EndTime>2018-02-28T18:30:00Z</EndTime>
+      </Session>
+    </Sessions>
+    <TalkIds>
+      <TalkId>Sharing-Common-Assemblies</TalkId>
+      <TalkId>Talk-About-Blockchain</TalkId>
     </TalkIds>
   </Meetup>
   <Meetup>

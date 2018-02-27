@@ -5,6 +5,10 @@
     <Name>KryDotNet</Name>
   </Community>
   <Community>
+    <Id>KznDotNet</Id>
+    <Name>KznDotNet</Name>
+  </Community>
+  <Community>
     <Id>MskDotNet</Id>
     <Name>MskDotNet</Name>
   </Community>
