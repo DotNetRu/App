@@ -88,6 +88,13 @@
                                 Command = this.LaunchBrowserCommand,
                                 ImageSource = LogoService.KryDotNetLogo,
                                 Parameter = AboutThisApp.KrasnoyarskLink
+                            },
+                        new LocalizableMenuItem
+                            {
+                                ResourceName = "Kazan",
+                                Command = this.LaunchBrowserCommand,
+                                ImageSource = LogoService.KznDotNetLogo,
+                                Parameter = AboutThisApp.KazanLink
                             }
                     });
         }

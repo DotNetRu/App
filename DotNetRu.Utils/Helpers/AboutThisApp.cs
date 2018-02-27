@@ -16,6 +16,7 @@
         public const string SpbLink = "https://vk.com/SpbDotNet";
         public const string SaratovLink = "https://vk.com/SarDotNet";
         public const string KrasnoyarskLink = "https://vk.com/KryDotNet";
+        public const string KazanLink = "https://vk.com/kzndotnet";
         public const string MoscowLink = "https://vk.com/MskDotNet";
 
         public const string DeveloperWebsite = "http://dotnet.ru";

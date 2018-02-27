@@ -162,6 +162,9 @@
   <data name="IssueTracker" xml:space="preserve">
     <value>Issue Tracker</value>
   </data>
+  <data name="Kazan" xml:space="preserve">
+    <value>Kazan</value>
+  </data>
   <data name="Krasnoyarsk" xml:space="preserve">
     <value>Krasnoyarsk</value>
   </data>
