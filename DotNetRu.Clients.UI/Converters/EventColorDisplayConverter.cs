@@ -19,7 +19,7 @@
 
                 return DateTime.UtcNow > ((DateTime)value).ToUniversalTime()
                            ? (Color)Application.Current.Resources["Primary"]
-                           : Color.FromHex("D3D2D2");
+                           : Color.FromHex("cf18fd");
             }
             catch (Exception ex)
             {
