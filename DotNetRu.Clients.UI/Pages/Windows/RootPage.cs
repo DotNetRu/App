@@ -1,22 +1,25 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using DotNetRu.Clients.Portable.Model;
-using DotNetRu.Clients.UI.Controls;
-using DotNetRu.Clients.UI.Pages.Events;
-using DotNetRu.Clients.UI.Pages.Friends;
-using DotNetRu.Clients.UI.Pages.Home;
-using DotNetRu.Clients.UI.Pages.Info;
-using DotNetRu.Clients.UI.Pages.Sessions;
-using DotNetRu.Clients.UI.Pages.Speakers;
-using DotNetRu.Utils.Helpers;
-using FormsToolkit;
-using Xamarin.Forms;
-using XamarinEvolve.Clients.Portable;
-using MenuItem = DotNetRu.Clients.Portable.Model.MenuItem;
-
-namespace DotNetRu.Clients.UI.Pages.Windows
+﻿namespace DotNetRu.Clients.UI.Pages.Windows
 {
-    using MenuItem = MenuItem;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+
+    using DotNetRu.Clients.Portable.Model;
+    using DotNetRu.Clients.UI.Controls;
+    using DotNetRu.Clients.UI.Pages.Events;
+    using DotNetRu.Clients.UI.Pages.Friends;
+    using DotNetRu.Clients.UI.Pages.Home;
+    using DotNetRu.Clients.UI.Pages.Info;
+    using DotNetRu.Clients.UI.Pages.Sessions;
+    using DotNetRu.Clients.UI.Pages.Speakers;
+    using DotNetRu.Utils.Helpers;
+
+    using FormsToolkit;
+
+    using Xamarin.Forms;
+
+    using XamarinEvolve.Clients.Portable;
+
+    using MenuItem = DotNetRu.Clients.Portable.Model.MenuItem;
 
     public class RootPageWindows : MasterDetailPage
     {
@@ -77,29 +80,35 @@ namespace DotNetRu.Clients.UI.Pages.Windows
                 switch (menuId)
                 {
                     case AppPage.Feed: // Feed
-                        this.pages.Add(menuId, new EvolveNavigationPage(new NewsPage()));
+                        this.pages.Add(menuId, new NavigationPage(new NewsPage()));
                         break;
                     case AppPage.Meetup: // sessions
-                        this.pages.Add(menuId, new EvolveNavigationPage(new MeetupPage()));
+                        this.pages.Add(menuId, new NavigationPage(new MeetupPage()));
                         break;
                     case AppPage.Speakers: // sessions
-                        this.pages.Add(menuId, new EvolveNavigationPage(new SpeakersPage()));
+                        this.pages.Add(menuId, new NavigationPage(new SpeakersPage()));
                         break;
                     case AppPage.Meetups: // events
-                        this.pages.Add(menuId, new EvolveNavigationPage(new MeetupsPage()));
+                        this.pages.Add(menuId, new NavigationPage(new MeetupsPage()));
                         break;
                     case AppPage.Friends: // sponsors
-                        newPage = new EvolveNavigationPage(new FriendsPage());
+                        newPage = new NavigationPage(new FriendsPage());
                         break;
                     case AppPage.Settings: // Settings
-                        newPage = new EvolveNavigationPage(new SettingsPage());
+                        newPage = new NavigationPage(new SettingsPage());
                         break;
                 }
             }
 
-            if (newPage == null) newPage = this.pages[menuId];
+            if (newPage == null)
+            {
+                newPage = this.pages[menuId];
+            }
 
-            if (newPage == null) return;
+            if (newPage == null)
+            {
+                return;
+            }
 
             this.Detail = newPage;
 

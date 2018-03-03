@@ -144,58 +144,6 @@ namespace XamarinEvolve.Clients.Portable
             }
         }
 
-        const string GooglePlayCheckedKey = "play_checked";
-
-        static readonly bool GooglePlayCheckedDefault = false;
-
-        public bool GooglePlayChecked
-        {
-            get
-            {
-                return AppSettings.GetValueOrDefault(GooglePlayCheckedKey, GooglePlayCheckedDefault);
-            }
-
-            set
-            {
-                AppSettings.AddOrUpdateValue(GooglePlayCheckedKey, value);
-            }
-        }
-
-        const string AttemptedPushKey = "attempted_push";
-
-        static readonly bool AttemptedPushDefault = false;
-
-        public bool AttemptedPush
-        {
-            get
-            {
-                return AppSettings.GetValueOrDefault(AttemptedPushKey, AttemptedPushDefault);
-            }
-
-            set
-            {
-                AppSettings.AddOrUpdateValue(AttemptedPushKey, value);
-            }
-        }
-
-
-        const string PushRegisteredKey = "push_registered";
-
-        static readonly bool PushRegisteredDefault = false;
-
-        public bool PushRegistered
-        {
-            get
-            {
-                return AppSettings.GetValueOrDefault(PushRegisteredKey, PushRegisteredDefault);
-            }
-
-            set
-            {
-                AppSettings.AddOrUpdateValue(PushRegisteredKey, value);
-            }
-        }
-
         const string ShowAllCategoriesKey = "all_categories";
 
         static readonly bool ShowAllCategoriesDefault = true;

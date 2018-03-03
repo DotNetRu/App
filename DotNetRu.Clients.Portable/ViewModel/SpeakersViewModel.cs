@@ -2,6 +2,8 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Globalization;
     using System.Linq;
     using System.Windows.Input;
 
@@ -22,16 +24,19 @@
         {
         }
 
-        public ObservableRangeCollection<SpeakerModel> Speakers { get; } =
-            new ObservableRangeCollection<SpeakerModel>();
+        public ObservableRangeCollection<Grouping<char, SpeakerModel>> speakers = new ObservableRangeCollection<Grouping<char, SpeakerModel>>();
+        public ObservableCollection<Grouping<char, SpeakerModel>> Speakers => speakers;
 
         #region Sorting
 
         private void SortSpeakers(IEnumerable<SpeakerModel> speakers)
         {
-            var speakersSorted = from speaker in speakers orderby speaker.FullName select speaker;
+            var speakersSorted = from speaker in speakers 
+                                    orderby speaker.FirstName 
+                                    group speaker by Char.ToUpperInvariant(speaker.FirstName[0]) into speakerGroup
+                                    select new Grouping<char, SpeakerModel>(speakerGroup.Key, speakerGroup);
 
-            this.Speakers.ReplaceRange(speakersSorted);
+            this.speakers.ReplaceRange(speakersSorted);
         }
 
         #endregion

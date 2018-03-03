@@ -1,12 +1,15 @@
-﻿using Windows.ApplicationModel;
+﻿using DotNetRu.UWP.Helpers;
+
 using Xamarin.Forms;
-using XamarinEvolve.Clients.Portable;
-using XamarinEvolve.UWP.Helpers;
 
 [assembly: Dependency(typeof(AppVersionProvider))]
 
-namespace XamarinEvolve.UWP.Helpers
+namespace DotNetRu.UWP.Helpers
 {
+    using Windows.ApplicationModel;
+
+    using DotNetRu.Clients.Portable.Interfaces;
+
     public class AppVersionProvider : IAppVersionProvider
     {
         public string AppVersion

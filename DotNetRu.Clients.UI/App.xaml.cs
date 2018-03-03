@@ -1,4 +1,8 @@
-﻿namespace DotNetRu.Clients.UI
+﻿using Xamarin.Forms.Xaml;
+
+[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
+
+namespace DotNetRu.Clients.UI
 {
     using System;
     using System.Globalization;
@@ -46,10 +50,12 @@
 
             this.InitializeComponent();
 
+#if RELEASE
             AppCenter.Start(
                 "ios=1e7f311f-1055-4ec9-8b00-0302015ab8ae;android=6f9a7703-8ca4-477e-9558-7e095f7d20aa;",
                 typeof(Analytics),
                 typeof(Crashes));
+#endif
 
             this.MainPage = new BottomTabbedPage();
         }
@@ -70,31 +76,11 @@
         {
             if (Device.RuntimePlatform == Device.iOS && Settings.Current.FirstRun)
             {
-#if ENABLE_TEST_CLOUD
-                MessagingService.Current.SendMessage<MessagingServiceQuestion>(MessageKeys.Question, new MessagingServiceQuestion
-                    {
-                        Title = "Push Notifications",
-                        Positive = "Let's do it!",
-                        Negative = "Maybe Later",
-						Question =
-$"We can send you updates through {EventInfo.EventName} via push notifications. Would you like to enable them now?",
-                        OnCompleted = async (success) =>
-                            {
-                                if(success)
-                                {
-                                    var push = DependencyService.Get<IPushNotifications>();
-                                    if(push != null)
-                                        await push.RegisterForNotifications();
-                                }
-                            }
-                    });
-#else
                 var push = DependencyService.Get<IPushNotifications>();
                 if (push != null)
                 {
                     await push.RegisterForNotifications();
                 }
-#endif
             }
         }
 
@@ -198,10 +184,6 @@ $"We can send you updates through {EventInfo.EventName} via push notifications. 
             }
 
             this.registered = false;
-            MessagingService.Current.Unsubscribe(MessageKeys.NavigateLogin);
-            MessagingService.Current.Unsubscribe<MessagingServiceQuestion>(MessageKeys.Question);
-            MessagingService.Current.Unsubscribe<MessagingServiceAlert>(MessageKeys.Message);
-            MessagingService.Current.Unsubscribe<MessagingServiceChoice>(MessageKeys.Choice);
 
             // Handle when your app sleeps
             CrossConnectivity.Current.ConnectivityChanged -= this.ConnectivityChanged;
