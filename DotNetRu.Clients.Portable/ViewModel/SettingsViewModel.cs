@@ -17,7 +17,7 @@
     {
         private Language selectedLanguage;
 
-        public SettingsViewModel(ICommand openTechologiesUsedCommand)
+        public SettingsViewModel(ICommand openTechologiesUsedCommand, ICommand openCreditsCommand)
         {
             MessagingCenter.Subscribe<LocalizedResources>(
                 this,
@@ -37,8 +37,7 @@
                         new LocalizableMenuItem
                             {
                                 ResourceName = "CreatedBy",
-                                Command = this.LaunchBrowserCommand,
-                                Parameter = AboutThisApp.DeveloperWebsite
+                                Command = openCreditsCommand
                             },
                         new LocalizableMenuItem
                             {
@@ -89,6 +88,13 @@
                                 Command = this.LaunchBrowserCommand,
                                 ImageSource = LogoService.KryDotNetLogo,
                                 Parameter = AboutThisApp.KrasnoyarskLink
+                            },
+                        new LocalizableMenuItem
+                            {
+                                ResourceName = "Kazan",
+                                Command = this.LaunchBrowserCommand,
+                                ImageSource = LogoService.KznDotNetLogo,
+                                Parameter = AboutThisApp.KazanLink
                             }
                     });
         }
