@@ -3,10 +3,9 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    using DotNetRu.DataStore.Audit.Entities;
     using DotNetRu.DataStore.Audit.Extensions;
-    using DotNetRu.DataStore.Audit.Helpers;
     using DotNetRu.DataStore.Audit.Models;
+    using DotNetRu.DataStore.Audit.RealmModels;
 
     public static class FriendService
     {
@@ -16,8 +15,8 @@
 
         private static IEnumerable<FriendModel> GetFriends()
         {
-            var friendEntities = ParseHelper.ParseXml<FriendEntity>("Friends");
-            return friendEntities.Select(friendEntity => friendEntity.ToModel());
+            var friends = RealmService.AuditRealm.All<Friend>();
+            return friends.Select(friendEntity => friendEntity.ToModel());
         }
     }
 }

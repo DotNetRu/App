@@ -3,10 +3,9 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    using DotNetRu.DataStore.Audit.Entities;
     using DotNetRu.DataStore.Audit.Extensions;
-    using DotNetRu.DataStore.Audit.Helpers;
     using DotNetRu.DataStore.Audit.Models;
+    using DotNetRu.DataStore.Audit.RealmModels;
 
     public static class MeetupService
     {
@@ -26,7 +25,7 @@
 
         private static IEnumerable<MeetupModel> GetMeetups()
         {
-            var meetupEntities = ParseHelper.ParseXml<MeetupEntity>("Meetups");
+            var meetupEntities = RealmService.AuditRealm.All<Meetup>();
             return meetupEntities.Select(x => x.ToModel());
         }        
     }

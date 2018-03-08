@@ -13,6 +13,7 @@ namespace DotNetRu.Clients.UI
     using DotNetRu.Clients.Portable.Model;
     using DotNetRu.Clients.Portable.ViewModel;
     using DotNetRu.Clients.UI.Pages;
+    using DotNetRu.DataStore.Audit.Services;
     using DotNetRu.Utils.Helpers;
     using DotNetRu.Utils.Interfaces;
 
@@ -47,6 +48,8 @@ namespace DotNetRu.Clients.UI
             var language = savedLanguage ?? uiLanguage;
 
             AppResources.Culture = new CultureInfo(language.GetLanguageCode());
+
+            RealmService.InitializeRealm();
 
             this.InitializeComponent();
 

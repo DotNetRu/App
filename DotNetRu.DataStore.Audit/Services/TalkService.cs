@@ -3,10 +3,9 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    using DotNetRu.DataStore.Audit.Entities;
     using DotNetRu.DataStore.Audit.Extensions;
-    using DotNetRu.DataStore.Audit.Helpers;
     using DotNetRu.DataStore.Audit.Models;
+    using DotNetRu.DataStore.Audit.RealmModels;
 
     public static class TalkService
     {
@@ -26,7 +25,7 @@
 
         private static IEnumerable<TalkModel> GetTalks()
         {
-            var talkEntities = ParseHelper.ParseXml<TalkEntity>("Talks");
+            var talkEntities = RealmService.AuditRealm.All<Talk>();
             return talkEntities.Select(x => x.ToModel());
         }
     }

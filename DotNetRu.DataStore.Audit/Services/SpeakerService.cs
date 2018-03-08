@@ -3,10 +3,9 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    using DotNetRu.DataStore.Audit.Entities;
     using DotNetRu.DataStore.Audit.Extensions;
-    using DotNetRu.DataStore.Audit.Helpers;
     using DotNetRu.DataStore.Audit.Models;
+    using DotNetRu.DataStore.Audit.RealmModels;
 
     public static class SpeakerService
     {
@@ -16,7 +15,7 @@
 
         private static IEnumerable<SpeakerModel> GetSpeakers()
         {
-            var speakerEntities = ParseHelper.ParseXml<SpeakerEntity>("Speakers");
+            var speakerEntities = RealmService.AuditRealm.All<Speaker>();
             return speakerEntities.Select(speakerEntity => speakerEntity.ToModel());
         }
     }

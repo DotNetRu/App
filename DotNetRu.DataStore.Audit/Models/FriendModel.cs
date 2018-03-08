@@ -1,16 +1,15 @@
 ﻿namespace DotNetRu.DataStore.Audit.Models
 {
+    using System.Collections.Generic;
     using System.Linq;
 
     using DotNetRu.DataStore.Audit.Services;
 
     using Xamarin.Forms;
 
-    using System.Collections.Generic;
-
     public class FriendModel : BaseModel
     {
-        public string Name { get; set; }        
+        public string Name { get; set; }
 
         public string Description { get; set; }
 
@@ -48,13 +47,6 @@
         }
 
         public IEnumerable<MeetupModel> Meetups => MeetupService.GetMeetups(this.Id).OrderBy(m => m.StartTime);
-
-        /// <summary>
-        /// Gets or sets the rank.
-        /// 0 means put it at the top of the SponsorLevel
-        /// </summary>
-        /// <value>The rank.</value>
-        public int Rank { get; set; }
 
         public ImageSource LogoSmallImage { get; set; }
 
