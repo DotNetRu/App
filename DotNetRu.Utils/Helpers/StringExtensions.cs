@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Text.RegularExpressions;
-
-namespace DotNetRu.Utils.Helpers
+﻿namespace DotNetRu.Utils.Helpers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+    using System.Text.RegularExpressions;
+
     public static class StringExtensions
     {
         /// <summary>
@@ -79,14 +79,15 @@ namespace DotNetRu.Utils.Helpers
             }
         }
 
-        public static string ConvertToUsualUrl(this string input, Dictionary<string, string> replacements)
+        public static string ConvertToUsualUrl(this string input, List<KeyValuePair<string, string>> replacements)
         {
             StringBuilder returnString = new StringBuilder(input);
-            foreach (var replacment in replacements)
+            foreach (var replacement in replacements)
             {
-                returnString.Replace(replacment.Key, replacment.Value);
+                returnString.Replace(replacement.Key, replacement.Value);
             }
-            return Regex.Replace(returnString.ToString(), @"https:\/\/t\.co\/.+$", "");
+
+            return Regex.Replace(returnString.ToString(), @"https:\/\/t\.co\/.+$", string.Empty);
         }
     }
 }
