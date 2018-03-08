@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
+
 using DotNetRu.Utils;
 using DotNetRu.Utils.Interfaces;
 using Xamarin.Forms;
@@ -9,33 +9,35 @@ using Xamarin.Forms;
 
 namespace DotNetRu.Utils
 {
+    using Microsoft.AppCenter.Analytics;
+
     public class DotNetRuLogger : ILogger
     {
         public virtual void TrackPage(string page, string id = null)
         {
-            Debug.WriteLine("Logger: TrackPage: " + page + " Id: " + id);
+            Analytics.TrackEvent("TrackPage: " + page + " Id: " + id);
         }
 
         public virtual void TrackTimeSpent(string page, string id, TimeSpan time)
         {
-            Debug.WriteLine(
-                "Logger: TrackTimeSpent: " + page + " Id: " + (id ?? string.Empty)
+            Analytics.TrackEvent(
+                "TrackTimeSpent: " + page + " Id: " + (id ?? string.Empty)
                 + $" Time: {time.TotalMilliseconds} ms");
         }
 
         public virtual void Track(string trackIdentifier)
         {
-            Debug.WriteLine("Logger: Track: " + trackIdentifier);
+            Analytics.TrackEvent("Track: " + trackIdentifier);
         }
 
         public virtual void Track(string trackIdentifier, string key, string value)
         {
-            Debug.WriteLine("Logger: Track: " + trackIdentifier + " key: " + key + " value: " + value);
+            Analytics.TrackEvent("Track: " + trackIdentifier + " key: " + key + " value: " + value);
         }
 
         public virtual void Report(Exception exception = null, Severity warningLevel = Severity.Warning)
         {
-            Debug.WriteLine("Logger: Report: " + exception);
+            Analytics.TrackEvent("Report: " + exception);
         }
 
         public virtual void Report(
@@ -43,7 +45,7 @@ namespace DotNetRu.Utils
             IDictionary<string, string> extraData,
             Severity warningLevel = Severity.Warning)
         {
-            Debug.WriteLine("Logger: Report: " + exception);
+            Analytics.TrackEvent("Report: " + exception);
         }
 
         public virtual void Report(
@@ -52,7 +54,7 @@ namespace DotNetRu.Utils
             string value,
             Severity warningLevel = Severity.Warning)
         {
-            Debug.WriteLine("Logger: Report: " + exception + " key: " + key + " value: " + value);
+            Analytics.TrackEvent("Report: " + exception + " key: " + key + " value: " + value);
         }
     }
 }
