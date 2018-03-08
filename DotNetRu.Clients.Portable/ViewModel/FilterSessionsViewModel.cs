@@ -1,63 +1,62 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DotNetRu.DataStore.Audit.Models;
-using Xamarin.Forms;
-
-namespace DotNetRu.Clients.Portable.ViewModel
+﻿namespace DotNetRu.Clients.Portable.ViewModel
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+
+    using DotNetRu.DataStore.Audit.Models;
+
+    using Xamarin.Forms;
+
     public class FilterSessionsViewModel : ViewModelBase
     {
         public FilterSessionsViewModel(INavigation navigation)
             : base(navigation)
         {
             this.AllCategory = new Category
-                {
-                    Name = "All",
-                    IsEnabled = true,
-                    IsFiltered = this.Settings.ShowAllCategories
-                };
+                                   {
+                                       Name = "All",
+                                       IsEnabled = true,
+                                       IsFiltered = this.Settings.ShowAllCategories
+                                   };
 
             this.AllCategory.PropertyChanged += (sender, e) =>
-            {
-                if (e.PropertyName == "IsFiltered") this.SetShowAllCategories(this.AllCategory.IsFiltered);
-            };
-              
+                {
+                    if (e.PropertyName == "IsFiltered")
+                    {
+                        this.SetShowAllCategories(this.AllCategory.IsFiltered);
+                    }
+                };
+
         }
 
 
         public Category AllCategory { get; }
+
         public List<Category> Categories { get; } = new List<Category>();
 
         private void SetShowAllCategories(bool showAll)
         {
-			// first save changes to individual filters
+            // first save changes to individual filters
             this.Save();
             this.Settings.ShowAllCategories = showAll;
-            foreach(var category in this.Categories)
+            foreach (var category in this.Categories)
             {
                 category.IsEnabled = !this.Settings.ShowAllCategories;
-                category.IsFiltered = this.Settings.ShowAllCategories || this.Settings.FilteredCategories.Contains(category.Name);
+                category.IsFiltered = this.Settings.ShowAllCategories
+                                      || this.Settings.FilteredCategories.Contains(category.Name);
             }
         }
 
         public async Task LoadCategoriesAsync()
         {
             this.Categories.Clear();
-            var items = await this.StoreManager.CategoryStore.GetItemsAsync();
-            try 
+            var items = new List<Category>();
+
+            foreach (var category in items.OrderBy(c => c.Name))
             {
-                if (!items.Any ())
-                    items = await this.StoreManager.CategoryStore.GetItemsAsync (true);
-            } 
-            catch 
-            {
-                items = await this.StoreManager.CategoryStore.GetItemsAsync (true);
-            }
-            
-            foreach(var category in items.OrderBy(c => c.Name))
-            {
-                category.IsFiltered = this.Settings.ShowAllCategories || this.Settings.FilteredCategories.Contains(category.Name); 
+                category.IsFiltered = this.Settings.ShowAllCategories
+                                      || this.Settings.FilteredCategories.Contains(category.Name);
                 category.IsEnabled = !this.Settings.ShowAllCategories;
                 this.Categories.Add(category);
             }
@@ -65,13 +64,15 @@ namespace DotNetRu.Clients.Portable.ViewModel
             this.Save();
         }
 
-       
+
         public void Save()
         {
-			if (!this.Settings.ShowAllCategories)
-			{
-			    this.Settings.FilteredCategories = string.Join("|", this.Categories?.Where(c => c.IsFiltered).Select(c => c.Name));
-			}
+            if (!this.Settings.ShowAllCategories)
+            {
+                this.Settings.FilteredCategories = string.Join(
+                    "|",
+                    this.Categories?.Where(c => c.IsFiltered).Select(c => c.Name));
+            }
         }
     }
 }
