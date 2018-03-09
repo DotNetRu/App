@@ -1,8 +1,6 @@
 ﻿namespace DotNetRu.Clients.Portable.ViewModel
 {
-    using System;
-    using System.Linq;
-    using System.Windows.Input;
+    using System.Collections.Generic;
 
     using DotNetRu.DataStore.Audit.Models;
     using DotNetRu.DataStore.Audit.Services;
@@ -12,14 +10,10 @@
 
     using MvvmHelpers;
 
-    using Xamarin.Forms;
-
     using MenuItem = Model.MenuItem;
 
     public class SpeakerDetailsViewModel : ViewModelBase
     {
-        private ICommand loadTalksCommand;
-
         private MenuItem selectedFollowItem;
 
         private TalkModel selectedTalkModel;
@@ -84,13 +78,9 @@
 
         public SpeakerModel SpeakerModel { get; set; }
 
-        public ObservableRangeCollection<TalkModel> Talks { get; } = new ObservableRangeCollection<TalkModel>();
+        public IEnumerable<TalkModel> Talks => TalkService.GetTalks(this.SpeakerModel.Id);
 
         public ObservableRangeCollection<MenuItem> FollowItems { get; } = new ObservableRangeCollection<MenuItem>();
-
-        public ICommand LoadSessionsCommand => this.loadTalksCommand
-                                               ?? (this.loadTalksCommand = new Command(
-                                                       this.ExecuteLoadTalksCommand));
 
         public MenuItem SelectedFollowItem
         {
@@ -127,30 +117,6 @@
                 MessagingService.Current.SendMessage(MessageKeys.NavigateToSession, this.selectedTalkModel);
 
                 this.SelectedTalkModel = null;
-            }
-        }
-
-        public void ExecuteLoadTalksCommand()
-        {
-            if (this.IsBusy)
-            {
-                return;
-            }
-
-            try
-            {
-                this.IsBusy = true;
-
-                var talks = TalkService.GetTalks(this.SpeakerModel.Id).OrderBy(talk => talk.StartTime);
-                this.Talks.ReplaceRange(talks);
-            }
-            catch (Exception ex)
-            {
-                this.Logger.Report(ex);
-            }
-            finally
-            {
-                this.IsBusy = false;
             }
         }
     }

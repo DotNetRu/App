@@ -4,7 +4,6 @@
 
     using DotNetRu.DataStore.Audit.Models;
     using DotNetRu.DataStore.Audit.RealmModels;
-    using DotNetRu.DataStore.Audit.Services;
 
     public static class TalkExtensions
     {
@@ -19,8 +18,7 @@
                            VideoUrl = talkEntity.VideoUrl,
                            CodeUrl = talkEntity.CodeUrl,
                            ShortTitle = talkEntity.Title,
-                           Speakers = talkEntity.Speakers.Select(x => x.ToModel()),
-                           // MeetupModel = MeetupService.GetMeetup(talkEntity.Id)
+                           Speakers = talkEntity.Speakers.Select(x => x.ToModel())
                        };
         }
     }
