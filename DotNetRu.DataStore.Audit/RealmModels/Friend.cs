@@ -1,5 +1,7 @@
 ﻿namespace DotNetRu.DataStore.Audit.RealmModels
 {
+    using System.Linq;
+
     using Realms;
 
     public class Friend : RealmObject
@@ -16,5 +18,8 @@
         public byte[] LogoSmall { get; set; }
 
         public byte[] Logo { get; set; }
+
+        [Backlink(nameof(Meetup.Friends))]
+        public IQueryable<Meetup> Meetups { get; }
     }
 }

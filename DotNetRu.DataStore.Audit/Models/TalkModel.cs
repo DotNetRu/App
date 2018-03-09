@@ -37,12 +37,6 @@
 
         public DateTime? EndTime => this.MeetupModel.EndTime;
 
-        /// <summary>
-        /// Gets or sets the level of the session [100 - 400]
-        /// </summary>
-        /// <value>The session level.</value>
-        public string Level { get; set; }
-
         public string PresentationUrl { get; set; }
 
         public string VideoUrl { get; set; }
@@ -94,6 +88,6 @@
         //public ImageSource CommunityLogo => ImageSource.FromResource(
         //    "DotNetRu.DataStore.Audit.Storage.logos." + this.MeetupModel.CommunityID + ".png");
 
-        internal MeetupModel MeetupModel { get; set; }
+        public MeetupModel MeetupModel { get; set; }
     }
 }

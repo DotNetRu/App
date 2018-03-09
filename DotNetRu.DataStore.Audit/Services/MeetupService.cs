@@ -13,16 +13,6 @@
 
         public static IEnumerable<MeetupModel> Meetups => meetups ?? (meetups = GetMeetups());
 
-        public static MeetupModel GetMeetup(string talkID)
-        {
-            return Meetups.SingleOrDefault(x => x.Talks.Any(t => t.TalkId == talkID));
-        }
-
-        public static IEnumerable<MeetupModel> GetMeetups(string friendID)
-        {
-            return Meetups.Where(meetup => meetup.Friends.Any(f => f.Id == friendID));
-        }
-
         private static IEnumerable<MeetupModel> GetMeetups()
         {
             var meetupEntities = RealmService.AuditRealm.All<Meetup>().ToList();

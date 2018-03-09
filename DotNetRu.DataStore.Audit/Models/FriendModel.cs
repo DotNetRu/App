@@ -3,8 +3,6 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    using DotNetRu.DataStore.Audit.Services;
-
     using Xamarin.Forms;
 
     public class FriendModel
@@ -44,11 +42,11 @@
                     return int.MaxValue;
                 }
 
-                return MeetupService.GetMeetups(this.Id).Count();
+                return this.Meetups.Count();
             }
         }
 
-        public IEnumerable<MeetupModel> Meetups => MeetupService.GetMeetups(this.Id).OrderBy(m => m.StartTime);
+        public IEnumerable<MeetupModel> Meetups { get; set; }
 
         public ImageSource LogoSmallImage { get; set; }
 

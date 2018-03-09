@@ -1,5 +1,7 @@
 ﻿namespace DotNetRu.DataStore.Audit.Extensions
 {
+    using System.Linq;
+
     using DotNetRu.DataStore.Audit.Models;
     using DotNetRu.DataStore.Audit.RealmModels;
 
@@ -12,7 +14,9 @@
                            Id = friend.Id,
                            Description = friend.Description,
                            Name = friend.Name,
-                           WebsiteUrl = friend.Url
+                           WebsiteUrl = friend.Url,
+                           Meetups = friend.Meetups.ToList().Select(x => x.ToModel())
+                               .OrderBy(x => x.StartTime)
                        };
         }
     }
