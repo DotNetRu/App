@@ -3,7 +3,7 @@
     /// <summary>
     /// Per user feedback
     /// </summary>
-    public class Feedback : BaseModel
+    public class Feedback
     {
         public string UserId { get; set; }
 

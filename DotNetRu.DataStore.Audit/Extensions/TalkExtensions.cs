@@ -1,5 +1,7 @@
 ﻿namespace DotNetRu.DataStore.Audit.Extensions
 {
+    using System.Linq;
+
     using DotNetRu.DataStore.Audit.Models;
     using DotNetRu.DataStore.Audit.RealmModels;
     using DotNetRu.DataStore.Audit.Services;
@@ -17,9 +19,8 @@
                            VideoUrl = talkEntity.VideoUrl,
                            CodeUrl = talkEntity.CodeUrl,
                            ShortTitle = talkEntity.Title,
-                           //Speakers = SpeakerService.Speakers
-                           //    .Where(s => talkEntity.SpeakerIds.Any(s1 => s1 == s.Id)).ToList(),
-                           MeetupModel = MeetupService.GetMeetup(talkEntity.Id)
+                           Speakers = talkEntity.Speakers.Select(x => x.ToModel()),
+                           // MeetupModel = MeetupService.GetMeetup(talkEntity.Id)
                        };
         }
     }

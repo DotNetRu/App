@@ -2,7 +2,6 @@
 {
     using System.Linq;
 
-    using DotNetRu.Clients.Portable.Interfaces;
     using DotNetRu.Clients.Portable.Model;
     using DotNetRu.Clients.Portable.ViewModel;
     using DotNetRu.Clients.UI.Helpers;
@@ -14,8 +13,6 @@
 
     public partial class TalkPage
     {
-        private readonly IPlatformSpecificExtension<TalkModel> extension;
-
         private TalkViewModel talkViewModel;
 
         /// <summary>
@@ -28,8 +25,6 @@
         public TalkPage(TalkModel talkModel)
         {
             this.InitializeComponent();
-
-            this.extension = DependencyService.Get<IPlatformSpecificExtension<TalkModel>>();
 
             this.ItemId = talkModel?.Title;
 
@@ -45,7 +40,7 @@
                     if (Device.RuntimePlatform == Device.UWP)
                     {
                         var speakerDetailsUwp =
-                            new SpeakerDetailsPageUWP(this.talkViewModel.TalkModel.Id) { SpeakerModel = speaker };
+                            new SpeakerDetailsPageUWP(this.talkViewModel.TalkModel.TalkId) { SpeakerModel = speaker };
                         destination = speakerDetailsUwp;
                     }
                     else
@@ -76,33 +71,23 @@
             list.SelectedItem = null;
         }
 
-        protected override async void OnAppearing()
+        protected override void OnAppearing()
         {
             base.OnAppearing();
             this.ListViewSpeakers.ItemTapped += this.ListViewTapped;
 
-            var count = this.ViewModel?.TalkModel?.Speakers?.Count ?? 0;
+            var count = this.ViewModel?.TalkModel?.Speakers?.Count() ?? 0;
             var adjust = Device.RuntimePlatform != Device.Android ? 1 : -count + 1;
-            if ((this.ViewModel?.TalkModel?.Speakers?.Count ?? 0) > 0)
+            if ((this.ViewModel?.TalkModel?.Speakers?.Count() ?? 0) > 0)
             {
                 this.ListViewSpeakers.HeightRequest = (count * this.ListViewSpeakers.RowHeight) - adjust;
             }
-
-            if (this.extension != null)
-            {
-                await this.extension.Execute(this.ViewModel.TalkModel);
-            }
         }
 
-        protected override async void OnDisappearing()
+        protected override void OnDisappearing()
         {
             base.OnDisappearing();
             this.ListViewSpeakers.ItemTapped -= this.ListViewTapped;
-
-            if (this.extension != null)
-            {
-                await this.extension.Finish();
-            }
         }
 
         protected override void OnBindingContextChanged()
@@ -118,4 +103,3 @@
         }
     }
 }
-

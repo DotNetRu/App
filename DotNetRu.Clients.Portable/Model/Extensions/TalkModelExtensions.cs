@@ -1,21 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using DotNetRu.Clients.Portable.Extensions;
-using DotNetRu.DataStore.Audit.Models;
-using DotNetRu.Utils.Helpers;
-using MvvmHelpers;
-using Xamarin.Forms;
-using XamarinEvolve.Clients.Portable;
-
-namespace DotNetRu.Clients.Portable.Model.Extensions
+﻿namespace DotNetRu.Clients.Portable.Model.Extensions
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
+    using DotNetRu.Clients.Portable.Extensions;
+    using DotNetRu.DataStore.Audit.Models;
+    using DotNetRu.Utils.Helpers;
+
+    using MvvmHelpers;
+
+    using Xamarin.Forms;
+
+    using XamarinEvolve.Clients.Portable;
+
     public static class TalkModelExtensions
     {
         public static AppLinkEntry GetAppLink(this TalkModel talkModel)
         {
             var url =
-                $"http://{AboutThisApp.AppLinksBaseDomain}/{AboutThisApp.SessionsSiteSubdirectory.ToLowerInvariant()}/{talkModel.Id}";
+                $"http://{AboutThisApp.AppLinksBaseDomain}/{AboutThisApp.SessionsSiteSubdirectory.ToLowerInvariant()}/{talkModel.TalkId}";
 
             var entry = new AppLinkEntry
                             {
@@ -39,7 +43,8 @@ namespace DotNetRu.Clients.Portable.Model.Extensions
 
         public static string GetWebUrl(this TalkModel talkModel)
         {
-            return $"http://{AboutThisApp.AppLinksBaseDomain}/{AboutThisApp.SessionsSiteSubdirectory}/#{talkModel.Id}";
+            return
+                $"http://{AboutThisApp.AppLinksBaseDomain}/{AboutThisApp.SessionsSiteSubdirectory}/#{talkModel.TalkId}";
         }
 
         public static string GetIndexName(this TalkModel e)
@@ -149,12 +154,14 @@ namespace DotNetRu.Clients.Portable.Model.Extensions
             // filter then by category and filters
             var grouped = (from session in sessions
                            where session.StartTime.HasValue && session.EndTime.HasValue
-                                 && !session.StartTime.Value.IsTba()
-                                 && (showAllCategories || (session?.Categories.Join(
-                                                               filteredCategoriesList,
-                                                               category => category.Name,
-                                                               filtered => filtered,
-                                                               (category, filter) => filter).Any() ?? false))
+                                                            && !session.StartTime.Value.IsTba()
+                                                            && (showAllCategories || (session?.Categories.Join(
+                                                                                              filteredCategoriesList,
+                                                                                              category => category.Name,
+                                                                                              filtered => filtered,
+                                                                                              (category, filter) =>
+                                                                                                  filter)
+                                                                                          .Any() ?? false))
                            orderby session.StartTime, session.Title
                            group session by session.GetSortName()
                            into sessionGroup
@@ -164,10 +171,10 @@ namespace DotNetRu.Clients.Portable.Model.Extensions
             {
                 var tbaFiltered = (from session in tba
                                    where showAllCategories || (session?.Categories.Join(
-                                                                    filteredCategoriesList,
-                                                                    category => category.Name,
-                                                                    filtered => filtered,
-                                                                    (category, filter) => filter).Any() ?? false)
+                                                                   filteredCategoriesList,
+                                                                   category => category.Name,
+                                                                   filtered => filtered,
+                                                                   (category, filter) => filter).Any() ?? false)
                                    select session).ToList();
 
                 grouped.Add(new Grouping<string, TalkModel>("TBA", tbaFiltered));
@@ -192,4 +199,3 @@ namespace DotNetRu.Clients.Portable.Model.Extensions
         }
     }
 }
-

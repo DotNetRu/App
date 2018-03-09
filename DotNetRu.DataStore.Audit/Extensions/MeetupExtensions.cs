@@ -1,23 +1,25 @@
 ﻿namespace DotNetRu.DataStore.Audit.Extensions
 {
+    using System.Linq;
+
     using DotNetRu.DataStore.Audit.Models;
     using DotNetRu.DataStore.Audit.RealmModels;
 
     public static class MeetupExtensions
     {
-        public static MeetupModel ToModel(this Meetup meetupEntity)
+        public static MeetupModel ToModel(this Meetup meetup)
         {
             return new MeetupModel
                        {
-                           CommunityID = meetupEntity.CommunityId,
-                           Description = meetupEntity.Name,
+                           CommunityID = meetup.CommunityId,
+                           Description = meetup.Name,
                            IsAllDay = true,
-                           Title = meetupEntity.Name,
-                           //StartTime = meetupEntity.Date,
-                           //EndTime = meetupEntity.Date,
-                           VenueID = meetupEntity.VenueId,
-                           //TalkIDs = meetupEntity.TalkIds,
-                           //FriendIDs = meetupEntity.FriendIds
+                           Title = meetup.Name,
+                           StartTime = meetup.Date.DateTime,
+                           EndTime = meetup.Date.DateTime,
+                           VenueID = meetup.VenueId,
+                           Talks = meetup.Talks.Select(x => x.ToModel()),
+                           Friends = meetup.Friends.Select(x => x.ToModel())
                        };
         }
     }

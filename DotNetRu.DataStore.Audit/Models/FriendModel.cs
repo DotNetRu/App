@@ -7,8 +7,10 @@
 
     using Xamarin.Forms;
 
-    public class FriendModel : BaseModel
+    public class FriendModel
     {
+        public string Id { get; set; }
+
         public string Name { get; set; }
 
         public string Description { get; set; }
