@@ -25,7 +25,7 @@
 
         private static IEnumerable<TalkModel> GetTalks()
         {
-            var talkEntities = RealmService.AuditRealm.All<Talk>();
+            var talkEntities = RealmService.AuditRealm.All<Talk>().ToList();
             return talkEntities.Select(x => x.ToModel());
         }
     }

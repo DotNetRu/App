@@ -3,7 +3,7 @@
     using DotNetRu.DataStore.Audit.Models;
     using DotNetRu.DataStore.Audit.RealmModels;
 
-    public static class VenueEntityExtensions
+    public static class VenueExtensions
     {
         public static VenueModel ToModel(this Venue talkEntity)
         {

@@ -3,7 +3,7 @@
     using DotNetRu.DataStore.Audit.Models;
     using DotNetRu.DataStore.Audit.RealmModels;
 
-    public static class SpeakerEntityExtensions
+    public static class SpeakerExtensions
     {
         public static SpeakerModel ToModel(this Speaker speaker)
         {

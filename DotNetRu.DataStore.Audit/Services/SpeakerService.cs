@@ -15,8 +15,8 @@
 
         private static IEnumerable<SpeakerModel> GetSpeakers()
         {
-            var speakerEntities = RealmService.AuditRealm.All<Speaker>();
-            return speakerEntities.Select(speakerEntity => speakerEntity.ToModel());
+            var speakers = RealmService.AuditRealm.All<Speaker>().ToList();
+            return speakers.Select(speaker => speaker.ToModel());
         }
     }
 }

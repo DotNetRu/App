@@ -25,7 +25,7 @@
 
         private static IEnumerable<MeetupModel> GetMeetups()
         {
-            var meetupEntities = RealmService.AuditRealm.All<Meetup>();
+            var meetupEntities = RealmService.AuditRealm.All<Meetup>().ToList();
             return meetupEntities.Select(x => x.ToModel());
         }        
     }
