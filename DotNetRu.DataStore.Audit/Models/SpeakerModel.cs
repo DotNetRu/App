@@ -5,8 +5,10 @@
 
     using Xamarin.Forms;
 
-    public sealed class SpeakerModel : BaseModel
+    public sealed class SpeakerModel : IModel
     {
+        public string Id { get; set; }
+
         /// <summary>
         /// Gets or sets the first name.
         /// </summary>

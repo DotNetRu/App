@@ -1,15 +1,17 @@
-﻿using System;
-using System.Windows.Input;
-using DotNetRu.Clients.Portable.Interfaces;
-using DotNetRu.DataStore.Audit.Models;
-using DotNetRu.Utils.Helpers;
-using DotNetRu.Utils.Interfaces;
-using FormsToolkit;
-using Xamarin.Forms;
-using XamarinEvolve.Clients.Portable;
-
-namespace DotNetRu.Clients.Portable.ViewModel
+﻿namespace DotNetRu.Clients.Portable.ViewModel
 {
+    using System;
+    using System.Windows.Input;
+
+    using DotNetRu.Utils.Helpers;
+    using DotNetRu.Utils.Interfaces;
+
+    using FormsToolkit;
+
+    using Xamarin.Forms;
+
+    using XamarinEvolve.Clients.Portable;
+
     public class ConferenceFeedbackViewModel : ViewModelBase
     {
         public ConferenceFeedbackViewModel(INavigation navigation)
@@ -72,15 +74,6 @@ namespace DotNetRu.Clients.Portable.ViewModel
                                         "conferencefeedback_finished");
                                 }
                         });
-
-                var versionProvider = DependencyService.Get<IAppVersionProvider>();
-
-                var feedback = new ConferenceFeedback
-                                   {
-                                       Question1 = this.Question,
-                                       DeviceOS = Device.RuntimePlatform,
-                                       AppVersion = versionProvider.AppVersion,
-                                   };
 
                 Settings.Current.LeaveConferenceFeedback();
             }

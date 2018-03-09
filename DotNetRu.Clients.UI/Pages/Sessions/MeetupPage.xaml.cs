@@ -1,16 +1,17 @@
-﻿using System.Linq;
-using DotNetRu.Clients.Portable.Model;
-using DotNetRu.Clients.Portable.ViewModel;
-using DotNetRu.Clients.UI.Helpers;
-using DotNetRu.DataStore.Audit.Models;
-using DotNetRu.DataStore.Audit.Services;
-using Xamarin.Forms;
-
-namespace DotNetRu.Clients.UI.Pages.Sessions
+﻿namespace DotNetRu.Clients.UI.Pages.Sessions
 {
+    using System.Linq;
+
+    using DotNetRu.Clients.Portable.Model;
+    using DotNetRu.Clients.Portable.ViewModel;
+    using DotNetRu.Clients.UI.Helpers;
+    using DotNetRu.DataStore.Audit.Models;
+    using DotNetRu.DataStore.Audit.Services;
+
+    using Xamarin.Forms;
+
     public partial class MeetupPage
     {
-
         private MeetupViewModel meetupViewModel;
 
         /// <summary>
@@ -23,8 +24,6 @@ namespace DotNetRu.Clients.UI.Pages.Sessions
             var meetupModel = MeetupService.Meetups.First();
                 
             this.BindingContext = this.meetupViewModel = new MeetupViewModel(this.Navigation, meetupModel);
-
-            this.UpdatePage();
 
             // this.ToolbarItems.Add(this.filterItem);
             this.ListViewTalks.ItemSelected += async (sender, e) =>
@@ -101,22 +100,11 @@ namespace DotNetRu.Clients.UI.Pages.Sessions
 
             this.ListViewTalks.ItemTapped += this.ListViewTapped;
 
-            this.UpdatePage();
-
-            var count = this.MeetupViewModel?.Talks?.Count ?? 0;
+            var count = this.MeetupViewModel?.Talks?.Count() ?? 0;
             var adjust = Device.RuntimePlatform != Device.Android ? 1 : -count + 1;
-            if ((this.MeetupViewModel?.Talks?.Count ?? 0) > 0)
+            if ((this.MeetupViewModel?.Talks?.Count() ?? 0) > 0)
             {
                 this.ListViewTalks.HeightRequest = (count * this.ListViewTalks.RowHeight) - adjust;
-            }
-        }
-
-        private void UpdatePage()
-        {
-            // Load if none
-            if ((this.MeetupViewModel?.Talks?.Count ?? 0) == 0)
-            {
-                this.MeetupViewModel?.LoadTalksCommand?.Execute(null);
             }
         }
 
@@ -124,11 +112,6 @@ namespace DotNetRu.Clients.UI.Pages.Sessions
         {
             base.OnDisappearing();
             this.ListViewTalks.ItemTapped -= this.ListViewTapped;
-        }
-
-        public void OnResume()
-        {
-            this.UpdatePage();
         }
     }
 }

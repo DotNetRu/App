@@ -3,8 +3,10 @@
     using System;
     using System.Collections.Generic;    
 
-    public class MeetupModel : BaseModel
+    public class MeetupModel
     {
+        public string Id { get; set; }
+
         public string CommunityID { get; set; }
 
         public string Title { get; set; }
@@ -19,8 +21,8 @@
 
         public string VenueID { get; set; }
 
-        public IEnumerable<string> FriendIDs { get; set; }
+        public IEnumerable<FriendModel> Friends { get; set; }
 
-        public IEnumerable<string> TalkIDs { get; set; }
+        public IEnumerable<TalkModel> Talks { get; set; }
     }
 }

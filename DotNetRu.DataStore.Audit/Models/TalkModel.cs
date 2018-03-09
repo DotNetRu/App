@@ -7,11 +7,10 @@
 
     using Xamarin.Forms;
 
-    public class TalkModel : BaseModel
+    public class TalkModel : IModel
     {
         private const string Delimiter = "|";
 
-        private bool feedbackLeft;
         private string haystack;
 
         public TalkModel()
@@ -24,16 +23,11 @@
 
         public string Title { get; set; }
 
-        /// <summary>
-        /// Gets or sets the short title that is displayed in the navigation bar
-        /// For instance "Intro to X.Forms"
-        /// </summary>
-        /// <value>The short title.</value>
         public string ShortTitle { get; set; }
 
         public string Abstract { get; set; }
 
-        public ICollection<SpeakerModel> Speakers { get; set; }
+        public IEnumerable<SpeakerModel> Speakers { get; set; }
 
         public Room Room { get; set; }
 
@@ -90,7 +84,7 @@
             }
         }
 
-        public ImageSource SpeakerAvatar => this.Speakers.Count > 1
+        public ImageSource SpeakerAvatar => this.Speakers.Count() > 1
                                                 ? ImageSource.FromResource(
                                                     "DotNetRu.DataStore.Audit.Storage.SeveralSpeakers.png")
                                                 : this.Speakers.First().AvatarImage;
@@ -99,13 +93,6 @@
 
         public ImageSource CommunityLogo => ImageSource.FromResource(
             "DotNetRu.DataStore.Audit.Storage.logos." + this.MeetupModel.CommunityID + ".png");
-
-        public bool FeedbackLeft
-        {
-            get => this.feedbackLeft;
-
-            set => this.SetProperty(ref this.feedbackLeft, value);
-        }
 
         internal MeetupModel MeetupModel { get; set; }
     }

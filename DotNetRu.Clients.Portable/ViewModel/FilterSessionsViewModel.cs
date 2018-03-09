@@ -13,23 +13,8 @@
         public FilterSessionsViewModel(INavigation navigation)
             : base(navigation)
         {
-            this.AllCategory = new Category
-                                   {
-                                       Name = "All",
-                                       IsEnabled = true,
-                                       IsFiltered = this.Settings.ShowAllCategories
-                                   };
-
-            this.AllCategory.PropertyChanged += (sender, e) =>
-                {
-                    if (e.PropertyName == "IsFiltered")
-                    {
-                        this.SetShowAllCategories(this.AllCategory.IsFiltered);
-                    }
-                };
-
+            this.AllCategory = new Category { Name = "All" };
         }
-
 
         public Category AllCategory { get; }
 
@@ -42,9 +27,9 @@
             this.Settings.ShowAllCategories = showAll;
             foreach (var category in this.Categories)
             {
-                category.IsEnabled = !this.Settings.ShowAllCategories;
-                category.IsFiltered = this.Settings.ShowAllCategories
-                                      || this.Settings.FilteredCategories.Contains(category.Name);
+                //category.IsEnabled = !this.Settings.ShowAllCategories;
+                //category.IsFiltered = this.Settings.ShowAllCategories
+                //                      || this.Settings.FilteredCategories.Contains(category.Name);
             }
         }
 
@@ -55,9 +40,9 @@
 
             foreach (var category in items.OrderBy(c => c.Name))
             {
-                category.IsFiltered = this.Settings.ShowAllCategories
-                                      || this.Settings.FilteredCategories.Contains(category.Name);
-                category.IsEnabled = !this.Settings.ShowAllCategories;
+                //category.IsFiltered = this.Settings.ShowAllCategories
+                //                      || this.Settings.FilteredCategories.Contains(category.Name);
+                //category.IsEnabled = !this.Settings.ShowAllCategories;
                 this.Categories.Add(category);
             }
 
