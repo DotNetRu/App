@@ -7,7 +7,7 @@
 
     using Xamarin.Forms;
 
-    public class TalkModel : IModel
+    public class TalkModel
     {
         private const string Delimiter = "|";
 

@@ -4,7 +4,6 @@
 
     using DotNetRu.DataStore.Audit.Models;
     using DotNetRu.DataStore.Audit.RealmModels;
-    using DotNetRu.DataStore.Audit.Services;
 
     public static class MeetupExtensions
     {
@@ -18,7 +17,7 @@
                            Title = meetup.Name,
                            StartTime = meetup.Date.DateTime,
                            EndTime = meetup.Date.DateTime,
-                           Venue = RealmService.AuditRealm.Find<Venue>(meetup.VenueId).ToModel(),
+                           Venue = meetup.Venue.ToModel(),
                            Talks = meetup.Talks.Select(x => x.ToModel()),
                            Friends = meetup.Friends.Select(x => x.ToModel())
                        };

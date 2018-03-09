@@ -18,7 +18,7 @@
 
         public IList<Friend> Friends { get; }
 
-        public string VenueId { get; set; }
+        public Venue Venue { get; set; }
 
         public IList<Talk> Talks { get; }
     }
