@@ -93,9 +93,6 @@ ipch/
 *.vspx
 *.sap
 
-# TFS 2012 Local Workspace
-$tf/
-
 # Guidance Automation Toolkit
 *.gpState
 
@@ -192,8 +189,6 @@ _pkginfo.txt
 
 # Others
 ClientBin/
-~$*
-*~
 *.dbmdl
 *.dbproj.schemaview
 *.jfm
