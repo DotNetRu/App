@@ -4,7 +4,7 @@
 
     using Xamarin.Forms;
 
-    public sealed class SpeakerModel : IModel
+    public sealed class SpeakerModel
     {
         public string Id { get; set; }
 

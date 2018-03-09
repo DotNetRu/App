@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using CoreSpotlight;
-using DotNetRu.Clients.Portable.Interfaces;
+
 using DotNetRu.Clients.Portable.Model.Extensions;
 using DotNetRu.DataStore.Audit.Models;
 using DotNetRu.iOS.PlatformFeatures.ProActiveSuggestions;
@@ -16,33 +16,30 @@ namespace DotNetRu.iOS.PlatformFeatures.ProActiveSuggestions
 {
     using Xamarin.Forms.Platform.iOS;
 
-    public class SessionUserActivity : IPlatformSpecificExtension<TalkModel>
+    public class SessionUserActivity
     {
-        private NSUserActivity _activity;
+        private NSUserActivity activity;
 
         public Task Execute(TalkModel entity)
         {
-            if (this._activity != null)
-            {
-                this._activity.Invalidate();
-            }
+            this.activity?.Invalidate();
 
-            this._activity = new NSUserActivity($"{AboutThisApp.PackageName}.session") { Title = entity.Title, };
+            this.activity = new NSUserActivity($"{AboutThisApp.PackageName}.session") { Title = entity.Title, };
 
             this.RegisterHandoff(entity);
 
-            this._activity.BecomeCurrent();
+            this.activity.BecomeCurrent();
 
             return Task.CompletedTask;
         }
 
         public Task Finish()
         {
-            this._activity?.ResignCurrent();
+            this.activity?.ResignCurrent();
             return Task.CompletedTask;
         }
 
-        void RegisterHandoff(TalkModel talkModel)
+        private void RegisterHandoff(TalkModel talkModel)
         {
             var userInfo = new NSMutableDictionary();
             var uri = new NSString(talkModel.GetAppLink().AppLinkUri.AbsoluteUri);
@@ -61,25 +58,36 @@ namespace DotNetRu.iOS.PlatformFeatures.ProActiveSuggestions
                 keywords.Add(new NSString(category.Name));
             }
 
-            this._activity.Keywords = new NSSet<NSString>(keywords);
-            this._activity.WebPageUrl = NSUrl.FromString(talkModel.GetWebUrl());
-            this._activity.UserInfo = userInfo;
+            this.activity.Keywords = new NSSet<NSString>(keywords);
+            this.activity.WebPageUrl = NSUrl.FromString(talkModel.GetWebUrl());
+            this.activity.UserInfo = userInfo;
 
             // Provide context
-            var attributes = new CSSearchableItemAttributeSet($"{AboutThisApp.PackageName}.session");
-            attributes.Keywords = keywords.ToArray().Select(k => k.ToString()).ToArray();
-            attributes.Url = NSUrl.FromString(talkModel.GetAppLink().AppLinkUri.AbsoluteUri);
+            var attributes =
+                new CSSearchableItemAttributeSet($"{AboutThisApp.PackageName}.session")
+                    {
+                        Keywords =
+                            keywords.ToArray()
+                                .Select(
+                                    k =>
+                                        k.ToString())
+                                .ToArray(),
+                        Url = NSUrl.FromString(
+                            talkModel.GetAppLink()
+                                .AppLinkUri
+                                .AbsoluteUri)
+                    };
             if (talkModel.StartTime.HasValue && talkModel.StartTime > DateTime.MinValue)
             {
                 attributes.DueDate = talkModel.StartTime.Value.ToNSDate();
                 attributes.StartDate = talkModel.StartTime.Value.ToNSDate();
-                attributes.EndDate = talkModel.EndTime.Value.ToNSDate();
+                attributes.EndDate = talkModel.EndTime?.ToNSDate();
 
                 attributes.ImportantDates = new[] { attributes.StartDate, attributes.EndDate };
             }
 
-            this._activity.ContentAttributeSet = attributes;
-            this._activity.EligibleForHandoff = true;
+            this.activity.ContentAttributeSet = attributes;
+            this.activity.EligibleForHandoff = true;
         }
     }
 }
