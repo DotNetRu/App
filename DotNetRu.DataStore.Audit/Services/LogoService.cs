@@ -6,7 +6,7 @@
     [Preserve]
     public class LogoService
     {
-        private static string logoPath = "DotNetRu.DataStore.Audit.Storage.logos.";
+        private static string logoPath = "DotNetRu.DataStore.Audit.Images.logos.";
 
         public static ImageSource DotNetRuLogo => ImageSource.FromResource(logoPath + "DotNetRu.png");
 

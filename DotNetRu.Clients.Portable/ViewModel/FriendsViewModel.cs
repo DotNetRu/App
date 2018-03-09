@@ -10,6 +10,8 @@ using Xamarin.Forms;
 
 namespace DotNetRu.Clients.Portable.ViewModel
 {
+    using DotNetRu.DataStore.Audit.RealmModels;
+
     public class FriendsViewModel : ViewModelBase
     {
         private ICommand loadFriendsCommand;
@@ -54,6 +56,9 @@ namespace DotNetRu.Clients.Portable.ViewModel
             try
             {
                 this.IsBusy = true;
+
+                //this.Friends.ReplaceRange(RealmService.Get<Friend, FriendModel>());
+
                 this.Friends.ReplaceRange(FriendService.Friends.OrderByDescending(friend => friend.NumberOfMeetups));
             }
             catch (Exception ex)

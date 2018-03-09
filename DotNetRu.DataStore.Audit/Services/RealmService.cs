@@ -1,7 +1,11 @@
 ﻿namespace DotNetRu.DataStore.Audit.Services
 {
     using System;
+    using System.Collections.Generic;
     using System.IO;
+    using System.Linq;
+
+    using DotNetRu.DataStore.Audit.Extensions;
 
     using Realms;
 
@@ -33,6 +37,12 @@
                 resFilestream.Read(resultBytes, 0, resultBytes.Length);
                 return resultBytes;
             }
+        }
+
+        public static IEnumerable<TAppModel> Get<TRealmModel, TAppModel>() where TRealmModel : RealmObject
+        {
+            var entities = RealmService.AuditRealm.All<TRealmModel>().ToList();
+            return entities.Select(entity => entity.ToModel<TRealmModel, TAppModel>());
         }
     }
 }
