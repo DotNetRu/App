@@ -15,7 +15,7 @@
 
         private static IEnumerable<FriendModel> GetFriends()
         {
-            var friends = RealmService.AuditRealm.All<Friend>();
+            var friends = RealmService.AuditRealm.All<Friend>().ToList();
             return friends.Select(friendEntity => friendEntity.ToModel());
         }
     }

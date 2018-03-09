@@ -6,6 +6,7 @@
 
     public class Talk : RealmObject
     {
+        [PrimaryKey]
         public string Id { get; set; }
 
         public IList<Speaker> Speakers { get; }

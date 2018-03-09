@@ -15,7 +15,7 @@
 
         private static IEnumerable<VenueModel> GetVenues()
         {
-            var venueEntities = RealmService.AuditRealm.All<Venue>();
+            var venueEntities = RealmService.AuditRealm.All<Venue>().ToList();
             return venueEntities.Select(venueEntity => venueEntity.ToModel());
         }
     }

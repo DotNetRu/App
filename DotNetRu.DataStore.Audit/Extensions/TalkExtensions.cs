@@ -4,7 +4,7 @@
     using DotNetRu.DataStore.Audit.RealmModels;
     using DotNetRu.DataStore.Audit.Services;
 
-    public static class TalkEntityExtensions
+    public static class TalkExtensions
     {
         public static TalkModel ToModel(this Talk talkEntity)
         {
