@@ -162,7 +162,7 @@
     <PackageReference Include="System.Reflection.Emit">
       <Version>4.3.0</Version>
       <ExcludeAssets>all</ExcludeAssets>
-     </PackageReference>
+    </PackageReference>
     <PackageReference Include="Xam.Plugin.Connectivity" Version="3.1.1" />
     <PackageReference Include="Xam.Plugins.Forms.ImageCircle" Version="2.0.2" />
     <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
@@ -347,4 +347,9 @@
   <ItemGroup>
     <None Include="FodyWeavers.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="android-netstandard-fix.xml" />
+  </ItemGroup>
+
+  <Import Project="android-netstandard-fix.xml" />
 </Project>
