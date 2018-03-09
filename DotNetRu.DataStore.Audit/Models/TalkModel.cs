@@ -85,8 +85,8 @@
 
         public string SpeakerNames => string.Join(",", this.Speakers.Select(x => x.FullName));
 
-        //public ImageSource CommunityLogo => ImageSource.FromResource(
-        //    "DotNetRu.DataStore.Audit.Storage.logos." + this.MeetupModel.CommunityID + ".png");
+        public ImageSource CommunityLogo => ImageSource.FromResource(
+            "DotNetRu.DataStore.Audit.Images.logos." + this.MeetupModel.CommunityID + ".png");
 
         public MeetupModel MeetupModel { get; set; }
     }
