@@ -1,34 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using CoreGraphics;
-using DotNetRu.DataStore.Audit.Models;
-using DotNetRu.Utils.Helpers;
-using Foundation;
-using MvvmHelpers;
-using NotificationCenter;
-using UIKit;
-
-namespace DotNetRu.iOS.UpNext
+﻿namespace DotNetRu.iOS.UpNext
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
+    using CoreGraphics;
+
+    using DotNetRu.DataStore.Audit.Models;
+    using DotNetRu.Utils.Helpers;
+
+    using Foundation;
+
+    using MvvmHelpers;
+
+    using NotificationCenter;
+
+    using UIKit;
+
     public partial class TodayViewController : UIViewController, INCWidgetProviding
     {
-        private IEnumerable<Grouping<string, TalkModel>> _data;
+        private IEnumerable<Grouping<string, TalkModel>> data;
 
-        private CGSize _collapsedSize;
+        private CGSize collapsedSize;
 
         protected TodayViewController(IntPtr handle)
             : base(handle)
         {
             // Note: this .ctor should not contain any initialization logic.
-        }
-
-        public override void DidReceiveMemoryWarning()
-        {
-            // Releases the view if it doesn't have a superview.
-            base.DidReceiveMemoryWarning();
-
-            // Release any cached data, images, etc that aren't in use.
         }
 
         public override void ViewDidLoad()
@@ -38,7 +36,7 @@ namespace DotNetRu.iOS.UpNext
             this.ExtensionContext.SetWidgetLargestAvailableDisplayMode(NCWidgetDisplayMode.Expanded);
 
             // Get the possible sizes
-            this._collapsedSize = this.ExtensionContext.GetWidgetMaximumSize(NCWidgetDisplayMode.Compact);
+            this.collapsedSize = this.ExtensionContext.GetWidgetMaximumSize(NCWidgetDisplayMode.Compact);
 
             if (this.IsInitialized())
             {
@@ -82,9 +80,9 @@ namespace DotNetRu.iOS.UpNext
             {
                 try
                 {
-                    this._data = null;
+                    this.data = null;
 
-                    if (this._data?.Any() ?? false)
+                    if (this.data?.Any() ?? false)
                     {
                         this.MainTitleLabel.Hidden = true;
                         this.SessionsTable.Hidden = false;
@@ -120,14 +118,14 @@ namespace DotNetRu.iOS.UpNext
         {
             if (this.ExtensionContext.GetWidgetActiveDisplayMode() == NCWidgetDisplayMode.Compact)
             {
-                this.PreferredContentSize = this._collapsedSize;
+                this.PreferredContentSize = this.collapsedSize;
             }
             else
             {
-                var height = (!this._data?.Any() ?? true)
+                var height = (!this.data?.Any() ?? true)
                                  ? 100
-                                 : (this._data.Count() * this.SessionsTable.SectionHeaderHeight)
-                                   + (this._data.SelectMany(g => g.AsEnumerable()).Count()
+                                 : (this.data.Count() * this.SessionsTable.SectionHeaderHeight)
+                                   + (this.data.SelectMany(g => g.AsEnumerable()).Count()
                                       * this.SessionsTable.EstimatedRowHeight) + this.SessionsTable.SectionFooterHeight + 70;
                 Console.WriteLine($"Requesting widget height: {height}");
                 this.PreferredContentSize = new CGSize(0, height);

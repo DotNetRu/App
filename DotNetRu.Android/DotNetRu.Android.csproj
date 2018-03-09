@@ -20,7 +20,6 @@
     <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
     <AssemblyName>DotNetRu.Droid</AssemblyName>
-    <GenerateManifests>false</GenerateManifests>
     <SolutionDir>..\</SolutionDir>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
