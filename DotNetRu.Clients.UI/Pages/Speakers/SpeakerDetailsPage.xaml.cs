@@ -79,13 +79,6 @@
 
             this.ListViewFollow.ItemTapped += this.ListViewTapped;
             this.ListViewSessions.ItemTapped += this.ListViewTapped;
-
-            if (this.SpeakerDetailsViewModel.Talks?.Count > 0)
-            {
-                return;
-            }
-
-            this.SpeakerDetailsViewModel.ExecuteLoadTalksCommand();
         }
 
         private void ListViewTapped(object sender, ItemTappedEventArgs e)
