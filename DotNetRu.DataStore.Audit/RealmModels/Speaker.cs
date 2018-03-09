@@ -1,5 +1,7 @@
 ﻿namespace DotNetRu.DataStore.Audit.RealmModels
 {
+    using System.Linq;
+
     using Realms;
 
     public class Speaker : RealmObject
@@ -26,5 +28,8 @@
         public byte[] AvatarSmall { get; set; }
 
         public byte[] Avatar { get; set; }
+
+        [Backlink(nameof(Talk.Speakers))]
+        public IQueryable<Talk> Talks { get; }
     }
 }
