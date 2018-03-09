@@ -78,7 +78,7 @@
 
         public SpeakerModel SpeakerModel { get; set; }
 
-        public IEnumerable<TalkModel> Talks => TalkService.GetTalks(this.SpeakerModel.Id);
+        public IEnumerable<TalkModel> Talks => this.SpeakerModel.Talks;
 
         public ObservableRangeCollection<MenuItem> FollowItems { get; } = new ObservableRangeCollection<MenuItem>();
 

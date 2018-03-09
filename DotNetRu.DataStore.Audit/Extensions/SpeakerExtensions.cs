@@ -1,10 +1,10 @@
 ﻿namespace DotNetRu.DataStore.Audit.Extensions
 {
     using System.IO;
+    using System.Linq;
 
     using DotNetRu.DataStore.Audit.Models;
     using DotNetRu.DataStore.Audit.RealmModels;
-    using DotNetRu.DataStore.Audit.Services;
 
     using Xamarin.Forms;
 
@@ -26,8 +26,9 @@
                            BlogUrl = speaker.BlogUrl,
                            Biography = speaker.Description,
                            AvatarImage = ImageSource.FromStream(() => avatarSmallMemoryStream),
-                           PhotoImage = ImageSource.FromStream(() => avatarMemoryStream)
-            };
+                           PhotoImage = ImageSource.FromStream(() => avatarMemoryStream),
+                           Talks = speaker.Talks.ToList().Select(x => x.ToModel())
+                       };
         }
     }
 }
