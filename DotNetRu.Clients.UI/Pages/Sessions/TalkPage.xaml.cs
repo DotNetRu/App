@@ -7,20 +7,12 @@
     using DotNetRu.Clients.UI.Helpers;
     using DotNetRu.Clients.UI.Pages.Speakers;
     using DotNetRu.DataStore.Audit.Models;
-    using DotNetRu.DataStore.Audit.Services;
 
     using Xamarin.Forms;
 
     public partial class TalkPage
     {
         private TalkViewModel talkViewModel;
-
-        /// <summary>
-        /// Design-time only
-        /// </summary>
-        public TalkPage() : this(TalkService.Talks.First())
-        {
-        }
 
         public TalkPage(TalkModel talkModel)
         {
