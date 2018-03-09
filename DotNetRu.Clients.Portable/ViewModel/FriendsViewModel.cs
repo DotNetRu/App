@@ -1,16 +1,17 @@
-﻿using System;
-using System.Linq;
-using System.Windows.Input;
-using DotNetRu.DataStore.Audit.Models;
-using DotNetRu.DataStore.Audit.Services;
-using DotNetRu.Utils.Helpers;
-using FormsToolkit;
-using MvvmHelpers;
-using Xamarin.Forms;
-
-namespace DotNetRu.Clients.Portable.ViewModel
+﻿namespace DotNetRu.Clients.Portable.ViewModel
 {
-    using DotNetRu.DataStore.Audit.RealmModels;
+    using System;
+    using System.Windows.Input;
+
+    using DotNetRu.DataStore.Audit.Models;
+    using DotNetRu.DataStore.Audit.Services;
+    using DotNetRu.Utils.Helpers;
+
+    using FormsToolkit;
+
+    using MvvmHelpers;
+
+    using Xamarin.Forms;
 
     public class FriendsViewModel : ViewModelBase
     {
@@ -57,9 +58,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
             {
                 this.IsBusy = true;
 
-                //this.Friends.ReplaceRange(RealmService.Get<Friend, FriendModel>());
-
-                this.Friends.ReplaceRange(FriendService.Friends.OrderByDescending(friend => friend.NumberOfMeetups));
+                this.Friends.ReplaceRange(RealmService.Get<FriendModel>());
             }
             catch (Exception ex)
             {

@@ -49,7 +49,7 @@ namespace DotNetRu.Clients.UI
 
             AppResources.Culture = new CultureInfo(language.GetLanguageCode());
 
-            RealmService.InitializeRealm();
+            RealmService.Initialize();
 
             this.InitializeComponent();
 

@@ -16,11 +16,10 @@
     {
         private TalkModel selectedTalkModel;
 
-        public MeetupViewModel(INavigation navigation, MeetupModel meetupModel = null, VenueModel venueModel = null)
+        public MeetupViewModel(INavigation navigation, MeetupModel meetupModel = null)
             : base(navigation)
         {
             this.MeetupModel = meetupModel;
-            this.VenueModel = venueModel;
 
             MessagingCenter.Subscribe<LocalizedResources>(
                 this,
@@ -34,7 +33,7 @@
 
         public MeetupModel MeetupModel { get; set; }
 
-        public VenueModel VenueModel { get; set; }
+        public VenueModel VenueModel => this.MeetupModel.Venue;
 
         public string MeetupTime => this.MeetupModel.StartTime?.ToString("D");
 

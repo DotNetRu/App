@@ -19,7 +19,7 @@
 
         public bool IsAllDay { get; set; }
 
-        public string VenueID { get; set; }
+        public VenueModel Venue { get; set; }
 
         public IEnumerable<FriendModel> Friends { get; set; }
 

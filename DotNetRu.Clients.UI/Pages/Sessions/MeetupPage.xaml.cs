@@ -6,7 +6,6 @@
     using DotNetRu.Clients.Portable.ViewModel;
     using DotNetRu.Clients.UI.Helpers;
     using DotNetRu.DataStore.Audit.Models;
-    using DotNetRu.DataStore.Audit.Services;
 
     using Xamarin.Forms;
 
@@ -14,39 +13,11 @@
     {
         private MeetupViewModel meetupViewModel;
 
-        /// <summary>
-        /// Design-time only
-        /// </summary>
-        public MeetupPage()
-        {
-            this.InitializeComponent();
-
-            var meetupModel = MeetupService.Meetups.First();
-                
-            this.BindingContext = this.meetupViewModel = new MeetupViewModel(this.Navigation, meetupModel);
-
-            // this.ToolbarItems.Add(this.filterItem);
-            this.ListViewTalks.ItemSelected += async (sender, e) =>
-                {
-                    if (!(this.ListViewTalks.SelectedItem is TalkModel session))
-                    {
-                        return;
-                    }
-
-                    var sessionDetails = new TalkPage(session);
-
-                    await NavigationService.PushAsync(this.Navigation, sessionDetails);
-                    this.ListViewTalks.SelectedItem = null;
-                };
-        }
-
         public MeetupPage(MeetupModel meetup = null)
         {
             this.InitializeComponent();
 
-            var venue = VenueService.Venues.Single(x => x.Id == meetup.VenueID);
-
-            this.BindingContext = this.meetupViewModel = new MeetupViewModel(this.Navigation, meetup, venue);
+            this.BindingContext = this.meetupViewModel = new MeetupViewModel(this.Navigation, meetup);
 
             // this.filterItem = new ToolbarItem { Text = "Filter" };
 
@@ -84,16 +55,6 @@
         private MeetupViewModel MeetupViewModel =>
             this.meetupViewModel ?? (this.meetupViewModel = this.BindingContext as MeetupViewModel);
 
-        private void ListViewTapped(object sender, ItemTappedEventArgs e)
-        {
-            if (!(sender is ListView list))
-            {
-                return;
-            }
-
-            list.SelectedItem = null;
-        }
-
         protected override void OnAppearing()
         {
             base.OnAppearing();
@@ -112,6 +73,16 @@
         {
             base.OnDisappearing();
             this.ListViewTalks.ItemTapped -= this.ListViewTapped;
+        }
+
+        private void ListViewTapped(object sender, ItemTappedEventArgs e)
+        {
+            if (!(sender is ListView list))
+            {
+                return;
+            }
+
+            list.SelectedItem = null;
         }
     }
 }
