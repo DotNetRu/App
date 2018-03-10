@@ -3,8 +3,6 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    using Xamarin.Forms;
-
     public class FriendModel
     {
         public string Id { get; set; }
@@ -48,8 +46,8 @@
 
         public IEnumerable<MeetupModel> Meetups { get; set; }
 
-        public ImageSource LogoSmallImage { get; set; }
+        public byte[] LogoSmall { get; set; }
 
-        public ImageSource LogoImage { get; set; }
+        public byte[] Logo { get; set; }
     }
 }

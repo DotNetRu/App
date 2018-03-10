@@ -99,7 +99,7 @@
 
         private async void OnTapGestureRecognizerTapped(object sender, EventArgs args)
         {
-            await NavigationService.PushAsync(this.Navigation, new SpeakerFacePage(this.SpeakerModel.PhotoImage));
+            await NavigationService.PushAsync(this.Navigation, new SpeakerFacePage(this.SpeakerModel.Avatar));
         } 
     }
 }
