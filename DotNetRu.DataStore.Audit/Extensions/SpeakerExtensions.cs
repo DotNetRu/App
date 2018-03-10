@@ -1,20 +1,14 @@
 ﻿namespace DotNetRu.DataStore.Audit.Extensions
 {
-    using System.IO;
     using System.Linq;
 
     using DotNetRu.DataStore.Audit.Models;
     using DotNetRu.DataStore.Audit.RealmModels;
 
-    using Xamarin.Forms;
-
     public static class SpeakerExtensions
     {
         public static SpeakerModel ToModel(this Speaker speaker)
         {
-            var avatarSmallMemoryStream = new MemoryStream(speaker.AvatarSmall);
-            var avatarMemoryStream = new MemoryStream(speaker.Avatar);
-
             return new SpeakerModel
                        {
                            Id = speaker.Id,
@@ -25,8 +19,8 @@
                            TwitterUrl = speaker.TwitterUrl,
                            BlogUrl = speaker.BlogUrl,
                            Biography = speaker.Description,
-                           AvatarImage = ImageSource.FromStream(() => avatarSmallMemoryStream),
-                           PhotoImage = ImageSource.FromStream(() => avatarMemoryStream),
+                           AvatarSmall = speaker.AvatarSmall,
+                           Avatar = speaker.Avatar,
                            Talks = speaker.Talks.ToList().Select(x => x.ToModel())
                        };
         }

@@ -24,7 +24,7 @@ namespace DotNetRu.Clients.UI.Pages.Events
                         return;
                     }
 
-                    var eventSessions = new MeetupPage(ev);
+                    var eventSessions = new MeetupDetailsPage(ev);
                     await NavigationService.PushAsync(this.Navigation, eventSessions);
                     this.ListViewEvents.SelectedItem = null;
                 };

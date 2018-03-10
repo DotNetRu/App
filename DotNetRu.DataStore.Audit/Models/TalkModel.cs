@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using System.Text;
 
@@ -81,7 +82,7 @@
         public ImageSource SpeakerAvatar => this.Speakers.Count() > 1
                                                 ? ImageSource.FromResource(
                                                     "DotNetRu.DataStore.Audit.Storage.SeveralSpeakers.png")
-                                                : this.Speakers.First().AvatarImage;
+                                                : ImageSource.FromStream(() => new MemoryStream(this.Speakers.Single().AvatarSmall));
 
         public string SpeakerNames => string.Join(",", this.Speakers.Select(x => x.FullName));
 

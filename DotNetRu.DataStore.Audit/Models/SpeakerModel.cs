@@ -2,8 +2,6 @@
 {
     using System.Collections.Generic;
 
-    using Xamarin.Forms;
-
     public sealed class SpeakerModel
     {
         public string Id { get; set; }
@@ -13,11 +11,6 @@
         public string LastName { get; set; }
 
         public string Biography { get; set; }
-
-        /// <summary>
-        /// This is a small Square Image (150x150 is good)
-        /// </summary>
-        public string AvatarUrl { get; set; }
 
         /// <summary>
         /// Name of position such as CEO, Head of Marketing
@@ -70,8 +63,8 @@
             }
         }
 
-        public ImageSource AvatarImage { get; set; }
+        public byte[] AvatarSmall { get; set; }
 
-        public ImageSource PhotoImage { get; set; }
+        public byte[] Avatar { get; set; }
     }
 }

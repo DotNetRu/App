@@ -69,10 +69,10 @@
                        Style="{DynamicResource EvolveListItemTextStyle}"/>
                             </StackLayout>
                             <controls:NonScrollableListView
-                  x:Name="ListViewSpeakers"
-                  ItemsSource="{Binding TalkModel.Speakers}"
-                  StyleId="SessionSpeakers"
-                  RowHeight="88">
+                                  x:Name="ListViewSpeakers"
+                                  ItemsSource="{Binding TalkModel.Speakers}"
+                                  StyleId="SessionSpeakers"
+                                  RowHeight="88">
                                 <controls:NonScrollableListView.SeparatorColor>
                                     <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ListSeparator}"/>
                                 </controls:NonScrollableListView.SeparatorColor>
@@ -94,11 +94,11 @@
                             <controls:LabelSection Text="{Binding Resources[Materials]}"/>
                             <controls:HeaderDivider/>
                             <controls:NonScrollableListView
-                  ItemsSource="{Binding SessionMaterialItems}"
-                  VerticalOptions="Start"
-                  x:Name="ListViewSessionMaterial"
-                  SelectedItem="{Binding SelectedSessionMaterialItem, Mode=TwoWay}"
-                  RowHeight="44">
+                                  ItemsSource="{Binding SessionMaterialItems}"
+                                  VerticalOptions="Start"
+                                  x:Name="ListViewSessionMaterial"
+                                  SelectedItem="{Binding SelectedSessionMaterialItem, Mode=TwoWay}"
+                                  RowHeight="44">
                                 <controls:NonScrollableListView.SeparatorColor>
                                     <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ListSeparator}"/>
                                 </controls:NonScrollableListView.SeparatorColor>
@@ -140,9 +140,9 @@
                          IsVisible="{Binding TalkModel.FeedbackLeft}"
                          Style="{DynamicResource EvolveListItemTextStyle}"/>
                                 <Button
-                    IsVisible="{Binding TalkModel.FeedbackLeft, Converter={StaticResource InvertedBooleanConverter}}"
-                    Text="Rate this Session"
-                    x:Name="ButtonRate">
+                                    IsVisible="{Binding TalkModel.FeedbackLeft, Converter={StaticResource InvertedBooleanConverter}}"
+                                    Text="Rate this Session"
+                                    x:Name="ButtonRate">
                                     <Button.FontAttributes>
                                         <OnPlatform x:TypeArguments="FontAttributes" iOS="Bold"/>
                                     </Button.FontAttributes>

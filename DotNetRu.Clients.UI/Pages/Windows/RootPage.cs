@@ -83,7 +83,7 @@
                         this.pages.Add(menuId, new NavigationPage(new NewsPage()));
                         break;
                     case AppPage.Meetup: // sessions
-                        this.pages.Add(menuId, new NavigationPage(new MeetupPage()));
+                        this.pages.Add(menuId, new NavigationPage(new MeetupDetailsPage()));
                         break;
                     case AppPage.Speakers: // sessions
                         this.pages.Add(menuId, new NavigationPage(new SpeakersPage()));

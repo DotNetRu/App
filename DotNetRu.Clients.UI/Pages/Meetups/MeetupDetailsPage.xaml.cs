@@ -9,11 +9,11 @@
 
     using Xamarin.Forms;
 
-    public partial class MeetupPage
+    public partial class MeetupDetailsPage
     {
         private MeetupViewModel meetupViewModel;
 
-        public MeetupPage(MeetupModel meetup = null)
+        public MeetupDetailsPage(MeetupModel meetup = null)
         {
             this.InitializeComponent();
 

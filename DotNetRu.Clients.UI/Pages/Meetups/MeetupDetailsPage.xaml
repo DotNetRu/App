@@ -5,7 +5,7 @@
     xmlns:pages="clr-namespace:DotNetRu.Clients.UI.Pages;assembly=DotNetRu.Clients.UI"
     xmlns:controls="clr-namespace:DotNetRu.Clients.UI.Controls;assembly=DotNetRu.Clients.UI"
     xmlns:cells="clr-namespace:DotNetRu.Clients.UI.Cells;assembly=DotNetRu.Clients.UI"
-    x:Class="DotNetRu.Clients.UI.Pages.Sessions.MeetupPage"
+    x:Class="DotNetRu.Clients.UI.Pages.Sessions.MeetupDetailsPage"
     x:Name="Meetup"
     Title="{Binding MeetupModel.Title}"
     Icon="tab_sessions.png"

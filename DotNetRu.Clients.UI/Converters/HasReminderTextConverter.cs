@@ -5,7 +5,7 @@
 
     using Xamarin.Forms;
 
-    public class HasReminderEventTextConverter : IValueConverter
+    public class HasReminderTextConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -14,7 +14,7 @@
                 return string.Empty;
             }
 
-            return (bool)value ? "Remove from Calendar" : "Add to Calendar";            
+            return (bool)value ? "Remove from Calendar" : "Add to Calendar";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -23,4 +23,3 @@
         }
     }
 }
-
