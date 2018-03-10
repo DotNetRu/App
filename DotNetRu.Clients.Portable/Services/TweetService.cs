@@ -1,4 +1,4 @@
-﻿namespace DotNetRu.Clients.Portable
+﻿namespace DotNetRu.Clients.Portable.Services
 {
     using System;
     using System.Collections.Generic;
@@ -11,7 +11,7 @@
 
     using LinqToTwitter;
 
-    public class TweetHelper
+    public class TweetService
     {
         public static async Task<List<Tweet>> Get()
         {
