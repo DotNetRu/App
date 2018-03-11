@@ -2,9 +2,10 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.IO;
     using System.Linq;
     using System.Text;
+
+    using DotNetRu.DataStore.Audit.Services;
 
     using Xamarin.Forms;
 
@@ -79,10 +80,10 @@
             }
         }
 
-        public ImageSource SpeakerAvatar => this.Speakers.Count() > 1
-                                                ? ImageSource.FromResource(
+        public byte[] SpeakerAvatar => this.Speakers.Count() > 1
+                                                ? RealmService.ExtractResource(
                                                     "DotNetRu.DataStore.Audit.Storage.SeveralSpeakers.png")
-                                                : ImageSource.FromStream(() => new MemoryStream(this.Speakers.Single().AvatarSmall));
+                                                : this.Speakers.Single().AvatarSmall;
 
         public string SpeakerNames => string.Join(",", this.Speakers.Select(x => x.FullName));
 
