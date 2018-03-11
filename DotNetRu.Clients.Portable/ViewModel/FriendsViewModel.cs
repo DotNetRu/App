@@ -1,6 +1,7 @@
 ﻿namespace DotNetRu.Clients.Portable.ViewModel
 {
     using System;
+    using System.Linq;
     using System.Windows.Input;
 
     using DotNetRu.DataStore.Audit.Models;
@@ -58,7 +59,7 @@
             {
                 this.IsBusy = true;
 
-                this.Friends.ReplaceRange(RealmService.Get<FriendModel>());
+                this.Friends.ReplaceRange(RealmService.Get<FriendModel>().OrderByDescending(x => x.NumberOfMeetups));
             }
             catch (Exception ex)
             {
