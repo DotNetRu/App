@@ -15,6 +15,7 @@
 
     public class RealmService
     {
+        private const string RealmResourceName = "DotNetRu.DataStore.Audit.Audit.realm";
         private static Realm auditRealm;
 
         public static Realm AuditRealm => auditRealm ?? (auditRealm = Realm.GetInstance("Audit.realm"));
@@ -32,12 +33,28 @@
             return AuditRealm.All(realmType.Name).AsEnumerable().Select(Mapper.Map<TAppModel>);
         }
 
+        public static byte[] ExtractResource(string resourceName)
+        {
+            var assembly = typeof(RealmService).Assembly;
+            using (Stream resFilestream = assembly.GetManifestResourceStream(resourceName))
+            {
+                if (resFilestream == null)
+                {
+                    return null;
+                }
+
+                byte[] resultBytes = new byte[resFilestream.Length];
+                resFilestream.Read(resultBytes, 0, resultBytes.Length);
+                return resultBytes;
+            }
+        }
+
         private static void InitializeRealm()
         {
             var realmDB = "Audit.realm";
             var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
 
-            File.WriteAllBytes(Path.Combine(documentsPath, realmDB), ExtractRealmBytes());
+            File.WriteAllBytes(Path.Combine(documentsPath, realmDB), ExtractResource(RealmResourceName));
         }
 
         private static void InitializeAutoMapper()
@@ -51,22 +68,6 @@
                         cfg.CreateMap<Talk, TalkModel>().ConvertUsing(x => x.ToModel());
                         cfg.CreateMap<Meetup, MeetupModel>().ConvertUsing(x => x.ToModel());
                     });
-        }
-
-        private static byte[] ExtractRealmBytes()
-        {
-            var assembly = typeof(RealmService).Assembly;
-            using (Stream resFilestream = assembly.GetManifestResourceStream("DotNetRu.DataStore.Audit.Audit.realm"))
-            {
-                if (resFilestream == null)
-                {
-                    return null;
-                }
-
-                byte[] resultBytes = new byte[resFilestream.Length];
-                resFilestream.Read(resultBytes, 0, resultBytes.Length);
-                return resultBytes;
-            }
         }
     }
 }
