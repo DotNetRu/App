@@ -20,6 +20,7 @@
     using XamarinEvolve.Clients.Portable;
 
     using MenuItem = DotNetRu.Clients.Portable.Model.MenuItem;
+    using SettingsPage = DotNetRu.Clients.UI.Pages.About.SettingsPage;
 
     public class RootPageWindows : MasterDetailPage
     {

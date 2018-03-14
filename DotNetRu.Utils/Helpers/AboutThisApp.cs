@@ -38,12 +38,6 @@
         public const string SpeakersSiteSubdirectory = "Speakers";
 
         public const string Copyright = "Copyright 2018 - DotNetRu";
-
-        public const string Credits =
-            "The DotNetRu mobile app were handcrafted by DotNetRu, based on the great work done by Xamarin.\n\n"
-            + "DotNetRu Team:\n" + "Anatoly Kulakov\n" + "Pavel Fedotovsky\n" + "Yury Belousov\n"
-            + "Sergey Polezhaev\n\n" + "Many thanks to James Montemagno!\n\n"
-            + "...and of course you!";
     }
 }
 
