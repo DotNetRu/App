@@ -5,13 +5,14 @@
     using System.Linq;
     using System.Text;
 
+    using DotNetRu.DataStore.Audit.Services;
+
     using Xamarin.Forms;
 
-    public class TalkModel : BaseModel
+    public class TalkModel
     {
         private const string Delimiter = "|";
 
-        private bool feedbackLeft;
         private string haystack;
 
         public TalkModel()
@@ -24,16 +25,11 @@
 
         public string Title { get; set; }
 
-        /// <summary>
-        /// Gets or sets the short title that is displayed in the navigation bar
-        /// For instance "Intro to X.Forms"
-        /// </summary>
-        /// <value>The short title.</value>
         public string ShortTitle { get; set; }
 
         public string Abstract { get; set; }
 
-        public ICollection<SpeakerModel> Speakers { get; set; }
+        public IEnumerable<SpeakerModel> Speakers { get; set; }
 
         public Room Room { get; set; }
 
@@ -42,12 +38,6 @@
         public DateTime? StartTime => this.MeetupModel.StartTime;
 
         public DateTime? EndTime => this.MeetupModel.EndTime;
-
-        /// <summary>
-        /// Gets or sets the level of the session [100 - 400]
-        /// </summary>
-        /// <value>The session level.</value>
-        public string Level { get; set; }
 
         public string PresentationUrl { get; set; }
 
@@ -90,23 +80,16 @@
             }
         }
 
-        public ImageSource SpeakerAvatar => this.Speakers.Count > 1
-                                                ? ImageSource.FromResource(
+        public byte[] SpeakerAvatar => this.Speakers.Count() > 1
+                                                ? RealmService.ExtractResource(
                                                     "DotNetRu.DataStore.Audit.Storage.SeveralSpeakers.png")
-                                                : this.Speakers.First().AvatarImage;
+                                                : this.Speakers.Single().Avatar;
 
         public string SpeakerNames => string.Join(",", this.Speakers.Select(x => x.FullName));
 
         public ImageSource CommunityLogo => ImageSource.FromResource(
-            "DotNetRu.DataStore.Audit.Storage.logos." + this.MeetupModel.CommunityID + ".png");
+            "DotNetRu.DataStore.Audit.Images.logos." + this.MeetupModel.CommunityID + ".png");
 
-        public bool FeedbackLeft
-        {
-            get => this.feedbackLeft;
-
-            set => this.SetProperty(ref this.feedbackLeft, value);
-        }
-
-        internal MeetupModel MeetupModel { get; set; }
+        public MeetupModel MeetupModel { get; set; }
     }
 }

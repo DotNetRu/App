@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
-    using System.Globalization;
     using System.Linq;
     using System.Windows.Input;
 
@@ -81,7 +80,7 @@
                 // TODO: update data when we'll have finally managed to get them directly from github
                 if (!this.Speakers.Any() || force)
                 {
-                    IEnumerable<SpeakerModel> speakers = SpeakerService.Speakers;
+                    IEnumerable<SpeakerModel> speakers = RealmService.Get<SpeakerModel>();
                     this.SortSpeakers(speakers);
                 }
 

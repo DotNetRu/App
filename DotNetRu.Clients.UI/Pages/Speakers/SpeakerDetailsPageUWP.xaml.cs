@@ -1,72 +1,56 @@
-﻿using System;
-using DotNetRu.Clients.Portable.Model;
-using DotNetRu.Clients.Portable.ViewModel;
-using DotNetRu.Clients.UI.Helpers;
-using DotNetRu.Clients.UI.Pages.Sessions;
-using DotNetRu.DataStore.Audit.Models;
-using FFImageLoading.Forms;
-using Xamarin.Forms;
-
-namespace DotNetRu.Clients.UI.Pages.Speakers
+﻿namespace DotNetRu.Clients.UI.Pages.Speakers
 {
-    public partial class SpeakerDetailsPageUWP : BasePage
-	{
-		public override AppPage PageType => AppPage.Speaker;
+    using System.Linq;
+
+    using DotNetRu.Clients.Portable.Model;
+    using DotNetRu.Clients.Portable.ViewModel;
+    using DotNetRu.Clients.UI.Helpers;
+    using DotNetRu.Clients.UI.Pages.Sessions;
+    using DotNetRu.DataStore.Audit.Models;
+
+    using Xamarin.Forms;
+
+    public partial class SpeakerDetailsPageUWP
+    {
+        public override AppPage PageType => AppPage.Speaker;
 
         SpeakerDetailsViewModel ViewModel => this.vm ?? (this.vm = this.BindingContext as SpeakerDetailsViewModel);
+
         SpeakerDetailsViewModel vm;
 
-	    readonly string sessionId;
-
-		public SpeakerDetailsPageUWP(SpeakerModel speakerModel) : this((string)null)
-		{
-		    this.SpeakerModel = speakerModel;
-		}
+        public SpeakerDetailsPageUWP(SpeakerModel speakerModel)
+            : this((string)null)
+        {
+            this.SpeakerModel = speakerModel;
+        }
 
         public SpeakerDetailsPageUWP(string sessionId)
         {
-            this.sessionId = sessionId;
             this.InitializeComponent();
 
             this.ListViewSessions.ItemSelected += async (sender, e) =>
-            {
-                var session = this.ListViewSessions.SelectedItem as TalkModel;
-                if (session == null)
-                    return;
+                {
+                    if (!(this.ListViewSessions.SelectedItem is TalkModel session))
+                    {
+                        return;
+                    }
 
-                var sessionDetails = new TalkPage(session);
+                    var sessionDetails = new TalkPage(session);
 
-                await NavigationService.PushAsync(this.Navigation, sessionDetails);
+                    await NavigationService.PushAsync(this.Navigation, sessionDetails);
 
-                this.ListViewSessions.SelectedItem = null;
-            };
-
-            // HeroImage.Error += HeroImage_Error;
-            // HeroImage.Success += HeroImage_Success;
-        }
-
-        private void HeroImage_Success(object sender, CachedImageEvents.SuccessEventArgs e)
-        {
-            // App.Logger.Track($"SpeakerImageLoaded:{e.ImageInformation.FilePath}:{e.LoadingResult}");
-        }
-
-        private void HeroImage_Error(object sender, CachedImageEvents.ErrorEventArgs e)
-        {
-            // App.Logger.Track($"SpeakerImageLoadFailed:{e.Exception}", "Source", HeroImage.Source.ToString());
-        }
-
-        private void SpeakerPhoto_SizeChanged(object sender, EventArgs e)
-        {
+                    this.ListViewSessions.SelectedItem = null;
+                };
         }
 
         public SpeakerModel SpeakerModel
         {
             get => this.ViewModel.SpeakerModel;
-            set 
-			{
-			    this.BindingContext = new SpeakerDetailsViewModel(value);
-			    this.ItemId = value?.FullName;
-			}
+            set
+            {
+                this.BindingContext = new SpeakerDetailsViewModel(value);
+                this.ItemId = value?.FullName;
+            }
         }
 
         protected override void OnBindingContextChanged()
@@ -85,11 +69,7 @@ namespace DotNetRu.Clients.UI.Pages.Speakers
             this.ListViewFollow.ItemTapped += this.ListViewTapped;
             this.ListViewSessions.ItemTapped += this.ListViewTapped;
 
-            if (this.ViewModel.Talks.Count > 0)
-                return;
-
-            this.ViewModel.ExecuteLoadTalksCommand();
-            this.ListViewSessions.HeightRequest = (this.ViewModel.Talks.Count * this.ListViewSessions.RowHeight) - 1;
+            this.ListViewSessions.HeightRequest = (this.ViewModel.Talks.Count() * this.ListViewSessions.RowHeight) - 1;
         }
 
         void ListViewTapped(object sender, ItemTappedEventArgs e)

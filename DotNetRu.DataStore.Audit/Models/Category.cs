@@ -2,11 +2,8 @@
 {
     using System.Collections.Generic;
 
-    public class Category : BaseModel
+    public class Category
     {
-        private bool enabled;
-        private bool filtered;
-
         /// <summary>
         /// Gets or sets the name that is displayed during filtering
         /// </summary>
@@ -28,17 +25,9 @@
 
         public virtual ICollection<TalkModel> Sessions { get; set; }
 
-        public bool IsFiltered
-        {
-            get => this.filtered;
-            set => this.SetProperty(ref this.filtered, value);
-        }
+        public bool IsFiltered { get; }
 
-        public bool IsEnabled
-        {
-            get => this.enabled;
-            set => this.SetProperty(ref this.enabled, value);
-        }
+        public bool IsEnabled { get; }
 
         public string BadgeName => string.IsNullOrWhiteSpace(this.ShortName) ? this.Name : this.ShortName;
     }

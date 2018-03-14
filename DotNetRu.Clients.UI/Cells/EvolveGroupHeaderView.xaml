@@ -1,14 +1,13 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView 
+﻿<ContentView 
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
     x:Class="DotNetRu.Clients.UI.Cells.EvolveGroupHeaderView">
     <StackLayout VerticalOptions="Center">
         <StackLayout.BackgroundColor>
-            <OnPlatform x:TypeArguments="Color" Android="#F5F5F5" WinPhone="#F5F5F5"/>
+            <OnPlatform x:TypeArguments="Color" Android="#F5F5F5"/>
         </StackLayout.BackgroundColor>
         <StackLayout.Padding>
-            <OnPlatform x:TypeArguments="Thickness" iOS="16,0" Android="16,8" WinPhone="16,8"/>
+            <OnPlatform x:TypeArguments="Thickness" iOS="16,0" Android="16,8"/>
         </StackLayout.Padding>
         <Label Text="{Binding Key}" 
             VerticalOptions="Center" 
@@ -17,13 +16,13 @@
                 <OnPlatform x:TypeArguments="FontAttributes" iOS="Bold"/>
             </Label.FontAttributes>
              <Label.FontSize>
-                <OnPlatform x:TypeArguments="x:Double" iOS="16" Android="18" WinPhone="16"/>
+                <OnPlatform x:TypeArguments="x:Double" iOS="16" Android="18"/>
             </Label.FontSize>
             <Label.FontFamily>
                 <OnPlatform x:TypeArguments="x:String" Android="sans-serif-light"/>
             </Label.FontFamily>
             <Label.TextColor>
-                <OnPlatform x:TypeArguments="Color"  WinPhone="Black"/>
+                <OnPlatform x:TypeArguments="Color"/>
             </Label.TextColor>
         </Label>
     </StackLayout>

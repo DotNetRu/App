@@ -1,16 +1,13 @@
 ﻿namespace DotNetRu.DataStore.Audit.Models
 {
+    using System.Collections.Generic;
     using System.Linq;
 
-    using DotNetRu.DataStore.Audit.Services;
-
-    using Xamarin.Forms;
-
-    using System.Collections.Generic;
-
-    public class FriendModel : BaseModel
+    public class FriendModel
     {
-        public string Name { get; set; }        
+        public string Id { get; set; }
+
+        public string Name { get; set; }
 
         public string Description { get; set; }
 
@@ -43,21 +40,14 @@
                     return int.MaxValue;
                 }
 
-                return MeetupService.GetMeetups(this.Id).Count();
+                return this.Meetups.Count();
             }
         }
 
-        public IEnumerable<MeetupModel> Meetups => MeetupService.GetMeetups(this.Id).OrderBy(m => m.StartTime);
+        public IEnumerable<MeetupModel> Meetups { get; set; }
 
-        /// <summary>
-        /// Gets or sets the rank.
-        /// 0 means put it at the top of the SponsorLevel
-        /// </summary>
-        /// <value>The rank.</value>
-        public int Rank { get; set; }
+        public byte[] LogoSmall { get; set; }
 
-        public ImageSource LogoSmallImage { get; set; }
-
-        public ImageSource LogoImage { get; set; }
+        public byte[] Logo { get; set; }
     }
 }
