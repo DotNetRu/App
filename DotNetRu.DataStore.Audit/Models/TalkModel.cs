@@ -83,7 +83,7 @@
         public byte[] SpeakerAvatar => this.Speakers.Count() > 1
                                                 ? RealmService.ExtractResource(
                                                     "DotNetRu.DataStore.Audit.Storage.SeveralSpeakers.png")
-                                                : this.Speakers.Single().AvatarSmall;
+                                                : this.Speakers.Single().Avatar;
 
         public string SpeakerNames => string.Join(",", this.Speakers.Select(x => x.FullName));
 

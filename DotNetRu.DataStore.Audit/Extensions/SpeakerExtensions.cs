@@ -19,7 +19,6 @@
                            TwitterUrl = speaker.TwitterUrl,
                            BlogUrl = speaker.BlogUrl,
                            Biography = speaker.Description,
-                           AvatarSmall = speaker.AvatarSmall,
                            Avatar = speaker.Avatar,
                            Talks = speaker.Talks.ToList().Select(x => x.ToModel())
                        };

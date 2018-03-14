@@ -25,8 +25,6 @@
 
         public string ContactsUrl { get; set; }
 
-        public byte[] AvatarSmall { get; set; }
-
         public byte[] Avatar { get; set; }
 
         [Backlink(nameof(Talk.Speakers))]
