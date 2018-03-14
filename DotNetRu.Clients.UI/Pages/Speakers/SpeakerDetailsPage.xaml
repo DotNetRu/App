@@ -25,11 +25,9 @@
             </Grid.RowDefinitions>
             <Grid 
                 Grid.Row="0"
-                VerticalOptions="End"
+                VerticalOptions="FillAndExpand"
                 HorizontalOptions="FillAndExpand">
                 <Image
-                    HorizontalOptions="FillAndExpand"
-                        VerticalOptions="FillAndExpand"
                         Source="{Binding SpeakerModel.Avatar, Converter={StaticResource ByteArrayToImageSourceConverter}}"
                         Aspect="AspectFill">
                     <Image.GestureRecognizers>
