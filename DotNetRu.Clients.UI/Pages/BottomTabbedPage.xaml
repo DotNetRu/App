@@ -6,6 +6,7 @@
              xmlns:speakers="clr-namespace:DotNetRu.Clients.UI.Pages.Speakers;assembly=DotNetRu.Clients.UI"
              xmlns:events="clr-namespace:DotNetRu.Clients.UI.Pages.Events;assembly=DotNetRu.Clients.UI"
              xmlns:info="clr-namespace:DotNetRu.Clients.UI.Pages.Info;assembly=DotNetRu.Clients.UI"
+             xmlns:about="clr-namespace:DotNetRu.Clients.UI.Pages.About;assembly=DotNetRu.Clients.UI"
              x:Class="DotNetRu.Clients.UI.Pages.BottomTabbedPage">
     <!--Pages can be added as references or inline-->
     <NavigationPage Title="{Binding NewsTitle}">
@@ -77,7 +78,7 @@
             </OnPlatform>
         </NavigationPage.Icon>
         <x:Arguments>
-            <info:SettingsPage />
+            <about:SettingsPage />
         </x:Arguments>
     </NavigationPage>
 </forms:BottomTabbedPage>
