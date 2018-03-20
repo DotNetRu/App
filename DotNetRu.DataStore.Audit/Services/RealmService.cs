@@ -33,6 +33,14 @@
             return AuditRealm.All(realmType.Name).AsEnumerable().Select(Mapper.Map<TAppModel>);
         }
 
+        public static void Put(RealmObject contents)
+        {
+            AuditRealm.Write(() =>
+            {
+                AuditRealm.Add(contents, update: true);
+            });
+        }
+
         public static byte[] ExtractResource(string resourceName)
         {
             var assembly = typeof(RealmService).Assembly;

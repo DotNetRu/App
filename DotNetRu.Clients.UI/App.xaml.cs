@@ -47,6 +47,9 @@ namespace DotNetRu.Clients.UI
 
             RealmService.Initialize();
 
+            var task = UpdateService.GetAuditCurrentVersion();
+
+
             this.InitializeComponent();
 
 #if RELEASE

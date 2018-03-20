@@ -8,6 +8,7 @@
   </ItemGroup>  
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="6.2.2" />
+    <PackageReference Include="Octokit" Version="0.29.0" />
     <PackageReference Include="Realm.Database" Version="2.1.0" />
     <PackageReference Include="Xamarin.Forms" Version="2.5.0.280555" />
   </ItemGroup>
