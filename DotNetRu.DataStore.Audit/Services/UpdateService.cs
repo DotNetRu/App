@@ -11,6 +11,7 @@ using System.Xml.Serialization;
 using DotNetRu.DataStore.Audit.XmlEntities;
 using Octokit;
 using AutoMapper;
+using DotNetRu.DataStore.Audit.Extensions;
 using DotNetRu.DataStore.Audit.RealmModels;
 
 namespace DotNetRu.DataStore.Audit.Services
@@ -29,70 +30,15 @@ namespace DotNetRu.DataStore.Audit.Services
             ["venues"] = (typeof(VenueEntity), typeof(Venue))
         };
 
-
-
-        private static HttpClient _httpClient = new HttpClient();
         private static readonly string ByteOrderMarkUtf8 = Encoding.UTF8.GetString(Encoding.UTF8.GetPreamble());
-
-
-        public static void Init()
-        {
-            Mapper.Initialize(
-                cfg =>
-                {
-                    cfg.CreateMap<SpeakerEntity, Speaker>().AfterMap(
-                        (src, dest) =>
-                        {
-                            // dest.Avatar = AuditHelper.LoadImage("speakers", src.Id, "avatar.jpg");
-                        });
-                    cfg.CreateMap<VenueEntity, Venue>();
-                    cfg.CreateMap<FriendEntity, Friend>().AfterMap(
-                        (src, dest) =>
-                        {
-                            var friendId = src.Id;
-
-                            //dest.LogoSmall = AuditHelper.LoadImage("friends", friendId, "logo.small.png");
-                            //dest.Logo = AuditHelper.LoadImage("friends", friendId, "logo.png");
-                        });
-                    cfg.CreateMap<CommunityEntity, Community>();
-                    cfg.CreateMap<TalkEntity, Talk>().AfterMap(
-                        (src, dest) =>
-                        {
-                            foreach (string speakerId in src.SpeakerIds)
-                            {
-                                var speaker = RealmService.AuditRealm.Find<Speaker>(speakerId);
-
-                                dest.Speakers.Add(speaker);
-                            }
-                        });
-                    cfg.CreateMap<MeetupEntity, Meetup>().AfterMap(
-                        (src, dest) =>
-                        {
-                            foreach (string talkId in src.TalkIds)
-                            {
-                                var talk = RealmService.AuditRealm.Find<Talk>(talkId);
-                                dest.Talks.Add(talk);
-                            }
-
-                            foreach (string friendId in src.FriendIds)
-                            {
-                                var friend = RealmService.AuditRealm.Find<Friend>(friendId);
-                                dest.Friends.Add(friend);
-                            }
-
-                            dest.Venue = RealmService.AuditRealm.Find<Venue>(src.VenueId);
-                        });
-                });
-        }
 
         public static string GetAuditCurrentVersion()
         {
-            Init();
             var client = new GitHubClient(new ProductHeaderValue("dotNetRu"));
             var r = client.Repository.Commit.Compare(RepositoryId, "3ddd7e73f395c0e5214aefddc912d9ac45689925", "master").Result;
             foreach (var file in r.Files)
             {
-                var k = client.Repository.Content.GetAllContents(RepositoryId, file.Filename).Result.FirstOrDefault().Content; //.Trim();
+                var k = client.Repository.Content.GetAllContents(RepositoryId, file.Filename).Result.FirstOrDefault().Content; 
                 if (k.StartsWith(ByteOrderMarkUtf8))
                 {
                     k = k.Remove(0, ByteOrderMarkUtf8.Length);
@@ -108,12 +54,8 @@ namespace DotNetRu.DataStore.Audit.Services
                     {
                         var m = new XmlSerializer(xmlType).Deserialize(reader);
 
-                        dynamic changedObj = Convert.ChangeType(m, xmlType);
-
-
-
-                        var realmObject = Mapper.Map<>(m);
-
+                        var realmObject = Mapper.Map(m, xmlType, realmType);
+                        var rc = 0;
 
                     }
                     catch (Exception e)
