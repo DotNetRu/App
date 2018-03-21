@@ -1,4 +1,6 @@
-﻿namespace DotNetRu.DataStore.Audit.Services
+﻿using DotNetRu.DataStore.Audit.XmlEntities;
+
+namespace DotNetRu.DataStore.Audit.Services
 {
     using System;
     using System.Collections.Generic;
@@ -75,6 +77,49 @@
                         cfg.CreateMap<Friend, FriendModel>().ConvertUsing(x => x.ToModel());
                         cfg.CreateMap<Talk, TalkModel>().ConvertUsing(x => x.ToModel());
                         cfg.CreateMap<Meetup, MeetupModel>().ConvertUsing(x => x.ToModel());
+
+                        cfg.CreateMap<SpeakerEntity, Speaker>().AfterMap(
+                        (src, dest) =>
+                        {
+                            // dest.Avatar = AuditHelper.LoadImage("speakers", src.Id, "avatar.jpg");
+                        });
+                        cfg.CreateMap<VenueEntity, Venue>();
+                        cfg.CreateMap<FriendEntity, Friend>().AfterMap(
+                            (src, dest) =>
+                            {
+                                var friendId = src.Id;
+
+                            //dest.LogoSmall = AuditHelper.LoadImage("friends", friendId, "logo.small.png");
+                            //dest.Logo = AuditHelper.LoadImage("friends", friendId, "logo.png");
+                        });
+                        cfg.CreateMap<CommunityEntity, Community>();
+                        cfg.CreateMap<TalkEntity, Talk>().AfterMap(
+                            (src, dest) =>
+                            {
+                                foreach (string speakerId in src.SpeakerIds)
+                                {
+                                    var speaker = RealmService.AuditRealm.Find<Speaker>(speakerId);
+
+                                    dest.Speakers.Add(speaker);
+                                }
+                            });
+                        cfg.CreateMap<MeetupEntity, Meetup>().AfterMap(
+                            (src, dest) =>
+                            {
+                                foreach (string talkId in src.TalkIds)
+                                {
+                                    var talk = RealmService.AuditRealm.Find<Talk>(talkId);
+                                    dest.Talks.Add(talk);
+                                }
+
+                                foreach (string friendId in src.FriendIds)
+                                {
+                                    var friend = RealmService.AuditRealm.Find<Friend>(friendId);
+                                    dest.Friends.Add(friend);
+                                }
+
+                                dest.Venue = RealmService.AuditRealm.Find<Venue>(src.VenueId);
+                            });
                     });
         }
     }
