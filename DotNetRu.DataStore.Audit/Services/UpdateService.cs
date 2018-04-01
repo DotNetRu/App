@@ -4,11 +4,12 @@
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
-    using System.Text;
+    using System.Net.Http;
     using System.Xml.Serialization;
 
     using AutoMapper;
 
+    using DotNetRu.DataStore.Audit.Extensions;
     using DotNetRu.DataStore.Audit.XmlEntities;
 
     using Octokit;
@@ -19,17 +20,16 @@
     {
         private const int DotNetRuAppRepositoryID = 89862917;
 
-        private static readonly string ByteOrderMarkUtf8 = Encoding.UTF8.GetString(Encoding.UTF8.GetPreamble());
-
         public static void UpdateAudit()
         {
             try
             {
                 var client = new GitHubClient(new ProductHeaderValue("DotNetRu"));
-                var tokenAuth = new Credentials("beddf618094e027cf268398b5698746f64db115f");
-                client.Credentials = tokenAuth;
 
-                var contentUpdate = client.Repository.Commit.Compare(DotNetRuAppRepositoryID, "3ddd7e73f395c0e5214aefddc912d9ac45689925", "master").Result;
+                var contentUpdate = client.Repository.Commit.Compare(
+                    DotNetRuAppRepositoryID,
+                    "3ddd7e73f395c0e5214aefddc912d9ac45689925",
+                    "master").Result;
 
                 var xmlFiles = contentUpdate.Files.Where(x => x.Filename.EndsWith(".xml")).ToArray();
 
@@ -43,6 +43,15 @@
             {
                 // ignored
             }
+        }
+
+        internal static byte[] LoadImage(string directoryName, string entityId, string fileName)
+        {
+            Uri rootUri = new Uri("https://raw.githubusercontent.com/DotNetRu/Audit/master/db/");
+
+            var dataUri = rootUri.Append(directoryName, entityId, fileName);
+
+            return new HttpClient().GetByteArrayAsync(dataUri).Result;
         }
 
         private static void UpdateModels<T>(IEnumerable<GitHubCommitFile> xmlFiles, string entityName)
@@ -63,7 +72,8 @@
                     {
                         var m = new XmlSerializer(typeof(T)).Deserialize(reader);
 
-                        var realmType = Mapper.Configuration.GetAllTypeMaps().Single(x => x.SourceType == typeof(T)).DestinationType;
+                        var realmType = Mapper.Configuration.GetAllTypeMaps().Single(x => x.SourceType == typeof(T))
+                            .DestinationType;
                         var realmObject = Mapper.Map(m, typeof(T), realmType);
 
                         RealmService.Put(realmObject as RealmObject);
@@ -78,17 +88,8 @@
 
         private static string DownloadFileContent(GitHubCommitFile file)
         {
-            var client = new GitHubClient(new ProductHeaderValue("DotNetRu"));
-            var tokenAuth = new Credentials("beddf618094e027cf268398b5698746f64db115f");
-            client.Credentials = tokenAuth;
-
-            var fileContent = client.Repository.Content.GetAllContents(DotNetRuAppRepositoryID, file.Filename).Result.FirstOrDefault().Content;
-            if (fileContent.StartsWith(ByteOrderMarkUtf8))
-            {
-                fileContent = fileContent.Remove(0, ByteOrderMarkUtf8.Length);
-            }
-
-            return fileContent;
+            var httpClient = new HttpClient();
+            return httpClient.GetStringAsync(file.RawUrl).Result;
         }
     }
 }

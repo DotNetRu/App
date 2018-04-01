@@ -1,6 +1,4 @@
-﻿using DotNetRu.DataStore.Audit.XmlEntities;
-
-namespace DotNetRu.DataStore.Audit.Services
+﻿namespace DotNetRu.DataStore.Audit.Services
 {
     using System;
     using System.Collections.Generic;
@@ -12,6 +10,7 @@ namespace DotNetRu.DataStore.Audit.Services
     using DotNetRu.DataStore.Audit.Extensions;
     using DotNetRu.DataStore.Audit.Models;
     using DotNetRu.DataStore.Audit.RealmModels;
+    using DotNetRu.DataStore.Audit.XmlEntities;
 
     using Realms;
 
@@ -35,14 +34,6 @@ namespace DotNetRu.DataStore.Audit.Services
             return AuditRealm.All(realmType.Name).AsEnumerable().Select(Mapper.Map<TAppModel>);
         }
 
-        internal static void Put(RealmObject content)
-        {
-            AuditRealm.Write(() =>
-            {
-                AuditRealm.Add(content, update: true);
-            });
-        }
-
         public static byte[] ExtractResource(string resourceName)
         {
             var assembly = typeof(RealmService).Assembly;
@@ -57,6 +48,14 @@ namespace DotNetRu.DataStore.Audit.Services
                 resFilestream.Read(resultBytes, 0, resultBytes.Length);
                 return resultBytes;
             }
+        }
+
+        internal static void Put(RealmObject content)
+        {
+            AuditRealm.Write(() =>
+                {
+                    AuditRealm.Add(content, update: true);
+                });
         }
 
         private static void InitializeRealm()
@@ -82,7 +81,7 @@ namespace DotNetRu.DataStore.Audit.Services
                         cfg.CreateMap<SpeakerEntity, Speaker>().AfterMap(
                         (src, dest) =>
                         {
-                            // dest.Avatar = AuditHelper.LoadImage("speakers", src.Id, "avatar.jpg");
+                            dest.Avatar = UpdateService.LoadImage("speakers", src.Id, "avatar.jpg");
                         });
                         cfg.CreateMap<VenueEntity, Venue>();
                         cfg.CreateMap<FriendEntity, Friend>().AfterMap(
@@ -90,8 +89,8 @@ namespace DotNetRu.DataStore.Audit.Services
                             {
                                 var friendId = src.Id;
 
-                            //dest.LogoSmall = AuditHelper.LoadImage("friends", friendId, "logo.small.png");
-                            //dest.Logo = AuditHelper.LoadImage("friends", friendId, "logo.png");
+                            dest.LogoSmall = UpdateService.LoadImage("friends", friendId, "logo.small.png");
+                            dest.Logo = UpdateService.LoadImage("friends", friendId, "logo.png");
                         });
                         cfg.CreateMap<CommunityEntity, Community>();
                         cfg.CreateMap<TalkEntity, Talk>().AfterMap(
@@ -99,7 +98,7 @@ namespace DotNetRu.DataStore.Audit.Services
                             {
                                 foreach (string speakerId in src.SpeakerIds)
                                 {
-                                    var speaker = RealmService.AuditRealm.Find<Speaker>(speakerId);
+                                    var speaker = AuditRealm.Find<Speaker>(speakerId);
 
                                     dest.Speakers.Add(speaker);
                                 }
@@ -109,17 +108,17 @@ namespace DotNetRu.DataStore.Audit.Services
                             {
                                 foreach (string talkId in src.TalkIds)
                                 {
-                                    var talk = RealmService.AuditRealm.Find<Talk>(talkId);
+                                    var talk = AuditRealm.Find<Talk>(talkId);
                                     dest.Talks.Add(talk);
                                 }
 
                                 foreach (string friendId in src.FriendIds)
                                 {
-                                    var friend = RealmService.AuditRealm.Find<Friend>(friendId);
+                                    var friend = AuditRealm.Find<Friend>(friendId);
                                     dest.Friends.Add(friend);
                                 }
 
-                                dest.Venue = RealmService.AuditRealm.Find<Venue>(src.VenueId);
+                                dest.Venue = AuditRealm.Find<Venue>(src.VenueId);
                             });
                     });
         }
