@@ -147,6 +147,16 @@
   <data name="CreatedBy" xml:space="preserve">
     <value>Created by DotNetRu Team with &lt;3</value>
   </data>
+  <data name="Credits" xml:space="preserve">
+    <value>The DotNetRu mobile app was handcrafted by DotNetRu, based on the great work done by Xamarin.
+
+DotNetRu Team
+
+Pavel Fedotovsky
+Anatoly Kulakov
+Yury Belousov
+Sergey Polezhaev</value>
+  </data>
   <data name="DotNetRu" xml:space="preserve">
     <value>DotNetRu</value>
   </data>
@@ -160,7 +170,7 @@
     <value>Friends</value>
   </data>
   <data name="IssueTracker" xml:space="preserve">
-    <value>Issue Tracker</value>
+    <value>Report an issue</value>
   </data>
   <data name="Kazan" xml:space="preserve">
     <value>Kazan</value>
