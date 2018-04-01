@@ -1,7 +1,7 @@
-﻿using System.Xml.Serialization;
-
-namespace DotNetRu.DataStore.Audit.XmlEntities
+﻿namespace DotNetRu.DataStore.Audit.XmlEntities
 {
+    using System.Xml.Serialization;
+
     [XmlType("Friend")]
     public class FriendEntity
     {

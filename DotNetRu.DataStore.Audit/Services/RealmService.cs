@@ -35,11 +35,11 @@ namespace DotNetRu.DataStore.Audit.Services
             return AuditRealm.All(realmType.Name).AsEnumerable().Select(Mapper.Map<TAppModel>);
         }
 
-        public static void Put(RealmObject contents)
+        internal static void Put(RealmObject content)
         {
             AuditRealm.Write(() =>
             {
-                AuditRealm.Add(contents, update: true);
+                AuditRealm.Add(content, update: true);
             });
         }
 
