@@ -1,11 +1,13 @@
-﻿namespace DotNetRu.Clients.UI.Pages.Info
+﻿namespace DotNetRu.Clients.UI.Pages.About
 {
     using System;
 
+    using DotNetRu.Clients.Portable.ApplicationResources;
     using DotNetRu.Clients.Portable.Model;
     using DotNetRu.Clients.Portable.ViewModel;
     using DotNetRu.Clients.UI.Helpers;
     using DotNetRu.Clients.UI.Pages.Friends;
+    using DotNetRu.Clients.UI.Pages.Info;
     using DotNetRu.Utils.Helpers;
 
     using Plugin.Share;
@@ -19,8 +21,13 @@
         {            
             this.InitializeComponent();
 
-            var openTechnologiesUsedCommand = new Command(async () => await NavigationService.PushAsync(this.Navigation, new TechnologiesUsedPage()));
-            var openCreditsCommand = new Command(async() => await this.DisplayAlert("Credits", AboutThisApp.Credits, "OK"));
+            var openTechnologiesUsedCommand = new Command(
+                async () => await NavigationService.PushAsync(this.Navigation, new TechnologiesUsedPage()));
+            var openCreditsCommand = new Command(
+                async () => await this.DisplayAlert(
+                                "Credits",
+                                AppResources.ResourceManager.GetString("Credits", AppResources.Culture),
+                                "OK"));
 
             var settingsViewModel = new SettingsViewModel(openTechnologiesUsedCommand, openCreditsCommand);
 
