@@ -1,62 +1,72 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Xml.Serialization;
-using DotNetRu.DataStore.Audit.XmlEntities;
-using Octokit;
-using AutoMapper;
-using DotNetRu.DataStore.Audit.Extensions;
-using DotNetRu.DataStore.Audit.RealmModels;
-
-namespace DotNetRu.DataStore.Audit.Services
+﻿namespace DotNetRu.DataStore.Audit.Services
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Text;
+    using System.Xml.Serialization;
+
+    using AutoMapper;
+
+    using DotNetRu.DataStore.Audit.XmlEntities;
+
+    using Octokit;
+
+    using Realms;
+
     public static class UpdateService
     {
-        private const int RepositoryId = 89862917;
-
-        private static readonly Dictionary<string, (Type xmlType, Type realmType)> TypeMapper = new Dictionary<string, (Type xmlType, Type realmType)>
-        {
-            ["communities"] = (typeof(CommunityEntity),typeof(Community)),
-            ["friends"] = (typeof(FriendEntity), typeof(Friend)),
-            ["meetups"] = (typeof(MeetupEntity), typeof(Meetup)),
-            ["speakers"] = (typeof(SpeakerEntity), typeof(Speaker)),
-            ["talks"] = (typeof(TalkEntity), typeof(Talk)),
-            ["venues"] = (typeof(VenueEntity), typeof(Venue))
-        };
+        private const int DotNetRuAppRepositoryID = 89862917;
 
         private static readonly string ByteOrderMarkUtf8 = Encoding.UTF8.GetString(Encoding.UTF8.GetPreamble());
 
-        public static string GetAuditCurrentVersion()
+        public static void UpdateAudit()
         {
-            var client = new GitHubClient(new ProductHeaderValue("dotNetRu"));
-            var r = client.Repository.Commit.Compare(RepositoryId, "3ddd7e73f395c0e5214aefddc912d9ac45689925", "master").Result;
-            foreach (var file in r.Files)
+            try
             {
-                var k = client.Repository.Content.GetAllContents(RepositoryId, file.Filename).Result.FirstOrDefault().Content; 
-                if (k.StartsWith(ByteOrderMarkUtf8))
-                {
-                    k = k.Remove(0, ByteOrderMarkUtf8.Length);
-                }
+                var client = new GitHubClient(new ProductHeaderValue("DotNetRu"));
+                var tokenAuth = new Credentials("beddf618094e027cf268398b5698746f64db115f");
+                client.Credentials = tokenAuth;
 
-                var typeName = file.Filename.Split('/')[1];
-                if (!TypeMapper.ContainsKey(typeName)) continue;
-                var xmlType = TypeMapper[typeName].xmlType;
-                var realmType = TypeMapper[typeName].realmType;
-                using (var reader = new StringReader(k))
+                var contentUpdate = client.Repository.Commit.Compare(DotNetRuAppRepositoryID, "3ddd7e73f395c0e5214aefddc912d9ac45689925", "master").Result;
+
+                var xmlFiles = contentUpdate.Files.Where(x => x.Filename.EndsWith(".xml")).ToArray();
+
+                UpdateModels<SpeakerEntity>(xmlFiles, "speakers");
+                UpdateModels<FriendEntity>(xmlFiles, "friends");
+                UpdateModels<VenueEntity>(xmlFiles, "venues");
+                UpdateModels<TalkEntity>(xmlFiles, "talks");
+                UpdateModels<MeetupEntity>(xmlFiles, "meetups");
+            }
+            catch (Exception)
+            {
+                // ignored
+            }
+        }
+
+        private static void UpdateModels<T>(IEnumerable<GitHubCommitFile> xmlFiles, string entityName)
+        {
+            var newSpeakers = xmlFiles.Where(x => x.Filename.Contains(entityName));
+            UpdateModels<T>(newSpeakers);
+        }
+
+        private static void UpdateModels<T>(IEnumerable<GitHubCommitFile> files)
+        {
+            foreach (GitHubCommitFile file in files)
+            {
+                string fileContent = DownloadFileContent(file);
+
+                using (var reader = new StringReader(fileContent))
                 {
                     try
                     {
-                        var m = new XmlSerializer(xmlType).Deserialize(reader);
+                        var m = new XmlSerializer(typeof(T)).Deserialize(reader);
 
-                        var realmObject = Mapper.Map(m, xmlType, realmType);
-                        var rc = 0;
+                        var realmType = Mapper.Configuration.GetAllTypeMaps().Single(x => x.SourceType == typeof(T)).DestinationType;
+                        var realmObject = Mapper.Map(m, typeof(T), realmType);
 
+                        RealmService.Put(realmObject as RealmObject);
                     }
                     catch (Exception e)
                     {
@@ -64,7 +74,21 @@ namespace DotNetRu.DataStore.Audit.Services
                     }
                 }
             }
-            return "";
+        }
+
+        private static string DownloadFileContent(GitHubCommitFile file)
+        {
+            var client = new GitHubClient(new ProductHeaderValue("DotNetRu"));
+            var tokenAuth = new Credentials("beddf618094e027cf268398b5698746f64db115f");
+            client.Credentials = tokenAuth;
+
+            var fileContent = client.Repository.Content.GetAllContents(DotNetRuAppRepositoryID, file.Filename).Result.FirstOrDefault().Content;
+            if (fileContent.StartsWith(ByteOrderMarkUtf8))
+            {
+                fileContent = fileContent.Remove(0, ByteOrderMarkUtf8.Length);
+            }
+
+            return fileContent;
         }
     }
 }

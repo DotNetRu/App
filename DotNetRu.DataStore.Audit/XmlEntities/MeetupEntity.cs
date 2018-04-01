@@ -1,8 +1,8 @@
-﻿using System;
-using System.Xml.Serialization;
-
-namespace DotNetRu.DataStore.Audit.XmlEntities
+﻿namespace DotNetRu.DataStore.Audit.XmlEntities
 {
+    using System;
+    using System.Xml.Serialization;
+
     [XmlType("Meetup")]
     public class MeetupEntity
     {
