@@ -1,16 +1,19 @@
-﻿using System;
-using System.Windows.Input;
-using DotNetRu.DataStore.Audit.Models;
-using DotNetRu.Utils.Helpers;
-using DotNetRu.Utils.Interfaces;
-using FormsToolkit;
-using Xamarin.Forms;
-
-namespace DotNetRu.Clients.Portable.ViewModel
+﻿namespace DotNetRu.Clients.Portable.ViewModel
 {
+    using System;
+    using System.Windows.Input;
+
+    using DotNetRu.DataStore.Audit.Models;
+    using DotNetRu.Utils.Helpers;
+    using DotNetRu.Utils.Interfaces;
+
+    using FormsToolkit;
+
+    using Xamarin.Forms;
+
     public class FeedbackViewModel : ViewModelBase
     {
-        TalkModel talkModel;
+        private TalkModel talkModel;
 
         public TalkModel TalkModel
         {
@@ -71,8 +74,6 @@ namespace DotNetRu.Clients.Portable.ViewModel
                                         MessagingService.Current.SendMessage("eval_finished");
                                 }
                         });
-
-                this.TalkModel.FeedbackLeft = true;
             }
             catch (Exception ex)
             {

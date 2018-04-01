@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class Notification : BaseModel
+    public class Notification
     {
         public string Text { get; set; }
 

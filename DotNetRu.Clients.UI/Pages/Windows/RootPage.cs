@@ -20,6 +20,7 @@
     using XamarinEvolve.Clients.Portable;
 
     using MenuItem = DotNetRu.Clients.Portable.Model.MenuItem;
+    using SettingsPage = DotNetRu.Clients.UI.Pages.About.SettingsPage;
 
     public class RootPageWindows : MasterDetailPage
     {
@@ -83,7 +84,7 @@
                         this.pages.Add(menuId, new NavigationPage(new NewsPage()));
                         break;
                     case AppPage.Meetup: // sessions
-                        this.pages.Add(menuId, new NavigationPage(new MeetupPage()));
+                        this.pages.Add(menuId, new NavigationPage(new MeetupDetailsPage()));
                         break;
                     case AppPage.Speakers: // sessions
                         this.pages.Add(menuId, new NavigationPage(new SpeakersPage()));

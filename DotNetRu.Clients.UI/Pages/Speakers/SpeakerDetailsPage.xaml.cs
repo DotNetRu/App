@@ -2,7 +2,6 @@
 {
     using System;
 
-    using DotNetRu.Clients.Portable.Interfaces;
     using DotNetRu.Clients.Portable.Model;
     using DotNetRu.Clients.Portable.ViewModel;
     using DotNetRu.Clients.UI.Helpers;
@@ -13,8 +12,6 @@
 
     public partial class SpeakerDetailsPage
     {
-        private readonly IPlatformSpecificExtension<SpeakerModel> extension;
-
         private SpeakerDetailsViewModel speakerDetailsViewModel;
 
         public SpeakerDetailsPage(SpeakerModel speakerModel)
@@ -26,7 +23,6 @@
         public SpeakerDetailsPage()
         {
             this.InitializeComponent();
-            this.extension = DependencyService.Get<IPlatformSpecificExtension<SpeakerModel>>();
 
             this.ListViewSessions.ItemSelected += async (sender, e) =>
                 {
@@ -70,36 +66,19 @@
             this.speakerDetailsViewModel = null;
         }
 
-        protected override async void OnDisappearing()
+        protected override void OnDisappearing()
         {
             base.OnDisappearing();
             this.ListViewFollow.ItemTapped -= this.ListViewTapped;
             this.ListViewSessions.ItemTapped -= this.ListViewTapped;
-
-            if (this.extension != null)
-            {
-                await this.extension.Finish();
-            }
         }
 
-        protected override async void OnAppearing()
+        protected override void OnAppearing()
         {
             base.OnAppearing();
 
             this.ListViewFollow.ItemTapped += this.ListViewTapped;
             this.ListViewSessions.ItemTapped += this.ListViewTapped;
-
-            if (this.SpeakerDetailsViewModel.Talks?.Count > 0)
-            {
-                return;
-            }
-
-            this.SpeakerDetailsViewModel.ExecuteLoadTalksCommand();
-
-            if (this.extension != null)
-            {
-                await this.extension.Execute(this.SpeakerDetailsViewModel.SpeakerModel);
-            }
         }
 
         private void ListViewTapped(object sender, ItemTappedEventArgs e)
@@ -120,7 +99,7 @@
 
         private async void OnTapGestureRecognizerTapped(object sender, EventArgs args)
         {
-            await NavigationService.PushAsync(Navigation, new SpeakerFacePage(SpeakerModel.PhotoImage));
+            await NavigationService.PushAsync(this.Navigation, new SpeakerFacePage(this.SpeakerModel.Avatar));
         } 
     }
 }
