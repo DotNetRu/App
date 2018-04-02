@@ -79,19 +79,17 @@
                         cfg.CreateMap<Meetup, MeetupModel>().ConvertUsing(x => x.ToModel());
 
                         cfg.CreateMap<SpeakerEntity, Speaker>().AfterMap(
-                        (src, dest) =>
-                        {
-                            dest.Avatar = UpdateService.LoadImage("speakers", src.Id, "avatar.jpg");
-                        });
-                        cfg.CreateMap<VenueEntity, Venue>();
-                        cfg.CreateMap<FriendEntity, Friend>().AfterMap(
                             (src, dest) =>
-                            {
-                                var friendId = src.Id;
-
-                            dest.LogoSmall = UpdateService.LoadImage("friends", friendId, "logo.small.png");
-                            dest.Logo = UpdateService.LoadImage("friends", friendId, "logo.png");
-                        });
+                                {
+                                    var speakerID = src.Id;
+                                    var existingSpeaker = AuditRealm.Find<Speaker>(speakerID);
+                                    if (existingSpeaker != null)
+                                    {
+                                        dest.Avatar = existingSpeaker.Avatar;
+                                    }
+                                });
+                        cfg.CreateMap<VenueEntity, Venue>();
+                        cfg.CreateMap<FriendEntity, Friend>();
                         cfg.CreateMap<CommunityEntity, Community>();
                         cfg.CreateMap<TalkEntity, Talk>().AfterMap(
                             (src, dest) =>
