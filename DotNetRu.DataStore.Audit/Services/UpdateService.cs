@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.IO;
     using System.Linq;
     using System.Net.Http;
@@ -10,6 +11,7 @@
     using AutoMapper;
 
     using DotNetRu.DataStore.Audit.Extensions;
+    using DotNetRu.DataStore.Audit.RealmModels;
     using DotNetRu.DataStore.Audit.XmlEntities;
 
     using Octokit;
@@ -38,26 +40,38 @@
                 UpdateModels<VenueEntity>(xmlFiles, "venues");
                 UpdateModels<TalkEntity>(xmlFiles, "talks");
                 UpdateModels<MeetupEntity>(xmlFiles, "meetups");
+
+                var speakerPhotos = contentUpdate.Files.Where(x => x.Filename.EndsWith("avatar.jpg"));
+                UpdateSpeakerAvatars(speakerPhotos);
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                // ignored
+                Debug.WriteLine(e);
             }
         }
 
-        internal static byte[] LoadImage(string directoryName, string entityId, string fileName)
+        private static void UpdateSpeakerAvatars(IEnumerable<GitHubCommitFile> speakerPhotos)
         {
             Uri rootUri = new Uri("https://raw.githubusercontent.com/DotNetRu/Audit/master/db/");
 
-            var dataUri = rootUri.Append(directoryName, entityId, fileName);
+            foreach (GitHubCommitFile gitHubCommitFile in speakerPhotos)
+            {
+                var speakerID = gitHubCommitFile.Filename.Split('/')[2];
 
-            return new HttpClient().GetByteArrayAsync(dataUri).Result;
+                var dataUri = rootUri.Append("speakers", speakerID, "avatar.jpg");
+
+                var speaker = RealmService.AuditRealm.Find<Speaker>(speakerID);
+
+                byte[] speakerAvatar = new HttpClient().GetByteArrayAsync(dataUri).Result;
+
+                RealmService.AuditRealm.Write(() => speaker.Avatar = speakerAvatar);
+            }
         }
 
         private static void UpdateModels<T>(IEnumerable<GitHubCommitFile> xmlFiles, string entityName)
         {
-            var newSpeakers = xmlFiles.Where(x => x.Filename.Contains(entityName));
-            UpdateModels<T>(newSpeakers);
+            var newEntities = xmlFiles.Where(x => x.Filename.Contains(entityName));
+            UpdateModels<T>(newEntities);
         }
 
         private static void UpdateModels<T>(IEnumerable<GitHubCommitFile> files)
