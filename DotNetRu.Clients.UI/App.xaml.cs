@@ -5,6 +5,7 @@
 namespace DotNetRu.Clients.UI
 {
     using System;
+    using System.Diagnostics;
     using System.Globalization;
     using System.Threading.Tasks;
 
@@ -47,7 +48,15 @@ namespace DotNetRu.Clients.UI
 
             RealmService.Initialize();
 
-            UpdateService.UpdateAudit();
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+            while (stopwatch.ElapsedMilliseconds < 1200)
+            {
+                UpdateService.UpdateAudit();
+            }
+            stopwatch.Stop();
+
+            Debug.WriteLine("Updating audit time: " + stopwatch.Elapsed.ToString("g"));
 
             this.InitializeComponent();
 
