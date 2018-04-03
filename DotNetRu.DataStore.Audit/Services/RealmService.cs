@@ -50,14 +50,6 @@
             }
         }
 
-        internal static void Put(RealmObject content)
-        {
-            AuditRealm.Write(() =>
-                {
-                    AuditRealm.Add(content, update: true);
-                });
-        }
-
         private static void InitializeRealm()
         {
             var realmDB = "Audit.realm";

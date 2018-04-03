@@ -35,14 +35,19 @@
 
                 var xmlFiles = contentUpdate.Files.Where(x => x.Filename.EndsWith(".xml")).ToArray();
 
-                UpdateModels<SpeakerEntity>(xmlFiles, "speakers");
-                UpdateModels<FriendEntity>(xmlFiles, "friends");
-                UpdateModels<VenueEntity>(xmlFiles, "venues");
-                UpdateModels<TalkEntity>(xmlFiles, "talks");
-                UpdateModels<MeetupEntity>(xmlFiles, "meetups");
+                using (var trans = RealmService.AuditRealm.BeginWrite())
+                {
+                    UpdateModels<SpeakerEntity>(xmlFiles, "speakers");
+                    UpdateModels<FriendEntity>(xmlFiles, "friends");
+                    UpdateModels<VenueEntity>(xmlFiles, "venues");
+                    UpdateModels<TalkEntity>(xmlFiles, "talks");
+                    UpdateModels<MeetupEntity>(xmlFiles, "meetups");
 
-                var speakerPhotos = contentUpdate.Files.Where(x => x.Filename.EndsWith("avatar.jpg"));
-                UpdateSpeakerAvatars(speakerPhotos);
+                    var speakerPhotos = contentUpdate.Files.Where(x => x.Filename.EndsWith("avatar.jpg"));
+                    UpdateSpeakerAvatars(speakerPhotos);
+
+                    trans.Commit();
+                }
             }
             catch (Exception e)
             {
@@ -59,12 +64,10 @@
                 var speakerID = gitHubCommitFile.Filename.Split('/')[2];
 
                 var dataUri = rootUri.Append("speakers", speakerID, "avatar.jpg");
-
-                var speaker = RealmService.AuditRealm.Find<Speaker>(speakerID);
-
                 byte[] speakerAvatar = new HttpClient().GetByteArrayAsync(dataUri).Result;
 
-                RealmService.AuditRealm.Write(() => speaker.Avatar = speakerAvatar);
+                var speaker = RealmService.AuditRealm.Find<Speaker>(speakerID);
+                speaker.Avatar = speakerAvatar;
             }
         }
 
@@ -90,7 +93,7 @@
                             .DestinationType;
                         var realmObject = Mapper.Map(m, typeof(T), realmType);
 
-                        RealmService.Put(realmObject as RealmObject);
+                        RealmService.AuditRealm.Add(realmObject as RealmObject, update: true);
                     }
                     catch (Exception e)
                     {
