@@ -50,10 +50,8 @@ namespace DotNetRu.Clients.UI
 
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
-            while (stopwatch.ElapsedMilliseconds < 1200)
-            {
-                UpdateService.UpdateAudit();
-            }
+
+            UpdateService.UpdateAudit();
             stopwatch.Stop();
 
             Debug.WriteLine("Updating audit time: " + stopwatch.Elapsed.ToString("g"));

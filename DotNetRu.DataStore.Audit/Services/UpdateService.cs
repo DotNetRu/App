@@ -6,11 +6,11 @@
     using System.IO;
     using System.Linq;
     using System.Net.Http;
+    using System.Threading.Tasks;
     using System.Xml.Serialization;
 
     using AutoMapper;
 
-    using DotNetRu.DataStore.Audit.Extensions;
     using DotNetRu.DataStore.Audit.RealmModels;
     using DotNetRu.DataStore.Audit.XmlEntities;
 
@@ -29,11 +29,25 @@
                 var client = new GitHubClient(new ProductHeaderValue("DotNetRu"));
 
                 var contentUpdate = client.Repository.Commit.Compare(
-                    DotNetRuAppRepositoryID,
-                    "3ddd7e73f395c0e5214aefddc912d9ac45689925",
-                    "master").Result;
+                                        DotNetRuAppRepositoryID,
+                                        "3ddd7e73f395c0e5214aefddc912d9ac45689925",
+                                        "master").Result;
 
-                var xmlFiles = contentUpdate.Files.Where(x => x.Filename.EndsWith(".xml")).ToArray();
+                Stopwatch stopwatch = new Stopwatch();
+                stopwatch.Start();
+
+                var streamTasks = contentUpdate.Files.Select(
+                    async file => new UpdatedFile
+                                      {
+                                          Filename = file.Filename,
+                                          Content = await new HttpClient().GetByteArrayAsync(file.RawUrl).ConfigureAwait(false)
+                                      });
+                var fileContents = Task.WhenAll(streamTasks).Result;
+
+                stopwatch.Stop();
+                Debug.WriteLine("Downloading files time: " + stopwatch.Elapsed.ToString("g"));
+
+                var xmlFiles = fileContents.Where(x => x.Filename.EndsWith(".xml")).ToList();
 
                 using (var trans = RealmService.AuditRealm.BeginWrite())
                 {
@@ -43,7 +57,7 @@
                     UpdateModels<TalkEntity>(xmlFiles, "talks");
                     UpdateModels<MeetupEntity>(xmlFiles, "meetups");
 
-                    var speakerPhotos = contentUpdate.Files.Where(x => x.Filename.EndsWith("avatar.jpg"));
+                    var speakerPhotos = fileContents.Where(x => x.Filename.EndsWith("avatar.jpg"));
                     UpdateSpeakerAvatars(speakerPhotos);
 
                     trans.Commit();
@@ -55,58 +69,51 @@
             }
         }
 
-        private static void UpdateSpeakerAvatars(IEnumerable<GitHubCommitFile> speakerPhotos)
+        private static void UpdateSpeakerAvatars(IEnumerable<UpdatedFile> speakerPhotos)
         {
-            Uri rootUri = new Uri("https://raw.githubusercontent.com/DotNetRu/Audit/master/db/");
-
-            foreach (GitHubCommitFile gitHubCommitFile in speakerPhotos)
+            foreach (UpdatedFile updatedFile in speakerPhotos)
             {
-                var speakerID = gitHubCommitFile.Filename.Split('/')[2];
+                var speakerID = updatedFile.Filename.Split('/')[2];
 
-                var dataUri = rootUri.Append("speakers", speakerID, "avatar.jpg");
-                byte[] speakerAvatar = new HttpClient().GetByteArrayAsync(dataUri).Result;
+                byte[] speakerAvatar = updatedFile.Content;
 
                 var speaker = RealmService.AuditRealm.Find<Speaker>(speakerID);
                 speaker.Avatar = speakerAvatar;
             }
         }
 
-        private static void UpdateModels<T>(IEnumerable<GitHubCommitFile> xmlFiles, string entityName)
+        private static void UpdateModels<T>(IEnumerable<UpdatedFile> xmlFiles, string entityName)
         {
             var newEntities = xmlFiles.Where(x => x.Filename.Contains(entityName));
-            UpdateModels<T>(newEntities);
+            UpdateModels<T>(newEntities.Select(x => x.Content));
         }
 
-        private static void UpdateModels<T>(IEnumerable<GitHubCommitFile> files)
+        private static void UpdateModels<T>(IEnumerable<byte[]> files)
         {
-            foreach (GitHubCommitFile file in files)
+            foreach (byte[] file in files)
             {
-                string fileContent = DownloadFileContent(file);
-
-                using (var reader = new StringReader(fileContent))
+                try
                 {
-                    try
-                    {
-                        var m = new XmlSerializer(typeof(T)).Deserialize(reader);
+                    var m = new XmlSerializer(typeof(T)).Deserialize(new MemoryStream(file));
 
-                        var realmType = Mapper.Configuration.GetAllTypeMaps().Single(x => x.SourceType == typeof(T))
-                            .DestinationType;
-                        var realmObject = Mapper.Map(m, typeof(T), realmType);
+                    var realmType = Mapper.Configuration.GetAllTypeMaps().Single(x => x.SourceType == typeof(T))
+                        .DestinationType;
+                    var realmObject = Mapper.Map(m, typeof(T), realmType);
 
-                        RealmService.AuditRealm.Add(realmObject as RealmObject, update: true);
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine(e.Message);
-                    }
+                    RealmService.AuditRealm.Add(realmObject as RealmObject, update: true);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
                 }
             }
         }
 
-        private static string DownloadFileContent(GitHubCommitFile file)
+        private class UpdatedFile
         {
-            var httpClient = new HttpClient();
-            return httpClient.GetStringAsync(file.RawUrl).Result;
+            public string Filename { get; set; }
+
+            public byte[] Content { get; set; }
         }
     }
 }
