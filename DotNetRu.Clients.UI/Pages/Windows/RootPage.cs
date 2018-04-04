@@ -4,11 +4,8 @@
     using System.Collections.ObjectModel;
 
     using DotNetRu.Clients.Portable.Model;
-    using DotNetRu.Clients.UI.Controls;
-    using DotNetRu.Clients.UI.Pages.Events;
     using DotNetRu.Clients.UI.Pages.Friends;
     using DotNetRu.Clients.UI.Pages.Home;
-    using DotNetRu.Clients.UI.Pages.Info;
     using DotNetRu.Clients.UI.Pages.Sessions;
     using DotNetRu.Clients.UI.Pages.Speakers;
     using DotNetRu.Utils.Helpers;
@@ -19,6 +16,7 @@
 
     using XamarinEvolve.Clients.Portable;
 
+    using MeetupsPage = DotNetRu.Clients.UI.Pages.Meetups.MeetupsPage;
     using MenuItem = DotNetRu.Clients.Portable.Model.MenuItem;
     using SettingsPage = DotNetRu.Clients.UI.Pages.About.SettingsPage;
 
