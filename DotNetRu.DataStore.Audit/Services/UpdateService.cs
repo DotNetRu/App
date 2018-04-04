@@ -104,6 +104,7 @@
                 }
                 catch (Exception e)
                 {
+                    // TODO send to AppCenter
                     Console.WriteLine(e.Message);
                 }
             }
