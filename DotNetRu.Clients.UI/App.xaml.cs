@@ -24,6 +24,7 @@ namespace DotNetRu.Clients.UI
     using Microsoft.AppCenter;
     using Microsoft.AppCenter.Analytics;
     using Microsoft.AppCenter.Crashes;
+    using Microsoft.AppCenter.Push;
 
     using Plugin.Connectivity;
     using Plugin.Connectivity.Abstractions;
@@ -48,21 +49,50 @@ namespace DotNetRu.Clients.UI
 
             RealmService.Initialize();
 
-            Stopwatch stopwatch = new Stopwatch();
-            stopwatch.Start();
-
-            UpdateService.UpdateAudit();
-            stopwatch.Stop();
-
-            Debug.WriteLine("Updating audit time: " + stopwatch.Elapsed.ToString("g"));
-
             this.InitializeComponent();
+
+            if (!AppCenter.Configured)
+            {
+                Push.PushNotificationReceived += (sender, e) =>
+                    {
+                        // Add the notification message and title to the message
+                        var summary = $"Push notification received:" +
+                                      $"\n\tNotification title: {e.Title}" +
+                                      $"\n\tMessage: {e.Message}";
+
+                        // If there is custom data associated with the notification,
+                        // print the entries
+                        if (e.CustomData != null)
+                        {
+                            summary += "\n\tCustom data:\n";
+                            foreach (var key in e.CustomData.Keys)
+                            {
+                                summary += $"\t\t{key} : {e.CustomData[key]}\n";
+                            }
+                        }
+
+                        // Send the notification summary to debug output
+                        Debug.WriteLine(summary);
+
+                        Stopwatch stopwatch = new Stopwatch();
+                        stopwatch.Start();
+
+                        UpdateService.UpdateAudit();
+                        stopwatch.Stop();
+
+                        Debug.WriteLine("Updating audit time: " + stopwatch.Elapsed.ToString("g"));
+                    };
+            }
 
 #if RELEASE
             AppCenter.Start(
                 "ios=1e7f311f-1055-4ec9-8b00-0302015ab8ae;android=6f9a7703-8ca4-477e-9558-7e095f7d20aa;",
                 typeof(Analytics),
-                typeof(Crashes));
+                typeof(Crashes), typeof(Push));
+#else
+            AppCenter.Start(
+                "ios=1e7f311f-1055-4ec9-8b00-0302015ab8ae;android=6f9a7703-8ca4-477e-9558-7e095f7d20aa;", 
+                typeof(Push));
 #endif
 
             this.MainPage = new BottomTabbedPage();

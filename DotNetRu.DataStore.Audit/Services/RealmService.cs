@@ -52,10 +52,14 @@
 
         private static void InitializeRealm()
         {
-            var realmDB = "Audit.realm";
             var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            var realmPath = Path.Combine(documentsPath, "Audit.realm");
 
-            File.WriteAllBytes(Path.Combine(documentsPath, realmDB), ExtractResource(RealmResourceName));
+            // TODO flag triggering overwrite
+            if (!File.Exists(realmPath))
+            {
+                File.WriteAllBytes(realmPath, ExtractResource(RealmResourceName));
+            }
         }
 
         private static void InitializeAutoMapper()
