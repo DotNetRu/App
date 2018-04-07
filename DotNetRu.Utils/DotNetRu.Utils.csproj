@@ -9,4 +9,10 @@
     <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
     <PackageReference Include="Xamarin.Forms" Version="2.5.0.280555" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.AppCenter.Crashes">
+      <HintPath>..\..\..\..\.nuget\packages\microsoft.appcenter.crashes\1.5.0\lib\MonoAndroid403\Microsoft.AppCenter.Crashes.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 </Project>
