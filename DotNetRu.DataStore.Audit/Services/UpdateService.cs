@@ -13,6 +13,7 @@
 
     using DotNetRu.DataStore.Audit.RealmModels;
     using DotNetRu.DataStore.Audit.XmlEntities;
+    using DotNetRu.Utils;
 
     using Octokit;
 
@@ -22,16 +23,18 @@
     {
         private const int DotNetRuAppRepositoryID = 89862917;
 
-        public static void UpdateAudit()
+        public static async Task UpdateAudit()
         {
             try
             {
+                Console.WriteLine("DEBUG - started updating audit");
+
                 var client = new GitHubClient(new ProductHeaderValue("DotNetRu"));
 
-                var contentUpdate = client.Repository.Commit.Compare(
+                var contentUpdate = await client.Repository.Commit.Compare(
                                         DotNetRuAppRepositoryID,
                                         "3ddd7e73f395c0e5214aefddc912d9ac45689925",
-                                        "master").Result;
+                                        "master");
 
                 Stopwatch stopwatch = new Stopwatch();
                 stopwatch.Start();
@@ -40,12 +43,12 @@
                     async file => new UpdatedFile
                                       {
                                           Filename = file.Filename,
-                                          Content = await new HttpClient().GetByteArrayAsync(file.RawUrl).ConfigureAwait(false)
+                                          Content = await new HttpClient().GetByteArrayAsync(file.RawUrl)
                                       });
-                var fileContents = Task.WhenAll(streamTasks).Result;
+                var fileContents = await Task.WhenAll(streamTasks);
 
                 stopwatch.Stop();
-                Debug.WriteLine("Downloading files time: " + stopwatch.Elapsed.ToString("g"));
+                Console.WriteLine("Downloading files time: " + stopwatch.Elapsed.ToString("g"));
 
                 var xmlFiles = fileContents.Where(x => x.Filename.EndsWith(".xml")).ToList();
 
@@ -57,15 +60,15 @@
                     UpdateModels<TalkEntity>(xmlFiles, "talks");
                     UpdateModels<MeetupEntity>(xmlFiles, "meetups");
 
-                    var speakerPhotos = fileContents.Where(x => x.Filename.EndsWith("avatar.jpg"));
-                    UpdateSpeakerAvatars(speakerPhotos);
+                    //var speakerPhotos = fileContents.Where(x => x.Filename.EndsWith("avatar.jpg"));
+                    //UpdateSpeakerAvatars(speakerPhotos);
 
                     trans.Commit();
                 }
             }
             catch (Exception e)
             {
-                Debug.WriteLine(e);
+                new DotNetRuLogger().Report(e);
             }
         }
 
@@ -84,28 +87,25 @@
 
         private static void UpdateModels<T>(IEnumerable<UpdatedFile> xmlFiles, string entityName)
         {
-            var newEntities = xmlFiles.Where(x => x.Filename.Contains(entityName));
-            UpdateModels<T>(newEntities.Select(x => x.Content));
+            var newEntities = xmlFiles.Where(x => x.Filename.StartsWith("db/" + entityName));
+            UpdateModels<T>(newEntities);
         }
 
-        private static void UpdateModels<T>(IEnumerable<byte[]> files)
+        private static void UpdateModels<T>(IEnumerable<UpdatedFile> files)
         {
-            foreach (byte[] file in files)
+            foreach (UpdatedFile file in files)
             {
-                try
+                using (var memoryStream = new MemoryStream(file.Content))
                 {
-                    var m = new XmlSerializer(typeof(T)).Deserialize(new MemoryStream(file));
+                    var m = new XmlSerializer(typeof(T)).Deserialize(memoryStream);
 
                     var realmType = Mapper.Configuration.GetAllTypeMaps().Single(x => x.SourceType == typeof(T))
                         .DestinationType;
                     var realmObject = Mapper.Map(m, typeof(T), realmType);
 
                     RealmService.AuditRealm.Add(realmObject as RealmObject, update: true);
-                }
-                catch (Exception e)
-                {
-                    // TODO send to AppCenter
-                    Console.WriteLine(e.Message);
+
+                    Console.WriteLine("Updated " + file.Filename);
                 }
             }
         }

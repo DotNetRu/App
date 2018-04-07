@@ -51,38 +51,20 @@ namespace DotNetRu.Clients.UI
 
             this.InitializeComponent();
 
-            if (!AppCenter.Configured)
-            {
-                Push.PushNotificationReceived += (sender, e) =>
-                    {
-                        // Add the notification message and title to the message
-                        var summary = $"Push notification received:" +
-                                      $"\n\tNotification title: {e.Title}" +
-                                      $"\n\tMessage: {e.Message}";
+            //if (!AppCenter.Configured)
+            //{
+            //    Push.PushNotificationReceived += async (sender, e) =>
+            //        {
+            //            Stopwatch stopwatch = new Stopwatch();
+            //            stopwatch.Start();
 
-                        // If there is custom data associated with the notification,
-                        // print the entries
-                        if (e.CustomData != null)
-                        {
-                            summary += "\n\tCustom data:\n";
-                            foreach (var key in e.CustomData.Keys)
-                            {
-                                summary += $"\t\t{key} : {e.CustomData[key]}\n";
-                            }
-                        }
+            //            await UpdateService.UpdateAudit();
+            //            stopwatch.Stop();
 
-                        // Send the notification summary to debug output
-                        Debug.WriteLine(summary);
-
-                        Stopwatch stopwatch = new Stopwatch();
-                        stopwatch.Start();
-
-                        UpdateService.UpdateAudit();
-                        stopwatch.Stop();
-
-                        Debug.WriteLine("Updating audit time: " + stopwatch.Elapsed.ToString("g"));
-                    };
-            }
+            //            // TODO send to app center
+            //            Debug.WriteLine("Updating audit time: " + stopwatch.Elapsed.ToString("g"));
+            //        };
+            //}
 
 #if RELEASE
             AppCenter.Start(
@@ -91,9 +73,13 @@ namespace DotNetRu.Clients.UI
                 typeof(Crashes), typeof(Push));
 #else
             AppCenter.Start(
-                "ios=1e7f311f-1055-4ec9-8b00-0302015ab8ae;android=6f9a7703-8ca4-477e-9558-7e095f7d20aa;", 
+                "ios=1e7f311f-1055-4ec9-8b00-0302015ab8ae;android=6f9a7703-8ca4-477e-9558-7e095f7d20aa;",
+                typeof(Analytics),
+                typeof(Crashes), 
                 typeof(Push));
 #endif
+
+            Console.WriteLine("AppCenter InstallId: " + AppCenter.GetInstallIdAsync().Result);
 
             this.MainPage = new BottomTabbedPage();
         }

@@ -10,6 +10,7 @@ using Xamarin.Forms;
 namespace DotNetRu.Utils
 {
     using Microsoft.AppCenter.Analytics;
+    using Microsoft.AppCenter.Crashes;
 
     public class DotNetRuLogger : ILogger
     {
@@ -35,9 +36,9 @@ namespace DotNetRu.Utils
             Analytics.TrackEvent("Track: " + trackIdentifier + " key: " + key + " value: " + value);
         }
 
-        public virtual void Report(Exception exception = null, Severity warningLevel = Severity.Warning)
+        public virtual void Report(Exception exception)
         {
-            Analytics.TrackEvent("Report: " + exception);
+            Crashes.TrackError(exception);
         }
 
         public virtual void Report(
