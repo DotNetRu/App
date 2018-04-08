@@ -27,13 +27,13 @@
         {
             try
             {
-                Console.WriteLine("DEBUG - started updating audit");
+                Console.WriteLine("AuditUpdate. Started updating audit");
 
                 var client = new GitHubClient(new ProductHeaderValue("DotNetRu"));
 
                 var contentUpdate = await client.Repository.Commit.Compare(
                                         DotNetRuAppRepositoryID,
-                                        "3ddd7e73f395c0e5214aefddc912d9ac45689925",
+                                        "332cff30d041aaf991579f10b5578206e1f28601",
                                         "master");
 
                 Stopwatch stopwatch = new Stopwatch();
@@ -41,33 +41,38 @@
 
                 var streamTasks = contentUpdate.Files.Select(
                     async file => new UpdatedFile
-                                      {
-                                          Filename = file.Filename,
-                                          Content = await new HttpClient().GetByteArrayAsync(file.RawUrl)
-                                      });
+                    {
+                        Filename = file.Filename,
+                        Content = await new HttpClient().GetByteArrayAsync(file.RawUrl).ConfigureAwait(false)
+                    });
                 var fileContents = await Task.WhenAll(streamTasks);
 
-                stopwatch.Stop();
-                Console.WriteLine("Downloading files time: " + stopwatch.Elapsed.ToString("g"));
+                Console.WriteLine("AuditUpdate. Downloading files time: " + stopwatch.Elapsed.ToString("g"));
 
                 var xmlFiles = fileContents.Where(x => x.Filename.EndsWith(".xml")).ToList();
 
                 using (var trans = RealmService.AuditRealm.BeginWrite())
                 {
+                    RealmService.InitializeAutoMapper();
+
                     UpdateModels<SpeakerEntity>(xmlFiles, "speakers");
                     UpdateModels<FriendEntity>(xmlFiles, "friends");
                     UpdateModels<VenueEntity>(xmlFiles, "venues");
                     UpdateModels<TalkEntity>(xmlFiles, "talks");
                     UpdateModels<MeetupEntity>(xmlFiles, "meetups");
 
-                    //var speakerPhotos = fileContents.Where(x => x.Filename.EndsWith("avatar.jpg"));
-                    //UpdateSpeakerAvatars(speakerPhotos);
+                    var speakerPhotos = fileContents.Where(x => x.Filename.EndsWith("avatar.jpg"));
+                    UpdateSpeakerAvatars(speakerPhotos);
 
                     trans.Commit();
                 }
+
+                stopwatch.Stop();
+                Console.WriteLine("AuditUpdate. Finished! Time: " + stopwatch.Elapsed.ToString("g"));
             }
             catch (Exception e)
             {
+                Console.WriteLine("AuditUpdate. " + e);
                 new DotNetRuLogger().Report(e);
             }
         }
@@ -82,6 +87,8 @@
 
                 var speaker = RealmService.AuditRealm.Find<Speaker>(speakerID);
                 speaker.Avatar = speakerAvatar;
+
+                Console.WriteLine("AuditUpdate. Updated speaker avatar: " + updatedFile.Filename);
             }
         }
 
@@ -97,15 +104,18 @@
             {
                 using (var memoryStream = new MemoryStream(file.Content))
                 {
-                    var m = new XmlSerializer(typeof(T)).Deserialize(memoryStream);
+                    var xmlEntity = new XmlSerializer(typeof(T)).Deserialize(memoryStream);
+
+                    Console.WriteLine($"AuditUpdate: updating {file.Filename}");
 
                     var realmType = Mapper.Configuration.GetAllTypeMaps().Single(x => x.SourceType == typeof(T))
                         .DestinationType;
-                    var realmObject = Mapper.Map(m, typeof(T), realmType);
+
+                    var realmObject = Mapper.Map(xmlEntity, typeof(T), realmType);
 
                     RealmService.AuditRealm.Add(realmObject as RealmObject, update: true);
 
-                    Console.WriteLine("Updated " + file.Filename);
+                    Console.WriteLine($"AuditUpdate. Updated {file.Filename}");
                 }
             }
         }

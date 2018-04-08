@@ -79,7 +79,7 @@ namespace DotNetRu.Clients.UI
                 typeof(Push));
 #endif
 
-            Console.WriteLine("AppCenter InstallId: " + AppCenter.GetInstallIdAsync().Result);
+            Console.WriteLine("AuditUpdate. AppCenter InstallId: " + AppCenter.GetInstallIdAsync().Result);
 
             this.MainPage = new BottomTabbedPage();
         }
