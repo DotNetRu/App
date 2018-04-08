@@ -1,5 +1,7 @@
 ﻿namespace DotNetRu.Droid
 {
+    using System.Threading.Tasks;
+
     using Android.App;
     using Android.Content;
     using Android.Runtime;
@@ -15,9 +17,9 @@
     {
         public override void OnReceive(Context context, Intent intent)
         {
-            Log.Debug("Push", "Push Notification receviced!");
+            Log.Debug("Push", "AuditUpdate. Push Notification receviced!");
 
-            UpdateService.UpdateAudit();
+            Task updateAudit = UpdateService.UpdateAudit();
         }
     }
 }

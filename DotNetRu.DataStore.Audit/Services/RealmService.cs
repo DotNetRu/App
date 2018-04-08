@@ -50,19 +50,7 @@
             }
         }
 
-        private static void InitializeRealm()
-        {
-            var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            var realmPath = Path.Combine(documentsPath, "Audit.realm");
-
-            // TODO flag triggering overwrite
-            if (!File.Exists(realmPath))
-            {
-                File.WriteAllBytes(realmPath, ExtractResource(RealmResourceName));
-            }
-        }
-
-        private static void InitializeAutoMapper()
+        internal static void InitializeAutoMapper()
         {
             Mapper.Reset();
             Mapper.Initialize(
@@ -115,6 +103,18 @@
                                 dest.Venue = AuditRealm.Find<Venue>(src.VenueId);
                             });
                     });
+        }
+
+        private static void InitializeRealm()
+        {
+            var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            var realmPath = Path.Combine(documentsPath, "Audit.realm");
+
+            // TODO flag triggering overwrite
+            if (!File.Exists(realmPath))
+            {
+                File.WriteAllBytes(realmPath, ExtractResource(RealmResourceName));
+            }
         }
     }
 }
