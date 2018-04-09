@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "89529747547",
+    "firebase_url": "https://dotnetru-8ccc0.firebaseio.com",
+    "project_id": "dotnetru-8ccc0",
+    "storage_bucket": "dotnetru-8ccc0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:89529747547:android:3dbaacb943d35434",
+        "android_client_info": {
+          "package_name": "com.dotnetru.droid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "89529747547-u95fd6umjjhd3ifls8rga6828r0b6grt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhoFOhmIMgezf8gmtdtYepHCSuuEI4vd4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
