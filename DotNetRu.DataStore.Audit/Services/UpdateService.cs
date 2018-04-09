@@ -29,12 +29,21 @@
             {
                 Console.WriteLine("AuditUpdate. Started updating audit");
 
+                var auditVersion = RealmService.AuditRealm.All<AuditVersion>().Single();
+
+                Console.WriteLine("AuditUpdate. Current version is: " + auditVersion.CommitHash);
+
                 var client = new GitHubClient(new ProductHeaderValue("DotNetRu"));
+
+                var reference = await client.Git.Reference.Get(DotNetRuAppRepositoryID, "heads/master");
+                var latestMasterCommitSha = reference.Object.Sha;
+
+                Console.WriteLine("AuditUpdate. Latest version (master) is: " + latestMasterCommitSha);
 
                 var contentUpdate = await client.Repository.Commit.Compare(
                                         DotNetRuAppRepositoryID,
-                                        "332cff30d041aaf991579f10b5578206e1f28601",
-                                        "master");
+                                        auditVersion.CommitHash,
+                                        latestMasterCommitSha);
 
                 Stopwatch stopwatch = new Stopwatch();
                 stopwatch.Start();
@@ -63,6 +72,9 @@
 
                     var speakerPhotos = fileContents.Where(x => x.Filename.EndsWith("avatar.jpg"));
                     UpdateSpeakerAvatars(speakerPhotos);
+
+                    auditVersion.CommitHash = latestMasterCommitSha;
+                    RealmService.AuditRealm.Add(auditVersion, update: true);
 
                     trans.Commit();
                 }
