@@ -6,11 +6,14 @@
     using Android.Content;
     using Android.Content.PM;
     using Android.OS;
+    using Android.Util;
 
     using DotNetRu.Droid.Helpers;
     using DotNetRu.Utils.Helpers;
 
     using FFImageLoading.Forms.Droid;
+
+    using Firebase.Iid;
 
     using FormsToolkit.Droid;
 
@@ -113,6 +116,9 @@
             CachedImageRenderer.Init(enableFastRenderer: true);
 
             Push.SetSenderId("89529747547");
+
+            Log.Debug("AuditUpdate", "google app id: " + this.GetString(Resource.String.google_app_id));
+            Log.Debug("AuditUpdate", "Firebase token: " + FirebaseInstanceId.Instance.Token);
 
             this.LoadApplication(new Clients.UI.App());
             this.OnNewIntent(this.Intent);
