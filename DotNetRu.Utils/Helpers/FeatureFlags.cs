@@ -2,8 +2,6 @@
 {
     public static class FeatureFlags
     {
-        public static bool EventsEnabled => false;
-
         public static bool TalkRatingVisible => false;
 
         public static bool ShowBuyTicketButton => false;

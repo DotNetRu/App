@@ -13,7 +13,9 @@
 
     using FFImageLoading.Forms.Droid;
 
+    using Firebase;
     using Firebase.Iid;
+    using Firebase.Messaging;
 
     using FormsToolkit.Droid;
 
@@ -117,8 +119,10 @@
 
             Push.SetSenderId("89529747547");
 
-            Log.Debug("AuditUpdate", "google app id: " + this.GetString(Resource.String.google_app_id));
+            FirebaseApp.InitializeApp(Android.App.Application.Context);
             Log.Debug("AuditUpdate", "Firebase token: " + FirebaseInstanceId.Instance.Token);
+
+            FirebaseMessaging.Instance.SubscribeToTopic("AuditUpdate");
 
             this.LoadApplication(new Clients.UI.App());
             this.OnNewIntent(this.Intent);

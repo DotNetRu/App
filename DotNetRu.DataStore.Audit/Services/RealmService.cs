@@ -21,9 +21,9 @@
 
         public static Realm AuditRealm => auditRealm ?? (auditRealm = Realm.GetInstance("Audit.realm"));
 
-        public static void Initialize()
+        public static void Initialize(bool overwrite)
         {
-            InitializeRealm();
+            InitializeRealm(overwrite);
             InitializeAutoMapper();
         }
 
@@ -105,13 +105,12 @@
                     });
         }
 
-        private static void InitializeRealm()
+        private static void InitializeRealm(bool overwrite)
         {
             var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             var realmPath = Path.Combine(documentsPath, "Audit.realm");
 
-            // TODO flag triggering overwrite
-            if (!File.Exists(realmPath))
+            if (overwrite)
             {
                 File.WriteAllBytes(realmPath, ExtractResource(RealmResourceName));
             }
