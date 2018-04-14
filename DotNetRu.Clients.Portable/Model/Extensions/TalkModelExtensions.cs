@@ -12,8 +12,6 @@
 
     using Xamarin.Forms;
 
-    using XamarinEvolve.Clients.Portable;
-
     public static class TalkModelExtensions
     {
         public static AppLinkEntry GetAppLink(this TalkModel talkModel)

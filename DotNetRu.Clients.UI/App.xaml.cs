@@ -5,9 +5,7 @@
 namespace DotNetRu.Clients.UI
 {
     using System;
-    using System.Diagnostics;
     using System.Globalization;
-    using System.Threading.Tasks;
 
     using DotNetRu.Clients.Portable.ApplicationResources;
     using DotNetRu.Clients.Portable.Interfaces;
@@ -31,8 +29,6 @@ namespace DotNetRu.Clients.UI
 
     using Xamarin.Forms;
 
-    using XamarinEvolve.Clients.Portable;
-
     using Device = Xamarin.Forms.Device;
 
     public partial class App
@@ -44,33 +40,32 @@ namespace DotNetRu.Clients.UI
         public App()
         {
             var language = LanguageService.GetCurrentLanguage();
-
             AppResources.Culture = new CultureInfo(language.GetLanguageCode());
 
-            RealmService.Initialize();
+            var savedAppVersion = Portable.Helpers.Settings.AppVersion;
+            var currentAppVersion = DependencyService.Get<IAppVersionProvider>().AppVersion;
+
+            bool overwrite = savedAppVersion != currentAppVersion;        
+            RealmService.Initialize(overwrite);
+
+            Portable.Helpers.Settings.AppVersion = currentAppVersion;
 
             this.InitializeComponent();
 
-            //if (!AppCenter.Configured)
-            //{
-            //    Push.PushNotificationReceived += async (sender, e) =>
-            //        {
-            //            Stopwatch stopwatch = new Stopwatch();
-            //            stopwatch.Start();
-
-            //            await UpdateService.UpdateAudit();
-            //            stopwatch.Stop();
-
-            //            // TODO send to app center
-            //            Debug.WriteLine("Updating audit time: " + stopwatch.Elapsed.ToString("g"));
-            //        };
-            //}
+            if (Device.RuntimePlatform != Device.Android)
+            {
+                if (!AppCenter.Configured)
+                {
+                    Push.PushNotificationReceived += async (sender, e) => { await UpdateService.UpdateAudit(); };
+                }
+            }
 
 #if RELEASE
             AppCenter.Start(
                 "ios=1e7f311f-1055-4ec9-8b00-0302015ab8ae;android=6f9a7703-8ca4-477e-9558-7e095f7d20aa;",
                 typeof(Analytics),
-                typeof(Crashes), typeof(Push));
+                typeof(Crashes), 
+                typeof(Push));
 #else
             AppCenter.Start(
                 "ios=1e7f311f-1055-4ec9-8b00-0302015ab8ae;android=6f9a7703-8ca4-477e-9558-7e095f7d20aa;",
@@ -94,23 +89,6 @@ namespace DotNetRu.Clients.UI
         public new void SendOnAppLinkRequestReceived(Uri uri)
         {
             this.OnAppLinkRequestReceived(uri);
-        }
-
-        public async Task Finish()
-        {
-            if (Device.RuntimePlatform == Device.iOS && Settings.Current.FirstRun)
-            {
-                var push = DependencyService.Get<IPushNotifications>();
-                if (push != null)
-                {
-                    await push.RegisterForNotifications();
-                }
-            }
-        }
-
-        protected override void OnStart()
-        {
-            this.OnResume();
         }
 
         protected override void OnResume()

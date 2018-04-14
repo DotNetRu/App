@@ -80,6 +80,7 @@
                 }
 
                 stopwatch.Stop();
+                // TODO Send to App Center
                 Console.WriteLine("AuditUpdate. Finished! Time: " + stopwatch.Elapsed.ToString("g"));
             }
             catch (Exception e)
