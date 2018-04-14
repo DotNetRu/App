@@ -14,19 +14,17 @@
 
     [Preserve]
     [BroadcastReceiver(Permission = "com.google.android.c2dm.permission.SEND")]
-    [IntentFilter(new[] { "com.google.android.c2dm.intent.RECEIVE" },
-        Categories = new[] { "${applicationId}" })]
+    [IntentFilter(new[] { "com.google.android.c2dm.intent.RECEIVE" }, Categories = new[] { "${applicationId}" })]
     public class DotNetRuPushReceiver : BroadcastReceiver
     {
+        public const string AuditUpdateChannel = "com.dotnetru.app";
+
         public override void OnReceive(Context context, Intent intent)
         {
             Log.Debug("Push", "AuditUpdate. Push Notification receviced!");
 
             Task updateAudit = UpdateService.UpdateAudit().ContinueWith(
-                t => this.SendNotification(
-                    context,
-                    "New information",
-                    "New DotNetRu information is available"));
+                t => this.SendNotification(context, "New information", "New DotNetRu information is available"));
         }
 
         private void SendNotification(Context context, string title, string body)
@@ -36,19 +34,34 @@
 
             // Create a PendingIntent; we're only using one PendingIntent (ID = 0):
             const int PendingIntentID = 0;
-            PendingIntent pendingIntent =
-                PendingIntent.GetActivity(context, PendingIntentID, intent, PendingIntentFlags.OneShot);
+            PendingIntent pendingIntent = PendingIntent.GetActivity(
+                context,
+                PendingIntentID,
+                intent,
+                PendingIntentFlags.OneShot);
 
-            Notification notif = new Notification.Builder(context)
+            string channelName = "New data";
+            var importance = NotificationImportance.High;
+            NotificationChannel notificationChannel =
+                new NotificationChannel(AuditUpdateChannel, channelName, importance);
+
+            notificationChannel.EnableVibration(vibration: true);
+            notificationChannel.LockscreenVisibility = NotificationVisibility.Public;
+
+            Notification notification = new Notification.Builder(context)
                 .SetSmallIcon(Resource.Drawable.ic_launcher)
                 .SetContentTitle(title)
                 .SetContentText(body)
                 .SetContentIntent(pendingIntent)
+                .SetChannelId(AuditUpdateChannel)
                 .Build();
 
             NotificationManager notificationManager =
                 (NotificationManager)context.GetSystemService(Context.NotificationService);
-            notificationManager.Notify(Settings.GetUniqueNotificationID(), notif);
+
+            notificationManager.CreateNotificationChannel(notificationChannel);
+
+            notificationManager.Notify(Settings.GetUniqueNotificationID(), notification);
         }
     }
 }
