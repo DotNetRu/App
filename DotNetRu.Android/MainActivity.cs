@@ -21,8 +21,6 @@
 
     using ImageCircle.Forms.Plugin.Droid;
 
-    using Microsoft.AppCenter.Push;
-
     using Naxam.Controls.Platform.Droid;
 
     using Plugin.Permissions;
@@ -116,8 +114,6 @@
             ImageCircleRenderer.Init();
 
             CachedImageRenderer.Init(enableFastRenderer: true);
-
-            Push.SetSenderId("89529747547");
 
             FirebaseApp.InitializeApp(Android.App.Application.Context);
             Log.Debug("AuditUpdate", "Firebase token: " + FirebaseInstanceId.Instance.Token);
