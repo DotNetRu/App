@@ -10,7 +10,6 @@
     using DotNetRu.DataStore.Audit.Extensions;
     using DotNetRu.DataStore.Audit.Models;
     using DotNetRu.DataStore.Audit.RealmModels;
-    using DotNetRu.DataStore.Audit.XmlEntities;
 
     using Realms;
 
@@ -50,7 +49,7 @@
             }
         }
 
-        internal static void InitializeAutoMapper()
+        private static void InitializeAutoMapper()
         {
             Mapper.Reset();
             Mapper.Initialize(
@@ -61,47 +60,6 @@
                         cfg.CreateMap<Friend, FriendModel>().ConvertUsing(x => x.ToModel());
                         cfg.CreateMap<Talk, TalkModel>().ConvertUsing(x => x.ToModel());
                         cfg.CreateMap<Meetup, MeetupModel>().ConvertUsing(x => x.ToModel());
-
-                        cfg.CreateMap<SpeakerEntity, Speaker>().AfterMap(
-                            (src, dest) =>
-                                {
-                                    var speakerID = src.Id;
-                                    var existingSpeaker = AuditRealm.Find<Speaker>(speakerID);
-                                    if (existingSpeaker != null)
-                                    {
-                                        dest.Avatar = existingSpeaker.Avatar;
-                                    }
-                                });
-                        cfg.CreateMap<VenueEntity, Venue>();
-                        cfg.CreateMap<FriendEntity, Friend>();
-                        cfg.CreateMap<CommunityEntity, Community>();
-                        cfg.CreateMap<TalkEntity, Talk>().AfterMap(
-                            (src, dest) =>
-                            {
-                                foreach (string speakerId in src.SpeakerIds)
-                                {
-                                    var speaker = AuditRealm.Find<Speaker>(speakerId);
-
-                                    dest.Speakers.Add(speaker);
-                                }
-                            });
-                        cfg.CreateMap<MeetupEntity, Meetup>().AfterMap(
-                            (src, dest) =>
-                            {
-                                foreach (string talkId in src.TalkIds)
-                                {
-                                    var talk = AuditRealm.Find<Talk>(talkId);
-                                    dest.Talks.Add(talk);
-                                }
-
-                                foreach (string friendId in src.FriendIds)
-                                {
-                                    var friend = AuditRealm.Find<Friend>(friendId);
-                                    dest.Friends.Add(friend);
-                                }
-
-                                dest.Venue = AuditRealm.Find<Venue>(src.VenueId);
-                            });
                     });
         }
 
