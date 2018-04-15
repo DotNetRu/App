@@ -17,12 +17,16 @@
     {
         public const string AuditUpdateChannel = "com.dotnetru.app";
 
-        public override void OnMessageReceived(RemoteMessage message)
+        public override async void OnMessageReceived(RemoteMessage message)
         {
             Log.Debug("Push", "AuditUpdate. Push Notification receviced!");
 
-            Task updateAudit = UpdateService.UpdateAudit().ContinueWith(
-                t => this.SendNotification(Application.Context, "New information", "New DotNetRu information is available"));
+            await UpdateService.UpdateAudit().ContinueWith(
+                t => this.SendNotification(
+                    Application.Context,
+                    "New information",
+                    "New DotNetRu information is available"),
+                TaskContinuationOptions.OnlyOnRanToCompletion);
         }
 
         private void SendNotification(Context context, string title, string body)
