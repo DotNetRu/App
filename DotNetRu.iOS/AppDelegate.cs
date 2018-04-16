@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
 
     using CoreSpotlight;
 
@@ -92,6 +93,8 @@
         /// <inheritdoc />
         public override bool FinishedLaunching(UIApplication uiApplication, NSDictionary launchOptions)
         {
+            var dummy = new DateTimeOffsetConverter();
+
             Forms.Init();
 
             this.SetMinimumBackgroundFetchInterval();
