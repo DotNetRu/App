@@ -10,17 +10,17 @@
         public static MeetupModel ToModel(this Meetup meetup)
         {
             return new MeetupModel
-                       {
-                           CommunityID = meetup.CommunityId,
-                           Description = meetup.Name,
-                           IsAllDay = true,
-                           Title = meetup.Name,
-                           StartTime = meetup.Date.LocalDateTime,
-                           EndTime = meetup.Date.LocalDateTime,
-                           Venue = meetup.Venue.ToModel(),
-                           Talks = meetup.Talks.Select(x => x.ToModel()),
-                           Friends = meetup.Friends.Select(x => x.ToModel())
-                       };
+            {
+                CommunityID = meetup.CommunityId,
+                Description = meetup.Name,
+                IsAllDay = false,
+                Title = meetup.Name,
+                StartTime = meetup.Sessions.First().StartTime.DateTime,
+                EndTime = meetup.Sessions.Last().EndTime.DateTime,
+                Venue = meetup.Venue.ToModel(),
+                Sessions = meetup.Sessions.Select(x => x.ToModel()),
+                Friends = meetup.Friends.Select(x => x.ToModel())
+            };
         }
     }
 }
