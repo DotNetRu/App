@@ -42,28 +42,31 @@
                 intent,
                 PendingIntentFlags.OneShot);
 
-            string channelName = "New data";
-            var importance = NotificationImportance.High;
-            NotificationChannel notificationChannel =
-                new NotificationChannel(AuditUpdateChannel, channelName, importance);
-
-            notificationChannel.EnableVibration(vibration: true);
-            notificationChannel.LockscreenVisibility = NotificationVisibility.Public;
-
-            Notification notification = new Notification.Builder(context)
+            Notification.Builder notificationBuilder = new Notification.Builder(context)
                 .SetSmallIcon(Resource.Drawable.ic_launcher)
                 .SetContentTitle(title)
                 .SetContentText(body)
-                .SetContentIntent(pendingIntent)
-                .SetChannelId(AuditUpdateChannel)
-                .Build();
+                .SetContentIntent(pendingIntent);
 
             NotificationManager notificationManager =
                 (NotificationManager)context.GetSystemService(NotificationService);
 
-            notificationManager.CreateNotificationChannel(notificationChannel);
+            if (Android.OS.Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.O)
+            {
+                string channelName = "New data";
+                var importance = NotificationImportance.High;
+                NotificationChannel notificationChannel =
+                    new NotificationChannel(AuditUpdateChannel, channelName, importance);
 
-            notificationManager.Notify(Settings.GetUniqueNotificationID(), notification);
+                notificationChannel.EnableVibration(vibration: true);
+                notificationChannel.LockscreenVisibility = NotificationVisibility.Public;
+
+                notificationManager.CreateNotificationChannel(notificationChannel);
+
+                notificationBuilder.SetChannelId(AuditUpdateChannel);
+            }
+
+            notificationManager.Notify(Settings.GetUniqueNotificationID(), notificationBuilder.Build());
         }
     }
 }
