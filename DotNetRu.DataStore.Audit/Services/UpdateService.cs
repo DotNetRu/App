@@ -28,7 +28,7 @@
         {
             try
             {
-                Console.WriteLine("AuditUpdate. Started updating audit");
+                DotNetRuLogger.TrackEvent("AuditUpdate. Started updating audit");
 
                 string currentCommitSha;
                 using (var auditRealm = Realm.GetInstance("Audit.realm"))
@@ -37,15 +37,15 @@
                     currentCommitSha = auditVersion.CommitHash;
                 }
 
-                Console.WriteLine("AuditUpdate. Current synchronization context: " + SynchronizationContext.Current);
-                Console.WriteLine("AuditUpdate. Current version is: " + currentCommitSha);
+                DotNetRuLogger.TrackEvent("AuditUpdate. Current synchronization context: " + SynchronizationContext.Current);
+                DotNetRuLogger.TrackEvent("AuditUpdate. Current version is: " + currentCommitSha);
 
                 var client = new GitHubClient(new ProductHeaderValue("DotNetRu"));
 
                 var reference = await client.Git.Reference.Get(DotNetRuAppRepositoryID, "heads/master");
                 var latestMasterCommitSha = reference.Object.Sha;
 
-                Console.WriteLine("AuditUpdate. Latest version (master) is: " + latestMasterCommitSha);
+                DotNetRuLogger.TrackEvent("AuditUpdate. Latest version (master) is: " + latestMasterCommitSha);
 
                 var contentUpdate = await client.Repository.Commit.Compare(
                                         DotNetRuAppRepositoryID,
@@ -66,7 +66,7 @@
                                       });
                 var fileContents = await Task.WhenAll(streamTasks);
 
-                Console.WriteLine("AuditUpdate. Downloading files time: " + stopwatch.Elapsed.ToString("g"));
+                DotNetRuLogger.TrackEvent("AuditUpdate. Downloading files time: " + stopwatch.Elapsed.ToString("g"));
 
                 var xmlFiles = fileContents.Where(x => x.Filename.EndsWith(".xml")).ToList();
 
@@ -95,13 +95,12 @@
                 }
 
                 stopwatch.Stop();
-                // TODO Send to App Center
-                Console.WriteLine("AuditUpdate. Finished! Time: " + stopwatch.Elapsed.ToString("g"));
+
+                DotNetRuLogger.TrackEvent("AuditUpdate. Finished! Time: " + stopwatch.Elapsed.ToString("g"));
             }
             catch (Exception e)
             {
-                Console.WriteLine("AuditUpdate. " + e);
-                new DotNetRuLogger().Report(e);
+                DotNetRuLogger.Report(e, "AuditUpdate");
 
                 throw;
             }
@@ -118,7 +117,7 @@
                 var speaker = auditRealm.Find<Speaker>(speakerID);
                 speaker.Avatar = speakerAvatar;
 
-                Console.WriteLine("AuditUpdate. Updated speaker avatar: " + updatedFile.Filename);
+                DotNetRuLogger.TrackEvent("AuditUpdate. Updated speaker avatar: " + updatedFile.Filename);
             }
         }
 
@@ -136,7 +135,7 @@
                 {
                     var xmlEntity = new XmlSerializer(typeof(T)).Deserialize(memoryStream);
 
-                    Console.WriteLine($"AuditUpdate: updating {file.Filename}");
+                    DotNetRuLogger.TrackEvent($"AuditUpdate: updating {file.Filename}");
 
                     var realmType = mapper.ConfigurationProvider.GetAllTypeMaps().Single(x => x.SourceType == typeof(T))
                         .DestinationType;
@@ -145,7 +144,7 @@
 
                     auditRealm.Add(realmObject as RealmObject, update: true);
 
-                    Console.WriteLine($"AuditUpdate. Updated {file.Filename}");
+                    DotNetRuLogger.TrackEvent($"AuditUpdate. Updated {file.Filename}");
                 }
             }
         }
