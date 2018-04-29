@@ -1,4 +1,4 @@
-﻿namespace DotNetRu.Droid
+﻿namespace DotNetRu.Droid.Notifications
 {
     using Android.App;
     using Android.Util;
@@ -15,12 +15,6 @@
         {
             var refreshedToken = FirebaseInstanceId.Instance.Token;
             Log.Debug(Tag, "Refreshed token: " + refreshedToken);
-            this.SendRegistrationToServer(refreshedToken);
-        }
-
-        private void SendRegistrationToServer(string token)
-        {
-            // Add custom implementation, as needed.
         }
     }
 }
