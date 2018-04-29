@@ -6,16 +6,12 @@
     using Android.Content;
     using Android.Content.PM;
     using Android.OS;
-    using Android.Util;
 
     using DotNetRu.Droid.Helpers;
+    using DotNetRu.Droid.Notifications;
     using DotNetRu.Utils.Helpers;
 
     using FFImageLoading.Forms.Droid;
-
-    using Firebase;
-    using Firebase.Iid;
-    using Firebase.Messaging;
 
     using FormsToolkit.Droid;
 
@@ -115,10 +111,7 @@
 
             CachedImageRenderer.Init(enableFastRenderer: true);
 
-            FirebaseApp.InitializeApp(Android.App.Application.Context);
-            Log.Debug("AuditUpdate", "Firebase token: " + FirebaseInstanceId.Instance.Token);
-
-            FirebaseMessaging.Instance.SubscribeToTopic("AuditUpdate");
+            NotificationHelper.InitializePushNotifications();
 
             this.LoadApplication(new Clients.UI.App());
             this.OnNewIntent(this.Intent);

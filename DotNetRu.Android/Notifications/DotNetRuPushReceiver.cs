@@ -1,4 +1,4 @@
-﻿namespace DotNetRu.Droid
+﻿namespace DotNetRu.Droid.Notifications
 {
     using Android.App;
     using Android.Content;
