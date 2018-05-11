@@ -136,7 +136,6 @@
             ImageCircleRenderer.Init();
             NonScrollableListViewRenderer.Initialize();
             SelectedTabPageRenderer.Initialize();
-            TextViewValue1Renderer.Init();
 
             CachedImageRenderer.Init();
 

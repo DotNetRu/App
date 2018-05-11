@@ -32,15 +32,6 @@
             var settingsViewModel = new SettingsViewModel(openTechnologiesUsedCommand, openCreditsCommand);
 
             this.BindingContext = settingsViewModel;
-
-            var adjust = Device.RuntimePlatform != Device.Android ? 1 : -settingsViewModel.AboutItems.Count + 1;
-            this.ListViewAbout.HeightRequest = (settingsViewModel.AboutItems.Count * this.ListViewAbout.RowHeight) - adjust;
-            this.ListViewAbout.ItemTapped += (sender, e) => this.ListViewAbout.SelectedItem = null;
-
-            adjust = Device.RuntimePlatform != Device.Android ? 1 : -settingsViewModel.Communities.Count + 1;
-            this.ListViewCommunities.HeightRequest =
-                (settingsViewModel.Communities.Count * this.ListViewCommunities.RowHeight) - adjust;
-            this.ListViewCommunities.ItemTapped += (sender, e) => this.ListViewCommunities.SelectedItem = null;
         }
 
         public override AppPage PageType => AppPage.Information;
