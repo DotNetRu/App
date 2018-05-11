@@ -6,6 +6,7 @@ namespace DotNetRu.Clients.UI
 {
     using System;
     using System.Globalization;
+    using System.Threading.Tasks;
 
     using DotNetRu.Clients.Portable.ApplicationResources;
     using DotNetRu.Clients.Portable.Interfaces;
@@ -22,17 +23,18 @@ namespace DotNetRu.Clients.UI
     using Microsoft.AppCenter;
     using Microsoft.AppCenter.Analytics;
     using Microsoft.AppCenter.Crashes;
-    using Microsoft.AppCenter.Push;
 
     using Plugin.Connectivity;
     using Plugin.Connectivity.Abstractions;
 
     using Xamarin.Forms;
 
-    using Device = Xamarin.Forms.Device;
-
     public partial class App
     {
+        private const string IosAppCenterKey = "1e7f311f-1055-4ec9-8b00-0302015ab8ae";
+
+        private const string AndroidAppCenterKey = "6f9a7703-8ca4-477e-9558-7e095f7d20aa";
+
         private static ILogger logger;
 
         private bool registered;
@@ -52,33 +54,20 @@ namespace DotNetRu.Clients.UI
 
             this.InitializeComponent();
 
-            if (Device.RuntimePlatform != Device.Android)
-            {
-                if (!AppCenter.Configured)
-                {
-                    Push.PushNotificationReceived += async (sender, e) => { await UpdateService.UpdateAudit(); };
-                }
-            }
+            // Update Audit on startup
+            Task.Run(UpdateService.UpdateAudit);
 
-#if RELEASE
             AppCenter.Start(
-                "ios=1e7f311f-1055-4ec9-8b00-0302015ab8ae;android=6f9a7703-8ca4-477e-9558-7e095f7d20aa;",
+                $"ios={IosAppCenterKey};android={AndroidAppCenterKey};",
                 typeof(Analytics),
-                typeof(Crashes), 
-                typeof(Push));
-#else
-            AppCenter.Start(
-                "ios=1e7f311f-1055-4ec9-8b00-0302015ab8ae;android=6f9a7703-8ca4-477e-9558-7e095f7d20aa;",
-                typeof(Analytics),
-                typeof(Crashes), 
-                typeof(Push));
-#endif
+                typeof(Crashes));
 
             Console.WriteLine("AuditUpdate. AppCenter InstallId: " + AppCenter.GetInstallIdAsync().Result);
 
             this.MainPage = new BottomTabbedPage();
         }
 
+        // TODO change to SeriLog
         public static ILogger Logger => logger ?? (logger = DependencyService.Get<ILogger>());
 
         public void SecondOnResume()

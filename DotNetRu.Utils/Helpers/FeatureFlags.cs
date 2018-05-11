@@ -10,8 +10,6 @@
 
         public static bool SponsorsOnTabPage => true;
 
-        public static bool AppLinksEnabled => true;
-
         public static bool AppToWebLinkingEnabled => true;
 
         public static bool ShowLocationInSessionCell => true;
