@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-    using System.Windows.Input;
 
     using DotNetRu.Clients.Portable.Helpers;
     using DotNetRu.Clients.Portable.Interfaces;
@@ -18,7 +17,7 @@
     {
         private Language selectedLanguage;
 
-        public SettingsViewModel(ICommand openTechologiesUsedCommand, ICommand openCreditsCommand)
+        public SettingsViewModel()
         {
             MessagingCenter.Subscribe<LocalizedResources>(
                 this,
@@ -26,33 +25,6 @@
                 sender => this.UpdateViewModel());
 
             this.selectedLanguage = LanguageService.GetCurrentLanguage();
-
-            this.AboutItems.AddRange(
-                new[]
-                    {
-                        new LocalizableMenuItem
-                            {
-                                ResourceName = "CreatedBy",
-                                Command = openCreditsCommand
-                            },
-                        new LocalizableMenuItem
-                            {
-                                ResourceName = "Thanks",
-                                Command = this.LaunchBrowserCommand,
-                                Parameter = AboutThisApp.MontemagnoWebsite
-                            },
-                        new LocalizableMenuItem
-                            {
-                                ResourceName = "IssueTracker",
-                                Command = this.LaunchBrowserCommand,
-                                Parameter = AboutThisApp.IssueTracker
-                            },
-                        new LocalizableMenuItem
-                            {
-                                ResourceName = "TechnologyUsed",
-                                Command = openTechologiesUsedCommand
-                            }
-                    });
 
             this.Communities.AddRange(
                 new[]

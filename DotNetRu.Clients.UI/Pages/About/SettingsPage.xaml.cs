@@ -29,7 +29,7 @@
                                 AppResources.ResourceManager.GetString("Credits", AppResources.Culture),
                                 "OK"));
 
-            var settingsViewModel = new SettingsViewModel(openTechnologiesUsedCommand, openCreditsCommand);
+            var settingsViewModel = new SettingsViewModel();
 
             this.BindingContext = settingsViewModel;
         }

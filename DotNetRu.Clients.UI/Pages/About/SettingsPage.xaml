@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <pages:BasePage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -69,65 +68,31 @@
                 <TextCell                    
                     Text="{Binding Resources[CreatedBy]}"
                     StyleId="disclosure"/>
-                <!--<ViewCell>
-                    <controls:NonScrollableListView
-                        x:Name="ListViewAbout"
-                        ItemsSource="{Binding AboutItems}"
-                        RowHeight="44">
-                        <controls:NonScrollableListView.SeparatorColor>
-                            <OnPlatform x:TypeArguments="Color">
-                                <On Platform="iOS" Value="{StaticResource ListSeparator}"/>
-                            </OnPlatform>
-                        </controls:NonScrollableListView.SeparatorColor>
-                        <controls:NonScrollableListView.ItemTemplate>
-                            <DataTemplate>
-                                <TextCell 
-                                    Text="{Binding Name}"
-                                    Detail="{Binding Subtitle}"
-                                    Command="{Binding Command}"
-                                    CommandParameter="{Binding Parameter}"
-                                    StyleId="disclosure"/>
-                            </DataTemplate>
-                        </controls:NonScrollableListView.ItemTemplate>
-                    </controls:NonScrollableListView>
-                </ViewCell>-->
+                <TextCell                    
+                    Text="{Binding Resources[IssueTracker]}"
+                    StyleId="disclosure"/>
+                <TextCell                    
+                    Text="{Binding Resources[TechnologyUsed]}"
+                    StyleId="disclosure"/>
+
+                <!--<TextCell 
+                    Text="{Binding Name}"
+                    Detail="{Binding Subtitle}"
+                    Command="{Binding Command}"
+                    CommandParameter="{Binding Parameter}"
+                    StyleId="disclosure"/>-->
             </TableSection>
 
+            <TableSection Title="{Binding Resources[AboutApp]}">
+                <TextCell Text="{Binding AppVersion}"/>
+                <TextCell Text="{Binding Copyright}"/>
+            </TableSection>
+
+            <TableSection Title="Settings">
+                <ViewCell>
+                    <Picker Margin="10" ItemsSource="{Binding Languages}" HorizontalOptions="FillAndExpand" Title="{Binding Resources[SelectLanguage]}" SelectedItem="{Binding SelectedLanguage, Mode=TwoWay}" />
+                </ViewCell>
+            </TableSection>
         </TableRoot>
     </TableView>
-
-    <!--<controls:AlwaysScrollView>
-        <StackLayout
-          BackgroundColor="{DynamicResource WindowBackgroundTable}"
-          Spacing="{DynamicResource CardSpacing}"
-          Padding="{DynamicResource CardPadding}">
-
-            <controls:CardView>
-                <StackLayout Spacing="0">
-                    <controls:LabelSection Text="{Binding Resources[AboutApp]}"/>
-                    <controls:HeaderDivider/>
-                    
-                    <controls:FooterDivider/>
-                    <StackLayout Spacing="10">
-                        <StackLayout.Padding>
-                            <OnPlatform x:TypeArguments="Thickness" iOS="16,8,16,8" Android="16,8"/>
-                        </StackLayout.Padding>
-                        <Label Text="{Binding AppVersion}"
-                      Style="{DynamicResource EvolveListItemDetailTextStyle}"/>
-                        <Label Text="{Binding Copyright}"
-                      Style="{DynamicResource EvolveListItemDetailTextStyle}"/>
-                    </StackLayout>
-                </StackLayout>
-            </controls:CardView>
-
-            <controls:CardView>
-                <StackLayout Spacing="0">
-                    <controls:LabelSection Text="{Binding Resources[AboutApp]}"/>
-                    <controls:HeaderDivider/>
-                    <Picker Margin="10" ItemsSource="{Binding Languages}" HorizontalOptions="FillAndExpand" Title="{Binding Resources[SelectLanguage]}" SelectedItem="{Binding SelectedLanguage, Mode=TwoWay}" />
-                </StackLayout>
-            </controls:CardView>
-
-        </StackLayout>
-    </controls:AlwaysScrollView>-->
 </pages:BasePage>
