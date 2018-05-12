@@ -147,9 +147,6 @@
     <PackageReference Include="FormsToolkit" Version="2.0.1" />
     <PackageReference Include="Humanizer.Core" Version="2.2.0" />
     <PackageReference Include="Humanizer.Core.ru" Version="2.2.0" />
-    <PackageReference Include="LiveXAML">
-      <Version>2.1.22</Version>
-    </PackageReference>
     <PackageReference Include="Microsoft.AppCenter" Version="1.5.0" />
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.5.0" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.5.0" />
@@ -172,9 +169,6 @@
     <PackageReference Include="Xamarin.FFImageLoading" Version="2.3.6" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.3.6" />
     <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.3.6" />
-    <PackageReference Include="Xamarin.Firebase.iOS.CloudMessaging">
-      <Version>2.0.8</Version>
-    </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="2.5.1.444934" />
   </ItemGroup>
   <ItemGroup>
@@ -294,7 +288,6 @@
       <Visible>false</Visible>
     </ImageAsset>
     <None Include="appcenter-pre-build.sh" />
-    <BundleResource Include="GoogleService-Info.plist" />
     <None Include="Info.plist">
       <SubType>Designer</SubType>
     </None>
