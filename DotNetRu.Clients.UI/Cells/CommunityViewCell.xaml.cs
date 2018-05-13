@@ -1,6 +1,8 @@
 ﻿namespace DotNetRu.Clients.UI.Cells
 {
+    using DotNetRu.Clients.Portable.Helpers;
     using DotNetRu.Clients.Portable.Model;
+    using DotNetRu.Utils.Helpers;
 
     using Xamarin.Forms;
 
@@ -12,6 +14,11 @@
         public CommunityViewCell()
         {
             this.InitializeComponent();
+
+            MessagingCenter.Subscribe<LocalizedResources>(
+                this,
+                MessageKeys.LanguageChanged,
+                sender => this.OnPropertyChanged(nameof(this.Community)));
         }
 
         public CommunityModel Community
