@@ -40,9 +40,11 @@
             </TableSection>
 
             <TableSection Title="{Binding Resources[OurCommunities]}">
-                <cells:CommunityViewCell 
-                        Community="{x:Static model:Communities.SaintPetersburg}"
-                        LaunchBrowserCommand="{Binding LaunchBrowserCommand}"/>
+                <cells:CommunityViewCell Community="{x:Static model:Communities.SaintPetersburg}"/>
+                <cells:CommunityViewCell Community="{x:Static model:Communities.Moscow}"/>
+                <cells:CommunityViewCell Community="{x:Static model:Communities.Saratov}"/>
+                <cells:CommunityViewCell Community="{x:Static model:Communities.Krasnoyarksk}"/>
+                <cells:CommunityViewCell Community="{x:Static model:Communities.Kazan}"/>
             </TableSection>
 
             <TableSection Title="{Binding Resources[AboutApp]}">
