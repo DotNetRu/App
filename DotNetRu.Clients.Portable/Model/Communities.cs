@@ -32,7 +32,7 @@
         public static CommunityModel Krasnoyarksk =>
             new CommunityModel
                 {
-                    Name = "Krasnoyarksk",
+                    Name = "Krasnoyarsk",
                     VKLink = AboutThisApp.KrasnoyarskLink,
                     ImageSource = LogoService.KryDotNetLogo
                 };
