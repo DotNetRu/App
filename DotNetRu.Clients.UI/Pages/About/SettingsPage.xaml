@@ -3,8 +3,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="DotNetRu.Clients.UI.Pages.About.SettingsPage"
     xmlns:pages="clr-namespace:DotNetRu.Clients.UI.Pages;assembly=DotNetRu.Clients.UI"
-    xmlns:controls="clr-namespace:DotNetRu.Clients.UI.Controls;assembly=DotNetRu.Clients.UI"
     xmlns:local="clr-namespace:DotNetRu.DataStore.Audit.Services;assembly=DotNetRu.DataStore.Audit"
+    xmlns:utils="clr-namespace:DotNetRu.Utils.Helpers;assembly=DotNetRu.Utils"
+    xmlns:model="clr-namespace:DotNetRu.Clients.Portable.Model;assembly=DotNetRu.Clients.Portable"
+    xmlns:cells="clr-namespace:DotNetRu.Clients.UI.Cells"
     x:Name="AboutPage"
     Title="{Binding Resources[About]}"
     Icon="tab_about.png"
@@ -38,60 +40,36 @@
             </TableSection>
 
             <TableSection Title="{Binding Resources[OurCommunities]}">
-                <ViewCell>
-                    <controls:NonScrollableListView
-                        x:Name="ListViewCommunities"
-                        ItemsSource="{Binding Communities}"
-                        RowHeight="44"
-                        BackgroundColor="White">
-                        <controls:NonScrollableListView.SeparatorColor>
-                            <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ListSeparator}"/>
-                        </controls:NonScrollableListView.SeparatorColor>
-                        <controls:NonScrollableListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <StackLayout Orientation="Horizontal">
-                                        <StackLayout.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding Command}" CommandParameter="{Binding Parameter}"/>
-                                        </StackLayout.GestureRecognizers>
-                                        <Image Source="{Binding ImageSource}" WidthRequest="30" HeightRequest="30" Margin="10, 10, 15, 10" />
-                                        <Label Text="{Binding Name}" Margin="10, 10, 15, 10"/>
-                                    </StackLayout>
-                                </ViewCell>
-                            </DataTemplate>
-                        </controls:NonScrollableListView.ItemTemplate>
-                    </controls:NonScrollableListView>
-                </ViewCell>
+                <cells:CommunityViewCell 
+                        Community="{x:Static model:Communities.SaintPetersburg}"
+                        LaunchBrowserCommand="{Binding LaunchBrowserCommand}"/>
             </TableSection>
 
             <TableSection Title="{Binding Resources[AboutApp]}">
                 <TextCell                    
                     Text="{Binding Resources[CreatedBy]}"
+                    Command="{Binding OpenCreditsCommand}"
                     StyleId="disclosure"/>
                 <TextCell                    
                     Text="{Binding Resources[IssueTracker]}"
+                    Command="{Binding LaunchBrowserCommand}"
+                    CommandParameter="{Binding Source={x:Static utils:AboutThisApp.IssueTracker}}"
                     StyleId="disclosure"/>
                 <TextCell                    
                     Text="{Binding Resources[TechnologyUsed]}"
+                    Command="{Binding OpenTechnologiesUsedCommand}"
                     StyleId="disclosure"/>
-
-                <!--<TextCell 
-                    Text="{Binding Name}"
-                    Detail="{Binding Subtitle}"
-                    Command="{Binding Command}"
-                    CommandParameter="{Binding Parameter}"
-                    StyleId="disclosure"/>-->
-            </TableSection>
-
-            <TableSection Title="{Binding Resources[AboutApp]}">
-                <TextCell Text="{Binding AppVersion}"/>
-                <TextCell Text="{Binding Copyright}"/>
             </TableSection>
 
             <TableSection Title="Settings">
                 <ViewCell>
                     <Picker Margin="10" ItemsSource="{Binding Languages}" HorizontalOptions="FillAndExpand" Title="{Binding Resources[SelectLanguage]}" SelectedItem="{Binding SelectedLanguage, Mode=TwoWay}" />
                 </ViewCell>
+            </TableSection>
+
+            <TableSection Title="{Binding Resources[AboutApp]}">
+                <TextCell Text="{Binding AppVersion}"/>
+                <TextCell Text="{Binding Copyright}"/>
             </TableSection>
         </TableRoot>
     </TableView>

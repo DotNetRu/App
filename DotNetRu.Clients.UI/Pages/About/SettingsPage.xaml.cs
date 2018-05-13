@@ -29,12 +29,18 @@
                                 AppResources.ResourceManager.GetString("Credits", AppResources.Culture),
                                 "OK"));
 
-            var settingsViewModel = new SettingsViewModel();
+            var settingsViewModel = new SettingsViewModel(openCreditsCommand, openTechnologiesUsedCommand);
 
             this.BindingContext = settingsViewModel;
         }
 
         public override AppPage PageType => AppPage.Information;
+
+        public Command OpenCreditsCommand => new Command(
+            async () => await this.DisplayAlert(
+                            "Credits",
+                            AppResources.ResourceManager.GetString("Credits", AppResources.Culture),
+                            "OK"));
 
         protected override void OnPropertyChanged(string propertyName = null)
         {
@@ -67,7 +73,6 @@
                                     G = Convert.ToInt32(primaryColor.G),
                                     B = Convert.ToInt32(primaryColor.B)
                                 },
-                        UseSafariReaderMode = true,
                         UseSafariWebViewController = true
                     });
         }

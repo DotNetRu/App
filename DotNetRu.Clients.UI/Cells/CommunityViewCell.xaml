@@ -1,0 +1,13 @@
+﻿<ViewCell xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DotNetRu.Clients.UI.Cells.CommunityViewCell">
+  <ViewCell.View>
+      <StackLayout Orientation="Horizontal">
+          <StackLayout.GestureRecognizers>
+              <TapGestureRecognizer Command="{Binding Command}" CommandParameter="{Binding Parameter}"/>
+          </StackLayout.GestureRecognizers>
+          <Image Source="{Binding ImageSource}" WidthRequest="30" HeightRequest="30" Margin="10, 10, 15, 10" />
+          <Label Text="{Binding Name}" Margin="10, 10, 15, 10"/>
+      </StackLayout>
+    </ViewCell.View>
+</ViewCell>
