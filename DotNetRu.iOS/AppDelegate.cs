@@ -93,8 +93,6 @@
         /// <inheritdoc />
         public override bool FinishedLaunching(UIApplication uiApplication, NSDictionary launchOptions)
         {
-            var dummy = new DateTimeOffsetConverter();
-
             Forms.Init();
 
             this.SetMinimumBackgroundFetchInterval();
@@ -141,6 +139,11 @@
 
             // this is needed to tell linker to keep this type. See https://github.com/luberda-molinet/FFImageLoading/issues/462
             var ignore = new CircleTransformation();
+
+            // this is needed to tell linker to keep this type
+            var dummy = new DateTimeOffsetConverter();
+
+            XFGloss.iOS.Library.Init();
         }
 
         private static void InitializeThemeColors()
