@@ -28,8 +28,10 @@
                                 "Credits",
                                 AppResources.ResourceManager.GetString("Credits", AppResources.Culture),
                                 "OK"));
+            var openFriendsCommand = new Command(
+                async () => await NavigationService.PushAsync(this.Navigation, new FriendsPage()));
 
-            var settingsViewModel = new SettingsViewModel(openCreditsCommand, openTechnologiesUsedCommand);
+            var settingsViewModel = new SettingsViewModel(openCreditsCommand, openTechnologiesUsedCommand, openFriendsCommand);
 
             this.BindingContext = settingsViewModel;
         }

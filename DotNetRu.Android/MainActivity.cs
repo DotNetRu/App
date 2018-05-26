@@ -115,8 +115,6 @@
 
             this.LoadApplication(new Clients.UI.App());
             this.OnNewIntent(this.Intent);
-
-            XFGloss.Droid.Library.Init(this, savedInstanceState);
         }
 
         private void SetupBottomTabs()

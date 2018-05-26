@@ -159,13 +159,13 @@
     <Compile Include="Notifications\NotificationHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Renderers\BottomTabbedPageRenderer.cs" />
+    <Compile Include="Renderers\WhiteTextCellRenderer.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="MainApplication.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Renderers\ImageCellEx.cs" />
     <Compile Include="Renderers\SwitchCellEx.cs" />
     <Compile Include="Helpers\Toaster.cs" />
-    <Compile Include="Renderers\EvolveSearchBarRenderer.cs" />
     <Compile Include="Helpers\ListViewSelectionOnTopEffect.cs" />
     <Compile Include="Helpers\AppVersionProvider.cs" />
   </ItemGroup>
