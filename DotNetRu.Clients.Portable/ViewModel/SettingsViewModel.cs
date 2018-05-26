@@ -14,10 +14,11 @@
     {
         private Language selectedLanguage;
 
-        public SettingsViewModel(Command openCreditsCommand, Command openTechnologiesUsedCommand)
+        public SettingsViewModel(Command openCreditsCommand, Command openTechnologiesUsedCommand, Command openFriendsCommand)
         {
             this.OpenCreditsCommand = openCreditsCommand;
             this.OpenTechnologiesUsedCommand = openTechnologiesUsedCommand;
+            this.OpenFriendsCommand = openFriendsCommand;
 
             MessagingCenter.Subscribe<LocalizedResources>(
                 this,
@@ -30,6 +31,8 @@
         public Command OpenCreditsCommand { get; set; }
 
         public Command OpenTechnologiesUsedCommand { get; set; }
+
+        public Command OpenFriendsCommand { get; set; }
 
         public IList<Language> Languages => EnumExtension.GetEnumValues<Language>().ToList();
 

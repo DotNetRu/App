@@ -7,6 +7,7 @@
     xmlns:utils="clr-namespace:DotNetRu.Utils.Helpers;assembly=DotNetRu.Utils"
     xmlns:model="clr-namespace:DotNetRu.Clients.Portable.Model;assembly=DotNetRu.Clients.Portable"
     xmlns:cells="clr-namespace:DotNetRu.Clients.UI.Cells"
+    xmlns:controls="clr-namespace:DotNetRu.Clients.UI.Controls;assembly=DotNetRu.Clients.UI"
     x:Name="AboutPage"
     Title="{Binding Resources[About]}"
     Icon="tab_about.png"
@@ -36,7 +37,10 @@
                         <Label Text="{Binding Resources[AboutTextDetail]}" Style="{DynamicResource EvolveListItemTextStyle}" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1"/>
                     </Grid>
                 </ViewCell>
-                <TextCell Text="{Binding Resources[Friends]}" StyleId="disclosure" />
+                <controls:WhiteTextCell 
+                    Text="{Binding Resources[Friends]}" 
+                    StyleId="disclosure" 
+                    Command="{Binding OpenFriendsCommand}"/>
             </TableSection>
 
             <TableSection Title="{Binding Resources[OurCommunities]}">
@@ -48,21 +52,18 @@
             </TableSection>
 
             <TableSection Title="{Binding Resources[AboutApp]}">
-                <TextCell                    
+                <controls:WhiteTextCell                    
                     Text="{Binding Resources[CreatedBy]}"
-                    Command="{Binding OpenCreditsCommand}"
-                    
+                    Command="{Binding OpenCreditsCommand}"                    
                     StyleId="disclosure"/>
-                <TextCell                    
+                <controls:WhiteTextCell                    
                     Text="{Binding Resources[IssueTracker]}"
                     Command="{Binding LaunchBrowserCommand}"
-                    CommandParameter="{Binding Source={x:Static utils:AboutThisApp.IssueTracker}}"
-                    
+                    CommandParameter="{Binding Source={x:Static utils:AboutThisApp.IssueTracker}}"                    
                     StyleId="disclosure"/>
-                <TextCell                    
+                <controls:WhiteTextCell                    
                     Text="{Binding Resources[TechnologyUsed]}"
-                    Command="{Binding OpenTechnologiesUsedCommand}"
-                    
+                    Command="{Binding OpenTechnologiesUsedCommand}"                    
                     StyleId="disclosure"/>
             </TableSection>
 
@@ -73,8 +74,7 @@
             </TableSection>
 
             <TableSection Title="{Binding Resources[AboutApp]}">
-                <TextCell Text="{Binding AppVersion}" />
-                <TextCell Text="{Binding Copyright}" />
+                <controls:WhiteTextCell Text="{Binding AppVersion}"/>
             </TableSection>
         </TableRoot>
     </TableView>

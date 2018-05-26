@@ -12,15 +12,14 @@
 
     internal sealed class NotificationHelper
     {
-        internal const string AuditUpdateChannel = "com.dotnetru.app";
-
-        internal const string AuditUpdateChannelName = "New DotNetRu information";
+        internal const string NewMeetupChannel = "NewMeetup";
+        internal const string NewMeetupChannelName = "New meetup information";
 
         internal static void CreateNotificationChannel()
         {
             NotificationChannel notificationChannel = new NotificationChannel(
-                AuditUpdateChannel,
-                AuditUpdateChannelName,
+                NewMeetupChannel,
+                NewMeetupChannelName,
                 NotificationImportance.High);
 
             notificationChannel.EnableVibration(vibration: true);
@@ -67,7 +66,7 @@
 
             if (Android.OS.Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.O)
             {
-                notificationBuilder.SetChannelId(AuditUpdateChannel);
+                notificationBuilder.SetChannelId(NewMeetupChannel);
             }
 
             notificationManager.Notify(Settings.GetUniqueNotificationID(), notificationBuilder.Build());
