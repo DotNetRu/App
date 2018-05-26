@@ -142,8 +142,6 @@
 
             // this is needed to tell linker to keep this type
             var dummy = new DateTimeOffsetConverter();
-
-            XFGloss.iOS.Library.Init();
         }
 
         private static void InitializeThemeColors()
