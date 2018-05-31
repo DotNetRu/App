@@ -12,13 +12,13 @@
 
     internal sealed class NotificationHelper
     {
-        internal const string NewMeetupChannel = "NewMeetup";
+        internal const string NewMeetupChannelID = "NewMeetup";
         internal const string NewMeetupChannelName = "New meetup information";
 
         internal static void CreateNotificationChannel()
         {
             NotificationChannel notificationChannel = new NotificationChannel(
-                NewMeetupChannel,
+                NewMeetupChannelID,
                 NewMeetupChannelName,
                 NotificationImportance.High);
 
@@ -41,7 +41,7 @@
             FirebaseApp.InitializeApp(Application.Context);
             Log.Debug("AuditUpdate", "Firebase token: " + FirebaseInstanceId.Instance.Token);
 
-            FirebaseMessaging.Instance.SubscribeToTopic("AuditUpdate");
+            FirebaseMessaging.Instance.SubscribeToTopic(NewMeetupChannelID);
         }
 
         internal static void SendNotification(Context context, string title, string body)
@@ -66,7 +66,7 @@
 
             if (Android.OS.Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.O)
             {
-                notificationBuilder.SetChannelId(NewMeetupChannel);
+                notificationBuilder.SetChannelId(NewMeetupChannelID);
             }
 
             notificationManager.Notify(Settings.GetUniqueNotificationID(), notificationBuilder.Build());
