@@ -104,9 +104,6 @@
             // AndroidAppLinks.Init(this);
             Toolkit.Init();
 
-            typeof(Color).GetProperty("Accent", BindingFlags.Public | BindingFlags.Static)
-                ?.SetValue(null, Color.FromHex("#757575"));
-
             ImageCircleRenderer.Init();
 
             CachedImageRenderer.Init(enableFastRenderer: true);
