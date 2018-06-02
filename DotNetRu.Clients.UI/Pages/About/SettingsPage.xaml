@@ -7,17 +7,16 @@
     xmlns:utils="clr-namespace:DotNetRu.Utils.Helpers;assembly=DotNetRu.Utils"
     xmlns:model="clr-namespace:DotNetRu.Clients.Portable.Model;assembly=DotNetRu.Clients.Portable"
     xmlns:cells="clr-namespace:DotNetRu.Clients.UI.Cells"
-    xmlns:controls="clr-namespace:DotNetRu.Clients.UI.Controls;assembly=DotNetRu.Clients.UI"
     x:Name="AboutPage"
     Title="{Binding Resources[About]}"
     Icon="tab_about.png"
     NavigationPage.BackButtonTitle="Info">
 
-    <TableView Intent="Settings" HasUnevenRows="True">
+    <TableView Intent="Data" HasUnevenRows="True">
         <TableRoot>
-            <TableSection Title="{Binding Resources[AboutDotNetRu]}">
+            <TableSection Title="{Binding Resources[AboutDotNetRu]}" >
                 <ViewCell>
-                    <Grid Padding="10" BackgroundColor="White">
+                    <Grid Padding="10">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
@@ -37,8 +36,9 @@
                         <Label Text="{Binding Resources[AboutTextDetail]}" Style="{DynamicResource EvolveListItemTextStyle}" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1"/>
                     </Grid>
                 </ViewCell>
-                <controls:WhiteTextCell 
+                <TextCell 
                     Text="{Binding Resources[Friends]}" 
+                    TextColor="{StaticResource LabelSectionText}"
                     StyleId="disclosure" 
                     Command="{Binding OpenFriendsCommand}"/>
             </TableSection>
@@ -52,29 +52,31 @@
             </TableSection>
 
             <TableSection Title="{Binding Resources[AboutApp]}">
-                <controls:WhiteTextCell                    
+                <TextCell                    
                     Text="{Binding Resources[CreatedBy]}"
+                    TextColor="{StaticResource LabelSectionText}"
                     Command="{Binding OpenCreditsCommand}"                    
                     StyleId="disclosure"/>
-                <controls:WhiteTextCell                    
+                <TextCell                    
                     Text="{Binding Resources[IssueTracker]}"
+                    TextColor="{StaticResource LabelSectionText}"
                     Command="{Binding LaunchBrowserCommand}"
                     CommandParameter="{Binding Source={x:Static utils:AboutThisApp.IssueTracker}}"                    
                     StyleId="disclosure"/>
-                <controls:WhiteTextCell                    
+                <TextCell                    
                     Text="{Binding Resources[TechnologyUsed]}"
+                    TextColor="{StaticResource LabelSectionText}"
                     Command="{Binding OpenTechnologiesUsedCommand}"                    
                     StyleId="disclosure"/>
+                <TextCell 
+                    Text="{Binding AppVersion}"
+                    TextColor="{StaticResource LabelSectionText}" />
             </TableSection>
 
             <TableSection Title="Settings">
                 <ViewCell>
-                    <Picker BackgroundColor="White" Margin="10" ItemsSource="{Binding Languages}" HorizontalOptions="FillAndExpand" Title="{Binding Resources[SelectLanguage]}" SelectedItem="{Binding SelectedLanguage, Mode=TwoWay}" />
+                    <Picker Margin="10" ItemsSource="{Binding Languages}" HorizontalOptions="FillAndExpand" Title="{Binding Resources[SelectLanguage]}" SelectedItem="{Binding SelectedLanguage, Mode=TwoWay}" />
                 </ViewCell>
-            </TableSection>
-
-            <TableSection Title="{Binding Resources[AboutApp]}">
-                <controls:WhiteTextCell Text="{Binding AppVersion}"/>
             </TableSection>
         </TableRoot>
     </TableView>

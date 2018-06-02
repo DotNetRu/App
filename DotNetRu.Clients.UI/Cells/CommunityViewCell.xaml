@@ -3,7 +3,7 @@
              x:Class="DotNetRu.Clients.UI.Cells.CommunityViewCell"
              x:Name="CommunityCell">
   <ViewCell.View>
-      <StackLayout Orientation="Horizontal" BackgroundColor="White">
+      <StackLayout Orientation="Horizontal">
           <StackLayout.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding LaunchBrowserCommand}" CommandParameter="{Binding Community.VKLink, Source={x:Reference Name=CommunityCell}}"/>
           </StackLayout.GestureRecognizers>
