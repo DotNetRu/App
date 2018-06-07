@@ -58,8 +58,11 @@
                 PendingIntentFlags.OneShot);
 
             Notification.Builder notificationBuilder = new Notification.Builder(context)
-                .SetSmallIcon(Resource.Drawable.ic_launcher).SetContentTitle(title).SetContentText(body)
-                .SetContentIntent(pendingIntent);
+                .SetSmallIcon(Resource.Drawable.menu_events)
+                .SetContentTitle(title)
+                .SetContentText(body)
+                .SetContentIntent(pendingIntent)
+                .SetAutoCancel(autoCancel: true);
 
             NotificationManager notificationManager =
                 (NotificationManager)context.GetSystemService(Context.NotificationService);
