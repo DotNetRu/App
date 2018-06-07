@@ -20,8 +20,8 @@
             await UpdateService.UpdateAudit().ContinueWith(
                 t => NotificationHelper.SendNotification(
                     Application.Context,
-                    "New information",
-                    "New DotNetRu information is available"),
+                    "New meetup",
+                    "New meetup announced!"),
                 TaskContinuationOptions.OnlyOnRanToCompletion);
         }
     }
