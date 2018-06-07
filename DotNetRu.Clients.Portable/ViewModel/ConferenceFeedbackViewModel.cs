@@ -10,8 +10,6 @@
 
     using Xamarin.Forms;
 
-    using XamarinEvolve.Clients.Portable;
-
     public class ConferenceFeedbackViewModel : ViewModelBase
     {
         public ConferenceFeedbackViewModel(INavigation navigation)

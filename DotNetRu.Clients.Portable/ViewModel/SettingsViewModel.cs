@@ -2,98 +2,37 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-    using System.Windows.Input;
 
     using DotNetRu.Clients.Portable.Helpers;
     using DotNetRu.Clients.Portable.Interfaces;
-    using DotNetRu.Clients.Portable.Model;
     using DotNetRu.Clients.Portable.Services;
-    using DotNetRu.DataStore.Audit.Services;
     using DotNetRu.Utils.Helpers;
 
     using Xamarin.Forms;
-    using Xamarin.Forms.Internals;
 
     public class SettingsViewModel : ViewModelBase
     {
         private Language selectedLanguage;
 
-        public SettingsViewModel(ICommand openTechologiesUsedCommand, ICommand openCreditsCommand)
+        public SettingsViewModel(Command openCreditsCommand, Command openTechnologiesUsedCommand, Command openFriendsCommand)
         {
+            this.OpenCreditsCommand = openCreditsCommand;
+            this.OpenTechnologiesUsedCommand = openTechnologiesUsedCommand;
+            this.OpenFriendsCommand = openFriendsCommand;
+
             MessagingCenter.Subscribe<LocalizedResources>(
                 this,
                 MessageKeys.LanguageChanged,
                 sender => this.UpdateViewModel());
 
             this.selectedLanguage = LanguageService.GetCurrentLanguage();
-
-            this.AboutItems.AddRange(
-                new[]
-                    {
-                        new LocalizableMenuItem
-                            {
-                                ResourceName = "CreatedBy",
-                                Command = openCreditsCommand
-                            },
-                        new LocalizableMenuItem
-                            {
-                                ResourceName = "Thanks",
-                                Command = this.LaunchBrowserCommand,
-                                Parameter = AboutThisApp.MontemagnoWebsite
-                            },
-                        new LocalizableMenuItem
-                            {
-                                ResourceName = "IssueTracker",
-                                Command = this.LaunchBrowserCommand,
-                                Parameter = AboutThisApp.IssueTracker
-                            },
-                        new LocalizableMenuItem
-                            {
-                                ResourceName = "TechnologyUsed",
-                                Command = openTechologiesUsedCommand
-                            }
-                    });
-
-            this.Communities.AddRange(
-                new[]
-                    {
-                        new LocalizableMenuItem
-                            {
-                                ResourceName = "SaintPetersburg",
-                                Command = this.LaunchBrowserCommand,
-                                ImageSource = LogoService.SpbDotNetLogo,
-                                Parameter = AboutThisApp.SpbLink
-                            },
-                        new LocalizableMenuItem
-                            {
-                                ResourceName = "Moscow",
-                                Command = this.LaunchBrowserCommand,
-                                ImageSource = LogoService.MskDotNetLogo,
-                                Parameter = AboutThisApp.MoscowLink
-                            },
-                        new LocalizableMenuItem
-                            {
-                                ResourceName = "Saratov",
-                                Command = this.LaunchBrowserCommand,
-                                ImageSource = LogoService.SarDotNetLogo,
-                                Parameter = AboutThisApp.SaratovLink
-                            },
-                        new LocalizableMenuItem
-                            {
-                                ResourceName = "Krasnoyarsk",
-                                Command = this.LaunchBrowserCommand,
-                                ImageSource = LogoService.KryDotNetLogo,
-                                Parameter = AboutThisApp.KrasnoyarskLink
-                            },
-                        new LocalizableMenuItem
-                            {
-                                ResourceName = "Kazan",
-                                Command = this.LaunchBrowserCommand,
-                                ImageSource = LogoService.KznDotNetLogo,
-                                Parameter = AboutThisApp.KazanLink
-                            }
-                    });
         }
+
+        public Command OpenCreditsCommand { get; set; }
+
+        public Command OpenTechnologiesUsedCommand { get; set; }
+
+        public Command OpenFriendsCommand { get; set; }
 
         public IList<Language> Languages => EnumExtension.GetEnumValues<Language>().ToList();
 
@@ -113,10 +52,6 @@
             }
         }
 
-        public CustomObservableCollection<LocalizableMenuItem> AboutItems { get; } = new CustomObservableCollection<LocalizableMenuItem>();
-
-        public CustomObservableCollection<LocalizableMenuItem> Communities { get; } = new CustomObservableCollection<LocalizableMenuItem>();
-
         public string Copyright => AboutThisApp.Copyright;
 
         public bool AppToWebLinkingEnabled => FeatureFlags.AppToWebLinkingEnabled;
@@ -129,9 +64,6 @@
         private void UpdateViewModel()
         {
             this.OnPropertyChanged(nameof(this.AppVersion));
-
-            this.AboutItems.ForEach(x => x.Update());
-            this.Communities.ForEach(x => x.Update());
         }
     }
 }

@@ -1,150 +1,26 @@
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using DotNetRu.Utils.Interfaces;
-using Plugin.Settings;
-using Plugin.Settings.Abstractions;
-
-using Xamarin.Forms;
-
-namespace XamarinEvolve.Clients.Portable
+namespace DotNetRu.Utils.Helpers
 {
-    /// <summary>
-    /// This is the Settings static class that can be used in your Core solution or in any
-    /// of your client applications. All settings are laid out the same exact way with getters
-    /// and setters. 
-    /// </summary>
+    using System.ComponentModel;
+    using System.Runtime.CompilerServices;
+
+    using Plugin.Settings;
+    using Plugin.Settings.Abstractions;
+
     public class Settings : INotifyPropertyChanged
     {
-        static ISettings AppSettings
-        {
-            get
-            {
-                return CrossSettings.Current;
-            }
-        }
+        static ISettings AppSettings => CrossSettings.Current;
 
         static Settings settings;
 
-        /// <summary>
-        /// Gets or sets the current settings. This should always be used
-        /// </summary>
-        /// <value>The current.</value>
-        public static Settings Current
-        {
-            get
-            {
-                return settings ?? (settings = new Settings());
-            }
-        }
-
-        private IPlatformSpecificSettings _platformSettings;
-
-        public Settings()
-        {
-            _platformSettings = DependencyService.Get<IPlatformSpecificSettings>();
-        }
-
-        public void SaveReminderId(string id, string calId)
-        {
-            // TODO
-        }
-
-
-        string GetReminderId(string id)
-        {
-            return "reminder_" + id;
-        }
-
-        public string GetEventId(string id)
-        {
-            return AppSettings.GetValueOrDefault(GetReminderId(id), string.Empty);
-        }
-
-        public void RemoveReminderId(string id)
-        {
-            AppSettings.Remove(GetReminderId(id));
-        }
+        public static Settings Current => settings ?? (settings = new Settings());
 
         public void LeaveConferenceFeedback()
         {
             AppSettings.AddOrUpdateValue("conferencefeedback_finished", true);
         }
 
-        public bool IsConferenceFeedbackFinished()
-        {
-            return AppSettings.GetValueOrDefault("conferencefeedback_finished", false);
-        }
-
-        const string HasSetReminderKey = "set_a_reminder";
-
         static readonly bool HasSetReminderDefault = false;
 
-        public bool HasSetReminder
-        {
-            get
-            {
-                return AppSettings.GetValueOrDefault(HasSetReminderKey, HasSetReminderDefault);
-            }
-
-            set
-            {
-                AppSettings.AddOrUpdateValue(HasSetReminderKey, value);
-            }
-        }
-
-        const string EventCalendarKey = "event_calendar";
-
-        static readonly string EventCalendarIdDefault = string.Empty;
-
-        public string EventCalendarId
-        {
-            get
-            {
-                return AppSettings.GetValueOrDefault(EventCalendarKey, EventCalendarIdDefault);
-            }
-
-            set
-            {
-                AppSettings.AddOrUpdateValue(EventCalendarKey, value);
-            }
-        }
-
-
-        const string PushNotificationsEnabledKey = "push_enabled";
-
-        static readonly bool PushNotificationsEnabledDefault = false;
-
-        public bool PushNotificationsEnabled
-        {
-            get
-            {
-                return AppSettings.GetValueOrDefault(PushNotificationsEnabledKey, PushNotificationsEnabledDefault);
-            }
-
-            set
-            {
-                if (AppSettings.AddOrUpdateValue(PushNotificationsEnabledKey, value)) OnPropertyChanged();
-            }
-        }
-
-        const string FirstRunKey = "first_run";
-
-        static readonly bool FirstRunDefault = true;
-
-        public bool FirstRun
-        {
-            get
-            {
-                return AppSettings.GetValueOrDefault(FirstRunKey, FirstRunDefault);
-            }
-
-            set
-            {
-                if (AppSettings.AddOrUpdateValue(FirstRunKey, value)) OnPropertyChanged();
-            }
-        }
-
-        const string ShowAllCategoriesKey = "all_categories";
 
         static readonly bool ShowAllCategoriesDefault = true;
 
@@ -154,86 +30,56 @@ namespace XamarinEvolve.Clients.Portable
         /// <value><c>true</c> if show all categories; otherwise, <c>false</c>.</value>
         public bool ShowAllCategories
         {
-            get
-            {
-                return AppSettings.GetValueOrDefault(ShowAllCategoriesKey, ShowAllCategoriesDefault);
-            }
+            get => AppSettings.GetValueOrDefault(nameof(ShowAllCategories), ShowAllCategoriesDefault);
 
             set
             {
-                if (AppSettings.AddOrUpdateValue(ShowAllCategoriesKey, value)) OnPropertyChanged();
+                if (AppSettings.AddOrUpdateValue(nameof(ShowAllCategories), value))
+                {
+                    this.OnPropertyChanged();
+                }
             }
         }
-
-        const string FilteredCategoriesKey = "filtered_categories";
 
         static readonly string FilteredCategoriesDefault = string.Empty;
 
 
         public string FilteredCategories
         {
-            get
-            {
-                return AppSettings.GetValueOrDefault(FilteredCategoriesKey, FilteredCategoriesDefault);
-            }
+            get => AppSettings.GetValueOrDefault(nameof(this.FilteredCategories), FilteredCategoriesDefault);
 
             set
             {
-                if (AppSettings.AddOrUpdateValue(FilteredCategoriesKey, value)) OnPropertyChanged();
+                if (AppSettings.AddOrUpdateValue(nameof(this.FilteredCategories), value))
+                {
+                    this.OnPropertyChanged();
+                }
             }
         }
 
-        const string DatabaseIdKey = "azure_database";
-
-        static readonly int DatabaseIdDefault = 0;
-
-        public static int DatabaseId
-        {
-            get
-            {
-                return AppSettings.GetValueOrDefault(DatabaseIdKey, DatabaseIdDefault);
-            }
-
-            set
-            {
-                AppSettings.AddOrUpdateValue(DatabaseIdKey, value);
-            }
-        }
-
-        public static int UpdateDatabaseId()
-        {
-            return DatabaseId++;
-        }
-
-        bool isConnected;
+        private bool isConnected;
 
         public bool IsConnected
         {
-            get
-            {
-                return isConnected;
-            }
+            get => this.isConnected;
 
             set
             {
-                if (isConnected == value) return;
-                isConnected = value;
-                OnPropertyChanged();
+                if (this.isConnected == value)
+                {
+                    return;
+                }
+                this.isConnected = value;
+                this.OnPropertyChanged();
             }
         }
-
-        #region Helpers
-
-        public bool HasFilters => !string.IsNullOrWhiteSpace(FilteredCategories) && !ShowAllCategories;
-
-        #endregion
 
         #region INotifyPropertyChanged implementation
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        void OnPropertyChanged([CallerMemberName] string name = "") =>
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        internal void OnPropertyChanged([CallerMemberName] string name = "") =>
+            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
 
         #endregion
     }

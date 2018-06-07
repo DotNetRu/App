@@ -4,23 +4,17 @@
     using System.Collections.ObjectModel;
 
     using DotNetRu.Clients.Portable.Model;
-    using DotNetRu.Clients.UI.Controls;
-    using DotNetRu.Clients.UI.Pages.Events;
     using DotNetRu.Clients.UI.Pages.Friends;
     using DotNetRu.Clients.UI.Pages.Home;
-    using DotNetRu.Clients.UI.Pages.Info;
     using DotNetRu.Clients.UI.Pages.Sessions;
     using DotNetRu.Clients.UI.Pages.Speakers;
     using DotNetRu.Utils.Helpers;
 
-    using FormsToolkit;
-
     using Xamarin.Forms;
 
-    using XamarinEvolve.Clients.Portable;
-
-    using MenuItem = DotNetRu.Clients.Portable.Model.MenuItem;
-    using SettingsPage = DotNetRu.Clients.UI.Pages.About.SettingsPage;
+    using MeetupsPage = Meetups.MeetupsPage;
+    using MenuItem = Portable.Model.MenuItem;
+    using SettingsPage = About.SettingsPage;
 
     public class RootPageWindows : MasterDetailPage
     {
@@ -36,7 +30,6 @@
             this.pages = new Dictionary<AppPage, Page>();
 
             var items = new ObservableCollection<MenuItem>();
-
 
             items.Add(new MenuItem { Name = $"{AboutThisApp.AppName}", Icon = "menu_feed.png", Page = AppPage.Feed });
             items.Add(new MenuItem { Name = "Sessions", Icon = "menu_sessions.png", Page = AppPage.Meetup });
@@ -69,8 +62,6 @@
             this.NavigateAsync((int)AppPage.Feed);
             this.Title = "DotNetRu App";
         }
-
-
 
         public void NavigateAsync(AppPage menuId)
         {
@@ -115,17 +106,5 @@
 
             // await Navigation.PushAsync(newPage);
         }
-
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-
-            if (Settings.Current.FirstRun)
-            {
-                MessagingService.Current.SendMessage(MessageKeys.NavigateLogin);
-            }
-        }
     }
 }
-
-

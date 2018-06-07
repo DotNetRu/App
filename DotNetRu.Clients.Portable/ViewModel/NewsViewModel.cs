@@ -1,8 +1,7 @@
-﻿using System.Linq;
-
-namespace DotNetRu.Clients.Portable.ViewModel
+﻿namespace DotNetRu.Clients.Portable.ViewModel
 {
     using System;
+    using System.Linq;
     using System.Threading.Tasks;
     using System.Windows.Input;
 
@@ -103,18 +102,15 @@ namespace DotNetRu.Clients.Portable.ViewModel
             get => this.loadingSocial;
             set
             {
-                this.SetProperty(ref this.loadingSocial, value); 
-                OnPropertyChanged(nameof(ActivityIndicatorVisibility));
-                OnPropertyChanged(nameof(NotLoadingSocial));
+                this.SetProperty(ref this.loadingSocial, value);
+                this.OnPropertyChanged(nameof(this.ActivityIndicatorVisibility));
+                this.OnPropertyChanged(nameof(this.NotLoadingSocial));
             }
         }
 
-        public bool NotLoadingSocial
-        {
-            get => !Tweets.Any() ? !LoadingSocial : true;
-        }
+        public bool NotLoadingSocial => this.Tweets.Any() || !this.LoadingSocial;
 
-        public bool ActivityIndicatorVisibility => !Tweets.Any() && LoadingSocial;
+        public bool ActivityIndicatorVisibility => !this.Tweets.Any() && this.LoadingSocial;
 
         public bool ShowBuyTicketButton =>
             FeatureFlags.ShowBuyTicketButton && EventInfo.StartOfConference.AddDays(-1) >= DateTime.Now;

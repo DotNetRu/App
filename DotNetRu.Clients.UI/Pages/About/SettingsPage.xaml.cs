@@ -28,22 +28,21 @@
                                 "Credits",
                                 AppResources.ResourceManager.GetString("Credits", AppResources.Culture),
                                 "OK"));
+            var openFriendsCommand = new Command(
+                async () => await NavigationService.PushAsync(this.Navigation, new FriendsPage()));
 
-            var settingsViewModel = new SettingsViewModel(openTechnologiesUsedCommand, openCreditsCommand);
+            var settingsViewModel = new SettingsViewModel(openCreditsCommand, openTechnologiesUsedCommand, openFriendsCommand);
 
             this.BindingContext = settingsViewModel;
-
-            var adjust = Device.RuntimePlatform != Device.Android ? 1 : -settingsViewModel.AboutItems.Count + 1;
-            this.ListViewAbout.HeightRequest = (settingsViewModel.AboutItems.Count * this.ListViewAbout.RowHeight) - adjust;
-            this.ListViewAbout.ItemTapped += (sender, e) => this.ListViewAbout.SelectedItem = null;
-
-            adjust = Device.RuntimePlatform != Device.Android ? 1 : -settingsViewModel.Communities.Count + 1;
-            this.ListViewCommunities.HeightRequest =
-                (settingsViewModel.Communities.Count * this.ListViewCommunities.RowHeight) - adjust;
-            this.ListViewCommunities.ItemTapped += (sender, e) => this.ListViewCommunities.SelectedItem = null;
         }
 
         public override AppPage PageType => AppPage.Information;
+
+        public Command OpenCreditsCommand => new Command(
+            async () => await this.DisplayAlert(
+                            "Credits",
+                            AppResources.ResourceManager.GetString("Credits", AppResources.Culture),
+                            "OK"));
 
         protected override void OnPropertyChanged(string propertyName = null)
         {
@@ -76,7 +75,6 @@
                                     G = Convert.ToInt32(primaryColor.G),
                                     B = Convert.ToInt32(primaryColor.B)
                                 },
-                        UseSafariReaderMode = true,
                         UseSafariWebViewController = true
                     });
         }

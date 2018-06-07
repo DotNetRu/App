@@ -29,6 +29,12 @@ namespace DotNetRu.Clients.Portable.Helpers
             }
         }
 
+        public static string AppVersion
+        {
+            get => AppSettings.GetValueOrDefault(nameof(AppVersion), null);
+            set => AppSettings.AddOrUpdateValue(nameof(AppVersion), value);
+        }
+
         private static ISettings AppSettings => CrossSettings.Current;
 
         private static Language GetLanguage(string languageCode)
