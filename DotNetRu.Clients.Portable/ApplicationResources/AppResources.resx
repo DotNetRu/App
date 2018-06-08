@@ -232,6 +232,9 @@ Sergey Polezhaev</value>
   <data name="SelectLanguage" xml:space="preserve">
     <value>Select a language</value>
   </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
   <data name="Share" xml:space="preserve">
     <value>Share</value>
   </data>
