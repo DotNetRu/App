@@ -73,7 +73,7 @@
                     TextColor="{StaticResource LabelSectionText}" />
             </TableSection>
 
-            <TableSection Title="Settings">
+            <TableSection Title="{Binding Resources[Settings]}">
                 <ViewCell>
                     <Picker Margin="10" ItemsSource="{Binding Languages}" HorizontalOptions="FillAndExpand" Title="{Binding Resources[SelectLanguage]}" SelectedItem="{Binding SelectedLanguage, Mode=TwoWay}" />
                 </ViewCell>

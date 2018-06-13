@@ -287,7 +287,6 @@
     <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\Icon-87.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <None Include="appcenter-pre-build.sh" />
     <None Include="Info.plist">
       <SubType>Designer</SubType>
     </None>
