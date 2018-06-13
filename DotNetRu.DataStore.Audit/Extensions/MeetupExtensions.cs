@@ -15,8 +15,8 @@
                            Description = meetup.Name,
                            IsAllDay = true,
                            Title = meetup.Name,
-                           StartTime = meetup.Date.DateTime,
-                           EndTime = meetup.Date.DateTime,
+                           StartTime = meetup.Date.LocalDateTime,
+                           EndTime = meetup.Date.LocalDateTime,
                            Venue = meetup.Venue.ToModel(),
                            Talks = meetup.Talks.Select(x => x.ToModel()),
                            Friends = meetup.Friends.Select(x => x.ToModel())
