@@ -7,10 +7,10 @@
     <None Remove="Audit.realm" />
   </ItemGroup>  
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="6.2.2" />
+    <PackageReference Include="AutoMapper" Version="7.0.0" />
     <PackageReference Include="Octokit" Version="0.29.0" />
-    <PackageReference Include="Realm.Database" Version="2.2.0" />
-    <PackageReference Include="Xamarin.Forms" Version="2.5.1.444934" />
+    <PackageReference Include="Realm.Database" Version="3.0.0" />
+    <PackageReference Include="Xamarin.Forms" Version="3.1.0.561732-pre4" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Audit.realm" />
