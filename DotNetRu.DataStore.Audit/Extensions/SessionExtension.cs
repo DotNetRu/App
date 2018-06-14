@@ -14,7 +14,6 @@
                 StartTime = session.StartTime,
                 EndTime = session.EndTime,
                 Talk = session.Talk.ToModel(),
-
                 // Meetup = session.Meetup.Single().ToModel()
             };
         }

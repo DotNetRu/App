@@ -177,13 +177,16 @@
                                         dest.Speakers.Add(speaker);
                                     }
                                 });
+                        cfg.CreateMap<SessionEntity, Session>();
                         cfg.CreateMap<MeetupEntity, Meetup>().AfterMap(
                             (src, dest) =>
                                 {
-                                    foreach (string talkId in src.TalkIds)
+                                    foreach (var sessionEntity in src.Sessions)
                                     {
-                                        var talk = auditRealm.Find<Talk>(talkId);
-                                        dest.Talks.Add(talk);
+                                        var talk = auditRealm.Find<Talk>(sessionEntity.TalkId);
+                                        var realmSession = Mapper.Map<Session>(sessionEntity);
+                                        realmSession.Talk = talk;
+                                        dest.Sessions.Add(realmSession);
                                     }
 
                                     foreach (string friendId in src.FriendIds)
