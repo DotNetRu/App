@@ -150,9 +150,6 @@
     <PackageReference Include="Microsoft.AppCenter" Version="1.6.1" />
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.6.1" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.6.1" />
-    <PackageReference Include="Naxam.BottomTabbedPage">
-      <Version>0.2.0.2</Version>
-    </PackageReference>
     <PackageReference Include="Plugin.Permissions" Version="2.2.1" />
     <PackageReference Include="Plugin.Share" Version="7.1.1" />
     <PackageReference Include="Realm.Database">

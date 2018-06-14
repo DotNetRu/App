@@ -17,8 +17,6 @@
 
     using ImageCircle.Forms.Plugin.Droid;
 
-    using Naxam.Controls.Platform.Droid;
-
     using Plugin.Permissions;
 
     using Xamarin.Forms;
@@ -89,11 +87,10 @@
 #if ENABLE_LIVE_PLAYER
 #else
             this.SetTheme(Resource.Style.MyTheme);
+
             Forms.SetFlags("FastRenderers_Experimental");
 
             FormsAppCompatActivity.ToolbarResource = Resource.Layout.toolbar;
-            FormsAppCompatActivity.TabLayoutResource = Resource.Layout.tabs;
-            this.SetupBottomTabs();
 #endif
 
             base.OnCreate(savedInstanceState);
@@ -112,38 +109,6 @@
 
             this.LoadApplication(new Clients.UI.App());
             this.OnNewIntent(this.Intent);
-        }
-
-        private void SetupBottomTabs()
-        {
-            BottomTabbedRenderer.ItemPadding = new Thickness(6, 6, 6, 1);
-#if ENABLE_LIVE_PLAYER
-#else
-            BottomTabbedRenderer.MenuItemIconSetter = (menuItem, iconSource, selected) =>
-                {
-                    /*TODO: Make it without switch. Following variant does not work :(
-                    resId = Resources.GetIdentifier(iconSource.File, "drawable", PackageName);  //returns 0 always
-                    */
-                    if (iconSource != null)
-                    {
-                        switch (iconSource.File)
-                        {
-                            case "menu_feed.png":
-                                menuItem.SetIcon(Resource.Drawable.menu_feed);
-                                break;
-                            case "menu_speakers.png":
-                                menuItem.SetIcon(Resource.Drawable.menu_speakers);
-                                break;
-                            case "menu_events.png":
-                                menuItem.SetIcon(Resource.Drawable.menu_events);
-                                break;
-                            case "menu_info.png":
-                                menuItem.SetIcon(Resource.Drawable.menu_info);
-                                break;
-                        }
-                    }
-                };
-#endif
         }
 
         public override void OnRequestPermissionsResult(

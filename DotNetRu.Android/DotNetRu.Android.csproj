@@ -89,10 +89,6 @@
     <PackageReference Include="Microsoft.AppCenter" Version="1.6.1" />
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.6.1" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.6.1" />
-    <PackageReference Include="Naxam.BottomTabbedPage">
-      <Version>0.2.0.2</Version>
-    </PackageReference>
-    <PackageReference Include="Naxam.Ittianyu.BottomNavExtension" Version="1.2.4" />
     <PackageReference Include="Plugin.Permissions" Version="2.2.1" />
     <PackageReference Include="Plugin.Share" Version="7.1.1" />
     <PackageReference Include="Realm.Database">
@@ -158,7 +154,6 @@
     <Compile Include="MainActivity.cs" />
     <Compile Include="Notifications\NotificationHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Renderers\BottomTabbedPageRenderer.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="MainApplication.cs" />
     <Compile Include="Helpers\Settings.cs" />
@@ -213,7 +208,6 @@
     <AndroidResource Include="Resources\values\styles.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\tabs.axml" />
     <AndroidResource Include="Resources\drawable-hdpi\menu_sponsors.png" />
     <AndroidResource Include="Resources\drawable-hdpi\menu_events.png" />
     <AndroidResource Include="Resources\drawable-hdpi\menu_venue.png" />
