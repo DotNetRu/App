@@ -10,9 +10,6 @@
 
         public DateTimeOffset EndTime { get; set; }
 
-
-        public string Time => $"{this.StartTime.LocalDateTime.ToShortTimeString()} — {this.EndTime.LocalDateTime.ToShortTimeString()}";
-
-        // public MeetupModel Meetup { get; set; }
+        public MeetupModel Meetup { get; set; }
     }
 }

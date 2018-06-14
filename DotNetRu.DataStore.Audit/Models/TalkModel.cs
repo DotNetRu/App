@@ -91,9 +91,9 @@
 
         public string SpeakerNames => string.Join(",", this.Speakers.Select(x => x.FullName));
 
-        // public ImageSource CommunityLogo => ImageSource.FromResource(
-        //    "DotNetRu.DataStore.Audit.Images.logos." + this.Sessions.First().Meetup.CommunityID + ".png");
+        public ImageSource CommunityLogo => ImageSource.FromResource(
+           "DotNetRu.DataStore.Audit.Images.logos." + this.Sessions.First().Meetup.CommunityID + ".png");
 
-        // public IEnumerable<SessionModel> Sessions { get; set; }
+        public IEnumerable<SessionModel> Sessions { get; set; }
     }
 }

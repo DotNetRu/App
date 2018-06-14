@@ -19,7 +19,7 @@
                            CodeUrl = talkEntity.CodeUrl,
                            ShortTitle = talkEntity.Title,
                            Speakers = talkEntity.Speakers.Select(x => x.ToModel()),
-                           MeetupModel = talkEntity.Meetup.Single().ToModel()
+                           // Sessions = talkEntity.Sessions.Select(x => x.ToModel())
                        };
         }
     }
