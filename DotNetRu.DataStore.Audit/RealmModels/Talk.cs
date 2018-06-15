@@ -22,7 +22,7 @@
 
         public string VideoUrl { get; set; }
 
-        [Backlink(nameof(RealmModels.Session.Talk))]
+        [Backlink(nameof(Session.Talk))]
         public IQueryable<Session> Sessions { get; }
     }
 }
