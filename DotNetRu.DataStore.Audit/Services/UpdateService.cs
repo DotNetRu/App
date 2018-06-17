@@ -177,26 +177,26 @@
                                         dest.Speakers.Add(speaker);
                                     }
                                 });
-                        cfg.CreateMap<SessionEntity, Session>();
-                        cfg.CreateMap<MeetupEntity, Meetup>().AfterMap(
+                        cfg.CreateMap<SessionEntity, Session>().AfterMap(
                             (src, dest) =>
                                 {
-                                    foreach (var sessionEntity in src.Sessions)
-                                    {
-                                        var talk = auditRealm.Find<Talk>(sessionEntity.TalkId);
-                                        var realmSession = Mapper.Map<Session>(sessionEntity);
-                                        realmSession.Talk = talk;
-                                        dest.Sessions.Add(realmSession);
-                                    }
-
-                                    foreach (string friendId in src.FriendIds)
-                                    {
-                                        var friend = auditRealm.Find<Friend>(friendId);
-                                        dest.Friends.Add(friend);
-                                    }
-
-                                    dest.Venue = auditRealm.Find<Venue>(src.VenueId);
+                                    dest.Talk = auditRealm.Find<Talk>(src.TalkId);
                                 });
+                        cfg.CreateMap<MeetupEntity, Meetup>()
+                            .ForMember(
+                                dest => dest.Sessions,
+                                o => o.ResolveUsing((src, dest, sessions, context) => context.Mapper.Map(src.Sessions, dest.Sessions)))
+                            .AfterMap(
+                                (src, dest) =>
+                                    {
+                                        foreach (string friendId in src.FriendIds)
+                                        {
+                                            var friend = auditRealm.Find<Friend>(friendId);
+                                            dest.Friends.Add(friend);
+                                        }
+
+                                        dest.Venue = auditRealm.Find<Venue>(src.VenueId);
+                                    });
                     });
 
             return config.CreateMapper();            
