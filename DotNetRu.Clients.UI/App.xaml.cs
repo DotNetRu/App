@@ -55,7 +55,7 @@ namespace DotNetRu.Clients.UI
             this.InitializeComponent();
 
             // Update Audit on startup
-            // Task.Run(UpdateService.UpdateAudit);
+            Task.Run(UpdateService.UpdateAudit);
 
             AppCenter.Start(
                 $"ios={IosAppCenterKey};android={AndroidAppCenterKey};",
