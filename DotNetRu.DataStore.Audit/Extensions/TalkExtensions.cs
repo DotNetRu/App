@@ -7,19 +7,19 @@
 
     public static class TalkExtensions
     {
-        public static TalkModel ToModel(this Talk talkEntity)
+        public static TalkModel ToModel(this Talk talk)
         {
             return new TalkModel
                        {
-                           TalkId = talkEntity.Id,
-                           Title = talkEntity.Title,
-                           Abstract = talkEntity.Description,
-                           PresentationUrl = talkEntity.SlidesUrl,
-                           VideoUrl = talkEntity.VideoUrl,
-                           CodeUrl = talkEntity.CodeUrl,
-                           ShortTitle = talkEntity.Title,
-                           Speakers = talkEntity.Speakers.Select(x => x.ToModel()),
-                           MeetupModel = talkEntity.Meetup.Single().ToModel()
+                           TalkId = talk.Id,
+                           Title = talk.Title,
+                           Abstract = talk.Description,
+                           PresentationUrl = talk.SlidesUrl,
+                           VideoUrl = talk.VideoUrl,
+                           CodeUrl = talk.CodeUrl,
+                           ShortTitle = talk.Title,
+                           Speakers = talk.Speakers.Select(x => x.ToModel()),
+                           Sessions = talk.Sessions.ToList().Select(x => x.ToModel())
                        };
         }
     }

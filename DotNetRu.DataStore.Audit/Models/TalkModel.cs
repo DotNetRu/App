@@ -31,13 +31,17 @@
 
         public IEnumerable<SpeakerModel> Speakers { get; set; }
 
+
+        [Obsolete("Room and other location&time info should move to session")]
         public Room Room { get; set; }
 
         public ICollection<Category> Categories { get; set; }
 
-        public DateTime? StartTime => this.MeetupModel.StartTime;
+        [Obsolete("Room and other location&time info should move to session")]
+        public DateTime? StartTime => DateTime.Now; // this.Sessions.First().StartTime.DateTime;
 
-        public DateTime? EndTime => this.MeetupModel.EndTime;
+        [Obsolete("Room and other location&time info should move to session")]
+        public DateTime? EndTime => DateTime.Now; //this.Sessions.First().EndTime.DateTime;
 
         public string PresentationUrl { get; set; }
 
@@ -88,8 +92,8 @@
         public string SpeakerNames => string.Join(",", this.Speakers.Select(x => x.FullName));
 
         public ImageSource CommunityLogo => ImageSource.FromResource(
-            "DotNetRu.DataStore.Audit.Images.logos." + this.MeetupModel.CommunityID + ".png");
+           "DotNetRu.DataStore.Audit.Images.logos." + this.Sessions.First().Meetup.CommunityID + ".png");
 
-        public MeetupModel MeetupModel { get; set; }
+        public IEnumerable<SessionModel> Sessions { get; set; }
     }
 }

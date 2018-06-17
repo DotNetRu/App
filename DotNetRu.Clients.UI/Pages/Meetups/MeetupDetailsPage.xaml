@@ -39,9 +39,9 @@
             </StackLayout>
             <controls:NonScrollableListView
                 x:Name="ListViewTalks"
-                ItemsSource="{Binding Talks}"
+                ItemsSource="{Binding Sessions}"
                 StyleId="SessionSpeakers"
-                RowHeight="95">
+                RowHeight="120">
               <controls:NonScrollableListView.SeparatorColor>
                 <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ListSeparator}"/>
               </controls:NonScrollableListView.SeparatorColor>
@@ -65,7 +65,8 @@
             <controls:LabelSection Text="{Binding Resources[Venue]}"/>
             <controls:HeaderDivider/>
             <StackLayout Padding="{StaticResource StandardPadding}" BackgroundColor="White">
-              <Label Text="{Binding MeetupTime}"  Style="{DynamicResource EvolveListItemTextStyle}" StyleId="SessionAbstract"/>
+                <Label Text="{Binding MeetupDate}"  Style="{DynamicResource EvolveListItemTextStyle}" StyleId="SessionAbstract"/>
+                <Label Text="{Binding MeetupTime}"  Style="{DynamicResource EvolveListItemTextStyle}" StyleId="SessionAbstract"/>
               <controls:HeaderDivider/>
               <Label Text="{Binding VenueModel.Name}" Style="{DynamicResource EvolveListItemTextStyle}" StyleId="SessionAbstract"/>
               <Label Text="{Binding VenueModel.Address}" Style="{DynamicResource EvolveListItemTextStyle}" StyleId="SessionAbstract"/>

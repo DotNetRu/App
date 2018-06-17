@@ -38,12 +38,12 @@
             // this.ToolbarItems.Add(this.filterItem);
             this.ListViewTalks.ItemSelected += async (sender, e) =>
                 {
-                    if (!(this.ListViewTalks.SelectedItem is TalkModel session))
+                    if (!(this.ListViewTalks.SelectedItem is SessionModel session))
                     {
                         return;
                     }
 
-                    var sessionDetails = new TalkPage(session);
+                    var sessionDetails = new TalkPage(session.Talk);
 
                     await NavigationService.PushAsync(this.Navigation, sessionDetails);
                     this.ListViewTalks.SelectedItem = null;
@@ -61,9 +61,9 @@
 
             this.ListViewTalks.ItemTapped += this.ListViewTapped;
 
-            var count = this.MeetupViewModel?.Talks?.Count() ?? 0;
+            var count = this.MeetupViewModel?.Sessions?.Count() ?? 0;
             var adjust = Device.RuntimePlatform != Device.Android ? 1 : -count + 1;
-            if ((this.MeetupViewModel?.Talks?.Count() ?? 0) > 0)
+            if ((this.MeetupViewModel?.Sessions?.Count() ?? 0) > 0)
             {
                 this.ListViewTalks.HeightRequest = (count * this.ListViewTalks.RowHeight) - adjust;
             }
