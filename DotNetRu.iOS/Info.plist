@@ -39,6 +39,8 @@
 	<string>LaunchScreen~ipad</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Location is needed to display your current location on maps.</string>
+  <key>NSCalendarsUsageDescription</key>
+  <string>Calendar is needed to add session to your calendar.</string>
 	<key>UIApplicationShortcutItems</key>
 	<array>
 		<dict>

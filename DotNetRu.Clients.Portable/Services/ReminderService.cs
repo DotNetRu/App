@@ -53,6 +53,10 @@ namespace DotNetRu.Clients.Portable.Services
 
         public static async Task<bool> AddSessionAsync(CalendarEvent calEvent)
         {
+            var ready = await CheckPermission();
+            if (!ready)
+                return false;
+
             try
             {
                 var calendar = await GetOrCreateCalendarAsync();
@@ -121,6 +125,10 @@ namespace DotNetRu.Clients.Portable.Services
 
         public static async Task<bool> DeleteSessionAsync(CalendarEvent calEvent)
         {
+            var ready = await CheckPermission();
+            if (!ready)
+                return false;
+
             try
             {
                 var calendar = await GetOrCreateCalendarAsync();
@@ -243,8 +251,41 @@ namespace DotNetRu.Clients.Portable.Services
         //    return true;
         //}
 
+        private static async Task<bool> CheckPermission(bool alert = true)
+        {
+            if (Device.RuntimePlatform != Device.Android)
+            {
+                return true;
+            }
 
-        static async Task<Calendar> GetOrCreateCalendarAsync()
+            var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Calendar);
+            if (status != PermissionStatus.Granted)
+            {
+                var request = await CrossPermissions.Current.RequestPermissionsAsync(Permission.Calendar);
+                if (!request.ContainsKey(Permission.Calendar) ||
+                    request[Permission.Calendar] != PermissionStatus.Granted)
+                {
+                    if (alert)
+                    {
+                        MessagingService.Current.SendMessage<MessagingServiceAlert>(MessageKeys.Message,
+                            new MessagingServiceAlert
+                            {
+                                Title = "Calendar Permission",
+                                Message =
+                                    "Unable to set reminders as the Calendar permission was not granted, please check your settings and try again.",
+                                Cancel = "OK"
+                            });
+                    }
+
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+
+        private static async Task<Calendar> GetOrCreateCalendarAsync()
         {
 
             var id = "";//Settings.Current.EventCalendarId;
