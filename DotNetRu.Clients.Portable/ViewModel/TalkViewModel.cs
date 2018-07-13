@@ -1,4 +1,8 @@
-﻿namespace DotNetRu.Clients.Portable.ViewModel
+﻿using DotNetRu.Clients.Portable.Interfaces;
+using DotNetRu.Clients.Portable.Services;
+using Plugin.Calendars.Abstractions;
+
+namespace DotNetRu.Clients.Portable.ViewModel
 {
     using System;
     using System.Linq;
@@ -156,44 +160,41 @@
 
         async Task ExecuteReminderCommandAsync()
         {
-            //if (!this.IsReminderSet)
-            //{
-            //    var result = await ReminderService.AddReminderAsync(
-            //                     this.TalkModel.Id,
-            //                     new Plugin.Calendars.Abstractions.CalendarEvent
-            //                         {
-            //                             AllDay = false,
-            //                             Description =
-            //                                 this.TalkModel.Abstract,
-            //                             Location =
-            //                                 this.TalkModel.Room?.Name
-            //                                 ?? string.Empty,
-            //                             Name = this.TalkModel.Title,
-            //                             Start = this.TalkModel.StartTime
-            //                                 .Value,
-            //                             End = this.TalkModel.EndTime.Value
-            //                         });
+            var calendarEvent = new CalendarEvent
+            {
+                AllDay = false,
+                Description = this.TalkModel.Abstract,
+                Location = this.TalkModel.Sessions.First().Meetup.Venue.Address,
+                Name = this.TalkModel.Title,
+                Start = this.TalkModel.Sessions.First().StartTime.LocalDateTime,
+                End = this.TalkModel.Sessions.First().EndTime.LocalDateTime
+            };
+            if (this.IsReminderSet)
+            {
+                var result = await ReminderService.DeleteSessionAsync(calendarEvent);
 
+                if (!result)
+                {
+                    return;
+                }
 
-            //    if (!result)
-            //    {
-            //        return;
-            //    }
+                MessagingUtils.SendToast(this.Resources["RemovedFromCalendar"]);
+                this.Logger.Track(DotNetRuLoggerKeys.ReminderRemoved, "Title", this.TalkModel.Title);
+                this.IsReminderSet = false;
+            }
+            else
+            {
+                var result = await ReminderService.AddSessionAsync(calendarEvent);
 
-            //    this.Logger.Track(DotNetRuLoggerKeys.ReminderAdded, "Title", this.TalkModel.Title);
-            //    this.IsReminderSet = true;
-            //}
-            //else
-            //{
-            //    var result = await ReminderService.RemoveReminderAsync(this.TalkModel.Id);
-            //    if (!result)
-            //    {
-            //        return;
-            //    }
+                if (!result)
+                {
+                    return;
+                }
 
-            //    this.Logger.Track(DotNetRuLoggerKeys.ReminderRemoved, "Title", this.TalkModel.Title);
-            //    this.IsReminderSet = false;
-            //}
+                MessagingUtils.SendToast(this.Resources["AddedToCalendar"]);
+                this.Logger.Track(DotNetRuLoggerKeys.ReminderAdded, "Title", this.TalkModel.Title);
+                this.IsReminderSet = true;
+            }
         }
 
         public ICommand ShareCommand => this.shareCommand

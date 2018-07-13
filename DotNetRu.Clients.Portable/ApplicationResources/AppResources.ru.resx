@@ -280,4 +280,16 @@
   <data name="Settings" xml:space="preserve">
     <value>Настройки</value>
   </data>
+  <data name="AddedToCalendar" xml:space="preserve">
+    <value>Добавлено в календарь</value>
+  </data>
+  <data name="AddToCalendar" xml:space="preserve">
+    <value>Добавить в календарь</value>
+  </data>
+  <data name="RemovedFromCalendar" xml:space="preserve">
+    <value>Удалено из календаря</value>
+  </data>
+  <data name="RemoveFromCalendar" xml:space="preserve">
+    <value>Удалить из календаря</value>
+  </data>
 </root>

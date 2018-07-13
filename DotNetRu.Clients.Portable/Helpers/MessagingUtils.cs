@@ -7,11 +7,11 @@ namespace DotNetRu.Clients.Portable.Helpers
 {
     public static class MessagingUtils
 	{
-		public static void SendOfflineMessage()
-		{
-			var toaster = DependencyService.Get<IToast>();
-			toaster.SendToast("You are currently offline, please connect to the internet and try again.");
-		}
+	    public static void SendToast(string message)
+	    {
+	        var toaster = DependencyService.Get<IToast>();
+            toaster.SendToast(message);
+        }
 
 		public static void SendAlert(string title, string message)
 		{

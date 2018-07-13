@@ -135,6 +135,12 @@
   <data name="Abstract" xml:space="preserve">
     <value>Abstract</value>
   </data>
+  <data name="AddedToCalendar" xml:space="preserve">
+    <value>Added to calendar</value>
+  </data>
+  <data name="AddToCalendar" xml:space="preserve">
+    <value>Add to calendar</value>
+  </data>
   <data name="AllDay" xml:space="preserve">
     <value>All day</value>
   </data>
@@ -222,6 +228,12 @@ Sergey Polezhaev</value>
   </data>
   <data name="PrivacyPolicy" xml:space="preserve">
     <value>Privacy Policy</value>
+  </data>
+  <data name="RemovedFromCalendar" xml:space="preserve">
+    <value>Removed from calendar</value>
+  </data>
+  <data name="RemoveFromCalendar" xml:space="preserve">
+    <value>Remove from calendar</value>
   </data>
   <data name="SaintPetersburg" xml:space="preserve">
     <value>Saint-Petersburg</value>
