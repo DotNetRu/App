@@ -14,6 +14,7 @@
         <ResourceDictionary>
             <toolkit:HasDataConverter x:Key="GenericIsVisibleConverter"/>
             <converters:RatingVisibleConverter x:Key="RatingVisibleConverter" />
+            <converters:HasReminderTextConverter x:Key="HasReminderTextConverter"/>
             <toolkit:InvertedBooleanConverter x:Key="InvertedBooleanConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -88,7 +89,21 @@
                         </StackLayout>
                     </controls:CardView>
 
-                    <controls:CardView IsVisible="{Binding ShowSessionMaterials}">
+          <!--Calendar-->
+          <controls:CardView IsVisible="{Binding ShowReminder}">
+            <StackLayout Spacing="0">
+              <controls:LabelSection Text="{Binding Resources[Follow]}"/>
+              <controls:HeaderDivider/>
+              <Button Text="{Binding IsReminderSet, Converter={StaticResource HasReminderTextConverter}}"
+                      BackgroundColor="{StaticResource Primary}"
+                      Margin="20, 10"
+                      Command="{Binding ReminderCommand}"
+                      TextColor="White"/>
+              <controls:FooterDivider/>
+            </StackLayout>
+          </controls:CardView>
+
+          <controls:CardView IsVisible="{Binding ShowSessionMaterials}">
                         <StackLayout Spacing="0">
                             <!--Materials-->
                             <controls:LabelSection Text="{Binding Resources[Materials]}"/>
