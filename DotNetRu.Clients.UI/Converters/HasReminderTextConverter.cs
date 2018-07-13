@@ -1,4 +1,6 @@
-﻿namespace DotNetRu.Clients.UI.Converters
+﻿using DotNetRu.Clients.Portable.ApplicationResources;
+
+namespace DotNetRu.Clients.UI.Converters
 {
     using System;
     using System.Globalization;
@@ -13,8 +15,8 @@
             {
                 return string.Empty;
             }
-
-            return (bool)value ? "Remove from Calendar" : "Add to Calendar";
+            
+            return  AppResources.ResourceManager.GetString((bool)value ? "RemoveFromCalendar" : "AddToCalendar", AppResources.Culture);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
