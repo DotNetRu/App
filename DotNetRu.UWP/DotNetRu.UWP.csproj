@@ -143,6 +143,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="CClarke.Plugin.Calendars">
+      <Version>0.7.1-beta</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.AppCenter">
       <Version>1.6.1</Version>
     </PackageReference>
