@@ -26,7 +26,7 @@
                     {
                         return;
                     }
-
+                    this.ListViewSpeakers.SelectedItem = null;
                     ContentPage destination;
 
                     if (Device.RuntimePlatform == Device.UWP)
@@ -43,7 +43,6 @@
                     }
 
                     await NavigationService.PushAsync(this.Navigation, destination);
-                    this.ListViewSpeakers.SelectedItem = null;
                 };
 
             this.BindingContext = new TalkViewModel(this.Navigation, talkModel);

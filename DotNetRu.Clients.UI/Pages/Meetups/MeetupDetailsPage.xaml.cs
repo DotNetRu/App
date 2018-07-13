@@ -42,11 +42,11 @@
                     {
                         return;
                     }
+                    this.ListViewTalks.SelectedItem = null;
 
                     var sessionDetails = new TalkPage(session.Talk);
 
                     await NavigationService.PushAsync(this.Navigation, sessionDetails);
-                    this.ListViewTalks.SelectedItem = null;
                 };
         }
 

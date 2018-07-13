@@ -30,6 +30,7 @@ namespace DotNetRu.Clients.UI.Pages.Speakers
                     {
                         return;
                     }
+                    this.ListViewSpeakers.SelectedItem = null;
 
                     ContentPage destination;
 
@@ -43,7 +44,6 @@ namespace DotNetRu.Clients.UI.Pages.Speakers
                     }
 
                     await NavigationService.PushAsync(this.Navigation, destination);
-                    this.ListViewSpeakers.SelectedItem = null;
                 };
         }
 

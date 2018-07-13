@@ -30,12 +30,11 @@
                     {
                         return;
                     }
+                    this.ListViewSessions.SelectedItem = null;
 
                     var sessionDetails = new TalkPage(session);
 
                     await NavigationService.PushAsync(this.Navigation, sessionDetails);
-
-                    this.ListViewSessions.SelectedItem = null;
                 };
 
             this.ListViewFollow.TemplatedItems.CollectionChanged += (sender, args) =>

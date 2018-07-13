@@ -32,11 +32,12 @@ namespace DotNetRu.Clients.UI.Pages.Friends
                     {
                         return;
                     }
+                    this.ListViewFriends.SelectedItem = null;
 
                     var sponsorDetails = new FriendDetailsPage { FriendModel = sponsor };
 
                     await NavigationService.PushAsync(this.Navigation, sponsorDetails);
-                    this.ListViewFriends.SelectedItem = null;
+                    
                 };
         }
 

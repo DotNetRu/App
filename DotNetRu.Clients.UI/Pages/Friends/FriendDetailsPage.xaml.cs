@@ -25,10 +25,10 @@
                 {
                     return;
                 }
+                this.ListViewMeetups.SelectedItem = null;
 
                 var eventSessions = new MeetupDetailsPage(ev);
                 await NavigationService.PushAsync(this.Navigation, eventSessions);
-                this.ListViewMeetups.SelectedItem = null;
             };            
         }
 
