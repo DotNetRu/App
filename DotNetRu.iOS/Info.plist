@@ -133,8 +133,6 @@
 		<string>fetch</string>
 		<string>remote-notification</string>
 	</array>
-	<key>NSCalendarsUsageDescription</key>
-	<string>This app allows you to add/remove conference sessions in your calendar.</string>
 	<key>NSUserActivityTypes</key>
 	<array>
 		<string>com.dotnetru.app.session</string>
