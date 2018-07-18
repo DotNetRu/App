@@ -9,8 +9,7 @@ namespace DotNetRu.Clients.Portable.Helpers
 	{
 	    public static void SendToast(string message)
 	    {
-	        var toaster = DependencyService.Get<IToast>();
-            toaster.SendToast(message);
+	        DependencyService.Get<IToast>().SendToast(message);
         }
 
 		public static void SendAlert(string title, string message)
