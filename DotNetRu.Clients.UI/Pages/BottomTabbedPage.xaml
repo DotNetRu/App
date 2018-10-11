@@ -1,15 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<forms:BottomTabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+﻿<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:forms="clr-namespace:Naxam.Controls.Forms;assembly=Naxam.BottomTabbedPage.Forms"
              xmlns:home="clr-namespace:DotNetRu.Clients.UI.Pages.Home;assembly=DotNetRu.Clients.UI"
              xmlns:speakers="clr-namespace:DotNetRu.Clients.UI.Pages.Speakers;assembly=DotNetRu.Clients.UI"
-             xmlns:events="clr-namespace:DotNetRu.Clients.UI.Pages.Events;assembly=DotNetRu.Clients.UI"
-             xmlns:info="clr-namespace:DotNetRu.Clients.UI.Pages.Info;assembly=DotNetRu.Clients.UI"
              xmlns:about="clr-namespace:DotNetRu.Clients.UI.Pages.About;assembly=DotNetRu.Clients.UI"
              xmlns:meetups="clr-namespace:DotNetRu.Clients.UI.Pages.Meetups;assembly=DotNetRu.Clients.UI"
              x:Class="DotNetRu.Clients.UI.Pages.BottomTabbedPage">
-    <!--Pages can be added as references or inline-->
     <NavigationPage Title="{Binding NewsTitle}">
         <NavigationPage.BarTextColor>
             <OnPlatform x:TypeArguments="Color">
@@ -82,4 +77,4 @@
             <about:SettingsPage />
         </x:Arguments>
     </NavigationPage>
-</forms:BottomTabbedPage>
+</TabbedPage>

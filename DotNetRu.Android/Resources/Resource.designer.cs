@@ -3540,14 +3540,14 @@ namespace DotNetRu.Droid
 			// aapt resource value: 0x7f0b0067
 			public const int list_item = 2131427431;
 			
-			// aapt resource value: 0x7f0b00d0
-			public const int masked = 2131427536;
+			// aapt resource value: 0x7f0b00cf
+			public const int masked = 2131427535;
 			
 			// aapt resource value: 0x7f0b00bf
 			public const int media_actions = 2131427519;
 			
-			// aapt resource value: 0x7f0b00ce
-			public const int message = 2131427534;
+			// aapt resource value: 0x7f0b00cd
+			public const int message = 2131427533;
 			
 			// aapt resource value: 0x7f0b0038
 			public const int middle = 2131427384;
@@ -3756,9 +3756,6 @@ namespace DotNetRu.Droid
 			// aapt resource value: 0x7f0b002c
 			public const int showTitle = 2131427372;
 			
-			// aapt resource value: 0x7f0b00cc
-			public const int sliding_tabs = 2131427532;
-			
 			// aapt resource value: 0x7f0b0091
 			public const int smallLabel = 2131427473;
 			
@@ -3837,8 +3834,8 @@ namespace DotNetRu.Droid
 			// aapt resource value: 0x7f0b0075
 			public const int title_template = 2131427445;
 			
-			// aapt resource value: 0x7f0b00cd
-			public const int toolbar = 2131427533;
+			// aapt resource value: 0x7f0b00cc
+			public const int toolbar = 2131427532;
 			
 			// aapt resource value: 0x7f0b0045
 			public const int top = 2131427397;
@@ -3876,8 +3873,8 @@ namespace DotNetRu.Droid
 			// aapt resource value: 0x7f0b0016
 			public const int view_offset_helper = 2131427350;
 			
-			// aapt resource value: 0x7f0b00cf
-			public const int visible = 2131427535;
+			// aapt resource value: 0x7f0b00ce
+			public const int visible = 2131427534;
 			
 			// aapt resource value: 0x7f0b00b1
 			public const int volume_item_container = 2131427505;
@@ -4177,13 +4174,10 @@ namespace DotNetRu.Droid
 			public const int support_simple_spinner_dropdown_item = 2130903105;
 			
 			// aapt resource value: 0x7f030042
-			public const int tabs = 2130903106;
+			public const int toolbar = 2130903106;
 			
 			// aapt resource value: 0x7f030043
-			public const int toolbar = 2130903107;
-			
-			// aapt resource value: 0x7f030044
-			public const int tooltip = 2130903108;
+			public const int tooltip = 2130903107;
 			
 			static Layout()
 			{
