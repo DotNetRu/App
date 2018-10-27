@@ -81,6 +81,12 @@ namespace XamarinEvolve.DataObjects
         /// </summary>
         public string VideoUrl { get; set; }
 
+        /// <summary>
+        /// Gets or sets the url to the code from session
+        /// </summary>
+        [Newtonsoft.Json.JsonIgnore]
+        public string CodeUrl { get; set; }
+
         private string speakerNames;
 
         [Newtonsoft.Json.JsonIgnore]
@@ -175,21 +181,6 @@ namespace XamarinEvolve.DataObjects
                 }
                 haystack = builder.ToString();
                 return haystack;
-            }
-        }
-
-        bool isFavorite;
-
-        [Newtonsoft.Json.JsonIgnore]
-        public bool IsFavorite
-        {
-            get
-            {
-                return isFavorite;
-            }
-            set
-            {
-                SetProperty(ref isFavorite, value);
             }
         }
 

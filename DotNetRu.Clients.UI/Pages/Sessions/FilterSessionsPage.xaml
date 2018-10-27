@@ -12,8 +12,6 @@
     </ContentPage.ToolbarItems>
     <TableView Intent="Settings" HasUnevenRows="true">
         <TableSection Title="Filters" x:Name="TableSectionFilters">
-           <!-- <local:CategoryCell x:Name="ShowPastSwitch"/>
-            <local:CategoryCell x:Name="ShowFavoritesOnlySwitch"/>-->
         </TableSection>
         <TableSection Title="Categories" x:Name="TableSectionCategories">
             <!--These are dynamically added-->

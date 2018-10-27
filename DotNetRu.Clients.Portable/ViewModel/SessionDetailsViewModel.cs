@@ -69,7 +69,11 @@ namespace XamarinEvolve.Clients.Portable
                     new MenuItem { Name = "Session Recording", Parameter = session.VideoUrl, Icon = "icon_video.png" });
             }
 
-            MessagingService.Current.Subscribe<Session>(MessageKeys.SessionFavoriteToggled, UpdateFavoritedSession);
+            if (!string.IsNullOrWhiteSpace(session.CodeUrl))
+            {
+                SessionMaterialItems.Add(
+                    new MenuItem {Name = "Code from Session", Parameter = session.CodeUrl, Icon="icon_code.png"});
+            }
         }
 
 #if DEBUG
@@ -95,14 +99,6 @@ namespace XamarinEvolve.Clients.Portable
                 LaunchBrowserCommand.Execute(selectedSessionMaterialItem.Parameter);
 
                 SelectedSessionMaterialItem = null;
-            }
-        }
-
-        void UpdateFavoritedSession(IMessagingService service, Session updatedSession)
-        {
-            if (Session.Id == updatedSession.Id && Session.IsFavorite != updatedSession.IsFavorite)
-            {
-                Session.IsFavorite = updatedSession.IsFavorite;
             }
         }
 
@@ -142,18 +138,6 @@ namespace XamarinEvolve.Clients.Portable
 
                 SelectedSpeaker = null;
             }
-        }
-
-
-        ICommand favoriteCommand;
-
-        public ICommand FavoriteCommand => favoriteCommand
-                                           ?? (favoriteCommand = new Command(
-                                                   async () => await ExecuteFavoriteCommandAsync()));
-
-        async Task ExecuteFavoriteCommandAsync()
-        {
-            await FavoriteService.ToggleFavorite(Session);
         }
 
         ICommand reminderCommand;

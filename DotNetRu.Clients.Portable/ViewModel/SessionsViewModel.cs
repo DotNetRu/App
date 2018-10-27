@@ -1,51 +1,61 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using Xamarin.Forms;
-using System.Windows.Input;
-using System.Threading.Tasks;
-using MvvmHelpers;
-using FormsToolkit;
-using XamarinEvolve.DataObjects;
-using XamarinEvolve.Utils;
+using System.Reflection;
+using System.Xml.Serialization;
+using DotNetRu.DataStore.Audit.Models;
 
 namespace XamarinEvolve.Clients.Portable
 {
-	using XamarinEvolve.Utils.Helpers;
+    using System;
+    using System.Threading.Tasks;
+    using System.Windows.Input;
 
-	public class SessionsViewModel : ViewModelBase
+    using FormsToolkit;
+
+    using MvvmHelpers;
+
+    using Xamarin.Forms;
+
+    using XamarinEvolve.DataObjects;
+    using XamarinEvolve.Utils;
+    using XamarinEvolve.Utils.Helpers;
+
+    public class SessionsViewModel : ViewModelBase
     {
-        public SessionsViewModel(INavigation navigation) : base(navigation)
+        public FeaturedEvent Event { get; set; }
+        public SessionsViewModel(INavigation navigation, FeaturedEvent featuredEvent = null)
+            : base(navigation)
         {
+            Event = featuredEvent;
             NextForceRefresh = DateTime.UtcNow.AddMinutes(45);
-			MessagingService.Current.Subscribe<Session>(MessageKeys.SessionFavoriteToggled, UpdateFavoritedSession);
         }
 
-		void UpdateFavoritedSession(IMessagingService service, Session updatedSession)
-		{
-			var sessionInList = SessionsGrouped.SelectMany(g => g).FirstOrDefault(s => s.Id == updatedSession.Id);
-			if (sessionInList != null && sessionInList.IsFavorite != updatedSession.IsFavorite)
-			{
-				sessionInList.IsFavorite = updatedSession.IsFavorite;
-			}
-		}
+        public ObservableRangeCollection<Session> Sessions { get; } = new ObservableRangeCollection<Session>();
 
-		public ObservableRangeCollection<Session> Sessions { get; } = new ObservableRangeCollection<Session>();
         public ObservableRangeCollection<Session> SessionsFiltered { get; } = new ObservableRangeCollection<Session>();
-        public ObservableRangeCollection<Grouping<string, Session>> SessionsGrouped { get; } = new ObservableRangeCollection<Grouping<string, Session>>();
+
+        public ObservableRangeCollection<Grouping<string, Session>> SessionsGrouped { get; } =
+            new ObservableRangeCollection<Grouping<string, Session>>();
+
         public DateTime NextForceRefresh { get; set; }
 
 
         #region Properties
+
         Session selectedSession;
+
         public Session SelectedSession
         {
-            get { return selectedSession; }
+            get
+            {
+                return selectedSession;
+            }
             set
             {
                 selectedSession = value;
                 OnPropertyChanged();
-                if (selectedSession == null)
-                    return;
+                if (selectedSession == null) return;
 
                 MessagingService.Current.SendMessage(MessageKeys.NavigateToSession, selectedSession);
 
@@ -54,16 +64,20 @@ namespace XamarinEvolve.Clients.Portable
         }
 
         string filter = string.Empty;
+
         public string Filter
         {
-            get { return filter; }
-            set 
+            get
             {
-                if (SetProperty(ref filter, value))
-                    ExecuteFilterSessionsAsync();
-                    
+                return filter;
+            }
+            set
+            {
+                if (SetProperty(ref filter, value)) ExecuteFilterSessionsAsync();
+
             }
         }
+
         #endregion
 
         #region Filtering and Sorting
@@ -75,36 +89,54 @@ namespace XamarinEvolve.Clients.Portable
         }
 
         bool noSessionsFound;
+
         public bool NoSessionsFound
         {
-            get { return noSessionsFound; }
-            set { SetProperty(ref noSessionsFound, value); }
+            get
+            {
+                return noSessionsFound;
+            }
+            set
+            {
+                SetProperty(ref noSessionsFound, value);
+            }
         }
 
         string noSessionsFoundMessage;
+
         public string NoSessionsFoundMessage
         {
-            get { return noSessionsFoundMessage; }
-            set { SetProperty(ref noSessionsFoundMessage, value); }
+            get
+            {
+                return noSessionsFoundMessage;
+            }
+            set
+            {
+                SetProperty(ref noSessionsFoundMessage, value);
+            }
         }
- 
+
         #endregion
 
 
         #region Commands
 
-        ICommand  forceRefreshCommand;
-        public ICommand ForceRefreshCommand =>
-        forceRefreshCommand ?? (forceRefreshCommand = new Command(async () => await ExecuteForceRefreshCommandAsync())); 
+        ICommand forceRefreshCommand;
+
+        public ICommand ForceRefreshCommand => forceRefreshCommand
+                                               ?? (forceRefreshCommand = new Command(
+                                                       async () => await ExecuteForceRefreshCommandAsync()));
 
         async Task ExecuteForceRefreshCommandAsync()
         {
             await ExecuteLoadSessionsAsync(true);
         }
 
-        ICommand  filterSessionsCommand;
-        public ICommand FilterSessionsCommand =>
-            filterSessionsCommand ?? (filterSessionsCommand = new Command(async () => await ExecuteFilterSessionsAsync())); 
+        ICommand filterSessionsCommand;
+
+        public ICommand FilterSessionsCommand => filterSessionsCommand
+                                                 ?? (filterSessionsCommand = new Command(
+                                                         async () => await ExecuteFilterSessionsAsync()));
 
         async Task ExecuteFilterSessionsAsync()
         {
@@ -114,27 +146,17 @@ namespace XamarinEvolve.Clients.Portable
             // Abort the current command if the user is typing fast
             if (!string.IsNullOrEmpty(Filter))
             {
-				var query = Filter;
+                var query = Filter;
                 await Task.Delay(250);
-                if (query != Filter) 
-                    return;
+                if (query != Filter) return;
             }
 
             SessionsFiltered.ReplaceRange(Sessions.Search(Filter));
             SortSessions();
 
-            if(SessionsGrouped.Count == 0)
+            if (SessionsGrouped.Count == 0)
             {
-                if(Settings.Current.FavoritesOnly)
-                {
-                    if(!Settings.Current.ShowPastSessions && !string.IsNullOrWhiteSpace(Filter))
-                        NoSessionsFoundMessage = "You haven't favorited\nany sessions yet.";
-                    else
-                        NoSessionsFoundMessage = "No Sessions Found";
-                }
-                else
-                    NoSessionsFoundMessage = "No Sessions Found";
-
+                NoSessionsFoundMessage = "No Sessions Found";
                 NoSessionsFound = true;
             }
             else
@@ -148,44 +170,71 @@ namespace XamarinEvolve.Clients.Portable
 
 
         ICommand loadSessionsCommand;
-        public ICommand LoadSessionsCommand =>
-            loadSessionsCommand ?? (loadSessionsCommand = new Command<bool>(async (f) => await ExecuteLoadSessionsAsync())); 
+
+        public ICommand LoadSessionsCommand => loadSessionsCommand
+                                               ?? (loadSessionsCommand = new Command<bool>(
+                                                       async (f) => await ExecuteLoadSessionsAsync()));
+
+        List<Session> TalkToSessionConverter(IEnumerable<Talk> talks)
+        {
+            return talks.Select(talk => new Session
+            {
+                Title = talk.Title,
+                Abstract = talk.Description,
+                PresentationUrl = talk.SlidesUrl,
+                VideoUrl = talk.VideoUrl,
+                CodeUrl = talk.CodeUrl,
+                ShortTitle = talk.Title, 
+                StartTime = Event.StartTime?.ToLocalTime().AddHours(15),   //TODO: It's a zaglushka
+                EndTime = Event.StartTime?.ToLocalTime().AddHours(18),
+                Speakers = SpeakerLoaderService.Speakers.Where(s => talk.SpeakerIds.Any(s1 => s1 == s.Id)).ToList()
+            }
+            ).ToList();
+        }
+
+        List<Session> GetSessions()
+        {
+            var assembly = Assembly.Load(new AssemblyName("DotNetRu.DataStore.Audit"));
+            var stream = assembly.GetManifestResourceStream("DotNetRu.DataStore.Audit.Storage.talks.xml");
+            IEnumerable<Talk> sessions;
+            using (var reader = new StreamReader(stream))
+            {
+                var xRoot = new XmlRootAttribute
+                {
+                    ElementName = "Talks",
+                    IsNullable = false
+                };
+                var serializer = new XmlSerializer(typeof(List<Talk>), xRoot);
+                sessions = ((List<Talk>)serializer.Deserialize(reader)).Where(t => Event.EventTalksIds.Any(t1 => t1 == t.Id));
+            }
+            return TalkToSessionConverter(sessions);
+        }
+
 
 
         async Task<bool> ExecuteLoadSessionsAsync(bool force = false)
         {
-            if(IsBusy)
-                return false;
+            if (IsBusy) return false;
 
-            try 
+            try
             {
                 NextForceRefresh = DateTime.UtcNow.AddMinutes(45);
                 IsBusy = true;
                 NoSessionsFound = false;
                 Filter = string.Empty;
 
-                #if DEBUG
+#if DEBUG
                 await Task.Delay(1000);
-                #endif
+#endif
 
-                Sessions.ReplaceRange(await StoreManager.SessionStore.GetItemsAsync(force));
+                Sessions.ReplaceRange(GetSessions()/*await StoreManager.SessionStore.GetItemsAsync(force)*/);
 
                 SessionsFiltered.ReplaceRange(Sessions);
                 SortSessions();
 
-                if(SessionsGrouped.Count == 0)
+                if (SessionsGrouped.Count == 0)
                 {
-                    
-                    if(Settings.Current.FavoritesOnly)
-                    {
-                        if(!Settings.Current.ShowPastSessions)
-                            NoSessionsFoundMessage = "You haven't favorited\nany sessions yet.";
-                        else
-                            NoSessionsFoundMessage = "No Sessions Found";
-                    }
-                    else
-                        NoSessionsFoundMessage = "No Sessions Found";
-
+                    NoSessionsFoundMessage = "No Sessions Found";
                     NoSessionsFound = true;
                 }
                 else
@@ -193,26 +242,29 @@ namespace XamarinEvolve.Clients.Portable
                     NoSessionsFound = false;
                 }
 
-				if (Device.OS != TargetPlatform.WinPhone && Device.OS != TargetPlatform.Windows && FeatureFlags.AppLinksEnabled)
+                if (Device.OS != TargetPlatform.WinPhone && Device.OS != TargetPlatform.Windows
+                    && FeatureFlags.AppLinksEnabled)
                 {
-					foreach (var session in Sessions)
-					{
-						try
-						{
-							// data migration: older applinks are removed so the index is rebuilt again
-							Application.Current.AppLinks.DeregisterLink(new Uri($"http://{AboutThisApp.AppLinksBaseDomain}/{AboutThisApp.SessionsSiteSubdirectory}/{session.Id}"));
+                    foreach (var session in Sessions)
+                    {
+                        try
+                        {
+                            // data migration: older applinks are removed so the index is rebuilt again
+                            Application.Current.AppLinks.DeregisterLink(
+                                new Uri(
+                                    $"http://{AboutThisApp.AppLinksBaseDomain}/{AboutThisApp.SessionsSiteSubdirectory}/{session.Id}"));
 
-							Application.Current.AppLinks.RegisterLink(session.GetAppLink());
-						}
-						catch (Exception applinkException)
-						{
-							// don't crash the app
-							Logger.Report(applinkException, "AppLinks.RegisterLink", session.Id);
-						}
-					}
+                            Application.Current.AppLinks.RegisterLink(session.GetAppLink());
+                        }
+                        catch (Exception applinkException)
+                        {
+                            // don't crash the app
+                            Logger.Report(applinkException, "AppLinks.RegisterLink", session.Id);
+                        }
+                    }
                 }
-            } 
-            catch (Exception ex) 
+            }
+            catch (Exception ex)
             {
                 Logger.Report(ex, "Method", "ExecuteLoadSessionsAsync");
                 MessagingService.Current.SendMessage(MessageKeys.Error, ex);
@@ -224,19 +276,6 @@ namespace XamarinEvolve.Clients.Portable
 
             return true;
         }
-
-        ICommand  favoriteCommand;
-        public ICommand FavoriteCommand =>
-            favoriteCommand ?? (favoriteCommand = new Command<Session>(async (s) => await ExecuteFavoriteCommandAsync(s))); 
-
-        async Task ExecuteFavoriteCommandAsync(Session session)
-        {
-            var toggled = await FavoriteService.ToggleFavorite(session);
-            if(toggled && Settings.Current.FavoritesOnly)
-                SortSessions();
-        }
-
-
         #endregion
     }
 }

@@ -41,7 +41,6 @@
         public static void Init()
         {
             DependencyService.Register<ISessionStore, SessionStore>();
-            DependencyService.Register<IFavoriteStore, FavoriteStore>();
             DependencyService.Register<IFeedbackStore, FeedbackStore>();
             DependencyService.Register<IConferenceFeedbackStore, ConferenceFeedbackStore>();
             DependencyService.Register<ISpeakerStore, SpeakerStore>();
@@ -50,8 +49,6 @@
             DependencyService.Register<IEventStore, EventStore>();
             DependencyService.Register<INotificationStore, NotificationStore>();
             DependencyService.Register<IStoreManager, DataStore.Mock.StoreManager>();
-
-            DependencyService.Register<FavoriteService>();
         }
 
         /// <summary>
@@ -68,11 +65,6 @@
         /// Gets the toast.
         /// </summary>
         protected IToast Toast { get; } = DependencyService.Get<IToast>();
-
-        /// <summary>
-        /// Gets the favorite service.
-        /// </summary>
-        protected FavoriteService FavoriteService { get; } = DependencyService.Get<FavoriteService>();
 
         /// <summary>
         /// The settings.

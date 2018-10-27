@@ -7,10 +7,6 @@
             android:icon="@drawable/menu_feed"
             android:title="[event] Feed"/>
         <item
-            android:id="@+id/nav_sessions"
-            android:icon="@drawable/menu_sessions"
-            android:title="Sessions"/>
-        <item
             android:id="@+id/nav_speakers"
             android:icon="@drawable/menu_speakers"
             android:title="Speakers" />
@@ -25,11 +21,11 @@
             <item
                 android:id="@+id/nav_sponsors"
                 android:icon="@drawable/menu_sponsors"
-                android:title="Sponsors"
+                android:title="Friends"
                 android:checkable="true" />
             <item
-                android:title="Settings"
-                android:icon="@drawable/menu_settings"
+                android:title="About"
+                android:icon="@drawable/menu_info"
                 android:id="@+id/nav_settings"
                 android:checkable="true" />
         </menu>

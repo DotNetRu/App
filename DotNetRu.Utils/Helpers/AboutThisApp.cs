@@ -13,9 +13,11 @@
 
         public const string CompanyName = "DotNetRu";
 
-        public const string Developer = "DotNetRu";
+        public const string Developer = "DotNetRu Team";
 
         public const string DeveloperWebsite = "https://www.xpirit.com/mobile";
+
+        public const string MontemagnoWebsite = "https://montemagno.com";
 
         public const string OpenSourceUrl = "http://tiny.cc/app-evolve";
 

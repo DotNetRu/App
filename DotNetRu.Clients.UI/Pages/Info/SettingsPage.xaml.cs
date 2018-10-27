@@ -10,7 +10,7 @@ namespace XamarinEvolve.Clients.UI
 
 	public partial class SettingsPage : BasePage
   {
-    public override AppPage PageType => AppPage.Settings;
+    public override AppPage PageType => AppPage.Information;
 
     SettingsViewModel vm;
 
@@ -43,13 +43,6 @@ namespace XamarinEvolve.Clients.UI
 
       await DisplayAlert("Credits",
         AboutThisApp.Credits, "OK");
-    }
-
-    protected override void OnDisappearing()
-    {
-      base.OnDisappearing();
-      MessagingService.Current.Unsubscribe(MessageKeys.NavigateToSyncMobileToWebViewModel);
-      MessagingService.Current.Unsubscribe(MessageKeys.NavigateToSyncWebToMobileViewModel);
     }
   }
 }

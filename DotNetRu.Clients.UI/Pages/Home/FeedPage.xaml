@@ -108,62 +108,6 @@
                 </StackLayout>
             </local:CardView>
 
-            <local:CardView IsVisible="{Binding ShowUpcomingFavorites}">
-                 <!--Upcoming Sessions-->
-                 <StackLayout Spacing="0">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="34"/>
-                        </Grid.ColumnDefinitions>
-                        <local:LabelSection Text="Upcoming Favorites"/>
-                    </Grid>
-                    <local:HeaderDivider/>
-                    <StackLayout IsVisible="{Binding LoadingSessions}" 
-                                 HorizontalOptions="FillAndExpand" 
-                                 VerticalOptions="Center" 
-                                  BackgroundColor="White"
-                                  Padding="{StaticResource StandardPadding}">
-                        <ActivityIndicator IsRunning="{Binding LoadingSessions}">
-                            <ActivityIndicator.Color>
-                                <OnPlatform x:TypeArguments="Color" Android="{StaticResource Accent}"/>
-                            </ActivityIndicator.Color>
-                        </ActivityIndicator>
-                        <Label Text="Loading Favorites..." 
-                               HorizontalOptions="Center" 
-                               Style="{DynamicResource EvolveListItemTextStyle}"/>
-                   </StackLayout>
-                    <StackLayout IsVisible="{Binding NoSessions}" 
-                                 HorizontalOptions="FillAndExpand" 
-                                 VerticalOptions="Center" 
-                                  BackgroundColor="White"
-                                  Padding="{StaticResource StandardPadding}">
-                       
-                        <Label Text="No Upcoming Favorites" 
-                               HorizontalOptions="Center" 
-                               Style="{DynamicResource EvolveListItemTextStyle}"/>
-                   </StackLayout>
-                   <local:NonScrollableListView 
-                        x:Name="ListViewSessions"
-                        ItemsSource="{Binding Sessions}">
-                        <local:NonScrollableListView.SeparatorColor>
-                            <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ListSeparator}" WinPhone="{StaticResource ListSeparator}"/>
-                        </local:NonScrollableListView.SeparatorColor>
-                        <local:NonScrollableListView.RowHeight>
-                            <OnPlatform x:TypeArguments="x:Int32" Android="120" iOS="120" WinPhone="110"/>
-                        </local:NonScrollableListView.RowHeight>
-                        <local:NonScrollableListView.ItemTemplate>
-                             <DataTemplate>
-                              <ViewCell>
-                                <local:SessionCellView FavoriteCommand="{Binding Path=BindingContext.FavoriteCommand, Source={x:Reference FeedPage}}"/>
-                              </ViewCell>
-                            </DataTemplate>
-                        </local:NonScrollableListView.ItemTemplate>
-                    </local:NonScrollableListView>
-                    <local:FooterDivider/>
-                </StackLayout>
-            </local:CardView>
-
              <local:CardView>
                  <!--Tweets-->
                  <StackLayout Spacing="0">

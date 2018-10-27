@@ -13,7 +13,6 @@
      <ResourceDictionary>
         <toolkit:HexToColorConverter x:Key="StringToColorConverter" />
         <local:SessionDateDisplayConverter x:Key="SessionDateDisplayConverter" />
-        <local:IsFavoriteDetailTextConverter x:Key="IsFavoriteDetailTextConverter" />
         <local:HasReminderTextConverter x:Key="HasReminderTextConverter" />
         <local:IsFilledIconConverter x:Key="IsFilledIconConverter" />
         <toolkit:HasDataConverter x:Key="GenericIsVisibleConverter"/>
@@ -187,27 +186,10 @@
                                </Grid.IsVisible>
                                 <Button StyleId="ReminderButton"
                                         IsVisible="{Binding ShowReminder}"
-                                        Text="{Binding IsReminderSet, Converter={StaticResource HasReminderTextConverter}"
+                                        Text="{Binding IsReminderSet, Converter={StaticResource HasReminderTextConverter}}"
                                         BackgroundColor="{StaticResource PrimaryDark}"
                                         Command="{Binding ReminderCommand}"
-                                        TextColor="White"/>
-                                <Button Grid.Row="1"
-                                        StyleId="FavoriteButton"
-                                        x:Name="FavoriteButtonAndroid"
-                                        Text="{Binding Session.IsFavorite, Converter={StaticResource IsFavoriteDetailTextConverter}}"
-                                        BackgroundColor="{StaticResource PrimaryDark}" 
-                                        Command="{Binding FavoriteCommand}"
-                                        TextColor="White"/>
-
-                                 <local:FavoriteImage StyleId="FavoriteIcon"
-                                        x:Name="FavoriteIconAndroid"
-                                        Source="{Binding Session.IsFavorite, Converter={StaticResource IsFilledIconConverter}, ConverterParameter='heart'}"
-                                        Grid.Row="1" Grid.Column="1">
-                                     <local:FavoriteImage.GestureRecognizers>
-                                         <TapGestureRecognizer Command="{Binding FavoriteCommand}"/>
-                                     </local:FavoriteImage.GestureRecognizers>
-                                 </local:FavoriteImage>
-                                        
+                                        TextColor="White"/>                                        
                              </Grid>
    
                              <StackLayout Padding="16,0" Spacing="8" Orientation="Horizontal" BackgroundColor="White">
@@ -223,29 +205,7 @@
                                     TextColor="{DynamicResource Primary}"
                                     Command="{Binding ReminderCommand}" />
                              </StackLayout>
-                             <local:SectionDivider/>
-                                
-                              <StackLayout Padding="16,0" Spacing="8" Orientation="Horizontal" BackgroundColor="White">
-                                <StackLayout.IsVisible>
-                                    <OnPlatform x:TypeArguments="x:Boolean" iOS="true" Android="false" WinPhone="false"/>
-                                </StackLayout.IsVisible>
-                                <Button 
-                                    StyleId="FavoriteButton"
-                                    x:Name="FavoriteButtoniOS"
-                                    Text="{Binding Session.IsFavorite, Converter={StaticResource IsFavoriteDetailTextConverter}}"
-                                    FontAttributes="Bold"
-                                    HorizontalOptions="StartAndExpand"
-                                    TextColor="{DynamicResource Primary}"
-                                    Command="{Binding FavoriteCommand}" />
-                                <local:FavoriteImage StyleId="FavoriteIcon" 
-                                    x:Name="FavoriteIconiOS"
-                                    Source="{Binding Session.IsFavorite, Converter={StaticResource IsFilledIconConverter}, ConverterParameter='heart'}">
-                                    <local:FavoriteImage.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding FavoriteCommand}"/>
-                                    </local:FavoriteImage.GestureRecognizers>
-                                </local:FavoriteImage>
-                            </StackLayout>
-
+                             <local:SectionDivider/>                              
                             <local:FooterDivider/>
                          </StackLayout>
                      </local:CardView>

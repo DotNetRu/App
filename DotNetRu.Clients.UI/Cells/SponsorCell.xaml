@@ -19,12 +19,13 @@
                     HorizontalOptions="FillAndExpand"
                     VerticalOptions="FillAndExpand"
                     StyleId="SponsorImage"
+                    Source="friends.png"
                     Aspect="AspectFit">
-                    <Image.Source>
+                    <!--<Image.Source>
                         <UriImageSource Uri="{Binding ImageUri}" 
                             CacheValidity="3" 
                             CachingEnabled="true"/>
-                    </Image.Source>
+                    </Image.Source>-->
                 </Image>
                     <StackLayout VerticalOptions="Center" Grid.Column="1" Spacing="0" StyleId="SponsorCell">
                       <Label Text="{Binding Name}" Style="{DynamicResource EvolveListItemTextStyle}" StyleId="SponsorName"/>
