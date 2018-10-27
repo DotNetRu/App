@@ -6,11 +6,13 @@ using Plugin.Connectivity;
 using Plugin.Connectivity.Abstractions;
 using Xamarin.Forms;
 using XamarinEvolve.Clients.Portable;
-using XamarinEvolve.DataStore.Azure.Abstractions;
 using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.Clients.UI
 {
+    using XamarinEvolve.DataStore.Mock.Abstractions;
+    using XamarinEvolve.Utils.Helpers;
+
 	public partial class App : Application
 	{
 		public static App current;

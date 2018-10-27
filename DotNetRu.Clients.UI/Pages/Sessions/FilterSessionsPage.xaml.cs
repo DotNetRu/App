@@ -7,7 +7,9 @@ using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.Clients.UI
 {
-    public partial class FilterSessionsPage : BasePage
+	using XamarinEvolve.Utils.Helpers;
+
+	public partial class FilterSessionsPage : BasePage
 	{
 		public override AppPage PageType => AppPage.Filter;
 

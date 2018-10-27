@@ -3,12 +3,15 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using XamarinEvolve.Clients.Portable;
 using FormsToolkit;
-using XamarinEvolve.DataStore.Azure.Abstractions;
+
 using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.Clients.UI
 {
-  public class RootPageAndroid : MasterDetailPage
+    using XamarinEvolve.DataStore.Mock.Abstractions;
+    using XamarinEvolve.Utils.Helpers;
+
+	public class RootPageAndroid : MasterDetailPage
   {
     Dictionary<int, EvolveNavigationPage> pages;
     DeepLinkPage page;

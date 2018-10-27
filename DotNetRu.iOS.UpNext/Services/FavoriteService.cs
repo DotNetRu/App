@@ -11,6 +11,9 @@ using MvvmHelpers;
 
 namespace UpNext.Services
 {
+    using XamarinEvolve.Utils.Extensions;
+    using XamarinEvolve.Utils.Helpers;
+
 	public static class FavoriteService
 	{
 		public static async Task<IEnumerable<Grouping<string, Session>>> GetFavorites()
@@ -38,7 +41,7 @@ namespace UpNext.Services
 							var sessions = JsonConvert.DeserializeObject<List<Session>>(data);
 
 							// filter sessions that are relevant (between now and ~30 minutes)
-							sessions = sessions.Where(s => !s.StartTime.Value.IsTBA()
+							sessions = sessions.Where(s => !s.StartTime.Value.IsTba()
 							                          && (s.StartTime.Value.AddMinutes(30).ToUniversalTime() >= DateTime.UtcNow) ||
 							                              s.EndTime.Value.AddMinutes(-15).ToUniversalTime() >= DateTime.UtcNow)
 											   .OrderBy(s => s.StartTime.Value)

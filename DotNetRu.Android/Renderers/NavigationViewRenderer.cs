@@ -1,36 +1,38 @@
-﻿using Xamarin.Forms.Platform.Android;
+﻿using Android.Runtime;
 using Android.Support.Design.Widget;
-using Android.Runtime;
-using Xamarin.Forms;
-using XamarinEvolve.Droid;
-using XamarinEvolve.Clients.Portable;
-using Android.Widget;
-using FormsToolkit;
 using Android.Views;
-using DotNetRu.Droid;
-using XamarinEvolve.Utils;
+using Android.Widget;
 
+using DotNetRu.Droid;
+
+using Xamarin.Forms;
+using Xamarin.Forms.Platform.Android;
+
+using XamarinEvolve.Clients.Portable;
+using XamarinEvolve.Utils;
 
 [assembly: ExportRenderer(typeof(XamarinEvolve.Clients.UI.NavigationView), typeof(NavigationViewRenderer))]
 
 namespace DotNetRu.Droid
 {
-  public class NavigationViewRenderer : ViewRenderer<XamarinEvolve.Clients.UI.NavigationView, NavigationView>
+	using XamarinEvolve.Utils.Helpers;
+
+	public class NavigationViewRenderer : ViewRenderer<XamarinEvolve.Clients.UI.NavigationView, NavigationView>
   {
     NavigationView navView;
     ImageView profileImage;
     TextView profileName;
 
-    public override void OnViewAdded(Android.Views.View child)
-    {
-      base.OnViewAdded(child);
+	  public override void OnViewAdded(Android.Views.View child)
+	  {
+		  base.OnViewAdded(child);
 
-      navView.Menu.FindItem(Resource.Id.nav_feed).SetTitle($"{EventInfo.EventName}");
-      navView.Menu.FindItem(Resource.Id.nav_speakers).SetVisible(FeatureFlags.SpeakersEnabled);
-      navView.Menu.FindItem(Resource.Id.nav_events).SetVisible(FeatureFlags.EventsEnabled);
-    }
+		  navView.Menu.FindItem(Resource.Id.nav_feed).SetTitle($"{EventInfo.EventName}");
+		  navView.Menu.FindItem(Resource.Id.nav_speakers).SetVisible(FeatureFlags.SpeakersEnabled);
+		  navView.Menu.FindItem(Resource.Id.nav_events).SetVisible(true);
+	  }
 
-    protected override void OnElementChanged(ElementChangedEventArgs<XamarinEvolve.Clients.UI.NavigationView> e)
+	  protected override void OnElementChanged(ElementChangedEventArgs<XamarinEvolve.Clients.UI.NavigationView> e)
     {
 
       base.OnElementChanged(e);

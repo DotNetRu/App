@@ -4,7 +4,9 @@ using XamarinEvolve.DataObjects;
 
 namespace XamarinEvolve.Clients.UI
 {
-	public partial class SpeakersPage : BasePage
+    using DotNetRu.DataStore.Audit.DataObjects;
+
+    public partial class SpeakersPage : BasePage
 	{
 		public override AppPage PageType => AppPage.Speakers;
 

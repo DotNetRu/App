@@ -13,6 +13,8 @@ using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.iOS.PlatformFeatures.ProActiveSuggestions
 {
+	using XamarinEvolve.Utils.Helpers;
+
 	public class SessionUserActivity : IPlatformSpecificExtension<Session>
 	{
 		private NSUserActivity _activity;

@@ -6,6 +6,8 @@ using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.Droid
 {
+	using XamarinEvolve.Utils.Helpers;
+
 	[BroadcastReceiver(Permission= Constants.PERMISSION_GCM_INTENTS, Name=AboutThisApp.PackageName + ".GcmBroadcastReceiver")]
     [IntentFilter(new[] { Intent.ActionBootCompleted })] // Allow GCM on boot and when app is closed   
     [IntentFilter(new string[] { Constants.INTENT_FROM_GCM_MESSAGE }, Categories = new string[] { "@PACKAGE_NAME@" })]

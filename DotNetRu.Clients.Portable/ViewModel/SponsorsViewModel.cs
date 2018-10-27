@@ -11,7 +11,9 @@ using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.Clients.Portable
 {
-    public class SponsorsViewModel : ViewModelBase
+	using XamarinEvolve.Utils.Helpers;
+
+	public class SponsorsViewModel : ViewModelBase
     {
         public SponsorsViewModel(INavigation navigation) : base(navigation)
         {

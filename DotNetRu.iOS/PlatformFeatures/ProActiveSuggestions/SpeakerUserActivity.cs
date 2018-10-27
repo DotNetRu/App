@@ -8,13 +8,15 @@ using XamarinEvolve.DataObjects;
 using XamarinEvolve.iOS.PlatformFeatures.ProActiveSuggestions;
 using XamarinEvolve.Utils;
 
-using Speaker = XamarinEvolve.DataObjects.Speaker;
-
 [assembly: Dependency(typeof(SpeakerUserActivity))]
 
 namespace XamarinEvolve.iOS.PlatformFeatures.ProActiveSuggestions
 {
-	public class SpeakerUserActivity : IPlatformSpecificExtension<XamarinEvolve.DataObjects.Speaker>
+    using DotNetRu.DataStore.Audit.DataObjects;
+
+    using XamarinEvolve.Utils.Helpers;
+
+	public class SpeakerUserActivity : IPlatformSpecificExtension<Speaker>
 	{
 		private NSUserActivity _activity;
 

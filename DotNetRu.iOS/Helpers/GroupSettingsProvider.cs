@@ -9,6 +9,8 @@ using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.iOS
 {
+	using XamarinEvolve.Utils.Helpers;
+
 	public class GroupSettingsProvider : IPlatformSpecificSettings
 	{
 		private NSUserDefaults _groupSettings = new NSUserDefaults($"group.{AboutThisApp.PackageName}", NSUserDefaultsType.SuiteName);
