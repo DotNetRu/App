@@ -219,10 +219,10 @@ namespace XamarinEvolve.Clients.UI
                     var date = ((DateTime)value);
                     if (date.Kind == DateTimeKind.Local) 
                     {
-                        return date.Humanize (false);
+                        return date.Humanize(false);
                     }
 
-                    return date.Humanize ();
+                    return date.Humanize();
                 }
             }
             catch (Exception ex)

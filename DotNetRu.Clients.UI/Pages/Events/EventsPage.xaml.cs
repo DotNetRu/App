@@ -8,9 +8,10 @@
 
     public partial class EventsPage
     {
-		public override AppPage PageType => AppPage.Events;
+        public override AppPage PageType => AppPage.Events;
 
         EventsViewModel eventsViewModel;
+
         EventsViewModel ViewModel => this.eventsViewModel ?? (this.eventsViewModel = BindingContext as EventsViewModel);
 
         public EventsPage()
@@ -18,7 +19,7 @@
             this.InitializeComponent();
             this.BindingContext = new EventsViewModel(Navigation);
 
-            if (Device.RuntimePlatform == Device.Windows || Device.RuntimePlatform == Device.WinPhone)
+            if (Device.RuntimePlatform == Device.UWP)
             {
                 this.ToolbarItems.Add(
                     new ToolbarItem
@@ -46,8 +47,7 @@
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            if (ViewModel.Events.Count == 0)
-                ViewModel.LoadEventsCommand.Execute(false);
+            if (ViewModel.Events.Count == 0) ViewModel.LoadEventsCommand.Execute(false);
         }
     }
 }
