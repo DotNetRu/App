@@ -9,7 +9,8 @@ using XamarinEvolve.Utils;
 
 namespace XamarinEvolve.Clients.UI
 {
-	using XamarinEvolve.Utils.Helpers;
+    using XamarinEvolve.Clients.Portable.ViewModel;
+    using XamarinEvolve.Utils.Helpers;
 
 	public partial class FeedPage : BasePage
 	{

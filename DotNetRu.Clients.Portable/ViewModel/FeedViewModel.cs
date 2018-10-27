@@ -1,327 +1,380 @@
-﻿using System;
-using System.Windows.Input;
-using System.Threading.Tasks;
-using MvvmHelpers;
-using System.Linq;
-using Xamarin.Forms;
-using FormsToolkit;
-using System.Reflection;
-using PCLStorage;
-using Plugin.EmbeddedResource;
-using Newtonsoft.Json;
-using XamarinEvolve.DataObjects;
-using System.Net.Http;
-using System.Collections.Generic;
-
-using XamarinEvolve.Utils;
-using Plugin.Share;
-
-namespace XamarinEvolve.Clients.Portable
+﻿namespace XamarinEvolve.Clients.Portable.ViewModel
 {
-	using XamarinEvolve.Utils.Helpers;
+    using System;
+    using System.Threading.Tasks;
+    using System.Windows.Input;
 
-	public class FeedViewModel : ViewModelBase
-	{
+    using FormsToolkit;
 
-		public ObservableRangeCollection<Tweet> Tweets { get; } = new ObservableRangeCollection<Tweet>();
-		public ObservableRangeCollection<Session> Sessions { get; } = new ObservableRangeCollection<Session>();
-		public DateTime NextForceRefresh { get; set; }
-		public FeedViewModel()
-		{
-			Title = $"{EventInfo.EventName}";
-			NextForceRefresh = DateTime.UtcNow.AddMinutes(45);
+    using MvvmHelpers;
 
-			MessagingService.Current.Subscribe("conferencefeedback_finished", (m) => { Device.BeginInvokeOnMainThread(EvaluateVisualState); });
-		}
+    using Xamarin.Forms;
 
-		// only start showing upcoming favorites 1 day before the conference
-		public bool ShowUpcomingFavorites => EventInfo.StartOfConference.AddDays(-1) < DateTime.UtcNow;
+    using XamarinEvolve.DataObjects;
+    using XamarinEvolve.Utils;
+    using XamarinEvolve.Utils.Helpers;
 
-		ICommand refreshCommand;
-		public ICommand RefreshCommand =>
-				refreshCommand ?? (refreshCommand = new Command(async () => await ExecuteRefreshCommandAsync()));
+    /// <inheritdoc />
+    /// <summary>
+    /// The feed view model.
+    /// </summary>
+    public class FeedViewModel : ViewModelBase
+    {
+        public ObservableRangeCollection<Tweet> Tweets { get; } = new ObservableRangeCollection<Tweet>();
 
-		async Task ExecuteRefreshCommandAsync()
-		{
-			try
-			{
-				NextForceRefresh = DateTime.UtcNow.AddMinutes(45);
-				IsBusy = true;
-				var tasks = new Task[]
-						{
-												ExecuteLoadNotificationsCommandAsync(),
-												ExecuteLoadSocialCommandAsync(),
-												ExecuteLoadSessionsCommandAsync()
-						};
+        public ObservableRangeCollection<Session> Sessions { get; } = new ObservableRangeCollection<Session>();
 
-				await Task.WhenAll(tasks);
-			}
-			catch (Exception ex)
-			{
-				ex.Data["method"] = "ExecuteRefreshCommandAsync";
-				Logger.Report(ex);
-			}
-			finally
-			{
-				IsBusy = false;
-			}
-		}
+        public DateTime NextForceRefresh { get; set; }
 
-		Notification notification;
-		public Notification Notification
-		{
-			get { return notification; }
-			set { SetProperty(ref notification, value); }
-		}
+        public FeedViewModel()
+        {
+            this.Title = $"{EventInfo.EventName}";
+            this.NextForceRefresh = DateTime.UtcNow.AddMinutes(45);
 
-		bool loadingNotifications;
-		public bool LoadingNotifications
-		{
-			get { return loadingNotifications; }
-			set { SetProperty(ref loadingNotifications, value); }
-		}
+            MessagingService.Current.Subscribe(
+                "conferencefeedback_finished",
+                (m) => { Device.BeginInvokeOnMainThread(this.EvaluateVisualState); });
+        }
 
-		ICommand loadNotificationsCommand;
-		public ICommand LoadNotificationsCommand =>
-				loadNotificationsCommand ?? (loadNotificationsCommand = new Command(async () => await ExecuteLoadNotificationsCommandAsync()));
+        // only start showing upcoming favorites 1 day before the conference
+        public bool ShowUpcomingFavorites => EventInfo.StartOfConference.AddDays(-1) < DateTime.UtcNow;
 
-		async Task ExecuteLoadNotificationsCommandAsync()
-		{
-			if (LoadingNotifications)
-				return;
-			LoadingNotifications = true;
+        ICommand refreshCommand;
+
+        public ICommand RefreshCommand =>
+            this.refreshCommand ?? (this.refreshCommand = new Command(async () => await this.ExecuteRefreshCommandAsync()));
+
+        async Task ExecuteRefreshCommandAsync()
+        {
+            try
+            {
+                this.NextForceRefresh = DateTime.UtcNow.AddMinutes(45);
+                this.IsBusy = true;
+                var tasks = new Task[]
+                                {
+                                    this.ExecuteLoadNotificationsCommandAsync(), this.ExecuteLoadSocialCommandAsync(),
+                                    this.ExecuteLoadSessionsCommandAsync()
+                                };
+
+                await Task.WhenAll(tasks);
+            }
+            catch (Exception ex)
+            {
+                ex.Data["method"] = "ExecuteRefreshCommandAsync";
+                this.Logger.Report(ex);
+            }
+            finally
+            {
+                this.IsBusy = false;
+            }
+        }
+
+        Notification notification;
+
+        public Notification Notification
+        {
+            get
+            {
+                return this.notification;
+            }
+            set
+            {
+                this.SetProperty(ref this.notification, value);
+            }
+        }
+
+        bool loadingNotifications;
+
+        public bool LoadingNotifications
+        {
+            get
+            {
+                return this.loadingNotifications;
+            }
+            set
+            {
+                this.SetProperty(ref this.loadingNotifications, value);
+            }
+        }
+
+        ICommand loadNotificationsCommand;
+
+        public ICommand LoadNotificationsCommand => this.loadNotificationsCommand
+                                                    ?? (this.loadNotificationsCommand = new Command(
+                                                            async () => await this.ExecuteLoadNotificationsCommandAsync()));
+
+        async Task ExecuteLoadNotificationsCommandAsync()
+        {
+            if (this.LoadingNotifications) return;
+            this.LoadingNotifications = true;
 #if DEBUG
 			await Task.Delay(1000);
 #endif
 
-			try
-			{
-				Notification = await StoreManager.NotificationStore.GetLatestNotification();
-			}
-			catch (Exception ex)
-			{
-				ex.Data["method"] = "ExecuteLoadNotificationsCommandAsync";
-				Logger.Report(ex);
-				Notification = new Notification
-				{
-					Date = DateTime.UtcNow,
-					Text = $"Welcome to {EventInfo.EventName}!"
-				};
-			}
-			finally
-			{
-				LoadingNotifications = false;
-			}
-		}
+            try
+            {
+                this.Notification = await this.StoreManager.NotificationStore.GetLatestNotification();
+            }
+            catch (Exception ex)
+            {
+                ex.Data["method"] = "ExecuteLoadNotificationsCommandAsync";
+                this.Logger.Report(ex);
+                this.Notification = new Notification { Date = DateTime.UtcNow, Text = $"Welcome to {EventInfo.EventName}!" };
+            }
+            finally
+            {
+                this.LoadingNotifications = false;
+            }
+        }
 
-		bool loadingSessions;
-		public bool LoadingSessions
-		{
-			get { return loadingSessions; }
-			set { SetProperty(ref loadingSessions, value); }
-		}
+        bool loadingSessions;
 
-		ICommand loadSessionsCommand;
-		public ICommand LoadSessionsCommand =>
-				loadSessionsCommand ?? (loadSessionsCommand = new Command(async () => await ExecuteLoadSessionsCommandAsync()));
+        public bool LoadingSessions
+        {
+            get
+            {
+                return this.loadingSessions;
+            }
+            set
+            {
+                this.SetProperty(ref this.loadingSessions, value);
+            }
+        }
 
-		async Task ExecuteLoadSessionsCommandAsync()
-		{
-			if (!ShowUpcomingFavorites)
-				return;
+        ICommand loadSessionsCommand;
 
-			if (LoadingSessions)
-				return;
+        public ICommand LoadSessionsCommand => this.loadSessionsCommand
+                                               ?? (this.loadSessionsCommand = new Command(
+                                                       async () => await this.ExecuteLoadSessionsCommandAsync()));
 
-			LoadingSessions = true;
+        async Task ExecuteLoadSessionsCommandAsync()
+        {
+            if (!this.ShowUpcomingFavorites) return;
 
-			try
-			{
-				NoSessions = false;
-				Sessions.Clear();
-				OnPropertyChanged("Sessions");
+            if (this.LoadingSessions) return;
+
+            this.LoadingSessions = true;
+
+            try
+            {
+                this.NoSessions = false;
+                this.Sessions.Clear();
+                this.OnPropertyChanged("Sessions");
 #if DEBUG
 				await Task.Delay(1000);
 #endif
-				var sessions = await StoreManager.SessionStore.GetNextSessions(2);
-				if (sessions != null)
-					Sessions.AddRange(sessions);
+                var sessions = await this.StoreManager.SessionStore.GetNextSessions(2);
+                if (sessions != null) this.Sessions.AddRange(sessions);
 
-				NoSessions = Sessions.Count == 0;
-			}
-			catch (Exception ex)
-			{
-				ex.Data["method"] = "ExecuteLoadSessionsCommandAsync";
-				Logger.Report(ex);
-				NoSessions = true;
-			}
-			finally
-			{
-				LoadingSessions = false;
-			}
-		}
+                this.NoSessions = this.Sessions.Count == 0;
+            }
+            catch (Exception ex)
+            {
+                ex.Data["method"] = "ExecuteLoadSessionsCommandAsync";
+                this.Logger.Report(ex);
+                this.NoSessions = true;
+            }
+            finally
+            {
+                this.LoadingSessions = false;
+            }
+        }
 
-		public void EvaluateVisualState()
-		{
-			OnPropertyChanged(nameof(ShowBuyTicketButton));
-			OnPropertyChanged(nameof(ShowUpcomingFavorites));
-			OnPropertyChanged(nameof(ShowConferenceFeedbackButton));
-		}
+        public void EvaluateVisualState()
+        {
+            this.OnPropertyChanged(nameof(this.ShowBuyTicketButton));
+            this.OnPropertyChanged(nameof(this.ShowUpcomingFavorites));
+            this.OnPropertyChanged(nameof(this.ShowConferenceFeedbackButton));
+        }
 
-		bool noSessions;
-		public bool NoSessions
-		{
-			get { return noSessions; }
-			set { SetProperty(ref noSessions, value); }
-		}
+        bool noSessions;
 
-		Session selectedSession;
-		public Session SelectedSession
-		{
-			get { return selectedSession; }
-			set
-			{
-				selectedSession = value;
-				OnPropertyChanged();
-				if (selectedSession == null)
-					return;
+        public bool NoSessions
+        {
+            get
+            {
+                return this.noSessions;
+            }
+            set
+            {
+                this.SetProperty(ref this.noSessions, value);
+            }
+        }
 
-				MessagingService.Current.SendMessage(MessageKeys.NavigateToSession, selectedSession);
+        Session selectedSession;
 
-				SelectedSession = null;
-			}
-		}
+        public Session SelectedSession
+        {
+            get
+            {
+                return this.selectedSession;
+            }
+            set
+            {
+                this.selectedSession = value;
+                this.OnPropertyChanged();
+                if (this.selectedSession == null) return;
 
-		bool loadingSocial;
-		public bool LoadingSocial
-		{
-			get { return loadingSocial; }
-			set { SetProperty(ref loadingSocial, value); }
-		}
+                MessagingService.Current.SendMessage(MessageKeys.NavigateToSession, this.selectedSession);
 
-		public bool ShowBuyTicketButton => FeatureFlags.ShowBuyTicketButton && EventInfo.StartOfConference.AddDays(-1) >= DateTime.Now;
+                this.SelectedSession = null;
+            }
+        }
 
-#if DEBUG
-		public bool ShowConferenceFeedbackButton => true;
-#else
-		public bool ShowConferenceFeedbackButton => FeatureFlags.ShowConferenceFeedbackButton && Utils.EventInfo.EndOfConference.AddHours(-4) <= DateTime.Now && !Settings.Current.IsConferenceFeedbackFinished();
-#endif
+        bool loadingSocial;
 
-		public string SocialHeader => "Social";
+        public bool LoadingSocial
+        {
+            get
+            {
+                return this.loadingSocial;
+            }
+            set
+            {
+                this.SetProperty(ref this.loadingSocial, value);
+            }
+        }
 
-	    ICommand shareCommand;
-		public ICommand ShareCommand =>
-		shareCommand ?? (shareCommand = new Command(async () => await ExecuteShareCommand()));
+        public bool ShowBuyTicketButton =>
+            FeatureFlags.ShowBuyTicketButton && EventInfo.StartOfConference.AddDays(-1) >= DateTime.Now;
 
-		async Task ExecuteShareCommand()
-		{
-			var tweet = DependencyService.Get<ITweetService>();
-			await tweet.InitiateConferenceTweet();
-		}
+        public bool ShowConferenceFeedbackButton => true;
 
-		ICommand buyTicketNowCommand;
-		public ICommand BuyTicketNowCommand =>
-	buyTicketNowCommand ?? (buyTicketNowCommand = new Command(() => ExecuteBuyTicketNowCommand()));
+        public string SocialHeader => "Social";
 
-		void ExecuteBuyTicketNowCommand()
-		{
-			LaunchBrowserCommand.Execute(EventInfo.TicketUrl);
-		}
+        ICommand shareCommand;
 
-		ICommand showConferenceFeedbackCommand;
-		public ICommand ShowConferenceFeedbackCommand =>
-			showConferenceFeedbackCommand ?? (showConferenceFeedbackCommand = new Command(() => ExecuteShowConferenceFeedbackCommand()));
+        public ICommand ShareCommand =>
+            this.shareCommand ?? (this.shareCommand = new Command(async () => await this.ExecuteShareCommand()));
 
-		void ExecuteShowConferenceFeedbackCommand()
-		{
-			MessagingService.Current.SendMessage(MessageKeys.NavigateToConferenceFeedback);
-		}
+        async Task ExecuteShareCommand()
+        {
+            var tweet = DependencyService.Get<ITweetService>();
+            await tweet.InitiateConferenceTweet();
+        }
 
-		ICommand loadSocialCommand;
-		public ICommand LoadSocialCommand =>
-				loadSocialCommand ?? (loadSocialCommand = new Command(async () => await ExecuteLoadSocialCommandAsync()));
+        ICommand buyTicketNowCommand;
 
-		async Task ExecuteLoadSocialCommandAsync()
-		{
-			if (LoadingSocial)
-				return;
+        public ICommand BuyTicketNowCommand => this.buyTicketNowCommand
+                                               ?? (this.buyTicketNowCommand =
+                                                       new Command(() => this.ExecuteBuyTicketNowCommand()));
 
-			LoadingSocial = true;
-			try
-			{
-				SocialError = false;
-				Tweets.Clear();
-				Tweets.ReplaceRange(await TweetHelper.Get());
-			}
-			catch (Exception ex)
-			{
-				SocialError = true;
-				ex.Data["method"] = "ExecuteLoadSocialCommandAsync";
-				Logger.Report(ex);
-			}
-			finally
-			{
-				LoadingSocial = false;
-			}
-		}
+        void ExecuteBuyTicketNowCommand()
+        {
+            this.LaunchBrowserCommand.Execute(EventInfo.TicketUrl);
+        }
 
-		bool socialError;
-		public bool SocialError
-		{
-			get { return socialError; }
-			set { SetProperty(ref socialError, value); }
-		}
+        ICommand showConferenceFeedbackCommand;
 
-		Tweet selectedTweet;
-		public Tweet SelectedTweet
-		{
-			get { return selectedTweet; }
-			set
-			{
-				selectedTweet = value;
-				OnPropertyChanged();
-				if (selectedTweet == null)
-					return;
+        public ICommand ShowConferenceFeedbackCommand => this.showConferenceFeedbackCommand
+                                                         ?? (this.showConferenceFeedbackCommand = new Command(
+                                                                 () => this.ExecuteShowConferenceFeedbackCommand()));
 
-				LaunchBrowserCommand.Execute(selectedTweet.Url);
+        void ExecuteShowConferenceFeedbackCommand()
+        {
+            MessagingService.Current.SendMessage(MessageKeys.NavigateToConferenceFeedback);
+        }
 
-				SelectedTweet = null;
-			}
-		}
+        ICommand loadSocialCommand;
 
-		ICommand favoriteCommand;
-		public ICommand FavoriteCommand =>
-		favoriteCommand ?? (favoriteCommand = new Command<Session>(async (s) => await ExecuteFavoriteCommandAsync(s)));
+        public ICommand LoadSocialCommand => this.loadSocialCommand
+                                             ?? (this.loadSocialCommand = new Command(
+                                                     async () => await this.ExecuteLoadSocialCommandAsync()));
 
-		async Task ExecuteFavoriteCommandAsync(Session session)
-		{
-			if (session.IsFavorite)
-			{
-				MessagingService.Current.SendMessage(MessageKeys.Question, new MessagingServiceQuestion
-				{
-					Negative = "Cancel",
-					Positive = "Unfavorite",
-					Question = "Are you sure you want to remove this session from your favorites?",
-					Title = "Unfavorite Session",
-					OnCompleted = (async (result) =>
-						{
-							if (!result)
-								return;
+        async Task ExecuteLoadSocialCommandAsync()
+        {
+            if (this.LoadingSocial) return;
 
-							await ToggleFavorite(session);
-						})
-				});
-			}
-		}
+            this.LoadingSocial = true;
+            try
+            {
+                this.SocialError = false;
+                this.Tweets.Clear();
+                this.Tweets.ReplaceRange(await TweetHelper.Get());
+            }
+            catch (Exception ex)
+            {
+                this.SocialError = true;
+                ex.Data["method"] = "ExecuteLoadSocialCommandAsync";
+                this.Logger.Report(ex);
+            }
+            finally
+            {
+                this.LoadingSocial = false;
+            }
+        }
 
-		async Task ToggleFavorite(Session session)
-		{
-			var toggled = await FavoriteService.ToggleFavorite(session);
-			if (toggled)
-			{
-				await ExecuteLoadSessionsCommandAsync();
-			}
-		}
-	}
+        bool socialError;
+
+        public bool SocialError
+        {
+            get
+            {
+                return this.socialError;
+            }
+            set
+            {
+                this.SetProperty(ref this.socialError, value);
+            }
+        }
+
+        Tweet selectedTweet;
+
+        public Tweet SelectedTweet
+        {
+            get
+            {
+                return this.selectedTweet;
+            }
+            set
+            {
+                this.selectedTweet = value;
+                this.OnPropertyChanged();
+                if (this.selectedTweet == null) return;
+
+                this.LaunchBrowserCommand.Execute(this.selectedTweet.Url);
+
+                this.SelectedTweet = null;
+            }
+        }
+
+        ICommand favoriteCommand;
+
+        public ICommand FavoriteCommand => this.favoriteCommand
+                                           ?? (this.favoriteCommand = new Command<Session>(
+                                                   async (s) => await this.ExecuteFavoriteCommandAsync(s)));
+
+        async Task ExecuteFavoriteCommandAsync(Session session)
+        {
+            if (session.IsFavorite)
+            {
+                MessagingService.Current.SendMessage(
+                    MessageKeys.Question,
+                    new MessagingServiceQuestion
+                        {
+                            Negative = "Cancel",
+                            Positive = "Unfavorite",
+                            Question =
+                                "Are you sure you want to remove this session from your favorites?",
+                            Title = "Unfavorite Session",
+                            OnCompleted = (async (result) =>
+                                {
+                                    if (!result) return;
+
+                                    await this.ToggleFavorite(session);
+                                })
+                        });
+            }
+        }
+
+        async Task ToggleFavorite(Session session)
+        {
+            var toggled = await this.FavoriteService.ToggleFavorite(session);
+            if (toggled)
+            {
+                await this.ExecuteLoadSessionsCommandAsync();
+            }
+        }
+    }
 }
 
