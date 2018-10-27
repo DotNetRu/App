@@ -10,82 +10,37 @@
     public class SponsorStore : BaseStore<Sponsor>, ISponsorStore
     {
         List<Sponsor> _sponsors;
-        readonly static string [] Companies =
+        readonly static string[] Companies =
             {
-                "Airwatch",
-                "AppDome",
+                "Airwatch", "AppDome",
+
                 // "Apperian",
-                "Arxan",
-                "Avanade",
-                "Bitrise",
-                "BlueTube",
-                "Citrix XenMobile",
-                "Cloudmine",
-                "ComponentOne",
-                "Couchbase",
-                "Dropbox",
-                "Esri",
-                "Google",
-                "Intel",
-                "Judo Payments",
-                "Kinvey",
-                "Microsoft",
-                "Mindtree",
-                "Neudesic",
-                "Nventive",
-                "Pariveda",
+                "Arxan", "Avanade", "Bitrise", "BlueTube", "Citrix XenMobile",
+                "Cloudmine", "ComponentOne", "Couchbase", "Dropbox", "Esri", "Google",
+                "Intel", "Judo Payments", "Kinvey", "Microsoft", "Mindtree",
+                "Neudesic", "Nventive", "Pariveda",
+
                 // "PayPal",
-                "Philips Hue",
-                "Scandit",
-                "Sogeti",
-                "Syncfusion",
-                "Twilio",
-                "Urban Airship",
-                "WillowTree",
-                "Zebra Technologies",
-                "Zumero"
+                "Philips Hue", "Scandit", "Sogeti", "Syncfusion", "Twilio",
+                "Urban Airship", "WillowTree", "Zebra Technologies", "Zumero"
             };
 
-        readonly static int [] Levels =
+        readonly static int[] Levels =
             {
-                2,
-                3,
-            // 3,
-            2,
-            1,
-            3,
-            2,
-            3,
-            3,
-            3,
-            2,
-            2,
-            2,
-            1,
-            2,
-            2,
-            3,
-            0,
-            3,
-            3,
-            3,
-            2,
-            // 3,
-            2,
-            3,
-            2,
-            3,
-            2,
-            3,
-            3,
-            2,
-            3
+                2, 3,
+
+                // 3,
+                2, 1, 3, 2, 3, 3, 3, 2, 2, 2, 1, 2, 2, 3, 0, 3, 3, 3, 2,
+
+                // 3,
+                2, 3, 2, 3, 2, 3, 3, 2, 3
             };
 
-        readonly static string [] Logos =
+        readonly static string[] Logos =
             {
                 "https://s3.amazonaws.com/blog.xamarin.com/wp-content/uploads/2016/03/16193046/Airwatch.png",
                 "https://s3.amazonaws.com/blog.xamarin.com/wp-content/uploads/2016/03/16193047/AppDome.png",
+
                 // "Apperian",
                 "https://s3.amazonaws.com/blog.xamarin.com/wp-content/uploads/2016/03/16193047/Arxan.png", // Arxan
                 "https://s3.amazonaws.com/blog.xamarin.com/wp-content/uploads/2016/03/16193047/Avanade.png",
@@ -106,6 +61,7 @@
                 "https://s3.amazonaws.com/blog.xamarin.com/wp-content/uploads/2016/03/16193050/Neudesic.png",
                 "https://s3.amazonaws.com/blog.xamarin.com/wp-content/uploads/2016/03/16193050/nventive.png",
                 "https://s3.amazonaws.com/blog.xamarin.com/wp-content/uploads/2016/03/16193050/Pariveda.png",
+
                 // "PayPal",
                 "https://s3.amazonaws.com/blog.xamarin.com/wp-content/uploads/2016/03/16193050/Philips.png",
                 "https://s3.amazonaws.com/blog.xamarin.com/wp-content/uploads/2016/03/16193050/Scandit.png",
@@ -118,10 +74,11 @@
                 "https://s3.amazonaws.com/blog.xamarin.com/wp-content/uploads/2016/03/16193052/Zumero.png"
             };
 
-        readonly static string [] Descriptions =
-        {
+        readonly static string[] Descriptions =
+            {
                 "AirWatch by VMware is the leader in enterprise mobility management, with more than 16,000 global customers. The AirWatch platform includes industry-leading mobile device, email, application, content and browser management solutions. Organizations can implement these solutions across device types and use cases, including complete EMM for corporate and line of business deployments, and containerized solutions for bring your own device (BYOD) programs.",
                 "AppDome provides an essential shield that secures mobile apps from advanced cyber threats, mobile fraud, IP rights infringement and data theft.  AppDome's core App Fusion technology offers the ability to fuse new features and new capabilities into existing consumer and enterprise apps on iOS and Android by uploading the final package to the AppDome Service.",
+
                 // "Apperian",
                 "Arxan",
                 "Avanade leads in providing innovative digital services, business solutions and design-led experiences for its clients, delivered through the power of people and the Microsoft ecosystem. Majority owned by Accenture, Avanade was founded in 2000 by Accenture LLP and Microsoft Corporation and has 27,000 professionals in 23 countries. Visit us at avanade.com.",
@@ -130,8 +87,7 @@
                 "XenMobile is the most comprehensive Enterprise Mobility Management solution delivering mobile device, mobile app and mobile content management along with business-class productivity apps (including secure email), that enhance the user experience without compromising security.  Users get email, calendar and contact apps with Outlook-like productivity.  XenMobile also provides document editing, note-taking, and remote desktop access. XenMobile’s unified app store allows users to run any app, even non-mobile apps. Plus, users can access, sync, and edit files from anywhere.  ",
                 "CloudMine's Connected Health SDK empowers organizations to deliver secure, HIPAA-compliant mobile apps using the Xamarin SDK. Our backend platform enables end-to-end C# development, data storage, embedded search, & much more - taking apps from test to deployment - instantly.",
                 "Xuni is a collection of native, cross-platform mobile UI controls. Save valuable development time with high-quality, feature-packed grids, charts, and gauges that add animated visualizations to your applications. Deliver the same experience across iOS, Android and the Xamarin platform using native programming techniques. Download trial goxuni.com.",
-                "Couchbase",
-                "Dropbox",
+                "Couchbase", "Dropbox",
                 "Esri helps organizations map and model our world. Esri’s GIS technology enables them to effectively analyze and manage their geographic information and make better decisions. ArcGIS is a powerful platform for developers to create geospatial applications for mobile, web and desktops. Developers can access Esri’s cloud services, mapping APIs and SDKs, ready-to-use content, and self-hosted solutions. Learn more at go.esri.com/Evolve.",
                 "Google Developers provides tools and programs that make it easier for individuals and organizations to develop great apps, grow and engage with users, and earn money.",
                 "Though best recognized as the world's leading supplier of semiconductors, Intel offers the software community a wide range of software tools, community resources and technical support for efficient development of innovative Android apps for mobile and wearable devices powered by Intel® Architecture. The Intel® Software Developer Zone allows developers to engage with Intel and other devs for all things software. Get development tools, technical articles, and support by visiting the Intel® Developer Zone for Android today.",
@@ -142,6 +98,7 @@
                 "Neudesic delivers technology-driven solutions for today’s business challenges. As a Xamarin Elite Consulting Partner, we blend our mobility expertise with their tools and technology to deliver the best mobile solutions for companies nationwide. From ideation to delivery to management, Neudesic is there every step of the way. Visit neudesic.com.",
                 "nventive originates from the mind and will of Agile development coaches dedicated to offering the best mobile application development experience. Our commitment to our clients and our agile mindset translate into flexibility, transparency and collaboration. Our goal is that our clients consider us as an extension of their team.  ",
                 "Pariveda",
+
                 // "PayPal",
                 "Philips Lighting, a Royal Philips (NYSE: PHG, AEX: PHIA) company, is the global leader in lighting products, systems and services. Our understanding of how lighting positively affects people coupled with our deep technological know-how enable us to deliver digital lighting innovations that unlock new business value, deliver rich user experiences and help to improve lives. We lead the industry in connected lighting systems and services, leveraging the Internet of Things to take light beyond illumination.",
                 "Scandit delivers high performance mobile barcode scanning solutions for smartphones, tablets and wearables. Scandit's lightning-fast and accurate Barcode Scanner is a valuable addition to any enterprise application. Our Xamarin component utilizes our unique blurry barcode scanning technology that works across platforms to scan any barcode type from any angle.",
@@ -152,77 +109,40 @@
                 "WillowTree, Inc. is a leading mobile strategy, design and app development company that bridges the highest level of consumer user experience with enterprise-grade deployments and security.  Learn how WillowTree can help your business by visiting willowtreeapps.com.",
                 "Zebra Technologies is a global leader in enterprise asset intelligence, designing and marketing specialty printers, mobile computing, data capture, radio frequency identification products and real-time locating systems. Incorporated in 1969, the company has over 7,000 employees worldwide and provides visibility into valued assets, transactions and people.",
                 "Zumero is a replicate-and-sync solution for mobile apps and SQL Server.  Zumero enables Xamarin developers to create data-driven business apps for mobile workers who need to collaborate and share data in both online and offline scenarios.  Zumero also offers complete mobile app development services for Xamarin."
-        };
+            };
 
-        readonly static string [] Handles = {
-                "AirWatch",
-                "App_Dome",
+        readonly static string[] Handles =
+            {
+                "AirWatch", "App_Dome",
+
                 // "Apperian",
-                "Arxan",
-                "AvanadeInc",
-                "Bitrise",
-                "bluetubei",
-                "XenMobile",
-                "Cloudmine",
-                "goxuni",
-                "Couchbase",
-                "Dropbox",
-                "Esri",
-                "googledevs",
-                "intelsoftware",
-                "judopayments",
-                "Kinvey",
-                "visualstudio",
-                "Mindtree_Ltd",
-                "Neudesic",
-                "nventive",
-                "Pariveda_Inc",
+                "Arxan", "AvanadeInc", "Bitrise", "bluetubei", "XenMobile", "Cloudmine",
+                "goxuni", "Couchbase", "Dropbox", "Esri", "googledevs", "intelsoftware",
+                "judopayments", "Kinvey", "visualstudio", "Mindtree_Ltd", "Neudesic",
+                "nventive", "Pariveda_Inc",
+
                 // "PayPal",
-                "tweethue",
-                "Scandit",
-                "Sogeti",
-                "Syncfusion",
-                "Twilio",
-                "urbanairship",
-                "willowtreeapps",
-                "ZebraTechnologies",
-                "zumero_uno"
-        };
+                "tweethue", "Scandit", "Sogeti", "Syncfusion", "Twilio", "urbanairship",
+                "willowtreeapps", "ZebraTechnologies", "zumero_uno"
+            };
 
-        readonly static string [] Websites = {
-                "air-watch.com",
-                "appdome.com",
+        readonly static string[] Websites =
+            {
+                "air-watch.com", "appdome.com",
+
                 // "Apperian",
-                "arxan.com",
-                "avanade.com",
-                "bitrise.io",
-                "bluetubeinc.com",
-                "citrix.com",
-                "cloudmine.me",
-                "componentone.com",
-                "couchbase.com",
-                "dropbox.com",
-                "esri.com",
-                "developers.google.com",
-                "software.intel.com/en-us/android",
-                "judopay.com",
-                "kinvey.com",
-                "visualstudio.com",
-                "mindtree.com",
-                "neudesic.com",
-                "nventive.com",
+                "arxan.com", "avanade.com", "bitrise.io", "bluetubeinc.com",
+                "citrix.com", "cloudmine.me", "componentone.com", "couchbase.com",
+                "dropbox.com", "esri.com", "developers.google.com",
+                "software.intel.com/en-us/android", "judopay.com", "kinvey.com",
+                "visualstudio.com", "mindtree.com", "neudesic.com", "nventive.com",
                 "parivedasolutions.com",
+
                 // "PayPal",
-                "meethue.com",
-                "scandit.com",
-                "sogeti.com",
-                "syncfusion.com",
-                "twilio.com",
-                "urbanairship.com",
-                "willowtreeapps.com",
-                "zebra.com",
+                "meethue.com", "scandit.com", "sogeti.com", "syncfusion.com",
+                "twilio.com", "urbanairship.com", "willowtreeapps.com", "zebra.com",
                 "zumero.com"
-        };
+            };
 
 
         public override async  Task<Sponsor> GetItemAsync(string id)
@@ -264,6 +184,7 @@
             return Task.FromResult(true);
 
         }
+
         List<SponsorLevel> _sponsorLevels;
         SponsorLevel GetLevel(int level)
         {

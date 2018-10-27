@@ -7,9 +7,9 @@
 
     public class FeedbackStore : BaseStore<Feedback>, IFeedbackStore
     {
-        public Task<bool> LeftFeedback(Session session)
+        public Task<bool> LeftFeedback(TalkModel talkModel)
         {
-            return Task.FromResult(Settings.LeftFeedback(session.Id));
+            return Task.FromResult(Settings.LeftFeedback(talkModel.Id));
         }
 
         public async Task DropFeedback()

@@ -6,7 +6,7 @@
 
     public interface IFeedbackStore : IBaseStore<Feedback>
     {
-        Task<bool> LeftFeedback(Session session);
+        Task<bool> LeftFeedback(TalkModel talkModel);
         Task DropFeedback();
     }
 }

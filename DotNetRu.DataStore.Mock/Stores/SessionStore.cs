@@ -12,10 +12,10 @@
     using XamarinEvolve.DataObjects;
     using XamarinEvolve.DataStore.Mock.Abstractions;
 
-    public class SessionStore : BaseStore<Session>, ISessionStore
+    public class SessionStore : BaseStore<TalkModel>, ISessionStore
     {
 
-        List<Session> _sessions;
+        List<TalkModel> _sessions;
         ISpeakerStore _speakerStore;
         ICategoryStore _categoryStore;
         IFeedbackStore _feedbackStore;
@@ -28,7 +28,7 @@
 
         #region ISessionStore implementation
 
-        public async override Task<Session> GetItemAsync(string id)
+        public async override Task<TalkModel> GetItemAsync(string id)
         {
             if (!this._initialized)
                 await this.InitializeStore();
@@ -36,15 +36,15 @@
             return this._sessions.FirstOrDefault(s => s.Id == id);
         }
 
-        public async override Task<IEnumerable<Session>> GetItemsAsync(bool forceRefresh = false)
+        public async override Task<IEnumerable<TalkModel>> GetItemsAsync(bool forceRefresh = false)
         {
             if (!this._initialized)
                 await this.InitializeStore();
             
-            return this._sessions as IEnumerable<Session>;
+            return this._sessions as IEnumerable<TalkModel>;
         }
 
-        public async Task<IEnumerable<Session>> GetSpeakerSessionsAsync(string speakerId)
+        public async Task<IEnumerable<TalkModel>> GetSpeakerSessionsAsync(string speakerId)
         {
             if (!this._initialized)
                 await this.InitializeStore();
@@ -59,7 +59,7 @@
             return results;
         }
 
-        public async Task<IEnumerable<Session>> GetNextSessions(int maxNumber)
+        public async Task<IEnumerable<TalkModel>> GetNextSessions(int maxNumber)
         {
             if (!this._initialized)
                 await this.InitializeStore();
@@ -67,12 +67,12 @@
             var date = DateTime.UtcNow.AddMinutes(-30);
 
             var results = (from session in this._sessions
-                where (session.StartTime.HasValue && session.StartTime.Value > date)
+                where session.StartTime.HasValue && session.StartTime.Value > date
                                     orderby session.StartTime.Value
                                     select session).Take(maxNumber);
 
 
-            var enumerable = results as Session[] ?? results.ToArray();
+            var enumerable = results as TalkModel[] ?? results.ToArray();
             return !enumerable.Any() ? null : enumerable;
         }
 
@@ -89,7 +89,7 @@
             var categories = (await this._categoryStore.GetItemsAsync()).ToArray();
             await this._speakerStore.InitializeStore();
             var speakers = (await this._speakerStore.GetItemsAsync().ConfigureAwait(false)).ToArray();
-            this._sessions = new List<Session>();
+            this._sessions = new List<TalkModel>();
             int speaker = 0;
             int speakerCount = 0;
             int room = 0;
@@ -132,7 +132,7 @@
                 if (room >= this._rooms.Length)
                     room = 0;
 
-                this._sessions.Add(new Session
+                this._sessions.Add(new TalkModel
                     {
                         Id = i.ToString(),
                         Abstract = "This is an abstract that is going to tell us all about how awsome this session is and that you should go over there right now and get ready for awesome!.",
@@ -168,33 +168,34 @@
             }
 
 
-            this._sessions.Add(new Session
-                {
-                    Id = this._sessions.Count.ToString(),
-                    Abstract = "Coming soon",
-                    Categories = categories.Take(1).ToList(),
-                    Room = this._rooms[0],
-                    //Speakers = new List<Speaker>{ speakers[0] },
-                    Title = "Something awesome!",
-                    ShortTitle = "Awesome",
-                });
+            this._sessions.Add(new TalkModel
+                                   {
+                                       Id = this._sessions.Count.ToString(),
+                                       Abstract = "Coming soon",
+                                       Categories = categories.Take(1).ToList(),
+                                       Room = this._rooms[0],
+
+                                       // Speakers = new List<Speaker>{ speakers[0] },
+                                       Title = "Something awesome!",
+                                       ShortTitle = "Awesome",
+                                   });
             this._sessions[this._sessions.Count - 1].FeedbackLeft = await this._feedbackStore.LeftFeedback(this._sessions[this._sessions.Count - 1]);
             this._sessions[this._sessions.Count - 1].StartTime = null;
             this._sessions[this._sessions.Count - 1].EndTime = null;
         }
 
-        void SetStartEnd(Session session, DateTime day)
+        void SetStartEnd(TalkModel talkModel, DateTime day)
         {
-            session.StartTime = day;
-            session.EndTime = session.StartTime.Value.AddHours(1);
+            talkModel.StartTime = day;
+            talkModel.EndTime = talkModel.StartTime.Value.AddHours(1);
         }
 
-        public Task<Session> GetAppIndexSession (string id)
+        public Task<TalkModel> GetAppIndexSession (string id)
         {
             return this.GetItemAsync (id);
         }
 
-        Room [] _rooms = new [] 
+        Room[] _rooms = new [] 
         {
                 new Room {Name = "Fossy Salon"},
                 new Room {Name = "Crick Salon"},

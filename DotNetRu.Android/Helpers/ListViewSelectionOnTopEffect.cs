@@ -1,7 +1,10 @@
 ﻿using System;
+
+using Android.Widget;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
-using Android.Widget;
+
 using XamarinEvolve.Droid;
 
 [assembly: ResolutionGroupName ("Xpirit")]
@@ -14,7 +17,7 @@ namespace XamarinEvolve.Droid
         {
             try 
             {
-                var listView = Control as AbsListView;
+                var listView = this.Control as AbsListView;
 
                 if (listView == null)
                     return;

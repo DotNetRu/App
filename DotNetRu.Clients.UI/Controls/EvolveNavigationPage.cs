@@ -7,26 +7,26 @@ namespace XamarinEvolve.Clients.UI
     {
         public EvolveNavigationPage(Page root) : base(root)
         {
-            Init();
-            Title = root.Title;
-            Icon = root.Icon;
+            this.Init();
+            this.Title = root.Title;
+            this.Icon = root.Icon;
         }
 
         public EvolveNavigationPage()
         {
-            Init();
+            this.Init();
         }
 
         void Init()
         {
-            if (Device.OS == TargetPlatform.iOS)
+            if (Device.RuntimePlatform == Device.iOS)
             {
-                BarBackgroundColor = Color.FromHex("FAFAFA");
+                this.BarBackgroundColor = Color.FromHex("FAFAFA");
             }
             else
-            {   
-                BarBackgroundColor = (Color)Application.Current.Resources["Primary"];
-                BarTextColor = (Color)Application.Current.Resources["NavigationText"];
+            {
+                this.BarBackgroundColor = (Color)Application.Current.Resources["Primary"];
+                this.BarTextColor = (Color)Application.Current.Resources["NavigationText"];
             }
         }
     }

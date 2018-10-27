@@ -10,6 +10,7 @@
         /// </summary>
         /// <value>The name.</value>
         public string Name { get; set; }
+
         /// <summary>
         /// Gets or sets the rank.
         /// 0 means show this sponsor level at top

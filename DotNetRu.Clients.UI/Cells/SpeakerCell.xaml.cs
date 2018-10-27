@@ -1,48 +1,48 @@
-﻿using System;
-using System.Collections.Generic;
-using Xamarin.Forms;
-using XamarinEvolve.DataObjects;
-using XamarinEvolve.Clients.Portable;
-
-namespace XamarinEvolve.Clients.UI
+﻿namespace XamarinEvolve.Clients.UI
 {
     using DotNetRu.DataStore.Audit.DataObjects;
+
+    using Xamarin.Forms;
+
+    using XamarinEvolve.Clients.Portable;
 
     public class SpeakerCell: ViewCell
     {
         readonly INavigation navigation;
-        string sessionId;
+
+        readonly string sessionId;
         public SpeakerCell (string sessionId, INavigation navigation = null)
         {
             this.sessionId = sessionId;
-            Height = 60;
-            View = new SpeakerCellView ();
-            StyleId = "disclosure";
+            this.Height = 60;
+            this.View = new SpeakerCellView ();
+            this.StyleId = "disclosure";
             this.navigation = navigation;
         }
 
         protected override async void OnTapped()
         {
             base.OnTapped();
-            if (navigation == null)
+            if (this.navigation == null)
                 return;
 
-            var speaker = BindingContext as Speaker;
-            if (speaker == null)
+            if (!(this.BindingContext is Speaker speaker))
+            {
                 return;
+            }
 
             App.Logger.TrackPage(AppPage.Speaker.ToString(), speaker.FullName);
 
-            if (Device.OS == TargetPlatform.Windows || Device.OS == TargetPlatform.WinPhone)
+            if (Device.RuntimePlatform == Device.UWP)
             {
-                await navigation.PushAsync(new SpeakerDetailsPageUWP(sessionId)
+                await this.navigation.PushAsync(new SpeakerDetailsPageUWP(this.sessionId)
                 {
                     Speaker = speaker
                 });
             }
             else
             {
-                await navigation.PushAsync(new SpeakerDetailsPage(sessionId)
+                await this.navigation.PushAsync(new SpeakerDetailsPage(this.sessionId)
                 {
                     Speaker = speaker
                 });
@@ -53,7 +53,7 @@ namespace XamarinEvolve.Clients.UI
     {
         public SpeakerCellView()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

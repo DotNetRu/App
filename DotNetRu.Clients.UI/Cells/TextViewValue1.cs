@@ -1,5 +1,4 @@
-﻿using System;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace XamarinEvolve.Clients.UI
 {
@@ -7,7 +6,7 @@ namespace XamarinEvolve.Clients.UI
     {
         public TextViewValue1()
         {
-			DetailColor = (Color) Application.Current.Resources["DetailTextColor"];
+            this.DetailColor = (Color) Application.Current.Resources["DetailTextColor"];
         }
     }
 }

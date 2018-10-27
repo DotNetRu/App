@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using XamarinEvolve.Clients.Portable;
 
 namespace XamarinEvolve.Clients.UI
@@ -16,19 +10,18 @@ namespace XamarinEvolve.Clients.UI
 
         public ConferenceFeedbackPage()
         {
-            InitializeComponent();
+            this.InitializeComponent();
 
-			BindingContext = vm = new ConferenceFeedbackViewModel(Navigation);
+            this.BindingContext = this.vm = new ConferenceFeedbackViewModel(this.Navigation);
 
-			if (Device.OS != TargetPlatform.iOS)
-				ToolbarDone.Icon = "toolbar_close.png";
+			if (Device.RuntimePlatform != Device.iOS) this.ToolbarDone.Icon = "toolbar_close.png";
 
-			ToolbarDone.Command = new Command(async () =>
+            this.ToolbarDone.Command = new Command(async () =>
 				{
-					if (vm.IsBusy)
+					if (this.vm.IsBusy)
 						return;
 
-					await Navigation.PopModalAsync();
+					await this.Navigation.PopModalAsync();
 				});
         }
     }

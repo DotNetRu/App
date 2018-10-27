@@ -1,92 +1,95 @@
-﻿using System.Diagnostics;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using XamarinEvolve.Clients.Portable;
 using XamarinEvolve.DataObjects;
 
 namespace XamarinEvolve.Clients.UI
 {
+    using System;
+
     using DotNetRu.DataStore.Audit.DataObjects;
+
+    using FFImageLoading.Forms;
 
     public partial class SpeakerDetailsPageUWP : BasePage
 	{
 		public override AppPage PageType => AppPage.Speaker;
 
-        SpeakerDetailsViewModel ViewModel => vm ?? (vm = BindingContext as SpeakerDetailsViewModel);
+        SpeakerDetailsViewModel ViewModel => this.vm ?? (this.vm = this.BindingContext as SpeakerDetailsViewModel);
         SpeakerDetailsViewModel vm;
         string sessionId;
 
 		public SpeakerDetailsPageUWP(Speaker speaker) : this((string)null)
 		{
-			Speaker = speaker;
+		    this.Speaker = speaker;
 		}
 
         public SpeakerDetailsPageUWP(string sessionId)
         {
             this.sessionId = sessionId;
-            InitializeComponent();
+            this.InitializeComponent();
 
-            ListViewSessions.ItemSelected += async (sender, e) =>
+            this.ListViewSessions.ItemSelected += async (sender, e) =>
             {
-                var session = ListViewSessions.SelectedItem as Session;
+                var session = this.ListViewSessions.SelectedItem as TalkModel;
                 if (session == null)
                     return;
 
-                var sessionDetails = new SessionDetailsPage(session);
+                var sessionDetails = new TalkPage(session);
 
-                await NavigationService.PushAsync(Navigation, sessionDetails);
+                await NavigationService.PushAsync(this.Navigation, sessionDetails);
 
-                ListViewSessions.SelectedItem = null;
+                this.ListViewSessions.SelectedItem = null;
             };
 
-            //HeroImage.Error += HeroImage_Error;
-            //HeroImage.Success += HeroImage_Success;
+            // HeroImage.Error += HeroImage_Error;
+            // HeroImage.Success += HeroImage_Success;
         }
 
-        private void HeroImage_Success(object sender, FFImageLoading.Forms.CachedImageEvents.SuccessEventArgs e)
+        private void HeroImage_Success(object sender, CachedImageEvents.SuccessEventArgs e)
         {
-            //App.Logger.Track($"SpeakerImageLoaded:{e.ImageInformation.FilePath}:{e.LoadingResult}");
+            // App.Logger.Track($"SpeakerImageLoaded:{e.ImageInformation.FilePath}:{e.LoadingResult}");
         }
 
-        private void HeroImage_Error(object sender, FFImageLoading.Forms.CachedImageEvents.ErrorEventArgs e)
+        private void HeroImage_Error(object sender, CachedImageEvents.ErrorEventArgs e)
         {
-            //App.Logger.Track($"SpeakerImageLoadFailed:{e.Exception}", "Source", HeroImage.Source.ToString());
+            // App.Logger.Track($"SpeakerImageLoadFailed:{e.Exception}", "Source", HeroImage.Source.ToString());
         }
 
-        private void SpeakerPhoto_SizeChanged(object sender, System.EventArgs e)
+        private void SpeakerPhoto_SizeChanged(object sender, EventArgs e)
         {
         }
 
         public Speaker Speaker
         {
-            get { return ViewModel.Speaker; }
+            get => this.ViewModel.Speaker;
             set 
 			{
-				BindingContext = new SpeakerDetailsViewModel(value, sessionId);
-				ItemId = value?.FullName;
+			    this.BindingContext = new SpeakerDetailsViewModel(value, this.sessionId);
+			    this.ItemId = value?.FullName;
 			}
         }
 
         protected override void OnBindingContextChanged()
         {
             base.OnBindingContextChanged();
-            vm = null;
+            this.vm = null;
 
-            ListViewFollow.HeightRequest = (ViewModel.FollowItems.Count * ListViewFollow.RowHeight) - 1;
-            ListViewSessions.HeightRequest = 0;
+            this.ListViewFollow.HeightRequest = (this.ViewModel.FollowItems.Count * this.ListViewFollow.RowHeight) - 1;
+            this.ListViewSessions.HeightRequest = 0;
         }
 
         protected override async void OnAppearing()
         {
             base.OnAppearing();
 
-            ListViewFollow.ItemTapped += ListViewTapped;
-            ListViewSessions.ItemTapped += ListViewTapped;
+            this.ListViewFollow.ItemTapped += this.ListViewTapped;
+            this.ListViewSessions.ItemTapped += this.ListViewTapped;
 
-            if (ViewModel.Sessions.Count > 0)
+            if (this.ViewModel.Sessions.Count > 0)
                 return;
 
-            await ViewModel.ExecuteLoadSessionsCommandAsync();
-            ListViewSessions.HeightRequest = (ViewModel.Sessions.Count * ListViewSessions.RowHeight) - 1;
+            await this.ViewModel.ExecuteLoadSessionsCommandAsync();
+            this.ListViewSessions.HeightRequest = (this.ViewModel.Sessions.Count * this.ListViewSessions.RowHeight) - 1;
         }
 
         void ListViewTapped(object sender, ItemTappedEventArgs e)
@@ -100,8 +103,8 @@ namespace XamarinEvolve.Clients.UI
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
-            ListViewFollow.ItemTapped -= ListViewTapped;
-            ListViewSessions.ItemTapped -= ListViewTapped;
+            this.ListViewFollow.ItemTapped -= this.ListViewTapped;
+            this.ListViewSessions.ItemTapped -= this.ListViewTapped;
         }
     }
 }

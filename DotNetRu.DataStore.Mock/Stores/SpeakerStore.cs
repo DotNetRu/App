@@ -92,6 +92,7 @@
                 if (Obtains(0.1))
                     return title;
             }
+
             return titles.Random();
         }
 
@@ -103,6 +104,7 @@
                 yield return $"Senior {title}";
                 yield return $"Lead {title}";
             }
+
             if (department != null) {
                 yield return $"{department} Coordinator";
                 yield return $"{department} Manager";
@@ -120,7 +122,10 @@
         static bool FlipCoin () => _random.Next(2) == 0;
         static T FlipCoin<T> (T heads, T tails) => FlipCoin() ? heads : tails;
 
-        struct PhotoUrls { public string SmallPhotoUrl, PhotoUrl; }
+        struct PhotoUrls { public string SmallPhotoUrl;
+
+            public string PhotoUrl;
+        }
 
         static PhotoUrls GetRandomUserPhotoUrls(Gender gender)
         {
@@ -148,7 +153,7 @@
                 var title = ChooseWithDecreasingLikelyhood(_titlesByTeam[team]);
 
                 string firstName = (gender == Gender.Man ? _mensNames : _womensNames).Random();
-                string lastName = Names[i].Substring(0,1).ToUpper() + Names[i].Substring(1).ToLower();
+                string lastName = Names[i].Substring(0, 1).ToUpper() + Names[i].Substring(1).ToLower();
 
                 var photos = GetRandomUserPhotoUrls(gender);
 
@@ -190,7 +195,7 @@
 
         static string RandomPhoneNumber()
         {
-            Func<int,string> digits = n => String.Join("", from _ in Enumerable.Range(0, n) select _random.Next(10));
+            Func<int, string> digits = n => string.Join(string.Empty, from _ in Enumerable.Range(0, n) select _random.Next(10));
             return $"({digits(3)}) 555-{digits(4)}";
         }
 

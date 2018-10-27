@@ -1,52 +1,49 @@
-﻿using System;
-using Xamarin.Forms;
-using XamarinEvolve.DataObjects;
-using FormsToolkit;
-using XamarinEvolve.Clients.Portable;
-
-namespace XamarinEvolve.Clients.UI
+﻿namespace XamarinEvolve.Clients.UI
 {
-	public partial class SponsorsPage : BasePage
-	{
+    using Xamarin.Forms;
+
+    using XamarinEvolve.Clients.Portable;
+    using XamarinEvolve.DataObjects;
+
+    public partial class SponsorsPage
+    {
 		public override AppPage PageType => AppPage.Sponsors;
 
         SponsorsViewModel vm;
-        SponsorsViewModel ViewModel => vm ?? (vm = BindingContext as SponsorsViewModel); 
+        SponsorsViewModel ViewModel => this.vm ?? (this.vm = this.BindingContext as SponsorsViewModel); 
 
         public SponsorsPage()
         {
-            InitializeComponent();
-            BindingContext = new SponsorsViewModel(Navigation);
+            this.InitializeComponent();
+            this.BindingContext = new SponsorsViewModel(this.Navigation);
 
-            if (Device.OS == TargetPlatform.Android)
-                ListViewSponsors.Effects.Add (Effect.Resolve ("Xpirit.ListViewSelectionOnTopEffect"));
+            if (Device.RuntimePlatform == Device.Android) this.ListViewSponsors.Effects.Add (Effect.Resolve ("Xpirit.ListViewSelectionOnTopEffect"));
 
-            if (Device.OS == TargetPlatform.Windows || Device.OS == TargetPlatform.WinPhone)
+            if (Device.RuntimePlatform == Device.UWP)
             {
-                ToolbarItems.Add(new ToolbarItem
+                this.ToolbarItems.Add(new ToolbarItem
                 {
                     Text = "Refresh",
                     Icon = "toolbar_refresh.png",
-                    Command = ViewModel.ForceRefreshCommand
+                    Command = this.ViewModel.ForceRefreshCommand
                 });
             }
-            ListViewSponsors.ItemSelected += async (sender, e) => 
+
+            this.ListViewSponsors.ItemSelected += async (sender, e) => 
             {
-                    var sponsor = ListViewSponsors.SelectedItem as Sponsor;
-                    if(sponsor == null)
+                if(!(this.ListViewSponsors.SelectedItem is Sponsor sponsor))
                         return;
                     var sponsorDetails = new SponsorDetailsPage();
 
                     sponsorDetails.Sponsor = sponsor;
-                    await NavigationService.PushAsync(Navigation, sponsorDetails);
-                    ListViewSponsors.SelectedItem = null;
+                    await NavigationService.PushAsync(this.Navigation, sponsorDetails);
+                this.ListViewSponsors.SelectedItem = null;
             };
         }
 
         void ListViewTapped (object sender, ItemTappedEventArgs e)
         {
-            var list = sender as ListView;
-            if (list == null)
+            if (!(sender is ListView list))
                 return;
             list.SelectedItem = null;
         }
@@ -55,16 +52,17 @@ namespace XamarinEvolve.Clients.UI
         {
             base.OnAppearing();
 
-            ListViewSponsors.ItemTapped += ListViewTapped;
-            if (ViewModel.SponsorsGrouped.Count == 0)
-                ViewModel.LoadSponsorsCommand.Execute(false);
-
+            this.ListViewSponsors.ItemTapped += this.ListViewTapped;
+            if (this.ViewModel.SponsorsGrouped.Count == 0)
+            {
+                this.ViewModel.LoadSponsorsCommand.Execute(false);
+            }
         }
 
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
-            ListViewSponsors.ItemTapped -= ListViewTapped;
+            this.ListViewSponsors.ItemTapped -= this.ListViewTapped;
         }
     }
 }

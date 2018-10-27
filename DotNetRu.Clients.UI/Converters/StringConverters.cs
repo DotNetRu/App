@@ -1,6 +1,7 @@
 ﻿using System;
-using Xamarin.Forms;
 using System.Globalization;
+
+using Xamarin.Forms;
 
 namespace XamarinEvolve.Clients.UI
 {

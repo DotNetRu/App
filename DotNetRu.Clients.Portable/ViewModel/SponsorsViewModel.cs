@@ -1,17 +1,21 @@
 ﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using FormsToolkit;
-using MvvmHelpers;
-using Xamarin.Forms;
-using XamarinEvolve.DataObjects;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
+using System.Windows.Input;
 using System.Xml.Serialization;
+
 using DotNetRu.DataStore.Audit.Models;
-using XamarinEvolve.Utils;
+
+using FormsToolkit;
+
+using MvvmHelpers;
+
+using Xamarin.Forms;
+
+using XamarinEvolve.DataObjects;
 
 namespace XamarinEvolve.Clients.Portable
 {
@@ -30,17 +34,17 @@ namespace XamarinEvolve.Clients.Portable
         Sponsor selectedSponsor;
         public Sponsor SelectedSponsor
         {
-            get { return selectedSponsor; }
+            get => this.selectedSponsor;
             set
             {
-                selectedSponsor = value;
-                OnPropertyChanged();
-                if (selectedSponsor == null)
+                this.selectedSponsor = value;
+                this.OnPropertyChanged();
+                if (this.selectedSponsor == null)
                     return;
                  
-                MessagingService.Current.SendMessage(MessageKeys.NavigateToSponsor, selectedSponsor);
+                MessagingService.Current.SendMessage(MessageKeys.NavigateToSponsor, this.selectedSponsor);
 
-                SelectedSponsor = null;
+                this.SelectedSponsor = null;
             }
         }
 		     
@@ -55,9 +59,9 @@ namespace XamarinEvolve.Clients.Portable
 				orderby sponsor.SponsorLevel?.Rank ?? 9999
 				group sponsor by sponsor.SponsorLevel?.Name ?? "Sponsor"
                 into sponsorGroup
-                select new Grouping<string, Sponsor>(sponsorGroup.Key, sponsorGroup.OrderBy(s => s.Rank)); 
-            
-            SponsorsGrouped.ReplaceRange(groups);
+                select new Grouping<string, Sponsor>(sponsorGroup.Key, sponsorGroup.OrderBy(s => s.Rank));
+
+            this.SponsorsGrouped.ReplaceRange(groups);
         }
 
         #endregion
@@ -66,17 +70,15 @@ namespace XamarinEvolve.Clients.Portable
         #region Commands
 
         ICommand  forceRefreshCommand;
-        public ICommand ForceRefreshCommand =>
-        forceRefreshCommand ?? (forceRefreshCommand = new Command(async () => await ExecuteForceRefreshCommandAsync())); 
+        public ICommand ForceRefreshCommand => this.forceRefreshCommand ?? (this.forceRefreshCommand = new Command(async () => await this.ExecuteForceRefreshCommandAsync())); 
 
         async Task ExecuteForceRefreshCommandAsync()
         {
-            await ExecuteLoadSponsorsAsync(true);
+            await this.ExecuteLoadSponsorsAsync(true);
         }
 
         ICommand loadSponsorsCommand;
-        public ICommand LoadSponsorsCommand =>
-            loadSponsorsCommand ?? (loadSponsorsCommand = new Command(async (f) => await ExecuteLoadSponsorsAsync()));
+        public ICommand LoadSponsorsCommand => this.loadSponsorsCommand ?? (this.loadSponsorsCommand = new Command(async (f) => await this.ExecuteLoadSponsorsAsync()));
 
         List<Sponsor> FriendToSponsorConverter(IEnumerable<Friend> friends)
         {
@@ -104,36 +106,37 @@ namespace XamarinEvolve.Clients.Portable
                     IsNullable = false
                 };
                 var serializer = new XmlSerializer(typeof(List<Friend>), xRoot);
-                friends = (List<Friend>)serializer.Deserialize(reader); ;
+                friends = (List<Friend>)serializer.Deserialize(reader); 
             }
-            return FriendToSponsorConverter(friends);
+
+            return this.FriendToSponsorConverter(friends);
         }
 
         async Task<bool> ExecuteLoadSponsorsAsync(bool force = false)
         {
-            if(IsBusy)
+            if(this.IsBusy)
                 return false;
 
             try 
             {
-                IsBusy = true;
+                this.IsBusy = true;
 
                 #if DEBUG
                 await Task.Delay(1000);
                 #endif
-                var sponsors = GetSponsors();//await StoreManager.SponsorStore.GetItemsAsync(force);
-               
-                SortSponsors(sponsors);
+                var sponsors = this.GetSponsors();// await StoreManager.SponsorStore.GetItemsAsync(force);
+
+                this.SortSponsors(sponsors);
 
             } 
             catch (Exception ex) 
             {
-                Logger.Report(ex, "Method", "ExecuteLoadSponsorsAsync");
+                this.Logger.Report(ex, "Method", "ExecuteLoadSponsorsAsync");
                 MessagingService.Current.SendMessage(MessageKeys.Error, ex);
             }
             finally
             {
-                IsBusy = false;
+                this.IsBusy = false;
             }
 
             return true;

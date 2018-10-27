@@ -4,19 +4,23 @@
 // actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using Foundation;
+
 using System.CodeDom.Compiler;
+
+using Foundation;
 
 namespace UpNext
 {
-	[Register ("TodayViewController")]
+    using UIKit;
+
+    [Register ("TodayViewController")]
 	partial class TodayViewController
 	{
 		[Outlet]
-		UIKit.UILabel MainTitleLabel { get; set; }
+		UILabel MainTitleLabel { get; set; }
 
 		[Outlet]
-		UIKit.UITableView SessionsTable { get; set; }
+		UITableView SessionsTable { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{

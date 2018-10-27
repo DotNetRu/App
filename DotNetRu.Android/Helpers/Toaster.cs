@@ -1,10 +1,11 @@
-﻿using System;
-using XamarinEvolve.Clients.Portable;
-using Xamarin.Forms;
-using XamarinEvolve.Droid;
-using Android.App;
+﻿using Android.Widget;
+
 using Plugin.CurrentActivity;
-using Android.Widget;
+
+using Xamarin.Forms;
+
+using XamarinEvolve.Clients.Portable;
+using XamarinEvolve.Droid;
 
 [assembly:Dependency(typeof(Toaster))]
 namespace XamarinEvolve.Droid

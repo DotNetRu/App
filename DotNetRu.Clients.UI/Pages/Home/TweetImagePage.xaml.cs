@@ -1,6 +1,8 @@
 ﻿using System;
-using Xamarin.Forms;
 using System.Diagnostics;
+
+using Xamarin.Forms;
+
 using XamarinEvolve.Clients.Portable;
 
 namespace XamarinEvolve.Clients.UI
@@ -11,19 +13,19 @@ namespace XamarinEvolve.Clients.UI
 
         public TweetImagePage(string image)
         {
-            InitializeComponent();
+            this.InitializeComponent();
             var item = new ToolbarItem
             {
                 Text = "Done",
-                Command = new Command(async () => await Navigation.PopModalAsync())
+                Command = new Command(async () => await this.Navigation.PopModalAsync())
             };
-            if (Device.OS == TargetPlatform.Android)
+            if (Device.RuntimePlatform == Device.Android)
                 item.Icon = "toolbar_close.png";
-            ToolbarItems.Add(item);
+            this.ToolbarItems.Add(item);
 
             try
             {
-                MainImage.Source = new UriImageSource
+                this.MainImage.Source = new UriImageSource
                 {
                     Uri = new Uri(image),
                     CachingEnabled = true,
@@ -36,14 +38,12 @@ namespace XamarinEvolve.Clients.UI
                 DependencyService.Get<IToast>().SendToast("Unable to load image.");
             }
 
-
-
-            MainImage.PropertyChanged += (sender, e) => 
+            this.MainImage.PropertyChanged += (sender, e) => 
                 {
-                    if(e.PropertyName != nameof(MainImage.IsLoading))
+                    if(e.PropertyName != nameof(this.MainImage.IsLoading))
                         return;
-                    ProgressBar.IsRunning = MainImage.IsLoading;
-                    ProgressBar.IsVisible = MainImage.IsLoading;
+                    this.ProgressBar.IsRunning = this.MainImage.IsLoading;
+                    this.ProgressBar.IsVisible = this.MainImage.IsLoading;
                 };
         }
 	}

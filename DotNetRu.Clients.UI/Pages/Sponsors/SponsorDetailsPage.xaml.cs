@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using XamarinEvolve.Clients.Portable;
 using XamarinEvolve.DataObjects;
 
@@ -12,31 +8,31 @@ namespace XamarinEvolve.Clients.UI
 	{
 		public override AppPage PageType => AppPage.Sponsor;
 
-        SponsorDetailsViewModel ViewModel => vm ?? (vm = BindingContext as SponsorDetailsViewModel);
+        SponsorDetailsViewModel ViewModel => this.vm ?? (this.vm = this.BindingContext as SponsorDetailsViewModel);
         SponsorDetailsViewModel vm;
 
         public SponsorDetailsPage()
         {
-            InitializeComponent();           
+            this.InitializeComponent();           
         }
 
 
         public Sponsor Sponsor
         {
-            get { return ViewModel.Sponsor; }
+            get => this.ViewModel.Sponsor;
             set 
-			{ 
-				BindingContext = new SponsorDetailsViewModel(Navigation, value);
-				ItemId = value?.Name;
+			{
+			    this.BindingContext = new SponsorDetailsViewModel(this.Navigation, value);
+			    this.ItemId = value?.Name;
 			}
         }
 
         protected override void OnBindingContextChanged()
         {
             base.OnBindingContextChanged();
-            vm = null;
-            var adjust = Device.OS != TargetPlatform.Android ? 1 : -ViewModel.FollowItems.Count + 1;
-            ListViewFollow.HeightRequest = (ViewModel.FollowItems.Count * ListViewFollow.RowHeight) - adjust;
+            this.vm = null;
+            var adjust = Device.RuntimePlatform != Device.Android ? 1 : -this.ViewModel.FollowItems.Count + 1;
+            this.ListViewFollow.HeightRequest = (this.ViewModel.FollowItems.Count * this.ListViewFollow.RowHeight) - adjust;
         }
     }
 }

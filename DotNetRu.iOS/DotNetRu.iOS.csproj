@@ -495,7 +495,6 @@
     </Compile>
     <Compile Include="PlatformFeatures\ProActiveSuggestions\SessionUserActivity.cs" />
     <Compile Include="PlatformFeatures\ProActiveSuggestions\SpeakerUserActivity.cs" />
-    <Compile Include="PlatformFeatures\Social\TweetService.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>

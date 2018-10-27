@@ -10,63 +10,49 @@
     using XamarinEvolve.Clients.Portable.ViewModel;
     using XamarinEvolve.Utils.Helpers;
 
-    public partial class FeedPage : BasePage
+    public partial class FeedPage
     {
         public override AppPage PageType => AppPage.Feed;
 
-        FeedViewModel ViewModel => vm ?? (vm = BindingContext as FeedViewModel);
+        FeedViewModel ViewModel => this.feedViewModel ?? (this.feedViewModel = this.BindingContext as FeedViewModel);
 
-        FeedViewModel vm;
-
-        string loggedIn;
+        FeedViewModel feedViewModel;
 
         public FeedPage()
         {
-            InitializeComponent();
-            BindingContext = new FeedViewModel();
+            this.InitializeComponent();
+            this.BindingContext = new FeedViewModel();
 
-            if (Device.OS == TargetPlatform.Windows || Device.OS == TargetPlatform.WinPhone)
+            if (Device.RuntimePlatform == Device.UWP)
             {
-                ToolbarItems.Add(
+                this.ToolbarItems.Add(
                     new ToolbarItem
                         {
                             Text = "Refresh",
                             Icon = "toolbar_refresh.png",
-                            Command = ViewModel.RefreshCommand
+                            Command = this.ViewModel.RefreshCommand
                         });
             }
 
-            ViewModel.Tweets.CollectionChanged += (sender, e) =>
+            this.ViewModel.Tweets.CollectionChanged += (sender, e) =>
                 {
-                    var adjust = Device.OS != TargetPlatform.Android ? 1 : -ViewModel.Tweets.Count + 2;
-                    ListViewSocial.HeightRequest = (ViewModel.Tweets.Count * ListViewSocial.RowHeight) - adjust;
+                    var adjust = Device.RuntimePlatform != Device.Android ? 1 : -this.ViewModel.Tweets.Count + 2;
+                    this.ListViewSocial.HeightRequest = (this.ViewModel.Tweets.Count * this.ListViewSocial.RowHeight) - adjust;
                 };
-
-            NotificationStack.GestureRecognizers.Add(
-                new TapGestureRecognizer
-                    {
-                        Command = new Command(
-                            async () =>
-                                {
-                                    await NavigationService.PushAsync(
-                                        Navigation,
-                                        new NotificationsPage());
-                                })
-                    });
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
 
-            UpdatePage();
+            this.UpdatePage();
 
             MessagingService.Current.Subscribe<string>(
                 MessageKeys.NavigateToImage,
                 async (m, image) =>
                     {
                         await NavigationService.PushModalAsync(
-                            Navigation,
+                            this.Navigation,
                             new EvolveNavigationPage(new TweetImagePage(image)));
                     });
 
@@ -75,7 +61,7 @@
                 async (m) =>
                     {
                         await NavigationService.PushModalAsync(
-                            Navigation,
+                            this.Navigation,
                             new EvolveNavigationPage(new ConferenceFeedbackPage()));
                     });
         }
@@ -90,31 +76,29 @@
 
         private void UpdatePage()
         {
-            bool forceRefresh = (DateTime.UtcNow > (ViewModel?.NextForceRefresh ?? DateTime.UtcNow));                                
+            bool forceRefresh = DateTime.UtcNow > (this.ViewModel?.NextForceRefresh ?? DateTime.UtcNow);
 
-            vm.EvaluateVisualState();
+            this.feedViewModel.EvaluateVisualState();
 
             if (forceRefresh)
             {
-                ViewModel.RefreshCommand.Execute(null);
+                this.ViewModel.RefreshCommand.Execute(null);
             }
             else
             {
 
-                if (ViewModel.Tweets.Count == 0)
+                if (this.ViewModel.Tweets.Count == 0)
                 {
-
-                    ViewModel.LoadSocialCommand.Execute(null);
+                    this.ViewModel.LoadSocialCommand.Execute(null);
                 }
 
-                if ((firstLoad && ViewModel.Sessions.Count == 0))
+                if (this.firstLoad && this.ViewModel.Sessions.Count == 0)
                 {
-
-                    firstLoad = false;
-                    ViewModel.LoadSessionsCommand.Execute(null);
+                    this.firstLoad = false;
+                    this.ViewModel.LoadSessionsCommand.Execute(null);
                 }
 
-                if (ViewModel.Notification == null) ViewModel.LoadNotificationsCommand.Execute(null);
+                if (this.ViewModel.Notification == null) this.ViewModel.LoadNotificationsCommand.Execute(null);
             }
 
         }
@@ -122,7 +106,7 @@
 
         public void OnResume()
         {
-            UpdatePage();
+            this.UpdatePage();
         }
 
     }
