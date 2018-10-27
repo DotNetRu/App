@@ -8,8 +8,8 @@ namespace XamarinEvolve.Clients.UI
     public class StarBehavior : Behavior<View>
     {
         TapGestureRecognizer tapRecognizer;
-        static List<StarBehavior> defaultBehaviors = new List<StarBehavior>();
-        static Dictionary<string, List<StarBehavior>> starGroups = new Dictionary<string, List<StarBehavior>>();
+        static readonly List<StarBehavior> defaultBehaviors = new List<StarBehavior>();
+        static readonly Dictionary<string, List<StarBehavior>> starGroups = new Dictionary<string, List<StarBehavior>>();
 
 		public event EventHandler RatingChanged;
 

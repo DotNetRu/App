@@ -12,7 +12,7 @@ namespace XamarinEvolve.Clients.UI
   {
     public override AppPage PageType => AppPage.Information;
 
-    SettingsViewModel vm;
+      readonly SettingsViewModel vm;
 
     public SettingsPage()
     {

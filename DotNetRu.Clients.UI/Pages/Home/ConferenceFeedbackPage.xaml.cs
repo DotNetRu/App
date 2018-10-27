@@ -6,7 +6,8 @@ namespace XamarinEvolve.Clients.UI
 	public partial class ConferenceFeedbackPage : BasePage
     {
 		public override AppPage PageType => AppPage.ConferenceFeedback;
-		ConferenceFeedbackViewModel vm;
+
+        readonly ConferenceFeedbackViewModel vm;
 
         public ConferenceFeedbackPage()
         {

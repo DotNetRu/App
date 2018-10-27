@@ -6,7 +6,7 @@
     using System.Threading.Tasks;
     using System.Windows.Input;
 
-    using DotNetRu.DataStore.Audit.DataObjects;
+    using DotNetRu.DataStore.Audit.Models;
 
     using FormsToolkit;
 
@@ -18,17 +18,15 @@
 
     public class SpeakersViewModel : ViewModelBase
     {
-
         public SpeakersViewModel(INavigation navigation) : base(navigation)
         {
         }
 
-        public ObservableRangeCollection<Speaker> Speakers { get; } = new ObservableRangeCollection<Speaker>();
+        public ObservableRangeCollection<SpeakerModel> Speakers { get; } = new ObservableRangeCollection<SpeakerModel>();
        
-
         #region Sorting
 
-        private void SortSpeakers(IEnumerable<Speaker> speakers)
+        private void SortSpeakers(IEnumerable<SpeakerModel> speakers)
         {
             var speakersSorted = from speaker in speakers
                                  orderby speaker.FullName
@@ -38,41 +36,37 @@
         }
 
         #endregion
+        
+        private SpeakerModel selectedSpeakerModel;
 
-        #region Properties
-
-        private Speaker _selectedSpeaker;
-
-        public Speaker SelectedSpeaker
+        public SpeakerModel SelectedSpeakerModel
         {
-            get => this._selectedSpeaker;
+            get => this.selectedSpeakerModel;
             set
             {
-                this._selectedSpeaker = value;
+                this.selectedSpeakerModel = value;
                 this.OnPropertyChanged();
-                if (this._selectedSpeaker == null)
+                if (this.selectedSpeakerModel == null)
+                {
                     return;
+                }
 
-                MessagingService.Current.SendMessage(MessageKeys.NavigateToSpeaker, this._selectedSpeaker);
+                MessagingService.Current.SendMessage(MessageKeys.NavigateToSpeaker, this.selectedSpeakerModel);
 
-                this.SelectedSpeaker = null;
+                this.SelectedSpeakerModel = null;
             }
         }
-
-        #endregion
-
-        #region Commands
 
         private ICommand loadSpeakersCommand;
 
         public ICommand LoadSpeakersCommand => this.loadSpeakersCommand ?? (this.loadSpeakersCommand =
-                new Command(async f => await this.ExecuteLoadSpeakersAsync((bool)f)));
+                new Command((f) => this.ExecuteLoadSpeakers((bool)f)));
 
-        private async Task<bool> ExecuteLoadSpeakersAsync(bool force = false)
+        private void ExecuteLoadSpeakers(bool force = false)
         {
             if (this.IsBusy)
             {
-                return false;
+                return;
             }
 
             try
@@ -82,7 +76,7 @@
                 // TODO: update data when we'll have finally managed to get them directly from github
                 if (!this.Speakers.Any() || force) 
                 {
-                    IEnumerable<Speaker> speakers = SpeakerLoaderService.Speakers;
+                    IEnumerable<SpeakerModel> speakers = SpeakerLoaderService.Speakers;
                     this.SortSpeakers(speakers);
                 }
 
@@ -110,7 +104,7 @@
             }
             catch (Exception ex)
             {
-                this.Logger.Report(ex, "Method", "ExecuteLoadSpeakersAsync");
+                this.Logger.Report(ex, "Method", "ExecuteLoadSpeakers");
                 MessagingService.Current.SendMessage(MessageKeys.Error, ex);
             }
             finally
@@ -118,9 +112,7 @@
                 this.IsBusy = false;
             }
 
-            return true;
+            return;
         }
-
-        #endregion
     }
 }

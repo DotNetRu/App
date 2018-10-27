@@ -6,64 +6,29 @@
     using System.Reflection;
     using System.Xml.Serialization;
 
-    using DotNetRu.DataStore.Audit.DataObjects;
-
-    using AuditSpeaker = DotNetRu.DataStore.Audit.Models.Speaker;
+    using DotNetRu.DataStore.Audit.Entities;
+    using DotNetRu.DataStore.Audit.Extensions;
+    using DotNetRu.DataStore.Audit.Models;
 
     public static class SpeakerLoaderService
     {
-        private static List<Speaker> _speakers;
+        private static IEnumerable<SpeakerModel> speakers;
 
-        public static List<Speaker> Speakers
-        {
-            get
-            {
-                if (_speakers == null)
-                {
-                    _speakers = GetSpeakers();
-                }
+        public static IEnumerable<SpeakerModel> Speakers => speakers ?? (speakers = GetSpeakers());
 
-                return _speakers;
-            }
-        }
-
-        private static List<Speaker> GetSpeakers()
+        private static IEnumerable<SpeakerModel> GetSpeakers()
         {
             var assembly = Assembly.Load(new AssemblyName("DotNetRu.DataStore.Audit"));
             var stream = assembly.GetManifestResourceStream("DotNetRu.DataStore.Audit.Storage.speakers.xml");
-            List<AuditSpeaker> speakers;
+            List<SpeakerEntity> speakerEntities;
             using (var reader = new StreamReader(stream))
             {
                 var xRoot = new XmlRootAttribute { ElementName = "Speakers", IsNullable = true };
-                var serializer = new XmlSerializer(typeof(List<AuditSpeaker>), xRoot);
-                speakers = (List<AuditSpeaker>)serializer.Deserialize(reader);
+                var serializer = new XmlSerializer(typeof(List<SpeakerEntity>), xRoot);
+                speakerEntities = (List<SpeakerEntity>)serializer.Deserialize(reader);
             }
 
-            return AuditSpeakerToUISpeakerConverter(speakers);
-        }
-
-        private static List<Speaker> AuditSpeakerToUISpeakerConverter(IEnumerable<AuditSpeaker> auditSpeakers)
-        {
-            return auditSpeakers.Select(
-                speaker => new Speaker
-                               {
-                                   Id = speaker.Id,
-                                   FirstName = speaker.Name,
-                                   LastName = string.Empty,
-                                   PhotoUrl =
-                                       $@"https://raw.githubusercontent.com/DotNetRu/Audit/master/db/speakers/{
-                                               speaker.Id
-                                           }/avatar.jpg",
-                                   AvatarUrl =
-                                       $@"https://raw.githubusercontent.com/DotNetRu/Audit/master/db/speakers/{
-                                               speaker.Id
-                                           }/avatar.small.jpg",
-                                   CompanyName = speaker.CompanyName,
-                                   CompanyWebsiteUrl = speaker.CompanyUrl,
-                                   TwitterUrl = speaker.TwitterUrl,
-                                   BlogUrl = speaker.BlogUrl,
-                                   Biography = speaker.Description
-                               }).ToList();
+            return speakerEntities.Select(speakerEntity => speakerEntity.ToModel());
         }
     }
 }

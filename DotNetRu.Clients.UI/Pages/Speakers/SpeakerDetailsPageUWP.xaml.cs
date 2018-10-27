@@ -1,12 +1,11 @@
 ﻿using Xamarin.Forms;
 using XamarinEvolve.Clients.Portable;
-using XamarinEvolve.DataObjects;
 
 namespace XamarinEvolve.Clients.UI
 {
     using System;
 
-    using DotNetRu.DataStore.Audit.DataObjects;
+    using DotNetRu.DataStore.Audit.Models;
 
     using FFImageLoading.Forms;
 
@@ -16,11 +15,12 @@ namespace XamarinEvolve.Clients.UI
 
         SpeakerDetailsViewModel ViewModel => this.vm ?? (this.vm = this.BindingContext as SpeakerDetailsViewModel);
         SpeakerDetailsViewModel vm;
-        string sessionId;
 
-		public SpeakerDetailsPageUWP(Speaker speaker) : this((string)null)
+	    readonly string sessionId;
+
+		public SpeakerDetailsPageUWP(SpeakerModel speakerModel) : this((string)null)
 		{
-		    this.Speaker = speaker;
+		    this.SpeakerModel = speakerModel;
 		}
 
         public SpeakerDetailsPageUWP(string sessionId)
@@ -59,9 +59,9 @@ namespace XamarinEvolve.Clients.UI
         {
         }
 
-        public Speaker Speaker
+        public SpeakerModel SpeakerModel
         {
-            get => this.ViewModel.Speaker;
+            get => this.ViewModel.SpeakerModel;
             set 
 			{
 			    this.BindingContext = new SpeakerDetailsViewModel(value, this.sessionId);

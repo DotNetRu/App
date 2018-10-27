@@ -12,10 +12,10 @@ using NotificationCenter;
 
 using UIKit;
 
-using XamarinEvolve.DataObjects;
-
 namespace UpNext
 {
+    using DotNetRu.DataStore.Audit.Models;
+
     using XamarinEvolve.Utils.Helpers;
 
     public partial class TodayViewController : UIViewController, INCWidgetProviding

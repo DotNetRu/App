@@ -5,12 +5,10 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    using DotNetRu.DataStore.Audit.DataObjects;
+    using DotNetRu.DataStore.Audit.Abstractions;
+    using DotNetRu.DataStore.Audit.Models;
 
     using Xamarin.Forms;
-
-    using XamarinEvolve.DataObjects;
-    using XamarinEvolve.DataStore.Mock.Abstractions;
 
     public class SessionStore : BaseStore<TalkModel>, ISessionStore
     {
@@ -18,17 +16,15 @@
         List<TalkModel> _sessions;
         ISpeakerStore _speakerStore;
         ICategoryStore _categoryStore;
-        IFeedbackStore _feedbackStore;
         public SessionStore()
         {
             this._speakerStore = DependencyService.Get<ISpeakerStore>();
             this._categoryStore = DependencyService.Get<ICategoryStore>();
-            this._feedbackStore = DependencyService.Get<IFeedbackStore>();
         }
 
         #region ISessionStore implementation
 
-        public async override Task<TalkModel> GetItemAsync(string id)
+        public override async Task<TalkModel> GetItemAsync(string id)
         {
             if (!this._initialized)
                 await this.InitializeStore();
@@ -36,7 +32,7 @@
             return this._sessions.FirstOrDefault(s => s.Id == id);
         }
 
-        public async override Task<IEnumerable<TalkModel>> GetItemsAsync(bool forceRefresh = false)
+        public override async Task<IEnumerable<TalkModel>> GetItemsAsync(bool forceRefresh = false)
         {
             if (!this._initialized)
                 await this.InitializeStore();
@@ -80,7 +76,7 @@
 
         #region IBaseStore implementation
         bool _initialized = false;
-        public async override Task InitializeStore()
+        public override async Task InitializeStore()
         {
             if (this._initialized)
                 return;
@@ -99,7 +95,7 @@
             int dayCount = 0;
             for (int i = 0; i < this._titles.Length; i++)
             {
-                var sessionSpeakers = new List<Speaker>();
+                var sessionSpeakers = new List<SpeakerModel>();
                 var sessionCategories = new List<Category>();
 
                 categoryCount++;
@@ -141,9 +137,7 @@
                         Speakers = sessionSpeakers,
                         Title = this._titles[i],
                         ShortTitle = this._titlesShort[i]
-                    });
-                
-                this._sessions[i].FeedbackLeft = await this._feedbackStore.LeftFeedback(this._sessions[i]);
+                    });               
 
                 this.SetStartEnd(this._sessions[i], day);
 
@@ -179,7 +173,6 @@
                                        Title = "Something awesome!",
                                        ShortTitle = "Awesome",
                                    });
-            this._sessions[this._sessions.Count - 1].FeedbackLeft = await this._feedbackStore.LeftFeedback(this._sessions[this._sessions.Count - 1]);
             this._sessions[this._sessions.Count - 1].StartTime = null;
             this._sessions[this._sessions.Count - 1].EndTime = null;
         }

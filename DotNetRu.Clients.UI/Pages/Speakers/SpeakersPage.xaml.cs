@@ -1,6 +1,6 @@
 ﻿namespace XamarinEvolve.Clients.UI
 {
-    using DotNetRu.DataStore.Audit.DataObjects;
+    using DotNetRu.DataStore.Audit.Models;
 
     using Xamarin.Forms;
 
@@ -26,7 +26,7 @@
 
             this.ListViewSpeakers.ItemSelected += async (sender, e) =>
                 {
-                    if (!(this.ListViewSpeakers.SelectedItem is Speaker speaker))
+                    if (!(this.ListViewSpeakers.SelectedItem is SpeakerModel speaker))
                     {
                         return;
                     }
@@ -47,7 +47,7 @@
                 };
         }
 
-        void ListViewTapped(object sender, ItemTappedEventArgs e)
+        public void ListViewTapped(object sender, ItemTappedEventArgs e)
         {
             if (!(sender is ListView list))
             {

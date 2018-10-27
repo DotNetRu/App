@@ -9,6 +9,7 @@
     using System.Windows.Input;
     using System.Xml.Serialization;
 
+    using DotNetRu.DataStore.Audit.Entities;
     using DotNetRu.DataStore.Audit.Models;
 
     using FormsToolkit;
@@ -17,7 +18,6 @@
 
     using Xamarin.Forms;
 
-    using XamarinEvolve.DataObjects;
     using XamarinEvolve.Utils;
     using XamarinEvolve.Utils.Helpers;
 
@@ -87,18 +87,18 @@
 
         public ICommand ForceRefreshCommand => this.forceRefreshCommand
                                                ?? (this.forceRefreshCommand = new Command(
-                                                       async () => await this.ExecuteForceRefreshCommandAsync()));
+                                                       this.ExecuteForceRefreshCommandAsync));
 
-        public async Task ExecuteForceRefreshCommandAsync()
+        public void ExecuteForceRefreshCommandAsync()
         {
-            await this.ExecuteLoadSessionsAsync(true);
+            this.ExecuteLoadSessionsAsync();
         }
 
         private ICommand loadSessionsCommand;
 
         public ICommand LoadSessionsCommand => this.loadSessionsCommand
                                                ?? (this.loadSessionsCommand = new Command<bool>(
-                                                       async (f) => await this.ExecuteLoadSessionsAsync()));
+                                                       (f) => this.ExecuteLoadSessionsAsync()));
 
         private List<TalkModel> TalkToSessionConverter(IEnumerable<TalkEntity> talks)
         {
@@ -133,11 +133,11 @@
             return this.TalkToSessionConverter(sessions);
         }
 
-        private async Task<bool> ExecuteLoadSessionsAsync(bool force = false)
+        private void ExecuteLoadSessionsAsync()
         {
             if (this.IsBusy)
             {
-                return false;
+                return;
             }
 
             try
@@ -195,7 +195,7 @@
                 this.IsBusy = false;
             }
 
-            return true;
+            return;
         }
 
         #endregion

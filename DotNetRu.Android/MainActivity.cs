@@ -79,15 +79,15 @@
         DataHost = AboutThisApp.AppLinksBaseDomain)]
     public class MainActivity : FormsAppCompatActivity
     {
-        private static MainActivity current;
-
-        public static MainActivity Current => current;
+        public static MainActivity Current { get; }
 
         // GoogleApiClient client;
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            ToolbarResource = Resource.Layout.toolbar;
-            TabLayoutResource = Resource.Layout.tabs;
+            Forms.SetFlags("FastRenderers_Experimental");
+
+            FormsAppCompatActivity.ToolbarResource = Resource.Layout.toolbar;
+            FormsAppCompatActivity.TabLayoutResource = Resource.Layout.tabs;
 
             base.OnCreate(savedInstanceState);
 
@@ -110,7 +110,6 @@
                 }
             };
 #endif
-
             this.LoadApplication(new App());
 
             var gpsAvailable = this.IsPlayServicesAvailable();

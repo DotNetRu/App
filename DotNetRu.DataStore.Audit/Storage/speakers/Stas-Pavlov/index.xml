@@ -1,0 +1,8 @@
+﻿<Speaker>
+  <Id>Stas-Pavlov</Id>
+  <Name>Стас Павлов</Name>
+  <CompanyName>Microsoft Россия</CompanyName>
+  <CompanyUrl>https://www.microsoft.com/</CompanyUrl>
+  <Description>Технический евангелист, Microsoft Россия. Начал с разработчика на Delphi, продолжил разработчиком на С++ и С#, занимался разработкой встраиваемых решений на платформе Windows Embedded, какое-то время работал техническим директором и отвечал за поддержку и развитие инфраструктуры небольшого предприятия. В 2011 году начал работу в Microsoft Россия техническим евангелистом, занимался платформами Windows Phone и Windows 8, сейчас занимается, в основном, на Microsoft Azure, с дополнительным фокусом на IoT, Linux и контейнерных технологиях.</Description>
+  <ContactsUrl>https://ru.linkedin.com/in/staspavlov</ContactsUrl>
+</Speaker>

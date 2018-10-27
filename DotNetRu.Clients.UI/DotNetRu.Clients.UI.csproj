@@ -48,6 +48,7 @@
     <Compile Include="Controls\RatingControl.xaml.cs">
       <DependentUpon>RatingControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\SpeakerImageConverter.cs" />
     <Compile Include="Effects\ShadowEffect.cs" />
     <Compile Include="Pages\Home\ConferenceFeedbackPage.xaml.cs">
       <DependentUpon>ConferenceFeedbackPage.xaml</DependentUpon>
@@ -96,11 +97,11 @@
     <Compile Include="Pages\Speakers\SpeakerDetailsPage.xaml.cs">
       <DependentUpon>SpeakerDetailsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Sponsors\SponsorsPage.xaml.cs">
-      <DependentUpon>SponsorsPage.xaml</DependentUpon>
+    <Compile Include="Pages\Friends\FriendsPage.xaml.cs">
+      <DependentUpon>FriendsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Sponsors\SponsorDetailsPage.xaml.cs">
-      <DependentUpon>SponsorDetailsPage.xaml</DependentUpon>
+    <Compile Include="Pages\Friends\FriendDetailsPage.xaml.cs">
+      <DependentUpon>FriendDetailsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Events\EventsPage.xaml.cs">
       <DependentUpon>EventsPage.xaml</DependentUpon>
@@ -146,8 +147,8 @@
     <Compile Include="Pages\Home\NotificationsPage.xaml.cs">
       <DependentUpon>NotificationsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Cells\SponsorCell.xaml.cs">
-      <DependentUpon>SponsorCell.xaml</DependentUpon>
+    <Compile Include="Cells\FriendCell.xaml.cs">
+      <DependentUpon>FriendCell.xaml</DependentUpon>
     </Compile>
     <Compile Include="Cells\NotificationCell.xaml.cs">
       <DependentUpon>NotificationCell.xaml</DependentUpon>
@@ -178,10 +179,6 @@
     <ProjectReference Include="..\DotNetRu.DataStore.Audit\DotNetRu.DataStore.Audit.csproj">
       <Project>{7B4C73DF-8A4A-4AD1-92D9-A064065CDD71}</Project>
       <Name>DotNetRu.DataStore.Audit</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DotNetRu.DataStore.Mock\DotNetRu.DataStore.Mock.csproj">
-      <Project>{4DF18ED7-0E19-4866-8D9B-B1CB5C86A366}</Project>
-      <Name>DotNetRu.DataStore.Mock</Name>
     </ProjectReference>
     <ProjectReference Include="..\DotNetRu.Utils\DotNetRu.Utils.csproj">
       <Project>{dfa0f0f6-c396-412e-86a9-e9095f71cc36}</Project>
@@ -320,13 +317,15 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <LogicalName>SpeakerDetailsPage.xaml</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pages\Sponsors\SponsorsPage.xaml">
+    <EmbeddedResource Include="Pages\Friends\FriendsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <LogicalName>SponsorsPage.xaml</LogicalName>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pages\Sponsors\SponsorDetailsPage.xaml">
+    <EmbeddedResource Include="Pages\Friends\FriendDetailsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <LogicalName>SponsorDetailsPage.xaml</LogicalName>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\Events\EventsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
@@ -380,7 +379,7 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <LogicalName>NotificationsPage.xaml</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Cells\SponsorCell.xaml">
+    <EmbeddedResource Include="Cells\FriendCell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <LogicalName>SponsorCell.xaml</LogicalName>
     </EmbeddedResource>

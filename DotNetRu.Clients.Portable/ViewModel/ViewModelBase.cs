@@ -4,16 +4,13 @@
     using System.Threading.Tasks;
     using System.Windows.Input;
 
+    using DotNetRu.DataStore.Audit;
     using MvvmHelpers;
 
     using Plugin.Share;
     using Plugin.Share.Abstractions;
 
-    using Xamarin.Forms;
-
-    using XamarinEvolve.DataStore.Mock;
-    using XamarinEvolve.DataStore.Mock.Abstractions;
-    using XamarinEvolve.DataStore.Mock.Stores;
+    using Xamarin.Forms;   
 
     /// <summary>
     /// The view model base.
@@ -41,15 +38,6 @@
         /// </summary>
         public static void Init()
         {
-            DependencyService.Register<ISessionStore, SessionStore>();
-            DependencyService.Register<IFeedbackStore, FeedbackStore>();
-            DependencyService.Register<IConferenceFeedbackStore, ConferenceFeedbackStore>();
-            DependencyService.Register<ISpeakerStore, SpeakerStore>();
-            DependencyService.Register<ISponsorStore, SponsorStore>();
-            DependencyService.Register<ICategoryStore, CategoryStore>();
-            DependencyService.Register<IEventStore, EventStore>();
-            DependencyService.Register<INotificationStore, NotificationStore>();
-            DependencyService.Register<IStoreManager, StoreManager>();
         }
 
         /// <summary>

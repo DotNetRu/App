@@ -4,10 +4,10 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 
-using XamarinEvolve.DataObjects;
-
 namespace XamarinEvolve.Clients.Portable
 {
+    using DotNetRu.DataStore.Audit.Models;
+
     public class FilterSessionsViewModel : ViewModelBase
     {
         public FilterSessionsViewModel(INavigation navigation)

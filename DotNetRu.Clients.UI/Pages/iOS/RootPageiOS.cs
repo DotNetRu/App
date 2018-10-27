@@ -2,12 +2,13 @@
 {
     using System.Linq;
 
+    using DotNetRu.DataStore.Audit.Abstractions;
+
     using FormsToolkit;
 
     using Xamarin.Forms;
 
     using XamarinEvolve.Clients.Portable;
-    using XamarinEvolve.DataStore.Mock.Abstractions;
     using XamarinEvolve.Utils;
     using XamarinEvolve.Utils.Helpers;
 
@@ -22,7 +23,7 @@
             this.Children.Add(new EvolveNavigationPage(new EventsPage()));
             if (FeatureFlags.SponsorsOnTabPage)
             {
-                this.Children.Add(new EvolveNavigationPage(new SponsorsPage()));
+                this.Children.Add(new EvolveNavigationPage(new FriendsPage()));
             }
 
             this.Children.Add(new EvolveNavigationPage(new AboutPage()));
@@ -57,23 +58,26 @@
                             case AppPage.Speaker:
                                 this.Navigate(AppPage.Speakers);
                                 await this.CurrentPage.Navigation.PopToRootAsync();
-                                var speaker = await DependencyService.Get<ISpeakerStore>().GetAppIndexSpeaker(p.Id);
-                                if (speaker == null)
-                                {
-                                    break;
-                                }
 
-                                ContentPage destination;
-                                if (Device.RuntimePlatform == Device.UWP)
-                                {
-                                    destination = new SpeakerDetailsPageUWP(speaker);
-                                }
-                                else
-                                {
-                                    destination = new SpeakerDetailsPage(speaker);
-                                }
+                                // TODO implement using Store
 
-                                await this.CurrentPage.Navigation.PushAsync(destination);
+                                // var speaker = await DependencyService.Get<ISpeakerStore>().GetAppIndexSpeaker(p.Id);
+                                // if (speaker == null)
+                                // {
+                                // break;
+                                // }
+
+                                // ContentPage destination;
+                                // if (Device.RuntimePlatform == Device.UWP)
+                                // {
+                                // destination = new SpeakerDetailsPageUWP(speaker);
+                                // }
+                                // else
+                                // {
+                                // destination = new SpeakerDetailsPage(speaker);
+                                // }
+
+                                // await this.CurrentPage.Navigation.PushAsync(destination);
                                 break;
                         }
                     });

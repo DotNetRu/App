@@ -11,7 +11,6 @@
     BackgroundColor="{DynamicResource WindowBackgroundTable}">
     <ContentPage.Resources>
      <ResourceDictionary>
-        <local:SpeakerImageConverter x:Key="SpeakerImageConverter" />
         <toolkit:HasDataConverter x:Key="GenericIsVisibleConverter"/>
      </ResourceDictionary>
     </ContentPage.Resources>
@@ -24,7 +23,7 @@
             <Image
                 HorizontalOptions="FillAndExpand"
                 VerticalOptions="FillAndExpand"
-                Source="{Binding Speaker.PhotoUrl, Converter={StaticResource SpeakerImageConverter}}"
+                Source="{Binding SpeakerModel.PhotoImage}"
                 Aspect="AspectFill"/>
         </Grid>
         <local:ParallaxScrollView x:Name="MainScroll" Grid.RowSpan="2">
@@ -46,7 +45,7 @@
                          VerticalOptions="End"
                          HorizontalOptions="FillAndExpand">
                         <Label
-                            Text="{Binding Speaker.FullName}"
+                            Text="{Binding SpeakerModel.FullName}"
                             FontSize="18"
                             TextColor="White">
                             <Label.FontFamily>
@@ -55,7 +54,7 @@
                         </Label>
                         <Label
                             x:Name="SpeakerTitle"
-                            Text="{Binding Speaker.Title}"
+                            Text="{Binding SpeakerModel.Title}"
                             FontSize="12"
                             TextColor="White"/>
                     </StackLayout>
@@ -70,7 +69,7 @@
                                 <local:LabelSection Text="Biography"/>
                                 <local:HeaderDivider/>
                                 <StackLayout Padding="{StaticResource StandardPadding}" BackgroundColor="White">
-                                    <Label Text="{Binding Speaker.Biography}" Style="{DynamicResource EvolveListItemTextStyle}"/>
+                                    <Label Text="{Binding SpeakerModel.Biography}" Style="{DynamicResource EvolveListItemTextStyle}"/>
                                 </StackLayout>
                                 <local:FooterDivider/>
                             </StackLayout>

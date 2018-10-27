@@ -89,7 +89,7 @@
                     <local:NonScrollableListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell StyleId="disclosure">
-                                <local:SponsorCell/>
+                                <local:FriendCell/>
                             </ViewCell> 
                         </DataTemplate>
                     </local:NonScrollableListView.ItemTemplate>

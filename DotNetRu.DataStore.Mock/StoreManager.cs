@@ -3,7 +3,8 @@ using Xamarin.Forms;
 
 namespace XamarinEvolve.DataStore.Mock
 {
-    using XamarinEvolve.DataStore.Mock.Abstractions;
+    using DotNetRu.DataStore.Audit;
+    using DotNetRu.DataStore.Audit.Abstractions;
 
     public class StoreManager : IStoreManager
     {
@@ -36,14 +37,6 @@ namespace XamarinEvolve.DataStore.Mock
 
         public ICategoryStore CategoryStore => this._categoryStore ?? (this._categoryStore = DependencyService.Get<ICategoryStore>());
 
-        IFeedbackStore _feedbackStore;
-
-        public IFeedbackStore FeedbackStore => this._feedbackStore ?? (this._feedbackStore = DependencyService.Get<IFeedbackStore>());
-
-        IConferenceFeedbackStore _conferenceFeedbackStore;
-
-        public IConferenceFeedbackStore ConferenceFeedbackStore => this._conferenceFeedbackStore ?? (this._conferenceFeedbackStore = DependencyService.Get<IConferenceFeedbackStore>());
-
         ISessionStore _sessionStore;
 
         public ISessionStore SessionStore => this._sessionStore ?? (this._sessionStore = DependencyService.Get<ISessionStore>());
@@ -56,9 +49,9 @@ namespace XamarinEvolve.DataStore.Mock
 
         public IEventStore EventStore => this._eventStore ?? (this._eventStore = DependencyService.Get<IEventStore>());
 
-        ISponsorStore _sponsorStore;
+        IFriendStore friendStore;
 
-        public ISponsorStore SponsorStore => this._sponsorStore ?? (this._sponsorStore = DependencyService.Get<ISponsorStore>());
+        public IFriendStore FriendStore => this.friendStore ?? (this.friendStore = DependencyService.Get<IFriendStore>());
 
     }
 }

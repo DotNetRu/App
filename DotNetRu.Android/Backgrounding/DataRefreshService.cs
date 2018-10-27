@@ -2,16 +2,14 @@
 {
     using Android.App;
     using Android.Content;
-    using Android.OS;
     using Android.Util;
 
     [Service (Name="com.xamarin.xamarinevolve.DataRefreshService", Exported = true, Permission = "com.google.android.gms.permission.BIND_NETWORK_TASK_SERVICE")]
     [IntentFilter (new [] { "com.google.android.gms.gcm.ACTION_TASK_READY" })]
     public class DataRefreshService
     {
-        // : GcmTaskService
-        IBinder binder;
-
+        // GcmTaskService
+        // IBinder binder;
         const string LOG_TAG = "OnRunTask";
 
         public DataRefreshService ()

@@ -9,14 +9,15 @@ using Foundation;
 using Xamarin.Forms;
 
 using XamarinEvolve.Clients.Portable;
-using XamarinEvolve.DataObjects;
 using XamarinEvolve.iOS.PlatformFeatures.ProActiveSuggestions;
 
 [assembly: Dependency(typeof(SessionUserActivity))]
 
 namespace XamarinEvolve.iOS.PlatformFeatures.ProActiveSuggestions
 {
-	using XamarinEvolve.Utils.Helpers;
+    using DotNetRu.DataStore.Audit.Models;
+
+    using XamarinEvolve.Utils.Helpers;
 
 	public class SessionUserActivity : IPlatformSpecificExtension<TalkModel>
 	{

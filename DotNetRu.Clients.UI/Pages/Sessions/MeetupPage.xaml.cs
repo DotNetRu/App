@@ -2,12 +2,13 @@
 {
     using System;
 
+    using DotNetRu.DataStore.Audit.Models;
+
     using FormsToolkit;
 
     using Xamarin.Forms;
 
     using XamarinEvolve.Clients.Portable;
-    using XamarinEvolve.DataObjects;
 
     public partial class MeetupPage
     {
