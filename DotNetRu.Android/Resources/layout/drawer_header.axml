@@ -24,12 +24,5 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Sign In"
-            android:id="@+id/profile_name"
-            android:clickable="true"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
     </LinearLayout>
 </FrameLayout>

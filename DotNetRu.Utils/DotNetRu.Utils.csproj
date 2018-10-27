@@ -51,6 +51,7 @@
     <NoStdLib>false</NoStdLib>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="EvolveLogger.cs" />
     <Compile Include="Helpers\AboutThisApp.cs" />
     <Compile Include="Helpers\ApiKeys.cs" />
     <Compile Include="Helpers\Constants.cs">
@@ -72,6 +73,12 @@
     <Compile Include="Extensions\DateTimeExtenstions.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Plugin.GoogleAnalytics, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ksemenenko.GoogleAnalytics.1.0.3\lib\portable-net45+wp80+win8+wpa81\Plugin.GoogleAnalytics.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.GoogleAnalytics.Abstractions, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ksemenenko.GoogleAnalytics.1.0.3\lib\portable-net45+wp80+win8+wpa81\Plugin.GoogleAnalytics.Abstractions.dll</HintPath>
+    </Reference>
     <Reference Include="Plugin.Settings, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Xam.Plugins.Settings.3.0.1\lib\netstandard1.0\Plugin.Settings.dll</HintPath>
     </Reference>
@@ -101,7 +108,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

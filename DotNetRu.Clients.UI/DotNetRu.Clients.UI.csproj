@@ -157,7 +157,6 @@
       <DependentUpon>FeedbackPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\AlwaysScrollView.cs" />
-    <Compile Include="Controls\FavoriteImage.cs" />
     <Compile Include="Controls\PinchToZoomContainer.cs" />
     <Compile Include="Controls\WrapLayout.cs" />
     <Compile Include="Pages\Speakers\SpeakersPage.xaml.cs">

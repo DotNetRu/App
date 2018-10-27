@@ -178,21 +178,6 @@ namespace XamarinEvolve.DataObjects
             }
         }
 
-        bool isFavorite;
-
-        [Newtonsoft.Json.JsonIgnore]
-        public bool IsFavorite
-        {
-            get
-            {
-                return isFavorite;
-            }
-            set
-            {
-                SetProperty(ref isFavorite, value);
-            }
-        }
-
         bool feedbackLeft;
 
         [Newtonsoft.Json.JsonIgnore]
