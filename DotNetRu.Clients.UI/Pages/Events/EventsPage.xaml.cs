@@ -35,11 +35,12 @@ namespace XamarinEvolve.Clients.UI
                     if(ev == null)
                         return;
                     
-                    var eventDetails = new EventDetailsPage();
+                    //var eventDetails = new EventDetailsPage();
 
-                    eventDetails.Event = ev;
-                    await NavigationService.PushAsync(Navigation, eventDetails);
-
+                    //eventDetails.Event = ev;
+                    //await NavigationService.PushAsync(Navigation, eventDetails);
+                    var eventSessions = new SessionsPage(ev);
+                    await NavigationService.PushAsync(Navigation, eventSessions);
                     ListViewEvents.SelectedItem = null;
                 };
         }

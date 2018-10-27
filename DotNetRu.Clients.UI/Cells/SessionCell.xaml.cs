@@ -45,77 +45,77 @@
         {
             base.OnBindingContextChanged();
 
-            GenerateCategoryBadges();
+            //GenerateCategoryBadges();
         }
 
-        private void GenerateCategoryBadges()
-        {
-            CategoriesPlaceholder.Children.Clear();
+    //    private void GenerateCategoryBadges()
+    //    {
+    //        CategoriesPlaceholder.Children.Clear();
 
-            var session = BindingContext as Session;
+    //        var session = BindingContext as Session;
 
-            if (session != null)
-            {
-				foreach (var category in session.Categories.Take(4))
-                {
-                    var grid = new Grid
-                    {
-                        Padding = new Thickness(0, 4),
-                        HeightRequest = 28,
-                        MinimumWidthRequest = 200,
-                        VerticalOptions = LayoutOptions.Center,
-                        HorizontalOptions = LayoutOptions.Start
-                    };
+    //        if (session != null)
+    //        {
+				//foreach (var category in session.Categories.Take(4))
+    //            {
+    //                var grid = new Grid
+    //                {
+    //                    Padding = new Thickness(0, 4),
+    //                    HeightRequest = 28,
+    //                    MinimumWidthRequest = 200,
+    //                    VerticalOptions = LayoutOptions.Center,
+    //                    HorizontalOptions = LayoutOptions.Start
+    //                };
 
-                    if (Device.OS == TargetPlatform.iOS)
-                    {
-                        var image = new CircleImage
-                        {
-                            FillColor = Color.FromHex(category.Color),
-                            VerticalOptions = LayoutOptions.Center,
-                            HorizontalOptions = LayoutOptions.FillAndExpand,
-                            HeightRequest = 24
-                        };
+    //                if (Device.OS == TargetPlatform.iOS)
+    //                {
+    //                    var image = new CircleImage
+    //                    {
+    //                        FillColor = Color.FromHex(category.Color),
+    //                        VerticalOptions = LayoutOptions.Center,
+    //                        HorizontalOptions = LayoutOptions.FillAndExpand,
+    //                        HeightRequest = 24
+    //                    };
 
-                        grid.Children.Add(image);
-                    }
-                    else
-                    {
-                        var box = new BoxView
-                        {
-                            BackgroundColor = Color.FromHex(category.Color),
-                            VerticalOptions = LayoutOptions.Center,
-                            HorizontalOptions = LayoutOptions.FillAndExpand,
-                            HeightRequest = 24,
-                        };
+    //                    grid.Children.Add(image);
+    //                }
+    //                else
+    //                {
+    //                    var box = new BoxView
+    //                    {
+    //                        BackgroundColor = Color.FromHex(category.Color),
+    //                        VerticalOptions = LayoutOptions.Center,
+    //                        HorizontalOptions = LayoutOptions.FillAndExpand,
+    //                        HeightRequest = 24,
+    //                    };
 
-                        grid.Children.Add(box);
-                    }
+    //                    grid.Children.Add(box);
+    //                }
 
-					var label = new Label
-					{
-						VerticalOptions = LayoutOptions.Center,
-						VerticalTextAlignment = TextAlignment.Center,
-						HorizontalOptions = LayoutOptions.Start,
-						HorizontalTextAlignment = TextAlignment.Center,
-						FontSize = Device.GetNamedSize(NamedSize.Micro, typeof(Label)),
-                        TextColor = Color.White,
-                        Text = category.BadgeName.ToUpperInvariant(),
-                        Margin = new Thickness(5, 0),
-						WidthRequest = 60,
-                    };
+				//	var label = new Label
+				//	{
+				//		VerticalOptions = LayoutOptions.Center,
+				//		VerticalTextAlignment = TextAlignment.Center,
+				//		HorizontalOptions = LayoutOptions.Start,
+				//		HorizontalTextAlignment = TextAlignment.Center,
+				//		FontSize = Device.GetNamedSize(NamedSize.Micro, typeof(Label)),
+    //                    TextColor = Color.White,
+    //                    Text = category.BadgeName.ToUpperInvariant(),
+    //                    Margin = new Thickness(5, 0),
+				//		WidthRequest = 60,
+    //                };
 
-					if (Device.OS == TargetPlatform.WinPhone || Device.OS == TargetPlatform.Windows)
-					{
-						label.FontSize = 10;
-					}
+				//	if (Device.OS == TargetPlatform.WinPhone || Device.OS == TargetPlatform.Windows)
+				//	{
+				//		label.FontSize = 10;
+				//	}
 
-                    grid.Children.Add(label);
+    //                grid.Children.Add(label);
 
-                    CategoriesPlaceholder.Children.Add(grid);
-                }
-            }
-        }
+    //                CategoriesPlaceholder.Children.Add(grid);
+    //            }
+    //        }
+    //    }
     }
 }
 
