@@ -4,12 +4,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="XamarinEvolve.Clients.UI.SettingsPage"
     xmlns:toolkit="clr-namespace:FormsToolkit;assembly=FormsToolkit"
-    xmlns:local="clr-namespace:XamarinEvolve.Clients.UI;assembly=XamarinEvolve.Clients.UI"
-    Title="Settings"
-    
+    xmlns:local="clr-namespace:XamarinEvolve.Clients.UI;assembly=XamarinEvolve.Clients.UI"    
     BackgroundColor="{DynamicResource WindowBackgroundTable}">
   <ContentPage.Title>
-    <OnPlatform x:TypeArguments="x:String" Android="Settings" WinPhone="Settings" iOS="About this app"/>
+    <OnPlatform x:TypeArguments="x:String" Android="About" WinPhone="About" iOS="About this app"/>
   </ContentPage.Title>
   <ContentPage.Resources>
     <ResourceDictionary>
@@ -102,5 +100,4 @@
       </StackLayout>
     </StackLayout>
   </local:AlwaysScrollView>
-
 </local:BasePage>
