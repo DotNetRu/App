@@ -1,6 +1,9 @@
 ﻿namespace XamarinEvolve.Clients.UI
 {
+    using System.Linq;
+
     using DotNetRu.DataStore.Audit.Models;
+    using DotNetRu.DataStore.Audit.Services;
 
     using Xamarin.Forms;
 
@@ -10,11 +13,14 @@
     {
         private readonly IPlatformSpecificExtension<TalkModel> extension;
 
-        public override AppPage PageType => AppPage.Session;
-
-        public TalkViewModel ViewModel => this.talkViewModel ?? (this.talkViewModel = this.BindingContext as TalkViewModel);
-
         private TalkViewModel talkViewModel;
+
+        /// <summary>
+        /// Design-time only
+        /// </summary>
+        public TalkPage() : this(TalkService.GetTalks().First())
+        {
+        }
 
         public TalkPage(TalkModel talkModel)
         {
@@ -58,8 +64,11 @@
                 };
             this.BindingContext = new TalkViewModel(this.Navigation, talkModel);
             this.ViewModel.LoadSessionCommand.Execute(null);
-
         }
+
+        public override AppPage PageType => AppPage.Talk;
+
+        public TalkViewModel ViewModel => this.talkViewModel ?? (this.talkViewModel = this.BindingContext as TalkViewModel);
 
         public void ListViewTapped(object sender, ItemTappedEventArgs e)
         {
@@ -71,15 +80,9 @@
             list.SelectedItem = null;
         }
 
-        //public void MainScroll_Scrolled(object sender, ScrolledEventArgs e)
-        //{
-        //    this.Title = e.ScrollY > this.SessionDate.Y ? this.ViewModel.TalkModel.ShortTitle : "Talk";
-        //}
-
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            //this.MainScroll.Scrolled += this.MainScroll_Scrolled;
             this.ListViewSpeakers.ItemTapped += this.ListViewTapped;
 
             var count = this.ViewModel?.TalkModel?.Speakers?.Count ?? 0;
@@ -98,7 +101,6 @@
         protected override async void OnDisappearing()
         {
             base.OnDisappearing();
-            //this.MainScroll.Scrolled -= this.MainScroll_Scrolled;
             this.ListViewSpeakers.ItemTapped -= this.ListViewTapped;
 
             if (this.extension != null)

@@ -30,10 +30,10 @@
 
 
             items.Add(new MenuItem { Name = $"{AboutThisApp.AppName}", Icon = "menu_feed.png", Page = AppPage.Feed });
-            items.Add(new MenuItem { Name = "Sessions", Icon = "menu_sessions.png", Page = AppPage.Sessions });
+            items.Add(new MenuItem { Name = "Sessions", Icon = "menu_sessions.png", Page = AppPage.Meetup });
             items.Add(new MenuItem { Name = "Speakers", Icon = "menu_speakers.png", Page = AppPage.Speakers });
 
-            items.Add(new MenuItem { Name = "Events", Icon = "menu_events.png", Page = AppPage.Events });
+            items.Add(new MenuItem { Name = "Meetups", Icon = "menu_events.png", Page = AppPage.Meetups });
             if (FeatureFlags.SponsorsOnTabPage)
             {
                 items.Add(new MenuItem { Name = "Friends", Icon = "menu_sponsors.png", Page = AppPage.Friends });
@@ -74,13 +74,13 @@
                     case AppPage.Feed: // Feed
                         this.pages.Add(menuId, new EvolveNavigationPage(new NewsPage()));
                         break;
-                    case AppPage.Sessions: // sessions
+                    case AppPage.Meetup: // sessions
                         this.pages.Add(menuId, new EvolveNavigationPage(new MeetupPage()));
                         break;
                     case AppPage.Speakers: // sessions
                         this.pages.Add(menuId, new EvolveNavigationPage(new SpeakersPage()));
                         break;
-                    case AppPage.Events: // events
+                    case AppPage.Meetups: // events
                         this.pages.Add(menuId, new EvolveNavigationPage(new MeetupsPage()));
                         break;
                     case AppPage.Friends: // sponsors

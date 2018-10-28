@@ -76,7 +76,7 @@
                 // TODO: update data when we'll have finally managed to get them directly from github
                 if (!this.Speakers.Any() || force) 
                 {
-                    IEnumerable<SpeakerModel> speakers = SpeakerLoaderService.Speakers;
+                    IEnumerable<SpeakerModel> speakers = SpeakerService.Speakers;
                     this.SortSpeakers(speakers);
                 }
 

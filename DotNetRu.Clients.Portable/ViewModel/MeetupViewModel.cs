@@ -1,17 +1,11 @@
 ﻿namespace XamarinEvolve.Clients.Portable
 {
     using System;
-    using System.Collections.Generic;
-    using System.IO;
     using System.Linq;
-    using System.Reflection;
-    using System.Threading.Tasks;
     using System.Windows.Input;
-    using System.Xml.Serialization;
 
-    using DotNetRu.DataStore.Audit.Entities;
-    using DotNetRu.DataStore.Audit.Extensions;
     using DotNetRu.DataStore.Audit.Models;
+    using DotNetRu.DataStore.Audit.Services;
 
     using FormsToolkit;
 
@@ -24,25 +18,27 @@
 
     public class MeetupViewModel : ViewModelBase
     {
-        public MeetupViewModel(INavigation navigation, MeetupModel meetupModel = null)
+        private bool noSessionsFound;
+        private string noSessionsFoundMessage;
+
+        private TalkModel selectedTalkModel;
+
+        private ICommand loadSessionsCommand;
+
+        public MeetupViewModel(INavigation navigation, MeetupModel meetupModel = null, VenueModel venueModel = null)
             : base(navigation)
         {
             this.MeetupModel = meetupModel;
-            this.NextForceRefresh = DateTime.UtcNow.AddMinutes(45);
+            this.VenueModel = venueModel;
+
+            this.TapVenueCommand = new Command(this.OnVenueTapped);
         }
 
-        public ObservableRangeCollection<TalkModel> Sessions { get; } = new ObservableRangeCollection<TalkModel>();        
-
-        public ObservableRangeCollection<Grouping<string, TalkModel>> SessionsGrouped { get; } =
-            new ObservableRangeCollection<Grouping<string, TalkModel>>();
-
-        public DateTime NextForceRefresh { get; set; }
+        public ObservableRangeCollection<TalkModel> Sessions { get; } = new ObservableRangeCollection<TalkModel>();                
 
         public MeetupModel MeetupModel { get; set; }
 
-        #region Properties
-
-        private TalkModel selectedTalkModel;
+        public VenueModel VenueModel { get; set; }
 
         public TalkModel SelectedTalkModel
         {
@@ -63,11 +59,6 @@
             }
         }
 
-        #endregion
-
-        private bool noSessionsFound;
-        private string noSessionsFoundMessage;
-
         public bool NoSessionsFound
         {
             get => this.noSessionsFound;
@@ -82,43 +73,17 @@
             set => this.SetProperty(ref this.noSessionsFoundMessage, value);
         }
 
-        #region Commands
+        public ICommand TapVenueCommand { get; set; }
 
-        private ICommand forceRefreshCommand;
-
-        public ICommand ForceRefreshCommand => this.forceRefreshCommand
-                                               ?? (this.forceRefreshCommand = new Command(
-                                                       this.ExecuteForceRefreshCommandAsync));
-
-        public void ExecuteForceRefreshCommandAsync()
+        public void OnVenueTapped()
         {
-            this.ExecuteLoadSessionsAsync();
+            this.LaunchBrowserCommand.Execute(this.VenueModel.MapUrl);
         }
-
-        private ICommand loadSessionsCommand;
 
         public ICommand LoadSessionsCommand => this.loadSessionsCommand
-                                               ?? (this.loadSessionsCommand = new Command<bool>(
-                                                       (f) => this.ExecuteLoadSessionsAsync()));
+                                               ?? (this.loadSessionsCommand = new Command(this.ExecuteLoadSessions));
 
-        private IEnumerable<TalkModel> GetSessions()
-        {
-            var assembly = Assembly.Load(new AssemblyName("DotNetRu.DataStore.Audit"));
-            var stream = assembly.GetManifestResourceStream("DotNetRu.DataStore.Audit.Storage.talks.xml");
-            IEnumerable<TalkEntity> sessions;
-            using (var reader = new StreamReader(stream))
-            {
-                var serializer = new XmlSerializer(typeof(List<TalkEntity>), new XmlRootAttribute("Talks"));
-                var deserialized = (List<TalkEntity>)serializer.Deserialize(reader);
-                
-                sessions = deserialized.Where(
-                    t => this.MeetupModel.EventTalksIds.Any(t1 => t1 == t.Id));
-            }
-
-            return sessions.Select(x => x.ToModel());
-        }
-
-        private void ExecuteLoadSessionsAsync()
+        private void ExecuteLoadSessions()
         {
             if (this.IsBusy)
             {
@@ -127,11 +92,10 @@
 
             try
             {
-                this.NextForceRefresh = DateTime.UtcNow.AddMinutes(45);
                 this.IsBusy = true;
                 this.NoSessionsFound = false;
 
-                var sessions = this.GetSessions();
+                var sessions = TalkService.GetTalks(this.MeetupModel.EventTalksIds).ToArray();
                 this.Sessions.ReplaceRange(sessions);
 
                 if (!sessions.Any())
@@ -143,9 +107,6 @@
                 {
                     this.NoSessionsFound = false;
                 }
-
-                var day = this.MeetupModel.GetDate();
-                this.SessionsGrouped.ReplaceRange(new[] { new Grouping<string, TalkModel>(day, sessions) });
 
                 if (Device.RuntimePlatform != Device.UWP && FeatureFlags.AppLinksEnabled)
                 {
@@ -172,7 +133,7 @@
             }
             catch (Exception ex)
             {
-                this.Logger.Report(ex, "Method", "ExecuteLoadSessionsAsync");
+                this.Logger.Report(ex, "Method", "ExecuteLoadSessions");
                 MessagingService.Current.SendMessage(MessageKeys.Error, ex);
             }
             finally
@@ -180,7 +141,5 @@
                 this.IsBusy = false;
             }
         }
-
-        #endregion
     }
 }

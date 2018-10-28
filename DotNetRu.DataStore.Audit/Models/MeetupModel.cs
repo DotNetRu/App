@@ -39,7 +39,7 @@
         /// <value><c>true</c> if this instance is all day; otherwise, <c>false</c>.</value>
         public bool IsAllDay { get; set; }
 
-        public string LocationName { get; set; }
+        public string VenueID { get; set; }
 
         /// <summary>
         /// Gets or sets the sponsor if there is one for the event

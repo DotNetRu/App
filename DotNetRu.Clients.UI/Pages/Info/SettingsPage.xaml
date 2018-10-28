@@ -90,10 +90,6 @@
                 <TapGestureRecognizer
                         Tapped="OnTapGestureRecognizerTapped" />
               </StackLayout.GestureRecognizers>
-              <Label Text="8 more than 92"
-                     Style="{DynamicResource EvolveListItemDetailTextStyle}">
-
-              </Label>
             </StackLayout>
           </StackLayout>
         </local:CardView>

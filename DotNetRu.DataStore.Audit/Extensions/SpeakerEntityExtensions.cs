@@ -32,6 +32,7 @@
                            TwitterUrl = speaker.TwitterUrl,
                            BlogUrl = speaker.BlogUrl,
                            Biography = speaker.Description
+                           // Talks = 
                        };
         }
     }

@@ -98,7 +98,7 @@ namespace XamarinEvolve.Clients.UI
 
             if (this.ViewModel.Sessions?.Count > 0) return;
 
-            await this.ViewModel.ExecuteLoadSessionsCommandAsync();
+            this.ViewModel.ExecuteLoadSessionsCommandAsync();
             var adjust = Device.RuntimePlatform != Device.Android ? 1 : -this.ViewModel.Sessions.Count + 1;
             this.ListViewSessions.HeightRequest =
                 (this.ViewModel.Sessions.Count * this.ListViewSessions.RowHeight) - adjust;

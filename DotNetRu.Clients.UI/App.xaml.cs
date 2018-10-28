@@ -198,7 +198,7 @@ $"We can send you updates through {EventInfo.EventName} via push notifications. 
 
             if (!string.IsNullOrWhiteSpace(id))
             {
-                AppPage destination = AppPage.Session;
+                AppPage destination = AppPage.Talk;
                 if (data.Contains($"/{AboutThisApp.SpeakersSiteSubdirectory.ToLowerInvariant()}/"))
                 {
                     destination = AppPage.Speaker;

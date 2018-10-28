@@ -19,7 +19,7 @@
                            VideoUrl = talkEntity.VideoUrl,
                            CodeUrl = talkEntity.CodeUrl,
                            ShortTitle = talkEntity.Title,
-                           Speakers = SpeakerLoaderService.Speakers
+                           Speakers = SpeakerService.Speakers
                                .Where(s => talkEntity.SpeakerIds.Any(s1 => s1 == s.Id)).ToList()
                        };
         }
