@@ -29,7 +29,7 @@
 
                 var spbDotNetTweets =
                     await (from tweet in twitterContext.Status
-                           where tweet.Type == StatusType.User && tweet.ScreenName == "spbdotnet"
+                           where tweet.Type == StatusType.User && tweet.ScreenName == "spbdotnet" && tweet.IncludeMyRetweet
                            select tweet).ToListAsync();
 
                 var dotnetruTweets =
@@ -39,7 +39,7 @@
 
                 var tweets =
                     (from tweet in spbDotNetTweets.Union(dotnetruTweets)
-                     where tweet.RetweetedStatus.StatusID == 0 && !tweet.PossiblySensitive
+                     where !tweet.PossiblySensitive
                      let tweetUser = tweet.User
                      where tweetUser != null
                      select new Tweet

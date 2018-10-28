@@ -146,7 +146,7 @@
 		<string>com.dotnetru.app.speakers</string>
 	</array>
 	<key>CFBundleDisplayName</key>
-	<string>DotNetRu App</string>
+	<string>DotNetRu</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>XSAppIconAssets</key>

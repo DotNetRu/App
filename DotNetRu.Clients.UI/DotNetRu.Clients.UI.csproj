@@ -103,14 +103,11 @@
     <Compile Include="Pages\Friends\FriendDetailsPage.xaml.cs">
       <DependentUpon>FriendDetailsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Events\EventsPage.xaml.cs">
-      <DependentUpon>EventsPage.xaml</DependentUpon>
+    <Compile Include="Pages\Events\MeetupsPage.xaml.cs">
+      <DependentUpon>MeetupsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Info\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Events\EventDetailsPage.xaml.cs">
-      <DependentUpon>EventDetailsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\ImageConverters.cs" />
     <Compile Include="Controls\LabelSection.xaml.cs">
@@ -138,8 +135,8 @@
     <Compile Include="Cells\TweetCell.xaml.cs">
       <DependentUpon>TweetCell.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Home\FeedPage.xaml.cs">
-      <DependentUpon>FeedPage.xaml</DependentUpon>
+    <Compile Include="Pages\Home\NewsPage.xaml.cs">
+      <DependentUpon>NewsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Home\TweetImagePage.xaml.cs">
       <DependentUpon>TweetImagePage.xaml</DependentUpon>
@@ -327,17 +324,14 @@
       <LogicalName>SponsorDetailsPage.xaml</LogicalName>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pages\Events\EventsPage.xaml">
+    <EmbeddedResource Include="Pages\Events\MeetupsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <LogicalName>EventsPage.xaml</LogicalName>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\Info\SettingsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <LogicalName>SettingsPage.xaml</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Pages\Events\EventDetailsPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <LogicalName>EventDetailsPage.xaml</LogicalName>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\LabelSection.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
@@ -367,9 +361,10 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <LogicalName>TweetCell.xaml</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pages\Home\FeedPage.xaml">
+    <EmbeddedResource Include="Pages\Home\NewsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <LogicalName>FeedPage.xaml</LogicalName>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\Home\TweetImagePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>

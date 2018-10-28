@@ -10,6 +10,7 @@
     using System.Xml.Serialization;
 
     using DotNetRu.DataStore.Audit.Entities;
+    using DotNetRu.DataStore.Audit.Extensions;
     using DotNetRu.DataStore.Audit.Models;
 
     using FormsToolkit;
@@ -23,10 +24,10 @@
 
     public class MeetupViewModel : ViewModelBase
     {
-        public MeetupViewModel(INavigation navigation, FeaturedEvent featuredEvent = null)
+        public MeetupViewModel(INavigation navigation, MeetupModel meetupModel = null)
             : base(navigation)
         {
-            this.Event = featuredEvent;
+            this.MeetupModel = meetupModel;
             this.NextForceRefresh = DateTime.UtcNow.AddMinutes(45);
         }
 
@@ -37,7 +38,7 @@
 
         public DateTime NextForceRefresh { get; set; }
 
-        public FeaturedEvent Event { get; set; }
+        public MeetupModel MeetupModel { get; set; }
 
         #region Properties
 
@@ -100,23 +101,7 @@
                                                ?? (this.loadSessionsCommand = new Command<bool>(
                                                        (f) => this.ExecuteLoadSessionsAsync()));
 
-        private List<TalkModel> TalkToSessionConverter(IEnumerable<TalkEntity> talks)
-        {
-            return talks.Select(
-                talk => new TalkModel
-                            {
-                                Title = talk.Title,
-                                Abstract = talk.Description,
-                                PresentationUrl = talk.SlidesUrl,
-                                VideoUrl = talk.VideoUrl,
-                                CodeUrl = talk.CodeUrl,
-                                ShortTitle = talk.Title,
-                                Speakers = SpeakerLoaderService.Speakers
-                                    .Where(s => talk.SpeakerIds.Any(s1 => s1 == s.Id)).ToList()
-                            }).ToList();
-        }
-
-        private List<TalkModel> GetSessions()
+        private IEnumerable<TalkModel> GetSessions()
         {
             var assembly = Assembly.Load(new AssemblyName("DotNetRu.DataStore.Audit"));
             var stream = assembly.GetManifestResourceStream("DotNetRu.DataStore.Audit.Storage.talks.xml");
@@ -127,10 +112,10 @@
                 var deserialized = (List<TalkEntity>)serializer.Deserialize(reader);
                 
                 sessions = deserialized.Where(
-                    t => this.Event.EventTalksIds.Any(t1 => t1 == t.Id));
+                    t => this.MeetupModel.EventTalksIds.Any(t1 => t1 == t.Id));
             }
 
-            return this.TalkToSessionConverter(sessions);
+            return sessions.Select(x => x.ToModel());
         }
 
         private void ExecuteLoadSessionsAsync()
@@ -149,7 +134,7 @@
                 var sessions = this.GetSessions();
                 this.Sessions.ReplaceRange(sessions);
 
-                if (sessions.Count == 0)
+                if (!sessions.Any())
                 {
                     this.NoSessionsFoundMessage = "No Sessions Found";
                     this.NoSessionsFound = true;
@@ -159,7 +144,7 @@
                     this.NoSessionsFound = false;
                 }
 
-                var day = this.Event.GetDate();
+                var day = this.MeetupModel.GetDate();
                 this.SessionsGrouped.ReplaceRange(new[] { new Grouping<string, TalkModel>(day, sessions) });
 
                 if (Device.RuntimePlatform != Device.UWP && FeatureFlags.AppLinksEnabled)
@@ -194,8 +179,6 @@
             {
                 this.IsBusy = false;
             }
-
-            return;
         }
 
         #endregion

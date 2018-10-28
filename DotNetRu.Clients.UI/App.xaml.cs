@@ -13,6 +13,14 @@
     using XamarinEvolve.Clients.Portable;
     using XamarinEvolve.Utils.Helpers;
 
+    public static class ViewModelLocator
+    {
+        private static MeetupViewModel meetupViewModel;
+
+        public static MeetupViewModel MeetupViewModel =>
+            meetupViewModel ?? (meetupViewModel = new MeetupViewModel(navigation: null));
+    }
+
     public partial class App : Application
     {
         public static App current;
@@ -127,7 +135,7 @@
                     return;
                 }
 
-                var feed = rootNav.CurrentPage as FeedPage;
+                var feed = rootNav.CurrentPage as NewsPage;
                 if (feed != null)
                 {
                     feed.OnResume();
