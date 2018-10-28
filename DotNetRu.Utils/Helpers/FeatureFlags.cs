@@ -6,11 +6,11 @@
 
         public static bool TalkRatingVisible => false;
 
-        public static bool ShowBuyTicketButton => true;
+        public static bool ShowBuyTicketButton => false;
 
         public static bool ShowConferenceFeedbackButton => false;
 
-        public static bool SponsorsOnTabPage => false;
+        public static bool SponsorsOnTabPage => true;
 
         public static bool AppLinksEnabled => true;
 

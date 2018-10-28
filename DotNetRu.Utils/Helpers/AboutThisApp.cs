@@ -15,19 +15,16 @@
 
         public const string Developer = "DotNetRu Team";
 
-        public const string DeveloperWebsite = "https://www.xpirit.com/mobile";
+        public const string DeveloperWebsite = "http://dotnet.ru";
 
         public const string MontemagnoWebsite = "https://montemagno.com";
 
         public const string OpenSourceUrl = "https://github.com/DotNetRu/App";
 
-        public const string TermsOfUseUrl = "http://go.microsoft.com/fwlink/?linkid=206977";
+        public const string IssueTracker = "https://github.com/DotNetRu/App/issues";
 
-        public const string PrivacyPolicyUrl = "http://go.microsoft.com/fwlink/?LinkId=521839";
-
-        public const string OpenSourceNoticeUrl = "http://tiny.cc/app-evolve-osn";
-
-        public const string EventRegistrationPage = "TODO";
+        // TODO fix, should be link to oss licenses
+        public const string OpenSourceNoticeUrl = "https://github.com/DotNetRu/App/blob/master/LICENSE.md";
 
         // TODO: use the domain name of the site you want to integrate AppLinks with
         public const string AppLinksBaseDomain = "TODO";
@@ -43,8 +40,8 @@
         public const string Credits =
             "The DotNetRu mobile app were handcrafted by DotNetRu, based on the great work done by Xamarin.\n\n"
             + "DotNetRu Team:\n" + "Anatoly Kulakov\n" + "Pavel Fedotovsky\n" + "Yury Belousov\n"
-            + "Sergey Polezhaev\n\n" + "Many thanks to the original Xamarin Team:\n" + "James Montemagno\n" + "\n"
-            + "...and of course you! <3";
+            + "Sergey Polezhaev\n\n" + "Many thanks to James Montemagno!\n\n"
+            + "...and of course you!";
     }
 }
 

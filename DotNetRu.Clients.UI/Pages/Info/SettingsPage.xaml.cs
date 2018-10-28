@@ -8,8 +8,8 @@ namespace XamarinEvolve.Clients.UI
 {
 	using XamarinEvolve.Utils.Helpers;
 
-	public partial class SettingsPage : BasePage
-  {
+	public partial class SettingsPage
+	{
     public override AppPage PageType => AppPage.Information;
 
       readonly SettingsViewModel vm;

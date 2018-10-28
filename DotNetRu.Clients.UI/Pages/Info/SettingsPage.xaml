@@ -3,18 +3,12 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="XamarinEvolve.Clients.UI.SettingsPage"
-    xmlns:toolkit="clr-namespace:FormsToolkit;assembly=FormsToolkit"
     xmlns:local="clr-namespace:XamarinEvolve.Clients.UI;assembly=XamarinEvolve.Clients.UI"    
+    x:Name="AboutPage"
+    Title="About"
+    Icon="tab_about.png"
+    NavigationPage.BackButtonTitle="Info"    
     BackgroundColor="{DynamicResource WindowBackgroundTable}">
-  <ContentPage.Title>
-    <OnPlatform x:TypeArguments="x:String" Android="About" WinPhone="About" iOS="About this app"/>
-  </ContentPage.Title>
-  <ContentPage.Resources>
-    <ResourceDictionary>
-      <toolkit:InvertedBooleanConverter x:Key="InvertedBooleanConverter" />
-    </ResourceDictionary>
-  </ContentPage.Resources>
-
   <local:AlwaysScrollView>
     <StackLayout Spacing="0">      
       <StackLayout
@@ -24,11 +18,7 @@
 
         <local:CardView>
           <StackLayout Spacing="0">
-            <local:LabelSection Text="{Binding AppInfo}">
-              <local:LabelSection.IsVisible>
-                <OnPlatform x:TypeArguments="x:Boolean" Android="True" iOS="False" WinPhone="True"/>
-              </local:LabelSection.IsVisible>
-            </local:LabelSection>
+            <local:LabelSection Text="{Binding AppInfo}"/>
             <StackLayout Spacing="10">
               <StackLayout.Padding>
                 <OnPlatform x:TypeArguments="Thickness" iOS="16,8,16,8" Android="16,8" WinPhone="16,8"/>

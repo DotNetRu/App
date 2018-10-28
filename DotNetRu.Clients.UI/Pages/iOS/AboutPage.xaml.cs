@@ -1,31 +1,35 @@
-﻿using Xamarin.Forms;
-using XamarinEvolve.Clients.Portable;
-
-namespace XamarinEvolve.Clients.UI
+﻿namespace XamarinEvolve.Clients.UI
 {
+    using Xamarin.Forms;
+
+    using XamarinEvolve.Clients.Portable;
+
     using MenuItem = Portable.MenuItem;
 
-    public partial class AboutPage : BasePage
+    public partial class AboutPage
     {
-        public override AppPage PageType => AppPage.Information;
+        private readonly AboutViewModel aboutViewModel;
 
-        readonly AboutViewModel vm;
+        private readonly IPushNotifications push;
 
-        readonly IPushNotifications push;
+        private bool isRegistered;
 
         public AboutPage()
         {
             this.InitializeComponent();
-            this.BindingContext = this.vm = new AboutViewModel();
+            this.BindingContext = this.aboutViewModel = new AboutViewModel();
             this.push = DependencyService.Get<IPushNotifications>();
-            var adjust = Device.RuntimePlatform != Device.Android ? 1 : -this.vm.AboutItems.Count + 1;
-            this.ListViewAbout.HeightRequest = (this.vm.AboutItems.Count * this.ListViewAbout.RowHeight) - adjust;
+            var adjust = Device.RuntimePlatform != Device.Android ? 1 : -this.aboutViewModel.AboutItems.Count + 1;
+            this.ListViewAbout.HeightRequest = (this.aboutViewModel.AboutItems.Count * this.ListViewAbout.RowHeight) - adjust;
             this.ListViewAbout.ItemTapped += (sender, e) => this.ListViewAbout.SelectedItem = null;
-            this.ListViewInfo.HeightRequest = (this.vm.InfoItems.Count * this.ListViewInfo.RowHeight) - adjust;
+            this.ListViewInfo.HeightRequest = (this.aboutViewModel.InfoItems.Count * this.ListViewInfo.RowHeight) - adjust;
 
             this.ListViewAbout.ItemSelected += async (sender, e) =>
                 {
-                    if (this.ListViewAbout.SelectedItem == null) return;
+                    if (this.ListViewAbout.SelectedItem == null)
+                    {
+                        return;
+                    }
 
                     await NavigationService.PushAsync(this.Navigation, new SettingsPage());
 
@@ -34,7 +38,10 @@ namespace XamarinEvolve.Clients.UI
 
             this.ListViewInfo.ItemSelected += async (sender, e) =>
                 {
-                    if (!(this.ListViewInfo.SelectedItem is MenuItem item)) return;
+                    if (!(this.ListViewInfo.SelectedItem is MenuItem item))
+                    {
+                        return;
+                    }
                     Page page = null;
                     switch (item.Parameter)
                     {
@@ -45,15 +52,20 @@ namespace XamarinEvolve.Clients.UI
 
                     if (page == null) return;
                     if (Device.RuntimePlatform == Device.iOS)
+                    {
                         await NavigationService.PushAsync(((Page)this.Parent.Parent).Navigation, page);
-                    else await NavigationService.PushAsync(this.Navigation, page);
+                    }
+                    else
+                    {
+                        await NavigationService.PushAsync(this.Navigation, page);
+                    }
 
                     this.ListViewInfo.SelectedItem = null;
                 };
             this.isRegistered = this.push.IsRegistered;
         }
 
-        bool isRegistered;
+        public override AppPage PageType => AppPage.Information;
 
         protected override void OnAppearing()
         {
