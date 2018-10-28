@@ -1,4 +1,8 @@
-﻿namespace XamarinEvolve.Clients.UI
+﻿using System;
+using System.Globalization;
+using XamarinEvolve.Clients.Portable.Interfaces;
+
+namespace XamarinEvolve.Clients.UI
 {
     using DotNetRu.DataStore.Audit.Models;
 
@@ -38,6 +42,7 @@
             this.ListViewFollow.HeightRequest =
                 (this.FriendDetailsViewModel.FollowItems.Count * this.ListViewFollow.RowHeight) - adjust;
         }
+
     }
 }
 

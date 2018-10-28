@@ -1,4 +1,6 @@
-﻿namespace XamarinEvolve.Clients.Portable
+﻿using XamarinEvolve.Clients.Portable.ApplicationResources;
+
+namespace XamarinEvolve.Clients.Portable
 {
     using System;
     using System.Collections.Generic;
@@ -8,7 +10,7 @@
 
     using MvvmHelpers;
 
-    using XamarinEvolve.Utils.Extensions;
+    using XamarinEvolve.Clients.Portable;
 
     public static class MeetupExtensions
     {
@@ -34,17 +36,17 @@
             {
                 if (DateTime.Today.DayOfYear == start.DayOfYear)
                 {
-                    return "Today";
+                    return AppResources.Today;
                 }
 
                 if (DateTime.Today.DayOfYear + 1 == start.DayOfYear)
                 {
-                    return "Tomorrow";
+                    return AppResources.Tomorrow;
                 }
             }
 
             // var monthDay = start.ToString("M");
-            var year = start.ToString("Y");
+            var year = start.ToString("Y", AppResources.Culture);
             return $"{year}";
         }
 
@@ -61,51 +63,51 @@
             {
                 if (DateTime.Today.DayOfYear == start.DayOfYear)
                 {
-                    return "Today";
+                    return AppResources.Today;
                 }
 
                 if (DateTime.Today.DayOfYear + 1 == start.DayOfYear)
                 {
-                    return "Tomorrow";
+                    return AppResources.Tomorrow;
                 }
             }
 
-            return start.ToString("MMMM dd, yyyy");
+            return start.ToString("MMMM dd, yyyy", AppResources.Culture);
         }
 
         public static string GetDisplayName(this MeetupModel e)
         {
             if (!e.StartTime.HasValue || !e.EndTime.HasValue || e.StartTime.Value.IsTba())
             {
-                return "To be announced";
+                return AppResources.ToBeAnnounced;
             }
 
             var start = e.StartTime.Value.ToEventTimeZone();
 
             if (e.IsAllDay)
             {
-                return "All Day";
+                return AppResources.AllDay;
             }
 
-            var startString = start.ToString("t");
+            var startString = start.ToString("t", AppResources.Culture);
             var end = e.EndTime.Value.ToEventTimeZone();
-            var endString = end.ToString("t");
+            var endString = end.ToString("t", AppResources.Culture);
 
             if (DateTime.Today.Year == start.Year)
             {
                 if (DateTime.Today.DayOfYear == start.DayOfYear)
                 {
-                    return $"Today {startString}–{endString}";
+                    return $"{AppResources.Today} {startString}–{endString}";
                 }
 
                 if (DateTime.Today.DayOfYear + 1 == start.DayOfYear)
                 {
-                    return $"Tomorrow {startString}–{endString}";
+                    return $"{AppResources.Tomorrow} {startString}–{endString}";
                 }
             }
 
             var day = start.DayOfWeek.ToString();
-            var monthDay = start.ToString("M");
+            var monthDay = start.ToString("M", AppResources.Culture);
             return $"{day}, {monthDay}, {startString}–{endString}";
         }
 
@@ -114,7 +116,7 @@
 
             if (!e.StartTime.HasValue || !e.EndTime.HasValue || e.StartTime.Value.IsTba())
             {
-                return "To be announced";
+                return AppResources.ToBeAnnounced;
             }
 
             var start = e.StartTime.Value.ToEventTimeZone();
@@ -122,12 +124,12 @@
 
             if (e.IsAllDay)
             {
-                return "All Day";
+                return AppResources.AllDay;
             }
 
-            var startString = start.ToString("t");
+            var startString = start.ToString("t", AppResources.Culture);
             var end = e.EndTime.Value.ToEventTimeZone();
-            var endString = end.ToString("t");
+            var endString = end.ToString("t", AppResources.Culture);
 
             return $"{startString}–{endString}";
         }

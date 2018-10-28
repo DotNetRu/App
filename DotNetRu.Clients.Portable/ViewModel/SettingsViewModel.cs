@@ -1,15 +1,68 @@
-﻿namespace XamarinEvolve.Clients.Portable
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.Globalization;
+using XamarinEvolve.Clients.Portable.ApplicationResources;
+using XamarinEvolve.Clients.Portable.Helpers;
+using XamarinEvolve.Clients.Portable.Interfaces;
+using XamarinEvolve.Clients.UI;
+
+namespace XamarinEvolve.Clients.Portable
 {
     using MvvmHelpers;
-
     using Xamarin.Forms;
-
     using XamarinEvolve.Utils;
     using XamarinEvolve.Utils.Helpers;
+    public class CustomObservableCollection<T> : ObservableRangeCollection<T>
+    {
+        public CustomObservableCollection() { }
+        public CustomObservableCollection(IEnumerable<T> items) : this()
+        {
+            foreach (var item in items)
+                this.Add(item);
+        }
+        public void ReportItemChange(T item)
+        {
+            NotifyCollectionChangedEventArgs args =
+                new NotifyCollectionChangedEventArgs(
+                    NotifyCollectionChangedAction.Replace,
+                    item,
+                    item,
+                    IndexOf(item));
+            OnCollectionChanged(args);
+        }
+    }
 
     public class SettingsViewModel : ViewModelBase
     {
-        public ObservableRangeCollection<MenuItem> AboutItems { get; } = new ObservableRangeCollection<MenuItem>();
+
+        public List<string> Languages { get; set; } = new List<string>()
+        {
+            "en",
+            "ru",
+        };
+
+        private string _selectedLanguage;
+
+        public string SelectedLanguage
+        {
+            get { return _selectedLanguage; }
+            set
+            {
+                _selectedLanguage = value;
+                SetLanguage();
+            }
+        }
+
+        private void SetLanguage()
+        {
+            Helpers.Settings.CurrentLanguage = _selectedLanguage;
+            CurrentLanguage = SelectedLanguage;
+            MessagingCenter.Send<object, CultureChangedMessage>(this,
+                string.Empty, new CultureChangedMessage(SelectedLanguage));
+        }
+
+        public CustomObservableCollection<MenuItem> AboutItems { get; } = new CustomObservableCollection<MenuItem>();
 
         public ObservableRangeCollection<MenuItem> TechnologyItems { get; } = new ObservableRangeCollection<MenuItem>();
 
@@ -17,46 +70,102 @@
 
         public bool AppToWebLinkingEnabled => FeatureFlags.AppToWebLinkingEnabled;
 
+        void NotifyVmProperties()
+        {
+            var ci = new CultureInfo(CurrentLanguage);
+            DependencyService.Get<ILocalize>().SetLocale(ci); // set the Thread for locale-aware methods
+            AppResources.Culture = ci;
+            OnPropertyChanged(nameof(AppInfo));
+            OnPropertyChanged(nameof(AppVersion));
+            this.AboutItems.ReplaceRange(
+                new[]
+                {
+                    new MenuItem
+                    {
+                        Name = Resources["CreatedBy"],
+                        Command = this.LaunchBrowserCommand,
+                        Parameter = AboutThisApp.DeveloperWebsite
+                    },
+                    new MenuItem
+                    {
+                        Name = Resources["Thanks"],
+                        Command = this.LaunchBrowserCommand,
+                        Parameter = AboutThisApp.MontemagnoWebsite
+                    },
+                    new MenuItem
+                    {
+                        Name = Resources["OpenSource"],
+                        Command = this.LaunchBrowserCommand,
+                        Parameter = AboutThisApp.OpenSourceUrl
+                    },
+                    new MenuItem
+                    {
+                        Name = Resources["TermsOfUse"],
+                        Command = this.LaunchBrowserCommand,
+                        //Parameter = AboutThisApp.TermsOfUseUrl
+                    },
+                    new MenuItem
+                    {
+                        Name = Resources["PrivacyPolicy"],
+                        Command = this.LaunchBrowserCommand,
+                        //Parameter = AboutThisApp.PrivacyPolicyUrl
+                    },
+                    new MenuItem
+                    {
+                        Name = Resources["OpenSourceNotice"],
+                        Command = this.LaunchBrowserCommand,
+                        Parameter = AboutThisApp.OpenSourceNoticeUrl
+                    }
+                });
+        }
         public SettingsViewModel()
         {
+            MessagingCenter.Subscribe<LocalizedResources>(this, MessageKeys.LanguageChanged, sender => NotifyVmProperties());
+            _selectedLanguage = CurrentLanguage;
             this.AboutItems.AddRange(
                 new[]
+                {
+                    new MenuItem
                     {
-                        new MenuItem
-                            {
-                                Name = $"Created by {AboutThisApp.Developer}",
-                                Command = this.LaunchBrowserCommand,
-                                Parameter = AboutThisApp.DeveloperWebsite
-                            },
-                        new MenuItem
-                            {
-                                Name = $"Big thanks to James Montemagno!",
-                                Command = this.LaunchBrowserCommand,
-                                Parameter = AboutThisApp.MontemagnoWebsite
-                            },
-                        new MenuItem
-                            {
-                                Name = "Open source on GitHub!",
-                                Command = this.LaunchBrowserCommand,
-                                Parameter = AboutThisApp.OpenSourceUrl
-                            },
-                        new MenuItem
-                            {
-                                Name = "Open Source Notice",
-                                Command = this.LaunchBrowserCommand,
-                                Parameter = AboutThisApp.OpenSourceNoticeUrl
-                            },
-                        new MenuItem
-                            {
-                                Name = "Issue tracker",
-                                Command = this.LaunchBrowserCommand,
-                                Parameter = AboutThisApp.OpenSourceUrl
-                            }
-                    });
+                        Name = Resources["CreatedBy"],
+                        Command = this.LaunchBrowserCommand,
+                        Parameter = AboutThisApp.DeveloperWebsite
+                    },
+                    new MenuItem
+                    {
+                        Name = Resources["Thanks"],
+                        Command = this.LaunchBrowserCommand,
+                        Parameter = AboutThisApp.MontemagnoWebsite
+                    },
+                    new MenuItem
+                    {
+                        Name = Resources["OpenSource"],
+                        Command = this.LaunchBrowserCommand,
+                        Parameter = AboutThisApp.OpenSourceUrl
+                    },
+                    new MenuItem
+                    {
+                        Name = Resources["TermsOfUse"],
+                        Command = this.LaunchBrowserCommand,
+                        //Parameter = AboutThisApp.TermsOfUseUrl
+                    },
+                    new MenuItem
+                    {
+                        Name = Resources["PrivacyPolicy"],
+                        Command = this.LaunchBrowserCommand,
+                       // Parameter = AboutThisApp.PrivacyPolicyUrl
+                    },
+                    new MenuItem
+                    {
+                        Name = Resources["OpenSourceNotice"],
+                        Command = this.LaunchBrowserCommand,
+                        Parameter = AboutThisApp.OpenSourceNoticeUrl
+                    }
+                });
 
             this.TechnologyItems.AddRange(
                 new[]
-                    {
+                {
                         new MenuItem
                             {
                                 Name = "Censored",
@@ -149,8 +258,15 @@
                     });
         }
 
-        public string AppVersion => $"Version {DependencyService.Get<IAppVersionProvider>()?.AppVersion ?? "1.0"}";
+        public string AppVersion => $"{Resources["Version"]} {DependencyService.Get<IAppVersionProvider>()?.AppVersion ?? "1.0"}";
 
-        public string AppInfo => "Всероссийское .NET сообщество\nDotNetRu - группа независимых сообществ .NET разработчиков со всей России. Мы объединяем людей вокруг .NET платформы, чтобы способствовать обмену опытом и знаниями. Проводим регулярные встречи, чтобы делиться новостями и лучшими практиками в разработке программных продуктов.";
+        public string AppInfo =>
+            Resources["AboutText"];
+
+#if DEBUG
+        public bool IsDebug => true;
+#else
+		public bool IsDebug => false;
+#endif
     }
 }

@@ -70,7 +70,6 @@
     <Compile Include="Helpers\Base36.cs" />
     <Compile Include="Helpers\Base36Exceptions.cs" />
     <Compile Include="Interfaces\IPlatformSpecificDataHandler.cs" />
-    <Compile Include="Extensions\DateTimeExtenstions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Plugin.GoogleAnalytics, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">

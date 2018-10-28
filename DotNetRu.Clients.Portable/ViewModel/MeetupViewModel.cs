@@ -1,11 +1,11 @@
-﻿namespace XamarinEvolve.Clients.Portable
+﻿
+namespace XamarinEvolve.Clients.Portable
 {
     using System;
     using System.Linq;
     using System.Windows.Input;
 
     using DotNetRu.DataStore.Audit.Models;
-    using DotNetRu.DataStore.Audit.Services;
 
     using FormsToolkit;
 
@@ -15,6 +15,7 @@
 
     using XamarinEvolve.Utils;
     using XamarinEvolve.Utils.Helpers;
+    using DotNetRu.DataStore.Audit.Services;
 
     public class MeetupViewModel : ViewModelBase
     {
@@ -30,6 +31,7 @@
         {
             this.MeetupModel = meetupModel;
             this.VenueModel = venueModel;
+            
 
             this.TapVenueCommand = new Command(this.OnVenueTapped);
         }
