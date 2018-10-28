@@ -136,8 +136,8 @@
                 this.Sessions.Clear();
                 this.OnPropertyChanged("Sessions");
 
-                var sessions = await this.StoreManager.SessionStore.GetNextSessions(2);
-                if (sessions != null) this.Sessions.AddRange(sessions);
+                //var sessions = await this.StoreManager.SessionStore.GetNextSessions(2);
+                //if (sessions != null) this.Sessions.AddRange(sessions);
 
                 this.NoSessions = this.Sessions.Count == 0;
             }

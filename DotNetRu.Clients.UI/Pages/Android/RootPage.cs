@@ -120,13 +120,13 @@
 
                 case AppPage.Talk:
                     await this.NavigateAsync((int)AppPage.Meetup);
-                    var session = await DependencyService.Get<ISessionStore>().GetAppIndexSession(id);
-                    if (session == null)
-                    {
-                        break;
-                    }
+                    //var session = await DependencyService.Get<ISessionStore>().GetAppIndexSession(id);
+                    //if (session == null)
+                    //{
+                    //    break;
+                    //}
 
-                    await this.Detail.Navigation.PushAsync(new TalkPage(session));
+                    //await this.Detail.Navigation.PushAsync(new TalkPage(session));
                     break;
                 case AppPage.Speaker:
                     await this.NavigateAsync((int)AppPage.Speakers);
