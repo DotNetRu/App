@@ -21,7 +21,7 @@
           <StackLayout Spacing="0">
             <controls:LabelSection Text="{Binding Resources[AboutDotNetRu]}"/>
             <controls:HeaderDivider/>
-            <Grid Margin="10, 10, 10, 0">
+            <Grid Margin="10, 10, 10, 0" BackgroundColor="White">
               <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
