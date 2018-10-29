@@ -14,17 +14,35 @@
 
     using Xamarin.Forms;
 
-    /// <inheritdoc />
-    /// <summary>
-    /// The feed view model.
-    /// </summary>
     public class NewsViewModel : ViewModelBase
     {
-        public ObservableRangeCollection<Tweet> Tweets { get; } = new ObservableRangeCollection<Tweet>();
+        private ICommand showConferenceFeedbackCommand;
 
-        public ObservableRangeCollection<TalkModel> Sessions { get; } = new ObservableRangeCollection<TalkModel>();
+        private ICommand refreshCommand;
 
-        public DateTime NextForceRefresh { get; set; }
+        private Notification notification;
+
+        private bool loadingNotifications;
+
+        private ICommand loadNotificationsCommand;
+
+        private bool loadingSessions;
+
+        private bool noSessions;
+
+        private bool loadingSocial;
+
+        private TalkModel selectedTalkModel;
+
+        private ICommand buyTicketNowCommand;
+
+        private ICommand loadSessionsCommand;
+
+        private Tweet selectedTweet;
+
+        private bool socialError;
+
+        private ICommand loadSocialCommand;
 
         public NewsViewModel()
         {
@@ -36,37 +54,15 @@
                 (m) => { Device.BeginInvokeOnMainThread(this.EvaluateVisualState); });
         }
 
-        private ICommand refreshCommand;
+        public ObservableRangeCollection<Tweet> Tweets { get; set; } = new ObservableRangeCollection<Tweet>();
 
-        public ICommand RefreshCommand => this.refreshCommand
-                                          ?? (this.refreshCommand = new Command(
-                                                  async () => await this.ExecuteRefreshCommandAsync()));
+        public ObservableRangeCollection<TalkModel> Sessions { get; } = new ObservableRangeCollection<TalkModel>();
 
-        private async Task ExecuteRefreshCommandAsync()
-        {
-            try
-            {
-                this.NextForceRefresh = DateTime.UtcNow.AddMinutes(45);
-                this.IsBusy = true;
+        public DateTime NextForceRefresh { get; set; }
 
-                this.ExecuteLoadNotificationsCommand();
-
-                var tasks = new[] { this.ExecuteLoadSocialCommandAsync() };
-
-                await Task.WhenAll(tasks);
-            }
-            catch (Exception ex)
-            {
-                ex.Data["method"] = "ExecuteRefreshCommandAsync";
-                this.Logger.Report(ex);
-            }
-            finally
-            {
-                this.IsBusy = false;
-            }
-        }
-
-        Notification notification;
+        public ICommand RefreshCommand =>
+            this.refreshCommand
+            ?? (this.refreshCommand = new Command(async () => await this.ExecuteRefreshCommandAsync()));
 
         public Notification Notification
         {
@@ -74,42 +70,15 @@
             set => this.SetProperty(ref this.notification, value);
         }
 
-        bool loadingNotifications;
-
         public bool LoadingNotifications
         {
             get => this.loadingNotifications;
             set => this.SetProperty(ref this.loadingNotifications, value);
         }
 
-        ICommand loadNotificationsCommand;
-
-        public ICommand LoadNotificationsCommand => this.loadNotificationsCommand
-                                                    ?? (this.loadNotificationsCommand = new Command(
-                                                            this.ExecuteLoadNotificationsCommand));
-
-        private void ExecuteLoadNotificationsCommand()
-        {
-            if (this.LoadingNotifications)
-            {
-                return;
-            }
-            this.LoadingNotifications = true;
-            try
-            {
-            }
-            catch (Exception ex)
-            {
-                ex.Data["method"] = "ExecuteLoadNotificationsCommandAsync";
-                this.Logger.Report(ex);
-            }
-            finally
-            {
-                this.LoadingNotifications = false;
-            }
-        }
-
-        bool loadingSessions;
+        public ICommand LoadNotificationsCommand =>
+            this.loadNotificationsCommand
+            ?? (this.loadNotificationsCommand = new Command(this.ExecuteLoadNotificationsCommand));
 
         public bool LoadingSessions
         {
@@ -117,76 +86,14 @@
             set => this.SetProperty(ref this.loadingSessions, value);
         }
 
-        ICommand loadSessionsCommand;
-
-        public ICommand LoadSessionsCommand => this.loadSessionsCommand
-                                               ?? (this.loadSessionsCommand =
-                                                       new Command(this.ExecuteLoadSessionsCommandAsync));
-
-        private void ExecuteLoadSessionsCommandAsync()
-        {
-            if (this.LoadingSessions)
-            {
-                return;
-            }
-
-            this.LoadingSessions = true;
-
-            try
-            {
-                this.NoSessions = false;
-                this.Sessions.Clear();
-                this.OnPropertyChanged("Sessions");
-
-                //var sessions = await this.StoreManager.SessionStore.GetNextSessions(2);
-                //if (sessions != null) this.Sessions.AddRange(sessions);
-
-                this.NoSessions = this.Sessions.Count == 0;
-            }
-            catch (Exception ex)
-            {
-                ex.Data["method"] = "ExecuteLoadTalksCommand";
-                this.Logger.Report(ex);
-                this.NoSessions = true;
-            }
-            finally
-            {
-                this.LoadingSessions = false;
-            }
-        }
-
-        public void EvaluateVisualState()
-        {
-            this.OnPropertyChanged(nameof(this.ShowBuyTicketButton));
-            this.OnPropertyChanged(nameof(this.ShowConferenceFeedbackButton));
-        }
-
-        bool noSessions;
+        public ICommand LoadSessionsCommand =>
+            this.loadSessionsCommand ?? (this.loadSessionsCommand = new Command(this.ExecuteLoadSessionsCommandAsync));
 
         public bool NoSessions
         {
             get => this.noSessions;
             set => this.SetProperty(ref this.noSessions, value);
         }
-
-        TalkModel selectedTalkModel;
-
-        public TalkModel SelectedTalkModel
-        {
-            get => this.selectedTalkModel;
-            set
-            {
-                this.selectedTalkModel = value;
-                this.OnPropertyChanged();
-                if (this.selectedTalkModel == null) return;
-
-                MessagingService.Current.SendMessage(MessageKeys.NavigateToSession, this.selectedTalkModel);
-
-                this.SelectedTalkModel = null;
-            }
-        }
-
-        bool loadingSocial;
 
         public bool LoadingSocial
         {
@@ -201,69 +108,32 @@
 
         public string SocialHeader => "Social";
 
-        private ICommand buyTicketNowCommand;
-
-        public ICommand BuyTicketNowCommand => this.buyTicketNowCommand
-                                               ?? (this.buyTicketNowCommand =
-                                                       new Command(this.ExecuteBuyTicketNowCommand));
+        public ICommand BuyTicketNowCommand =>
+            this.buyTicketNowCommand ?? (this.buyTicketNowCommand = new Command(this.ExecuteBuyTicketNowCommand));
 
         private void ExecuteBuyTicketNowCommand()
         {
             this.LaunchBrowserCommand.Execute(EventInfo.TicketUrl);
         }
 
-        private ICommand showConferenceFeedbackCommand;
-
-        public ICommand ShowConferenceFeedbackCommand => this.showConferenceFeedbackCommand
-                                                         ?? (this.showConferenceFeedbackCommand = new Command(
-                                                                 this.ExecuteShowConferenceFeedbackCommand));
+        public ICommand ShowConferenceFeedbackCommand =>
+            this.showConferenceFeedbackCommand ?? (this.showConferenceFeedbackCommand =
+                                                       new Command(this.ExecuteShowConferenceFeedbackCommand));
 
         private void ExecuteShowConferenceFeedbackCommand()
         {
             MessagingService.Current.SendMessage(MessageKeys.NavigateToConferenceFeedback);
         }
 
-        private ICommand loadSocialCommand;
-
-        public ICommand LoadSocialCommand => this.loadSocialCommand
-                                             ?? (this.loadSocialCommand = new Command(
-                                                     async () => await this.ExecuteLoadSocialCommandAsync()));
-
-        private async Task ExecuteLoadSocialCommandAsync()
-        {
-            if (this.LoadingSocial)
-            {
-                return;
-            }
-
-            this.LoadingSocial = true;
-            try
-            {
-                this.SocialError = false;
-                this.Tweets.Clear();
-                this.Tweets.ReplaceRange(await TweetHelper.Get());
-            }
-            catch (Exception ex)
-            {
-                this.SocialError = true;
-                ex.Data["method"] = "ExecuteLoadSocialCommandAsync";
-                this.Logger.Report(ex);
-            }
-            finally
-            {
-                this.LoadingSocial = false;
-            }
-        }
-
-        private bool socialError;
+        public ICommand LoadSocialCommand =>
+            this.loadSocialCommand ?? (this.loadSocialCommand =
+                                           new Command(async () => await this.ExecuteLoadSocialCommandAsync()));
 
         public bool SocialError
         {
             get => this.socialError;
             set => this.SetProperty(ref this.socialError, value);
         }
-
-        private Tweet selectedTweet;
 
         public Tweet SelectedTweet
         {
@@ -280,6 +150,132 @@
                 this.LaunchBrowserCommand.Execute(this.selectedTweet.Url);
 
                 this.SelectedTweet = null;
+            }
+        }
+
+        public TalkModel SelectedTalkModel
+        {
+            get => this.selectedTalkModel;
+            set
+            {
+                this.selectedTalkModel = value;
+                this.OnPropertyChanged();
+                if (this.selectedTalkModel == null)
+                {
+                    return;
+                }
+
+                MessagingService.Current.SendMessage(MessageKeys.NavigateToSession, this.selectedTalkModel);
+
+                this.SelectedTalkModel = null;
+            }
+        }
+
+        public void EvaluateVisualState()
+        {
+            this.OnPropertyChanged(nameof(this.ShowBuyTicketButton));
+            this.OnPropertyChanged(nameof(this.ShowConferenceFeedbackButton));
+        }
+
+        private void ExecuteLoadSessionsCommandAsync()
+        {
+            if (this.LoadingSessions)
+            {
+                return;
+            }
+
+            this.LoadingSessions = true;
+
+            try
+            {
+                this.NoSessions = false;
+                this.Sessions.Clear();
+                this.OnPropertyChanged("Sessions");
+
+                // var sessions = await this.StoreManager.SessionStore.GetNextSessions(2);
+                // if (sessions != null) this.Sessions.AddRange(sessions);
+                this.NoSessions = this.Sessions.Count == 0;
+            }
+            catch (Exception ex)
+            {
+                ex.Data["method"] = "ExecuteLoadTalksCommand";
+                this.Logger.Report(ex);
+                this.NoSessions = true;
+            }
+            finally
+            {
+                this.LoadingSessions = false;
+            }
+        }
+
+        private void ExecuteLoadNotificationsCommand()
+        {
+            if (this.LoadingNotifications)
+            {
+                return;
+            }
+
+            this.LoadingNotifications = true;
+            try
+            {
+            }
+            catch (Exception ex)
+            {
+                ex.Data["method"] = "ExecuteLoadNotificationsCommandAsync";
+                this.Logger.Report(ex);
+            }
+            finally
+            {
+                this.LoadingNotifications = false;
+            }
+        }
+
+        private async Task ExecuteRefreshCommandAsync()
+        {
+            try
+            {
+                this.NextForceRefresh = DateTime.UtcNow.AddMinutes(45);
+                this.IsBusy = true;
+
+                this.ExecuteLoadNotificationsCommand();
+
+                await this.ExecuteLoadSocialCommandAsync();
+            }
+            catch (Exception ex)
+            {
+                ex.Data["method"] = "ExecuteRefreshCommandAsync";
+                this.Logger.Report(ex);
+            }
+            finally
+            {
+                this.IsBusy = false;
+            }
+        }
+
+        private async Task ExecuteLoadSocialCommandAsync()
+        {
+            if (this.LoadingSocial)
+            {
+                return;
+            }
+
+            this.LoadingSocial = true;
+            try
+            {
+                this.SocialError = false;
+                var tweets = await TweetHelper.Get();
+
+                this.Tweets.ReplaceRange(tweets);
+            }
+            catch (Exception ex)
+            {
+                this.SocialError = true;
+                ex.Data["method"] = "ExecuteLoadSocialCommandAsync";
+                this.Logger.Report(ex);
+            }
+            finally
+            {
+                this.LoadingSocial = false;
             }
         }
     }

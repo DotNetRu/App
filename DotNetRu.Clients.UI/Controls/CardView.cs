@@ -1,7 +1,7 @@
-﻿using Xamarin.Forms;
-
-namespace DotNetRu.Clients.UI.Controls
+﻿namespace DotNetRu.Clients.UI.Controls
 {
+    using Xamarin.Forms;
+
     public class CardView : Frame
     {
         public CardView()

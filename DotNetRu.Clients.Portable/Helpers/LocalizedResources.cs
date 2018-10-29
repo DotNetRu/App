@@ -3,6 +3,7 @@
     using System.ComponentModel;
 
     using DotNetRu.Clients.Portable.ApplicationResources;
+    using DotNetRu.Clients.Portable.Interfaces;
     using DotNetRu.Utils.Helpers;
 
     using Xamarin.Forms;
@@ -21,6 +22,9 @@
         private void OnCultureChanged(object s, CultureChangedMessage cultureChangedMessage)
         {           
             AppResources.Culture = cultureChangedMessage.NewCultureInfo;
+
+            // set for locale-aware methods
+            DependencyService.Get<ILocalize>().SetLocale(cultureChangedMessage.NewCultureInfo);
 
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Item"));
             MessagingCenter.Send(this, MessageKeys.LanguageChanged);

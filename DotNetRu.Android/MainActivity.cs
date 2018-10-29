@@ -36,47 +36,47 @@
         MainLauncher = true,
         ConfigurationChanges = ConfigChanges.Locale | ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     [IntentFilter(
-        new[] {Intent.ActionView},
-        Categories = new[] {Intent.CategoryDefault, Intent.CategoryBrowsable},
+        new[] { Intent.ActionView },
+        Categories = new[] { Intent.CategoryDefault, Intent.CategoryBrowsable },
         DataScheme = "http",
         DataPathPrefix = "/" + AboutThisApp.SessionsSiteSubdirectory + "/",
         DataHost = AboutThisApp.AppLinksBaseDomain)]
     [IntentFilter(
-        new[] {Intent.ActionView},
-        Categories = new[] {Intent.CategoryDefault, Intent.CategoryBrowsable},
+        new[] { Intent.ActionView },
+        Categories = new[] { Intent.CategoryDefault, Intent.CategoryBrowsable },
         DataScheme = "http",
         DataPathPrefix = "/" + AboutThisApp.SpeakersSiteSubdirectory + "/",
         DataHost = AboutThisApp.AppLinksBaseDomain)]
     [IntentFilter(
-        new[] {Intent.ActionView},
-        Categories = new[] {Intent.CategoryDefault, Intent.CategoryBrowsable},
+        new[] { Intent.ActionView },
+        Categories = new[] { Intent.CategoryDefault, Intent.CategoryBrowsable },
         DataScheme = "https",
         DataPathPrefix = "/" + AboutThisApp.SpeakersSiteSubdirectory + "/",
         DataHost = AboutThisApp.AppLinksBaseDomain)]
     [IntentFilter(
-        new[] {Intent.ActionView},
-        Categories = new[] {Intent.CategoryDefault, Intent.CategoryBrowsable},
+        new[] { Intent.ActionView },
+        Categories = new[] { Intent.CategoryDefault, Intent.CategoryBrowsable },
         DataScheme = "http",
         DataHost = AboutThisApp.AppLinksBaseDomain)]
     [IntentFilter(
-        new[] {Intent.ActionView},
-        Categories = new[] {Intent.CategoryDefault, Intent.CategoryBrowsable},
+        new[] { Intent.ActionView },
+        Categories = new[] { Intent.CategoryDefault, Intent.CategoryBrowsable },
         DataScheme = "https",
         DataHost = AboutThisApp.AppLinksBaseDomain)]
     [IntentFilter(
-        new[] {Intent.ActionView},
-        Categories = new[] {Intent.CategoryDefault, Intent.CategoryBrowsable},
+        new[] { Intent.ActionView },
+        Categories = new[] { Intent.CategoryDefault, Intent.CategoryBrowsable },
         DataScheme = "https",
         DataPathPrefix = "/" + AboutThisApp.SessionsSiteSubdirectory + "/",
         DataHost = AboutThisApp.AppLinksBaseDomain)]
     [IntentFilter(
-        new[] {Intent.ActionView},
-        Categories = new[] {Intent.CategoryDefault, Intent.CategoryBrowsable},
+        new[] { Intent.ActionView },
+        Categories = new[] { Intent.CategoryDefault, Intent.CategoryBrowsable },
         DataScheme = "http",
         DataHost = AboutThisApp.AppLinksBaseDomain)]
     [IntentFilter(
-        new[] {Intent.ActionView},
-        Categories = new[] {Intent.CategoryDefault, Intent.CategoryBrowsable},
+        new[] { Intent.ActionView },
+        Categories = new[] { Intent.CategoryDefault, Intent.CategoryBrowsable },
         DataScheme = "https",
         DataHost = AboutThisApp.AppLinksBaseDomain)]
     public class MainActivity : FormsAppCompatActivity
@@ -138,27 +138,30 @@
 
             this.OnNewIntent(this.Intent);
 
-            if (!Settings.Current.PushNotificationsEnabled) return;
+            if (!Settings.Current.PushNotificationsEnabled)
+            {
+                return;
+            }
 #if ENABLE_TEST_CLOUD
 #else
+
             // this.RegisterWithGCM();
 #endif
 
             DataRefreshService.ScheduleRefresh(this);
         }
 
-        //private void RegisterWithGCM()
-        //{
-        //    // Check to ensure everything's set up right
-        //    GcmClient.CheckDevice(this);
-        //    GcmClient.CheckManifest(this);
+        // private void RegisterWithGCM()
+        // {
+        // // Check to ensure everything's set up right
+        // GcmClient.CheckDevice(this);
+        // GcmClient.CheckManifest(this);
 
-        //    // Register for push notifications
-        //    Debug.WriteLine("MainActivity", "Registering...");
-        //    GcmService.Initialize(this);
-        //    GcmService.Register(this);
-        //}
-
+        // // Register for push notifications
+        // Debug.WriteLine("MainActivity", "Registering...");
+        // GcmService.Initialize(this);
+        // GcmService.Register(this);
+        // }
         public bool IsPlayServicesAvailable()
         {
             // int resultCode = GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(this);
@@ -188,35 +191,35 @@
             return true;
         }
 
-        void SetupBottomTabs()
+        private void SetupBottomTabs()
         {
             BottomTabbedRenderer.ItemPadding = new Thickness(6, 6, 6, 1);
 #if ENABLE_LIVE_PLAYER
 #else
             BottomTabbedRenderer.MenuItemIconSetter = (menuItem, iconSource, selected) =>
-            {
-                /*TODO: Make it without switch. Following variant does not work :(
-                resId = Resources.GetIdentifier(iconSource.File, "drawable", PackageName);  //returns 0 always
-                */
-                if (iconSource != null)
                 {
-                    switch (iconSource.File)
+                    /*TODO: Make it without switch. Following variant does not work :(
+                    resId = Resources.GetIdentifier(iconSource.File, "drawable", PackageName);  //returns 0 always
+                    */
+                    if (iconSource != null)
                     {
-                        case "menu_feed.png":
-                            menuItem.SetIcon(Resource.Drawable.menu_feed);
-                            break;
-                        case "menu_speakers.png":
-                            menuItem.SetIcon(Resource.Drawable.menu_speakers);
-                            break;
-                        case "menu_events.png":
-                            menuItem.SetIcon(Resource.Drawable.menu_events);
-                            break;
-                        case "menu_info.png":
-                            menuItem.SetIcon(Resource.Drawable.menu_info);
-                            break;
+                        switch (iconSource.File)
+                        {
+                            case "menu_feed.png":
+                                menuItem.SetIcon(Resource.Drawable.menu_feed);
+                                break;
+                            case "menu_speakers.png":
+                                menuItem.SetIcon(Resource.Drawable.menu_speakers);
+                                break;
+                            case "menu_events.png":
+                                menuItem.SetIcon(Resource.Drawable.menu_events);
+                                break;
+                            case "menu_info.png":
+                                menuItem.SetIcon(Resource.Drawable.menu_info);
+                                break;
+                        }
                     }
-                }
-            };
+                };
 #endif
         }
 

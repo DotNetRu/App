@@ -1,11 +1,9 @@
 ﻿namespace DotNetRu.Clients.Portable.ViewModel
 {
     using System.Collections.Generic;
-    using System.Globalization;
     using System.Linq;
     using System.Windows.Input;
 
-    using DotNetRu.Clients.Portable.ApplicationResources;
     using DotNetRu.Clients.Portable.Helpers;
     using DotNetRu.Clients.Portable.Interfaces;
     using DotNetRu.Clients.Portable.Model;
@@ -24,7 +22,7 @@
             MessagingCenter.Subscribe<LocalizedResources>(
                 this,
                 MessageKeys.LanguageChanged,
-                sender => this.NotifyViewModel());
+                sender => this.UpdateViewModel());
 
             var savedLanguage = XamarinEvolve.Clients.Portable.Helpers.Settings.CurrentLanguage;
             var uiLanguage = DependencyService.Get<ILocalize>().GetCurrentCultureInfo().TwoLetterISOLanguageName == "ru"
@@ -64,13 +62,6 @@
             this.Communities.AddRange(
                 new[]
                     {
-                        new LocalizableMenuItem
-                            {
-                                ResourceName = "DotNetRu",
-                                Command = this.LaunchBrowserCommand,
-                                ImageSource = LogoService.DotNetRuLogo,
-                                Parameter = AboutThisApp.DotNetRuLink
-                            }, 
                         new LocalizableMenuItem
                             {
                                 ResourceName = "SaintPetersburg",
@@ -133,12 +124,8 @@
         public string AppVersion =>
             $"{this.Resources["Version"]} {DependencyService.Get<IAppVersionProvider>()?.AppVersion ?? "1.0"}";
 
-        private void NotifyViewModel()
+        private void UpdateViewModel()
         {
-            var cultureInfo = new CultureInfo(this.SelectedLanguage.GetLanguageCode());
-            DependencyService.Get<ILocalize>().SetLocale(cultureInfo); // set the Thread for locale-aware methods
-            AppResources.Culture = cultureInfo;
-
             this.OnPropertyChanged(nameof(this.AppVersion));
 
             this.AboutItems.ForEach(x => x.Update());

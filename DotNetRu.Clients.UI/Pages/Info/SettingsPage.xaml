@@ -5,6 +5,7 @@
     x:Class="DotNetRu.Clients.UI.Pages.Info.SettingsPage"
     xmlns:pages="clr-namespace:DotNetRu.Clients.UI.Pages;assembly=DotNetRu.Clients.UI"
     xmlns:controls="clr-namespace:DotNetRu.Clients.UI.Controls;assembly=DotNetRu.Clients.UI"
+    xmlns:local="clr-namespace:DotNetRu.DataStore.Audit.Services;assembly=DotNetRu.DataStore.Audit"
     x:Name="AboutPage"
     Title="{Binding Resources[About]}"
     Icon="tab_about.png"
@@ -20,8 +21,14 @@
           <StackLayout Spacing="0">
             <controls:LabelSection Text="{Binding Resources[AboutDotNetRu]}"/>
             <controls:HeaderDivider/>
-            <StackLayout Padding="{StaticResource StandardPadding}" BackgroundColor="White">
-                <Label Text="{Binding Resources[AboutText]}" Style="{DynamicResource EvolveListItemTextStyle}"/>
+            <StackLayout Padding="{StaticResource StandardPadding}" Orientation="Horizontal" BackgroundColor="White">
+              <Image Source="{Binding Source={x:Static local:LogoService.DotNetRuLogo}}">
+                <Image.GestureRecognizers>
+                  <TapGestureRecognizer
+                      Tapped="TapGestureRecognizer_OnTapped"/>
+                </Image.GestureRecognizers>
+              </Image>
+              <Label Text="{Binding Resources[AboutText]}" Style="{DynamicResource EvolveListItemTextStyle}"/>
             </StackLayout>
             <controls:LabelSection Text="{Binding Resources[OurCommunities]}"/>
             <controls:NonScrollableListView
@@ -65,7 +72,9 @@
                 ItemsSource="{Binding AboutItems}"
                 RowHeight="44">
               <controls:NonScrollableListView.SeparatorColor>
-                <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ListSeparator}"/>
+                <OnPlatform x:TypeArguments="Color">
+                  <On Platform="iOS" Value="{StaticResource ListSeparator}"/>
+                </OnPlatform>
               </controls:NonScrollableListView.SeparatorColor>
               <controls:NonScrollableListView.ItemTemplate>
                 <DataTemplate>

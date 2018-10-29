@@ -55,7 +55,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
                     return;
                 }
 
-                this.Logger.Track(EvolveLoggerKeys.ConferenceFeedback);
+                this.Logger.Track(DotNetRuLoggerKeys.ConferenceFeedback);
 
                 MessagingService.Current.SendMessage<MessagingServiceAlert>(
                     MessageKeys.Message,
