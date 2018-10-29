@@ -26,7 +26,6 @@ namespace DotNetRu.Droid
 		
 		public static void UpdateIdValues()
 		{
-			global::ModernHttpClient.Resource.String.library_name = global::DotNetRu.Droid.Resource.String.library_name;
 			global::Naxam.Controls.Platform.Droid.Resource.Animation.abc_fade_in = global::DotNetRu.Droid.Resource.Animation.abc_fade_in;
 			global::Naxam.Controls.Platform.Droid.Resource.Animation.abc_fade_out = global::DotNetRu.Droid.Resource.Animation.abc_fade_out;
 			global::Naxam.Controls.Platform.Droid.Resource.Animation.abc_grow_fade_in_from_bottom = global::DotNetRu.Droid.Resource.Animation.abc_grow_fade_in_from_bottom;
@@ -2135,8 +2134,6 @@ namespace DotNetRu.Droid
 			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ViewStubCompat_android_id = global::DotNetRu.Droid.Resource.Styleable.ViewStubCompat_android_id;
 			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ViewStubCompat_android_inflatedId = global::DotNetRu.Droid.Resource.Styleable.ViewStubCompat_android_inflatedId;
 			global::Naxam.Controls.Platform.Droid.Resource.Styleable.ViewStubCompat_android_layout = global::DotNetRu.Droid.Resource.Styleable.ViewStubCompat_android_layout;
-			global::PCLStorage.Resource.String.ApplicationName = global::DotNetRu.Droid.Resource.String.ApplicationName;
-			global::PCLStorage.Resource.String.Hello = global::DotNetRu.Droid.Resource.String.Hello;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::DotNetRu.Droid.Resource.Attribute.actionBarSize;
 		}
 		
@@ -6546,12 +6543,6 @@ namespace DotNetRu.Droid
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f080050
-			public const int ApplicationName = 2131230800;
-			
-			// aapt resource value: 0x7f08004f
-			public const int Hello = 2131230799;
-			
 			// aapt resource value: 0x7f080026
 			public const int abc_action_bar_home_description = 2131230758;
 			
@@ -6705,11 +6696,8 @@ namespace DotNetRu.Droid
 			// aapt resource value: 0x7f080010
 			public const int common_signin_button_text_long = 2131230736;
 			
-			// aapt resource value: 0x7f080052
-			public const int google_app_id = 2131230802;
-			
-			// aapt resource value: 0x7f080051
-			public const int library_name = 2131230801;
+			// aapt resource value: 0x7f08004f
+			public const int google_app_id = 2131230799;
 			
 			// aapt resource value: 0x7f080011
 			public const int mr_button_content_description = 2131230737;

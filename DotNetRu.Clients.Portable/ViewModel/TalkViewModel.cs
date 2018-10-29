@@ -8,7 +8,6 @@
     using DotNetRu.Clients.Portable.Extensions;
     using DotNetRu.Clients.Portable.Helpers;
     using DotNetRu.Clients.Portable.Model;
-    using DotNetRu.Clients.Portable.Services;
     using DotNetRu.DataStore.Audit.Models;
     using DotNetRu.Utils.Helpers;
     using DotNetRu.Utils.Interfaces;
@@ -32,6 +31,8 @@
         private ICommand shareCommand;
 
         private ICommand reminderCommand;
+
+        private bool isReminderSet;
 
         public TalkModel TalkModel
         {
@@ -121,8 +122,6 @@
 
         public bool ShowReminder { get; set; }
 
-        private bool isReminderSet;
-
         public bool IsReminderSet
         {
             get => this.isReminderSet;
@@ -157,43 +156,44 @@
 
         async Task ExecuteReminderCommandAsync()
         {
-            if (!this.IsReminderSet)
-            {
-                var result = await ReminderService.AddReminderAsync(
-                                 this.TalkModel.Id,
-                                 new Plugin.Calendars.Abstractions.CalendarEvent
-                                     {
-                                         AllDay = false,
-                                         Description =
-                                             this.TalkModel.Abstract,
-                                         Location =
-                                             this.TalkModel.Room?.Name
-                                             ?? string.Empty,
-                                         Name = this.TalkModel.Title,
-                                         Start = this.TalkModel.StartTime
-                                             .Value,
-                                         End = this.TalkModel.EndTime.Value
-                                     });
+            //if (!this.IsReminderSet)
+            //{
+            //    var result = await ReminderService.AddReminderAsync(
+            //                     this.TalkModel.Id,
+            //                     new Plugin.Calendars.Abstractions.CalendarEvent
+            //                         {
+            //                             AllDay = false,
+            //                             Description =
+            //                                 this.TalkModel.Abstract,
+            //                             Location =
+            //                                 this.TalkModel.Room?.Name
+            //                                 ?? string.Empty,
+            //                             Name = this.TalkModel.Title,
+            //                             Start = this.TalkModel.StartTime
+            //                                 .Value,
+            //                             End = this.TalkModel.EndTime.Value
+            //                         });
 
 
-                if (!result)
-                {
-                    return;
-                }
+            //    if (!result)
+            //    {
+            //        return;
+            //    }
 
-                this.Logger.Track(DotNetRuLoggerKeys.ReminderAdded, "Title", this.TalkModel.Title);
-                this.IsReminderSet = true;
-            }
-            else
-            {
-                var result = await ReminderService.RemoveReminderAsync(this.TalkModel.Id);
-                if (!result)
-                {
-                    return;
-                }
-                this.Logger.Track(DotNetRuLoggerKeys.ReminderRemoved, "Title", this.TalkModel.Title);
-                this.IsReminderSet = false;
-            }
+            //    this.Logger.Track(DotNetRuLoggerKeys.ReminderAdded, "Title", this.TalkModel.Title);
+            //    this.IsReminderSet = true;
+            //}
+            //else
+            //{
+            //    var result = await ReminderService.RemoveReminderAsync(this.TalkModel.Id);
+            //    if (!result)
+            //    {
+            //        return;
+            //    }
+
+            //    this.Logger.Track(DotNetRuLoggerKeys.ReminderRemoved, "Title", this.TalkModel.Title);
+            //    this.IsReminderSet = false;
+            //}
         }
 
         public ICommand ShareCommand => this.shareCommand
@@ -203,51 +203,21 @@
         private async Task ExecuteShareCommandAsync()
         {
             this.Logger.Track(DotNetRuLoggerKeys.Share, "Title", this.TalkModel.Title);
-            //var speakerHandles = this.TalkModel.SpeakerHandles;
-            //if (!string.IsNullOrEmpty(speakerHandles))
-            //{
-            //    speakerHandles = " by " + speakerHandles;
-            //}
+
 
             var message = $"{this.TalkModel.Title} {EventInfo.HashTag} {this.TalkModel.VideoUrl}";
+            await CrossShare.Current.Share(new ShareMessage { Text = message });
 
             // TODO fix app links
-            //if (FeatureFlags.AppLinksEnabled)
-            //{
-            //    message += " " + this.TalkModel.GetWebUrl();
-            //}
-
-            await CrossShare.Current.Share(new ShareMessage { Text = message });
-        }
-
-        private ICommand loadSessionCommand;
-
-        public ICommand LoadSessionCommand => this.loadSessionCommand
-                                              ?? (this.loadSessionCommand = new Command(
-                                                      async () => await this.ExecuteLoadSessionCommandAsync()));
-
-        private async Task ExecuteLoadSessionCommandAsync()
-        {
-            if (this.IsBusy)
-            {
-                return;
-            }
-
-            try
-            {
-                this.IsBusy = true;
-
-                this.IsReminderSet = await ReminderService.HasReminderAsync(this.TalkModel.Id);
-            }
-            catch (Exception ex)
-            {
-                this.Logger.Report(ex, "Method", "ExecuteLoadSessionCommandAsync");
-                MessagingService.Current.SendMessage(MessageKeys.Error, ex);
-            }
-            finally
-            {
-                this.IsBusy = false;
-            }
+            // var speakerHandles = this.TalkModel.SpeakerHandles;
+            // if (!string.IsNullOrEmpty(speakerHandles))
+            // {
+            // speakerHandles = " by " + speakerHandles;
+            // }
+            // if (FeatureFlags.AppLinksEnabled)
+            // {
+            // message += " " + this.TalkModel.GetWebUrl();
+            // }
         }
     }
 }

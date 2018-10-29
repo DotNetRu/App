@@ -1,13 +1,14 @@
-﻿using DotNetRu.Utils.Helpers;
-
-namespace DotNetRu.Clients.Portable
+﻿namespace DotNetRu.Clients.Portable
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+
     using DotNetRu.Clients.Portable.Model;
     using DotNetRu.Utils;
+    using DotNetRu.Utils.Helpers;
+
     using LinqToTwitter;
 
     public class TweetHelper
@@ -46,7 +47,7 @@ namespace DotNetRu.Clients.Portable
                 var tweets =
                 (from tweet in spbDotNetTweets.Union(dotnetruTweets)
                  where !tweet.PossiblySensitive
-                 let tweetUser = String.IsNullOrEmpty(tweet.RetweetedStatus.FullText) ? tweet.User : tweet.RetweetedStatus.User
+                 let tweetUser = string.IsNullOrEmpty(tweet.RetweetedStatus.FullText) ? tweet.User : tweet.RetweetedStatus.User
                  where tweetUser != null
                  select new Tweet
                  {
@@ -54,14 +55,14 @@ namespace DotNetRu.Clients.Portable
                          tweet.Entities?.MediaEntities.Count > 0
                              ? tweet.Entities?.MediaEntities?[0].MediaUrlHttps ?? string.Empty
                              : string.Empty,
-                     NumberOfLikes = String.IsNullOrEmpty(tweet.RetweetedStatus.FullText) ?
+                     NumberOfLikes = string.IsNullOrEmpty(tweet.RetweetedStatus.FullText) ?
                                        tweet.FavoriteCount :
                                        tweet.RetweetedStatus.FavoriteCount,
-                    NumberOfRetweets = String.IsNullOrEmpty(tweet.RetweetedStatus.FullText) ?
+                     NumberOfRetweets = string.IsNullOrEmpty(tweet.RetweetedStatus.FullText) ?
                                              tweet.RetweetCount :
                                              tweet.RetweetedStatus.RetweetCount,
                      ScreenName = tweetUser?.ScreenNameResponse ?? string.Empty,
-                     Text = String.IsNullOrEmpty(tweet.RetweetedStatus.FullText)
+                     Text = string.IsNullOrEmpty(tweet.RetweetedStatus.FullText)
                          ? tweet.FullText.ConvertToUsualUrl(
                              tweet.Entities.UrlEntities.ToDictionary(t => t.Url, t => t.DisplayUrl))
                          : tweet.RetweetedStatus.FullText.ConvertToUsualUrl(

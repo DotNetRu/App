@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <SkipValidatePackageReferences>true</SkipValidatePackageReferences>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -14,7 +13,7 @@
     <AndroidResgenClass>Resource</AndroidResgenClass>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidApplication>True</AndroidApplication>
-    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
+    <AndroidUseLatestPlatformSdk>true</AndroidUseLatestPlatformSdk>
     <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -112,39 +111,23 @@
     <AndroidExplicitCrunch>true</AndroidExplicitCrunch>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="CClarke.Plugin.Calendars" Version="0.6.0-beta" />
     <PackageReference Include="DotNetRU.BottomTabbedPage" Version="0.1.0.2" />
     <PackageReference Include="FormsToolkit" Version="2.0.1" />
     <PackageReference Include="Humanizer.Core" Version="2.2.0" />
     <PackageReference Include="Humanizer.Core.ru" Version="2.2.0" />
-    <PackageReference Include="linqtotwitter">
-      <Version>4.2.1</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.AppCenter" Version="1.2.0" />
-    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.2.0" />
-    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.2.0" />
-    <PackageReference Include="Microsoft.Bcl" Version="1.1.10" />
-    <PackageReference Include="Microsoft.Bcl.Build" Version="1.0.21" />
-    <PackageReference Include="Microsoft.Bcl.Compression" Version="3.9.85" />
-    <PackageReference Include="modernhttpclient" Version="2.4.2" />
+    <PackageReference Include="Microsoft.AppCenter" Version="1.3.0" />
+    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.3.0" />
+    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.3.0" />
     <PackageReference Include="Naxam.Ittianyu.BottomNavExtension" Version="1.2.2" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
-    <PackageReference Include="PCLStorage" Version="1.0.2" />
     <PackageReference Include="Plugin.CurrentActivity" Version="1.0.1" />
     <PackageReference Include="Plugin.Permissions" Version="2.2.1" />
     <PackageReference Include="Plugin.Share" Version="7.1.1" />
     <PackageReference Include="Refractored.Controls.CircleImageView" Version="1.0.1" />
     <PackageReference Include="Refractored.MvvmHelpers" Version="1.3.0" />
-    <PackageReference Include="Refractored.XamForms.PullToRefresh" Version="2.0.0.13" />
-    <PackageReference Include="Rx-Core" Version="2.2.5" />
-    <PackageReference Include="Rx-Interfaces" Version="2.2.5" />
-    <PackageReference Include="Rx-Linq" Version="2.2.5" />
-    <PackageReference Include="Rx-Main" Version="2.2.5" />
-    <PackageReference Include="Rx-PlatformServices" Version="2.2.5" />
     <PackageReference Include="Validation" Version="2.4.18" />
-    <PackageReference Include="Xam.Plugin.Connectivity" Version="3.0.3" />
-    <PackageReference Include="Xam.Plugin.EmbeddedResource" Version="1.0.1.0" />
-    <PackageReference Include="Xam.Plugins.Forms.ImageCircle" Version="2.0.1" />
+    <PackageReference Include="Xam.Plugin.Connectivity" Version="3.1.1" />
+    <PackageReference Include="Xam.Plugins.Forms.ImageCircle" Version="2.0.2" />
     <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
     <PackageReference Include="Xamarin.Android.Arch.Core.Common" Version="1.0.0" />
     <PackageReference Include="Xamarin.Android.Arch.Lifecycle.Common" Version="1.0.1" />
@@ -167,7 +150,6 @@
     <PackageReference Include="Xamarin.Android.Support.v7.Palette" Version="26.1.0.1" />
     <PackageReference Include="Xamarin.Android.Support.v7.RecyclerView" Version="26.1.0.1" />
     <PackageReference Include="Xamarin.Android.Support.Vector.Drawable" Version="26.1.0.1" />
-    <PackageReference Include="Xamarin.Build.Download" Version="0.4.7" />
     <PackageReference Include="Xamarin.FFImageLoading" Version="2.3.4" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.3.4" />
     <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.3.4" />
@@ -207,7 +189,6 @@
     <Compile Include="Helpers\AppVersionProvider.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <AndroidAsset Include="Assets\fontawesome.ttf" />
     <AndroidAsset Include="Assets\Roboto-Bold.ttf" />
     <AndroidAsset Include="Assets\Roboto-Regular.ttf" />
@@ -405,7 +386,6 @@
     <AndroidResource Include="Resources\drawable\cursor_white.xml" />
     <AndroidResource Include="Resources\drawable\searchview_background.xml" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\DotNetRu.Clients.Portable\DotNetRu.Clients.Portable.csproj">
       <Project>{434442F3-9AF2-4A19-9151-EFBD731BD367}</Project>
@@ -519,4 +499,5 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\loading_apple.gif" />
   </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

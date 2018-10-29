@@ -21,8 +21,6 @@
 
     using Plugin.Permissions;
 
-    using Refractored.XamForms.PullToRefresh.Droid;
-
     using Xamarin.Forms;
     using Xamarin.Forms.Platform.Android;
 
@@ -109,7 +107,6 @@
             // AndroidAppLinks.Init(this);
             Toolkit.Init();
 
-            PullToRefreshLayoutRenderer.Init();
             typeof(Color).GetProperty("Accent", BindingFlags.Public | BindingFlags.Static)
                 ?.SetValue(null, Color.FromHex("#757575"));
 
