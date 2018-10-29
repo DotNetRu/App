@@ -4,17 +4,18 @@
     using Android.Content;
     using Android.Util;
 
-    [Service (Name="com.xamarin.xamarinevolve.DataRefreshService", Exported = true, Permission = "com.google.android.gms.permission.BIND_NETWORK_TASK_SERVICE")]
-    [IntentFilter (new [] { "com.google.android.gms.gcm.ACTION_TASK_READY" })]
+    [Service(Name = "com.xamarin.xamarinevolve.DataRefreshService", Exported = true,
+        Permission = "com.google.android.gms.permission.BIND_NETWORK_TASK_SERVICE")]
+    [IntentFilter(new[] {"com.google.android.gms.gcm.ACTION_TASK_READY"})]
     public class DataRefreshService
     {
         // GcmTaskService
         // IBinder binder;
         const string LOG_TAG = "OnRunTask";
 
-        public DataRefreshService ()
+        public DataRefreshService()
         {
-            Log.Debug (LOG_TAG, "Service constructed");
+            Log.Debug(LOG_TAG, "Service constructed");
         }
 
         // public override IBinder OnBind (Intent intent)
@@ -50,7 +51,7 @@
         // var manager = DependencyService.Get<IStoreManager> ();
         // if (manager == null)
         // return;
-                        
+
         // await manager.SyncAllAsync (Settings.Current.IsLoggedIn);
         // Android.Util.Log.Debug (LOG_TAG, "Succeeded");
         // Settings.Current.LastSync = DateTime.UtcNow;
@@ -59,21 +60,21 @@
         // catch (Exception ex)
         // {
         // Android.Util.Log.Debug (LOG_TAG, ex.Message);
-                     
+
         // }
         // }).Wait(TimeSpan.FromSeconds(60));
         // }
         // catch
         // {
 
-               
+
         // }
 
         // Log.Debug (LOG_TAG, "Ending");
 
         // return GcmNetworkManager.ResultSuccess;
         // }
-        public static void ScheduleRefresh (Context context)
+        public static void ScheduleRefresh(Context context)
         {
             try
             {
@@ -98,6 +99,4 @@
             }
         }
     }
-
-
 }

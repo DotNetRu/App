@@ -156,6 +156,9 @@
   <data name="Materials" xml:space="preserve">
     <value>Materials</value>
   </data>
+  <data name="Meetup" xml:space="preserve">
+    <value>Meetup</value>
+  </data>
   <data name="Meetups" xml:space="preserve">
     <value>Meetups</value>
   </data>
@@ -194,6 +197,9 @@
   </data>
   <data name="TalkRecording" xml:space="preserve">
     <value>Talk Recording</value>
+  </data>
+  <data name="Talks" xml:space="preserve">
+    <value>Talks</value>
   </data>
   <data name="TechnologyUsed" xml:space="preserve">
     <value>Technology Used</value>

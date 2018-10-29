@@ -15,7 +15,7 @@
      <ResourceDictionary>
         <toolkit:InvertedBooleanConverter x:Key="InvertedBooleanConverter" />
         <local:HumanizeDateConverter x:Key="HumanizeDateConverter" />
-     </ResourceDictionary>
+     </ResourceDictionary>  
     </ContentPage.Resources>
     <pull:PullToRefreshLayout
           IsPullToRefreshEnabled="True"
