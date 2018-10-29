@@ -1,4 +1,8 @@
-﻿namespace DotNetRu.Clients.UI
+﻿using Xamarin.Forms.Xaml;
+
+[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
+
+namespace DotNetRu.Clients.UI
 {
     using System;
     using System.Globalization;

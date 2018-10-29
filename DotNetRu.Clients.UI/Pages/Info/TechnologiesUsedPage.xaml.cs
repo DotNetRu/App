@@ -6,12 +6,14 @@
     using DotNetRu.Utils.Helpers;
 
     using Xamarin.Forms;
-    using Xamarin.Forms.Xaml;
 
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TechnologiesUsedPage
     {
-        readonly TechnologiesUsedViewModel technologiesUsedViewModel;
+        private bool dialogShown;
+
+        private int count;
+
+        private readonly TechnologiesUsedViewModel technologiesUsedViewModel;
 
         public TechnologiesUsedPage()
         {
@@ -23,16 +25,13 @@
             this.ListViewTechnology.ItemTapped += (sender, e) => this.ListViewTechnology.SelectedItem = null;
         }
 
-
-        bool dialogShown;
-
-        int count;
-
         async void OnTapGestureRecognizerTapped(object sender, EventArgs args)
         {
             this.count++;
             if (this.dialogShown || this.count < 8)
+            {
                 return;
+            }
 
             this.dialogShown = true;
 
