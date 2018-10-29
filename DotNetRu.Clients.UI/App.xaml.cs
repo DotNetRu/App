@@ -1,14 +1,14 @@
-﻿using System.Globalization;
-using XamarinEvolve.Clients.Portable.ApplicationResources;
-using XamarinEvolve.Clients.Portable.Interfaces;
-using XamarinEvolve.Clients.UI.Pages;
-
-namespace XamarinEvolve.Clients.UI
-{ 
+﻿namespace XamarinEvolve.Clients.UI
+{
     using System;
+    using System.Globalization;
     using System.Threading.Tasks;
 
     using FormsToolkit;
+
+    using Microsoft.AppCenter;
+    using Microsoft.AppCenter.Analytics;
+    using Microsoft.AppCenter.Crashes;
 
     using Plugin.Connectivity;
     using Plugin.Connectivity.Abstractions;
@@ -16,7 +16,12 @@ namespace XamarinEvolve.Clients.UI
     using Xamarin.Forms;
 
     using XamarinEvolve.Clients.Portable;
+    using XamarinEvolve.Clients.Portable.ApplicationResources;
+    using XamarinEvolve.Clients.Portable.Interfaces;
+    using XamarinEvolve.Clients.UI.Pages;
     using XamarinEvolve.Utils.Helpers;
+
+    using Device = Xamarin.Forms.Device;
 
     public static class ViewModelLocator
     {
@@ -26,43 +31,46 @@ namespace XamarinEvolve.Clients.UI
             meetupViewModel ?? (meetupViewModel = new MeetupViewModel(navigation: null));
     }
 
-    public partial class App : Application
+    public partial class App
     {
-        public static App current;
+        private static ILogger logger;
+
+        private bool registered;
+
+        private bool firstRun = true;
 
         public App()
         {
-            current = this;
             var ci = Portable.Helpers.Settings.CurrentLanguage == string.Empty ? DependencyService.Get<ILocalize>().GetCurrentCultureInfo() : new CultureInfo(Portable.Helpers.Settings.CurrentLanguage);
             AppResources.Culture = ci;
             ViewModelBase.CurrentLanguage = AppResources.Culture.Name.Substring(0, 2);
             this.InitializeComponent();
             ViewModelBase.Init();
 
+            AppCenter.Start("ios=1e7f311f-1055-4ec9-8b00-0302015ab8ae;android=6f9a7703-8ca4-477e-9558-7e095f7d20aa;", typeof(Analytics), typeof(Crashes));
+
             this.MainPage = new BottomTabbedPage();
         }
 
-        static ILogger logger;
-
         public static ILogger Logger => logger ?? (logger = DependencyService.Get<ILogger>());
-
-        protected override void OnStart()
-        {
-            this.OnResume();
-        }
 
         public void SecondOnResume()
         {
             this.OnResume();
         }
 
-        bool registered;
-
-        bool firstRun = true;
+        protected override void OnStart()
+        {
+            this.OnResume();
+        }
 
         protected override void OnResume()
         {
-            if (this.registered) return;
+            if (this.registered)
+            {
+                return;
+            }
+
             this.registered = true;
 
             // Handle when your app resumes
@@ -76,10 +84,13 @@ namespace XamarinEvolve.Clients.UI
                     {
                         var task = Current?.MainPage?.DisplayAlert(info.Title, info.Message, info.Cancel);
 
-                        if (task == null) return;
+                        if (task == null)
+                        {
+                            return;
+                        }
 
                         await task;
-                        info?.OnCompleted?.Invoke();
+                        info.OnCompleted?.Invoke();
                     });
 
             MessagingService.Current.Subscribe<MessagingServiceQuestion>(
@@ -87,9 +98,13 @@ namespace XamarinEvolve.Clients.UI
                 async (m, q) =>
                     {
                         var task = Current?.MainPage?.DisplayAlert(q.Title, q.Question, q.Positive, q.Negative);
-                        if (task == null) return;
+                        if (task == null)
+                        {
+                            return;
+                        }
+
                         var result = await task;
-                        q?.OnCompleted?.Invoke(result);
+                        q.OnCompleted?.Invoke(result);
                     });
 
             MessagingService.Current.Subscribe<MessagingServiceChoice>(
@@ -97,47 +112,52 @@ namespace XamarinEvolve.Clients.UI
                 async (m, q) =>
                     {
                         var task = Current?.MainPage?.DisplayActionSheet(q.Title, q.Cancel, q.Destruction, q.Items);
-                        if (task == null) return;
+                        if (task == null)
+                        {
+                            return;
+                        }
+
                         var result = await task;
-                        q?.OnCompleted?.Invoke(result);
+                        q.OnCompleted?.Invoke(result);
                     });
 
             try
             {
-                if (this.firstRun || Device.RuntimePlatform != Device.iOS) return;
+                if (this.firstRun || Device.RuntimePlatform != Device.iOS)
+                {
+                    return;
+                }
 
                 var mainNav = this.MainPage as NavigationPage;
-                if (mainNav == null) return;
 
-                var rootPage = mainNav.CurrentPage as RootPageiOS;
-                if (rootPage == null) return;
+                var rootPage = mainNav?.CurrentPage as RootPageiOS;
 
-                var rootNav = rootPage.CurrentPage as NavigationPage;
-                if (rootNav == null) return;
+                var rootNav = rootPage?.CurrentPage as NavigationPage;
+                if (rootNav == null)
+                {
+                    return;
+                }
 
-                var about = rootNav.CurrentPage as AboutPage;
-                if (about != null)
+                if (rootNav.CurrentPage is AboutPage about)
                 {
                     about.OnResume();
                     return;
                 }
 
-                var sessions = rootNav.CurrentPage as MeetupPage;
-                if (sessions != null)
+                if (rootNav.CurrentPage is MeetupPage sessions)
                 {
                     sessions.OnResume();
                     return;
                 }
 
-                var feed = rootNav.CurrentPage as NewsPage;
-                if (feed != null)
+                if (rootNav.CurrentPage is NewsPage feed)
                 {
                     feed.OnResume();
-                    return;
                 }
             }
             catch
             {
+                // ignored
             }
             finally
             {
@@ -149,7 +169,6 @@ namespace XamarinEvolve.Clients.UI
         {
             if (Device.RuntimePlatform == Device.iOS && Settings.Current.FirstRun)
             {
-
 #if ENABLE_TEST_CLOUD
                 MessagingService.Current.SendMessage<MessagingServiceQuestion>(MessageKeys.Question, new MessagingServiceQuestion
                     {
@@ -186,7 +205,10 @@ $"We can send you updates through {EventInfo.EventName} via push notifications. 
 
             // only if deep linking
             if (!data.Contains($"/{AboutThisApp.SessionsSiteSubdirectory.ToLowerInvariant()}/")
-                && !data.Contains($"/{AboutThisApp.SpeakersSiteSubdirectory.ToLowerInvariant()}/")) return;
+                && !data.Contains($"/{AboutThisApp.SpeakersSiteSubdirectory.ToLowerInvariant()}/"))
+            {
+                return;
+            }
 
             var id = data.Substring(data.LastIndexOf("/", StringComparison.Ordinal) + 1);
 
@@ -208,7 +230,10 @@ $"We can send you updates through {EventInfo.EventName} via push notifications. 
 
         protected override void OnSleep()
         {
-            if (!this.registered) return;
+            if (!this.registered)
+            {
+                return;
+            }
 
             this.registered = false;
             MessagingService.Current.Unsubscribe(MessageKeys.NavigateLogin);
@@ -232,7 +257,6 @@ $"We can send you updates through {EventInfo.EventName} via push notifications. 
                     "Uh Oh, It looks like you have gone offline. Check your internet connection to get the latest data.");
             }
         }
-
     }
 }
 
