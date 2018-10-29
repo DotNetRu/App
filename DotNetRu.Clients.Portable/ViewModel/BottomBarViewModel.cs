@@ -1,36 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xamarin.Forms;
-using XamarinEvolve.Clients.UI;
-using XamarinEvolve.Utils.Helpers;
-
-namespace XamarinEvolve.Clients.Portable.ViewModel
+﻿namespace XamarinEvolve.Clients.Portable.ViewModel
 {
+    using Xamarin.Forms;
+
+    using XamarinEvolve.Clients.UI;
+    using XamarinEvolve.Utils.Helpers;
+
     public class BottomBarViewModel : ViewModelBase
     {
         public BottomBarViewModel()
         {
-            MessagingCenter.Subscribe<LocalizedResources>(this, MessageKeys.LanguageChanged, sender => NotifyVmProperties());
-
+            MessagingCenter.Subscribe<LocalizedResources>(this, MessageKeys.LanguageChanged, sender => this.NotifyViewModel());
         }
 
-        private void NotifyVmProperties()
+        public string NewsTitle => this.Resources["News"];
+
+        public string SpeakersTitle => this.Resources["Speakers"];
+
+        public string MeetupsTitle => this.Resources["Meetups"];
+
+        public string FriendsTitle => this.Resources["Friends"];
+
+        public string AboutTitle => this.Resources["About"];
+
+        private void NotifyViewModel()
         {
-            OnPropertyChanged(nameof(NewsTitle));
-            OnPropertyChanged(nameof(SpeakersTitle));
-            OnPropertyChanged(nameof(MeetupsTitle));
-            OnPropertyChanged(nameof(FriendsTitle));
-            OnPropertyChanged(nameof(AboutTitle));
-
+            this.OnPropertyChanged(nameof(this.NewsTitle));
+            this.OnPropertyChanged(nameof(this.SpeakersTitle));
+            this.OnPropertyChanged(nameof(this.MeetupsTitle));
+            this.OnPropertyChanged(nameof(this.FriendsTitle));
+            this.OnPropertyChanged(nameof(this.AboutTitle));
         }
-
-        public string NewsTitle => Resources["News"];
-        public string SpeakersTitle => Resources["Speakers"];
-        public string MeetupsTitle => Resources["Meetups"];
-        public string FriendsTitle => Resources["Friends"];
-        public string AboutTitle => Resources["About"];
     }
 }

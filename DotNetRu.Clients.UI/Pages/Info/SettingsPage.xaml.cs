@@ -1,55 +1,52 @@
-﻿using System;
-
-using Xamarin.Forms;
-
-using XamarinEvolve.Clients.Portable;
-
-namespace XamarinEvolve.Clients.UI
+﻿namespace XamarinEvolve.Clients.UI
 {
+    using System;
+
+    using Xamarin.Forms;
+
+    using XamarinEvolve.Clients.Portable;
+    using XamarinEvolve.Clients.UI.Pages.Info;
     using XamarinEvolve.Utils.Helpers;
 
-	public partial class SettingsPage
-	{
-    public override AppPage PageType => AppPage.Information;
+    public partial class SettingsPage
+    {
 
-        readonly SettingsViewModel vm;
+        private readonly SettingsViewModel settingsViewModel = new SettingsViewModel();
 
         public SettingsPage()
         {
             this.InitializeComponent();
 
-            this.BindingContext = this.vm = new SettingsViewModel();
-            var adjust = Device.RuntimePlatform != Device.Android ? 1 : -this.vm.AboutItems.Count + 1;
-            this.ListViewAbout.HeightRequest = (this.vm.AboutItems.Count * this.ListViewAbout.RowHeight) - adjust;
+            this.BindingContext = this.settingsViewModel;
+            var adjust = Device.RuntimePlatform != Device.Android ? 1 : -this.settingsViewModel.AboutItems.Count + 1;
+            this.ListViewAbout.HeightRequest = (this.settingsViewModel.AboutItems.Count * this.ListViewAbout.RowHeight) - adjust;
             this.ListViewAbout.ItemTapped += (sender, e) => this.ListViewAbout.SelectedItem = null;
-            adjust = Device.RuntimePlatform != Device.Android ? 1 : -this.vm.TechnologyItems.Count + 1;
-            this.ListViewTechnology.HeightRequest = (this.vm.TechnologyItems.Count * this.ListViewTechnology.RowHeight) - adjust;
-            this.ListViewTechnology.ItemTapped += (sender, e) => this.ListViewTechnology.SelectedItem = null;
+
+            adjust = Device.RuntimePlatform != Device.Android ? 1 : -this.settingsViewModel.Communities.Count + 1;
+            this.ListViewCommunities.HeightRequest =
+                (this.settingsViewModel.Communities.Count * this.ListViewCommunities.RowHeight) - adjust;
+            this.ListViewCommunities.ItemTapped += (sender, e) => this.ListViewCommunities.SelectedItem = null;
         }
 
-        bool dialogShown;
-        int count;
-
-        async void OnTapGestureRecognizerTapped(object sender, EventArgs args)
-        {
-            this.count++;
-            if (this.dialogShown || this.count < 8)
-                return;
-
-            this.dialogShown = true;
-
-            App.Logger.Track("AppCreditsFound-8MoreThan92");
-
-            await this.DisplayAlert("Credits",
-              AboutThisApp.Credits, "OK");
-        }
+        public override AppPage PageType => AppPage.Information;
 
         protected override void OnPropertyChanged(string propertyName = null)
         {
             base.OnPropertyChanged(propertyName);
             if (propertyName == "Title")
+            {
                 MessagingCenter.Send(this, MessageKeys.UpdateTitles);
+            }
+        }
+
+        private async void Friends_OnClicked(object sender, EventArgs e)
+        {
+            await NavigationService.PushAsync(this.Navigation, new FriendsPage());
+        }
+
+        private async void Technologies_OnClicked(object sender, EventArgs e)
+        {
+            await NavigationService.PushAsync(this.Navigation, new TechnologiesUsed());
         }
     }
 }
-

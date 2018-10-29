@@ -16,10 +16,10 @@ namespace DotNetRu.iOS
 {
     class Localize : ILocalize
     {
-        public void SetLocale(CultureInfo ci)
+        public void SetLocale(CultureInfo cultureInfo)
         {
-            Thread.CurrentThread.CurrentCulture = ci;
-            Thread.CurrentThread.CurrentUICulture = ci;
+            Thread.CurrentThread.CurrentCulture = cultureInfo;
+            Thread.CurrentThread.CurrentUICulture = cultureInfo;
         }
         public CultureInfo GetCurrentCultureInfo()
         {
