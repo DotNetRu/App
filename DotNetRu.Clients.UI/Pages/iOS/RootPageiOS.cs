@@ -1,17 +1,19 @@
-﻿namespace XamarinEvolve.Clients.UI
+﻿using System.Linq;
+using DotNetRu.Clients.Portable.Interfaces;
+using DotNetRu.Clients.Portable.Model;
+using DotNetRu.Clients.UI.Controls;
+using DotNetRu.Clients.UI.Pages.Events;
+using DotNetRu.Clients.UI.Pages.Friends;
+using DotNetRu.Clients.UI.Pages.Home;
+using DotNetRu.Clients.UI.Pages.Info;
+using DotNetRu.Clients.UI.Pages.Speakers;
+using DotNetRu.Utils.Helpers;
+using FormsToolkit;
+using Xamarin.Forms;
+using XamarinEvolve.Clients.Portable;
+
+namespace DotNetRu.Clients.UI.Pages.iOS
 {
-    using System.Linq;
-
-    using DotNetRu.DataStore.Audit.Abstractions;
-
-    using FormsToolkit;
-
-    using Xamarin.Forms;
-
-    using XamarinEvolve.Clients.Portable;
-    using XamarinEvolve.Utils;
-    using XamarinEvolve.Utils.Helpers;
-
     public class RootPageiOS : TabbedPage
     {
         public RootPageiOS()

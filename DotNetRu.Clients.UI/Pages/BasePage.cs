@@ -1,8 +1,9 @@
 ﻿using System;
+using DotNetRu.Clients.Portable.Interfaces;
+using DotNetRu.Clients.Portable.Model;
 using Xamarin.Forms;
-using XamarinEvolve.Clients.Portable;
 
-namespace XamarinEvolve.Clients.UI
+namespace DotNetRu.Clients.UI.Pages
 {
 	public abstract class BasePage : ContentPage, IProvidePageInfo
 	{

@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-
 using Xamarin.Forms;
 
-namespace XamarinEvolve.Clients.UI
+namespace DotNetRu.Clients.UI.Behaviors
 {
     public class StarBehavior : Behavior<View>
     {

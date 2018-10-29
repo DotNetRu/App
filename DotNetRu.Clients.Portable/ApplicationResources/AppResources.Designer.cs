@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace XamarinEvolve.Clients.Portable.ApplicationResources {
+namespace DotNetRu.Clients.Portable.ApplicationResources {
     using System;
     using System.Reflection;
     
@@ -40,7 +40,7 @@ namespace XamarinEvolve.Clients.Portable.ApplicationResources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("XamarinEvolve.Clients.Portable.ApplicationResources.AppResources", typeof(AppResources).GetTypeInfo().Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DotNetRu.Clients.Portable.ApplicationResources.AppResources", typeof(AppResources).GetTypeInfo().Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

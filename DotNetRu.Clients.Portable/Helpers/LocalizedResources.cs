@@ -1,15 +1,13 @@
-﻿namespace XamarinEvolve.Clients.UI
+﻿using System;
+using System.ComponentModel;
+using System.Globalization;
+using System.Resources;
+using DotNetRu.Clients.Portable.ApplicationResources;
+using DotNetRu.Utils.Helpers;
+using Xamarin.Forms;
+
+namespace DotNetRu.Clients.Portable.Helpers
 {
-    using System;
-    using System.ComponentModel;
-    using System.Globalization;
-    using System.Resources;
-
-    using Xamarin.Forms;
-
-    using XamarinEvolve.Clients.Portable.ApplicationResources;
-    using XamarinEvolve.Utils.Helpers;
-
     public class LocalizedResources : INotifyPropertyChanged
     {
         private readonly ResourceManager resourceManager;

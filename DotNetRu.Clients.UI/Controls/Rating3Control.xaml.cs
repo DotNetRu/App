@@ -1,7 +1,8 @@
 ﻿using System;
+using DotNetRu.Clients.UI.Behaviors;
 using Xamarin.Forms;
 
-namespace XamarinEvolve.Clients.UI
+namespace DotNetRu.Clients.UI.Controls
 {
 	public partial class Rating3Control : ContentView
 	{

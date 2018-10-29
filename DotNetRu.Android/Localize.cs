@@ -1,9 +1,7 @@
 ﻿using System.Globalization;
 using System.Threading;
-
+using DotNetRu.Clients.Portable.Interfaces;
 using Xamarin.Forms;
-
-using XamarinEvolve.Clients.Portable.Interfaces;
 
 [assembly: Dependency(typeof(DotNetRu.Droid.Localize))]
 

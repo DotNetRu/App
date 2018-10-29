@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace XamarinEvolve.Clients.Portable
+namespace DotNetRu.Utils.Interfaces
 {
   public static class EvolveLoggerKeys
   {

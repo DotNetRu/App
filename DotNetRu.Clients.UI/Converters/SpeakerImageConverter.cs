@@ -1,11 +1,10 @@
-﻿namespace XamarinEvolve.Clients.UI
+﻿using System;
+using System.Diagnostics;
+using System.Globalization;
+using Xamarin.Forms;
+
+namespace DotNetRu.Clients.UI.Converters
 {
-    using System;
-    using System.Diagnostics;
-    using System.Globalization;
-
-    using Xamarin.Forms;
-
     /// <inheritdoc />
     /// <summary>
     /// Used to reaturn the speaker image with caching or default

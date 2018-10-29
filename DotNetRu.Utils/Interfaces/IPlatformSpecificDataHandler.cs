@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace XamarinEvolve.Utils
+namespace DotNetRu.Utils.Interfaces
 {
 	public interface IPlatformSpecificDataHandler<T>
 	{

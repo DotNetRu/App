@@ -1,11 +1,11 @@
-﻿namespace XamarinEvolve.Clients.UI
+﻿using DotNetRu.Clients.Portable.Model;
+using DotNetRu.Clients.Portable.ViewModel;
+using DotNetRu.Clients.UI.Cells;
+using FormsToolkit;
+using Xamarin.Forms;
+
+namespace DotNetRu.Clients.UI.Pages.Sessions
 {
-    using FormsToolkit;
-
-    using Xamarin.Forms;
-
-    using XamarinEvolve.Clients.Portable;
-
     public partial class FilterSessionsPage : BasePage
     {
         public override AppPage PageType => AppPage.Filter;

@@ -1,16 +1,13 @@
-﻿namespace XamarinEvolve.Clients.Portable
+﻿using System;
+using System.Windows.Input;
+using DotNetRu.DataStore.Audit.Models;
+using DotNetRu.Utils.Helpers;
+using DotNetRu.Utils.Interfaces;
+using FormsToolkit;
+using Xamarin.Forms;
+
+namespace DotNetRu.Clients.Portable.ViewModel
 {
-    using System;
-    using System.Windows.Input;
-
-    using DotNetRu.DataStore.Audit.Models;
-
-    using FormsToolkit;
-
-    using Xamarin.Forms;
-
-    using XamarinEvolve.Utils.Helpers;
-
     public class FeedbackViewModel : ViewModelBase
     {
         TalkModel talkModel;

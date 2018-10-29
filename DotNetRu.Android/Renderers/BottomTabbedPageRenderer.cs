@@ -1,11 +1,10 @@
 ﻿using DotNetRu.Droid.Renderers;
-using Naxam.Controls.Forms;
+using DotNetRu.Utils.Helpers;
 using Naxam.Controls.Platform.Droid;
 using Naxam.Controls.Platform.Droid.Utils;
 using Xamarin.Forms;
-using XamarinEvolve.Clients.UI;
-using XamarinEvolve.Utils.Helpers;
-using BottomTabbedPage = XamarinEvolve.Clients.UI.Pages.BottomTabbedPage;
+using BottomTabbedPage = DotNetRu.Clients.UI.Pages.BottomTabbedPage;
+using SettingsPage = DotNetRu.Clients.UI.Pages.Info.SettingsPage;
 
 
 [assembly: ExportRenderer(typeof(BottomTabbedPage), typeof(BottomTabbedPageRenderer))]

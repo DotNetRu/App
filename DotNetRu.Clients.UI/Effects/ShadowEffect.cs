@@ -1,7 +1,7 @@
-﻿namespace XamarinEvolve.Clients.UI.Effects
-{
-    using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
+namespace DotNetRu.Clients.UI.Effects
+{
     public class ShadowEffect : RoutingEffect
     {
         public float Radius { get; set; }

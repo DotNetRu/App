@@ -1,4 +1,4 @@
-﻿namespace XamarinEvolve.Clients.Portable
+﻿namespace DotNetRu.Clients.Portable.Interfaces
 {
     public interface ILaunchTwitter
     {

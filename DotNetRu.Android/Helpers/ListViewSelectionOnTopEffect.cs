@@ -1,13 +1,13 @@
 ﻿using System;
 using Android.Widget;
+using DotNetRu.Droid.Helpers;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
-using XamarinEvolve.Droid;
 
 [assembly: ResolutionGroupName("Xpirit")]
 [assembly: ExportEffect(typeof(ListViewSelectionOnTopEffect), "ListViewSelectionOnTopEffect")]
 
-namespace XamarinEvolve.Droid
+namespace DotNetRu.Droid.Helpers
 {
     public class ListViewSelectionOnTopEffect : PlatformEffect
     {

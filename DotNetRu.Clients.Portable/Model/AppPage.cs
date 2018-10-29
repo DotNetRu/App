@@ -1,4 +1,4 @@
-﻿namespace XamarinEvolve.Clients.Portable
+﻿namespace DotNetRu.Clients.Portable.Model
 {
     public class DeepLinkPage
     {

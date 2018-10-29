@@ -1,13 +1,12 @@
-﻿namespace XamarinEvolve.Clients.UI
+﻿using System.Linq;
+using DotNetRu.Clients.Portable.Model;
+using DotNetRu.Clients.Portable.ViewModel;
+using DotNetRu.Clients.UI.Helpers;
+using DotNetRu.DataStore.Audit.Models;
+using Xamarin.Forms;
+
+namespace DotNetRu.Clients.UI.Pages.Friends
 {
-    using System.Linq;
-
-    using DotNetRu.DataStore.Audit.Models;
-
-    using Xamarin.Forms;
-
-    using XamarinEvolve.Clients.Portable;
-
     public partial class FriendsPage
     {
         private FriendsViewModel friendsViewModel;

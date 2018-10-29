@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace XamarinEvolve.Clients.UI.Controls
+namespace DotNetRu.Clients.UI.Controls
 {
     class AboutPageImageCell : ViewCell
     {

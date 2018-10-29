@@ -1,14 +1,11 @@
-﻿namespace XamarinEvolve.Clients.UI
+﻿using System;
+using System.Globalization;
+using DotNetRu.DataStore.Audit.Models;
+using DotNetRu.Utils.Helpers;
+using Xamarin.Forms;
+
+namespace DotNetRu.Clients.UI.Converters
 {
-    using System;
-    using System.Globalization;
-
-    using DotNetRu.DataStore.Audit.Models;
-
-    using Xamarin.Forms;
-
-    using XamarinEvolve.Utils;
-
     /// <inheritdoc />
     /// <summary>
     /// Rating converter for display text

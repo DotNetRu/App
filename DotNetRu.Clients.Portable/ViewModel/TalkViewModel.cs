@@ -1,25 +1,22 @@
-﻿namespace XamarinEvolve.Clients.Portable
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using DotNetRu.Clients.Portable.Extensions;
+using DotNetRu.Clients.Portable.Services;
+using DotNetRu.DataStore.Audit.Models;
+using DotNetRu.Utils.Helpers;
+using DotNetRu.Utils.Interfaces;
+using FormsToolkit;
+using MvvmHelpers;
+using Plugin.Share;
+using Plugin.Share.Abstractions;
+using Xamarin.Forms;
+
+using MenuItem = DotNetRu.Clients.Portable.Model.MenuItem;
+
+namespace DotNetRu.Clients.Portable.ViewModel
 {
-    using System;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using System.Windows.Input;
-
-    using DotNetRu.DataStore.Audit.Models;
-
-    using FormsToolkit;
-
-    using MvvmHelpers;
-
-    using Plugin.Share;
-    using Plugin.Share.Abstractions;
-
-    using Xamarin.Forms;
-
-    using XamarinEvolve.Utils;
-    using XamarinEvolve.Clients.Portable;
-    using XamarinEvolve.Utils.Helpers;
-
     public class TalkViewModel : ViewModelBase
     {
         private TalkModel talkModel;
