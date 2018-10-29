@@ -5,7 +5,7 @@
 	<key>CFBundleIdentifier</key>
 	<string>com.pfedotovsky.dotnetru</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.0</string>
+	<string>1.0.1</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
@@ -16,10 +16,6 @@
 	<array>
 		<integer>1</integer>
 		<integer>2</integer>
-	</array>
-	<key>UIRequiredDeviceCapabilities</key>
-	<array>
-		<string>arm64</string>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
@@ -107,12 +103,6 @@
 			<string>{320, 480}</string>
 		</dict>
 	</array>
-	<key>CFBundleIconFiles</key>
-	<array>
-		<string>Default.png</string>
-		<string>Default@2x.png</string>
-		<string>Default-568h@2x.png</string>
-	</array>
 	<key>CFBundleName</key>
 	<string>DotNetRu App</string>
 	<key>CFBundleURLTypes</key>
@@ -130,12 +120,12 @@
 			<string>Icon-58</string>
 		</dict>
 	</array>
-  <key>CFBundleLocalizations</key>
-  <array>
-    <string>ru</string>
-  </array>
-  <key>CFBundleDevelopmentRegion</key>
-  <string>en</string>
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>ru</string>
+	</array>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>

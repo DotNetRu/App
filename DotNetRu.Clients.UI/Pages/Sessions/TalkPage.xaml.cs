@@ -5,7 +5,6 @@
     using DotNetRu.Clients.Portable.Interfaces;
     using DotNetRu.Clients.Portable.Model;
     using DotNetRu.Clients.Portable.ViewModel;
-    using DotNetRu.Clients.UI.Controls;
     using DotNetRu.Clients.UI.Helpers;
     using DotNetRu.Clients.UI.Pages.Speakers;
     using DotNetRu.DataStore.Audit.Models;
@@ -60,12 +59,6 @@
                     this.ListViewSpeakers.SelectedItem = null;
                 };
 
-            this.ButtonRate.Clicked += async (sender, e) =>
-                {
-                    await NavigationService.PushModalAsync(
-                        this.Navigation,
-                        new EvolveNavigationPage(new FeedbackPage(this.ViewModel.TalkModel)));
-                };
             this.BindingContext = new TalkViewModel(this.Navigation, talkModel);
         }
 
