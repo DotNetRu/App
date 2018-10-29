@@ -33,27 +33,13 @@ namespace XamarinEvolve.Clients.UI
         public App()
         {
             current = this;
-            var ci = Portable.Helpers.Settings.CurrentLanguage == "" ? DependencyService.Get<ILocalize>().GetCurrentCultureInfo() : new CultureInfo(Portable.Helpers.Settings.CurrentLanguage);
+            var ci = Portable.Helpers.Settings.CurrentLanguage == string.Empty ? DependencyService.Get<ILocalize>().GetCurrentCultureInfo() : new CultureInfo(Portable.Helpers.Settings.CurrentLanguage);
             AppResources.Culture = ci;
             ViewModelBase.CurrentLanguage = AppResources.Culture.Name.Substring(0, 2);
             this.InitializeComponent();
             ViewModelBase.Init();
+
             this.MainPage = new BottomTabbedPage();
-            // The root page of your application
-            //switch (Device.RuntimePlatform)
-            //{
-            //    case Device.Android:
-            //        this.MainPage = new RootPageAndroid();
-            //        break;
-            //    case Device.iOS:
-            //        this.MainPage = new EvolveNavigationPage(new RootPageiOS());
-            //        break;
-            //    case Device.UWP:
-            //        this.MainPage = new RootPageWindows();
-            //        break;
-            //    default:
-            //        throw new NotImplementedException();
-            //}
         }
 
         static ILogger logger;
