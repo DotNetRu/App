@@ -27,7 +27,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
+    <DefineConstants>DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
@@ -73,7 +73,7 @@
     <OutputPath>bin\UITest</OutputPath>
     <WarningLevel>4</WarningLevel>
     <AssemblyName>DotNetRu.Android</AssemblyName>
-    <DefineConstants>MOBILE;ENABLE_TEST_CLOUD</DefineConstants>
+    <DefineConstants>MOBILE;ENABLE_TEST_CLOUD; </DefineConstants>
     <AndroidSupportedAbis>armeabi-v7a,x86</AndroidSupportedAbis>
     <DebugType>full</DebugType>
     <RunCodeAnalysis>false</RunCodeAnalysis>
@@ -86,6 +86,30 @@
     <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
     <Debugger>Xamarin</Debugger>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'LivePlayer|AnyCPU'">
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_LIVE_PLAYER</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
+    <ConsolePause>false</ConsolePause>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <AssemblyName>DotNetRu.Droid</AssemblyName>
+    <EmbedAssembliesIntoApk>false</EmbedAssembliesIntoApk>
+    <AndroidSupportedAbis>armeabi-v7a</AndroidSupportedAbis>
+    <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
+    <AndroidUseSharedRuntime>true</AndroidUseSharedRuntime>
+    <BundleAssemblies>false</BundleAssemblies>
+    <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
+    <AotAssemblies>false</AotAssemblies>
+    <EnableLLVM>false</EnableLLVM>
+    <AndroidEnableMultiDex>true</AndroidEnableMultiDex>
+    <EnableProguard>False</EnableProguard>
+    <AndroidExplicitCrunch>true</AndroidExplicitCrunch>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FormsToolkit, Version=1.1.18.0, Culture=neutral, processorArchitecture=MSIL">
@@ -328,7 +352,6 @@
     <Compile Include="Renderers\BottomTabbedPageRenderer.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="MainApplication.cs" />
-    <Compile Include="Renderers\NavigationViewRenderer.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Renderers\ImageCellEx.cs" />
     <Compile Include="Renderers\SwitchCellEx.cs" />
@@ -425,10 +448,6 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\tabs.axml" />
-    <AndroidResource Include="Resources\menu\nav_menu.xml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-    <AndroidResource Include="Resources\layout\nav_view.axml" />
     <AndroidResource Include="Resources\layout\drawer_header.axml" />
     <AndroidResource Include="Resources\drawable-hdpi\heart_empty.png" />
     <AndroidResource Include="Resources\drawable-hdpi\heart_filled.png" />

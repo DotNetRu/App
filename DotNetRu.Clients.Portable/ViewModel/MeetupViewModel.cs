@@ -97,7 +97,7 @@ namespace XamarinEvolve.Clients.Portable
                 this.IsBusy = true;
                 this.NoSessionsFound = false;
 
-                var sessions = TalkService.GetTalks(this.MeetupModel.EventTalksIds);
+                var sessions = TalkService.GetTalks(this.MeetupModel.TalkIDs);
                 this.Sessions.ReplaceRange(sessions);
 
                 if (!sessions.Any())

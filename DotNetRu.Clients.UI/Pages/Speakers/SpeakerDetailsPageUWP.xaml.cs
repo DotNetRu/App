@@ -88,7 +88,7 @@ namespace XamarinEvolve.Clients.UI
             if (this.ViewModel.Sessions.Count > 0)
                 return;
 
-            this.ViewModel.ExecuteLoadSessionsCommandAsync();
+            this.ViewModel.ExecuteLoadTalksCommand();
             this.ListViewSessions.HeightRequest = (this.ViewModel.Sessions.Count * this.ListViewSessions.RowHeight) - 1;
         }
 
