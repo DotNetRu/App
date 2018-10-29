@@ -8,7 +8,9 @@
     using DotNetRu.DataStore.Audit.Models;
 
     using Xamarin.Forms;
+    using Xamarin.Forms.Internals;
 
+    [Preserve]
     public class EventDateDisplayConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <SkipValidatePackageReferences>true</SkipValidatePackageReferences>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -38,7 +37,7 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <MtouchArch>x86_64</MtouchArch>
-    <MtouchLink>None</MtouchLink>
+    <MtouchLink>SdkOnly</MtouchLink>
     <MtouchDebug>True</MtouchDebug>
     <MtouchProfiling>true</MtouchProfiling>
     <DeviceSpecificBuild>true</DeviceSpecificBuild>
@@ -52,7 +51,8 @@
     </CodesignEntitlements>
     <IOSDebugOverWiFi>true</IOSDebugOverWiFi>
     <IOSDebuggerPort>10000</IOSDebuggerPort>
-    <MtouchSdkVersion>11.0</MtouchSdkVersion>
+    <MtouchSdkVersion>
+    </MtouchSdkVersion>
     <OptimizePNGs>true</OptimizePNGs>
     <MtouchFloat32>true</MtouchFloat32>
   </PropertyGroup>
@@ -63,7 +63,7 @@
     <WarningLevel>4</WarningLevel>
     <CodesignEntitlements>
     </CodesignEntitlements>
-    <MtouchArch>ARM64</MtouchArch>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
     <ConsolePause>false</ConsolePause>
     <CodesignKey>iPhone Distribution</CodesignKey>
     <MtouchUseLlvm>true</MtouchUseLlvm>
@@ -74,7 +74,10 @@
     </CodesignProvision>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
     <BuildIpa>true</BuildIpa>
-    <MtouchSdkVersion>11.0</MtouchSdkVersion>
+    <MtouchSdkVersion>
+    </MtouchSdkVersion>
+    <MtouchFastDev>false</MtouchFastDev>
+    <MtouchLink>SdkOnly</MtouchLink>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <Optimize>true</Optimize>
@@ -83,10 +86,11 @@
     <WarningLevel>4</WarningLevel>
     <MtouchArch>i386</MtouchArch>
     <ConsolePause>false</ConsolePause>
-    <MtouchLink>None</MtouchLink>
+    <MtouchLink>SdkOnly</MtouchLink>
     <DefineConstants>ENABLE_TEST_CLOUD;MOBILE</DefineConstants>
     <CodesignKey>iPhone Distribution</CodesignKey>
-    <MtouchSdkVersion>9.2</MtouchSdkVersion>
+    <MtouchSdkVersion>
+    </MtouchSdkVersion>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
     <CodesignEntitlements>
     </CodesignEntitlements>
@@ -129,37 +133,6 @@
     <CodesignKey>iPhone Developer</CodesignKey>
     <DefineConstants>ENABLE_TEST_CLOUD;MOBILE</DefineConstants>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'UITest|iPhone' ">
-    <Optimize>true</Optimize>
-    <OutputPath>bin\iPhone\UITest</OutputPath>
-    <WarningLevel>4</WarningLevel>
-    <CodesignKey>iPhone Distribution</CodesignKey>
-    <DefineConstants>ENABLE_TEST_CLOUD;MOBILE</DefineConstants>
-    <MtouchUseLlvm>true</MtouchUseLlvm>
-    <IpaPackageName>
-    </IpaPackageName>
-    <MtouchArch>ARMv7, ARM64</MtouchArch>
-    <BuildIpa>true</BuildIpa>
-    <CodesignProvision>Automatic:InHouse</CodesignProvision>
-    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'UITest|AnyCPU' ">
-    <Optimize>true</Optimize>
-    <OutputPath>bin\UITest</OutputPath>
-    <WarningLevel>4</WarningLevel>
-    <DefineConstants>ENABLE_TEST_CLOUD;MOBILE</DefineConstants>
-    <CodesignProvision>Automatic:InHouse</CodesignProvision>
-    <CodesignKey>iPhone Distribution</CodesignKey>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'UITest|iPhoneSimulator' ">
-    <Optimize>false</Optimize>
-    <OutputPath>bin\iPhoneSimulator\UITest</OutputPath>
-    <WarningLevel>4</WarningLevel>
-    <MtouchLink>None</MtouchLink>
-    <DefineConstants>ENABLE_TEST_CLOUD;MOBILE</DefineConstants>
-    <CodesignKey>iPhone Developer</CodesignKey>
-    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <DocumentationFile>bin\Debug\DotNetRu.iOS.xml</DocumentationFile>
     <OutputPath>bin\Debug</OutputPath>
@@ -170,64 +143,35 @@
     <AppExtensionDebugBundleId />
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="CClarke.Plugin.Calendars" Version="0.6.0-beta" />
-    <PackageReference Include="DotNetRU.BottomTabbedPage" Version="0.1.0.2" />
     <PackageReference Include="FormsToolkit" Version="2.0.1" />
     <PackageReference Include="Humanizer.Core" Version="2.2.0" />
     <PackageReference Include="Humanizer.Core.ru" Version="2.2.0" />
-    <PackageReference Include="linqtotwitter">
-      <Version>4.2.1</Version>
+    <PackageReference Include="Microsoft.AppCenter" Version="1.4.0" />
+    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.4.0" />
+    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.4.0" />
+    <PackageReference Include="Naxam.BottomTabbedPage">
+      <Version>0.2.0.1</Version>
     </PackageReference>
-    <PackageReference Include="Microsoft.AppCenter" Version="1.2.0" />
-    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.2.0" />
-    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.2.0" />
-    <PackageReference Include="Microsoft.Bcl" Version="1.1.10" />
-    <PackageReference Include="Microsoft.Bcl.Build" Version="1.0.21" />
-    <PackageReference Include="Microsoft.Bcl.Compression" Version="3.9.85" />
-    <PackageReference Include="modernhttpclient" Version="2.4.2" />
-    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
-    <PackageReference Include="PCLStorage" Version="1.0.2" />
     <PackageReference Include="Plugin.Permissions" Version="2.2.1" />
     <PackageReference Include="Plugin.Share" Version="7.1.1" />
     <PackageReference Include="Refractored.MvvmHelpers" Version="1.3.0" />
-    <PackageReference Include="Refractored.XamForms.PullToRefresh" Version="2.0.0.13" />
-    <PackageReference Include="Rx-Core" Version="2.2.5" />
-    <PackageReference Include="Rx-Interfaces" Version="2.2.5" />
-    <PackageReference Include="Rx-Linq" Version="2.2.5" />
-    <PackageReference Include="Rx-Main" Version="2.2.5" />
-    <PackageReference Include="Rx-PlatformServices" Version="2.2.5" />
-    <PackageReference Include="Validation" Version="2.4.18" />
-    <PackageReference Include="WebP.Touch" Version="1.0.7" />
-    <PackageReference Include="Xam.Plugin.Connectivity" Version="3.0.3" />
-    <PackageReference Include="Xam.Plugin.EmbeddedResource" Version="1.0.1.0" />
-    <PackageReference Include="Xam.Plugins.Forms.ImageCircle" Version="2.0.1" />
+    <PackageReference Include="Xam.Plugin.Connectivity" Version="3.1.1" />
+    <PackageReference Include="Xam.Plugins.Forms.ImageCircle" Version="2.0.2" />
     <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
-    <PackageReference Include="Xamarin.Build.Download" Version="0.4.7" />
     <PackageReference Include="Xamarin.FFImageLoading" Version="2.3.4" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.3.4" />
     <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.3.4" />
-    <PackageReference Include="Xamarin.Forms" Version="2.5.0.122203" />
-    <PackageReference Include="Xamarin.Google.iOS.AppIndexing" Version="2.0.3.4" />
+    <PackageReference Include="Xamarin.Forms" Version="2.5.0.280555" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
-    <Reference Include="ToastIOS">
-      <HintPath>..\ExternalReference\ToastIOS.dll</HintPath>
-    </Reference>
     <Reference Include="Xamarin.iOS" />
     <Reference Include="System.Net" />
     <Reference Include="System.Web.Services" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\heart_empty.png" />
-    <BundleResource Include="Resources\heart_empty%402x.png" />
-    <BundleResource Include="Resources\heart_empty%403x.png" />
-    <BundleResource Include="Resources\heart_filled.png" />
-    <BundleResource Include="Resources\heart_filled%402x.png" />
-    <BundleResource Include="Resources\heart_filled%403x.png" />
-    <BundleResource Include="Resources\heroplaceholder.png" />
     <BundleResource Include="Resources\tab_events_selected.png" />
     <BundleResource Include="Resources\tab_events_selected%402x.png" />
     <BundleResource Include="Resources\tab_events_selected%403x.png" />
@@ -249,14 +193,6 @@
     <BundleResource Include="Resources\tab_feed.png" />
     <BundleResource Include="Resources\tab_feed%402x.png" />
     <BundleResource Include="Resources\tab_feed%403x.png" />
-    <BundleResource Include="Resources\Default-736h%403x.png" />
-    <BundleResource Include="Resources\Default-667h%402x.png" />
-    <BundleResource Include="Resources\Default-568h%402x.png" />
-    <BundleResource Include="Resources\Default.png" />
-    <BundleResource Include="Resources\Default%402x.png" />
-    <BundleResource Include="Resources\profile_generic.png" />
-    <BundleResource Include="Resources\profile_generic%402x.png" />
-    <BundleResource Include="Resources\profile_generic%403x.png" />
     <BundleResource Include="Resources\tab_sessions_selected.png" />
     <BundleResource Include="Resources\tab_sessions_selected%402x.png" />
     <BundleResource Include="Resources\tab_sessions_selected%403x.png" />
@@ -266,28 +202,6 @@
     <BundleResource Include="Resources\toolbar_overflow.png" />
     <BundleResource Include="Resources\toolbar_overflow%402x.png" />
     <BundleResource Include="Resources\toolbar_overflow%403x.png" />
-    <BundleResource Include="Resources\quickaction_announcements%402x.png" />
-    <BundleResource Include="Resources\quickaction_announcements%403x.png" />
-    <BundleResource Include="Resources\quickaction_events%402x.png" />
-    <BundleResource Include="Resources\quickaction_events%403x.png" />
-    <BundleResource Include="Resources\quickaction_mini-hacks%402x.png" />
-    <BundleResource Include="Resources\quickaction_mini-hacks%403x.png" />
-    <BundleResource Include="Resources\quickaction_tweet%402x.png" />
-    <BundleResource Include="Resources\quickaction_tweet%403x.png" />
-    <BundleResource Include="Resources\profile_generic_big.png" />
-    <BundleResource Include="Resources\profile_generic_big%402x.png" />
-    <BundleResource Include="Resources\profile_generic_big%403x.png" />
-    <BundleResource Include="Resources\icon_sessions_big_purple.png" />
-    <BundleResource Include="Resources\icon_sessions_big_purple%402x.png" />
-    <BundleResource Include="Resources\icon_sessions_big_purple%403x.png" />
-    <BundleResource Include="Resources\Icon.png" />
-    <BundleResource Include="Resources\Icon%402x.png" />
-    <BundleResource Include="Resources\Icon%403x.png" />
-    <BundleResource Include="Resources\profile_pic_shadow%403x.png" />
-    <BundleResource Include="Resources\profile_pic_shadow.png" />
-    <BundleResource Include="Resources\profile_pic_shadow%402x.png" />
-    <BundleResource Include="Resources\logo_launchscreen%402x.png" />
-    <BundleResource Include="Resources\logo_launchscreen.png" />
     <BundleResource Include="Resources\tab_speakers.png" />
     <BundleResource Include="Resources\tab_speakers%402x.png" />
     <BundleResource Include="Resources\tab_speakers%403x.png" />
@@ -309,15 +223,6 @@
     <BundleResource Include="Resources\icon_twitter.png" />
     <BundleResource Include="Resources\icon_twitter%402x.png" />
     <BundleResource Include="Resources\icon_twitter%403x.png" />
-    <BundleResource Include="Resources\Icon-58.png" />
-    <BundleResource Include="Resources\star_selected.png">
-      <DeployService-Deploy>True</DeployService-Deploy>
-      <LogicalName>star_selected.png</LogicalName>
-    </BundleResource>
-    <BundleResource Include="Resources\star_outline.png">
-      <DeployService-Deploy>True</DeployService-Deploy>
-      <LogicalName>star_outline.png</LogicalName>
-    </BundleResource>
     <BundleResource Include="Resources\icon_presentation.png" />
     <BundleResource Include="Resources\icon_presentation%402x.png" />
     <BundleResource Include="Resources\icon_presentation%403x.png" />
@@ -374,7 +279,6 @@
     <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\Icon-87.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <None Include="app.config" />
     <None Include="Info.plist">
       <SubType>Designer</SubType>
     </None>
@@ -387,13 +291,10 @@
     <Compile Include="Renderers\AlwaysScrollViewRenderer.cs" />
     <Compile Include="Renderers\TextViewValue1Renderer.cs" />
     <Compile Include="Renderers\NonScrollableListViewRenderer.cs" />
-    <Compile Include="Helpers\Toaster.cs" />
-    <Compile Include="Helpers\PushNotifications.cs" />
     <Compile Include="Renderers\SelectedTabPageRenderer.cs" />
     <Compile Include="Helpers\LaunchTwitter.cs" />
     <Compile Include="Helpers\LaunchFacebook.cs" />
     <Compile Include="Helpers\AppVersionProvider.cs" />
-    <Compile Include="Helpers\NSDateExtensions.cs" />
     <Compile Include="Helpers\GroupSettingsProvider.cs" />
     <Compile Include="ShortcutIdentifier.cs" />
     <Compile Include="ViewController.cs" />
@@ -423,52 +324,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <XamarinComponentReference Include="googleiosappindexing">
-      <Visible>False</Visible>
-      <Version>2.0.3.0</Version>
-    </XamarinComponentReference>
-    <XamarinComponentReference Include="ToastIOS">
-      <Version>1.6</Version>
-      <Visible>False</Visible>
-    </XamarinComponentReference>
-  </ItemGroup>
-  <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen~ipad.xib" />
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\icon_paperclip.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\icon_paperclip%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\icon_paperclip%403x.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\icon_code.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\icon_code%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\icon_code%403x.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\friends.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\ic_splash.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\loading_apple.gif" />
   </ItemGroup>
 </Project>

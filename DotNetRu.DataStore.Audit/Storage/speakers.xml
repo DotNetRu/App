@@ -309,6 +309,13 @@
 Полагает, что оптимизировать корректный код проще чем корректировать оптимизированный.</Description>
   </Speaker>
   <Speaker>
+    <Id>Konstantin-Vasiliev</Id>
+    <Name>Константин Васильев</Name>
+    <CompanyName>Очень интересно</CompanyName>
+    <CompanyUrl>https://www.interesnee.ru/</CompanyUrl>
+    <Description>.NET разработчик в компании «Очень интересно».</Description>
+  </Speaker>
+  <Speaker>
     <Id>Mikhail-Bashurov</Id>
     <Name>Михаил Башуров</Name>
     <CompanyName>EPAM</CompanyName>
@@ -459,6 +466,24 @@
     <TwitterUrl>https://twitter.com/serjic</TwitterUrl>
   </Speaker>
   <Speaker>
+    <Id>Stanislav-Flusov</Id>
+    <Name>Станислав Флусов</Name>
+    <CompanyName>MySale</CompanyName>
+    <CompanyUrl>http://www.mysalegroup.com/</CompanyUrl>
+    <Description>Разработчик .NET, интересующийся темой производительности и использования памяти в .NET приложениях. Поскольку начинчал свой путь с написания ПО для моделирования X-Ray спектров в сложной геометрии и далее ПО, связанное с обработкой аудио в реальном времени, где был в обилии предствален unsafe код.
+
+
+Сейчас разрабатывает и проектирует enterprise решения с использованием микросервисной архитектуры.</Description>
+    <HabrUrl>https://habrahabr.ru/users/stus/</HabrUrl>
+  </Speaker>
+  <Speaker>
+    <Id>Stanislav-Ladokhin</Id>
+    <Name>Станислав Ладохин</Name>
+    <CompanyName>ICL</CompanyName>
+    <CompanyUrl>http://www.icl.ru/</CompanyUrl>
+    <Description>Ведущий .NET разработчик и Team Lead в компании ICL. Занимается разработкой enterprise решений в отделе разработки прикладного ПО. В свободное время увлекается изучением .NET Core и экспериментирует с возможностями платформы Microsoft Azure</Description>
+  </Speaker>
+  <Speaker>
     <Id>Stanislav-Sidristy</Id>
     <Name>Станислав Сидристый</Name>
     <CompanyName>EPAM</CompanyName>
@@ -563,6 +588,13 @@
     <CompanyUrl>http://www.custis.ru/</CompanyUrl>
     <Description>.NET разработчик в CUSTIS. Организатор .NET сообщества в Москве.</Description>
     <TwitterUrl>https://twitter.com/YuliaFast</TwitterUrl>
+  </Speaker>
+  <Speaker>
+    <Id>Yuri-Kerbickov</Id>
+    <Name>Юрий Кербицков</Name>
+    <CompanyName>ICL</CompanyName>
+    <CompanyUrl>http://www.icl.ru/</CompanyUrl>
+    <Description>Ведущий .NET разработчик и Team Lead в компании ICL. Начинал свой путь программиста как Delphi-разработчик, но потом влюбился в платформу .NET и C# в частности. Разрабатывает различные интеграционные решения, софт для работы с оборудованием и автоматизирует технологические процессы. Любит копаться во внутренностях и исходниках .NET’а, постигать дзен многопоточности и надоедать всем с микрооптимизациями.</Description>
   </Speaker>
   <Speaker>
     <Id>Yuri-Volkov</Id>

@@ -264,4 +264,7 @@
   <data name="AboutTextDetail" xml:space="preserve">
     <value>Мы объединяем людей вокруг .NET платформы, чтобы способствовать обмену опытом и знаниями. Проводим регулярные встречи, чтобы делиться новостями и лучшими практиками в разработке программных продуктов.</value>
   </data>
+  <data name="Kazan" xml:space="preserve">
+    <value>Казань</value>
+  </data>
 </root>

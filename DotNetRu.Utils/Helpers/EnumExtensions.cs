@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-
-namespace DotNetRu.Utils.Helpers
+﻿namespace DotNetRu.Utils.Helpers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+
     public static class EnumExtension
     {
         /// <summary>
@@ -16,12 +16,6 @@ namespace DotNetRu.Utils.Helpers
         {
             var info = enumValue.GetType().GetRuntimeField(enumValue.ToString());
             return info?.GetCustomAttribute<TAttribute>();
-        }
-
-        public static string GetLanguageCode(this Enum enumValue)
-        {
-            // creturn "ru"; // for LivePlayer
-            return enumValue.GetAttribute<LanguageCodeAttribute>().LanguageCode;
         }
 
         public static IEnumerable<T> GetEnumValues<T>()

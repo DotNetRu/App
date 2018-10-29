@@ -7,7 +7,6 @@
     using Android.Content.PM;
     using Android.OS;
 
-    using DotNetRu.Droid.Backgrounding;
     using DotNetRu.Droid.Helpers;
     using DotNetRu.Utils.Helpers;
 
@@ -21,12 +20,8 @@
 
     using Plugin.Permissions;
 
-    using Refractored.XamForms.PullToRefresh.Droid;
-
     using Xamarin.Forms;
     using Xamarin.Forms.Platform.Android;
-
-    using XamarinEvolve.Clients.Portable;
 
     [Activity(
         Label = AboutThisApp.AppName,
@@ -88,7 +83,6 @@
 
         public static MainActivity Current { get; }
 
-        // GoogleApiClient client;
         protected override void OnCreate(Bundle savedInstanceState)
         {
 #if ENABLE_LIVE_PLAYER
@@ -109,7 +103,6 @@
             // AndroidAppLinks.Init(this);
             Toolkit.Init();
 
-            PullToRefreshLayoutRenderer.Init();
             typeof(Color).GetProperty("Accent", BindingFlags.Public | BindingFlags.Static)
                 ?.SetValue(null, Color.FromHex("#757575"));
 
@@ -117,78 +110,8 @@
 
             CachedImageRenderer.Init(enableFastRenderer: true);
 
-#if ENABLE_TEST_CLOUD // Mapping StyleID to element content descriptions
-            Xamarin.Forms.Forms.ViewInitialized += (object sender, Xamarin.Forms.ViewInitializedEventArgs e) => {
-                if (!string.IsNullOrWhiteSpace(e.View.StyleId)) {
-                    e.NativeView.ContentDescription = e.View.StyleId;
-                }
-            };
-#endif
             this.LoadApplication(new Clients.UI.App());
-
-            var gpsAvailable = this.IsPlayServicesAvailable();
-            Settings.Current.PushNotificationsEnabled = gpsAvailable;
-
-            if (gpsAvailable)
-            {
-                // client = new GoogleApiClient.Builder(this)
-                // .AddApi(AppIndex.API)
-                // .Build();
-            }
-
             this.OnNewIntent(this.Intent);
-
-            if (!Settings.Current.PushNotificationsEnabled)
-            {
-                return;
-            }
-#if ENABLE_TEST_CLOUD
-#else
-
-            // this.RegisterWithGCM();
-#endif
-
-            DataRefreshService.ScheduleRefresh(this);
-        }
-
-        // private void RegisterWithGCM()
-        // {
-        // // Check to ensure everything's set up right
-        // GcmClient.CheckDevice(this);
-        // GcmClient.CheckManifest(this);
-
-        // // Register for push notifications
-        // Debug.WriteLine("MainActivity", "Registering...");
-        // GcmService.Initialize(this);
-        // GcmService.Register(this);
-        // }
-        public bool IsPlayServicesAvailable()
-        {
-            // int resultCode = GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(this);
-            // if (resultCode != ConnectionResult.Success)
-            // {
-            // if (GoogleApiAvailability.Instance.IsUserResolvableError(resultCode))
-            // {
-            // if (Settings.Current.GooglePlayChecked)
-            // return false;
-
-            // Settings.Current.GooglePlayChecked = true;
-            // Toast.MakeText(this, "Google Play services is not installed, push notifications have been disabled.",
-            // ToastLength.Long)
-            // .Show();
-            // }
-            // else
-            // {
-            // Settings.Current.PushNotificationsEnabled = false;
-            // }
-            // return false;
-            // }
-            // else
-            // {
-            // Settings.Current.PushNotificationsEnabled = true;
-            // return true;
-            // }
-            return true;
         }
 
         private void SetupBottomTabs()

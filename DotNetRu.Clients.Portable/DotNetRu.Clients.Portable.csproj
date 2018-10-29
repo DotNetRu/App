@@ -1,137 +1,18 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <ProjectGuid>{434442F3-9AF2-4A19-9151-EFBD731BD367}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>DotNetRu.Clients.Portable</RootNamespace>
-    <AssemblyName>DotNetRu.Clients.Portable</AssemblyName>
-    <TargetFrameworkProfile>Profile44</TargetFrameworkProfile>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
-    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;MOBILE;ENABLE_TEST_CLOUD</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-    <DefineConstants>MOBILE;</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'UITest|iPhone' ">
-    <Optimize>true</Optimize>
-    <OutputPath>bin\iPhone\UITest</OutputPath>
-    <WarningLevel>4</WarningLevel>
-    <DefineConstants>MOBILE</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'UITest|AnyCPU' ">
-    <Optimize>true</Optimize>
-    <OutputPath>bin\UITest</OutputPath>
-    <WarningLevel>4</WarningLevel>
-    <DefineConstants>MOBILE;ENABLE_TEST_CLOUD</DefineConstants>
-  </PropertyGroup>
+
   <ItemGroup>
-    <PackageReference Include="CClarke.Plugin.Calendars" Version="0.6.0-beta" />
     <PackageReference Include="FormsToolkit" Version="2.0.1" />
     <PackageReference Include="Humanizer.Core" Version="2.2.0" />
     <PackageReference Include="Humanizer.Core.ru" Version="2.2.0" />
-    <PackageReference Include="linqtotwitter" Version="4.2.1" />
-    <PackageReference Include="Microsoft.Bcl" Version="1.1.10" />
-    <PackageReference Include="Microsoft.Bcl.Build" Version="1.0.21" />
-    <PackageReference Include="Microsoft.Bcl.Compression" Version="3.9.85" />
-    <PackageReference Include="Microsoft.Net.Http" Version="2.2.29" />
-    <PackageReference Include="modernhttpclient" Version="2.4.2" />
-    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
-    <PackageReference Include="PCLStorage" Version="1.0.2" />
+    <PackageReference Include="linqtotwitter" Version="5.0.0-beta1" />
     <PackageReference Include="Plugin.Permissions" Version="2.2.1" />
     <PackageReference Include="Plugin.Share" Version="7.1.1" />
     <PackageReference Include="Refractored.MvvmHelpers" Version="1.3.0" />
-    <PackageReference Include="Rx-Core" Version="2.2.5" />
-    <PackageReference Include="Rx-Interfaces" Version="2.2.5" />
-    <PackageReference Include="Rx-Linq" Version="2.2.5" />
-    <PackageReference Include="Rx-Main" Version="2.2.5" />
-    <PackageReference Include="Rx-PlatformServices" Version="2.2.5" />
-    <PackageReference Include="Xam.Plugin.EmbeddedResource" Version="1.0.1.0" />
     <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
-    <PackageReference Include="Xamarin.Forms" Version="2.5.0.122203" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="ApplicationResources\AppResources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AppResources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="ApplicationResources\AppResources.ru.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AppResources.ru.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Extensions\DateTimeExtenstions.cs" />
-    <Compile Include="Helpers\CultureChangedMessage.cs" />
-    <Compile Include="Helpers\LocalizedResources.cs" />
-    <Compile Include="Helpers\Settings.cs" />
-    <Compile Include="Interfaces\ILocalize.cs" />
-    <Compile Include="Model\LocalizableMenuItem.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TweetHelper.cs" />
-    <Compile Include="ViewModel\BottomBarViewModel.cs" />
-    <Compile Include="ViewModel\CustomObservableCollection.cs" />
-    <Compile Include="ViewModel\Language.cs" />
-    <Compile Include="ViewModel\MeetupViewModel.cs" />
-    <Compile Include="ViewModel\TechnologiesUsedViewModel.cs" />
-    <Compile Include="ViewModel\ViewModelBase.cs" />
-    <Compile Include="Model\Extensions\TalkModelExtensions.cs" />
-    <Compile Include="ViewModel\FilterSessionsViewModel.cs" />
-    <Compile Include="Model\MenuItem.cs" />
-    <Compile Include="ViewModel\TalkViewModel.cs" />
-    <Compile Include="ViewModel\SettingsViewModel.cs" />
-    <Compile Include="Helpers\MessagingUtils.cs" />
-    <Compile Include="ViewModel\SpeakerDetailsViewModel.cs" />
-    <Compile Include="ViewModel\FriendsViewModel.cs" />
-    <Compile Include="ViewModel\FriendDetailsViewModel.cs" />
-    <Compile Include="ViewModel\MeetupsViewModel.cs" />
-    <Compile Include="Model\Extensions\MeetupModelExtensions.cs" />
-    <Compile Include="ViewModel\NewsViewModel.cs" />
-    <Compile Include="Model\Tweet.cs" />
-    <Compile Include="Model\AppPage.cs" />
-    <Compile Include="Interfaces\IToast.cs" />
-    <Compile Include="ViewModel\NotificationsViewModel.cs" />
-    <Compile Include="Interfaces\IPushNotifications.cs" />
-    <Compile Include="Services\ReminderService.cs" />
-    <Compile Include="ViewModel\FeedbackViewModel.cs" />
-    <Compile Include="Interfaces\ILaunchTwitter.cs" />
-    <Compile Include="Helpers\ColorConversion.cs" />
-    <Compile Include="ViewModel\SpeakersViewModel.cs" />
-    <Compile Include="Interfaces\ILaunchFacebook.cs" />
-    <Compile Include="Interfaces\IProvidePageInfo.cs" />
-    <Compile Include="Model\Extensions\SpeakerExtensions.cs" />
-    <Compile Include="Interfaces\IAppVersionProvider.cs" />
-    <Compile Include="Interfaces\IPlatformSpecificExtension.cs" />
-    <Compile Include="ViewModel\ConferenceFeedbackViewModel.cs" />
-  </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
-  <Import Project="..\packages\Xamarin.Insights.1.11.4\build\portable-win+net45+wp80+windows8+wpa+MonoAndroid10+MonoTouch10\Xamarin.Insights.targets" Condition="Exists('..\packages\Xamarin.Insights.1.11.4\build\portable-win+net45+wp80+windows8+wpa+MonoAndroid10+MonoTouch10\Xamarin.Insights.targets')" />
-  <ItemGroup>
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config">
-      <SubType>Designer</SubType>
-    </None>
+    <PackageReference Include="Xamarin.Forms" Version="2.5.0.280555" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DotNetRu.DataStore.Audit\DotNetRu.DataStore.Audit.csproj">
@@ -142,17 +23,5 @@
       <Project>{dfa0f0f6-c396-412e-86a9-e9095f71cc36}</Project>
       <Name>DotNetRu.Utils</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="ApplicationResources\AppResources.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ApplicationResources\AppResources.ru.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>AppResources.ru.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
   </ItemGroup>
 </Project>

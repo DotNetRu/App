@@ -4,8 +4,6 @@
 
     using DotNetRu.Clients.Portable.Model;
     using DotNetRu.Clients.Portable.ViewModel;
-    using DotNetRu.Clients.UI.Controls;
-    using DotNetRu.Clients.UI.Helpers;
     using DotNetRu.Utils.Helpers;
 
     using FormsToolkit;
@@ -43,24 +41,6 @@
             base.OnAppearing();
 
             this.UpdatePage();
-
-            MessagingService.Current.Subscribe<string>(
-                MessageKeys.NavigateToImage,
-                async (m, image) =>
-                    {
-                        await NavigationService.PushModalAsync(
-                            this.Navigation,
-                            new EvolveNavigationPage(new TweetImagePage(image)));
-                    });
-
-            MessagingService.Current.Subscribe(
-                MessageKeys.NavigateToConferenceFeedback,
-                async (m) =>
-                    {
-                        await NavigationService.PushModalAsync(
-                            this.Navigation,
-                            new EvolveNavigationPage(new ConferenceFeedbackPage()));
-                    });
         }
 
         protected override void OnDisappearing()

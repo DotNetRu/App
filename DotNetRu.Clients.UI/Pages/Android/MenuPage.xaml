@@ -1,9 +1,0 @@
-<ContentPage 
-    xmlns="http://xamarin.com/schemas/2014/forms" 
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-    x:Class="DotNetRu.Clients.UI.Pages.Android.MenuPage"
-    xmlns:controls="clr-namespace:DotNetRu.Clients.UI.Controls;assembly=DotNetRu.Clients.UI">
-    <ContentPage.Content>
-      <controls:NavigationView x:Name="NavView"/>
-    </ContentPage.Content>
-</ContentPage>
