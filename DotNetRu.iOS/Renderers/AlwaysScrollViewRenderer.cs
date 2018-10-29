@@ -8,19 +8,16 @@ using Xamarin.Forms.Platform.iOS;
 
 namespace DotNetRu.iOS.Renderers
 {
-    public class NonScrollableListViewRenderer : ListViewRenderer
+    public class AlwaysScrollViewRenderer : ScrollViewRenderer
     {
         public static void Initialize()
         {
         }
 
-        protected override void OnElementChanged(ElementChangedEventArgs<ListView> e)
+        protected override void OnElementChanged(VisualElementChangedEventArgs e)
         {
             base.OnElementChanged(e);
-            if (this.Control != null)
-            {
-                this.Control.ScrollEnabled = false;
-            }            
+            this.AlwaysBounceVertical = true;
         }
     }
 }

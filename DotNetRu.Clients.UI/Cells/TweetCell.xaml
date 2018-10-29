@@ -1,84 +1,68 @@
 ﻿<ContentView 
     xmlns="http://xamarin.com/schemas/2014/forms" 
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-    xmlns:imagecircle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
-    xmlns:effects="clr-namespace:DotNetRu.Clients.UI.Effects;assembly=DotNetRu.Clients.UI"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
     x:Class="DotNetRu.Clients.UI.Cells.TweetCell">
     <ContentView.Content>
-        <Grid Padding="16,8,8,8" ColumnSpacing="{StaticResource MediumSpacing}" RowSpacing="{StaticResource MediumSpacing}">
+        <Grid RowSpacing="0" ColumnSpacing="0" Padding="0,10,5,10">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="70" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <StackLayout Padding="0" 
-                       Spacing="4" StyleId="TweetItem">
-                <Label Text="{Binding TitleDisplay}"
-                   Style="{DynamicResource TweetUserTextStyle}"
-                   LineBreakMode="NoWrap"/>
+            <forms:CachedImage Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Margin="10,0,10,0" VerticalOptions="Start" HorizontalOptions="Center" DownsampleToViewSize="true"
+                                    Aspect="AspectFit" HeightRequest="70" WidthRequest="70" Source="{Binding Image}">
+                <forms:CachedImage.Transformations>
+                    <transformations:CircleTransformation/>
+                </forms:CachedImage.Transformations>
+            </forms:CachedImage>
 
-                <Label Text="{Binding Text}"  
-                   Style="{DynamicResource TweetTextStyle}"
-                   LineBreakMode="WordWrap"/>
-
+            <StackLayout Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
+                <Label FontSize="14" TextColor="#000000" Margin="0,0,0,0" Style="{StaticResource BoldLabel}" Text="{Binding ScreenName}" />
+                <Label FontSize="14" TextColor="#6d747a" Margin="0,0,0,0" Text="{Binding ScreenName}" LineBreakMode="TailTruncation" />
+                <Label FontSize="8" TextColor="#6d747a" Margin="0,0,0,0" Text="•" VerticalTextAlignment="Center" />
+                <Label FontSize="14" TextColor="#6d747a" Margin="0,0,0,0" Text="{Binding DateDisplay}" />
+                <!--<Label Style="{StaticResource FALabel}" Margin="0,0,0,0" TextColor="#6d747a" Text="&#xf107;" />-->
             </StackLayout>
+            <Grid Grid.Row="1" Grid.Column="1" Margin="0,5,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" TextColor="#000000" FontSize="15" Text="{Binding Text}" />
 
-            <Grid Grid.Row="1" Grid.ColumnSpan="2" VerticalOptions="EndAndExpand">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-                <Label 
-                   Text="{Binding SubtitleDisplay}" 
-                   Style="{DynamicResource EvolveListItemDetailPrimaryTextStyle}"
-                   LineBreakMode="NoWrap"/>
-
-                <Label Grid.ColumnSpan="2"
-                   HorizontalOptions="End"
-                   Text="{Binding DateDisplay}" 
-                   Style="{DynamicResource EvolveListItemDetailTextStyle}"
-                   LineBreakMode="NoWrap"/>
+                <forms:CachedImage IsVisible="{Binding HasAttachedImage}" Grid.Row="1" HeightRequest="160" HorizontalOptions="StartAndExpand" Margin="0,10,0,10" Source="{Binding TweetedImageUri}">
+                    <forms:CachedImage.Transformations>
+                        <transformations:CornersTransformation BottomLeftCornerSize="5" TopLeftCornerSize="5" BottomRightCornerSize="5" TopRightCornerSize="5" CornersTransformType="AllRounded" />
+                    </forms:CachedImage.Transformations>
+                </forms:CachedImage>
             </Grid>
-
-            <Image Grid.Column="1"
-                  Grid.RowSpan="1" 
-                  IsVisible="{Binding HasImage}"
-                  HeightRequest="66"
-                  WidthRequest="66"
-                  VerticalOptions="Start"
-                  HorizontalOptions="Center"
-                  Aspect="AspectFit" Margin="0,5,5,0">
-                <Image.Source>
-                    <UriImageSource Uri="{Binding TweetedImageUri}" 
-                        CacheValidity="7" 
-                        CachingEnabled="true"/>
-                </Image.Source>
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding FullImageCommand}"/>
-                </Image.GestureRecognizers>
-            </Image>
-
-            <Image Grid.Column="1"
-                  Grid.RowSpan="1" 
-                  IsVisible="{Binding HasImage}"
-                  HeightRequest="30"
-                  WidthRequest="30"
-                  VerticalOptions="Start"
-                  HorizontalOptions="End"
-                  Aspect="AspectFit"
-                 Source="icon_paperclip.png"
-                 x:Name="PaperclipImage">
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding FullImageCommand}"/>
-                </Image.GestureRecognizers>
-                <Image.Effects>
-                    <effects:ShadowEffect Radius="5" DistanceX="5" DistanceY="5" Color="Black"/>
-                </Image.Effects>
-            </Image>
-
+            <!--<StackLayout Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
+                <Image Margin="0,10,50,0" HeightRequest="20" WidthRequest="20" Source="icon_comment.png" />
+                <Image Margin="0,10,50,0" HeightRequest="20" WidthRequest="20" Source="icon_retweet.png" />
+                <Image Margin="0,10,50,0" HeightRequest="20" WidthRequest="20" Source="icon_heart.png" />
+                <Image Margin="0,10,0,0" HeightRequest="20" WidthRequest="20" Source="icon_dm.png" />
+            </StackLayout>-->
         </Grid>
     </ContentView.Content>
 </ContentView>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -10,6 +10,8 @@
     using DotNetRu.Utils.Helpers;
     using DotNetRu.Utils.Interfaces;
 
+    using FFImageLoading.Forms.Touch;
+
     using FormsToolkit;
     using FormsToolkit.iOS;
 
@@ -31,18 +33,9 @@
     using Xamarin.Forms.Platform.iOS;
 
     [Register("AppDelegate")]
-    public class AppDelegate : FormsApplicationDelegate
+    public partial class AppDelegate : FormsApplicationDelegate
     {
-        public static class ShortcutIdentifier
-        {
-            public const string Tweet = AboutThisApp.PackageName + ".tweet";
-
-            public const string Announcements = AboutThisApp.PackageName + ".announcements";
-
-            public const string Events = AboutThisApp.PackageName + ".events";
-        }
-
-        internal static UIColor PrimaryColor;
+        private static UIColor primaryColor;
 
         public override bool FinishedLaunching(UIApplication uiApplication, NSDictionary launchOptions)
         {
@@ -85,12 +78,12 @@
             return base.FinishedLaunching(uiApplication, launchOptions); // && shouldPerformAdditionalDelegateHandling;
         }
 
-        void DidBecomeActive(NSNotification notification)
+        private void DidBecomeActive(NSNotification notification)
         {
-            ((DotNetRu.Clients.UI.App)Xamarin.Forms.Application.Current).SecondOnResume();
+            ((Clients.UI.App)Xamarin.Forms.Application.Current).SecondOnResume();
         }
 
-        static void InitializeDependencies()
+        private static void InitializeDependencies()
         {
             Toolkit.Init();
 
@@ -116,23 +109,25 @@
             SelectedTabPageRenderer.Initialize();
             TextViewValue1Renderer.Init();
             PullToRefreshLayoutRenderer.Init();
+
+            CachedImageRenderer.Init();
         }
 
         private static void InitializeThemeColors()
         {
             // Set up appearance after loading theme resources in App.xaml
-            PrimaryColor = ((Color)Xamarin.Forms.Application.Current.Resources["Primary"]).ToUIColor();
+            primaryColor = ((Color)Xamarin.Forms.Application.Current.Resources["Primary"]).ToUIColor();
             UINavigationBar.Appearance.BarTintColor =
                 ((Color)Xamarin.Forms.Application.Current.Resources["BarBackgroundColor"]).ToUIColor();
-            UINavigationBar.Appearance.TintColor = PrimaryColor; // Tint color of button items
-            UIBarButtonItem.Appearance.TintColor = PrimaryColor; // Tint color of button items
-            UITabBar.Appearance.TintColor = PrimaryColor;
-            UISwitch.Appearance.OnTintColor = PrimaryColor;
-            UIAlertView.Appearance.TintColor = PrimaryColor;
+            UINavigationBar.Appearance.TintColor = primaryColor; // Tint color of button items
+            UIBarButtonItem.Appearance.TintColor = primaryColor; // Tint color of button items
+            UITabBar.Appearance.TintColor = primaryColor;
+            UISwitch.Appearance.OnTintColor = primaryColor;
+            UIAlertView.Appearance.TintColor = primaryColor;
 
-            UIView.AppearanceWhenContainedIn(typeof(UIAlertController)).TintColor = PrimaryColor;
-            UIView.AppearanceWhenContainedIn(typeof(UIActivityViewController)).TintColor = PrimaryColor;
-            UIView.AppearanceWhenContainedIn(typeof(SLComposeViewController)).TintColor = PrimaryColor;
+            UIView.AppearanceWhenContainedIn(typeof(UIAlertController)).TintColor = primaryColor;
+            UIView.AppearanceWhenContainedIn(typeof(UIActivityViewController)).TintColor = primaryColor;
+            UIView.AppearanceWhenContainedIn(typeof(SLComposeViewController)).TintColor = primaryColor;
         }
 
         public override void WillEnterForeground(UIApplication uiApplication)
@@ -230,10 +225,9 @@
                 {
                     var alert = (NSString)aps.ObjectForKey(alertKey);
 
+                    var uiAlertView = new UIAlertView($"{AboutThisApp.AppName} Update", alert, null, "OK", null);
                     try
                     {
-
-                        var uiAlertView = new UIAlertView($"{AboutThisApp.AppName} Update", alert, null, "OK", null);
                         uiAlertView.Show();
 
                     }
@@ -327,7 +321,7 @@
                         slComposer.SetInitialText(EventInfo.HashTag);
                         if (slComposer.EditButtonItem != null)
                         {
-                            slComposer.EditButtonItem.TintColor = PrimaryColor;
+                            slComposer.EditButtonItem.TintColor = primaryColor;
                         }
 
                         slComposer.CompletionHandler += result =>
