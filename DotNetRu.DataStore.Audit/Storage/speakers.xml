@@ -14,7 +14,7 @@
     <Id>Alex-Merson</Id>
     <Name>Алексей Мерсон</Name>
     <CompanyName>HiQo Solutions</CompanyName>
-    <CompanyUrl>https://www.hiqo-solutions.com/</CompanyUrl>
+    <CompanyUrl>https://www.hiqo-solutions.com</CompanyUrl>
     <Description>Software Developer, Architect, PhD. В HiQo Solutions работает на back-end довольно крупного enterprise-проекта. Любит красивую архитектуру и увлекательный код. С интересом поглядывает в сторону функционального программирования.</Description>
     <ContactsUrl>https://www.linkedin.com/in/alexey-merson</ContactsUrl>
     <HabrUrl>https://habrahabr.ru/users/m_a_d/</HabrUrl>
@@ -86,14 +86,15 @@
     <Name>Анатолий Кулаков</Name>
     <CompanyName>Paladyne Systems</CompanyName>
     <CompanyUrl>http://www.paladynesys.com/</CompanyUrl>
-    <Description>Образовывался на роль специалиста по информационной безопасности. Зарабатывал, как суровый C++ разработчик под Linux. Когда надоело кодировать и захотелось творить, перешёл на C#. Пишет на .NET с первых его версий. Занимается проектированием и построением бизнес-приложений, распределённых и отказоустойчивых систем. Отдыхает с ES, CQRS и DDD.</Description>
+    <Description>Образовывался на роль специалиста по информационной безопасности. Зарабатывал, как суровый C++ разработчик под Linux. Когда надоело кодировать и захотелось творить, перешёл на C#. Пишет на .NET с первых его версий. Занимается проектированием и построением бизнес-приложений, распределённых и отказоустойчивых систем. Отдыхает с ES, CQRS и DDD.
+Соорганизатор сообществ .NET разработчиков в Санкт-Петербурге и Москве. Учавствует в програмном комитете DotNext – крупнейшей в России .NET конференции.</Description>
     <TwitterUrl>https://twitter.com/kulakovt</TwitterUrl>
   </Speaker>
   <Speaker>
     <Id>Andrei-Kirpichev</Id>
     <Name>Андрей Кирпичёв</Name>
     <CompanyName>Axel</CompanyName>
-    <CompanyUrl>http://axelmwd.com/</CompanyUrl>
+    <CompanyUrl>http://axelmwd.com</CompanyUrl>
     <Description>Андрей работает ведущим программистом в компании Axel. Живёт и работает по принципу «Изменения неизбежны».</Description>
   </Speaker>
   <Speaker>
@@ -134,6 +135,13 @@
     <CompanyName>WaveAccess</CompanyName>
     <CompanyUrl>http://www.waveaccess.ru/</CompanyUrl>
     <TwitterUrl>https://twitter.com/ShabanovAnton</TwitterUrl>
+  </Speaker>
+  <Speaker>
+    <Id>Artem-Akulakov</Id>
+    <Name>Артём Акуляков</Name>
+    <CompanyName>Tickeron Inc</CompanyName>
+    <CompanyUrl>https://tickeron.com/</CompanyUrl>
+    <Description>Senior .NET Engineer в компании Tickeron.</Description>
   </Speaker>
   <Speaker>
     <Id>Artem-Borzilov</Id>
@@ -222,7 +230,7 @@
     <CompanyName>CodeBeavers</CompanyName>
     <CompanyUrl>http://codebeavers.io/</CompanyUrl>
     <Description>Долгое время занимался кровавым веб-энтерпрайзом в качестве full-stack разработчика. После чего поменял взгляды и убежал в ряды любителей смузи, и гироскутеров (стартапер).  Любит  open-source  и ковыряться в исходниках. Считает что .NET Core — лучшее, что могло быть с .NET.</Description>
-    <BlogUrl>http://egorikas.com/</BlogUrl>
+    <BlogUrl>http://egorikas.com</BlogUrl>
     <ContactsUrl>https://www.linkedin.com/in/egor-grishechko</ContactsUrl>
   </Speaker>
   <Speaker>
@@ -272,6 +280,13 @@
     <ContactsUrl>http://facebook.com/ivan.kochurkin</ContactsUrl>
     <TwitterUrl>https://twitter.com/KvanTTT</TwitterUrl>
     <HabrUrl>https://habrahabr.ru/users/KvanTTT/</HabrUrl>
+  </Speaker>
+  <Speaker>
+    <Id>Ivan-Kozhin</Id>
+    <Name>Иван Кожин</Name>
+    <CompanyName>Очень интересно</CompanyName>
+    <CompanyUrl>https://www.interesnee.ru/</CompanyUrl>
+    <Description>Ведущий разработчик в компании «Очень интересно».</Description>
   </Speaker>
   <Speaker>
     <Id>Ivan-Pashchenko</Id>
@@ -383,7 +398,7 @@
     <Name>Роман Неволин</Name>
     <CompanyName>EPAM</CompanyName>
     <CompanyUrl>https://www.epam-group.ru/</CompanyUrl>
-    <Description>.NET разработчик в компании EPAM, любящий ковырять данные и искать в них хитрые закономерности. Активно занимается исследованиями в области Machine Learning и разработкой собственных инструментов машинного обучения.</Description>
+    <Description>Разработчик компании EPAM, специализирующийся на работе с данными в наукоемких проектах. Активно занимается исследованиями в области Machine Learning и разработкой собственных инструментов машинного обучения.</Description>
     <TwitterUrl>https://twitter.com/nevoroman</TwitterUrl>
   </Speaker>
   <Speaker>
@@ -441,6 +456,14 @@
 
 Интересуется архитектурой расширяемых приложений, инновационными подходами к разработке программ с использованием интеллектуальных инструментов и, конечно же, тем, как программисты, работая в команде, могут достичь выдающихся результатов и получать удовольствие от своей деятельности.</Description>
     <TwitterUrl>https://twitter.com/serjic</TwitterUrl>
+  </Speaker>
+  <Speaker>
+    <Id>Stanislav-Sidristy</Id>
+    <Name>Станислав Сидристый</Name>
+    <CompanyName>EPAM</CompanyName>
+    <CompanyUrl>https://www.epam-group.ru/</CompanyUrl>
+    <Description>Разработчик .NET с большим стажем работы в самых разных областях: от ОСРВ до enterprise решений. Докладчик на конференциях: DotNext, Apps4All Forum, CLRium, QA:Conference. Автор проекта книги по ядру .NET.</Description>
+    <HabrUrl>https://habrahabr.ru/users/sidristij/</HabrUrl>
   </Speaker>
   <Speaker>
     <Id>Stas-Pavlov</Id>

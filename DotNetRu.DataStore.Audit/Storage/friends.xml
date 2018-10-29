@@ -1,6 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Friends>
   <Friend>
+    <Id>Arcadia</Id>
+    <Name>Arcadia</Name>
+    <Url>http://www.arcadia.spb.ru/</Url>
+    <Description>Компания Аркадия является одной из ведущих компаний по разработке программного обеспечения. Более 20 лет сохраняет высокий стандарт предоставляемых услуг в области программного обеспечения. Специализируется на разработке приложений, внедряя передовые идеи с помощью актуальных на сегодняшний день технологий.</Description>
+  </Friend>
+  <Friend>
     <Id>CUSTIS</Id>
     <Name>CUSTIS</Name>
     <Url>http://www.custis.ru/</Url>
@@ -89,6 +95,12 @@
     <Name>Odin (Ingram Micro)</Name>
     <Url>http://www.odin.com/</Url>
     <Description>Odin обеспечивает решениями облачную экосистему от небольших локальных хостинг-компаний до крупнейших международных телекоммуникационных операторов.</Description>
+  </Friend>
+  <Friend>
+    <Id>Pilot</Id>
+    <Name>МТБЦ «Пилот»</Name>
+    <Url>https://vk.com/mtbc_pilot</Url>
+    <Description>Молодёжный творческий бизнес-центр «Пилот» - площадка поддержки креативной и талантливой молодежи!</Description>
   </Friend>
   <Friend>
     <Id>Rambler</Id>

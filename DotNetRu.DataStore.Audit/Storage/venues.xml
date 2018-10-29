@@ -1,6 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Venues>
   <Venue>
+    <Id>Kry-Furgon</Id>
+    <Name>Коворкинг «Фургон»</Name>
+    <Address>Красноярск, Аэровокзальная, 10</Address>
+    <MapUrl>https://yandex.ru/maps/-/CBaLjSvrkB</MapUrl>
+  </Venue>
+  <Venue>
     <Id>Msk-CUSTIS</Id>
     <Name>Конференц-зал «CUSTIS»</Name>
     <Address>Москва, ул.Лесная, 43 (6 этаж)</Address>
@@ -89,6 +95,12 @@
     <Name>Кафе «Any Day»</Name>
     <Address>Санкт-Петербург, Херсонская улица, 12-14, БЦ «Ренессанс Правда»</Address>
     <MapUrl>https://yandex.ru/maps/-/CBQDZ6gb1D</MapUrl>
+  </Venue>
+  <Venue>
+    <Id>Spb-Arcadia</Id>
+    <Name>Конференц-зал «Arcadia»</Name>
+    <Address>Санкт-Петербург, Большой Сампсониевский пр. 28, корп. 2 (7 этаж), БЦ «MEZON PLAZA»</Address>
+    <MapUrl>https://yandex.ru/maps/-/CBarNXcsgD</MapUrl>
   </Venue>
   <Venue>
     <Id>Spb-House</Id>

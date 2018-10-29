@@ -97,6 +97,16 @@
     <SlidesUrl>https://www.slideshare.net/MskDotNet/iot-azure-iot</SlidesUrl>
   </Talk>
   <Talk>
+    <Id>Collecting-Data-in-Net</Id>
+    <SpeakerIds>
+      <SpeakerId>Igor-Labutin</SpeakerId>
+    </SpeakerIds>
+    <Title>Коллекционируем данные в .NET</Title>
+    <Description>Любой разработчик сталкивается с выбором контейнеров для хранения данных программы. При разработке на платформе .NET несомненно первыми кандидатами будут массивы и коллекции из System.Collections(.Generic). Однако мир коллекций этим не ограничивается. Существуют неизменяемые (immutable) коллекции. Встречаются коллекции, оптимизирующие потребление памяти, и т.п. Мы рассмотрим популярные (но все же далеко не всегда широко известные) пакеты коллекции предлагаемые в .NET и методы работы с ними.</Description>
+    <CodeUrl>https://github.com/ilabutin/spbdotnet2017</CodeUrl>
+    <SlidesUrl>https://www.slideshare.net/SpbDotNet/net-84856032</SlidesUrl>
+  </Talk>
+  <Talk>
     <Id>Common-mistakes-in-Net-benchmarks</Id>
     <SpeakerIds>
       <SpeakerId>Andrey-Akinshin</SpeakerId>
@@ -348,6 +358,17 @@
     <VideoUrl>https://www.youtube.com/watch?v=3fycJVD85Z4</VideoUrl>
   </Talk>
   <Talk>
+    <Id>FSharp-for-Data-Analysis</Id>
+    <SpeakerIds>
+      <SpeakerId>Artem-Akulakov</SpeakerId>
+    </SpeakerIds>
+    <Title>F# for Data Analysis</Title>
+    <Description>Вводный доклад об инструментах для анализа данных в .NET и F# в частности.</Description>
+    <CodeUrl>https://github.com/0xffAA/fsharp-dataanalysis-meetupmaterials</CodeUrl>
+    <SlidesUrl>https://www.slideshare.net/SpbDotNet/f-for-data-analysis</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=rmSgNJLLfSM</VideoUrl>
+  </Talk>
+  <Talk>
     <Id>Functional-NET</Id>
     <SpeakerIds>
       <SpeakerId>Roman-Nevolin</SpeakerId>
@@ -481,6 +502,16 @@
     </SeeAlsoTalkIds>
     <SlidesUrl>http://www.slideshare.net/yu5k3/c-c-3-60617635</SlidesUrl>
     <VideoUrl>https://www.youtube.com/watch?v=kaEjNBsRnNA</VideoUrl>
+  </Talk>
+  <Talk>
+    <Id>Lifetime-Template</Id>
+    <SpeakerIds>
+      <SpeakerId>Stanislav-Sidristy</SpeakerId>
+    </SpeakerIds>
+    <Title>Шаблон Lifetime: для сложного Disposing</Title>
+    <Description>Стандартный шаблон IDisposable решает множество задач освобождения ресурсов, перед которыми стоит разработчик. Однако для многих ситуаций приходится сначала поломать мозги, а потом – пальцы, чтобы решить те или иные проблемы в очерёдности вызова Dispose. Мы поговорим о простом, но крайне эффективном шаблоне, который по сути выполняет IoC процесса Dispose: Lifetime.</Description>
+    <CodeUrl>https://github.com/sidristij/dataflow</CodeUrl>
+    <SlidesUrl>https://www.slideshare.net/SpbDotNet/lifetime-disposing</SlidesUrl>
   </Talk>
   <Talk>
     <Id>Machine-learning</Id>
@@ -731,6 +762,17 @@
     <VideoUrl>https://www.youtube.com/watch?v=tyvquVdhWzA</VideoUrl>
   </Talk>
   <Talk>
+    <Id>Saritasa-Tools</Id>
+    <SpeakerIds>
+      <SpeakerId>Ivan-Kozhin</SpeakerId>
+    </SpeakerIds>
+    <Title>Saritasa Tools или ещё один подход к архитектуре приложения</Title>
+    <Description>Порой сложно работать с большими системами, особенно если они достались в наследство, и уж тем более если в команде много неопытных разработчиков. В таких случаях на помощь может прийти практика типовой архитектуры. Иван расскажет о подобной архитектуре и своей библиотеке «Saritasa Tools» для реализации такого рода задач.</Description>
+    <CodeUrl>https://github.com/Saritasa/SaritasaTools</CodeUrl>
+    <SlidesUrl>https://www.slideshare.net/SpbDotNet/saritasa-tools</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=7pb0PJ5EXnM</VideoUrl>
+  </Talk>
+  <Talk>
     <Id>Simple-cross-platform-Web-server</Id>
     <SpeakerIds>
       <SpeakerId>Alexander-Ivanov</SpeakerId>
@@ -817,6 +859,18 @@ And how all of these things help build zero-copy streams aka Channels/Pipelines 
     <VideoUrl>https://www.youtube.com/watch?v=8wDoiyIOd14</VideoUrl>
   </Talk>
   <Talk>
+    <Id>The-Metrix-has-you</Id>
+    <SpeakerIds>
+      <SpeakerId>Anatoly-Kulakov</SpeakerId>
+    </SpeakerIds>
+    <Title>The Metrix has you...</Title>
+    <Description>Для многих разработчиков процесс релиза их продукта похож на выбрасывание слепого котёнка в пасти диких псов. После этого главная задача авторов — отбиваться от случайно долетевших до них багов. На самом деле, приложение не заканчивает свой жизненный путь в зубах пользователей, а только начинает его. И ему нужна помощь разработчиков не меньше, чем во время становления и тестирования.
+
+В этом докладе мы рассмотрим, каким образом можно наблюдать за работой продукта и его боевым окружением, научимся собирать жизненно необходимые метрики и представлять их в удобоваримом виде. Узнаем, что такое Time Series и как они могут помочь нашим и сторонним приложениям в процессе диагностики. Подробно познакомимся с лидерами рынка инструментов для мониторинга, специализированным хранилищем InfluxDB и системой визуализации данных Grafana.</Description>
+    <SlidesUrl>https://www.slideshare.net/SpbDotNet/the-metrix-has-you</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=pjmRqIgoyFE</VideoUrl>
+  </Talk>
+  <Talk>
     <Id>Theory-and-practice-of-NET-benchmarking-1</Id>
     <SpeakerIds>
       <SpeakerId>Andrey-Akinshin</SpeakerId>
@@ -868,6 +922,18 @@ And how all of these things help build zero-copy streams aka Channels/Pipelines 
     <Title>«Вещи» в «Интернете вещей»</Title>
     <Description>Сегодня понятие интернета вещей ассоциируется с двумя направлениями: облаком и устройствами. И если об облаках говорят много, то о устройствах в концепции IoT информации намного меньше. Разговор будет о том, что же это за "вещи", какая у них роль, из чего они сделаны и как они работают.</Description>
     <SlidesUrl>https://www.slideshare.net/MskDotNet/ss-73579592</SlidesUrl>
+  </Talk>
+  <Talk>
+    <Id>Type-Providers-without-Pain-and-Magic</Id>
+    <SpeakerIds>
+      <SpeakerId>Roman-Nevolin</SpeakerId>
+    </SpeakerIds>
+    <Title>Провайдеры типов без боли и магии</Title>
+    <Description>Newtonsoft.Json — самый популярный пакет в NuGet. А рядом с ним, на третьем месте, — Entity Framework. Пожалуй, это неплохо демонстрирует, насколько часто.NET разработчики обрабатывают разнообразные данные. И для каждого типа данных — своя библиотека, а еще куча классов-оберток, которые приходится писать ради получения всех благ строгой типизации. И делать это нужно для каждого нового источника данных.
+
+Однако F# предлагает нам другое решение вечной проблемы — провайдеры типов. Решение, которое позволяет максимально упростить работу с любыми типами данных, избавиться от написания и сопровождения классов оберток, а заодно и решить совсем другие проблемы, вроде рисования сложных графиков и работы с нейронными сетями средствами F#. Если вы хотите узнать, как использовать провайдеры типов, какие проблемы они решают, как работают и как написать собственный провайдер для ваших задач, — приходите на этот доклад!</Description>
+    <SlidesUrl>https://www.slideshare.net/SpbDotNet/ss-83963334</SlidesUrl>
+    <VideoUrl>https://www.youtube.com/watch?v=x5RbkENciMU</VideoUrl>
   </Talk>
   <Talk>
     <Id>UI-Automation-Tests</Id>
