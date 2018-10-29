@@ -127,10 +127,10 @@
     <value>Аннотация</value>
   </data>
   <data name="Biography" xml:space="preserve">
-    <value>О лекторе</value>
+    <value>О докладчике</value>
   </data>
   <data name="CreatedBy" xml:space="preserve">
-    <value>Сделано командой DotNetRu c любовью &lt;3</value>
+    <value>Сделано командой DotNetRu</value>
   </data>
   <data name="Follow" xml:space="preserve">
     <value>Подписаться</value>
@@ -154,7 +154,7 @@
     <value>Уведомление об Open Source</value>
   </data>
   <data name="PresentationSlides" xml:space="preserve">
-    <value>Презентация</value>
+    <value>Слайды</value>
   </data>
   <data name="PrivacyPolicy" xml:space="preserve">
     <value>Конфиденциальность</value>
@@ -163,13 +163,13 @@
     <value>Социальные сети</value>
   </data>
   <data name="Speakers" xml:space="preserve">
-    <value>Лекторы</value>
+    <value>Докладчики</value>
   </data>
   <data name="Talk" xml:space="preserve">
     <value>Доклад</value>
   </data>
   <data name="TalkRecording" xml:space="preserve">
-    <value>Запись лекции</value>
+    <value>Видео</value>
   </data>
   <data name="TechnologyUsed" xml:space="preserve">
     <value>Используемые технологии</value>
@@ -217,7 +217,7 @@
     <value>Поделиться</value>
   </data>
   <data name="SpeakerInfo" xml:space="preserve">
-    <value>Лектор</value>
+    <value>Докладчик</value>
   </data>
   <data name="Meetup" xml:space="preserve">
     <value>Митап</value>
@@ -257,5 +257,8 @@
   </data>
   <data name="SelectLanguage" xml:space="preserve">
     <value>Выберите язык</value>
+  </data>
+  <data name="CodeFromSession" xml:space="preserve">
+    <value>Примеры кода</value>
   </data>
 </root>

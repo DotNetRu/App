@@ -125,6 +125,15 @@ namespace DotNetRu.Clients.Portable.ApplicationResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Code from Session.
+        /// </summary>
+        public static string CodeFromSession {
+            get {
+                return ResourceManager.GetString("CodeFromSession", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Created by DotNetRu Team with &lt;3.
         /// </summary>
         public static string CreatedBy {

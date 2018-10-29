@@ -19,8 +19,10 @@
         <controls:CardView>
           <StackLayout Spacing="0">
             <controls:LabelSection Text="{Binding Resources[AboutDotNetRu]}"/>
-            <controls:LabelSection Text="{Binding Resources[AboutText]}"/>
             <controls:HeaderDivider/>
+            <StackLayout Padding="{StaticResource StandardPadding}" BackgroundColor="White">
+                <Label Text="{Binding Resources[AboutText]}" Style="{DynamicResource EvolveListItemTextStyle}"/>
+            </StackLayout>
             <controls:LabelSection Text="{Binding Resources[OurCommunities]}"/>
             <controls:NonScrollableListView
                 x:Name="ListViewCommunities"

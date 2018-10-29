@@ -95,6 +95,8 @@
                                                     "DotNetRu.DataStore.Audit.Storage.SeveralSpeakers.png")
                                                 : this.Speakers.First().AvatarImage;
 
+        public string SpeakerNames => string.Join(",", this.Speakers.Select(x => x.FullName));
+
         public ImageSource CommunityLogo => ImageSource.FromResource(
             "DotNetRu.DataStore.Audit.Storage.logos." + this.MeetupModel.CommunityID + ".png");
 
