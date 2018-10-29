@@ -1,8 +1,9 @@
-﻿using DotNetRu.Clients.Portable.Model;
-using MvvmHelpers;
-
-namespace DotNetRu.Clients.Portable.ViewModel
+﻿namespace DotNetRu.Clients.Portable.ViewModel
 {
+    using DotNetRu.Clients.Portable.Model;
+
+    using MvvmHelpers;
+
     public class TechnologiesUsedViewModel : ViewModelBase
     {
         public ObservableRangeCollection<MenuItem> TechnologyItems { get; } = new ObservableRangeCollection<MenuItem>();
@@ -13,11 +14,17 @@ namespace DotNetRu.Clients.Portable.ViewModel
                 new[]
                 {
                     new MenuItem
-                    {
-                        Name = "Censored",
-                        Command = this.LaunchBrowserCommand,
-                        Parameter = "https://github.com/jamesmontemagno/Censored"
-                    },
+                        {
+                            Name = "Visual Studio App Center",
+                            Command = this.LaunchBrowserCommand,
+                            Parameter = "https://appcenter.ms"
+                        },
+                    new MenuItem
+                        {
+                            Name = "Bottom Navigation Bar",
+                            Command = this.LaunchBrowserCommand,
+                            Parameter = "https://github.com/NAXAM/bottomtabbedpage-xamarin-forms"
+                        },
                     new MenuItem
                     {
                         Name = "Connectivity Plugin",
@@ -46,12 +53,6 @@ namespace DotNetRu.Clients.Portable.ViewModel
                     },
                     new MenuItem
                     {
-                        Name = "Messaging Plugin",
-                        Command = this.LaunchBrowserCommand,
-                        Parameter = "https://github.com/cjlotz/Xamarin.Plugins"
-                    },
-                    new MenuItem
-                    {
                         Name = "Mvvm Helpers",
                         Command = this.LaunchBrowserCommand,
                         Parameter = "https://github.com/jamesmontemagno/mvvm-helpers"
@@ -68,13 +69,6 @@ namespace DotNetRu.Clients.Portable.ViewModel
                         Command = this.LaunchBrowserCommand,
                         Parameter =
                             "https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/Permissions"
-                    },
-                    new MenuItem
-                    {
-                        Name = "Pull to Refresh Layout",
-                        Command = this.LaunchBrowserCommand,
-                        Parameter =
-                            "https://github.com/jamesmontemagno/Xamarin.Forms-PullToRefreshLayout"
                     },
                     new MenuItem
                     {
@@ -95,12 +89,6 @@ namespace DotNetRu.Clients.Portable.ViewModel
                         Command = this.LaunchBrowserCommand,
                         Parameter = "http://xamarin.com/forms"
                     },
-                    new MenuItem
-                    {
-                        Name = "Xamarin Insights",
-                        Command = this.LaunchBrowserCommand,
-                        Parameter = "http://xamarin.com/insights"
-                    }
                 });
         }
     }
