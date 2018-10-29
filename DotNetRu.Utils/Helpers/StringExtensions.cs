@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Text.RegularExpressions;
 
 namespace DotNetRu.Utils.Helpers
 {
@@ -74,6 +77,16 @@ namespace DotNetRu.Utils.Helpers
                 case "": throw new ArgumentException($"{nameof(input)} cannot be empty", nameof(input));
                 default: return input[0].ToString().ToUpper() + input.Substring(1);
             }
+        }
+
+        public static string ConvertToUsualUrl(this string input, Dictionary<string, string> replacements)
+        {
+            StringBuilder returnString = new StringBuilder(input);
+            foreach (var replacment in replacements)
+            {
+                returnString.Replace(replacment.Key, replacment.Value);
+            }
+            return Regex.Replace(returnString.ToString(), @"https:\/\/t\.co\/.+$", "");
         }
     }
 }

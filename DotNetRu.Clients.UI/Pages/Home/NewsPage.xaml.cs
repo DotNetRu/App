@@ -31,6 +31,7 @@
                             Command = this.NewsViewModel.RefreshCommand
                         });
             }
+            this.ListViewSocial.ItemSelected += (sender, e) => this.ListViewSocial.SelectedItem = null;
         }
 
         public override AppPage PageType => AppPage.Feed;

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <SkipValidatePackageReferences>true</SkipValidatePackageReferences>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -324,6 +324,12 @@
     <BundleResource Include="Resources\icon_video.png" />
     <BundleResource Include="Resources\icon_video%402x.png" />
     <BundleResource Include="Resources\icon_video%403x.png" />
+    <BundleResource Include="Resources\icon_heart.png" />
+    <BundleResource Include="Resources\icon_heart%402x.png" />
+    <BundleResource Include="Resources\icon_heart%403x.png" />
+    <BundleResource Include="Resources\icon_retweet.png" />
+    <BundleResource Include="Resources\icon_retweet%402x.png" />
+    <BundleResource Include="Resources\icon_retweet%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\Contents.json">
@@ -461,5 +467,8 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_splash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\loading_apple.gif" />
   </ItemGroup>
 </Project>
