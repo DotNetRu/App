@@ -6,12 +6,12 @@ namespace XamarinEvolve.Droid
     {
         readonly DataRefreshService service;
 
-        public DataRefreshServiceBinder (DataRefreshService service)
+        public DataRefreshServiceBinder(DataRefreshService service)
         {
             this.service = service;
         }
 
-        public DataRefreshService GetDemoService ()
+        public DataRefreshService GetDemoService()
         {
             return this.service;
         }

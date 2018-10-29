@@ -5,24 +5,11 @@
     xmlns:local="clr-namespace:XamarinEvolve.Clients.UI;assembly=XamarinEvolve.Clients.UI"
     x:Class="XamarinEvolve.Clients.UI.MeetupPage"
     x:Name="Meetup"
-    Title="{Binding Resources[Meetup]}"
+    Title="{Binding MeetupModel.Title}" 
     Icon="tab_sessions.png"
     BackgroundColor="{DynamicResource WindowBackground}">
   <ContentPage.Content>
     <StackLayout>
-      <StackLayout
-          Padding="16,0,0,16"
-          Spacing="{StaticResource SmallSpacing}"
-          HorizontalOptions="FillAndExpand"
-          BackgroundColor="{DynamicResource Primary}">
-        <Label
-            Text="{Binding MeetupModel.Title}"
-            FontSize="Large"
-            Style="{DynamicResource TitleStyle}"
-            TextColor="White"
-            HorizontalTextAlignment="Center"
-            StyleId="SessionTitle"/>
-      </StackLayout>
       <local:AlwaysScrollView>
         <StackLayout Spacing="0">
           <StackLayout BackgroundColor="{DynamicResource WindowBackgroundTable}"

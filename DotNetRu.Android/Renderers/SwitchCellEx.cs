@@ -2,25 +2,24 @@
 using Android.Util;
 using Android.Views;
 using Android.Widget;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
-
 using XamarinEvolve.Droid;
 
-[assembly:ExportCell(typeof(SwitchCell), typeof(SwitchCellEx))]
+[assembly: ExportCell(typeof(SwitchCell), typeof(SwitchCellEx))]
+
 namespace XamarinEvolve.Droid
 {
     using View = Android.Views.View;
 
-    public class SwitchCellEx: SwitchCellRenderer
+    public class SwitchCellEx : SwitchCellRenderer
     {
         protected override View GetCellCore(Cell item, View convertView, ViewGroup parent, Context context)
         {
-            var cell = (LinearLayout)base.GetCellCore(item, convertView, parent, context);
+            var cell = (LinearLayout) base.GetCellCore(item, convertView, parent, context);
 
             var layout = cell.GetChildAt(1) as LinearLayout;
-            if(layout == null)
+            if (layout == null)
                 return cell;
 
             var label = layout.GetChildAt(0) as TextView;
@@ -34,19 +33,19 @@ namespace XamarinEvolve.Droid
                 return cell;
 
 
-            var layoutParams = (LinearLayout.LayoutParams)switchWidget.LayoutParameters;
+            var layoutParams = (LinearLayout.LayoutParams) switchWidget.LayoutParameters;
             layoutParams.Height = ViewGroup.LayoutParams.WrapContent;
             layoutParams.Width = ViewGroup.LayoutParams.WrapContent;
 
-            int px12 = (int)TypedValue.ApplyDimension(
+            int px12 = (int) TypedValue.ApplyDimension(
                 ComplexUnitType.Dip,
-                12f, 
+                12f,
                 context.Resources.DisplayMetrics
             );
 
-            int px8 = (int)TypedValue.ApplyDimension(
+            int px8 = (int) TypedValue.ApplyDimension(
                 ComplexUnitType.Dip,
-                8f, 
+                8f,
                 context.Resources.DisplayMetrics
             );
 
@@ -54,6 +53,5 @@ namespace XamarinEvolve.Droid
 
             return cell;
         }
-
     }
 }
