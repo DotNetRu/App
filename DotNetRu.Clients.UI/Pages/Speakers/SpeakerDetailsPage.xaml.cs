@@ -1,127 +1,145 @@
-﻿using Xamarin.Forms;
-using XamarinEvolve.DataObjects;
-using XamarinEvolve.Clients.Portable;
-
-namespace XamarinEvolve.Clients.UI
+﻿namespace DotNetRu.Clients.UI.Pages.Speakers
 {
-    using DotNetRu.DataStore.Audit.DataObjects;
+    using System;
 
-    public partial class SpeakerDetailsPage : BasePage
-	{
-		public override AppPage PageType => AppPage.Speaker;
-		private IPlatformSpecificExtension<Speaker> _extension;
+    using DotNetRu.Clients.Portable.ApplicationResources;
+    using DotNetRu.Clients.Portable.Interfaces;
+    using DotNetRu.Clients.Portable.Model;
+    using DotNetRu.Clients.Portable.ViewModel;
+    using DotNetRu.Clients.UI.Helpers;
+    using DotNetRu.Clients.UI.Pages.Sessions;
+    using DotNetRu.DataStore.Audit.Models;
 
-		SpeakerDetailsViewModel ViewModel => vm ?? (vm = BindingContext as SpeakerDetailsViewModel);
-		SpeakerDetailsViewModel vm;
-		string sessionId;
+    using Xamarin.Forms;
 
-		public SpeakerDetailsPage(Speaker speaker) : this((string)null)
-		{
-			Speaker = speaker;
-		}
+    public partial class SpeakerDetailsPage
+    {
+        private readonly IPlatformSpecificExtension<SpeakerModel> extension;
 
-		public SpeakerDetailsPage(string sessionId)
-		{
-			this.sessionId = sessionId;
-			InitializeComponent();
-			MainScroll.ParallaxView = HeaderView;
-			_extension = DependencyService.Get<IPlatformSpecificExtension<Speaker>>();
+        private SpeakerDetailsViewModel speakerDetailsViewModel;
 
-			ListViewSessions.ItemSelected += async (sender, e) =>
-				{
-					var session = ListViewSessions.SelectedItem as Session;
-					if (session == null)
-						return;
+        public SpeakerDetailsPage(SpeakerModel speakerModel)
+            : this()
+        {
+            this.SpeakerModel = speakerModel;
+        }
 
-					var sessionDetails = new SessionDetailsPage(session);
+        public SpeakerDetailsPage()
+        {
+            this.InitializeComponent();
+            this.MainScroll.ParallaxView = this.HeaderView;
+            this.extension = DependencyService.Get<IPlatformSpecificExtension<SpeakerModel>>();
 
-					await NavigationService.PushAsync(Navigation, sessionDetails);
+            this.ListViewSessions.ItemSelected += async (sender, e) =>
+                {
+                    if (!(this.ListViewSessions.SelectedItem is TalkModel session))
+                    {
+                        return;
+                    }
 
-					ListViewSessions.SelectedItem = null;
-				};
+                    var sessionDetails = new TalkPage(session);
 
-			if (Device.Idiom != TargetIdiom.Phone)
-				Row1Header.Height = Row1Content.Height = 350;
-		}
+                    await NavigationService.PushAsync(this.Navigation, sessionDetails);
 
-		public Speaker Speaker
-		{
-			get { return ViewModel.Speaker; }
-			set
-			{
-				BindingContext = new SpeakerDetailsViewModel(value, sessionId);
-				ItemId = value?.FullName;
-			}
-		}
+                    this.ListViewSessions.SelectedItem = null;
+                };
 
-		void MainScroll_Scrolled(object sender, ScrolledEventArgs e)
-		{
-			if (e.ScrollY > (MainStack.Height - SpeakerTitle.Height))
-				Title = Speaker.FirstName;
-			else
-				Title = "Speaker Info";
-		}
+            if (Device.Idiom != TargetIdiom.Phone)
+            {
+                this.Row1Header.Height = this.Row1Content.Height = 350;
+            }
 
-		protected override void OnSizeAllocated(double width, double height)
-		{
-			base.OnSizeAllocated(width, height);
-			//MainStack.HeightRequest = HeaderView.Height;
-			MainScroll.Parallax();
-		}
+            this.ListViewFollow.TemplatedItems.CollectionChanged += (sender, args) =>
+                {
+                    this.ListViewFollow.UpdateListViewHeight();
+                };
+        }
 
-		protected override void OnBindingContextChanged()
-		{
-			base.OnBindingContextChanged();
-			vm = null;
+        public override AppPage PageType => AppPage.Speaker;
 
-			var adjust = Device.OS != TargetPlatform.Android ? 1 : -ViewModel.FollowItems.Count + 2;
-			ListViewFollow.HeightRequest = (ViewModel.FollowItems.Count * ListViewFollow.RowHeight) - adjust;
-			ListViewSessions.HeightRequest = 0;
-		}
+        public SpeakerDetailsViewModel SpeakerDetailsViewModel =>
+            this.speakerDetailsViewModel
+            ?? (this.speakerDetailsViewModel = this.BindingContext as SpeakerDetailsViewModel);
 
-		protected override async void OnAppearing()
-		{
-			base.OnAppearing();
+        public SpeakerModel SpeakerModel
+        {
+            get => this.SpeakerDetailsViewModel.SpeakerModel;
+            set
+            {
+                this.BindingContext = new SpeakerDetailsViewModel(value);
+                this.ItemId = value?.FullName;
+            }
+        }
 
-			MainScroll.Scrolled += MainScroll_Scrolled;
-			ListViewFollow.ItemTapped += ListViewTapped;
-			ListViewSessions.ItemTapped += ListViewTapped;
+        protected override void OnSizeAllocated(double width, double height)
+        {
+            base.OnSizeAllocated(width, height);
 
-			MainScroll.Parallax();
+            // MainStack.HeightRequest = HeaderView.Height;
+            this.MainScroll.Parallax();
+        }
 
-			if (ViewModel.Sessions?.Count > 0)
-				return;
+        protected override void OnBindingContextChanged()
+        {
+            base.OnBindingContextChanged();
+            this.speakerDetailsViewModel = null;
+        }
 
-			await ViewModel.ExecuteLoadSessionsCommandAsync();
-			var adjust = Device.OS != TargetPlatform.Android ? 1 : -ViewModel.Sessions.Count + 1;
-			ListViewSessions.HeightRequest = (ViewModel.Sessions.Count * ListViewSessions.RowHeight) - adjust;
+        protected override async void OnDisappearing()
+        {
+            base.OnDisappearing();
+            this.ListViewFollow.ItemTapped -= this.ListViewTapped;
+            this.ListViewSessions.ItemTapped -= this.ListViewTapped;
+            this.MainScroll.Scrolled -= this.MainScrollScrolled;
 
-			if (_extension != null)
-			{
-				await _extension.Execute(ViewModel.Speaker);
-			}
-		}
+            if (this.extension != null)
+            {
+                await this.extension.Finish();
+            }
+        }
 
-		void ListViewTapped(object sender, ItemTappedEventArgs e)
-		{
-			var list = sender as ListView;
-			if (list == null)
-				return;
-			list.SelectedItem = null;
-		}
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
 
-		protected override async void OnDisappearing()
-		{
-			base.OnDisappearing();
-			ListViewFollow.ItemTapped -= ListViewTapped;
-			ListViewSessions.ItemTapped -= ListViewTapped;
-			MainScroll.Scrolled -= MainScroll_Scrolled;
+            this.MainScroll.Scrolled += this.MainScrollScrolled;
+            this.ListViewFollow.ItemTapped += this.ListViewTapped;
+            this.ListViewSessions.ItemTapped += this.ListViewTapped;
 
-			if (_extension != null)
-			{
-				await _extension.Finish();
-			}
-		}
-	}
+            this.MainScroll.Parallax();
+
+            if (this.SpeakerDetailsViewModel.Talks?.Count > 0)
+            {
+                return;
+            }
+
+            this.SpeakerDetailsViewModel.ExecuteLoadTalksCommand();
+
+            if (this.extension != null)
+            {
+                await this.extension.Execute(this.SpeakerDetailsViewModel.SpeakerModel);
+            }
+        }
+
+        private void MainScrollScrolled(object sender, ScrolledEventArgs e)
+        {
+            this.Title = e.ScrollY > (this.MainStack.Height - this.SpeakerTitle.Height) ? this.SpeakerModel.FirstName : AppResources.SpeakerInfo;
+        }
+
+        private void ListViewTapped(object sender, ItemTappedEventArgs e)
+        {
+            if (!(sender is ListView list))
+            {
+                return;
+            }
+
+            list.SelectedItem = null;
+        }
+       
+        private void Cell_OnAppearing(object sender, EventArgs e)
+        {
+            var viewCell = (ViewCell)sender;
+            this.ListViewSessions.AdjustHeight(viewCell);
+        }
+    }
 }
-

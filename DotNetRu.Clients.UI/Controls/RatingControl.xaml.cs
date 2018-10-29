@@ -1,22 +1,23 @@
 ﻿using System;
+using DotNetRu.Clients.UI.Behaviors;
 using Xamarin.Forms;
 
-namespace XamarinEvolve.Clients.UI
+namespace DotNetRu.Clients.UI.Controls
 {
 	public partial class RatingControl : ContentView
 	{
 		public RatingControl()
 		{
-			InitializeComponent();
+		    this.InitializeComponent();
 		}
 
 		public void RemoveBehaviors()
 		{
-			ClearBehaviors(StarGrid1);
-			ClearBehaviors(StarGrid2);
-			ClearBehaviors(StarGrid3);
-			ClearBehaviors(StarGrid4);
-			ClearBehaviors(StarGrid5);
+		    this.ClearBehaviors(this.StarGrid1);
+		    this.ClearBehaviors(this.StarGrid2);
+		    this.ClearBehaviors(this.StarGrid3);
+		    this.ClearBehaviors(this.StarGrid4);
+		    this.ClearBehaviors(this.StarGrid5);
 		}
 
 		void ClearBehaviors(Grid grid)
@@ -33,22 +34,22 @@ namespace XamarinEvolve.Clients.UI
 
 		public int Rating
 		{
-			set { SetValue(RatingProperty, value); }
-			get { return (int)GetValue(RatingProperty); }
+		    get => (int)this.GetValue(RatingProperty);
+		    set => this.SetValue(RatingProperty, value);
 		}
 
-		public static readonly BindableProperty GroupNameProperty =
+	    public static readonly BindableProperty GroupNameProperty =
 			BindableProperty.Create("GroupName",
 				typeof(string),
                 typeof(RatingControl), default(string), propertyChanged: OnGroupNameChanged);
 
 		public string GroupName
 		{
-			set { SetValue(GroupNameProperty, value); }
-			get { return (string)GetValue(GroupNameProperty); }
+		    get => (string)this.GetValue(GroupNameProperty);
+		    set => this.SetValue(GroupNameProperty, value);
 		}
 
-		static void OnGroupNameChanged(BindableObject bindable, object oldValue, object newValue)
+	    static void OnGroupNameChanged(BindableObject bindable, object oldValue, object newValue)
 		{
 			var control = (RatingControl)bindable;
 
@@ -76,7 +77,7 @@ namespace XamarinEvolve.Clients.UI
 		public void OnStarRatingChanged(object sender, EventArgs e)
 		{
 			var behavior = sender as StarBehavior;
-			Rating = behavior?.StarRating ?? 0;
+		    this.Rating = behavior?.StarRating ?? 0;
 		}
 	}
 }

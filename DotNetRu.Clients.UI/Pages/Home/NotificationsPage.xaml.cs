@@ -1,28 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using DotNetRu.Clients.Portable.Model;
+using DotNetRu.Clients.Portable.ViewModel;
 
-using Xamarin.Forms;
-using XamarinEvolve.Clients.Portable;
-
-namespace XamarinEvolve.Clients.UI
+namespace DotNetRu.Clients.UI.Pages.Home
 {
 	public partial class NotificationsPage : BasePage
 	{
 		public override AppPage PageType => AppPage.Notification;
 
-        NotificationsViewModel vm;
+	    readonly NotificationsViewModel vm;
         public NotificationsPage()
         {
-            InitializeComponent();
-            BindingContext = vm = new NotificationsViewModel();
-            ListViewNotifications.ItemTapped += (sender, e) => ListViewNotifications.SelectedItem = null;
+            this.InitializeComponent();
+            this.BindingContext = this.vm = new NotificationsViewModel();
+            this.ListViewNotifications.ItemTapped += (sender, e) => this.ListViewNotifications.SelectedItem = null;
         }
 
 		protected override void OnAppearing()
         {
             base.OnAppearing();
-            if (vm.Notifications.Count == 0)
-                vm.LoadNotificationsCommand.Execute(false);
+            if (this.vm.Notifications.Count == 0) this.vm.LoadNotificationsCommand.Execute(false);
         }
     }
 }

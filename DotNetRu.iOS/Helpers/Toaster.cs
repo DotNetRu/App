@@ -1,12 +1,10 @@
-﻿using Xamarin.Forms;
-using XamarinEvolve.Clients.Portable;
-using XamarinEvolve.iOS;
+﻿using DotNetRu.Clients.Portable.Interfaces;
+using DotNetRu.iOS.Helpers;
 using ToastIOS;
-using UIKit;
-using CoreGraphics;
+using Xamarin.Forms;
 
 [assembly:Dependency(typeof(Toaster))]
-namespace XamarinEvolve.iOS
+namespace DotNetRu.iOS.Helpers
 {
     public class Toaster : IToast
     {

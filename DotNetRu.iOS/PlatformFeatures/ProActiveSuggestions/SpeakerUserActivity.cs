@@ -1,76 +1,73 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using CoreSpotlight;
+using DotNetRu.Clients.Portable.Interfaces;
+using DotNetRu.Clients.Portable.Model.Extensions;
+using DotNetRu.DataStore.Audit.Models;
+using DotNetRu.iOS.PlatformFeatures.ProActiveSuggestions;
+using DotNetRu.Utils.Helpers;
 using Foundation;
 using Xamarin.Forms;
-using XamarinEvolve.Clients.Portable;
-using XamarinEvolve.DataObjects;
-using XamarinEvolve.iOS.PlatformFeatures.ProActiveSuggestions;
-using XamarinEvolve.Utils;
 
 [assembly: Dependency(typeof(SpeakerUserActivity))]
 
-namespace XamarinEvolve.iOS.PlatformFeatures.ProActiveSuggestions
+namespace DotNetRu.iOS.PlatformFeatures.ProActiveSuggestions
 {
-    using DotNetRu.DataStore.Audit.DataObjects;
-
-    using XamarinEvolve.Utils.Helpers;
-
-	public class SpeakerUserActivity : IPlatformSpecificExtension<Speaker>
+    public class SpeakerUserActivity : IPlatformSpecificExtension<SpeakerModel>
 	{
 		private NSUserActivity _activity;
 
-		public Task Execute(Speaker entity)
+		public Task Execute(SpeakerModel entity)
 		{
-			if (_activity != null)
+			if (this._activity != null)
 			{
-				_activity.Invalidate();
+			    this._activity.Invalidate();
 			}
 
-			_activity = new NSUserActivity($"{AboutThisApp.PackageName}.speaker")
+		    this._activity = new NSUserActivity($"{AboutThisApp.PackageName}.speaker")
 			{
 				Title = entity.FullName
 			};
 
-			RegisterHandoff(entity);
+		    this.RegisterHandoff(entity);
 
-			_activity.BecomeCurrent();
+		    this._activity.BecomeCurrent();
 
 			return Task.CompletedTask;
 		}
 
 		public Task Finish()
 		{
-			_activity?.ResignCurrent();
+		    this._activity?.ResignCurrent();
 			return Task.CompletedTask;
 		}
 
-		void RegisterHandoff(Speaker speaker)
+		void RegisterHandoff(SpeakerModel speakerModel)
 		{
 			var userInfo = new NSMutableDictionary();
-			userInfo.Add(new NSString("Url"), new NSString(speaker.GetAppLink().AppLinkUri.AbsoluteUri));
+			userInfo.Add(new NSString("Url"), new NSString(speakerModel.GetAppLink().AppLinkUri.AbsoluteUri));
 
-			var keywords = new NSMutableSet<NSString>(new NSString(speaker.FirstName), new NSString(speaker.LastName));
-			if (speaker.Sessions != null)
+			var keywords = new NSMutableSet<NSString>(new NSString(speakerModel.FirstName), new NSString(speakerModel.LastName));
+			if (speakerModel.Talks != null)
 			{
-				foreach (var session in speaker.Sessions)
+				foreach (var session in speakerModel.Talks)
 				{
 					keywords.Add(new NSString(session.Title));
 				}
 			}
 
-			_activity.Keywords = new NSSet<NSString>(keywords);
-			_activity.WebPageUrl = NSUrl.FromString(speaker.GetWebUrl());
+		    this._activity.Keywords = new NSSet<NSString>(keywords);
+		    this._activity.WebPageUrl = NSUrl.FromString(speakerModel.GetWebUrl());
 
-			_activity.EligibleForHandoff = false;
+		    this._activity.EligibleForHandoff = false;
 
-			_activity.AddUserInfoEntries(userInfo);
+		    this._activity.AddUserInfoEntries(userInfo);
 
 			// Provide context
 			var attributes = new CSSearchableItemAttributeSet($"{AboutThisApp.PackageName}.speaker");
 			attributes.Keywords = keywords.ToArray().Select(k => k.ToString()).ToArray();
-			attributes.Url = NSUrl.FromString(speaker.GetAppLink().AppLinkUri.AbsoluteUri);
-			_activity.ContentAttributeSet = attributes;
+			attributes.Url = NSUrl.FromString(speakerModel.GetAppLink().AppLinkUri.AbsoluteUri);
+		    this._activity.ContentAttributeSet = attributes;
 		}
 	}
 }

@@ -1,88 +1,60 @@
-﻿namespace XamarinEvolve.Clients.UI
+﻿using DotNetRu.Clients.Portable.Model;
+using DotNetRu.Clients.Portable.ViewModel;
+using DotNetRu.Clients.UI.Cells;
+using FormsToolkit;
+using Xamarin.Forms;
+
+namespace DotNetRu.Clients.UI.Pages.Sessions
 {
-    using System;
-
-    using FormsToolkit;
-
-    using Xamarin.Forms;
-
-    using XamarinEvolve.Clients.Portable;
-    using XamarinEvolve.DataObjects;
-    using XamarinEvolve.Utils.Helpers;
-
     public partial class FilterSessionsPage : BasePage
     {
         public override AppPage PageType => AppPage.Filter;
 
-        FilterSessionsViewModel vm;
-
-        Category showPast;
+        private readonly FilterSessionsViewModel filterSessionsViewModel;
 
         public FilterSessionsPage()
         {
-            InitializeComponent();
+            this.InitializeComponent();
 
-            if (Device.OS != TargetPlatform.iOS) ToolbarDone.Icon = "toolbar_close.png";
+            if (Device.RuntimePlatform != Device.iOS)
+            {
+                this.ToolbarDone.Icon = "toolbar_close.png";
+            }
 
-            ToolbarDone.Command = new Command(
+            this.ToolbarDone.Command = new Command(
                 async () =>
                     {
-                        Settings.Current.ShowPastSessions = showPast.IsFiltered;
-                        vm.Save();
-                        await Navigation.PopModalAsync();
-                        if (Device.OS == TargetPlatform.Android) MessagingService.Current.SendMessage("filter_changed");
-
+                        this.filterSessionsViewModel.Save();
+                        await this.Navigation.PopModalAsync();
+                        if (Device.RuntimePlatform == Device.Android)
+                        {
+                            MessagingService.Current.SendMessage("filter_changed");
+                        }
                     });
 
-            BindingContext = vm = new FilterSessionsViewModel(Navigation);
+            this.BindingContext = this.filterSessionsViewModel = new FilterSessionsViewModel(this.Navigation);
 
-
-
-
-
-
-            LoadCategories();
+            this.LoadCategories();
         }
 
 
         void LoadCategories()
         {
-            vm.LoadCategoriesAsync().ContinueWith(
+            this.filterSessionsViewModel.LoadCategoriesAsync().ContinueWith(
                 (result) =>
                     {
                         Device.BeginInvokeOnMainThread(
                             () =>
                                 {
-                                    var allCell = new CategoryCell { BindingContext = vm.AllCategory };
+                                    var allCell =
+                                        new CategoryCell { BindingContext = this.filterSessionsViewModel.AllCategory };
 
-                                    TableSectionCategories.Add(allCell);
+                                    this.TableSectionCategories.Add(allCell);
 
-                                    foreach (var item in vm.Categories)
+                                    foreach (var item in this.filterSessionsViewModel.Categories)
                                     {
-                                        TableSectionCategories.Add(new CategoryCell { BindingContext = item });
+                                        this.TableSectionCategories.Add(new CategoryCell { BindingContext = item });
                                     }
-
-                                    var color = Device.OS == TargetPlatform.Windows
-                                                || Device.OS == TargetPlatform.WinPhone
-                                                    ? ((Color)App.Current.Resources["Primary"]).ToHex()
-                                                    : string.Empty;
-
-                                    showPast = new Category
-                                                   {
-                                                       Name = "Show Past Sessions",
-                                                       IsEnabled = true,
-                                                       ShortName = "Show Past Sessions",
-                                                       Color = color
-                                                   };
-
-                                    TableSectionFilters.Add(new CategoryCell { BindingContext = showPast });
-
-                                    //if end of evolve
-                                    if (DateTime.UtcNow > EventInfo.EndOfConference) showPast.IsEnabled = false;
-
-                                    showPast.IsFiltered = Settings.Current.ShowPastSessions;
-
-
                                 });
                     });
         }

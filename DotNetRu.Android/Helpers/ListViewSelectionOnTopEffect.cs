@@ -1,34 +1,37 @@
 ﻿using System;
+using Android.Widget;
+using DotNetRu.Droid.Helpers;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
-using Android.Widget;
-using XamarinEvolve.Droid;
 
-[assembly: ResolutionGroupName ("Xpirit")]
-[assembly: ExportEffect (typeof (ListViewSelectionOnTopEffect), "ListViewSelectionOnTopEffect")]
-namespace XamarinEvolve.Droid
+[assembly: ResolutionGroupName("Xpirit")]
+[assembly: ExportEffect(typeof(ListViewSelectionOnTopEffect), "ListViewSelectionOnTopEffect")]
+
+namespace DotNetRu.Droid.Helpers
 {
     public class ListViewSelectionOnTopEffect : PlatformEffect
     {
-        protected override void OnAttached ()
+        protected override void OnAttached()
         {
-            try 
+            try
             {
-                var listView = Control as AbsListView;
+                var listView = this.Control as AbsListView;
 
                 if (listView == null)
+                {
                     return;
+                }
 
-                listView.SetDrawSelectorOnTop (true);
-            } catch (Exception ex) {
-                
+                listView.SetDrawSelectorOnTop(true);
+            }
+            catch (Exception)
+            {
+                // ignored
             }
         }
 
-        protected override void OnDetached ()
+        protected override void OnDetached()
         {
-            
         }
     }
 }
-

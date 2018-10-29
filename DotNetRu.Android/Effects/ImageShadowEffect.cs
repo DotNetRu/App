@@ -1,13 +1,13 @@
 using System;
 using System.Linq;
+using DotNetRu.Clients.UI.Effects;
+using DotNetRu.Droid.Effects;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
-using XamarinEvolve.Clients.UI.Effects;
-using XamarinEvolve.Droid.Effects;
 
 [assembly: ExportEffect(typeof(ImageShadowEffect), "ImageShadowEffect")]
 
-namespace XamarinEvolve.Droid.Effects
+namespace DotNetRu.Droid.Effects
 {
     public class ImageShadowEffect : PlatformEffect
     {
@@ -17,8 +17,8 @@ namespace XamarinEvolve.Droid.Effects
             {
                 if (Android.OS.Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.Lollipop)
                 {
-                    var control = Control as Android.Widget.ImageView;
-                    var effect = (ShadowEffect)Element.Effects.FirstOrDefault(e => e is ShadowEffect);
+                    var control = this.Control as Android.Widget.ImageView;
+                    var effect = (ShadowEffect) this.Element.Effects.FirstOrDefault(e => e is ShadowEffect);
 
                     control.Elevation = Math.Max(effect.DistanceX, effect.DistanceY);
                 }

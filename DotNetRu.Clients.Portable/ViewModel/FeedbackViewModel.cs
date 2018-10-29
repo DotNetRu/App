@@ -1,87 +1,88 @@
 ﻿using System;
-using Xamarin.Forms;
-using XamarinEvolve.DataObjects;
-using System.Threading.Tasks;
 using System.Windows.Input;
+using DotNetRu.DataStore.Audit.Models;
+using DotNetRu.Utils.Helpers;
+using DotNetRu.Utils.Interfaces;
 using FormsToolkit;
-using XamarinEvolve.Utils;
+using Xamarin.Forms;
 
-namespace XamarinEvolve.Clients.Portable
+namespace DotNetRu.Clients.Portable.ViewModel
 {
-	using XamarinEvolve.Utils.Helpers;
-
-	public class FeedbackViewModel : ViewModelBase
+    public class FeedbackViewModel : ViewModelBase
     {
-        Session session;
-        public Session Session
+        TalkModel talkModel;
+
+        public TalkModel TalkModel
         {
-            get { return session; }
-            set { SetProperty(ref session, value); }
+            get => this.talkModel;
+            set => this.SetProperty(ref this.talkModel, value);
         }
 
 
-        public FeedbackViewModel(INavigation navigation, Session session) : base(navigation)
+        public FeedbackViewModel(INavigation navigation, TalkModel talkModel)
+            : base(navigation)
         {
-            Session = session;
+            this.TalkModel = talkModel;
         }
 
-        ICommand  submitRatingCommand;
-        public ICommand SubmitRatingCommand =>
-            submitRatingCommand ?? (submitRatingCommand = new Command<int>(async (rating) => await ExecuteSubmitRatingCommandAsync(rating))); 
+        ICommand submitRatingCommand;
 
-        async Task ExecuteSubmitRatingCommandAsync(int rating)
+        public ICommand SubmitRatingCommand => this.submitRatingCommand
+                                               ?? (this.submitRatingCommand = new Command<int>(
+                                                        this.ExecuteSubmitRatingCommandAsync));
+
+        private void ExecuteSubmitRatingCommandAsync(int rating)
         {
-            if(IsBusy)
+            if (this.IsBusy)
+            {
                 return;
+            }
 
-            IsBusy = true;
+            this.IsBusy = true;
             try
             {
-                if(rating == 0)
+                if (rating == 0)
                 {
-                    
-                    MessagingService.Current.SendMessage<MessagingServiceAlert>(MessageKeys.Message, new MessagingServiceAlert
-                        {
-                            Title = "No Rating Selected",
-                            Message = "Please select a rating to leave feedback for this session.",
-                            Cancel = "OK"
-                        });
-                        return;
+                    MessagingService.Current.SendMessage<MessagingServiceAlert>(
+                        MessageKeys.Message,
+                        new MessagingServiceAlert
+                            {
+                                Title = "No Rating Selected",
+                                Message =
+                                    "Please select a rating to leave feedback for this session.",
+                                Cancel = "OK"
+                            });
+                    return;
                 }
 
-                Logger.Track(EvolveLoggerKeys.LeaveFeedback, "Title", rating.ToString());
-                
-                MessagingService.Current.SendMessage<MessagingServiceAlert>(MessageKeys.Message, new MessagingServiceAlert
-                    {
-                        Title = "Feedback Received",
-						Message = $"Thanks for the feedback, have a great {EventInfo.EventName}.",
-                        Cancel = "OK",
-                        OnCompleted = async () => 
-                        {
-                            await Navigation.PopModalAsync ();
-                            if (Device.OS == TargetPlatform.Android)
-                                MessagingService.Current.SendMessage ("eval_finished");
-                        }
-                    });
+                this.Logger.Track(DotNetRuLoggerKeys.LeaveFeedback, "Title", rating.ToString());
 
-                Session.FeedbackLeft = true;
-                await StoreManager.FeedbackStore.InsertAsync(new Feedback
-                    {
-                        SessionId = session.Id,
-                        SessionRating = rating
-                    });
+                MessagingService.Current.SendMessage<MessagingServiceAlert>(
+                    MessageKeys.Message,
+                    new MessagingServiceAlert
+                        {
+                            Title = "Feedback Received",
+                            Message = $"Thanks for the feedback!",
+                            Cancel = "OK",
+                            OnCompleted = async () =>
+                                {
+                                    await this.Navigation.PopModalAsync();
+                                    if (Device.RuntimePlatform == Device.Android)
+                                        MessagingService.Current.SendMessage("eval_finished");
+                                }
+                        });
+
+                this.TalkModel.FeedbackLeft = true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                Logger.Report(ex);
+                this.Logger.Report(ex);
             }
             finally
             {
-                IsBusy = false;
+                this.IsBusy = false;
             }
         }
-
-
     }
 }
 

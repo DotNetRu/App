@@ -1,19 +1,17 @@
 ﻿using System;
-using Xamarin.Forms;
-using MvvmHelpers;
-using XamarinEvolve.DataObjects;
 using System.Linq;
-using System.Windows.Input;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using DotNetRu.Clients.Portable.Extensions;
+using DotNetRu.DataStore.Audit.Models;
+using DotNetRu.Utils.Helpers;
 using FormsToolkit;
-using XamarinEvolve.Utils;
+using MvvmHelpers;
+using Xamarin.Forms;
 
-namespace XamarinEvolve.Clients.Portable
+namespace DotNetRu.Clients.Portable.ViewModel
 {
-    using XamarinEvolve.Utils.Extensions;
-    using XamarinEvolve.Utils.Helpers;
-
-	public class NotificationsViewModel : ViewModelBase
+    public class NotificationsViewModel : ViewModelBase
 	{
 		public NotificationsViewModel() : base()
 		{
@@ -29,53 +27,51 @@ namespace XamarinEvolve.Clients.Portable
 		void SortNotifications()
 		{
 
-			var groups = from notification in Notifications
+			var groups = from notification in this.Notifications
 						 orderby notification.Date descending
 						 group notification by notification.Date.GetSortName()
 				into notificationGroup
 						 select new Grouping<string, Notification>(notificationGroup.Key, notificationGroup);
 
-			NotificationsGrouped.ReplaceRange(groups);
+		    this.NotificationsGrouped.ReplaceRange(groups);
 		}
 
 		ICommand forceRefreshCommand;
-		public ICommand ForceRefreshCommand =>
-		forceRefreshCommand ?? (forceRefreshCommand = new Command(async () => await ExecuteForceRefreshCommandAsync()));
+		public ICommand ForceRefreshCommand => this.forceRefreshCommand ?? (this.forceRefreshCommand = new Command(async () => await this.ExecuteForceRefreshCommandAsync()));
 
 		async Task ExecuteForceRefreshCommandAsync()
 		{
-			await ExecuteLoadNotificationsAsync(true);
+			await this.ExecuteLoadNotificationsAsync(true);
 		}
 
 		ICommand loadNotificationsCommand;
-		public ICommand LoadNotificationsCommand =>
-		loadNotificationsCommand ?? (loadNotificationsCommand = new Command<bool>(async (f) => await ExecuteLoadNotificationsAsync()));
+		public ICommand LoadNotificationsCommand => this.loadNotificationsCommand ?? (this.loadNotificationsCommand = new Command<bool>(async (f) => await this.ExecuteLoadNotificationsAsync()));
 
 		async Task<bool> ExecuteLoadNotificationsAsync(bool force = false)
 		{
-			if (IsBusy)
+			if (this.IsBusy)
 				return false;
 
 			try
 			{
-				IsBusy = true;
+			    this.IsBusy = true;
 
 #if DEBUG
 				await Task.Delay(1000);
 #endif
-				Notifications.ReplaceRange(await StoreManager.NotificationStore.GetItemsAsync(force));
+			    this.Notifications.ReplaceRange(await this.StoreManager.NotificationStore.GetItemsAsync(force));
 
-				SortNotifications();
+			    this.SortNotifications();
 
 			}
 			catch (Exception ex)
 			{
-				Logger.Report(ex, "Method", "ExecuteLoadNotificationsAsync");
+			    this.Logger.Report(ex, "Method", "ExecuteLoadNotificationsAsync");
 				MessagingService.Current.SendMessage(MessageKeys.Error, ex);
 			}
 			finally
 			{
-				IsBusy = false;
+			    this.IsBusy = false;
 			}
 
 			return true;

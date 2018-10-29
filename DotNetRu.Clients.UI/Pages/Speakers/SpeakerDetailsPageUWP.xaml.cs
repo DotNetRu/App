@@ -1,98 +1,100 @@
-﻿using System.Diagnostics;
+﻿using System;
+using DotNetRu.Clients.Portable.Model;
+using DotNetRu.Clients.Portable.ViewModel;
+using DotNetRu.Clients.UI.Helpers;
+using DotNetRu.Clients.UI.Pages.Sessions;
+using DotNetRu.DataStore.Audit.Models;
+using FFImageLoading.Forms;
 using Xamarin.Forms;
-using XamarinEvolve.Clients.Portable;
-using XamarinEvolve.DataObjects;
 
-namespace XamarinEvolve.Clients.UI
+namespace DotNetRu.Clients.UI.Pages.Speakers
 {
-    using DotNetRu.DataStore.Audit.DataObjects;
-
     public partial class SpeakerDetailsPageUWP : BasePage
 	{
 		public override AppPage PageType => AppPage.Speaker;
 
-        SpeakerDetailsViewModel ViewModel => vm ?? (vm = BindingContext as SpeakerDetailsViewModel);
+        SpeakerDetailsViewModel ViewModel => this.vm ?? (this.vm = this.BindingContext as SpeakerDetailsViewModel);
         SpeakerDetailsViewModel vm;
-        string sessionId;
 
-		public SpeakerDetailsPageUWP(Speaker speaker) : this((string)null)
+	    readonly string sessionId;
+
+		public SpeakerDetailsPageUWP(SpeakerModel speakerModel) : this((string)null)
 		{
-			Speaker = speaker;
+		    this.SpeakerModel = speakerModel;
 		}
 
         public SpeakerDetailsPageUWP(string sessionId)
         {
             this.sessionId = sessionId;
-            InitializeComponent();
+            this.InitializeComponent();
 
-            ListViewSessions.ItemSelected += async (sender, e) =>
+            this.ListViewSessions.ItemSelected += async (sender, e) =>
             {
-                var session = ListViewSessions.SelectedItem as Session;
+                var session = this.ListViewSessions.SelectedItem as TalkModel;
                 if (session == null)
                     return;
 
-                var sessionDetails = new SessionDetailsPage(session);
+                var sessionDetails = new TalkPage(session);
 
-                await NavigationService.PushAsync(Navigation, sessionDetails);
+                await NavigationService.PushAsync(this.Navigation, sessionDetails);
 
-                ListViewSessions.SelectedItem = null;
+                this.ListViewSessions.SelectedItem = null;
             };
 
-            //HeroImage.Error += HeroImage_Error;
-            //HeroImage.Success += HeroImage_Success;
+            // HeroImage.Error += HeroImage_Error;
+            // HeroImage.Success += HeroImage_Success;
         }
 
-        private void HeroImage_Success(object sender, FFImageLoading.Forms.CachedImageEvents.SuccessEventArgs e)
+        private void HeroImage_Success(object sender, CachedImageEvents.SuccessEventArgs e)
         {
-            //App.Logger.Track($"SpeakerImageLoaded:{e.ImageInformation.FilePath}:{e.LoadingResult}");
+            // App.Logger.Track($"SpeakerImageLoaded:{e.ImageInformation.FilePath}:{e.LoadingResult}");
         }
 
-        private void HeroImage_Error(object sender, FFImageLoading.Forms.CachedImageEvents.ErrorEventArgs e)
+        private void HeroImage_Error(object sender, CachedImageEvents.ErrorEventArgs e)
         {
-            //App.Logger.Track($"SpeakerImageLoadFailed:{e.Exception}", "Source", HeroImage.Source.ToString());
+            // App.Logger.Track($"SpeakerImageLoadFailed:{e.Exception}", "Source", HeroImage.Source.ToString());
         }
 
-        private void SpeakerPhoto_SizeChanged(object sender, System.EventArgs e)
+        private void SpeakerPhoto_SizeChanged(object sender, EventArgs e)
         {
         }
 
-        public Speaker Speaker
+        public SpeakerModel SpeakerModel
         {
-            get { return ViewModel.Speaker; }
+            get => this.ViewModel.SpeakerModel;
             set 
 			{
-				BindingContext = new SpeakerDetailsViewModel(value, sessionId);
-				ItemId = value?.FullName;
+			    this.BindingContext = new SpeakerDetailsViewModel(value);
+			    this.ItemId = value?.FullName;
 			}
         }
 
         protected override void OnBindingContextChanged()
         {
             base.OnBindingContextChanged();
-            vm = null;
+            this.vm = null;
 
-            ListViewFollow.HeightRequest = (ViewModel.FollowItems.Count * ListViewFollow.RowHeight) - 1;
-            ListViewSessions.HeightRequest = 0;
+            this.ListViewFollow.HeightRequest = (this.ViewModel.FollowItems.Count * this.ListViewFollow.RowHeight) - 1;
+            this.ListViewSessions.HeightRequest = 0;
         }
 
-        protected override async void OnAppearing()
+        protected override void OnAppearing()
         {
             base.OnAppearing();
 
-            ListViewFollow.ItemTapped += ListViewTapped;
-            ListViewSessions.ItemTapped += ListViewTapped;
+            this.ListViewFollow.ItemTapped += this.ListViewTapped;
+            this.ListViewSessions.ItemTapped += this.ListViewTapped;
 
-            if (ViewModel.Sessions.Count > 0)
+            if (this.ViewModel.Talks.Count > 0)
                 return;
 
-            await ViewModel.ExecuteLoadSessionsCommandAsync();
-            ListViewSessions.HeightRequest = (ViewModel.Sessions.Count * ListViewSessions.RowHeight) - 1;
+            this.ViewModel.ExecuteLoadTalksCommand();
+            this.ListViewSessions.HeightRequest = (this.ViewModel.Talks.Count * this.ListViewSessions.RowHeight) - 1;
         }
 
         void ListViewTapped(object sender, ItemTappedEventArgs e)
         {
-            var list = sender as ListView;
-            if (list == null)
+            if (!(sender is ListView list))
                 return;
             list.SelectedItem = null;
         }
@@ -100,8 +102,8 @@ namespace XamarinEvolve.Clients.UI
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
-            ListViewFollow.ItemTapped -= ListViewTapped;
-            ListViewSessions.ItemTapped -= ListViewTapped;
+            this.ListViewFollow.ItemTapped -= this.ListViewTapped;
+            this.ListViewSessions.ItemTapped -= this.ListViewTapped;
         }
     }
 }

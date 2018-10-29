@@ -2,7 +2,7 @@
 <ContentView 
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-    x:Class="XamarinEvolve.Clients.UI.LabelSection">
+    x:Class="DotNetRu.Clients.UI.Controls.LabelSection">
     <ContentView.Padding>
         <OnPlatform x:TypeArguments="Thickness" Android="16,16,16,4" iOS="16,24,16,4" WinPhone="16,16,16,4"/>
     </ContentView.Padding>
