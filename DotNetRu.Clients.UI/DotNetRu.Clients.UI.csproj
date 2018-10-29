@@ -198,6 +198,9 @@
       <DependentUpon>Rating3Control.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModelLocator.cs" />
+    <Compile Include="Pages\Speakers\SpeakerFacePage.xaml.cs">
+      <DependentUpon>SpeakerFacePage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
@@ -355,6 +358,11 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
       <LogicalName>Rating3Control.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\Speakers\SpeakerFacePage.xaml">
+      <LogicalName>SpeakerFacePage.xaml</LogicalName>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -42,6 +42,8 @@
         Feedback,
 
         ConferenceFeedback,
+
+        SpeakerFace
     }
 }
 
