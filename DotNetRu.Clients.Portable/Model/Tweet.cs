@@ -19,6 +19,8 @@
 
         private string fullImage;
 
+        private ICommand fullImageCommand;
+
         [JsonIgnore]
         public bool HasImage => !string.IsNullOrWhiteSpace(this.tweetedImage);
 
@@ -36,8 +38,6 @@
                 }
             }
         }
-
-        private ICommand fullImageCommand;
 
         public ICommand FullImageCommand => this.fullImageCommand
                                             ?? (this.fullImageCommand = new Command(this.ExecuteFullImageCommand));
@@ -100,8 +100,8 @@
             {
                 return;
             }
+
             MessagingService.Current.SendMessage(MessageKeys.NavigateToImage, this.fullImage);
         }
     }
 }
-
