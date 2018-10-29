@@ -23,7 +23,7 @@
             GroupDisplayBinding="{Binding Key}"
             IsGroupingEnabled="true"
             HasUnevenRows ="true"
-            IsPullToRefreshEnabled="{Binding IsNotBusy}"
+            IsPullToRefreshEnabled="False"
             RefreshCommand="{Binding ForceRefreshCommand}"
             IsRefreshing="{Binding IsBusy, Mode=OneWay}" 
             CachingStrategy="RecycleElement"

@@ -2,9 +2,10 @@
 {
     using System;
 
-    public class Notification : BaseDataObject
+    public class Notification : BaseModel
     {
         public string Text { get; set; }
+
         public DateTime Date { get; set; }
     }
 }
