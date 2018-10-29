@@ -28,9 +28,9 @@
             this.UpdatePage();
 
             // this.ToolbarItems.Add(this.filterItem);
-            this.ListViewSessions.ItemSelected += async (sender, e) =>
+            this.ListViewTalks.ItemSelected += async (sender, e) =>
                 {
-                    if (!(this.ListViewSessions.SelectedItem is TalkModel session))
+                    if (!(this.ListViewTalks.SelectedItem is TalkModel session))
                     {
                         return;
                     }
@@ -38,7 +38,7 @@
                     var sessionDetails = new TalkPage(session);
 
                     await NavigationService.PushAsync(this.Navigation, sessionDetails);
-                    this.ListViewSessions.SelectedItem = null;
+                    this.ListViewTalks.SelectedItem = null;
                 };
         }
 
@@ -67,9 +67,9 @@
             // });
 
             // this.ToolbarItems.Add(this.filterItem);
-            this.ListViewSessions.ItemSelected += async (sender, e) =>
+            this.ListViewTalks.ItemSelected += async (sender, e) =>
                 {
-                    if (!(this.ListViewSessions.SelectedItem is TalkModel session))
+                    if (!(this.ListViewTalks.SelectedItem is TalkModel session))
                     {
                         return;
                     }
@@ -77,7 +77,7 @@
                     var sessionDetails = new TalkPage(session);
 
                     await NavigationService.PushAsync(this.Navigation, sessionDetails);
-                    this.ListViewSessions.SelectedItem = null;
+                    this.ListViewTalks.SelectedItem = null;
                 };
         }
 
@@ -100,31 +100,31 @@
         {
             base.OnAppearing();
 
-            this.ListViewSessions.ItemTapped += this.ListViewTapped;
+            this.ListViewTalks.ItemTapped += this.ListViewTapped;
 
             this.UpdatePage();
 
-            var count = this.MeetupViewModel?.Sessions?.Count ?? 0;
+            var count = this.MeetupViewModel?.Talks?.Count ?? 0;
             var adjust = Device.RuntimePlatform != Device.Android ? 1 : -count + 1;
-            if ((this.MeetupViewModel?.Sessions?.Count ?? 0) > 0)
+            if ((this.MeetupViewModel?.Talks?.Count ?? 0) > 0)
             {
-                this.ListViewSessions.HeightRequest = (count * this.ListViewSessions.RowHeight) - adjust;
+                this.ListViewTalks.HeightRequest = (count * this.ListViewTalks.RowHeight) - adjust;
             }
         }
 
         private void UpdatePage()
         {
             // Load if none
-            if ((this.MeetupViewModel?.Sessions?.Count ?? 0) == 0)
+            if ((this.MeetupViewModel?.Talks?.Count ?? 0) == 0)
             {
-                this.MeetupViewModel?.LoadSessionsCommand?.Execute(null);
+                this.MeetupViewModel?.LoadTalksCommand?.Execute(null);
             }
         }
 
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
-            this.ListViewSessions.ItemTapped -= this.ListViewTapped;
+            this.ListViewTalks.ItemTapped -= this.ListViewTapped;
         }
 
         public void OnResume()

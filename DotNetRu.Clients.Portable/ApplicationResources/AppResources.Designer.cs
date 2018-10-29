@@ -170,6 +170,15 @@ namespace XamarinEvolve.Clients.Portable.ApplicationResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Loading meetups...
+        /// </summary>
+        public static string LoadingMeetups {
+            get {
+                return ResourceManager.GetString("LoadingMeetups", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Loading talks....
         /// </summary>
         public static string LoadingTalks {
@@ -215,6 +224,15 @@ namespace XamarinEvolve.Clients.Portable.ApplicationResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No talks found.
+        /// </summary>
+        public static string NoTalksFound {
+            get {
+                return ResourceManager.GetString("NoTalksFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Open source on Github!.
         /// </summary>
         public static string OpenSource {
@@ -247,15 +265,6 @@ namespace XamarinEvolve.Clients.Portable.ApplicationResources {
         public static string PrivacyPolicy {
             get {
                 return ResourceManager.GetString("PrivacyPolicy", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Sessions.
-        /// </summary>
-        public static string Sessions {
-            get {
-                return ResourceManager.GetString("Sessions", resourceCulture);
             }
         }
         

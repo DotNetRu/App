@@ -19,11 +19,7 @@
 
         public string VenueID { get; set; }
 
-        public virtual FriendModel FriendModel { get; set; }
-
-        public bool HasSponsor => this.FriendModel != null;
-
-        public DateTime StartTimeOrderBy => this.StartTime ?? DateTime.MinValue;
+        public IEnumerable<string> FriendIDs { get; set; }
 
         public IEnumerable<string> TalkIDs { get; set; }
     }

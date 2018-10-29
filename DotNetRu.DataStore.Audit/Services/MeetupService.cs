@@ -19,6 +19,11 @@
             return Meetups.SingleOrDefault(x => x.TalkIDs.Contains(talkID));
         }
 
+        public static IEnumerable<MeetupModel> GetMeetups(string friendID)
+        {
+            return Meetups.Where(meetup => meetup.FriendIDs.Contains(friendID));
+        }
+
         private static IEnumerable<MeetupModel> GetMeetups()
         {
             var meetupEntities = ParseHelper.ParseXml<MeetupEntity>("Meetups");

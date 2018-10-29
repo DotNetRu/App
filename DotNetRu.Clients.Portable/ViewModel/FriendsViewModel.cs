@@ -1,6 +1,7 @@
 ﻿namespace XamarinEvolve.Clients.Portable
 {
     using System;
+    using System.Linq;
     using System.Windows.Input;
 
     using DotNetRu.DataStore.Audit.Models;
@@ -26,7 +27,6 @@
 
         public ObservableRangeCollection<FriendModel> Friends { get; } = new ObservableRangeCollection<FriendModel>();
        
-
         public FriendModel SelectedFriendModel
         {
             get => this.selectedFriendModel;
@@ -59,7 +59,7 @@
             try
             {
                 this.IsBusy = true;
-                this.Friends.ReplaceRange(FriendService.Friends);
+                this.Friends.ReplaceRange(FriendService.Friends.OrderByDescending(friend => friend.NumberOfMeetups));
             }
             catch (Exception ex)
             {

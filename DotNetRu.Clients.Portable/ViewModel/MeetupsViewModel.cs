@@ -1,9 +1,4 @@
-﻿// TODO: It's needed to group meetups not only by month but year too
-
-using XamarinEvolve.Clients.UI;
-
-
-namespace XamarinEvolve.Clients.Portable.ViewModel
+﻿namespace XamarinEvolve.Clients.Portable.ViewModel
 {
     using System;
     using System.Windows.Input;
@@ -17,83 +12,60 @@ namespace XamarinEvolve.Clients.Portable.ViewModel
 
     using Xamarin.Forms;
 
+    using XamarinEvolve.Clients.UI;
     using XamarinEvolve.Utils.Helpers;
 
     /// <inheritdoc />
-    /// <summary>
-    /// The events view model.
-    /// </summary>
     public class MeetupsViewModel : ViewModelBase
     {
-        /// <summary>
-        /// The selected event.
-        /// </summary>
-        private MeetupModel selectedEvent;
+        private MeetupModel selectedMeetup;
 
         /// <summary>
         /// The load events command.
         /// </summary>
-        private ICommand loadEventsCommand;
+        private ICommand loadMeetupsCommand;
 
         public MeetupsViewModel(INavigation navigation)
             : base(navigation)
         {
-            MessagingCenter.Subscribe<LocalizedResources>(this, MessageKeys.LanguageChanged, sender => SortMeetups());
+            MessagingCenter.Subscribe<LocalizedResources>(this, MessageKeys.LanguageChanged, sender => this.UpdateMeetups());
             this.Title = "Meetups";
         }
 
-        /// <summary>
-        /// The load events command.
-        /// </summary>
-        public ICommand LoadEventsCommand => this.loadEventsCommand
-                                             ?? (this.loadEventsCommand = new Command(
-                                                     () => this.ExecuteLoadEventsAsync()));
+        public ICommand LoadMeetupsCommand => this.loadMeetupsCommand
+                                             ?? (this.loadMeetupsCommand = new Command(
+                                                     () => this.ExecuteLoadMeetups()));
 
-        /// <summary>
-        /// Gets the events.
-        /// </summary>
-        public ObservableRangeCollection<MeetupModel> Events { get; } =
-            new ObservableRangeCollection<MeetupModel>();
-
-        /// <summary>
-        /// Gets the events grouped.
-        /// </summary>
-        public ObservableRangeCollection<Grouping<string, MeetupModel>> EventsGrouped { get; } =
+        public ObservableRangeCollection<Grouping<string, MeetupModel>> MeetupsByMonth { get; } =
             new ObservableRangeCollection<Grouping<string, MeetupModel>>();
 
-        /// <summary>
-        /// Gets or sets the selected event.
-        /// </summary>
-        public MeetupModel SelectedEvent
+        public MeetupModel SelectedMeetup
         {
-            get => this.selectedEvent;
+            get => this.selectedMeetup;
             set
             {
-                this.selectedEvent = value;
+                this.selectedMeetup = value;
                 this.OnPropertyChanged();
-                if (this.selectedEvent == null)
+                if (this.selectedMeetup == null)
                 {
                     return;
                 }
 
-                MessagingService.Current.SendMessage(MessageKeys.NavigateToEvent, this.selectedEvent);
+                MessagingService.Current.SendMessage(MessageKeys.NavigateToEvent, this.selectedMeetup);
 
-                this.SelectedEvent = null;
+                this.SelectedMeetup = null;
             }
         }
 
-        /// <summary>
-        /// The sort events.
-        /// </summary>
-        public void SortMeetups()
+        public void UpdateMeetups()
         {
-            this.EventsGrouped.ReplaceRange(this.Events.GroupByDate());
+            this.MeetupsByMonth.ReplaceRange(MeetupService.Meetups.GroupByMonth());
         }
 
         /// <summary>
         /// The execute load events async.
         /// </summary>
-        public bool ExecuteLoadEventsAsync()
+        public bool ExecuteLoadMeetups()
         {
             if (this.IsBusy)
             {
@@ -103,14 +75,11 @@ namespace XamarinEvolve.Clients.Portable.ViewModel
             try
             {
                 this.IsBusy = true;
-
-                this.Events?.ReplaceRange(MeetupService.Meetups);
-
-                this.SortMeetups();
+                this.UpdateMeetups();
             }
             catch (Exception ex)
             {
-                this.Logger.Report(ex, "Method", "ExecuteLoadEventsAsync");
+                this.Logger.Report(ex, "Method", "ExecuteLoadMeetups");
                 MessagingService.Current.SendMessage(MessageKeys.Error, ex);
             }
             finally

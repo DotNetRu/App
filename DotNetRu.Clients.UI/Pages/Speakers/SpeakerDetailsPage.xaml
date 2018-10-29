@@ -120,7 +120,7 @@
                         <!--Talks-->
                         <local:CardView>
                             <StackLayout Spacing="0">
-                                <local:LabelSection Text="{Binding Resources[Sessions]}" StyleId="MoreSessionsSection"/>
+                                <local:LabelSection Text="{Binding Resources[Talks]}" StyleId="MoreSessionsSection"/>
                                 <local:HeaderDivider/>
                                 <StackLayout IsVisible="{Binding IsBusy}"
                                              HorizontalOptions="FillAndExpand"
@@ -138,7 +138,7 @@
                                 </StackLayout>
                                 <local:NonScrollableListView
                                     x:Name="ListViewSessions"
-                                    ItemsSource="{Binding Sessions}"
+                                    ItemsSource="{Binding Talks}"
                                     RowHeight="66">
                                     <local:NonScrollableListView.SeparatorColor>
                                         <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ListSeparator}"/>

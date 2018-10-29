@@ -13,9 +13,9 @@
 
             return new FriendModel
                        {
+                           Id = friend.Id,
                            Description = friend.Description,
                            Name = friend.Name,
-                           Id = friend.Id,
                            LogoSmallImage = ImageSource.FromResource(imagePath + ".logo.small.png"),
                            LogoImage = ImageSource.FromResource(imagePath + ".logo.png"),
                            WebsiteUrl = friend.Url
