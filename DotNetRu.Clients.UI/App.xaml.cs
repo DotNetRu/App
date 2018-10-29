@@ -1,27 +1,34 @@
-﻿using System;
-using System.Globalization;
-using System.Threading.Tasks;
-using DotNetRu.Clients.Portable.ApplicationResources;
-using DotNetRu.Clients.Portable.Interfaces;
-using DotNetRu.Clients.Portable.Model;
-using DotNetRu.Clients.Portable.ViewModel;
-using DotNetRu.Clients.UI.Pages;
-using DotNetRu.Clients.UI.Pages.Home;
-using DotNetRu.Clients.UI.Pages.iOS;
-using DotNetRu.Clients.UI.Pages.Sessions;
-using DotNetRu.Utils.Helpers;
-using DotNetRu.Utils.Interfaces;
-using FormsToolkit;
-using Microsoft.AppCenter;
-using Microsoft.AppCenter.Analytics;
-using Microsoft.AppCenter.Crashes;
-using Plugin.Connectivity;
-using Plugin.Connectivity.Abstractions;
-using Xamarin.Forms;
-using XamarinEvolve.Clients.Portable;
-
-namespace DotNetRu.Clients.UI
+﻿namespace DotNetRu.Clients.UI
 {
+    using System;
+    using System.Globalization;
+    using System.Threading.Tasks;
+
+    using DotNetRu.Clients.Portable.ApplicationResources;
+    using DotNetRu.Clients.Portable.Interfaces;
+    using DotNetRu.Clients.Portable.Model;
+    using DotNetRu.Clients.Portable.ViewModel;
+    using DotNetRu.Clients.UI.Pages;
+    using DotNetRu.Clients.UI.Pages.Home;
+    using DotNetRu.Clients.UI.Pages.iOS;
+    using DotNetRu.Clients.UI.Pages.Obsolete;
+    using DotNetRu.Clients.UI.Pages.Sessions;
+    using DotNetRu.Utils.Helpers;
+    using DotNetRu.Utils.Interfaces;
+
+    using FormsToolkit;
+
+    using Microsoft.AppCenter;
+    using Microsoft.AppCenter.Analytics;
+    using Microsoft.AppCenter.Crashes;
+
+    using Plugin.Connectivity;
+    using Plugin.Connectivity.Abstractions;
+
+    using Xamarin.Forms;
+
+    using XamarinEvolve.Clients.Portable;
+
     using Device = Xamarin.Forms.Device;
 
     public partial class App

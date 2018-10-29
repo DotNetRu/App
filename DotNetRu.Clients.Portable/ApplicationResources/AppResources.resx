@@ -120,6 +120,12 @@
   <data name="About" xml:space="preserve">
     <value>About</value>
   </data>
+  <data name="AboutApp" xml:space="preserve">
+    <value>About App</value>
+  </data>
+  <data name="AboutDotNetRu" xml:space="preserve">
+    <value>About DotNetRu</value>
+  </data>
   <data name="AboutText" xml:space="preserve">
     <value>Russian .NET community is a group of independent communities of .NET developers from Russia. We unite people around .Net platform to contribute to the experience and knowledge exchange. We hold meetings regularly to share news and best practices in software development! </value>
   </data>
@@ -134,6 +140,9 @@
   </data>
   <data name="CreatedBy" xml:space="preserve">
     <value>Created by DotNetRu Team with &lt;3</value>
+  </data>
+  <data name="DotNetRu" xml:space="preserve">
+    <value>DotNetRu</value>
   </data>
   <data name="Follow" xml:space="preserve">
     <value>Follow</value>
@@ -201,6 +210,9 @@
   <data name="Saratov" xml:space="preserve">
     <value>Saratov</value>
   </data>
+  <data name="SelectLanguage" xml:space="preserve">
+    <value>Select a language</value>
+  </data>
   <data name="Share" xml:space="preserve">
     <value>Share</value>
   </data>
@@ -229,7 +241,7 @@
     <value>Terms of use</value>
   </data>
   <data name="Thanks" xml:space="preserve">
-    <value>Big thanks to James Montemagno</value>
+    <value>Inspired by James Montemagno</value>
   </data>
   <data name="ToBeAnnounced" xml:space="preserve">
     <value>To be announced</value>

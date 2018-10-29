@@ -1,36 +1,27 @@
-﻿using System;
-using System.ComponentModel;
-using System.Globalization;
-using System.Resources;
-using DotNetRu.Clients.Portable.ApplicationResources;
-using DotNetRu.Utils.Helpers;
-using Xamarin.Forms;
-
-namespace DotNetRu.Clients.Portable.Helpers
+﻿namespace DotNetRu.Clients.Portable.Helpers
 {
+    using System.ComponentModel;
+
+    using DotNetRu.Clients.Portable.ApplicationResources;
+    using DotNetRu.Utils.Helpers;
+
+    using Xamarin.Forms;
+
     public class LocalizedResources : INotifyPropertyChanged
     {
-        private readonly ResourceManager resourceManager;
-
-        private CultureInfo currentCultureInfo;
-
-        public LocalizedResources(Type resource)
+        public LocalizedResources()
         {
-            this.currentCultureInfo = AppResources.Culture;
-            this.resourceManager = new ResourceManager(resource);
-
             MessagingCenter.Subscribe<object, CultureChangedMessage>(this, string.Empty, this.OnCultureChanged);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-
-        public string this[string key] => this.resourceManager.GetString(key, this.currentCultureInfo);
+       
+        public string this[string key] => AppResources.ResourceManager.GetString(key, AppResources.Culture);
 
         private void OnCultureChanged(object s, CultureChangedMessage cultureChangedMessage)
-        {
+        {           
             AppResources.Culture = cultureChangedMessage.NewCultureInfo;
 
-            this.currentCultureInfo = cultureChangedMessage.NewCultureInfo;
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Item"));
             MessagingCenter.Send(this, MessageKeys.LanguageChanged);
         }

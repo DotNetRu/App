@@ -4,19 +4,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="DotNetRu.Clients.UI.Pages.Info.SettingsPage"
     xmlns:pages="clr-namespace:DotNetRu.Clients.UI.Pages;assembly=DotNetRu.Clients.UI"
-    xmlns:converters="clr-namespace:DotNetRu.Clients.UI.Converters;assembly=DotNetRu.Clients.UI"
     xmlns:controls="clr-namespace:DotNetRu.Clients.UI.Controls;assembly=DotNetRu.Clients.UI"
     x:Name="AboutPage"
     Title="{Binding Resources[About]}"
     Icon="tab_about.png"
     NavigationPage.BackButtonTitle="Info"
     BackgroundColor="{DynamicResource WindowBackgroundTable}">
-  <pages:BasePage.Resources>
-    <ResourceDictionary>
-      <converters:SpeakerImageConverter x:Key="SpeakerImageConverter" />
-    </ResourceDictionary>
-  </pages:BasePage.Resources>
-
   <controls:AlwaysScrollView>
     <StackLayout Spacing="0">
       <StackLayout
@@ -25,40 +18,45 @@
           Padding="{DynamicResource CardPadding}">
         <controls:CardView>
           <StackLayout Spacing="0">
-            <Image
+            <controls:LabelSection Text="{Binding Resources[AboutDotNetRu]}"/>
+            <controls:LabelSection Text="{Binding Resources[AboutText]}"/>
+            <controls:HeaderDivider/>
+            <controls:LabelSection Text="{Binding Resources[OurCommunities]}"/>
+            <controls:NonScrollableListView
+                x:Name="ListViewCommunities"
+                ItemsSource="{Binding Communities}"
+                RowHeight="44">
+              <controls:NonScrollableListView.SeparatorColor>
+                <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ListSeparator}"/>
+              </controls:NonScrollableListView.SeparatorColor>
+              <controls:NonScrollableListView.ItemTemplate>
+                <DataTemplate>
+                  <ViewCell>
+                    <StackLayout Orientation="Horizontal">
+                      <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Command}" CommandParameter="{Binding Parameter}"/>
+                      </StackLayout.GestureRecognizers>
+                      <Image Source="{Binding ImageSource}" WidthRequest="30" HeightRequest="30" Margin="10, 10, 15, 10" />
+                      <Label Text="{Binding Name}" Margin="10, 10, 15, 10"/>
+                    </StackLayout>
+                  </ViewCell>
+                </DataTemplate>
+              </controls:NonScrollableListView.ItemTemplate>
+            </controls:NonScrollableListView>
+            <controls:FooterDivider/>
+            <Button
+                Text="{Binding Resources[Friends]}"
+                Clicked="Friends_OnClicked"
+                TextColor="White"
                 HorizontalOptions="FillAndExpand"
-                VerticalOptions="FillAndExpand"
-                Margin="0, 10, 0, 10"
-                Source="ic_splash.png"
-                Aspect="AspectFit"/>
-            <controls:LabelSection Text="{Binding AppInfo}"/>
-            <StackLayout Spacing="10">
-              <StackLayout.Padding>
-                <OnPlatform x:TypeArguments="Thickness" iOS="16,8,16,8" Android="16,8"/>
-              </StackLayout.Padding>
-              <Button
-                  Text="{Binding Resources[Friends]}"
-                  Clicked="Friends_OnClicked"
-                  TextColor="White"
-                  HorizontalOptions="FillAndExpand"
-                  BackgroundColor="{StaticResource Primary}"
-                  StyleId="AndroidReminderButton">
-              </Button>
-              <Button
-                  Text="{Binding Resources[TechnologyUsed]}"
-                  Clicked="Technologies_OnClicked"
-                  TextColor="White"
-                  HorizontalOptions="FillAndExpand"
-                  BackgroundColor="{StaticResource Primary}"
-                  StyleId="AndroidReminderButton">
-              </Button>
-              <Label Text="{Binding Resources[Language]}" />
-              <Picker ItemsSource="{Binding Languages}" SelectedItem="{Binding SelectedLanguage, Mode=TwoWay}" />
-              <Label Text="{Binding AppVersion}"
-                       Style="{DynamicResource EvolveListItemDetailTextStyle}"/>
-              <Label Text="{Binding Copyright}"
-                     Style="{DynamicResource EvolveListItemDetailTextStyle}"/>
-            </StackLayout>
+                BackgroundColor="{StaticResource Primary}"
+                StyleId="AndroidReminderButton">
+            </Button>
+          </StackLayout>
+        </controls:CardView>
+        <controls:CardView>
+          <StackLayout Spacing="0">
+            <controls:LabelSection Text="{Binding Resources[AboutApp]}"/>
             <controls:HeaderDivider/>
             <controls:NonScrollableListView
                 x:Name="ListViewAbout"
@@ -76,40 +74,17 @@
                              StyleId="disclosure"/>
                 </DataTemplate>
               </controls:NonScrollableListView.ItemTemplate>
-            </controls:NonScrollableListView>
+            </controls:NonScrollableListView>            
             <controls:FooterDivider/>
-          </StackLayout>
-        </controls:CardView>
-        <controls:CardView>
-          <StackLayout Spacing="0">
-            <controls:LabelSection Text="{Binding Resources[OurCommunities]}"/>
-            <controls:HeaderDivider/>
-            <controls:NonScrollableListView
-                x:Name="ListViewCommunities"
-                ItemsSource="{Binding Communities}"
-                RowHeight="44">
-              <controls:NonScrollableListView.SeparatorColor>
-                <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ListSeparator}"/>
-              </controls:NonScrollableListView.SeparatorColor>
-              <controls:NonScrollableListView.ItemTemplate>
-                <DataTemplate>
-                  <ViewCell>
-                    <StackLayout Orientation="Horizontal">
-                      <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding Command}" CommandParameter="{Binding Parameter}"/>
-                      </StackLayout.GestureRecognizers>
-                      <Image Source="{Binding Icon, Converter={StaticResource SpeakerImageConverter}}" WidthRequest="30" HeightRequest="30" Margin="10, 10, 15, 10" />
-                      <Label Text="{Binding Name}" Margin="10, 10, 15, 10"/>
-                    </StackLayout>
-                  </ViewCell>
-                </DataTemplate>
-              </controls:NonScrollableListView.ItemTemplate>
-            </controls:NonScrollableListView>
-            <controls:FooterDivider/>
-            <StackLayout>
-              <StackLayout.Padding>
-                <OnPlatform x:TypeArguments="Thickness" iOS="16,8,16,0" Android="16,8"/>
-              </StackLayout.Padding>
+            <StackLayout Spacing="10">
+                <StackLayout.Padding>
+                    <OnPlatform x:TypeArguments="Thickness" iOS="16,8,16,8" Android="16,8"/>
+                </StackLayout.Padding>
+                <Picker ItemsSource="{Binding Languages}" HorizontalOptions="FillAndExpand" Title="{Binding Resources[SelectLanguage]}" SelectedItem="{Binding SelectedLanguage, Mode=TwoWay}" />
+                <Label Text="{Binding AppVersion}"
+                        Style="{DynamicResource EvolveListItemDetailTextStyle}"/>
+                <Label Text="{Binding Copyright}"
+                        Style="{DynamicResource EvolveListItemDetailTextStyle}"/>
             </StackLayout>
           </StackLayout>
         </controls:CardView>

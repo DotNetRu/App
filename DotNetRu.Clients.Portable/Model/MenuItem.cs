@@ -1,8 +1,11 @@
-﻿using System.Windows.Input;
-using MvvmHelpers;
-
-namespace DotNetRu.Clients.Portable.Model
+﻿namespace DotNetRu.Clients.Portable.Model
 {
+    using System.Windows.Input;
+
+    using MvvmHelpers;
+
+    using Xamarin.Forms;
+
     public class MenuItem : ObservableObject
     {
         private string name;
@@ -14,6 +17,8 @@ namespace DotNetRu.Clients.Portable.Model
         }
 
         public string Icon {get; set; }
+
+        public ImageSource ImageSource { get; set; }
 
         public string Parameter {get; set; }
 
