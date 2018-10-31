@@ -267,4 +267,14 @@
   <data name="Kazan" xml:space="preserve">
     <value>Казань</value>
   </data>
+  <data name="Credits" xml:space="preserve">
+    <value>Мобильное приложение DotNetRu App создано командой DotNetRu с помощью Xamarin.Forms.
+
+Команда DotNetRu
+
+Павел Федотовский
+Анатолий Кулаков
+Юрий Белоусов
+Сергей Полежаев</value>
+  </data>
 </root>

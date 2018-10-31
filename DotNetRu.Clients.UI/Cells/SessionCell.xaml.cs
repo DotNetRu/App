@@ -1,11 +1,12 @@
-﻿using DotNetRu.Clients.Portable.Model;
-using DotNetRu.Clients.UI.Helpers;
-using DotNetRu.Clients.UI.Pages.Sessions;
-using DotNetRu.DataStore.Audit.Models;
-using Xamarin.Forms;
-
-namespace DotNetRu.Clients.UI.Cells
+﻿namespace DotNetRu.Clients.UI.Cells
 {
+    using DotNetRu.Clients.Portable.Model;
+    using DotNetRu.Clients.UI.Helpers;
+    using DotNetRu.Clients.UI.Pages.Sessions;
+    using DotNetRu.DataStore.Audit.Models;
+
+    using Xamarin.Forms;
+
     public class SessionCell : ViewCell
     {
         private readonly INavigation navigation;
@@ -41,74 +42,5 @@ namespace DotNetRu.Clients.UI.Cells
         {
             this.InitializeComponent();
         }
-
-        // private void GenerateCategoryBadges()
-        // {
-        // CategoriesPlaceholder.Children.Clear();
-
-        // var session = BindingContext as Session;
-
-        // if (session != null)
-        // {
-        // foreach (var category in session.Categories.Take(4))
-        // {
-        // var grid = new Grid
-        // {
-        // Padding = new Thickness(0, 4),
-        // HeightRequest = 28,
-        // MinimumWidthRequest = 200,
-        // VerticalOptions = LayoutOptions.Center,
-        // HorizontalOptions = LayoutOptions.Start
-        // };
-
-        // if (Device.RuntimePlatform == Device.iOS)
-        // {
-        // var image = new CircleImage
-        // {
-        // FillColor = Color.FromHex(category.Color),
-        // VerticalOptions = LayoutOptions.Center,
-        // HorizontalOptions = LayoutOptions.FillAndExpand,
-        // HeightRequest = 24
-        // };
-
-        // grid.Children.Add(image);
-        // }
-        // else
-        // {
-        // var box = new BoxView
-        // {
-        // BackgroundColor = Color.FromHex(category.Color),
-        // VerticalOptions = LayoutOptions.Center,
-        // HorizontalOptions = LayoutOptions.FillAndExpand,
-        // HeightRequest = 24,
-        // };
-
-        // grid.Children.Add(box);
-        // }
-
-        // private var label = new Label
-        // {
-        // VerticalOptions = LayoutOptions.Center,
-        // VerticalTextAlignment = TextAlignment.Center,
-        // HorizontalOptions = LayoutOptions.Start,
-        // HorizontalTextAlignment = TextAlignment.Center,
-        // FontSize = Device.GetNamedSize(NamedSize.Micro, typeof(Label)),
-        // TextColor = Color.White,
-        // Text = category.BadgeName.ToUpperInvariant(),
-        // Margin = new Thickness(5, 0),
-        // WidthRequest = 60,
-        // };
-
-        // 	if (Device.RuntimePlatform == TargetPlatform.WinPhone || Device.RuntimePlatform == TargetPlatform.Windows)
-        // 	{
-        // 		label.FontSize = 10;
-        // 	}
-
-        // grid.Children.Add(label);
-
-        // CategoriesPlaceholder.Children.Add(grid);
-        // }
-        // }
-        // }
     }
 }

@@ -2,8 +2,14 @@
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
     xmlns:imagecircle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
+    xmlns:converters="clr-namespace:DotNetRu.Clients.UI.Converters;assembly=DotNetRu.Clients.UI"
     x:Class="DotNetRu.Clients.UI.Cells.SessionCellView"
     x:Name="SessionCell">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converters:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter" />
+        </ResourceDictionary>
+    </ContentView.Resources>
     <Grid Padding="{DynamicResource StandardPadding}" 
           ColumnSpacing="{StaticResource StandardSpacing}">
         <Grid.RowDefinitions>
@@ -20,11 +26,11 @@
             Grid.Column="0"
             Grid.Row="0"
             Grid.RowSpan="3"
-            Source="{Binding SpeakerAvatar}"
+            Source="{Binding SpeakerAvatar, Converter={StaticResource ByteArrayToImageSourceConverter}}"
             VerticalOptions="Center"
             Aspect="AspectFill"
             WidthRequest="44"
-            MinimumHeightRequest="44">
+            HeightRequest="44">
         </imagecircle:CircleImage>
 
         <Label Grid.Row="0"

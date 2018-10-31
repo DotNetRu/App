@@ -5,11 +5,13 @@
     xmlns:toolkit="clr-namespace:FormsToolkit;assembly=FormsToolkit"
     xmlns:pages="clr-namespace:DotNetRu.Clients.UI.Pages;assembly=DotNetRu.Clients.UI"
     xmlns:controls="clr-namespace:DotNetRu.Clients.UI.Controls;assembly=DotNetRu.Clients.UI"
+    xmlns:converters="clr-namespace:DotNetRu.Clients.UI.Converters;assembly=DotNetRu.Clients.UI"
     Title="{Binding Resources[Friend]}"    
     BackgroundColor="{DynamicResource WindowBackgroundTable}">
     <ContentPage.Resources>
         <ResourceDictionary>
             <toolkit:HasDataConverter x:Key="GenericIsVisibleConverter"/>
+            <converters:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <controls:AlwaysScrollView>
@@ -27,7 +29,7 @@
                     VerticalOptions="FillAndExpand"
                     Aspect="AspectFit"
                     StyleId="SponsorDetailImage"
-                    Source="{Binding FriendModel.LogoImage}"
+                    Source="{Binding FriendModel.Logo, Converter={StaticResource ByteArrayToImageSourceConverter}}"
                     HeightRequest="150">
                                 </Image>
                             </StackLayout>

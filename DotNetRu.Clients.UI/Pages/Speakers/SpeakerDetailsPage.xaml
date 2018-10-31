@@ -5,6 +5,7 @@
     xmlns:abstractions="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
     xmlns:pages="clr-namespace:DotNetRu.Clients.UI.Pages;assembly=DotNetRu.Clients.UI"
     xmlns:controls="clr-namespace:DotNetRu.Clients.UI.Controls;assembly=DotNetRu.Clients.UI"
+    xmlns:converters="clr-namespace:DotNetRu.Clients.UI.Converters;assembly=DotNetRu.Clients.UI"
     x:Class="DotNetRu.Clients.UI.Pages.Speakers.SpeakerDetailsPage"
     Title="{Binding Resources[SpeakerInfo]}"
     x:Name="SpeakerInfo"
@@ -13,6 +14,7 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <toolkit:HasDataConverter x:Key="GenericIsVisibleConverter"/>
+            <converters:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <ScrollView>
@@ -23,12 +25,10 @@
             </Grid.RowDefinitions>
             <Grid 
                 Grid.Row="0"
-                VerticalOptions="End"
+                VerticalOptions="FillAndExpand"
                 HorizontalOptions="FillAndExpand">
                 <Image
-                    HorizontalOptions="FillAndExpand"
-                        VerticalOptions="FillAndExpand"
-                        Source="{Binding SpeakerModel.PhotoImage}"
+                        Source="{Binding SpeakerModel.Avatar, Converter={StaticResource ByteArrayToImageSourceConverter}}"
                         Aspect="AspectFill">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer

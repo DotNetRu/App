@@ -7,6 +7,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
     using System.Windows.Input;
 
     using DotNetRu.Clients.Portable.Model;
+    using DotNetRu.Clients.Portable.Services;
     using DotNetRu.DataStore.Audit.Models;
     using DotNetRu.Utils.Helpers;
 
@@ -275,7 +276,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
             try
             {
                 this.SocialError = false;
-                var tweets = await TweetHelper.Get();
+                var tweets = await TweetService.Get();
 
                 this.Tweets.ReplaceRange(tweets);
             }
