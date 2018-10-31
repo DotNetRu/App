@@ -23,6 +23,6 @@
 
         public IEnumerable<FriendModel> Friends { get; set; }
 
-        public IEnumerable<TalkModel> Talks { get; set; }
+        public IEnumerable<SessionModel> Sessions { get; set; }
     }
 }

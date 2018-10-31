@@ -13,7 +13,7 @@
 
         public SessionCell(INavigation navigation = null)
         {
-            this.Height = 120;
+            this.Height = 150;
             this.View = new SessionCellView();
             this.navigation = navigation;
         }

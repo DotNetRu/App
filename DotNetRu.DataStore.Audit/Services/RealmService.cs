@@ -54,13 +54,14 @@
             Mapper.Reset();
             Mapper.Initialize(
                 cfg =>
-                    {
-                        cfg.CreateMap<Speaker, SpeakerModel>().ConvertUsing(x => x.ToModel());
-                        cfg.CreateMap<Venue, VenueModel>().ConvertUsing(x => x.ToModel());
-                        cfg.CreateMap<Friend, FriendModel>().ConvertUsing(x => x.ToModel());
-                        cfg.CreateMap<Talk, TalkModel>().ConvertUsing(x => x.ToModel());
-                        cfg.CreateMap<Meetup, MeetupModel>().ConvertUsing(x => x.ToModel());
-                    });
+                {
+                    cfg.CreateMap<Speaker, SpeakerModel>().ConvertUsing(x => x.ToModel());
+                    cfg.CreateMap<Venue, VenueModel>().ConvertUsing(x => x.ToModel());
+                    cfg.CreateMap<Friend, FriendModel>().ConvertUsing(x => x.ToModel());
+                    cfg.CreateMap<Talk, TalkModel>().ConvertUsing(x => x.ToModel());
+                    cfg.CreateMap<Session, SessionModel>().ConvertUsing(x => x.ToModel());
+                    cfg.CreateMap<Meetup, MeetupModel>().ConvertUsing(x => x.ToModel());
+                });
         }
 
         private static void InitializeRealm(bool overwrite)
