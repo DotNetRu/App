@@ -11,8 +11,10 @@ namespace DotNetRu.Clients.UI
     using DotNetRu.Clients.Portable.ApplicationResources;
     using DotNetRu.Clients.Portable.Interfaces;
     using DotNetRu.Clients.Portable.Model;
+    using DotNetRu.Clients.Portable.Services;
     using DotNetRu.Clients.Portable.ViewModel;
     using DotNetRu.Clients.UI.Pages;
+    using DotNetRu.DataStore.Audit.Services;
     using DotNetRu.Utils.Helpers;
     using DotNetRu.Utils.Interfaces;
 
@@ -39,14 +41,11 @@ namespace DotNetRu.Clients.UI
 
         public App()
         {
-            var savedLanguage = Portable.Helpers.Settings.CurrentLanguage;
-            var uiLanguage = DependencyService.Get<ILocalize>().GetCurrentCultureInfo().TwoLetterISOLanguageName == "ru"
-                                 ? Language.Russian
-                                 : Language.English;
-
-            var language = savedLanguage ?? uiLanguage;
+            var language = LanguageService.GetCurrentLanguage();
 
             AppResources.Culture = new CultureInfo(language.GetLanguageCode());
+
+            RealmService.Initialize();
 
             this.InitializeComponent();
 

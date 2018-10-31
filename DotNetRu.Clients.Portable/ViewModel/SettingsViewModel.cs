@@ -7,6 +7,7 @@
     using DotNetRu.Clients.Portable.Helpers;
     using DotNetRu.Clients.Portable.Interfaces;
     using DotNetRu.Clients.Portable.Model;
+    using DotNetRu.Clients.Portable.Services;
     using DotNetRu.DataStore.Audit.Services;
     using DotNetRu.Utils.Helpers;
 
@@ -29,7 +30,7 @@
                                  ? Language.Russian
                                  : Language.English;
 
-            this.selectedLanguage = savedLanguage ?? uiLanguage;
+            this.selectedLanguage = LanguageService.GetCurrentLanguage();
 
             this.AboutItems.AddRange(
                 new[]

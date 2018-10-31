@@ -6,7 +6,6 @@
 
     using DotNetRu.Clients.Portable.Helpers;
     using DotNetRu.Clients.Portable.Interfaces;
-    using DotNetRu.DataStore.Audit;
     using DotNetRu.Utils.Interfaces;
 
     using MvvmHelpers;
@@ -43,8 +42,6 @@
         protected INavigation Navigation { get; }
 
         protected ILogger Logger { get; } = DependencyService.Get<ILogger>();
-
-        protected IStoreManager StoreManager { get; } = DependencyService.Get<IStoreManager>();
 
         public async Task ExecuteLaunchBrowserAsync(string arg)
         {

@@ -1,10 +1,12 @@
-﻿using System;
-using DotNetRu.DataStore.Audit.Models;
-using DotNetRu.Utils.Helpers;
-using Xamarin.Forms;
-
-namespace DotNetRu.Clients.Portable.Model.Extensions
+﻿namespace DotNetRu.Clients.Portable.Model.Extensions
 {
+    using System;
+
+    using DotNetRu.DataStore.Audit.Models;
+    using DotNetRu.Utils.Helpers;
+
+    using Xamarin.Forms;
+
     public static class SpeakerExtensions
     {
         public static AppLinkEntry GetAppLink(this SpeakerModel speakerModel)
@@ -22,14 +24,7 @@ namespace DotNetRu.Clients.Portable.Model.Extensions
 
             if (Device.RuntimePlatform == Device.iOS)
             {
-                if (!string.IsNullOrEmpty(speakerModel.AvatarUrl))
-                {
-                    entry.Thumbnail = ImageSource.FromUri(speakerModel.AvatarUri);
-                }
-                else
-                {
-                    entry.Thumbnail = ImageSource.FromFile("Icon.png");
-                }
+                entry.Thumbnail = ImageSource.FromFile("Icon.png");
             }
 
             entry.KeyValues.Add("contentType", "Speaker");
@@ -45,4 +40,3 @@ namespace DotNetRu.Clients.Portable.Model.Extensions
         }
     }
 }
-

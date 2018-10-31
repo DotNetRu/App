@@ -1,16 +1,20 @@
-﻿using System;
-using System.Windows.Input;
-using DotNetRu.Clients.Portable.Helpers;
-using DotNetRu.Clients.Portable.Model.Extensions;
-using DotNetRu.DataStore.Audit.Models;
-using DotNetRu.DataStore.Audit.Services;
-using DotNetRu.Utils.Helpers;
-using FormsToolkit;
-using MvvmHelpers;
-using Xamarin.Forms;
-
-namespace DotNetRu.Clients.Portable.ViewModel
+﻿namespace DotNetRu.Clients.Portable.ViewModel
 {
+    using System;
+    using System.Windows.Input;
+
+    using DotNetRu.Clients.Portable.Helpers;
+    using DotNetRu.Clients.Portable.Model.Extensions;
+    using DotNetRu.DataStore.Audit.Models;
+    using DotNetRu.DataStore.Audit.Services;
+    using DotNetRu.Utils.Helpers;
+
+    using FormsToolkit;
+
+    using MvvmHelpers;
+
+    using Xamarin.Forms;
+
     /// <inheritdoc />
     public class MeetupsViewModel : ViewModelBase
     {
@@ -55,12 +59,9 @@ namespace DotNetRu.Clients.Portable.ViewModel
 
         public void UpdateMeetups()
         {
-            this.MeetupsByMonth.ReplaceRange(MeetupService.Meetups.GroupByMonth());
+            this.MeetupsByMonth.ReplaceRange(RealmService.Get<MeetupModel>().GroupByMonth());
         }
 
-        /// <summary>
-        /// The execute load events async.
-        /// </summary>
         public bool ExecuteLoadMeetups()
         {
             if (this.IsBusy)

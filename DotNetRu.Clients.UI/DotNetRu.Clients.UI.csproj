@@ -33,4 +33,9 @@
       <Name>DotNetRu.Utils</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Pages\Meetups\MeetupDetailsPage.xaml.cs">
+      <DependentUpon>MeetupDetailsPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
 </Project>

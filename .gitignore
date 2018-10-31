@@ -93,9 +93,6 @@ ipch/
 *.vspx
 *.sap
 
-# TFS 2012 Local Workspace
-$tf/
-
 # Guidance Automation Toolkit
 *.gpState
 
@@ -192,8 +189,6 @@ _pkginfo.txt
 
 # Others
 ClientBin/
-~$*
-*~
 *.dbmdl
 *.dbproj.schemaview
 *.jfm
@@ -274,10 +269,6 @@ paket-files/
 __pycache__/
 *.pyc
 
-# Cake - Uncomment if you are using it
-# tools/**
-# !tools/packages.config
-
 # Telerik's JustMock configuration file
 *.jmconfig
 
@@ -286,3 +277,4 @@ __pycache__/
 *.btm.cs
 *.odx.cs
 *.xsd.cs
+/DotNetRu.DataStore.Audit/Audit.realm.lock
