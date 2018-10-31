@@ -8,6 +8,7 @@
     using Android.OS;
 
     using DotNetRu.Droid.Helpers;
+    using DotNetRu.Droid.Notifications;
     using DotNetRu.Utils.Helpers;
 
     using FFImageLoading.Forms.Droid;
@@ -103,12 +104,11 @@
             // AndroidAppLinks.Init(this);
             Toolkit.Init();
 
-            typeof(Color).GetProperty("Accent", BindingFlags.Public | BindingFlags.Static)
-                ?.SetValue(null, Color.FromHex("#757575"));
-
             ImageCircleRenderer.Init();
 
             CachedImageRenderer.Init(enableFastRenderer: true);
+
+            NotificationHelper.InitializePushNotifications();
 
             this.LoadApplication(new Clients.UI.App());
             this.OnNewIntent(this.Intent);

@@ -1,12 +1,11 @@
-﻿using System.Linq;
-using DotNetRu.Clients.Portable.Model;
-using DotNetRu.Clients.Portable.ViewModel;
-using DotNetRu.Clients.UI.Helpers;
-using DotNetRu.Clients.UI.Pages.Sessions;
-using DotNetRu.DataStore.Audit.Models;
-
-namespace DotNetRu.Clients.UI.Pages.Events
+﻿namespace DotNetRu.Clients.UI.Pages.Meetups
 {
+    using DotNetRu.Clients.Portable.Model;
+    using DotNetRu.Clients.Portable.ViewModel;
+    using DotNetRu.Clients.UI.Helpers;
+    using DotNetRu.Clients.UI.Pages.Sessions;
+    using DotNetRu.DataStore.Audit.Models;
+
     public partial class MeetupsPage
     {
         private MeetupsViewModel meetupsViewModel;
@@ -38,10 +37,9 @@ namespace DotNetRu.Clients.UI.Pages.Events
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            if (!this.MeetupsViewModel.MeetupsByMonth.Any())
-            {
-                this.MeetupsViewModel.LoadMeetupsCommand.Execute(false);
-            }
+
+            // TODO flag/message indicating that update needed
+            this.MeetupsViewModel.LoadMeetupsCommand.Execute(false);
         }
     }
 }

@@ -29,12 +29,12 @@ namespace DotNetRu.Clients.UI
 
     using Xamarin.Forms;
 
-    using XamarinEvolve.Clients.Portable;
-
-    using Device = Xamarin.Forms.Device;
-
     public partial class App
     {
+        private const string IosAppCenterKey = "1e7f311f-1055-4ec9-8b00-0302015ab8ae";
+
+        private const string AndroidAppCenterKey = "6f9a7703-8ca4-477e-9558-7e095f7d20aa";
+
         private static ILogger logger;
 
         private bool registered;
@@ -42,23 +42,32 @@ namespace DotNetRu.Clients.UI
         public App()
         {
             var language = LanguageService.GetCurrentLanguage();
-
             AppResources.Culture = new CultureInfo(language.GetLanguageCode());
 
-            RealmService.Initialize();
+            var savedAppVersion = Portable.Helpers.Settings.AppVersion;
+            var currentAppVersion = DependencyService.Get<IAppVersionProvider>().AppVersion;
+
+            bool overwrite = savedAppVersion != currentAppVersion;        
+            RealmService.Initialize(overwrite);
+
+            Portable.Helpers.Settings.AppVersion = currentAppVersion;
 
             this.InitializeComponent();
 
-#if RELEASE
+            // Update Audit on startup
+            Task.Run(UpdateService.UpdateAudit);
+
             AppCenter.Start(
-                "ios=1e7f311f-1055-4ec9-8b00-0302015ab8ae;android=6f9a7703-8ca4-477e-9558-7e095f7d20aa;",
+                $"ios={IosAppCenterKey};android={AndroidAppCenterKey};",
                 typeof(Analytics),
                 typeof(Crashes));
-#endif
+
+            Console.WriteLine("AuditUpdate. AppCenter InstallId: " + AppCenter.GetInstallIdAsync().Result);
 
             this.MainPage = new BottomTabbedPage();
         }
 
+        // TODO change to SeriLog
         public static ILogger Logger => logger ?? (logger = DependencyService.Get<ILogger>());
 
         public void SecondOnResume()
@@ -69,23 +78,6 @@ namespace DotNetRu.Clients.UI
         public new void SendOnAppLinkRequestReceived(Uri uri)
         {
             this.OnAppLinkRequestReceived(uri);
-        }
-
-        public async Task Finish()
-        {
-            if (Device.RuntimePlatform == Device.iOS && Settings.Current.FirstRun)
-            {
-                var push = DependencyService.Get<IPushNotifications>();
-                if (push != null)
-                {
-                    await push.RegisterForNotifications();
-                }
-            }
-        }
-
-        protected override void OnStart()
-        {
-            this.OnResume();
         }
 
         protected override void OnResume()

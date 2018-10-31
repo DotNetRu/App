@@ -20,9 +20,9 @@
 
         public static Realm AuditRealm => auditRealm ?? (auditRealm = Realm.GetInstance("Audit.realm"));
 
-        public static void Initialize()
+        public static void Initialize(bool overwrite)
         {
-            InitializeRealm();
+            InitializeRealm(overwrite);
             InitializeAutoMapper();
         }
 
@@ -49,14 +49,6 @@
             }
         }
 
-        private static void InitializeRealm()
-        {
-            var realmDB = "Audit.realm";
-            var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-
-            File.WriteAllBytes(Path.Combine(documentsPath, realmDB), ExtractResource(RealmResourceName));
-        }
-
         private static void InitializeAutoMapper()
         {
             Mapper.Reset();
@@ -69,6 +61,17 @@
                         cfg.CreateMap<Talk, TalkModel>().ConvertUsing(x => x.ToModel());
                         cfg.CreateMap<Meetup, MeetupModel>().ConvertUsing(x => x.ToModel());
                     });
+        }
+
+        private static void InitializeRealm(bool overwrite)
+        {
+            var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            var realmPath = Path.Combine(documentsPath, "Audit.realm");
+
+            if (overwrite)
+            {
+                File.WriteAllBytes(realmPath, ExtractResource(RealmResourceName));
+            }
         }
     }
 }
