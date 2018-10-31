@@ -15,7 +15,7 @@
 
     using Xamarin.Forms;
 
-    using Settings = XamarinEvolve.Clients.Portable.Settings;
+    using Settings = DotNetRu.Utils.Helpers.Settings;
 
     public class ViewModelBase : BaseViewModel
     {

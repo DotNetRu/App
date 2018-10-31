@@ -1,7 +1,21 @@
 ﻿namespace DotNetRu.Utils.Interfaces
 {
     using System;
-    using System.Collections.Generic;
+
+    public interface ILogger
+    {
+        void TrackPage(string page, string id = null);
+
+        void Track(string trackIdentifier);
+
+        void Track(string trackIdentifier, string key, string value);
+
+        void Report(Exception exception);
+
+        void Report(Exception exception, string key, string value, Severity warningLevel = Severity.Warning);
+
+        void TrackTimeSpent(string page, string id, TimeSpan time);
+    }
 
     public static class DotNetRuLoggerKeys
     {
@@ -42,25 +56,5 @@
         public const string GetSyncCode = "GetSyncCode";
 
         public const string SyncWebToMobile = "SyncWebToMobile";
-    }
-
-    public interface ILogger
-    {
-        void TrackPage(string page, string id = null);
-
-        void Track(string trackIdentifier);
-
-        void Track(string trackIdentifier, string key, string value);
-
-        void Report(Exception exception = null, Severity warningLevel = Severity.Warning);
-
-        void Report(
-            Exception exception,
-            IDictionary<string, string> extraData,
-            Severity warningLevel = Severity.Warning);
-
-        void Report(Exception exception, string key, string value, Severity warningLevel = Severity.Warning);
-
-        void TrackTimeSpent(string page, string id, TimeSpan time);
     }
 }
