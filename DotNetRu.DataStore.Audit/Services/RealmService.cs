@@ -59,6 +59,7 @@
 
         private static void InitializeAutoMapper()
         {
+            Mapper.Reset();
             Mapper.Initialize(
                 cfg =>
                     {

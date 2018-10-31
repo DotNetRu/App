@@ -25,11 +25,6 @@
                 MessageKeys.LanguageChanged,
                 sender => this.UpdateViewModel());
 
-            var savedLanguage = Helpers.Settings.CurrentLanguage;
-            var uiLanguage = DependencyService.Get<ILocalize>().GetCurrentCultureInfo().TwoLetterISOLanguageName == "ru"
-                                 ? Language.Russian
-                                 : Language.English;
-
             this.selectedLanguage = LanguageService.GetCurrentLanguage();
 
             this.AboutItems.AddRange(

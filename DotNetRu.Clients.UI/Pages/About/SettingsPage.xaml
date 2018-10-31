@@ -2,7 +2,7 @@
 <pages:BasePage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="DotNetRu.Clients.UI.Pages.Info.SettingsPage"
+    x:Class="DotNetRu.Clients.UI.Pages.About.SettingsPage"
     xmlns:pages="clr-namespace:DotNetRu.Clients.UI.Pages;assembly=DotNetRu.Clients.UI"
     xmlns:controls="clr-namespace:DotNetRu.Clients.UI.Controls;assembly=DotNetRu.Clients.UI"
     xmlns:local="clr-namespace:DotNetRu.DataStore.Audit.Services;assembly=DotNetRu.DataStore.Audit"

@@ -4,7 +4,7 @@ using Naxam.Controls.Platform.Droid;
 using Naxam.Controls.Platform.Droid.Utils;
 using Xamarin.Forms;
 using BottomTabbedPage = DotNetRu.Clients.UI.Pages.BottomTabbedPage;
-using SettingsPage = DotNetRu.Clients.UI.Pages.Info.SettingsPage;
+using SettingsPage = DotNetRu.Clients.UI.Pages.About.SettingsPage;
 
 
 [assembly: ExportRenderer(typeof(BottomTabbedPage), typeof(BottomTabbedPageRenderer))]
