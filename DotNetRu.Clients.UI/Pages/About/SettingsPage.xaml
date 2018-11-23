@@ -49,6 +49,7 @@
                 <cells:CommunityViewCell Community="{x:Static model:Communities.Saratov}"/>
                 <cells:CommunityViewCell Community="{x:Static model:Communities.Krasnoyarksk}"/>
                 <cells:CommunityViewCell Community="{x:Static model:Communities.Kazan}"/>
+                <cells:CommunityViewCell Community="{x:Static model:Communities.Novosibirsk}"/>
             </TableSection>
 
             <TableSection Title="{Binding Resources[AboutApp]}">

@@ -18,6 +18,7 @@
         public const string KrasnoyarskLink = "https://vk.com/KryDotNet";
         public const string KazanLink = "https://vk.com/kzndotnet";
         public const string MoscowLink = "https://vk.com/MskDotNet";
+        public const string NovosibirskLink = "https://www.meetup.com/NskDotNet/";
 
         public const string DeveloperWebsite = "http://dotnet.ru";
 

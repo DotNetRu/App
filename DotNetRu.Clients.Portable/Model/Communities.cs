@@ -44,5 +44,13 @@
                     VKLink = AboutThisApp.SaratovLink,
                     ImageSource = LogoService.SarDotNetLogo
                 };
+
+        public static CommunityModel Novosibirsk =>
+            new CommunityModel
+            {
+                Name = "Novosibirsk",
+                VKLink = AboutThisApp.NovosibirskLink,
+                ImageSource = LogoService.NskDotNetLogo
+            };
     }
 }

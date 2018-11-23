@@ -5,6 +5,7 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Audit.realm" />
+    <None Remove="Images\logos\NskDotNet.png" />
   </ItemGroup>  
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="7.0.0" />
@@ -15,6 +16,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Audit.realm" />
     <EmbeddedResource Include="Images\logos\KznDotNet.png" />
+    <EmbeddedResource Include="Images\logos\NskDotNet.png" />
     <EmbeddedResource Include="Images\SeveralSpeakers.png" />
     <EmbeddedResource Include="Images\logos\EkbDotNet.png" />
     <EmbeddedResource Include="Images\logos\KryDotNet.png" />

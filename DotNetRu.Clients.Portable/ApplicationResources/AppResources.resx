@@ -211,6 +211,9 @@ Sergey Polezhaev</value>
   <data name="NoTalksFound" xml:space="preserve">
     <value>No talks found</value>
   </data>
+  <data name="Novosibirsk" xml:space="preserve">
+    <value>Novosibirsk</value>
+  </data>
   <data name="OpenSourceNotice" xml:space="preserve">
     <value>Open Source Notice</value>
   </data>
