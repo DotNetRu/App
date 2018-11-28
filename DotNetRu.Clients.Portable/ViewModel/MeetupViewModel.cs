@@ -24,18 +24,20 @@
             MessagingCenter.Subscribe<LocalizedResources>(
                 this,
                 MessageKeys.LanguageChanged,
-                sender => this.OnPropertyChanged(nameof(this.MeetupTime)));
+                sender => this.OnPropertyChanged(nameof(this.MeetupDate)));
 
             this.TapVenueCommand = new Command(this.OnVenueTapped);
         }
 
-        public IEnumerable<TalkModel> Talks => this.MeetupModel.Talks;                
+        public IEnumerable<SessionModel> Sessions => this.MeetupModel.Sessions.ToList();                
 
         public MeetupModel MeetupModel { get; set; }
 
         public VenueModel VenueModel => this.MeetupModel.Venue;
 
-        public string MeetupTime => this.MeetupModel.StartTime?.ToString("D");
+        public string MeetupDate => this.MeetupModel.StartTime?.ToString("D");
+
+        public string MeetupTime => $"{this.Sessions.First().StartTime.LocalDateTime.ToShortTimeString()} — {this.Sessions.Last().EndTime.LocalDateTime.ToShortTimeString()}";
 
         public TalkModel SelectedTalkModel
         {
@@ -56,7 +58,7 @@
             }
         }
 
-        public bool NoSessionsFound => !this.MeetupModel.Talks.Any();
+        public bool NoSessionsFound => !this.MeetupModel.Sessions.Any();
 
         public ICommand TapVenueCommand { get; set; }
 

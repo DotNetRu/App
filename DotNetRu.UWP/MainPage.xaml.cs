@@ -1,16 +1,9 @@
-﻿
-
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
-
-namespace DotNetRu.UWP
+﻿namespace DotNetRu.UWP
 {
     using System;
     using System.Diagnostics;
 
-    using DotNetRu.Clients.UI.Pages.Windows;
-
     using Windows.Foundation;
-    using Windows.System.Profile;
     using Windows.UI.ViewManagement;
 
     /// <summary>
@@ -18,20 +11,19 @@ namespace DotNetRu.UWP
     /// </summary>
     public sealed partial class MainPage
     {
-      
         public MainPage()
         {
-            InitializeComponent();
+            this.InitializeComponent();
 
-            RootPageWindows.IsDesktop = AnalyticsInfo.VersionInfo.DeviceFamily == "Windows.Desktop";
             try
             {
-                LoadApplication(new Clients.UI.App());
+                this.LoadApplication(new Clients.UI.App());
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Debugger.Break();
             }
+
             ApplicationView.PreferredLaunchViewSize = new Size(1024, 768);
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
             ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(1024, 768));

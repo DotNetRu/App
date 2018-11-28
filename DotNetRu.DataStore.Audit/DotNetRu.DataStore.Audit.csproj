@@ -5,16 +5,18 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Audit.realm" />
+    <None Remove="Images\logos\NskDotNet.png" />
   </ItemGroup>  
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="6.2.2" />
+    <PackageReference Include="AutoMapper" Version="7.0.0" />
     <PackageReference Include="Octokit" Version="0.29.0" />
-    <PackageReference Include="Realm.Database" Version="2.2.0" />
-    <PackageReference Include="Xamarin.Forms" Version="2.5.1.444934" />
+    <PackageReference Include="Realm.Database" Version="3.0.0" />
+    <PackageReference Include="Xamarin.Forms" Version="3.1.0.583944" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Audit.realm" />
     <EmbeddedResource Include="Images\logos\KznDotNet.png" />
+    <EmbeddedResource Include="Images\logos\NskDotNet.png" />
     <EmbeddedResource Include="Images\SeveralSpeakers.png" />
     <EmbeddedResource Include="Images\logos\EkbDotNet.png" />
     <EmbeddedResource Include="Images\logos\KryDotNet.png" />

@@ -22,8 +22,8 @@
 
         public string VideoUrl { get; set; }
 
-        [Backlink(nameof(RealmModels.Meetup.Talks))]
-        public IQueryable<Meetup> Meetup { get; }
+        [Backlink(nameof(Session.Talk))]
+        public IQueryable<Session> Sessions { get; }
     }
 }
 

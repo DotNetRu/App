@@ -280,4 +280,7 @@
   <data name="Settings" xml:space="preserve">
     <value>Настройки</value>
   </data>
+  <data name="Novosibirsk" xml:space="preserve">
+    <value>Новосибирск</value>
+  </data>
 </root>

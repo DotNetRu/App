@@ -21,5 +21,7 @@
         public static ImageSource SarDotNetLogo => ImageSource.FromResource(logoPath + "SarDotNet.png");
 
         public static ImageSource KznDotNetLogo => ImageSource.FromResource(logoPath + "KznDotNet.png");
+
+        public static ImageSource NskDotNetLogo => ImageSource.FromResource(logoPath + "NskDotNet.png");
     }
 }

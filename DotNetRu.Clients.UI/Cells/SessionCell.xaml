@@ -13,20 +13,20 @@
     <Grid Padding="{DynamicResource StandardPadding}" 
           ColumnSpacing="{StaticResource StandardSpacing}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
         <imagecircle:CircleImage 
             Grid.Column="0"
             Grid.Row="0"
             Grid.RowSpan="3"
-            Source="{Binding SpeakerAvatar, Converter={StaticResource ByteArrayToImageSourceConverter}}"
+            Source="{Binding Talk.SpeakerAvatar, Converter={StaticResource ByteArrayToImageSourceConverter}}"
             VerticalOptions="Center"
             Aspect="AspectFill"
             WidthRequest="44"
@@ -35,14 +35,19 @@
 
         <Label Grid.Row="0"
                Grid.Column="1"
-               Grid.RowSpan="2"
-                Text="{Binding Title}" 
+               
+                Text="{Binding Talk.Title}" 
                 Style="{DynamicResource EvolveListItemTextStyle}"
                 StyleId="SessionItem"/>
 
+        <Label Grid.Row="1"
+               Grid.Column="1"
+               Text="{Binding Time}"
+               Style="{DynamicResource EvolveListItemDetailTextStyle}"/>
+
         <Label Grid.Row="2"
                Grid.Column="1"
-                Text="{Binding SpeakerNames}" 
+                Text="{Binding Talk.SpeakerNames}" 
                 Style="{DynamicResource EvolveListItemDetailTextStyle}"
                 StyleId="SpeakerNames"/>
 
