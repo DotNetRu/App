@@ -84,8 +84,6 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="FormsToolkit" Version="2.0.1" />
-    <PackageReference Include="Humanizer.Core" Version="2.2.0" />
-    <PackageReference Include="Humanizer.Core.ru" Version="2.2.0" />
     <PackageReference Include="Microsoft.AppCenter" Version="1.6.1" />
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.6.1" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.6.1" />

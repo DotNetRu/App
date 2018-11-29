@@ -1,9 +1,6 @@
-﻿namespace DotNetRu.Clients.Portable.Model
+namespace DotNetRu.Clients.Portable.Model
 {
     using System;
-    using System.Globalization;
-
-    using Humanizer;
 
     public class Tweet
     {
@@ -39,7 +36,7 @@
 
         public string SubtitleDisplay => "@" + this.ScreenName;
 
-        public string DateDisplay => this.CreatedDate.Humanize(culture: CultureInfo.InvariantCulture);
+        public string DateDisplay => this.CreatedDate.ToShortDateString();
 
         public Uri TweetedImageUri
         {
