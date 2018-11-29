@@ -5,9 +5,9 @@
 
   <ItemGroup>
     <PackageReference Include="FormsToolkit" Version="2.0.1" />
-    <PackageReference Include="Microsoft.AppCenter" Version="1.6.1" />
-    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.6.1" />
-    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.6.1" />
+    <PackageReference Include="Microsoft.AppCenter" Version="1.11.0" />
+    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.11.0" />
+    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.11.0" />
     <PackageReference Include="Plugin.Permissions" Version="2.2.1" />
     <PackageReference Include="Plugin.Share" Version="7.1.1" />
     <PackageReference Include="Refractored.MvvmHelpers" Version="1.3.0" />
@@ -42,5 +42,100 @@
     <EmbeddedResource Update="Cells\CommunityViewCell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Cells\CategoryCellView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Cells\CommunityViewCell.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Cells\EvolveGroupHeaderView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Cells\FriendCell.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Cells\SessionCell.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Cells\SpeakerCell.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Cells\TweetCell.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Controls\FooterDivider.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Controls\HeaderDivider.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Controls\LabelSection.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Controls\Rating3Control.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Controls\RatingControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Controls\SectionDivider.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Pages\About\SettingsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Pages\About\TechnologiesUsedPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Pages\BottomTabbedPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Pages\Friends\FriendDetailsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Pages\Friends\FriendsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Pages\Meetups\MeetupDetailsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Pages\Meetups\MeetupsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Pages\News\ConferenceFeedbackPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Pages\News\NewsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Pages\News\TweetImagePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Pages\Speakers\SpeakerDetailsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Pages\Speakers\SpeakerDetailsPageUWP.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Pages\Speakers\SpeakerFacePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Pages\Speakers\SpeakersPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Pages\Talks\FeedbackPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Pages\Talks\FilterSessionsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Pages\Talks\TalkPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
   </ItemGroup>
 </Project>
