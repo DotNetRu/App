@@ -9,11 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetRu.Android", "DotNetR
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetRu.iOS", "DotNetRu.iOS\DotNetRu.iOS.csproj", "{22F77CDE-8816-45D7-A7A1-CA9282145F0A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend", "Backend", "{8D118106-3CF2-4674-978C-C9133AD91F39}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetRu.Clients.UI", "DotNetRu.Clients.UI\DotNetRu.Clients.UI.csproj", "{CD2623BD-3609-4BE9-80EF-0974F3A1A27D}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{DC9BA4C6-1267-449A-95F2-AB7A8B53F65D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetRu.Utils", "DotNetRu.Utils\DotNetRu.Utils.csproj", "{DFA0F0F6-C396-412E-86A9-E9095F71CC36}"
 EndProject
@@ -24,6 +20,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B20890AA-A26B-4C29-B848-D24FFEE1DE7C}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		appcenter-pre-build.sh = appcenter-pre-build.sh
 	EndProjectSection
 EndProject
 Global
@@ -380,9 +378,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{C4B4592F-6AC4-4FE6-B63E-5D2DE47FD340} = {B3B306B8-9A3D-4CD6-81FD-9C9EAB3C5788}
 		{22F77CDE-8816-45D7-A7A1-CA9282145F0A} = {B3B306B8-9A3D-4CD6-81FD-9C9EAB3C5788}
-		{CD2623BD-3609-4BE9-80EF-0974F3A1A27D} = {DC9BA4C6-1267-449A-95F2-AB7A8B53F65D}
-		{DFA0F0F6-C396-412E-86A9-E9095F71CC36} = {DC9BA4C6-1267-449A-95F2-AB7A8B53F65D}
-		{7B4C73DF-8A4A-4AD1-92D9-A064065CDD71} = {8D118106-3CF2-4674-978C-C9133AD91F39}
 		{A8B9FFDA-76CD-48FD-ACCD-C27C48F1BC85} = {B3B306B8-9A3D-4CD6-81FD-9C9EAB3C5788}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
