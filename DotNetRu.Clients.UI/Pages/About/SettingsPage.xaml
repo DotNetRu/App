@@ -5,7 +5,7 @@
     xmlns:pages="clr-namespace:DotNetRu.Clients.UI.Pages;assembly=DotNetRu.Clients.UI"
     xmlns:local="clr-namespace:DotNetRu.DataStore.Audit.Services;assembly=DotNetRu.DataStore.Audit"
     xmlns:utils="clr-namespace:DotNetRu.Utils.Helpers;assembly=DotNetRu.Utils"
-    xmlns:model="clr-namespace:DotNetRu.Clients.Portable.Model;assembly=DotNetRu.Clients.Portable"
+    xmlns:model="clr-namespace:DotNetRu.Clients.Portable.Model;assembly=DotNetRu.Clients.UI"
     xmlns:cells="clr-namespace:DotNetRu.Clients.UI.Cells"
     x:Name="AboutPage"
     Title="{Binding Resources[About]}"

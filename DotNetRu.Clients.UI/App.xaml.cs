@@ -1,4 +1,4 @@
-﻿using Xamarin.Forms.Xaml;
+using Xamarin.Forms.Xaml;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 
@@ -7,12 +7,12 @@ namespace DotNetRu.Clients.UI
     using System;
     using System.Globalization;
     using System.Threading.Tasks;
-
-    using DotNetRu.Clients.Portable.ApplicationResources;
+    
     using DotNetRu.Clients.Portable.Interfaces;
     using DotNetRu.Clients.Portable.Model;
     using DotNetRu.Clients.Portable.Services;
     using DotNetRu.Clients.Portable.ViewModel;
+    using DotNetRu.Clients.UI.ApplicationResources;
     using DotNetRu.Clients.UI.Pages;
     using DotNetRu.DataStore.Audit.Services;
     using DotNetRu.Utils.Helpers;
