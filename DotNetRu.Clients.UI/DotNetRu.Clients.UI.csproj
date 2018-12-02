@@ -36,10 +36,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
-    <Compile Update="Cells\CommunityCell.xaml.cs">
-      <DependentUpon>CommunityCell.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Pages\Meetups\MeetupDetailsPage.xaml.cs">
+    <Compile Update="Meetups\MeetupDetailsPage.xaml.cs">
       <DependentUpon>MeetupDetailsPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -51,33 +48,12 @@
     <EmbeddedResource Update="ApplicationResources\AppResources.ru.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Cells\CommunityViewCell.xaml">
+    <EmbeddedResource Update="About\CommunityViewCell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Update="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Cells\CategoryCellView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Cells\CommunityViewCell.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Cells\EvolveGroupHeaderView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Cells\FriendCell.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Cells\SessionCell.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Cells\SpeakerCell.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Cells\TweetCell.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
     <None Update="Controls\FooterDivider.xaml">
@@ -98,55 +74,7 @@
     <None Update="Controls\SectionDivider.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
-    <None Update="Pages\About\SettingsPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Pages\About\TechnologiesUsedPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
     <None Update="Pages\BottomTabbedPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Pages\Friends\FriendDetailsPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Pages\Friends\FriendsPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Pages\Meetups\MeetupDetailsPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Pages\Meetups\MeetupsPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Pages\News\ConferenceFeedbackPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Pages\News\NewsPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Pages\News\TweetImagePage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Pages\Speakers\SpeakerDetailsPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Pages\Speakers\SpeakerDetailsPageUWP.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Pages\Speakers\SpeakerFacePage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Pages\Speakers\SpeakersPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Pages\Talks\FeedbackPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Pages\Talks\FilterSessionsPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Pages\Talks\TalkPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
   </ItemGroup>
