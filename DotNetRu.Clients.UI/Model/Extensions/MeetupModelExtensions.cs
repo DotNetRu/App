@@ -1,11 +1,11 @@
-﻿namespace DotNetRu.Clients.Portable.Model.Extensions
+namespace DotNetRu.Clients.Portable.Model.Extensions
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
 
-    using DotNetRu.Clients.Portable.ApplicationResources;
     using DotNetRu.Clients.Portable.Extensions;
+    using DotNetRu.Clients.UI.ApplicationResources;
     using DotNetRu.DataStore.Audit.Models;
     using DotNetRu.Utils.Helpers;
 

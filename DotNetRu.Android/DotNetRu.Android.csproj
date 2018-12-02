@@ -276,10 +276,6 @@
     <AndroidResource Include="Resources\drawable\searchview_background.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DotNetRu.Clients.Portable\DotNetRu.Clients.Portable.csproj">
-      <Project>{434442F3-9AF2-4A19-9151-EFBD731BD367}</Project>
-      <Name>DotNetRu.Clients.Portable</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DotNetRu.Clients.UI\DotNetRu.Clients.UI.csproj">
       <Project>{CD2623BD-3609-4BE9-80EF-0974F3A1A27D}</Project>
       <Name>DotNetRu.Clients.UI</Name>

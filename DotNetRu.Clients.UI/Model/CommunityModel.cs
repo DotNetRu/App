@@ -1,7 +1,6 @@
-﻿namespace DotNetRu.Clients.Portable.Model
+namespace DotNetRu.Clients.Portable.Model
 {
-    using DotNetRu.Clients.Portable.ApplicationResources;
-
+    using DotNetRu.Clients.UI.ApplicationResources;
     using Xamarin.Forms;
 
     public class CommunityModel

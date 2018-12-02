@@ -1,7 +1,7 @@
-﻿namespace DotNetRu.Clients.Portable.Model
-{
-    using DotNetRu.Clients.Portable.ApplicationResources;
+using DotNetRu.Clients.UI.ApplicationResources;
 
+namespace DotNetRu.Clients.Portable.Model
+{
     public class LocalizableMenuItem : MenuItem
     {
         private string resourceName;

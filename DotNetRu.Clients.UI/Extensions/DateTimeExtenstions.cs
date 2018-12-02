@@ -1,9 +1,8 @@
-﻿namespace DotNetRu.Clients.Portable.Extensions
+namespace DotNetRu.Clients.Portable.Extensions
 {
     using System;
     using System.Diagnostics;
-
-    using DotNetRu.Clients.Portable.ApplicationResources;
+    using DotNetRu.Clients.UI.ApplicationResources;
 
     // using NodaTime;
     public static class DateTimeExtenstions
