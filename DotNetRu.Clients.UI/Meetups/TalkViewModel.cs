@@ -1,4 +1,4 @@
-﻿namespace DotNetRu.Clients.Portable.ViewModel
+namespace DotNetRu.Clients.Portable.ViewModel
 {
     using System;
     using System.Linq;
@@ -16,9 +16,7 @@
 
     using MvvmHelpers;
 
-    using Plugin.Share;
-    using Plugin.Share.Abstractions;
-
+    using Xamarin.Essentials;
     using Xamarin.Forms;
     using Xamarin.Forms.Internals;
 
@@ -204,9 +202,10 @@
         {
             this.Logger.Track(DotNetRuLoggerKeys.Share, "Title", this.TalkModel.Title);
 
-
-            var message = $"{this.TalkModel.Title} {EventInfo.HashTag} {this.TalkModel.VideoUrl}";
-            await CrossShare.Current.Share(new ShareMessage { Text = message });
+            await DataTransfer.RequestAsync(new ShareTextRequest
+            {
+                Text = $"{this.TalkModel.Title} {EventInfo.HashTag} {this.TalkModel.VideoUrl}"
+            });
 
             // TODO fix app links
             // var speakerHandles = this.TalkModel.SpeakerHandles;

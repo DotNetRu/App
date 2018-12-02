@@ -149,7 +149,6 @@
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.11.0" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.11.0" />
     <PackageReference Include="Plugin.Permissions" Version="3.0.0.12" />
-    <PackageReference Include="Plugin.Share" Version="7.1.1" />
     <PackageReference Include="Realm.Database">
       <Version>3.0.0</Version>
     </PackageReference>
