@@ -1,4 +1,4 @@
-﻿namespace DotNetRu.DataStore.Audit.Services
+namespace DotNetRu.DataStore.Audit.Services
 {
     using System;
     using System.Collections.Generic;
@@ -185,7 +185,7 @@
                         cfg.CreateMap<MeetupEntity, Meetup>()
                             .ForMember(
                                 dest => dest.Sessions,
-                                o => o.ResolveUsing((src, dest, sessions, context) => context.Mapper.Map(src.Sessions, dest.Sessions)))
+                                o => o.MapFrom((src, dest, sessions, context) => context.Mapper.Map(src.Sessions, dest.Sessions)))
                             .AfterMap(
                                 (src, dest) =>
                                     {

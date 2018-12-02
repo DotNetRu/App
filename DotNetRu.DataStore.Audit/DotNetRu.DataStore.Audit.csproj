@@ -8,7 +8,7 @@
     <None Remove="Images\logos\NskDotNet.png" />
   </ItemGroup>  
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="7.0.0" />
+    <PackageReference Include="AutoMapper" Version="8.0.0" />
     <PackageReference Include="Octokit" Version="0.29.0" />
     <PackageReference Include="Realm.Database" Version="3.0.0" />
     <PackageReference Include="Xamarin.Essentials" Version="0.11.0-preview" />
