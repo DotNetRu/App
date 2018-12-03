@@ -1,6 +1,7 @@
-﻿namespace DotNetRu.Clients.Portable.ViewModel
+namespace DotNetRu.Clients.Portable.ViewModel
 {
     using DotNetRu.Clients.Portable.Helpers;
+    using DotNetRu.Clients.UI.Localization;
     using DotNetRu.Utils.Helpers;
 
     using Xamarin.Forms;
@@ -12,15 +13,15 @@
             MessagingCenter.Subscribe<LocalizedResources>(this, MessageKeys.LanguageChanged, sender => this.NotifyViewModel());
         }
 
-        public string NewsTitle => this.Resources["News"];
+        public string NewsTitle => AppResources.News;
 
-        public string SpeakersTitle => this.Resources["Speakers"];
+        public string SpeakersTitle => AppResources.Speakers;
 
-        public string MeetupsTitle => this.Resources["Meetups"];
+        public string MeetupsTitle => AppResources.Meetups;
 
-        public string FriendsTitle => this.Resources["Friends"];
+        public string FriendsTitle => AppResources.Friends;
 
-        public string AboutTitle => this.Resources["About"];
+        public string AboutTitle => AppResources.About;
 
         private void NotifyViewModel()
         {

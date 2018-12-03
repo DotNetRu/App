@@ -1,4 +1,4 @@
-﻿namespace DotNetRu.Clients.Portable.ViewModel
+namespace DotNetRu.Clients.Portable.ViewModel
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -6,6 +6,7 @@
     using DotNetRu.Clients.Portable.Helpers;
     using DotNetRu.Clients.Portable.Interfaces;
     using DotNetRu.Clients.Portable.Services;
+    using DotNetRu.Clients.UI.Localization;
     using DotNetRu.Utils.Helpers;
 
     using Xamarin.Forms;
@@ -59,7 +60,7 @@
         public ImageSource BackgroundImage { get; set; }
 
         public string AppVersion =>
-            $"{this.Resources["Version"]} {DependencyService.Get<IAppVersionProvider>()?.AppVersion ?? "1.0"}";
+            $"{AppResources.Version} {DependencyService.Get<IAppVersionProvider>()?.AppVersion ?? "1.0"}";
 
         private void UpdateViewModel()
         {

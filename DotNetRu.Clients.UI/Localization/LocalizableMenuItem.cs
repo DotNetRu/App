@@ -1,4 +1,4 @@
-using DotNetRu.Clients.UI.ApplicationResources;
+using DotNetRu.Clients.UI.Localization;
 
 namespace DotNetRu.Clients.Portable.Model
 {
@@ -18,7 +18,7 @@ namespace DotNetRu.Clients.Portable.Model
 
         public void Update()
         {
-            this.Name = AppResources.ResourceManager.GetString(this.ResourceName, AppResources.Culture);
+            this.Name = AppResources.ResourceManager.GetString(this.ResourceName);
         }
     }
 }

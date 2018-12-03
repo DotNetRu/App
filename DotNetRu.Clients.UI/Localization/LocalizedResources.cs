@@ -3,7 +3,7 @@ namespace DotNetRu.Clients.Portable.Helpers
     using System.ComponentModel;
 
     using DotNetRu.Clients.Portable.Interfaces;
-    using DotNetRu.Clients.UI.ApplicationResources;
+    using DotNetRu.Clients.UI.Localization;
     using DotNetRu.Utils.Helpers;
 
     using Xamarin.Forms;
@@ -17,7 +17,7 @@ namespace DotNetRu.Clients.Portable.Helpers
 
         public event PropertyChangedEventHandler PropertyChanged;
        
-        public string this[string key] => AppResources.ResourceManager.GetString(key, AppResources.Culture);
+        public string this[string key] => AppResources.ResourceManager.GetString(key);
 
         private void OnCultureChanged(object s, CultureChangedMessage cultureChangedMessage)
         {           
