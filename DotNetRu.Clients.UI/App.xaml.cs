@@ -12,7 +12,7 @@ namespace DotNetRu.Clients.UI
     using DotNetRu.Clients.Portable.Model;
     using DotNetRu.Clients.Portable.Services;
     using DotNetRu.Clients.Portable.ViewModel;
-    using DotNetRu.Clients.UI.ApplicationResources;
+    using DotNetRu.Clients.UI.Localization;
     using DotNetRu.Clients.UI.Pages;
     using DotNetRu.DataStore.Audit.Services;
     using DotNetRu.Utils.Helpers;

@@ -5,7 +5,7 @@ namespace DotNetRu.Clients.Portable.Model.Extensions
     using System.Linq;
 
     using DotNetRu.Clients.Portable.Extensions;
-    using DotNetRu.Clients.UI.ApplicationResources;
+    using DotNetRu.Clients.UI.Localization;
     using DotNetRu.DataStore.Audit.Models;
     using DotNetRu.Utils.Helpers;
 
