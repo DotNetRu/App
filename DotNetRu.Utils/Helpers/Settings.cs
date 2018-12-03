@@ -2,43 +2,28 @@ namespace DotNetRu.Utils.Helpers
 {
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
-
-    using Plugin.Settings;
-    using Plugin.Settings.Abstractions;
+    using Xamarin.Essentials;
 
     public class Settings : INotifyPropertyChanged
     {
-        static ISettings AppSettings => CrossSettings.Current;
-
         static Settings settings;
 
         public static Settings Current => settings ?? (settings = new Settings());
 
         public void LeaveConferenceFeedback()
         {
-            AppSettings.AddOrUpdateValue("conferencefeedback_finished", true);
+            Preferences.Set("conferencefeedback_finished", true);
         }
 
         static readonly bool HasSetReminderDefault = false;
 
-
         static readonly bool ShowAllCategoriesDefault = true;
 
-        /// <summary>
-        /// Gets or sets a value indicating whether the user wants to show all categories.
-        /// </summary>
-        /// <value><c>true</c> if show all categories; otherwise, <c>false</c>.</value>
         public bool ShowAllCategories
         {
-            get => AppSettings.GetValueOrDefault(nameof(ShowAllCategories), ShowAllCategoriesDefault);
+            get => Preferences.Get(nameof(ShowAllCategories), ShowAllCategoriesDefault);
 
-            set
-            {
-                if (AppSettings.AddOrUpdateValue(nameof(ShowAllCategories), value))
-                {
-                    this.OnPropertyChanged();
-                }
-            }
+            set => Preferences.Set(nameof(ShowAllCategories), value);
         }
 
         static readonly string FilteredCategoriesDefault = string.Empty;
@@ -46,15 +31,9 @@ namespace DotNetRu.Utils.Helpers
 
         public string FilteredCategories
         {
-            get => AppSettings.GetValueOrDefault(nameof(this.FilteredCategories), FilteredCategoriesDefault);
+            get => Preferences.Get(nameof(this.FilteredCategories), FilteredCategoriesDefault);
 
-            set
-            {
-                if (AppSettings.AddOrUpdateValue(nameof(this.FilteredCategories), value))
-                {
-                    this.OnPropertyChanged();
-                }
-            }
+            set => Preferences.Set(nameof(this.FilteredCategories), value);
         }
 
         private bool isConnected;

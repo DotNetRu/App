@@ -3,9 +3,7 @@ namespace DotNetRu.Clients.Portable.Helpers
     using System;
 
     using DotNetRu.Clients.Portable.ViewModel;
-
-    using Plugin.Settings;
-    using Plugin.Settings.Abstractions;
+    using Xamarin.Essentials;
 
     public static class Settings
     {
@@ -13,7 +11,7 @@ namespace DotNetRu.Clients.Portable.Helpers
         {
             get
             {
-                string languageCode = AppSettings.GetValueOrDefault(nameof(CurrentLanguage), null);
+                string languageCode = Preferences.Get(nameof(CurrentLanguage), null);
                 return languageCode == null ? (Language?)null : GetLanguage(languageCode);
             }
 
@@ -25,17 +23,15 @@ namespace DotNetRu.Clients.Portable.Helpers
                 }
 
                 string languageCode = value.Value.GetLanguageCode();
-                AppSettings.AddOrUpdateValue(nameof(CurrentLanguage), languageCode);
+                Preferences.Set(nameof(CurrentLanguage), languageCode);
             }
         }
 
         public static string AppVersion
         {
-            get => AppSettings.GetValueOrDefault(nameof(AppVersion), null);
-            set => AppSettings.AddOrUpdateValue(nameof(AppVersion), value);
+            get => Preferences.Get(nameof(AppVersion), null);
+            set => Preferences.Set(nameof(AppVersion), value);
         }
-
-        private static ISettings AppSettings => CrossSettings.Current;
 
         private static Language GetLanguage(string languageCode)
         {
