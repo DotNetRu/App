@@ -23,10 +23,7 @@ namespace DotNetRu.Clients.UI
     using Microsoft.AppCenter;
     using Microsoft.AppCenter.Analytics;
     using Microsoft.AppCenter.Crashes;
-
-    using Plugin.Connectivity;
-    using Plugin.Connectivity.Abstractions;
-
+    using Xamarin.Essentials;
     using Xamarin.Forms;
 
     public partial class App
@@ -90,8 +87,8 @@ namespace DotNetRu.Clients.UI
             this.registered = true;
 
             // Handle when your app resumes
-            Settings.Current.IsConnected = CrossConnectivity.Current.IsConnected;
-            CrossConnectivity.Current.ConnectivityChanged += this.ConnectivityChanged;
+            Settings.Current.IsConnected = Connectivity.NetworkAccess == NetworkAccess.Internet;
+            Connectivity.ConnectivityChanged += this.ConnectivityChanged;
 
             // Handle when your app starts
             MessagingService.Current.Subscribe<MessagingServiceAlert>(
@@ -177,15 +174,17 @@ namespace DotNetRu.Clients.UI
             this.registered = false;
 
             // Handle when your app sleeps
-            CrossConnectivity.Current.ConnectivityChanged -= this.ConnectivityChanged;
+            Connectivity.ConnectivityChanged -= this.ConnectivityChanged;
         }
 
         protected void ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
         {
+            var currentlyConnected = e.NetworkAccess == NetworkAccess.Internet;
+
             // save current state and then set it
-            var connected = Settings.Current.IsConnected;
-            Settings.Current.IsConnected = e.IsConnected;
-            if (connected && !e.IsConnected)
+            var wasConnected = Settings.Current.IsConnected;
+            Settings.Current.IsConnected = currentlyConnected;
+            if (wasConnected && !currentlyConnected)
             {
                 var toaster = DependencyService.Get<IToast>();
                 toaster.SendToast(
