@@ -1,4 +1,4 @@
-﻿namespace DotNetRu.iOS
+namespace DotNetRu.iOS
 {
     using System;
     using System.Collections.Generic;
@@ -21,8 +21,6 @@
     using Foundation;
 
     using ImageCircle.Forms.Plugin.iOS;
-
-    using Plugin.Share;
 
     using Social;
 
@@ -122,15 +120,6 @@
         {
             Toolkit.Init();
 
-            ShareImplementation.ExcludedUIActivityTypes = new List<NSString>
-                                                              {
-                                                                  UIActivityType.PostToFacebook,
-                                                                  UIActivityType.AssignToContact,
-                                                                  UIActivityType.OpenInIBooks,
-                                                                  UIActivityType.PostToVimeo,
-                                                                  UIActivityType.PostToFlickr,
-                                                                  UIActivityType.SaveToCameraRoll
-                                                              };
             ImageCircleRenderer.Init();
             NonScrollableListViewRenderer.Initialize();
             SelectedTabPageRenderer.Initialize();

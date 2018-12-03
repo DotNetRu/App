@@ -9,10 +9,7 @@ namespace DotNetRu.Clients.UI.Pages.About
     using DotNetRu.Clients.UI.Pages.Friends;
     using DotNetRu.Clients.UI.Pages.Info;
     using DotNetRu.Utils.Helpers;
-
-    using Plugin.Share;
-    using Plugin.Share.Abstractions;
-
+    using Xamarin.Essentials;
     using Xamarin.Forms;
 
     public partial class SettingsPage
@@ -60,23 +57,7 @@ namespace DotNetRu.Clients.UI.Pages.About
 
         private async void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
         {
-            var primaryColor = (Color)Application.Current.Resources["Primary"];
-
-            await CrossShare.Current.OpenBrowser(
-                AboutThisApp.DotNetRuLink,
-                new BrowserOptions
-                    {
-                        ChromeShowTitle = true,
-                        ChromeToolbarColor =
-                            new ShareColor
-                                {
-                                    A = 255,
-                                    R = Convert.ToInt32(primaryColor.R),
-                                    G = Convert.ToInt32(primaryColor.G),
-                                    B = Convert.ToInt32(primaryColor.B)
-                                },
-                        UseSafariWebViewController = true
-                    });
+            await Browser.OpenAsync(AboutThisApp.DotNetRuLink, BrowserLaunchMode.SystemPreferred);
         }
     }
 }

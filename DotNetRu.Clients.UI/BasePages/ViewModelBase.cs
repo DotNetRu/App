@@ -1,4 +1,4 @@
-﻿namespace DotNetRu.Clients.Portable.ViewModel
+namespace DotNetRu.Clients.Portable.ViewModel
 {
     using System;
     using System.Threading.Tasks;
@@ -9,13 +9,10 @@
     using DotNetRu.Utils.Interfaces;
 
     using MvvmHelpers;
-
-    using Plugin.Share;
-    using Plugin.Share.Abstractions;
-
+    using Xamarin.Essentials;
     using Xamarin.Forms;
 
-    using Settings = DotNetRu.Utils.Helpers.Settings;
+    using Settings = Utils.Helpers.Settings;
 
     public class ViewModelBase : BaseViewModel
     {
@@ -113,24 +110,7 @@
 
             try
             {
-                var primaryColor = (Color)Application.Current.Resources["Primary"];
-
-                await CrossShare.Current.OpenBrowser(
-                    arg,
-                    new BrowserOptions
-                        {
-                            ChromeShowTitle = true,
-                            ChromeToolbarColor =
-                                new ShareColor
-                                    {
-                                        A = 255,
-                                        R = Convert.ToInt32(primaryColor.R),
-                                        G = Convert.ToInt32(primaryColor.G),
-                                        B = Convert.ToInt32(primaryColor.B)
-                                    },
-                            UseSafariReaderMode = true,
-                            UseSafariWebViewController = true
-                        });
+                await Browser.OpenAsync(arg, BrowserLaunchMode.SystemPreferred);
             }
             catch
             {
