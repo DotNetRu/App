@@ -278,3 +278,5 @@ __pycache__/
 *.odx.cs
 *.xsd.cs
 /DotNetRu.DataStore.Audit/Audit.realm.lock
+
+Resource.designer.cs
