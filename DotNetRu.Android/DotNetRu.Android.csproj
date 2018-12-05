@@ -50,6 +50,7 @@
     <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
     <AndroidTlsProvider>btls</AndroidTlsProvider>
     <AndroidExplicitCrunch>true</AndroidExplicitCrunch>
+    <AndroidDexTool>d8</AndroidDexTool>    
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <Optimize>true</Optimize>
@@ -81,6 +82,7 @@
     <AndroidTlsProvider>btls</AndroidTlsProvider>
     <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
     <AndroidExplicitCrunch>true</AndroidExplicitCrunch>
+    <AndroidDexTool>d8</AndroidDexTool>    
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="FormsToolkit" Version="2.0.1" />
