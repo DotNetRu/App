@@ -50,6 +50,8 @@
     <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
     <AndroidTlsProvider>btls</AndroidTlsProvider>
     <AndroidExplicitCrunch>true</AndroidExplicitCrunch>
+    <AndroidDexTool>d8</AndroidDexTool>
+    <AndroidLinkTool>r8</AndroidLinkTool>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <Optimize>true</Optimize>
@@ -81,6 +83,8 @@
     <AndroidTlsProvider>btls</AndroidTlsProvider>
     <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
     <AndroidExplicitCrunch>true</AndroidExplicitCrunch>
+    <AndroidDexTool>d8</AndroidDexTool>
+    <AndroidLinkTool>r8</AndroidLinkTool>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="FormsToolkit" Version="2.0.1" />
@@ -164,9 +168,6 @@
     <AndroidAsset Include="Assets\fontawesome.ttf" />
     <AndroidAsset Include="Assets\Roboto-Bold.ttf" />
     <AndroidAsset Include="Assets\Roboto-Regular.ttf" />
-    <ProguardConfiguration Include="proguard.cfg">
-      <SubType>Designer</SubType>
-    </ProguardConfiguration>
     <GoogleServicesJson Include="google-services.json" />
     <None Include="appcenter-pre-build.sh" />
     <None Include="Properties\AndroidManifest.xml" />
