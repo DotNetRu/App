@@ -202,7 +202,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
         {
             this.Logger.Track(DotNetRuLoggerKeys.Share, "Title", this.TalkModel.Title);
 
-            await DataTransfer.RequestAsync(new ShareTextRequest
+            await Share.RequestAsync(new ShareTextRequest
             {
                 Text = $"{this.TalkModel.Title} {EventInfo.HashTag} {this.TalkModel.VideoUrl}"
             });
