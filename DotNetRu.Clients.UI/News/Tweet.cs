@@ -4,17 +4,11 @@ namespace DotNetRu.Clients.Portable.Model
 
     public class Tweet
     {
-        private string tweetedImage;
+        public bool HasImage { get; set; }
 
-        public bool HasImage => !string.IsNullOrWhiteSpace(this.tweetedImage);
+        public string TweetedImage { get; set; }
 
-        public string TweetedImage
-        {
-            get => this.tweetedImage;
-            set => this.tweetedImage = value;
-        }
-
-        public int? NumberOfLikes { get; set; }
+        public int NumberOfLikes { get; set; }
 
         public int NumberOfRetweets { get; set; }
 
@@ -32,34 +26,14 @@ namespace DotNetRu.Clients.Portable.Model
 
         public DateTime CreatedDate { get; set; }
 
-        public string TitleDisplay => this.Name;
+        public string TitleDisplay { get; set; }
 
-        public string SubtitleDisplay => "@" + this.ScreenName;
+        public string SubtitleDisplay { get; set; }
 
-        public string DateDisplay => this.CreatedDate.ToShortDateString();
+        public string DateDisplay { get; set; }
 
-        public Uri TweetedImageUri
-        {
-            get
-            {
-                try
-                {
-                    if (string.IsNullOrWhiteSpace(this.TweetedImage))
-                    {
-                        return null;
-                    }
+        public string TweetedImageUri { get; set; }
 
-                    return new Uri(this.TweetedImage);
-                }
-                catch
-                {
-                    // TODO ignored
-                }
-
-                return null;
-            }
-        }
-
-        public bool HasAttachedImage => !string.IsNullOrWhiteSpace(this.TweetedImage);
+        public bool HasAttachedImage { get; set; }
     }
 }
