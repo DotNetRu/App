@@ -19,7 +19,7 @@ namespace DotNetRu.Clients.UI.Localization {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class AppResources {
@@ -88,20 +88,11 @@ namespace DotNetRu.Clients.UI.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Russian .NET community is a group of independent communities of .NET developers from Russia..
+        ///   Looks up a localized string similar to Russian .NET community is a group of independent communities of .NET developers from Russia. We unite people around .Net platform to contribute to the experience and knowledge exchange. We hold meetings regularly to share news and best practices in software development! Find our more at .
         /// </summary>
         public static string AboutText {
             get {
                 return ResourceManager.GetString("AboutText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to We unite people around .Net platform to contribute to the experience and knowledge exchange. We hold meetings regularly to share news and best practices in software development!.
-        /// </summary>
-        public static string AboutTextDetail {
-            get {
-                return ResourceManager.GetString("AboutTextDetail", resourceCulture);
             }
         }
         

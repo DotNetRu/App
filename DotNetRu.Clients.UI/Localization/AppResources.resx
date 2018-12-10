@@ -127,10 +127,7 @@
     <value>About DotNetRu</value>
   </data>
   <data name="AboutText" xml:space="preserve">
-    <value>Russian .NET community is a group of independent communities of .NET developers from Russia.</value>
-  </data>
-  <data name="AboutTextDetail" xml:space="preserve">
-    <value>We unite people around .Net platform to contribute to the experience and knowledge exchange. We hold meetings regularly to share news and best practices in software development!</value>
+    <value>Russian .NET community is a group of independent communities of .NET developers from Russia. We unite people around .Net platform to contribute to the experience and knowledge exchange. We hold meetings regularly to share news and best practices in software development! Find our more at </value>
   </data>
   <data name="Abstract" xml:space="preserve">
     <value>Abstract</value>
