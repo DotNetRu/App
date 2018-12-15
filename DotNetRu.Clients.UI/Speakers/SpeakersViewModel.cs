@@ -29,11 +29,12 @@
         #region Sorting
 
         private void SortSpeakers(IEnumerable<SpeakerModel> speakers)
-        {
-            var speakersSorted = from speaker in speakers 
-                                    orderby speaker.FirstName 
-                                    group speaker by Char.ToUpperInvariant(speaker.FirstName[0]) into speakerGroup
-                                    select new Grouping<char, SpeakerModel>(speakerGroup.Key, speakerGroup);
+        {            
+            var speakersSorted = speakers.Select(speaker => new { speaker, firstChar = Char.ToUpperInvariant(speaker.FirstName[0])})
+                                         .OrderBy(s => 'A' <= s.firstChar && s.firstChar <= 'Z') //english names in the bottom
+                                         .ThenBy(s => s.speaker.FirstName)
+                                         .GroupBy(s => s.firstChar)
+                                         .Select(g => new Grouping<char, SpeakerModel>(g.Key, g.Select(s => s.speaker)));
 
             this.speakers.ReplaceRange(speakersSorted);
         }
