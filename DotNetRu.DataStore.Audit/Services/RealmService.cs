@@ -1,4 +1,4 @@
-﻿namespace DotNetRu.DataStore.Audit.Services
+namespace DotNetRu.DataStore.Audit.Services
 {
     using System;
     using System.Collections.Generic;
@@ -12,6 +12,7 @@
     using DotNetRu.DataStore.Audit.RealmModels;
 
     using Realms;
+    using Xamarin.Essentials;
 
     public class RealmService
     {
@@ -20,9 +21,9 @@
 
         public static Realm AuditRealm => auditRealm ?? (auditRealm = Realm.GetInstance("Audit.realm"));
 
-        public static void Initialize(bool overwrite)
+        public static void Initialize()
         {
-            InitializeRealm(overwrite);
+            InitializeRealm();
             InitializeAutoMapper();
         }
 
@@ -64,12 +65,12 @@
                 });
         }
 
-        private static void InitializeRealm(bool overwrite)
+        private static void InitializeRealm()
         {
             var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             var realmPath = Path.Combine(documentsPath, "Audit.realm");
 
-            if (overwrite)
+            if (VersionTracking.IsFirstLaunchForCurrentBuild)
             {
                 File.WriteAllBytes(realmPath, ExtractResource(RealmResourceName));
             }

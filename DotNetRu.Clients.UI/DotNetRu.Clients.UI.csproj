@@ -4,25 +4,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Flurl.Http" Version="2.4.0" />
     <PackageReference Include="FormsToolkit" Version="2.0.1" />
-    <PackageReference Include="Humanizer.Core" Version="2.2.0" />
-    <PackageReference Include="Humanizer.Core.ru" Version="2.2.0" />
-    <PackageReference Include="Microsoft.AppCenter" Version="1.6.1" />
-    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.6.1" />
-    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.6.1" />
-    <PackageReference Include="Plugin.Permissions" Version="2.2.1" />
-    <PackageReference Include="Plugin.Share" Version="7.1.1" />
+    <PackageReference Include="Microsoft.AppCenter" Version="1.11.0" />
+    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.11.0" />
+    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.11.0" />
+    <PackageReference Include="Plugin.Permissions" Version="3.0.0.12" />
     <PackageReference Include="Refractored.MvvmHelpers" Version="1.3.0" />
-    <PackageReference Include="Xam.Plugin.Connectivity" Version="3.1.1" />
-    <PackageReference Include="Xam.Plugins.Forms.ImageCircle" Version="2.0.2" />
-    <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
-    <PackageReference Include="Xamarin.FFImageLoading" Version="2.3.6" />
-    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.3.6" />
-    <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.3.6" />
-    <PackageReference Include="Xamarin.Forms" Version="3.1.0.583944" />
+    <PackageReference Include="Xam.Plugins.Forms.ImageCircle" Version="3.0.0.5" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.0.0" />
+    <PackageReference Include="Xamarin.FFImageLoading" Version="2.4.4.859" />
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.4.859" />
+    <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.4.859" />
+    <PackageReference Include="Xamarin.Forms" Version="3.4.0.1008975" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DotNetRu.Clients.Portable\DotNetRu.Clients.Portable.csproj" />
     <ProjectReference Include="..\DotNetRu.DataStore.Audit\DotNetRu.DataStore.Audit.csproj">
       <Project>{7B4C73DF-8A4A-4AD1-92D9-A064065CDD71}</Project>
       <Name>DotNetRu.DataStore.Audit</Name>
@@ -33,16 +29,126 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Cells\CommunityCell.xaml.cs">
-      <DependentUpon>CommunityCell.xaml</DependentUpon>
+    <Compile Update="Localization\AppResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
-    <Compile Update="Pages\Meetups\MeetupDetailsPage.xaml.cs">
+    <Compile Update="Meetups\MeetupDetailsPage.xaml.cs">
       <DependentUpon>MeetupDetailsPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Update="Cells\CommunityViewCell.xaml">
+    <EmbeddedResource Update="About\CommunityViewCell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Localization\AppResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="About\CommunityViewCell.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="About\Friends\FriendCell.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="About\Friends\FriendDetailsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="About\Friends\FriendsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="About\SettingsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="About\TechnologiesUsedPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="BasePages\BottomTabbedPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="BasePages\EvolveGroupHeaderView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Controls\FooterDivider.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Controls\HeaderDivider.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Controls\LabelSection.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Controls\Rating3Control.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Controls\RatingControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Controls\SectionDivider.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Feedback\CategoryCellView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Feedback\ConferenceFeedbackPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Feedback\FeedbackPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Feedback\Rating3Control.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Feedback\RatingControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Meetups\FilterSessionsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Meetups\MeetupDetailsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Meetups\MeetupsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Meetups\SessionCell.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Meetups\TalkPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="News\NewsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="News\TweetCell.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="News\TweetImagePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Pages\BottomTabbedPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Speakers\SpeakerCell.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Speakers\SpeakerDetailsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Speakers\SpeakerDetailsPageUWP.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Speakers\SpeakerFacePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Speakers\SpeakersPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
   </ItemGroup>
 </Project>

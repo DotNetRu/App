@@ -1,0 +1,24 @@
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DotNetRu.Clients.UI.Pages.Info.TechnologiesUsedPage"
+             Title="{Binding Resources[TechnologyUsed]}">
+    <ContentPage.Content>
+        <ListView
+            x:Name="ListViewTechnology"
+            ItemsSource="{Binding TechnologyItems}"
+            RowHeight="44">
+            <ListView.SeparatorColor>
+                <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ListSeparator}" />
+            </ListView.SeparatorColor>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Name}"
+                              Detail="{Binding Subtitle}"
+                              Command="{Binding Command}"
+                              CommandParameter="{Binding Parameter}"
+                              StyleId="disclosure" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>

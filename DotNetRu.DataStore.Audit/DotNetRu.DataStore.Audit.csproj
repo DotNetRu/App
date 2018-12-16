@@ -8,10 +8,11 @@
     <None Remove="Images\logos\NskDotNet.png" />
   </ItemGroup>  
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="7.0.0" />
-    <PackageReference Include="Octokit" Version="0.29.0" />
-    <PackageReference Include="Realm.Database" Version="3.0.0" />
-    <PackageReference Include="Xamarin.Forms" Version="3.1.0.583944" />
+    <PackageReference Include="AutoMapper" Version="8.0.0" />
+    <PackageReference Include="Octokit" Version="0.32.0" />
+    <PackageReference Include="Realm.Database" Version="3.3.0" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.0.0" />
+    <PackageReference Include="Xamarin.Forms" Version="3.4.0.1008975" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Audit.realm" />
@@ -23,7 +24,6 @@
     <EmbeddedResource Include="Images\logos\MskDotNet.png" />
     <EmbeddedResource Include="Images\logos\SarDotNet.png" />
     <EmbeddedResource Include="Images\logos\SpbDotNet.png" />
-    <EmbeddedResource Include="Images\logos\DotNetRu.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DotNetRu.Utils\DotNetRu.Utils.csproj" />

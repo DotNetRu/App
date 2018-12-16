@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="DotNetRu.Clients.UI.Controls.RatingControl"
+             xmlns:behaviors="clr-namespace:DotNetRu.Clients.UI.Behaviors;assembly=DotNetRu.Clients.UI">
+  <ContentView.Content>
+    <StackLayout Orientation="Horizontal" Spacing="{StaticResource StandardSpacing}" HorizontalOptions="Center">
+      <Grid HeightRequest="24" WidthRequest="24" x:Name="StarGrid1">
+        <Grid.Behaviors>
+          <!--Do not remove name as it is used in binding-->
+          <behaviors:StarBehavior x:Name="starOne" RatingChanged="OnStarRatingChanged"/>
+        </Grid.Behaviors>
+        <Image Source="star_outline.png" />
+
+        <Image Source="star_selected.png"
+               IsVisible="{Binding Source={x:Reference starOne},
+                                            Path=IsStarred}"/>
+      </Grid>
+      <Grid HeightRequest="24" WidthRequest="24" HorizontalOptions="Center" x:Name="StarGrid2">
+        <Grid.Behaviors>
+          <!--Do not remove name as it is used in binding-->
+          <behaviors:StarBehavior x:Name="starTwo" RatingChanged="OnStarRatingChanged"/>
+        </Grid.Behaviors>
+        <Image Source="star_outline.png" />
+
+        <Image Source="star_selected.png"
+                IsVisible="{Binding Source={x:Reference starTwo},
+                                            Path=IsStarred}"/>
+      </Grid>
+      <Grid HeightRequest="24" WidthRequest="24" HorizontalOptions="Center" x:Name="StarGrid3">
+        <Grid.Behaviors>
+          <!--Do not remove name as it is used in binding-->
+          <behaviors:StarBehavior x:Name="starThree" RatingChanged="OnStarRatingChanged"/>
+        </Grid.Behaviors>
+        <Image Source="star_outline.png" />
+
+        <Image Source="star_selected.png"
+                IsVisible="{Binding Source={x:Reference starThree},
+                                            Path=IsStarred}"/>
+      </Grid>
+      <Grid HeightRequest="24" WidthRequest="24" HorizontalOptions="Center" x:Name="StarGrid4">
+        <Grid.Behaviors>
+          <!--Do not remove name as it is used in binding-->
+          <behaviors:StarBehavior x:Name="starFour" RatingChanged="OnStarRatingChanged" />
+        </Grid.Behaviors>
+        <Image Source="star_outline.png" />
+
+        <Image Source="star_selected.png"
+                IsVisible="{Binding Source={x:Reference starFour},
+                                            Path=IsStarred}"/>
+      </Grid>
+      <Grid HeightRequest="24" WidthRequest="24" HorizontalOptions="Center" x:Name="StarGrid5">
+        <Grid.Behaviors>
+          <!--Do not remove name as it is used in binding-->
+          <behaviors:StarBehavior x:Name="starFive" RatingChanged="OnStarRatingChanged"/>
+        </Grid.Behaviors>
+        <Image Source="star_outline.png" />
+
+        <Image Source="star_selected.png"
+                IsVisible="{Binding Source={x:Reference starFive},
+                                            Path=IsStarred}"/>
+      </Grid>
+    </StackLayout>
+  </ContentView.Content>
+</ContentView>

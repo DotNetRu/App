@@ -1,4 +1,4 @@
-﻿namespace DotNetRu.DataStore.Audit.Services
+namespace DotNetRu.DataStore.Audit.Services
 {
     using Xamarin.Forms;
     using Xamarin.Forms.Internals;
@@ -7,8 +7,6 @@
     public class LogoService
     {
         private static string logoPath = "DotNetRu.DataStore.Audit.Images.logos.";
-
-        public static ImageSource DotNetRuLogo => ImageSource.FromResource(logoPath + "DotNetRu.png");
 
         public static ImageSource SpbDotNetLogo => ImageSource.FromResource(logoPath + "SpbDotNet.png");
 

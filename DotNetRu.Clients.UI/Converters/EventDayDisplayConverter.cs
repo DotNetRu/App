@@ -1,12 +1,11 @@
-﻿namespace DotNetRu.Clients.UI.Converters
+namespace DotNetRu.Clients.UI.Converters
 {
     using System;
     using System.Diagnostics;
     using System.Globalization;
 
-    using DotNetRu.Clients.Portable.ApplicationResources;
     using DotNetRu.Clients.Portable.Extensions;
-
+    using DotNetRu.Clients.UI.Localization;
     using Xamarin.Forms;
 
     public class EventDayDisplayConverter : IValueConverter
