@@ -38,16 +38,12 @@ namespace DotNetRu.Clients.UI
 
         public App()
         {
+            VersionTracking.Track();
+
             var language = LanguageService.GetCurrentLanguage();
             AppResources.Culture = new CultureInfo(language.GetLanguageCode());
 
-            var savedAppVersion = Portable.Helpers.Settings.AppVersion;
-            var currentAppVersion = DependencyService.Get<IAppVersionProvider>().AppVersion;
-
-            bool overwrite = savedAppVersion != currentAppVersion;        
-            RealmService.Initialize(overwrite);
-
-            Portable.Helpers.Settings.AppVersion = currentAppVersion;
+            RealmService.Initialize();
 
             this.InitializeComponent();
 
