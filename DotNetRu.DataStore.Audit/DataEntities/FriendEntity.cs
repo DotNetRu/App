@@ -1,8 +1,5 @@
-﻿namespace DotNetRu.DataStore.Audit.XmlEntities
+namespace DotNetRu.DataStore.Audit.XmlEntities
 {
-    using System.Xml.Serialization;
-
-    [XmlType("Friend")]
     public class FriendEntity
     {
         public string Id { get; set; }

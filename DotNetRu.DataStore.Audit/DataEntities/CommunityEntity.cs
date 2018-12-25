@@ -1,8 +1,5 @@
-﻿namespace DotNetRu.DataStore.Audit.XmlEntities
+namespace DotNetRu.DataStore.Audit.XmlEntities
 {
-    using System.Xml.Serialization;
-
-    [XmlType("Community")]
     public class CommunityEntity
     {
         public string Id { get; set; }

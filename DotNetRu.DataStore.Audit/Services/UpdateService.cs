@@ -3,32 +3,27 @@ namespace DotNetRu.DataStore.Audit.Services
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
-    using System.IO;
     using System.Linq;
     using System.Net.Http;
-    using System.Threading;
     using System.Threading.Tasks;
-    using System.Xml.Serialization;
 
     using AutoMapper;
 
     using DotNetRu.DataStore.Audit.RealmModels;
     using DotNetRu.DataStore.Audit.XmlEntities;
     using DotNetRu.Utils;
-
-    using Octokit;
-
+    using Flurl;
+    using Flurl.Http;
+    using PushNotifications;
     using Realms;
 
     public static class UpdateService
     {
-        private const int DotNetRuAppRepositoryID = 89862917;
-
         public static async Task UpdateAudit()
         {
             try
             {
-                DotNetRuLogger.TrackEvent("AuditUpdate. Started updating audit");
+                Console.WriteLine("AuditUpdate. Started updating audit");
 
                 string currentCommitSha;
                 using (var auditRealm = Realm.GetInstance("Audit.realm"))
@@ -37,38 +32,12 @@ namespace DotNetRu.DataStore.Audit.Services
                     currentCommitSha = auditVersion.CommitHash;
                 }
 
-                DotNetRuLogger.TrackEvent("AuditUpdate. Current synchronization context: " + SynchronizationContext.Current);
-                DotNetRuLogger.TrackEvent("AuditUpdate. Current version is: " + currentCommitSha);
+                var updateContent = await "https://dotnetrupush.azurewebsites.net/api/Update"
+                    .SetQueryParam("fromCommitSha", currentCommitSha)
+                    .GetJsonAsync<UpdateContent>();
 
-                var client = new GitHubClient(new ProductHeaderValue("DotNetRu"));
-
-                var reference = await client.Git.Reference.Get(DotNetRuAppRepositoryID, "heads/master");
-                var latestMasterCommitSha = reference.Object.Sha;
-
-                DotNetRuLogger.TrackEvent("AuditUpdate. Latest version (master) is: " + latestMasterCommitSha);
-
-                var contentUpdate = await client.Repository.Commit.Compare(
-                                        DotNetRuAppRepositoryID,
-                                        currentCommitSha,
-                                        latestMasterCommitSha);
-
-                Stopwatch stopwatch = new Stopwatch();
+                var stopwatch = new Stopwatch();
                 stopwatch.Start();
-
-                var httpClient = new HttpClient();
-
-                var streamTasks = contentUpdate.Files.Select(
-                    async file => new UpdatedFile
-                                      {
-                                          Filename = file.Filename,
-                                          Content = await httpClient.GetByteArrayAsync(file.RawUrl)
-                                                        .ConfigureAwait(false)
-                                      });
-                var fileContents = await Task.WhenAll(streamTasks);
-
-                DotNetRuLogger.TrackEvent("AuditUpdate. Downloading files time: " + stopwatch.Elapsed.ToString("g"));
-
-                var xmlFiles = fileContents.Where(x => x.Filename.EndsWith(".xml")).ToList();
 
                 using (var auditRealm = Realm.GetInstance("Audit.realm"))
                 {
@@ -76,18 +45,17 @@ namespace DotNetRu.DataStore.Audit.Services
                     {
                         var mapper = GetAutoMapper(auditRealm);
 
-                        UpdateModels<SpeakerEntity>(mapper, auditRealm, xmlFiles, "speakers");
-                        UpdateModels<FriendEntity>(mapper, auditRealm, xmlFiles, "friends");
-                        UpdateModels<VenueEntity>(mapper, auditRealm, xmlFiles, "venues");
-                        UpdateModels<TalkEntity>(mapper, auditRealm, xmlFiles, "talks");
-                        UpdateModels<MeetupEntity>(mapper, auditRealm, xmlFiles, "meetups");
+                        UpdateModels(mapper, auditRealm, updateContent.Speakers);
+                        UpdateModels(mapper, auditRealm, updateContent.Friends);
+                        UpdateModels(mapper, auditRealm, updateContent.Venues);
+                        UpdateModels(mapper, auditRealm, updateContent.Talks);
+                        UpdateModels(mapper, auditRealm, updateContent.Meetups);
 
-                        var speakerPhotos = fileContents.Where(x => x.Filename.EndsWith("avatar.jpg"));
-                        UpdateSpeakerAvatars(auditRealm, speakerPhotos);
+                        UpdateSpeakerAvatars(auditRealm, updateContent.Photos);
 
                         var auditVersion = auditRealm.All<AuditVersion>().Single();
 
-                        auditVersion.CommitHash = latestMasterCommitSha;
+                        auditVersion.CommitHash = updateContent.LatestVersion;
                         auditRealm.Add(auditVersion, update: true);
 
                         trans.Commit();
@@ -106,46 +74,31 @@ namespace DotNetRu.DataStore.Audit.Services
             }
         }
 
-        private static void UpdateSpeakerAvatars(Realm auditRealm, IEnumerable<UpdatedFile> speakerPhotos)
+        private static void UpdateSpeakerAvatars(Realm auditRealm, IEnumerable<string> photoURLs)
         {
-            foreach (UpdatedFile updatedFile in speakerPhotos)
+            foreach (var photoURL in photoURLs)
             {
-                var speakerID = updatedFile.Filename.Split('/')[2];
+                var speakerID = photoURL.Split('/').Reverse().Skip(1).Take(1).Single();
 
-                byte[] speakerAvatar = updatedFile.Content;
+                byte[] speakerAvatar = new HttpClient().GetByteArrayAsync(photoURL).Result;
 
                 var speaker = auditRealm.Find<Speaker>(speakerID);
                 speaker.Avatar = speakerAvatar;
 
-                DotNetRuLogger.TrackEvent("AuditUpdate. Updated speaker avatar: " + updatedFile.Filename);
+                DotNetRuLogger.TrackEvent("AuditUpdate. Updated speaker avatar: " + photoURL);
             }
         }
 
-        private static void UpdateModels<T>(IMapper mapper, Realm auditRealm, IEnumerable<UpdatedFile> xmlFiles, string entityName)
+        private static void UpdateModels<T>(IMapper mapper, Realm auditRealm, IEnumerable<T> entities)
         {
-            var newEntities = xmlFiles.Where(x => x.Filename.StartsWith("db/" + entityName));
-            UpdateModels<T>(mapper, auditRealm, newEntities);
-        }
-
-        private static void UpdateModels<T>(IMapper mapper, Realm auditRealm, IEnumerable<UpdatedFile> files)
-        {
-            foreach (UpdatedFile file in files)
+            foreach (var entity in entities)
             {
-                using (var memoryStream = new MemoryStream(file.Content))
-                {
-                    var xmlEntity = new XmlSerializer(typeof(T)).Deserialize(memoryStream);
+                var realmType = mapper.ConfigurationProvider.GetAllTypeMaps().Single(x => x.SourceType == typeof(T))
+                    .DestinationType;
 
-                    DotNetRuLogger.TrackEvent($"AuditUpdate: updating {file.Filename}");
+                var realmObject = mapper.Map(entity, typeof(T), realmType);
 
-                    var realmType = mapper.ConfigurationProvider.GetAllTypeMaps().Single(x => x.SourceType == typeof(T))
-                        .DestinationType;
-
-                    var realmObject = mapper.Map(xmlEntity, typeof(T), realmType);
-
-                    auditRealm.Add(realmObject as RealmObject, update: true);
-
-                    DotNetRuLogger.TrackEvent($"AuditUpdate. Updated {file.Filename}");
-                }
+                auditRealm.Add(realmObject as RealmObject, update: true);
             }
         }
 
@@ -200,13 +153,6 @@ namespace DotNetRu.DataStore.Audit.Services
                     });
 
             return config.CreateMapper();            
-        }
-
-        private class UpdatedFile
-        {
-            public string Filename { get; set; }
-
-            public byte[] Content { get; set; }
         }
     }
 }
