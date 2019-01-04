@@ -80,8 +80,8 @@
     <AotAssemblies>true</AotAssemblies>
     <EnableLLVM>true</EnableLLVM>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
-    <AndroidTlsProvider>btls</AndroidTlsProvider>
-    <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
+    <AndroidTlsProvider>Native TLS 1.2+</AndroidTlsProvider>
+    <AndroidHttpClientHandlerType>Android</AndroidHttpClientHandlerType>
     <AndroidExplicitCrunch>true</AndroidExplicitCrunch>
     <AndroidDexTool>d8</AndroidDexTool>
     <AndroidLinkTool>r8</AndroidLinkTool>
