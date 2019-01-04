@@ -80,7 +80,8 @@
     <AotAssemblies>true</AotAssemblies>
     <EnableLLVM>true</EnableLLVM>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
-    <AndroidTlsProvider>Native TLS 1.2+</AndroidTlsProvider>
+    <AndroidTlsProvider>
+    </AndroidTlsProvider>
     <AndroidHttpClientHandlerType>Android</AndroidHttpClientHandlerType>
     <AndroidExplicitCrunch>true</AndroidExplicitCrunch>
     <AndroidDexTool>d8</AndroidDexTool>
