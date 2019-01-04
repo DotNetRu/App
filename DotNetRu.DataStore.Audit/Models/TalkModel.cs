@@ -1,4 +1,4 @@
-﻿namespace DotNetRu.DataStore.Audit.Models
+namespace DotNetRu.DataStore.Audit.Models
 {
     using System;
     using System.Collections.Generic;
@@ -87,7 +87,7 @@
         public byte[] SpeakerAvatar => this.Speakers.Count() > 1
                                                 ? RealmService.ExtractResource(
                                                     "DotNetRu.DataStore.Audit.Storage.SeveralSpeakers.png")
-                                                : this.Speakers.Single().Avatar;
+                                                : this.Speakers.Single().AvatarSmall;
 
         public string SpeakerNames => string.Join(",", this.Speakers.Select(x => x.FullName));
 

@@ -6,6 +6,7 @@
     xmlns:pages="clr-namespace:DotNetRu.Clients.UI.Pages;assembly=DotNetRu.Clients.UI"
     xmlns:controls="clr-namespace:DotNetRu.Clients.UI.Controls;assembly=DotNetRu.Clients.UI"
     xmlns:converters="clr-namespace:DotNetRu.Clients.UI.Converters;assembly=DotNetRu.Clients.UI"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"    
     x:Class="DotNetRu.Clients.UI.Pages.Speakers.SpeakerDetailsPage"
     Title="{Binding Resources[SpeakerInfo]}"
     x:Name="SpeakerInfo"
@@ -14,7 +15,6 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <toolkit:HasDataConverter x:Key="GenericIsVisibleConverter"/>
-            <converters:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <ScrollView>
@@ -27,15 +27,17 @@
                 Grid.Row="0"
                 VerticalOptions="FillAndExpand"
                 HorizontalOptions="FillAndExpand">
-                <Image
-                        Source="{Binding SpeakerModel.Avatar, Converter={StaticResource ByteArrayToImageSourceConverter}}"
-                        Aspect="AspectFill">
+                <ffimageloading:CachedImage 
+			        Source="{Binding SpeakerModel.AvatarURL}"
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    LoadingPlaceholder="loading_apple.gif">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer
                                 Tapped="OnTapGestureRecognizerTapped"
                                 NumberOfTapsRequired="1" />
                     </Image.GestureRecognizers>
-                </Image>
+                </ffimageloading:CachedImage>
                 <StackLayout
                          Padding="{StaticResource StandardPadding}"
                          Spacing="0"
@@ -43,17 +45,14 @@
                          HorizontalOptions="FillAndExpand">
                     <Label
                             Text="{Binding SpeakerModel.FullName}"
-                            FontSize="18"
-                            TextColor="White">
+                            FontSize="18">
                         <Label.FontFamily>
                             <OnPlatform x:TypeArguments="x:String" Android="sans-serif-light" iOS="HelveticaNeue-Light"/>
                         </Label.FontFamily>
                     </Label>
-                    <Label
-                            x:Name="SpeakerTitle"
-                            Text="{Binding SpeakerModel.Title}"
-                            FontSize="12"
-                            TextColor="White"/>
+                    <Label x:Name="SpeakerTitle"
+                           Text="{Binding SpeakerModel.Title}"
+                           FontSize="12"/>
                 </StackLayout>
             </Grid>
             <StackLayout Grid.Row="1" Spacing="0">

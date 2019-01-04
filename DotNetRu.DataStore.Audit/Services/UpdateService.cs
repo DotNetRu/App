@@ -83,7 +83,7 @@ namespace DotNetRu.DataStore.Audit.Services
                 byte[] speakerAvatar = new HttpClient().GetByteArrayAsync(photoURL).Result;
 
                 var speaker = auditRealm.Find<Speaker>(speakerID);
-                speaker.Avatar = speakerAvatar;
+                speaker.AvatarSmall = speakerAvatar;
 
                 DotNetRuLogger.TrackEvent("AuditUpdate. Updated speaker avatar: " + photoURL);
             }
@@ -114,7 +114,7 @@ namespace DotNetRu.DataStore.Audit.Services
                                     var existingSpeaker = auditRealm.Find<Speaker>(speakerID);
                                     if (existingSpeaker != null)
                                     {
-                                        dest.Avatar = existingSpeaker.Avatar;
+                                        dest.AvatarSmall = existingSpeaker.AvatarSmall;
                                     }
                                 });
                         cfg.CreateMap<VenueEntity, Venue>();

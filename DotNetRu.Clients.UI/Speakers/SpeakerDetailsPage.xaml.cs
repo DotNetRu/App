@@ -1,4 +1,4 @@
-﻿namespace DotNetRu.Clients.UI.Pages.Speakers
+namespace DotNetRu.Clients.UI.Pages.Speakers
 {
     using System;
 
@@ -99,7 +99,7 @@
 
         private async void OnTapGestureRecognizerTapped(object sender, EventArgs args)
         {
-            await NavigationService.PushAsync(this.Navigation, new SpeakerFacePage(this.SpeakerModel.Avatar));
+            await NavigationService.PushAsync(this.Navigation, new SpeakerFacePage(this.SpeakerModel.AvatarURL));
         } 
     }
 }

@@ -1,12 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <pages:BasePage 
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:pages="clr-namespace:DotNetRu.Clients.UI.Pages;assembly=DotNetRu.Clients.UI"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"     
     x:Class="DotNetRu.Clients.UI.Pages.Speakers.SpeakerFacePage">
-	<ContentPage.Content>
-        <StackLayout>
-            <Image x:Name="faceImage" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
-        </StackLayout>
-	</ContentPage.Content>
+    <ContentPage.Content>
+        <ffimageloading:CachedImage 
+			        Source="{Binding AvatarURL}"
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    LoadingPlaceholder="loading_apple.gif">
+        </ffimageloading:CachedImage>
+    </ContentPage.Content>
 </pages:BasePage>

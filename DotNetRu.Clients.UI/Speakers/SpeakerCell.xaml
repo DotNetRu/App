@@ -16,7 +16,7 @@
                 <ColumnDefinition Width="*"/>
               </Grid.ColumnDefinitions>
               <imagecircle:CircleImage FillColor="{DynamicResource Primary}" 
-                                       Source="{Binding Avatar, Converter={StaticResource ByteArrayToImageSourceConverter}}"                                       
+                                       Source="{Binding AvatarSmall, Converter={StaticResource ByteArrayToImageSourceConverter}}"                                       
                                        VerticalOptions="Center"
                                        Aspect="AspectFill"
                                        WidthRequest="44"

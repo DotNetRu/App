@@ -1,4 +1,4 @@
-﻿namespace DotNetRu.DataStore.Audit.Extensions
+namespace DotNetRu.DataStore.Audit.Extensions
 {
     using System.Linq;
 
@@ -19,7 +19,8 @@
                            TwitterUrl = speaker.TwitterUrl,
                            BlogUrl = speaker.BlogUrl,
                            Biography = speaker.Description,
-                           Avatar = speaker.Avatar,
+                           AvatarSmall = speaker.AvatarSmall,
+                           AvatarURL = speaker.AvatarURL,
                            Talks = speaker.Talks.ToList().Select(x => x.ToModel())
                        };
         }
