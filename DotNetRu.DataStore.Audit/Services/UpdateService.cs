@@ -63,14 +63,10 @@ namespace DotNetRu.DataStore.Audit.Services
                 }
 
                 stopwatch.Stop();
-
-                DotNetRuLogger.TrackEvent("AuditUpdate. Finished! Time: " + stopwatch.Elapsed.ToString("g"));
             }
             catch (Exception e)
             {
-                DotNetRuLogger.Report(e, "AuditUpdate");
-
-                throw;
+                DotNetRuLogger.Report(e);
             }
         }
 
@@ -84,8 +80,6 @@ namespace DotNetRu.DataStore.Audit.Services
 
                 var speaker = auditRealm.Find<Speaker>(speakerID);
                 speaker.AvatarSmall = speakerAvatar;
-
-                DotNetRuLogger.TrackEvent("AuditUpdate. Updated speaker avatar: " + photoURL);
             }
         }
 

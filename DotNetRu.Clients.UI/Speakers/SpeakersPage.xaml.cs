@@ -1,4 +1,4 @@
-﻿using DotNetRu.Clients.Portable.Model;
+using DotNetRu.Clients.Portable.Model;
 using DotNetRu.Clients.Portable.ViewModel;
 using DotNetRu.Clients.UI.Helpers;
 using DotNetRu.DataStore.Audit.Models;
@@ -31,16 +31,7 @@ namespace DotNetRu.Clients.UI.Pages.Speakers
                         return;
                     }
 
-                    ContentPage destination;
-
-                    if (Device.RuntimePlatform == Device.UWP)
-                    {
-                        destination = new SpeakerDetailsPageUWP(speaker);
-                    }
-                    else
-                    {
-                        destination = new SpeakerDetailsPage(speaker);
-                    }
+                    ContentPage destination = new SpeakerDetailsPage(speaker);
 
                     await NavigationService.PushAsync(this.Navigation, destination);
                     this.ListViewSpeakers.SelectedItem = null;

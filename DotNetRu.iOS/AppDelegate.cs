@@ -9,6 +9,7 @@ namespace DotNetRu.iOS
     using DotNetRu.Clients.Portable.Model;
     using DotNetRu.Clients.UI;
     using DotNetRu.iOS.Renderers;
+    using DotNetRu.Utils;
     using DotNetRu.Utils.Helpers;
     using DotNetRu.Utils.Interfaces;
 
@@ -355,7 +356,6 @@ namespace DotNetRu.iOS
         {
             // Do Background Fetch
             var downloadSuccessful = false;
-            var logger = DependencyService.Get<ILogger>();
 
             try
             {
@@ -364,7 +364,7 @@ namespace DotNetRu.iOS
             catch (Exception ex)
             {
                 ex.Data["Method"] = "PerformFetch";
-                logger.Report(ex);
+                DotNetRuLogger.Report(ex);
             }
 
             // If you don't call this, your application will be terminated by the OS.

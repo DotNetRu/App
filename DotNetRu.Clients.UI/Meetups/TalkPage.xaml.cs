@@ -1,4 +1,4 @@
-﻿namespace DotNetRu.Clients.UI.Pages.Sessions
+namespace DotNetRu.Clients.UI.Pages.Sessions
 {
     using System.Linq;
 
@@ -27,22 +27,10 @@
                         return;
                     }
 
-                    ContentPage destination;
+                    var speakerDetails =
+                        new SpeakerDetailsPage() { SpeakerModel = speaker };
 
-                    if (Device.RuntimePlatform == Device.UWP)
-                    {
-                        var speakerDetailsUwp =
-                            new SpeakerDetailsPageUWP(this.talkViewModel.TalkModel.TalkId) { SpeakerModel = speaker };
-                        destination = speakerDetailsUwp;
-                    }
-                    else
-                    {
-                        var speakerDetails =
-                            new SpeakerDetailsPage() { SpeakerModel = speaker };
-                        destination = speakerDetails;
-                    }
-
-                    await NavigationService.PushAsync(this.Navigation, destination);
+                    await NavigationService.PushAsync(this.Navigation, speakerDetails);
                     this.ListViewSpeakers.SelectedItem = null;
                 };
 

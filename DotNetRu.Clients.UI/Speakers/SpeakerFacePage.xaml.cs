@@ -6,10 +6,12 @@ namespace DotNetRu.Clients.UI.Pages.Speakers
     {
         public string AvatarURL { get; set; }
 
-        public SpeakerFacePage(string avatarURL)
+        public SpeakerFacePage(string speakerID, string avatarURL)
         {
             this.InitializeComponent();
             this.AvatarURL = avatarURL;
+
+            this.ItemId = speakerID;
 
             this.BindingContext = this;
         }

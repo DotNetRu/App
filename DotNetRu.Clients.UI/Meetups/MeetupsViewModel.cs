@@ -1,4 +1,4 @@
-﻿namespace DotNetRu.Clients.Portable.ViewModel
+namespace DotNetRu.Clients.Portable.ViewModel
 {
     using System;
     using System.Windows.Input;
@@ -7,6 +7,7 @@
     using DotNetRu.Clients.Portable.Model.Extensions;
     using DotNetRu.DataStore.Audit.Models;
     using DotNetRu.DataStore.Audit.Services;
+    using DotNetRu.Utils;
     using DotNetRu.Utils.Helpers;
 
     using FormsToolkit;
@@ -15,14 +16,10 @@
 
     using Xamarin.Forms;
 
-    /// <inheritdoc />
     public class MeetupsViewModel : ViewModelBase
     {
         private MeetupModel selectedMeetup;
 
-        /// <summary>
-        /// The load events command.
-        /// </summary>
         private ICommand loadMeetupsCommand;
 
         public MeetupsViewModel(INavigation navigation)
@@ -76,7 +73,7 @@
             }
             catch (Exception ex)
             {
-                this.Logger.Report(ex, "Method", "ExecuteLoadMeetups");
+                DotNetRuLogger.Report(ex);
                 MessagingService.Current.SendMessage(MessageKeys.Error, ex);
             }
             finally

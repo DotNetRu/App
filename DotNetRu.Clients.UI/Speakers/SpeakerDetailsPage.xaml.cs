@@ -56,7 +56,7 @@ namespace DotNetRu.Clients.UI.Pages.Speakers
             set
             {
                 this.BindingContext = new SpeakerDetailsViewModel(value);
-                this.ItemId = value?.FullName;
+                this.ItemId = value.Id;
             }
         }
 
@@ -99,7 +99,7 @@ namespace DotNetRu.Clients.UI.Pages.Speakers
 
         private async void OnTapGestureRecognizerTapped(object sender, EventArgs args)
         {
-            await NavigationService.PushAsync(this.Navigation, new SpeakerFacePage(this.SpeakerModel.AvatarURL));
-        } 
+            await NavigationService.PushAsync(this.Navigation, new SpeakerFacePage(this.SpeakerModel.Id, this.SpeakerModel.AvatarURL));
+        }
     }
 }
