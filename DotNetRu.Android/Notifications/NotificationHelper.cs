@@ -1,4 +1,4 @@
-﻿namespace DotNetRu.Droid.Notifications
+namespace DotNetRu.Droid.Notifications
 {
     using Android.App;
     using Android.Content;
@@ -17,7 +17,7 @@
 
         internal static void CreateNotificationChannel()
         {
-            NotificationChannel notificationChannel = new NotificationChannel(
+            var notificationChannel = new NotificationChannel(
                 NewMeetupChannelID,
                 NewMeetupChannelName,
                 NotificationImportance.High);
@@ -25,7 +25,7 @@
             notificationChannel.EnableVibration(vibration: true);
             notificationChannel.LockscreenVisibility = NotificationVisibility.Public;
 
-            NotificationManager notificationManager =
+            var notificationManager =
                 (NotificationManager)Application.Context.GetSystemService(Context.NotificationService);
 
             notificationManager.CreateNotificationChannel(notificationChannel);

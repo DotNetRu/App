@@ -48,16 +48,12 @@ namespace DotNetRu.Clients.UI
             // Update Audit on startup
             Task.Run(UpdateService.UpdateAudit);
 
-            var configBytes = RealmService.ExtractResource("DotNetRu.Clients.UI.config.json");
-            var configBytesAsString = Encoding.UTF8.GetString(configBytes);
-            var config = JsonConvert.DeserializeObject<AppConfig>(configBytesAsString); 
+            var config = AppConfig.GetConfig();
 
             AppCenter.Start(
                 $"ios={config.AppCenteriOSKey};android={config.AppCenterAndroidKey};",
                 typeof(Analytics),
                 typeof(Crashes));
-
-            Console.WriteLine("AuditUpdate. AppCenter InstallId: " + AppCenter.GetInstallIdAsync().Result);
 
             this.MainPage = new BottomTabbedPage();
         }
