@@ -6,6 +6,7 @@ namespace DotNetRu.Clients.UI
 {
     using System;
     using System.Globalization;
+    using System.Text;
     using System.Threading.Tasks;
     
     using DotNetRu.Clients.Portable.Interfaces;
@@ -23,15 +24,12 @@ namespace DotNetRu.Clients.UI
     using Microsoft.AppCenter;
     using Microsoft.AppCenter.Analytics;
     using Microsoft.AppCenter.Crashes;
+    using Newtonsoft.Json;
     using Xamarin.Essentials;
     using Xamarin.Forms;
 
     public partial class App
     {
-        private const string IosAppCenterKey = "1e7f311f-1055-4ec9-8b00-0302015ab8ae";
-
-        private const string AndroidAppCenterKey = "6f9a7703-8ca4-477e-9558-7e095f7d20aa";
-
         private static ILogger logger;
 
         private bool registered;
@@ -50,8 +48,12 @@ namespace DotNetRu.Clients.UI
             // Update Audit on startup
             Task.Run(UpdateService.UpdateAudit);
 
+            var configBytes = RealmService.ExtractResource("DotNetRu.Clients.UI.config.json");
+            var configBytesAsString = Encoding.UTF8.GetString(configBytes);
+            var config = JsonConvert.DeserializeObject<AppConfig>(configBytesAsString); 
+
             AppCenter.Start(
-                $"ios={IosAppCenterKey};android={AndroidAppCenterKey};",
+                $"ios={config.AppCenteriOSKey};android={config.AppCenterAndroidKey};",
                 typeof(Analytics),
                 typeof(Crashes));
 

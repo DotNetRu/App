@@ -4,7 +4,7 @@ namespace DotNetRu.DataStore.Audit.Services
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
-
+    using System.Reflection;
     using AutoMapper;
 
     using DotNetRu.DataStore.Audit.Extensions;
@@ -36,8 +36,8 @@ namespace DotNetRu.DataStore.Audit.Services
 
         public static byte[] ExtractResource(string resourceName)
         {
-            var assembly = typeof(RealmService).Assembly;
-            using (Stream resFilestream = assembly.GetManifestResourceStream(resourceName))
+            var assembly = Assembly.GetCallingAssembly();
+            using (var resFilestream = assembly.GetManifestResourceStream(resourceName))
             {
                 if (resFilestream == null)
                 {
