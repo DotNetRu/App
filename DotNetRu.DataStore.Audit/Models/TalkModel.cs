@@ -5,8 +5,7 @@ namespace DotNetRu.DataStore.Audit.Models
     using System.Linq;
     using System.Text;
 
-    using DotNetRu.DataStore.Audit.Services;
-
+    using DotNetRu.Utils.Helpers;
     using Xamarin.Forms;
 
     public class TalkModel
@@ -85,7 +84,7 @@ namespace DotNetRu.DataStore.Audit.Models
         }
 
         public byte[] SpeakerAvatar => this.Speakers.Count() > 1
-                                                ? RealmService.ExtractResource(
+                                                ? ResourceHelper.ExtractResource(
                                                     "DotNetRu.DataStore.Audit.Storage.SeveralSpeakers.png")
                                                 : this.Speakers.Single().AvatarSmall;
 
