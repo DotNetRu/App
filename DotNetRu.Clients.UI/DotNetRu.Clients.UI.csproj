@@ -2,6 +2,9 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Speakers\speaker_placeholder.png" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Flurl.Http" Version="2.4.0" />

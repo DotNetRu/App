@@ -18,6 +18,15 @@ namespace DotNetRu.Clients.UI.Pages.Speakers
             : this()
         {
             this.SpeakerModel = speakerModel;
+
+            this.speakerImage.Error += (source, arg) =>
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    this.speakerFullNameLabel.FontSize *= 2;
+                    this.speakerTitleLabel.FontSize *= 2;
+                });
+            };
         }
 
         public SpeakerDetailsPage()
