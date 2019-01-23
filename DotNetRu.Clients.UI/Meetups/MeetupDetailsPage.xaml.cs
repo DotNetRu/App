@@ -1,4 +1,4 @@
-﻿namespace DotNetRu.Clients.UI.Pages.Sessions
+namespace DotNetRu.Clients.UI.Pages.Sessions
 {
     using System.Linq;
 
@@ -13,29 +13,14 @@
     {
         private MeetupViewModel meetupViewModel;
 
-        public MeetupDetailsPage(MeetupModel meetup = null)
+        public MeetupDetailsPage(MeetupModel meetup)
         {
             this.InitializeComponent();
 
             this.BindingContext = this.meetupViewModel = new MeetupViewModel(this.Navigation, meetup);
 
-            // this.filterItem = new ToolbarItem { Text = "Filter" };
+            this.ItemId = meetup.Id;
 
-            // if (Device.RuntimePlatform != Device.iOS)
-            // {
-            // this.filterItem.Icon = "toolbar_filter.png";
-            // }
-
-            // this.filterItem.Command = new Command(
-            // async () =>
-            // {
-            // if (this.meetupViewModel.IsBusy) return;
-            // await NavigationService.PushModalAsync(
-            // this.Navigation,
-            // new EvolveNavigationPage(new FilterSessionsPage()));
-            // });
-
-            // this.ToolbarItems.Add(this.filterItem);
             this.ListViewTalks.ItemSelected += async (sender, e) =>
                 {
                     if (!(this.ListViewTalks.SelectedItem is SessionModel session))

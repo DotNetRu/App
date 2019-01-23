@@ -27,12 +27,6 @@ namespace DotNetRu.Clients.Portable.Helpers
             }
         }
 
-        public static string AppVersion
-        {
-            get => Preferences.Get(nameof(AppVersion), null);
-            set => Preferences.Set(nameof(AppVersion), value);
-        }
-
         private static Language GetLanguage(string languageCode)
         {
             if (languageCode == "ru")

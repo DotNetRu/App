@@ -1,4 +1,4 @@
-﻿namespace DotNetRu.Clients.UI.Pages.Home
+namespace DotNetRu.Clients.UI.Pages.Home
 {
     using System;
 
@@ -32,7 +32,7 @@
             this.ListViewSocial.ItemSelected += (sender, e) => this.ListViewSocial.SelectedItem = null;
         }
 
-        public override AppPage PageType => AppPage.Feed;
+        public override AppPage PageType => AppPage.News;
 
         public NewsViewModel NewsViewModel => this.newsViewModel ?? (this.newsViewModel = this.BindingContext as NewsViewModel);
 

@@ -1,4 +1,4 @@
-﻿namespace DotNetRu.DataStore.Audit.Models
+namespace DotNetRu.DataStore.Audit.Models
 {
     using System.Collections.Generic;
 
@@ -63,6 +63,8 @@
             }
         }
 
-        public byte[] Avatar { get; set; }
+        public byte[] AvatarSmall { get; set; }
+
+        public string AvatarURL { get; set; }
     }
 }

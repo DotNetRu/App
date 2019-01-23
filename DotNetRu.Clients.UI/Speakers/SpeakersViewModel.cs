@@ -1,4 +1,4 @@
-﻿namespace DotNetRu.Clients.Portable.ViewModel
+namespace DotNetRu.Clients.Portable.ViewModel
 {
     using System;
     using System.Collections.Generic;
@@ -8,6 +8,7 @@
 
     using DotNetRu.DataStore.Audit.Models;
     using DotNetRu.DataStore.Audit.Services;
+    using DotNetRu.Utils;
     using DotNetRu.Utils.Helpers;
 
     using FormsToolkit;
@@ -29,11 +30,12 @@
         #region Sorting
 
         private void SortSpeakers(IEnumerable<SpeakerModel> speakers)
-        {
-            var speakersSorted = from speaker in speakers 
-                                    orderby speaker.FirstName 
-                                    group speaker by Char.ToUpperInvariant(speaker.FirstName[0]) into speakerGroup
-                                    select new Grouping<char, SpeakerModel>(speakerGroup.Key, speakerGroup);
+        {            
+            var speakersSorted = speakers.Select(speaker => new { speaker, firstChar = Char.ToUpperInvariant(speaker.FirstName[0])})
+                                         .OrderBy(s => 'A' <= s.firstChar && s.firstChar <= 'Z') //english names in the bottom
+                                         .ThenBy(s => s.speaker.FirstName)
+                                         .GroupBy(s => s.firstChar)
+                                         .Select(g => new Grouping<char, SpeakerModel>(g.Key, g.Select(s => s.speaker)));
 
             this.speakers.ReplaceRange(speakersSorted);
         }
@@ -108,7 +110,7 @@
             }
             catch (Exception ex)
             {
-                this.Logger.Report(ex, "Method", "ExecuteLoadSpeakers");
+                DotNetRuLogger.Report(ex);
                 MessagingService.Current.SendMessage(MessageKeys.Error, ex);
             }
             finally

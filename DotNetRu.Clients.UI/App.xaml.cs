@@ -6,6 +6,7 @@ namespace DotNetRu.Clients.UI
 {
     using System;
     using System.Globalization;
+    using System.Text;
     using System.Threading.Tasks;
     
     using DotNetRu.Clients.Portable.Interfaces;
@@ -23,43 +24,36 @@ namespace DotNetRu.Clients.UI
     using Microsoft.AppCenter;
     using Microsoft.AppCenter.Analytics;
     using Microsoft.AppCenter.Crashes;
+    using Newtonsoft.Json;
     using Xamarin.Essentials;
     using Xamarin.Forms;
 
     public partial class App
     {
-        private const string IosAppCenterKey = "1e7f311f-1055-4ec9-8b00-0302015ab8ae";
-
-        private const string AndroidAppCenterKey = "6f9a7703-8ca4-477e-9558-7e095f7d20aa";
-
         private static ILogger logger;
 
         private bool registered;
 
         public App()
         {
+            VersionTracking.Track();
+
             var language = LanguageService.GetCurrentLanguage();
             AppResources.Culture = new CultureInfo(language.GetLanguageCode());
 
-            var savedAppVersion = Portable.Helpers.Settings.AppVersion;
-            var currentAppVersion = DependencyService.Get<IAppVersionProvider>().AppVersion;
-
-            bool overwrite = savedAppVersion != currentAppVersion;        
-            RealmService.Initialize(overwrite);
-
-            Portable.Helpers.Settings.AppVersion = currentAppVersion;
+            RealmService.Initialize();
 
             this.InitializeComponent();
 
             // Update Audit on startup
             Task.Run(UpdateService.UpdateAudit);
 
+            var config = AppConfig.GetConfig();
+
             AppCenter.Start(
-                $"ios={IosAppCenterKey};android={AndroidAppCenterKey};",
+                $"ios={config.AppCenteriOSKey};android={config.AppCenterAndroidKey};",
                 typeof(Analytics),
                 typeof(Crashes));
-
-            Console.WriteLine("AuditUpdate. AppCenter InstallId: " + AppCenter.GetInstallIdAsync().Result);
 
             this.MainPage = new BottomTabbedPage();
         }

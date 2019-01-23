@@ -1,4 +1,4 @@
-﻿namespace DotNetRu.Clients.Portable.ViewModel
+namespace DotNetRu.Clients.Portable.ViewModel
 {
     using System;
     using System.Linq;
@@ -8,6 +8,7 @@
     using DotNetRu.Clients.Portable.Model;
     using DotNetRu.Clients.Portable.Services;
     using DotNetRu.DataStore.Audit.Models;
+    using DotNetRu.Utils;
     using DotNetRu.Utils.Helpers;
 
     using FormsToolkit;
@@ -210,7 +211,7 @@
             catch (Exception ex)
             {
                 ex.Data["method"] = "ExecuteLoadTalksCommand";
-                this.Logger.Report(ex);
+                DotNetRuLogger.Report(ex);
                 this.NoSessions = true;
             }
             finally
@@ -233,7 +234,7 @@
             catch (Exception ex)
             {
                 ex.Data["method"] = "ExecuteLoadNotificationsCommandAsync";
-                this.Logger.Report(ex);
+                DotNetRuLogger.Report(ex);
             }
             finally
             {
@@ -253,7 +254,7 @@
             catch (Exception ex)
             {
                 ex.Data["method"] = "ExecuteRefreshCommandAsync";
-                this.Logger.Report(ex);
+                DotNetRuLogger.Report(ex);
             }
             finally
             {
@@ -280,7 +281,7 @@
             {
                 this.SocialError = true;
                 ex.Data["method"] = "ExecuteLoadTweetsCommandAsync";
-                this.Logger.Report(ex);
+                DotNetRuLogger.Report(ex);
             }
             finally
             {

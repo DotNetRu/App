@@ -1,17 +1,18 @@
-﻿namespace DotNetRu.DataStore.Audit.Services
+namespace DotNetRu.DataStore.Audit.Services
 {
     using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
-
+    using System.Reflection;
     using AutoMapper;
 
     using DotNetRu.DataStore.Audit.Extensions;
     using DotNetRu.DataStore.Audit.Models;
     using DotNetRu.DataStore.Audit.RealmModels;
-
+    using DotNetRu.Utils.Helpers;
     using Realms;
+    using Xamarin.Essentials;
 
     public class RealmService
     {
@@ -20,9 +21,9 @@
 
         public static Realm AuditRealm => auditRealm ?? (auditRealm = Realm.GetInstance("Audit.realm"));
 
-        public static void Initialize(bool overwrite)
+        public static void Initialize()
         {
-            InitializeRealm(overwrite);
+            InitializeRealm();
             InitializeAutoMapper();
         }
 
@@ -31,22 +32,6 @@
             var realmType = Mapper.Configuration.GetAllTypeMaps().Single(x => x.DestinationType == typeof(TAppModel)).SourceType;
 
             return AuditRealm.All(realmType.Name).AsEnumerable().Select(Mapper.Map<TAppModel>);
-        }
-
-        public static byte[] ExtractResource(string resourceName)
-        {
-            var assembly = typeof(RealmService).Assembly;
-            using (Stream resFilestream = assembly.GetManifestResourceStream(resourceName))
-            {
-                if (resFilestream == null)
-                {
-                    return null;
-                }
-
-                byte[] resultBytes = new byte[resFilestream.Length];
-                resFilestream.Read(resultBytes, 0, resultBytes.Length);
-                return resultBytes;
-            }
         }
 
         private static void InitializeAutoMapper()
@@ -64,14 +49,14 @@
                 });
         }
 
-        private static void InitializeRealm(bool overwrite)
+        private static void InitializeRealm()
         {
             var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             var realmPath = Path.Combine(documentsPath, "Audit.realm");
 
-            if (overwrite)
+            if (VersionTracking.IsFirstLaunchForCurrentBuild)
             {
-                File.WriteAllBytes(realmPath, ExtractResource(RealmResourceName));
+                File.WriteAllBytes(realmPath, ResourceHelper.ExtractResource(RealmResourceName));
             }
         }
     }

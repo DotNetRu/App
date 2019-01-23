@@ -9,7 +9,7 @@
   </ItemGroup>  
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="8.0.0" />
-    <PackageReference Include="Octokit" Version="0.32.0" />
+    <PackageReference Include="Flurl.Http" Version="2.4.0" />
     <PackageReference Include="Realm.Database" Version="3.3.0" />
     <PackageReference Include="Xamarin.Essentials" Version="1.0.0" />
     <PackageReference Include="Xamarin.Forms" Version="3.4.0.1008975" />

@@ -23,7 +23,7 @@ namespace DotNetRu.Clients.Portable.Services
             }
             catch (Exception e)
             {
-                new DotNetRuLogger().Report(e);
+                DotNetRuLogger.Report(e);
             }
 
             return new List<Tweet>();
