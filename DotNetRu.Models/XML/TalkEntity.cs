@@ -10,6 +10,9 @@
         [XmlArrayItem("SpeakerId", IsNullable = false)]
         public string[] SpeakerIds { get; set; }
 
+        [XmlArrayItem("TalkId", IsNullable = false)]
+        public string[] SeeAlsoTalkIds { get; set; }        
+
         public string Title { get; set; }
 
         public string Description { get; set; }

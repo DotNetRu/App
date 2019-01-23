@@ -14,7 +14,7 @@ namespace DotNetRu.DataStore.Audit.Services
     using Flurl;
     using Flurl.Http;
     using PushNotifications;
-    using RealmGenerator.Entities;
+    using RealmGenerator.Entities;    
     using Realms;
 
     public static class UpdateService
@@ -122,6 +122,14 @@ namespace DotNetRu.DataStore.Audit.Services
                                         var speaker = auditRealm.Find<Speaker>(speakerId);
 
                                         dest.Speakers.Add(speaker);
+                                    }
+
+                                    if (src.SeeAlsoTalkIds != null)
+                                    {                                        
+                                        foreach (string talkId in src.SeeAlsoTalkIds)
+                                        {
+                                            dest.SeeAlsoTalksIds.Add(talkId);
+                                        }
                                     }
                                 });
                         cfg.CreateMap<SessionEntity, Session>().AfterMap(
