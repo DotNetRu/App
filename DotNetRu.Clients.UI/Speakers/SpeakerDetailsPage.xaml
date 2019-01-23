@@ -5,8 +5,7 @@
     xmlns:abstractions="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
     xmlns:pages="clr-namespace:DotNetRu.Clients.UI.Pages;assembly=DotNetRu.Clients.UI"
     xmlns:controls="clr-namespace:DotNetRu.Clients.UI.Controls;assembly=DotNetRu.Clients.UI"
-    xmlns:converters="clr-namespace:DotNetRu.Clients.UI.Converters;assembly=DotNetRu.Clients.UI"
-    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"    
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
     x:Class="DotNetRu.Clients.UI.Pages.Speakers.SpeakerDetailsPage"
     Title="{Binding Resources[SpeakerInfo]}"
     x:Name="SpeakerInfo"
@@ -27,11 +26,12 @@
                 Grid.Row="0"
                 VerticalOptions="FillAndExpand"
                 HorizontalOptions="FillAndExpand">
-                <ffimageloading:CachedImage 
+                <ffimageloading:CachedImage    
+                    x:Name="speakerImage"
 			        Source="{Binding SpeakerModel.AvatarURL}"
-                    VerticalOptions="FillAndExpand"
-                    HorizontalOptions="FillAndExpand"
-                    LoadingPlaceholder="loading_apple.gif">
+                    Aspect="AspectFill"                    
+                    LoadingPlaceholder="resource://DotNetRu.Clients.UI.Speakers.speaker_placeholder.png"
+                    ErrorPlaceholder="resource://DotNetRu.Clients.UI.Speakers.speaker_placeholder.png">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer
                                 Tapped="OnTapGestureRecognizerTapped"
@@ -43,16 +43,18 @@
                          Spacing="0"
                          VerticalOptions="End"
                          HorizontalOptions="FillAndExpand">
-                    <Label
+                    <Label x:Name="speakerFullNameLabel"
                             Text="{Binding SpeakerModel.FullName}"
-                            FontSize="18">
+                            FontSize="18"
+                            TextColor="White">
                         <Label.FontFamily>
                             <OnPlatform x:TypeArguments="x:String" Android="sans-serif-light" iOS="HelveticaNeue-Light"/>
                         </Label.FontFamily>
                     </Label>
-                    <Label x:Name="SpeakerTitle"
+                    <Label x:Name="speakerTitleLabel"
                            Text="{Binding SpeakerModel.Title}"
-                           FontSize="12"/>
+                           FontSize="12"
+                           TextColor="White"/>
                 </StackLayout>
             </Grid>
             <StackLayout Grid.Row="1" Spacing="0">
