@@ -39,6 +39,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
+    <Compile Update="Meetups\MeetupFriendCellView.xaml.cs">
+      <DependentUpon>MeetupFriendCellView.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Meetups\MeetupDetailsPage.xaml.cs">
       <DependentUpon>MeetupDetailsPage.xaml</DependentUpon>
     </Compile>

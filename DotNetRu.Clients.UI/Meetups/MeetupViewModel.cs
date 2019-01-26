@@ -1,17 +1,17 @@
-﻿namespace DotNetRu.Clients.Portable.ViewModel
-{
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Windows.Input;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Input;
 
-    using DotNetRu.Clients.Portable.Helpers;
-    using DotNetRu.DataStore.Audit.Models;
-    using DotNetRu.Utils.Helpers;
+using DotNetRu.Clients.Portable.Helpers;
+using DotNetRu.DataStore.Audit.Models;
+using DotNetRu.Utils.Helpers;
 
-    using FormsToolkit;
+using FormsToolkit;
 
-    using Xamarin.Forms;
+using Xamarin.Forms;
 
+namespace DotNetRu.Clients.Portable.ViewModel
+{    
     public class MeetupViewModel : ViewModelBase
     {
         private TalkModel selectedTalkModel;
@@ -29,7 +29,9 @@
             this.TapVenueCommand = new Command(this.OnVenueTapped);
         }
 
-        public IEnumerable<SessionModel> Sessions => this.MeetupModel.Sessions.ToList();                
+        public IReadOnlyList<SessionModel> Sessions => this.MeetupModel.Sessions.ToList();
+
+        public IReadOnlyList<FriendModel> Friends => this.MeetupModel.Friends.ToList();
 
         public MeetupModel MeetupModel { get; set; }
 
