@@ -41,6 +41,12 @@ namespace DotNetRu.DataStore.Audit.Models
         /// </summary>
         public string LinkedInUrl { get; set; }
 
+        /// <summary>
+        /// Gets or sets the GitHub profile name.
+        /// https://github.com/jamesmontemagno we just need: jamesmontemagno
+        /// </summary>
+        public string GitHubUrl { get; set; }
+
         public IEnumerable<TalkModel> Talks { get; set; }
 
         public string FullName => $"{this.FirstName.Trim()} {this.LastName.Trim()}";

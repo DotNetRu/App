@@ -19,6 +19,8 @@ namespace RealmGenerator.Entities
 
         public string TwitterUrl { get; set; }
 
+        public string GitHubUrl { get; set; }
+
         public string HabrUrl { get; set; }
 
         public string ContactsUrl { get; set; }
