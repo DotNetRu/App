@@ -1,4 +1,4 @@
-﻿namespace DotNetRu.Clients.Portable.ViewModel
+namespace DotNetRu.Clients.Portable.ViewModel
 {
     using System;
     using System.Collections.Generic;
@@ -8,6 +8,7 @@
 
     using DotNetRu.DataStore.Audit.Models;
     using DotNetRu.DataStore.Audit.Services;
+    using DotNetRu.Utils;
     using DotNetRu.Utils.Helpers;
 
     using FormsToolkit;
@@ -109,7 +110,7 @@
             }
             catch (Exception ex)
             {
-                this.Logger.Report(ex, "Method", "ExecuteLoadSpeakers");
+                DotNetRuLogger.Report(ex);
                 MessagingService.Current.SendMessage(MessageKeys.Error, ex);
             }
             finally

@@ -1,4 +1,4 @@
-﻿namespace DotNetRu.Clients.Portable.Model
+namespace DotNetRu.Clients.Portable.Model
 {
     public class DeepLinkPage
     {
@@ -9,7 +9,7 @@
 
     public enum AppPage
     {
-        Feed,
+        News,
 
         Meetup,
 

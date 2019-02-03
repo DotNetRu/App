@@ -1,4 +1,4 @@
-﻿namespace DotNetRu.DataStore.Audit.RealmModels
+namespace DotNetRu.DataStore.Audit.RealmModels
 {
     using System.Linq;
 
@@ -25,7 +25,9 @@
 
         public string ContactsUrl { get; set; }
 
-        public byte[] Avatar { get; set; }
+        public byte[] AvatarSmall { get; set; }
+
+        public string AvatarURL { get; set; }
 
         [Backlink(nameof(Talk.Speakers))]
         public IQueryable<Talk> Talks { get; }

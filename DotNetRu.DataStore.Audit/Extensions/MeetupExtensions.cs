@@ -1,4 +1,4 @@
-﻿namespace DotNetRu.DataStore.Audit.Extensions
+namespace DotNetRu.DataStore.Audit.Extensions
 {
     using System.Linq;
 
@@ -11,6 +11,7 @@
         {
             return new MeetupModel
             {
+                Id = meetup.Id,
                 CommunityID = meetup.CommunityId,
                 Description = meetup.Name,
                 IsAllDay = false,

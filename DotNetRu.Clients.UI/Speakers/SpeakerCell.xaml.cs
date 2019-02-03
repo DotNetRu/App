@@ -1,4 +1,4 @@
-﻿using DotNetRu.Clients.Portable.Model;
+using DotNetRu.Clients.Portable.Model;
 using DotNetRu.Clients.UI.Pages.Speakers;
 using DotNetRu.DataStore.Audit.Models;
 using Xamarin.Forms;
@@ -35,14 +35,7 @@ namespace DotNetRu.Clients.UI.Cells
 
             App.Logger.TrackPage(AppPage.Speaker.ToString(), speaker.FullName);
 
-            if (Device.RuntimePlatform == Device.UWP)
-            {
-                await this.navigation.PushAsync(new SpeakerDetailsPageUWP(this.sessionId) { SpeakerModel = speaker });
-            }
-            else
-            {
-                await this.navigation.PushAsync(new SpeakerDetailsPage { SpeakerModel = speaker });
-            }
+            await this.navigation.PushAsync(new SpeakerDetailsPage { SpeakerModel = speaker });
         }
     }
 

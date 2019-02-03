@@ -1,9 +1,10 @@
-﻿namespace DotNetRu.Clients.Portable.ViewModel
+namespace DotNetRu.Clients.Portable.ViewModel
 {
     using System;
     using System.Windows.Input;
 
     using DotNetRu.DataStore.Audit.Models;
+    using DotNetRu.Utils;
     using DotNetRu.Utils.Helpers;
     using DotNetRu.Utils.Interfaces;
 
@@ -77,7 +78,7 @@
             }
             catch (Exception ex)
             {
-                this.Logger.Report(ex);
+                DotNetRuLogger.Report(ex);
             }
             finally
             {

@@ -1,17 +1,19 @@
-﻿namespace DotNetRu.Clients.UI.Pages.Speakers
+namespace DotNetRu.Clients.UI.Pages.Speakers
 {
-    using System.IO;
-
     using DotNetRu.Clients.Portable.Model;
-
-    using Xamarin.Forms;
 
     public partial class SpeakerFacePage
     {
-        public SpeakerFacePage(byte[] image)
+        public string AvatarURL { get; set; }
+
+        public SpeakerFacePage(string speakerID, string avatarURL)
         {
             this.InitializeComponent();
-            this.faceImage.Source = ImageSource.FromStream(() => new MemoryStream(image));
+            this.AvatarURL = avatarURL;
+
+            this.ItemId = speakerID;
+
+            this.BindingContext = this;
         }
 
         public override AppPage PageType => AppPage.SpeakerFace;

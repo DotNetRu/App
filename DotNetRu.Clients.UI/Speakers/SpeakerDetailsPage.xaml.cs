@@ -1,4 +1,4 @@
-﻿namespace DotNetRu.Clients.UI.Pages.Speakers
+namespace DotNetRu.Clients.UI.Pages.Speakers
 {
     using System;
 
@@ -18,6 +18,15 @@
             : this()
         {
             this.SpeakerModel = speakerModel;
+
+            this.speakerImage.Error += (source, arg) =>
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    this.speakerFullNameLabel.FontSize *= 2;
+                    this.speakerTitleLabel.FontSize *= 2;
+                });
+            };
         }
 
         public SpeakerDetailsPage()
@@ -56,7 +65,7 @@
             set
             {
                 this.BindingContext = new SpeakerDetailsViewModel(value);
-                this.ItemId = value?.FullName;
+                this.ItemId = value.Id;
             }
         }
 
@@ -99,7 +108,7 @@
 
         private async void OnTapGestureRecognizerTapped(object sender, EventArgs args)
         {
-            await NavigationService.PushAsync(this.Navigation, new SpeakerFacePage(this.SpeakerModel.Avatar));
-        } 
+            await NavigationService.PushAsync(this.Navigation, new SpeakerFacePage(this.SpeakerModel.Id, this.SpeakerModel.AvatarURL));
+        }
     }
 }
