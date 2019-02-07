@@ -26,6 +26,7 @@
     <EmbeddedResource Include="Images\logos\SpbDotNet.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DotNetRu.Models\DotNetRu.Models.csproj" />
     <ProjectReference Include="..\DotNetRu.Utils\DotNetRu.Utils.csproj" />
   </ItemGroup>
 </Project>
