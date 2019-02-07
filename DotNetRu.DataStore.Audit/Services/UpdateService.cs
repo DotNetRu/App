@@ -32,7 +32,7 @@ namespace DotNetRu.DataStore.Audit.Services
                     currentCommitSha = auditVersion.CommitHash;
                 }
 
-                var updateContent = await "https://dotnetrupush.azurewebsites.net/api/Update"
+                var updateContent = await "https://dotnetruapp.azurewebsites.net/api/Update"
                     .SetQueryParam("fromCommitSha", currentCommitSha)
                     .GetJsonAsync<UpdateContent>();
 

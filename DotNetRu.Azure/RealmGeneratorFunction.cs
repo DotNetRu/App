@@ -15,7 +15,7 @@ using RealmGenerator.Entities;
 
 namespace DotNetRu.Azure
 {
-    public static class RealmGenerator
+    public static class RealmGeneratorFunction
     {
         [FunctionName("Realm")]
         public static IActionResult Run(
