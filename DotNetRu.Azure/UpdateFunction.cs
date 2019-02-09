@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 using System.Net.Http;
 using Octokit;
 using System.Linq;
-using DotNetRu.DataStore.Audit.XmlEntities;
+using RealmGenerator.Entities;
 
 namespace PushNotifications
 {

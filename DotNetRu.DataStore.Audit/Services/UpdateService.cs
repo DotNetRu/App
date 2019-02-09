@@ -10,11 +10,11 @@ namespace DotNetRu.DataStore.Audit.Services
     using AutoMapper;
 
     using DotNetRu.DataStore.Audit.RealmModels;
-    using DotNetRu.DataStore.Audit.XmlEntities;
     using DotNetRu.Utils;
     using Flurl;
     using Flurl.Http;
     using PushNotifications;
+    using RealmGenerator.Entities;
     using Realms;
 
     public static class UpdateService
