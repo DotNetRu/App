@@ -103,6 +103,14 @@ namespace DotNetRu.Azure
 
                                 dest.Speakers.Add(speaker);
                             }
+
+                            if (src.SeeAlsoTalkIds != null)
+                            {
+                                foreach (string talkId in src.SeeAlsoTalkIds)
+                                {
+                                    dest.SeeAlsoTalksIds.Add(talkId);
+                                }
+                            }
                         });
                     cfg.CreateMap<SessionEntity, Session>().AfterMap(
                         (src, dest) =>

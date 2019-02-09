@@ -17,7 +17,7 @@
         public static AppLinkEntry GetAppLink(this TalkModel talkModel)
         {
             var url =
-                $"http://{AboutThisApp.AppLinksBaseDomain}/{AboutThisApp.SessionsSiteSubdirectory.ToLowerInvariant()}/{talkModel.TalkId}";
+                $"http://{AboutThisApp.AppLinksBaseDomain}/{AboutThisApp.SessionsSiteSubdirectory.ToLowerInvariant()}/{talkModel.Id}";
 
             var entry = new AppLinkEntry
                             {
@@ -42,7 +42,7 @@
         public static string GetWebUrl(this TalkModel talkModel)
         {
             return
-                $"http://{AboutThisApp.AppLinksBaseDomain}/{AboutThisApp.SessionsSiteSubdirectory}/#{talkModel.TalkId}";
+                $"http://{AboutThisApp.AppLinksBaseDomain}/{AboutThisApp.SessionsSiteSubdirectory}/#{talkModel.Id}";
         }
 
         public static string GetIndexName(this TalkModel e)
