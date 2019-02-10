@@ -8,7 +8,7 @@ namespace DotNetRu.DataStore.Audit.Services
     using System.Threading.Tasks;
 
     using AutoMapper;
-
+    using DotNetRu.Clients.UI;
     using DotNetRu.DataStore.Audit.RealmModels;
     using DotNetRu.Utils;
     using Flurl;
@@ -32,7 +32,9 @@ namespace DotNetRu.DataStore.Audit.Services
                     currentCommitSha = auditVersion.CommitHash;
                 }
 
-                var updateContent = await "https://dotnetruapp.azurewebsites.net/api/Update"
+                var config = AppConfig.GetConfig();
+
+                var updateContent = await config.UpdateFunctionURL
                     .SetQueryParam("fromCommitSha", currentCommitSha)
                     .GetJsonAsync<UpdateContent>();
 
