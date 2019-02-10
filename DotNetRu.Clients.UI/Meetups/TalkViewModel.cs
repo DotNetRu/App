@@ -45,15 +45,8 @@ namespace DotNetRu.Clients.Portable.ViewModel
             : base(navigation)
         {
             this.TalkModel = talkModel;
-            if (this.TalkModel.StartTime.HasValue)
-            {
-                this.ShowReminder = !this.TalkModel.StartTime.Value.IsTba()
-                                    && this.TalkModel.EndTime.Value.ToUniversalTime() <= DateTime.UtcNow;
-            }
-            else
-            {
-                this.ShowReminder = false;
-            }
+
+            this.ShowReminder = this.TalkModel.Sessions.First().EndTime.ToUniversalTime() <= DateTime.UtcNow;
 
             if (!string.IsNullOrWhiteSpace(talkModel.PresentationUrl))
             {

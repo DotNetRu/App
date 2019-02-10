@@ -1,15 +1,12 @@
-﻿using System;
+using System;
 using System.Globalization;
+using System.Linq;
 using DotNetRu.DataStore.Audit.Models;
 using DotNetRu.Utils.Helpers;
 using Xamarin.Forms;
 
 namespace DotNetRu.Clients.UI.Converters
 {
-    /// <inheritdoc />
-    /// <summary>
-    /// Rating converter for display text
-    /// </summary>
     public class RatingConverter : IValueConverter
     {
         private static readonly string[] defaultValues =
@@ -55,23 +52,14 @@ namespace DotNetRu.Clients.UI.Converters
                 return false;
             }
 
-            if (!(value is TalkModel session))
-            {
-                return false;
-            }
-
-            if (!session.StartTime.HasValue)
-            {
-                return false;
-            }
-
-            if (session.StartTime.Value == DateTime.MinValue)
+            if (!(value is TalkModel talk))
             {
                 return false;
             }
 
             // if it has started or is about to start
-            return session.StartTime.Value.AddMinutes(-15).ToUniversalTime() < DateTime.UtcNow;
+            // TODO .First() might not be correct as talk might (?) have several sessions
+            return talk.Sessions.First().StartTime.AddMinutes(-15).ToUniversalTime() < DateTime.UtcNow;
         }
 
         public object ConvertBack(

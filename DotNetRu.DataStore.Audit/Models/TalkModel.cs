@@ -1,6 +1,5 @@
 namespace DotNetRu.DataStore.Audit.Models
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
@@ -36,16 +35,7 @@ namespace DotNetRu.DataStore.Audit.Models
 
         public IEnumerable<TalkModel> SeeAlsoTalks => CachedModelsProvider<TalkModel>.Get(seeAlsoTalksIds);        
 
-        [Obsolete("Room and other location&time info should move to session")]
-        public Room Room { get; set; }
-
         public ICollection<Category> Categories { get; set; }
-
-        [Obsolete("Room and other location&time info should move to session")]
-        public DateTime? StartTime => DateTime.Now; // this.Sessions.First().StartTime.DateTime;
-
-        [Obsolete("Room and other location&time info should move to session")]
-        public DateTime? EndTime => DateTime.Now; //this.Sessions.First().EndTime.DateTime;
 
         public string PresentationUrl { get; set; }
 
