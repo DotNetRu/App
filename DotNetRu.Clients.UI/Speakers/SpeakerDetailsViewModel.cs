@@ -1,17 +1,16 @@
-﻿namespace DotNetRu.Clients.Portable.ViewModel
-{
-    using System.Collections.Generic;
+using System.Collections.Generic;
 
-    using DotNetRu.DataStore.Audit.Models;
-    using DotNetRu.DataStore.Audit.Services;
-    using DotNetRu.Utils.Helpers;
+using DotNetRu.DataStore.Audit.Models;
+using DotNetRu.Utils.Helpers;
 
-    using FormsToolkit;
+using FormsToolkit;
 
-    using MvvmHelpers;
+using MvvmHelpers;
 
-    using MenuItem = Model.MenuItem;
+using MenuItem = DotNetRu.Clients.Portable.Model.MenuItem;
 
+namespace DotNetRu.Clients.Portable.ViewModel
+{    
     public class SpeakerDetailsViewModel : ViewModelBase
     {
         private MenuItem selectedFollowItem;
@@ -20,35 +19,40 @@
 
         public SpeakerDetailsViewModel(SpeakerModel speakerModel)
         {
-            this.SpeakerModel = speakerModel;
+            SpeakerModel = speakerModel;
 
-            if (!string.IsNullOrWhiteSpace(speakerModel.BlogUrl))
+            FillFollows();
+        }
+
+        private void FillFollows()
+        {
+            if (!string.IsNullOrWhiteSpace(SpeakerModel.BlogUrl))
             {
                 this.FollowItems.Add(
                     new MenuItem
-                        {
-                            Name = speakerModel.BlogUrl.StripUrlForDisplay(),
-                            Parameter = speakerModel.BlogUrl,
-                            Icon = "icon_blog.png"
-                        });
+                    {
+                        Name = SpeakerModel.BlogUrl.StripUrlForDisplay(),
+                        Parameter = SpeakerModel.BlogUrl,
+                        Icon = "icon_blog.png"
+                    });
             }
 
-            if (!string.IsNullOrWhiteSpace(speakerModel.TwitterUrl))
+            if (!string.IsNullOrWhiteSpace(SpeakerModel.TwitterUrl))
             {
-                var twitterValue = speakerModel.TwitterUrl.CleanUpTwitter();
+                var twitterValue = SpeakerModel.TwitterUrl.CleanUpTwitter();
 
                 this.FollowItems.Add(
                     new MenuItem
-                        {
-                            Name = $"@{twitterValue}",
-                            Parameter = "https://twitter.com/" + twitterValue,
-                            Icon = "icon_twitter.png"
-                        });
+                    {
+                        Name = $"@{twitterValue}",
+                        Parameter = "https://twitter.com/" + twitterValue,
+                        Icon = "icon_twitter.png"
+                    });
             }
 
-            if (!string.IsNullOrWhiteSpace(speakerModel.FacebookProfileName))
+            if (!string.IsNullOrWhiteSpace(SpeakerModel.FacebookProfileName))
             {
-                var profileName = speakerModel.FacebookProfileName.GetLastPartOfUrl();
+                var profileName = SpeakerModel.FacebookProfileName.GetLastPartOfUrl();
                 var profileDisplayName = profileName;
                 if (long.TryParse(profileName, out _))
                 {
@@ -57,22 +61,35 @@
 
                 this.FollowItems.Add(
                     new MenuItem
-                        {
-                            Name = profileDisplayName,
-                            Parameter = "https://facebook.com/" + profileName,
-                            Icon = "icon_facebook.png"
-                        });
+                    {
+                        Name = profileDisplayName,
+                        Parameter = "https://facebook.com/" + profileName,
+                        Icon = "icon_facebook.png"
+                    });
             }
 
-            if (!string.IsNullOrWhiteSpace(speakerModel.LinkedInUrl))
+            if (!string.IsNullOrWhiteSpace(SpeakerModel.LinkedInUrl))
             {
                 this.FollowItems.Add(
                     new MenuItem
-                        {
-                            Name = "LinkedIn",
-                            Parameter = speakerModel.LinkedInUrl.StripUrlForDisplay(),
-                            Icon = "icon_linkedin.png"
-                        });
+                    {
+                        Name = "LinkedIn",
+                        Parameter = SpeakerModel.LinkedInUrl.StripUrlForDisplay(),
+                        Icon = "icon_linkedin.png"
+                    });
+            }
+
+            if (!string.IsNullOrWhiteSpace(SpeakerModel.GitHubUrl))
+            {
+                var gitHubValue = SpeakerModel.GitHubUrl.CleanUpGitHub();
+
+                this.FollowItems.Add(
+                    new MenuItem
+                    {
+                        Name = $"{gitHubValue}",
+                        Parameter = SpeakerModel.GitHubUrl.StripUrlForDisplay(),
+                        Icon = "icon_github.png"
+                    });                
             }
         }
 

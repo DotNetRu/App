@@ -8,13 +8,13 @@ namespace DotNetRu.DataStore.Audit.Services
     using System.Threading.Tasks;
 
     using AutoMapper;
-
+    using DotNetRu.Clients.UI;
     using DotNetRu.DataStore.Audit.RealmModels;
-    using DotNetRu.DataStore.Audit.XmlEntities;
     using DotNetRu.Utils;
     using Flurl;
     using Flurl.Http;
     using PushNotifications;
+    using RealmGenerator.Entities;    
     using Realms;
 
     public static class UpdateService
@@ -32,7 +32,9 @@ namespace DotNetRu.DataStore.Audit.Services
                     currentCommitSha = auditVersion.CommitHash;
                 }
 
-                var updateContent = await "https://dotnetrupush.azurewebsites.net/api/Update"
+                var config = AppConfig.GetConfig();
+
+                var updateContent = await config.UpdateFunctionURL
                     .SetQueryParam("fromCommitSha", currentCommitSha)
                     .GetJsonAsync<UpdateContent>();
 
@@ -122,6 +124,14 @@ namespace DotNetRu.DataStore.Audit.Services
                                         var speaker = auditRealm.Find<Speaker>(speakerId);
 
                                         dest.Speakers.Add(speaker);
+                                    }
+
+                                    if (src.SeeAlsoTalkIds != null)
+                                    {                                        
+                                        foreach (string talkId in src.SeeAlsoTalkIds)
+                                        {
+                                            dest.SeeAlsoTalksIds.Add(talkId);
+                                        }
                                     }
                                 });
                         cfg.CreateMap<SessionEntity, Session>().AfterMap(

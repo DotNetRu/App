@@ -45,8 +45,8 @@ namespace DotNetRu.Clients.UI
 
             this.InitializeComponent();
 
-            // Update Audit on startup
-            Task.Run(UpdateService.UpdateAudit);
+            // Update Audit on startup. Temporarily disabled due to update issues
+            // Task.Run(UpdateService.UpdateAudit);
 
             var config = AppConfig.GetConfig();
 
