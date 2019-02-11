@@ -143,9 +143,9 @@ namespace DotNetRu.Clients.Portable.ViewModel
 
         public ICommand ReminderCommand => this.reminderCommand
                                            ?? (this.reminderCommand = new Command(
-                                                   async () => await this.ExecuteReminderCommandAsync()));
+                                                   () => this.ExecuteReminderCommand()));
 
-        async Task ExecuteReminderCommandAsync()
+        private void ExecuteReminderCommand()
         {
             //if (!this.IsReminderSet)
             //{

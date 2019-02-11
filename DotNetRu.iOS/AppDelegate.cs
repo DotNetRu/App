@@ -1,7 +1,6 @@
 namespace DotNetRu.iOS
 {
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel;
 
     using CoreSpotlight;
@@ -11,9 +10,7 @@ namespace DotNetRu.iOS
     using DotNetRu.iOS.Renderers;
     using DotNetRu.Utils;
     using DotNetRu.Utils.Helpers;
-    using DotNetRu.Utils.Interfaces;
-
-    using FFImageLoading.Forms.Touch;
+    using FFImageLoading.Forms.Platform;
     using FFImageLoading.Transformations;
 
     using FormsToolkit;
@@ -177,7 +174,8 @@ namespace DotNetRu.iOS
                 {
                     var alert = (NSString)aps.ObjectForKey(alertKey);
 
-                    var uiAlertView = new UIAlertView($"{AboutThisApp.AppName} Update", alert, null, "OK", null);
+                    var uiAlertView = new UIAlertView($"{AboutThisApp.AppName} Update", alert, (IUIAlertViewDelegate)null, "OK", null);
+
                     try
                     {
                         uiAlertView.Show();
@@ -268,7 +266,7 @@ namespace DotNetRu.iOS
                         new UIAlertView(
                             title: "Unavailable",
                             message: "Twitter is not available, please sign in on your devices settings screen.",
-                            del: null,
+                            del: (IUIAlertViewDelegate)null,
                             cancelButtonTitle: "OK").Show();
                     }
                     else

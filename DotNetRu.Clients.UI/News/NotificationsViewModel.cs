@@ -1,7 +1,6 @@
 namespace DotNetRu.Clients.Portable.ViewModel
 {
     using System;
-    using System.Threading.Tasks;
     using System.Windows.Input;
 
     using DotNetRu.DataStore.Audit.Models;
@@ -26,21 +25,16 @@ namespace DotNetRu.Clients.Portable.ViewModel
 
         public ICommand ForceRefreshCommand =>
             this.forceRefreshCommand ?? (this.forceRefreshCommand =
-                                             new Command(async () => await this.ExecuteForceRefreshCommandAsync()));
-
-        async Task ExecuteForceRefreshCommandAsync()
-        {
-            await this.ExecuteLoadNotificationsAsync(true);
-        }
+                                             new Command(() => this.ExecuteLoadNotifications(true)));
 
         ICommand loadNotificationsCommand;
 
         public ICommand LoadNotificationsCommand =>
             this.loadNotificationsCommand ?? (this.loadNotificationsCommand =
                                                   new Command<bool>(
-                                                      async (f) => await this.ExecuteLoadNotificationsAsync()));
+                                                      (f) => this.ExecuteLoadNotifications()));
 
-        async Task<bool> ExecuteLoadNotificationsAsync(bool force = false)
+        private bool ExecuteLoadNotifications(bool force = false)
         {
             if (this.IsBusy)
             {

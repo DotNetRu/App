@@ -26,9 +26,11 @@ namespace DotNetRu.Clients.UI
             };
 #endif
 
+#pragma warning disable CS0162 // Unreachable code detected
             var configBytes = ResourceHelper.ExtractResource("DotNetRu.Utils.Config.config.json");
             var configBytesAsString = Encoding.UTF8.GetString(configBytes);
             return JsonConvert.DeserializeObject<AppConfig>(configBytesAsString);
+#pragma warning restore CS0162 // Unreachable code detected
         }
     }
 }
