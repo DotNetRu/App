@@ -55,25 +55,11 @@ namespace DotNetRu.Clients.UI
             // Avoid duplicate event registration:
             if (!AppCenter.Configured)
             {
-                Push.PushNotificationReceived += (sender, e) =>
+                Push.PushNotificationReceived += async (sender, e) =>
                 {
-                    // Add the notification message and title to the message
-                    var summary = $"Push notification received:" +
-                                        $"\n\tNotification title: {e.Title}" +
-                                        $"\n\tMessage: {e.Message}";
+                    Logger.Track($"PushReceived {e.Title}, {e.Message}", e.CustomData);
 
-                    // If there is custom data associated with the notification,
-                    // print the entries
-                    if (e.CustomData != null)
-                    {
-                        summary += "\n\tCustom data:\n";
-                        foreach (var key in e.CustomData.Keys)
-                        {
-                            summary += $"\t\t{key} : {e.CustomData[key]}\n";
-                        }
-                    }
-
-                    Logger.Track("PushReceived for iOS app");
+                    await UpdateService.UpdateAudit();
                 };
             }
 

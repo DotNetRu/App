@@ -11,11 +11,13 @@ namespace DotNetRu.DataStore.Audit.Services
     using DotNetRu.Clients.UI;
     using DotNetRu.DataStore.Audit.RealmModels;
     using DotNetRu.Utils;
+    using DotNetRu.Utils.Interfaces;
     using Flurl;
     using Flurl.Http;
     using PushNotifications;
     using RealmGenerator.Entities;    
     using Realms;
+    using Xamarin.Forms;
 
     public static class UpdateService
     {
@@ -23,7 +25,9 @@ namespace DotNetRu.DataStore.Audit.Services
         {
             try
             {
-                Console.WriteLine("AuditUpdate. Started updating audit");
+                var logger = DependencyService.Get<ILogger>();
+
+                logger.Track("AuditUpdate. Started updating audit");
 
                 string currentCommitSha;
                 using (var auditRealm = Realm.GetInstance("Audit.realm"))
@@ -65,6 +69,8 @@ namespace DotNetRu.DataStore.Audit.Services
                 }
 
                 stopwatch.Stop();
+
+                logger.Track("AuditUpdate. Finished updating audit");
             }
             catch (Exception e)
             {
