@@ -26,6 +26,7 @@ namespace DotNetRu.Clients.UI
     using Microsoft.AppCenter.Crashes;
     using Microsoft.AppCenter.Push;
     using Newtonsoft.Json;
+    using Plugin.LocalNotifications;
     using Xamarin.Essentials;
     using Xamarin.Forms;
 
@@ -60,6 +61,8 @@ namespace DotNetRu.Clients.UI
                     Logger.Track($"PushReceived {e.Title}, {e.Message}", e.CustomData);
 
                     await UpdateService.UpdateAudit();
+
+                    CrossLocalNotifications.Current.Show("New meetup announced", "New meetup announced. Open app to see details");
                 };
             }
 
