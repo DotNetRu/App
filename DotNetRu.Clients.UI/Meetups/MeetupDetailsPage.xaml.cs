@@ -1,14 +1,14 @@
+using DotNetRu.Clients.Portable.Model;
+using DotNetRu.Clients.Portable.ViewModel;
+using DotNetRu.Clients.UI.Controls;
+using DotNetRu.Clients.UI.Helpers;
+using DotNetRu.Clients.UI.Pages.Friends;
+using DotNetRu.DataStore.Audit.Models;
+using System.Collections.Generic;
+using Xamarin.Forms;
+
 namespace DotNetRu.Clients.UI.Pages.Sessions
-{
-    using System.Linq;
-
-    using DotNetRu.Clients.Portable.Model;
-    using DotNetRu.Clients.Portable.ViewModel;
-    using DotNetRu.Clients.UI.Helpers;
-    using DotNetRu.DataStore.Audit.Models;
-
-    using Xamarin.Forms;
-
+{    
     public partial class MeetupDetailsPage
     {
         private MeetupViewModel meetupViewModel;
@@ -21,43 +21,82 @@ namespace DotNetRu.Clients.UI.Pages.Sessions
 
             this.ItemId = meetup.Id;
 
-            this.ListViewTalks.ItemSelected += async (sender, e) =>
-                {
-                    if (!(this.ListViewTalks.SelectedItem is SessionModel session))
-                    {
-                        return;
-                    }
+            ListViewTalks.ItemSelected += OnSessionTapped;            
+            ListViewFriends.ItemSelected += OnFriendTapped;
+        }
 
-                    var sessionDetails = new TalkPage(session.Talk);
+        private async void OnSessionTapped(object sender, SelectedItemChangedEventArgs e)
+        {
+            if (!(ListViewTalks.SelectedItem is SessionModel session))
+            {
+                return;
+            }
 
-                    await NavigationService.PushAsync(this.Navigation, sessionDetails);
-                    this.ListViewTalks.SelectedItem = null;
-                };
+            var sessionDetails = new TalkPage(session.Talk);
+
+            await NavigationService.PushAsync(Navigation, sessionDetails);
+            ListViewTalks.SelectedItem = null;
+        }
+
+        private async void OnFriendTapped(object sender, SelectedItemChangedEventArgs e)
+        {
+            if (!(ListViewFriends.SelectedItem is FriendModel sponsor))
+            {
+                return;
+            }
+
+            var sponsorDetails = new FriendDetailsPage
+            {
+                FriendModel = sponsor
+            };
+
+
+            await NavigationService.PushAsync(Navigation, sponsorDetails);
+            ListViewFriends.SelectedItem = null;
         }
 
         public override AppPage PageType => AppPage.Meetup;
 
-        private MeetupViewModel MeetupViewModel =>
-            this.meetupViewModel ?? (this.meetupViewModel = this.BindingContext as MeetupViewModel);
+        private MeetupViewModel MeetupViewModel => meetupViewModel ?? (meetupViewModel = BindingContext as MeetupViewModel);
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
 
-            this.ListViewTalks.ItemTapped += this.ListViewTapped;
+            ListViewTalks.ItemTapped += ListViewTapped;
+            ListViewFriends.ItemTapped += ListViewTapped;
 
-            var count = this.MeetupViewModel?.Sessions?.Count() ?? 0;
-            var adjust = Device.RuntimePlatform != Device.Android ? 1 : -count + 1;
-            if ((this.MeetupViewModel?.Sessions?.Count() ?? 0) > 0)
+            AdjustListView(ListViewTalks, MeetupViewModel?.Sessions);
+            AdjustListView(ListViewFriends, MeetupViewModel?.Friends);
+        }
+
+        private void AdjustListView<T>(NonScrollableListView listView, IReadOnlyCollection<T> items)
+        {
+            var count = items?.Count ?? 0;
+            if (count == 0)
             {
-                this.ListViewTalks.HeightRequest = (count * this.ListViewTalks.RowHeight) - adjust;
+                return;
             }
+
+            int adjust;
+            if (Device.RuntimePlatform == Device.Android)
+            {
+                adjust = 1 - count;
+            }
+            else
+            {
+                adjust = 1;
+            }
+
+            listView.HeightRequest = count * listView.RowHeight - adjust;
         }
 
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
-            this.ListViewTalks.ItemTapped -= this.ListViewTapped;
+
+            ListViewFriends.ItemTapped -= ListViewTapped;
+            ListViewTalks.ItemTapped -= ListViewTapped;
         }
 
         private void ListViewTapped(object sender, ItemTappedEventArgs e)
