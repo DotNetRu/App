@@ -1,4 +1,4 @@
-﻿using DotNetRu.Clients.Portable.Model;
+using DotNetRu.Clients.Portable.Model;
 using DotNetRu.Clients.Portable.ViewModel;
 using DotNetRu.Clients.UI.Cells;
 using FormsToolkit;
@@ -37,25 +37,21 @@ namespace DotNetRu.Clients.UI.Pages.Sessions
             this.LoadCategories();
         }
 
-
-        void LoadCategories()
+        private void LoadCategories()
         {
-            this.filterSessionsViewModel.LoadCategoriesAsync().ContinueWith(
-                (result) =>
+            this.filterSessionsViewModel.LoadCategories();
+            Device.BeginInvokeOnMainThread(
+                () =>
                     {
-                        Device.BeginInvokeOnMainThread(
-                            () =>
-                                {
-                                    var allCell =
-                                        new CategoryCell { BindingContext = this.filterSessionsViewModel.AllCategory };
+                        var allCell =
+                            new CategoryCell { BindingContext = this.filterSessionsViewModel.AllCategory };
 
-                                    this.TableSectionCategories.Add(allCell);
+                        this.TableSectionCategories.Add(allCell);
 
-                                    foreach (var item in this.filterSessionsViewModel.Categories)
-                                    {
-                                        this.TableSectionCategories.Add(new CategoryCell { BindingContext = item });
-                                    }
-                                });
+                        foreach (var item in this.filterSessionsViewModel.Categories)
+                        {
+                            this.TableSectionCategories.Add(new CategoryCell { BindingContext = item });
+                        }
                     });
         }
     }

@@ -8,14 +8,16 @@ namespace DotNetRu.DataStore.Audit.Services
     using System.Threading.Tasks;
 
     using AutoMapper;
-
+    using DotNetRu.Clients.UI;
     using DotNetRu.DataStore.Audit.RealmModels;
-    using DotNetRu.DataStore.Audit.XmlEntities;
     using DotNetRu.Utils;
+    using DotNetRu.Utils.Interfaces;
     using Flurl;
     using Flurl.Http;
     using PushNotifications;
+    using RealmGenerator.Entities;    
     using Realms;
+    using Xamarin.Forms;
 
     public static class UpdateService
     {
@@ -23,7 +25,9 @@ namespace DotNetRu.DataStore.Audit.Services
         {
             try
             {
-                Console.WriteLine("AuditUpdate. Started updating audit");
+                var logger = DependencyService.Get<ILogger>();
+
+                logger.Track("AuditUpdate. Started updating audit");
 
                 string currentCommitSha;
                 using (var auditRealm = Realm.GetInstance("Audit.realm"))
@@ -32,7 +36,9 @@ namespace DotNetRu.DataStore.Audit.Services
                     currentCommitSha = auditVersion.CommitHash;
                 }
 
-                var updateContent = await "https://dotnetrupush.azurewebsites.net/api/Update"
+                var config = AppConfig.GetConfig();
+
+                var updateContent = await config.UpdateFunctionURL
                     .SetQueryParam("fromCommitSha", currentCommitSha)
                     .GetJsonAsync<UpdateContent>();
 
@@ -63,6 +69,8 @@ namespace DotNetRu.DataStore.Audit.Services
                 }
 
                 stopwatch.Stop();
+
+                logger.Track("AuditUpdate. Finished updating audit");
             }
             catch (Exception e)
             {
@@ -122,6 +130,14 @@ namespace DotNetRu.DataStore.Audit.Services
                                         var speaker = auditRealm.Find<Speaker>(speakerId);
 
                                         dest.Speakers.Add(speaker);
+                                    }
+
+                                    if (src.SeeAlsoTalkIds != null)
+                                    {                                        
+                                        foreach (string talkId in src.SeeAlsoTalkIds)
+                                        {
+                                            dest.SeeAlsoTalksIds.Add(talkId);
+                                        }
                                     }
                                 });
                         cfg.CreateMap<SessionEntity, Session>().AfterMap(

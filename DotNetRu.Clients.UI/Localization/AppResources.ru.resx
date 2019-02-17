@@ -280,4 +280,7 @@
   <data name="Novosibirsk" xml:space="preserve">
     <value>Новосибирск</value>
   </data>
+  <data name="SeeAlso" xml:space="preserve">
+    <value>См. также</value>
+  </data>
 </root>

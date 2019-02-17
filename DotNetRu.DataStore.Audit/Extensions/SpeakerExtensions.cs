@@ -1,10 +1,10 @@
+using System.Linq;
+
+using DotNetRu.DataStore.Audit.Models;
+using DotNetRu.DataStore.Audit.RealmModels;
+
 namespace DotNetRu.DataStore.Audit.Extensions
-{
-    using System.Linq;
-
-    using DotNetRu.DataStore.Audit.Models;
-    using DotNetRu.DataStore.Audit.RealmModels;
-
+{    
     public static class SpeakerExtensions
     {
         public static SpeakerModel ToModel(this Speaker speaker)
@@ -17,6 +17,7 @@ namespace DotNetRu.DataStore.Audit.Extensions
                            CompanyName = speaker.CompanyName,
                            CompanyWebsiteUrl = speaker.CompanyUrl,
                            TwitterUrl = speaker.TwitterUrl,
+                           GitHubUrl = speaker.GitHubUrl,
                            BlogUrl = speaker.BlogUrl,
                            Biography = speaker.Description,
                            AvatarSmall = speaker.AvatarSmall,

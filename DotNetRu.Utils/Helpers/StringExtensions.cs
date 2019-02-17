@@ -52,6 +52,22 @@
             return result;
         }
 
+        public static string CleanUpGitHub(this string name)
+        {
+            if (name == null)
+            {
+                return null;
+            }
+
+            if (name.StartsWith("http://", StringComparison.OrdinalIgnoreCase) || 
+                name.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
+            {
+                return name.Substring(name.LastIndexOf('/') + 1);
+            }            
+
+            return name;
+        }
+
         public static string GetLastPartOfUrl(this string url)
         {
             if (url == null)

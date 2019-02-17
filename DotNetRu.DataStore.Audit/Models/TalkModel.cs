@@ -1,26 +1,29 @@
 namespace DotNetRu.DataStore.Audit.Models
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
-
+    using DotNetRu.DataStore.Audit.Services;
     using DotNetRu.Utils.Helpers;
     using Xamarin.Forms;
 
-    public class TalkModel
+    public class TalkModel : IIdentified
     {
         private const string Delimiter = "|";
 
+        private readonly IList<string> seeAlsoTalksIds;        
+
         private string haystack;
 
-        public TalkModel()
+        public TalkModel(IList<string> seeAlsoTalksIds)
         {
+            this.seeAlsoTalksIds = seeAlsoTalksIds == null ? new List<string>() : new List<string>(seeAlsoTalksIds);
+
             this.Speakers = new List<SpeakerModel>();
             this.Categories = new List<Category>();
         }
 
-        public string TalkId { get; set; }
+        public string Id { get; set; }
 
         public string Title { get; set; }
 
@@ -30,17 +33,9 @@ namespace DotNetRu.DataStore.Audit.Models
 
         public IEnumerable<SpeakerModel> Speakers { get; set; }
 
-
-        [Obsolete("Room and other location&time info should move to session")]
-        public Room Room { get; set; }
+        public IEnumerable<TalkModel> SeeAlsoTalks => CachedModelsProvider<TalkModel>.Get(seeAlsoTalksIds);        
 
         public ICollection<Category> Categories { get; set; }
-
-        [Obsolete("Room and other location&time info should move to session")]
-        public DateTime? StartTime => DateTime.Now; // this.Sessions.First().StartTime.DateTime;
-
-        [Obsolete("Room and other location&time info should move to session")]
-        public DateTime? EndTime => DateTime.Now; //this.Sessions.First().EndTime.DateTime;
 
         public string PresentationUrl { get; set; }
 

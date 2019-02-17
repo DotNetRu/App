@@ -1,4 +1,4 @@
-﻿namespace DotNetRu.Clients.UI.Converters
+namespace DotNetRu.Clients.UI.Converters
 {
     using System;
     using System.Diagnostics;
@@ -20,7 +20,7 @@
                     return string.Empty;
                 }
 
-                return Device.RuntimePlatform == Device.iOS ? session.GetDisplayTime() : session.GetDisplayName();
+                return session.GetDisplayTime();
             }
             catch (Exception ex)
             {

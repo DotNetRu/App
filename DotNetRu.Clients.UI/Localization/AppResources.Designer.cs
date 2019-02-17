@@ -383,7 +383,16 @@ namespace DotNetRu.Clients.UI.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select a language.
+        ///   Ищет локализованную строку, похожую на See also.
+        /// </summary>
+        public static string SeeAlso {
+            get {
+                return ResourceManager.GetString("SeeAlso", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Select a language.
         /// </summary>
         public static string SelectLanguage {
             get {

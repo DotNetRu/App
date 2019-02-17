@@ -15,8 +15,6 @@ namespace DotNetRu.Utils.Helpers
             Preferences.Set("conferencefeedback_finished", true);
         }
 
-        static readonly bool HasSetReminderDefault = false;
-
         static readonly bool ShowAllCategoriesDefault = true;
 
         public bool ShowAllCategories

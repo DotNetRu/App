@@ -1,5 +1,8 @@
-namespace DotNetRu.DataStore.Audit.XmlEntities
+﻿namespace RealmGenerator.Entities
 {
+    using System.Xml.Serialization;
+
+    [XmlType("Community")]
     public class CommunityEntity
     {
         public string Id { get; set; }

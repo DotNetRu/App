@@ -1,5 +1,8 @@
-namespace DotNetRu.DataStore.Audit.XmlEntities
+namespace RealmGenerator.Entities
 {
+    using System.Xml.Serialization;
+
+    [XmlType("Speaker")]
     public class SpeakerEntity
     {
         public string Id { get; set; }
@@ -15,6 +18,8 @@ namespace DotNetRu.DataStore.Audit.XmlEntities
         public string BlogUrl { get; set; }
 
         public string TwitterUrl { get; set; }
+
+        public string GitHubUrl { get; set; }
 
         public string HabrUrl { get; set; }
 

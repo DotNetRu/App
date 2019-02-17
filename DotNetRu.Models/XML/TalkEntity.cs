@@ -1,10 +1,17 @@
-namespace DotNetRu.DataStore.Audit.XmlEntities
+﻿namespace RealmGenerator.Entities
 {
+    using System.Xml.Serialization;
+
+    [XmlType("Talk")]
     public class TalkEntity
     {
         public string Id { get; set; }
 
+        [XmlArrayItem("SpeakerId", IsNullable = false)]
         public string[] SpeakerIds { get; set; }
+
+        [XmlArrayItem("TalkId", IsNullable = false)]
+        public string[] SeeAlsoTalkIds { get; set; }        
 
         public string Title { get; set; }
 

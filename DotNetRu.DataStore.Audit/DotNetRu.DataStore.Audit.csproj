@@ -10,9 +10,9 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="8.0.0" />
     <PackageReference Include="Flurl.Http" Version="2.4.0" />
-    <PackageReference Include="Realm.Database" Version="3.3.0" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.0.0" />
-    <PackageReference Include="Xamarin.Forms" Version="3.4.0.1008975" />
+    <PackageReference Include="Realm.Database" Version="3.4.0" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.0.1" />
+    <PackageReference Include="Xamarin.Forms" Version="3.5.0.129452" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Audit.realm" />
@@ -26,6 +26,7 @@
     <EmbeddedResource Include="Images\logos\SpbDotNet.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DotNetRu.Models\DotNetRu.Models.csproj" />
     <ProjectReference Include="..\DotNetRu.Utils\DotNetRu.Utils.csproj" />
   </ItemGroup>
 </Project>

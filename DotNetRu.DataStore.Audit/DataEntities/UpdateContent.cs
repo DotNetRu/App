@@ -1,4 +1,4 @@
-using DotNetRu.DataStore.Audit.XmlEntities;
+using RealmGenerator.Entities;
 
 namespace PushNotifications
 {
