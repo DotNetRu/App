@@ -1,0 +1,36 @@
+<ContentView 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:DotNetRu.Clients.UI.Controls;assembly=DotNetRu.Clients.UI"
+    xmlns:converters="clr-namespace:DotNetRu.Clients.UI.Converters;assembly=DotNetRu.Clients.UI"
+    x:Class="DotNetRu.Clients.UI.Cells.MeetupFriendCellView">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converters:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter" />
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <StackLayout Spacing="0" HeightRequest="120">
+        <StackLayout.Padding>
+            <OnPlatform x:TypeArguments="Thickness" iOS="0" Android="0,4"/>
+        </StackLayout.Padding>
+        <controls:CardView HeightRequest="120">
+            <Grid Padding="{DynamicResource StandardPadding}" ColumnSpacing="{DynamicResource StandardSpacing}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10*" />
+                    <ColumnDefinition Width="90*" />
+                    <ColumnDefinition Width="10*" />
+                </Grid.ColumnDefinitions>
+                <Image
+                    Grid.Column="1"
+                    Margin="16"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand"
+                    StyleId="SponsorImage"
+                    Source="{Binding LogoSmall, Converter={StaticResource ByteArrayToImageSourceConverter}}"
+                    Aspect="AspectFit">
+                </Image>                            
+            </Grid>
+        </controls:CardView>
+    </StackLayout>
+</ContentView>
+

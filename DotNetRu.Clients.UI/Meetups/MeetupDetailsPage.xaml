@@ -74,6 +74,30 @@
             <controls:FooterDivider/>
           </StackLayout>
         </controls:CardView>
+
+        <controls:CardView>
+            <StackLayout Spacing="0">
+                <controls:LabelSection Text="{Binding Resources[Friends]}"/>
+                <controls:HeaderDivider/>                
+                <controls:NonScrollableListView
+                    x:Name="ListViewFriends"
+                    ItemsSource="{Binding Friends}"
+                    StyleId="SessionSpeakers"
+                    RowHeight="120">
+                    <controls:NonScrollableListView.SeparatorColor>
+                        <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ListSeparator}"/>
+                    </controls:NonScrollableListView.SeparatorColor>
+                    <controls:NonScrollableListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell StyleId="disclosure">
+                                <cells:MeetupFriendCellView />
+                            </ViewCell>
+                        </DataTemplate>
+                    </controls:NonScrollableListView.ItemTemplate>
+                </controls:NonScrollableListView>
+                <controls:FooterDivider/>
+            </StackLayout>
+        </controls:CardView>
       </StackLayout>
     </ScrollView>
   </ContentPage.Content>
