@@ -40,13 +40,6 @@ namespace DotNetRu.iOS
         }
 
         /// <inheritdoc />
-        public override void ReceivedRemoteNotification(UIApplication app, NSDictionary userInfo)
-        {
-            // Process a notification received while the app was already open
-            this.ProcessNotification(userInfo);
-        }
-
-        /// <inheritdoc />
         public override bool HandleOpenURL(UIApplication application, NSUrl url)
         {
             if (!string.IsNullOrEmpty(url.AbsoluteString))
@@ -91,16 +84,11 @@ namespace DotNetRu.iOS
         {
             Forms.Init();
 
-            this.SetMinimumBackgroundFetchInterval();
-
             InitializeDependencies();
 
             this.LoadApplication(new App());
 
             InitializeThemeColors();
-
-            // Process any potential notification data from launch
-            this.ProcessNotification(launchOptions);
 
             NSNotificationCenter.DefaultCenter.AddObserver(UIApplication.DidBecomeActiveNotification, this.DidBecomeActive);
 
@@ -111,7 +99,7 @@ namespace DotNetRu.iOS
                     launchOptions[UIApplication.LaunchOptionsShortcutItemKey] as UIApplicationShortcutItem;
             }
 
-            return base.FinishedLaunching(uiApplication, launchOptions); // && shouldPerformAdditionalDelegateHandling;
+            return base.FinishedLaunching(uiApplication, launchOptions);
         }
 
         private static void InitializeDependencies()
@@ -153,44 +141,6 @@ namespace DotNetRu.iOS
             ((App)Xamarin.Forms.Application.Current).SecondOnResume();
         }
 
-        private void ProcessNotification(NSDictionary userInfo)
-        {
-            if (userInfo == null)
-            {
-                return;
-            }
-
-            Console.WriteLine("Received Notification");
-
-            var apsKey = new NSString("aps");
-
-            if (userInfo.ContainsKey(apsKey))
-            {
-                var alertKey = new NSString("alert");
-
-                var aps = (NSDictionary)userInfo.ObjectForKey(apsKey);
-
-                if (aps.ContainsKey(alertKey))
-                {
-                    var alert = (NSString)aps.ObjectForKey(alertKey);
-
-                    var uiAlertView = new UIAlertView($"{AboutThisApp.AppName} Update", alert, (IUIAlertViewDelegate)null, "OK", null);
-
-                    try
-                    {
-                        uiAlertView.Show();
-
-                    }
-                    catch (Exception)
-                    {
-                        // ignored
-                    }
-
-                    Console.WriteLine("Notification: " + alert);
-                }
-            }
-        }
-
         #region Quick Action
 
         public UIApplicationShortcutItem LaunchedShortcutItem { get; set; }
@@ -201,8 +151,6 @@ namespace DotNetRu.iOS
 
             // Handle any shortcut item being selected
             this.HandleShortcutItem(this.LaunchedShortcutItem);
-
-
 
             // Clear shortcut after it's been handled
             this.LaunchedShortcutItem = null;
@@ -334,41 +282,6 @@ namespace DotNetRu.iOS
         {
             this.CheckForAppLink(userActivity);
             return true;
-        }
-
-        #endregion
-
-        #region Background Refresh
-
-        private void SetMinimumBackgroundFetchInterval()
-        {
-            UIApplication.SharedApplication.SetMinimumBackgroundFetchInterval(MINIMUM_BACKGROUND_FETCH_INTERVAL);
-        }
-
-        // Minimum number of seconds between a background refresh this is shorter than Android because it is easily killed off.
-        // 20 minutes = 20 * 60 = 1200 seconds
-        private const double MINIMUM_BACKGROUND_FETCH_INTERVAL = 1200;
-
-        // Called whenever your app performs a background fetch
-        public override void PerformFetch(UIApplication application, Action<UIBackgroundFetchResult> completionHandler)
-        {
-            // Do Background Fetch
-            var downloadSuccessful = false;
-
-            try
-            {
-                Forms.Init(); // need for dependency services
-            }
-            catch (Exception ex)
-            {
-                ex.Data["Method"] = "PerformFetch";
-                DotNetRuLogger.Report(ex);
-            }
-
-            // If you don't call this, your application will be terminated by the OS.
-            // Allows OS to collect stats like data cost and power consumption
-            var resultFlag = downloadSuccessful ? UIBackgroundFetchResult.NewData : UIBackgroundFetchResult.Failed;
-            completionHandler(resultFlag);
         }
 
         #endregion
