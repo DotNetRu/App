@@ -23,7 +23,6 @@ namespace DotNetRu.Clients.UI
     using Microsoft.AppCenter.Analytics;
     using Microsoft.AppCenter.Crashes;
     using Microsoft.AppCenter.Push;
-    using Plugin.LocalNotifications;
     using Xamarin.Essentials;
     using Xamarin.Forms;
 
@@ -44,18 +43,13 @@ namespace DotNetRu.Clients.UI
 
             this.InitializeComponent();
 
-            CrossLocalNotifications.Current.Show("5 minutes delay test", "5 minutes delay test", 1, DateTime.Now.AddMinutes(5));
+            // CrossLocalNotifications.Current.Show("5 minutes delay test", "5 minutes delay test", 1, DateTime.Now.AddMinutes(5));
 
             this.MainPage = new BottomTabbedPage();
         }
 
         // TODO change to SeriLog
         public static ILogger Logger => logger ?? (logger = DependencyService.Get<ILogger>());
-
-        public void SecondOnResume()
-        {
-            this.OnResume();
-        }
 
         public new void SendOnAppLinkRequestReceived(Uri uri)
         {
@@ -77,7 +71,7 @@ namespace DotNetRu.Clients.UI
 
                     await UpdateService.UpdateAudit();
 
-                    CrossLocalNotifications.Current.Show("New meetup announced", "New meetup announced. Open app to see details");
+                    // CrossLocalNotifications.Current.Show("New meetup announced", "New meetup announced. Open app to see details");
                 };
 
                 AppCenter.Start(

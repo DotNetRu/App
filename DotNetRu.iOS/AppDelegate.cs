@@ -8,7 +8,6 @@ namespace DotNetRu.iOS
     using DotNetRu.Clients.Portable.Model;
     using DotNetRu.Clients.UI;
     using DotNetRu.iOS.Renderers;
-    using DotNetRu.Utils;
     using DotNetRu.Utils.Helpers;
     using FFImageLoading.Forms.Platform;
     using FFImageLoading.Transformations;
@@ -31,13 +30,6 @@ namespace DotNetRu.iOS
     public partial class AppDelegate : FormsApplicationDelegate
     {
         private static UIColor primaryColor;
-
-        /// <inheritdoc />
-        public override void WillEnterForeground(UIApplication uiApplication)
-        {
-            base.WillEnterForeground(uiApplication);
-            ((App)Xamarin.Forms.Application.Current).SecondOnResume();
-        }
 
         /// <inheritdoc />
         public override bool HandleOpenURL(UIApplication application, NSUrl url)
@@ -90,15 +82,6 @@ namespace DotNetRu.iOS
 
             InitializeThemeColors();
 
-            NSNotificationCenter.DefaultCenter.AddObserver(UIApplication.DidBecomeActiveNotification, this.DidBecomeActive);
-
-            // Get possible shortcut item
-            if (launchOptions != null)
-            {
-                this.LaunchedShortcutItem =
-                    launchOptions[UIApplication.LaunchOptionsShortcutItemKey] as UIApplicationShortcutItem;
-            }
-
             return base.FinishedLaunching(uiApplication, launchOptions);
         }
 
@@ -136,25 +119,7 @@ namespace DotNetRu.iOS
             UIView.AppearanceWhenContainedIn(typeof(SLComposeViewController)).TintColor = primaryColor;
         }
 
-        private void DidBecomeActive(NSNotification notification)
-        {
-            ((App)Xamarin.Forms.Application.Current).SecondOnResume();
-        }
-
         #region Quick Action
-
-        public UIApplicationShortcutItem LaunchedShortcutItem { get; set; }
-
-        public override void OnActivated(UIApplication uiApplication)
-        {
-            Console.WriteLine("OnActivated");
-
-            // Handle any shortcut item being selected
-            this.HandleShortcutItem(this.LaunchedShortcutItem);
-
-            // Clear shortcut after it's been handled
-            this.LaunchedShortcutItem = null;
-        }
 
         void CheckForAppLink(NSUserActivity userActivity)
         {
