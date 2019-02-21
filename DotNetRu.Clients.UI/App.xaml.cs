@@ -44,31 +44,6 @@ namespace DotNetRu.Clients.UI
 
             this.InitializeComponent();
 
-            // Update Audit on startup.
-            // Task.Run(UpdateService.UpdateAudit);
-
-            var config = AppConfig.GetConfig();
-
-            // This should come before AppCenter.Start() is called
-            // Avoid duplicate event registration:
-            if (!AppCenter.Configured)
-            {
-                Push.PushNotificationReceived += async (sender, e) =>
-                {
-                    Logger.Track($"PushReceived", e.CustomData);
-
-                    await UpdateService.UpdateAudit();
-
-                    CrossLocalNotifications.Current.Show("New meetup announced", "New meetup announced. Open app to see details");
-                };
-            }
-
-            AppCenter.Start(
-                $"ios={config.AppCenteriOSKey};android={config.AppCenterAndroidKey};",
-                typeof(Analytics),
-                typeof(Crashes),
-                typeof(Push));
-
             CrossLocalNotifications.Current.Show("5 minutes delay test", "5 minutes delay test", 1, DateTime.Now.AddMinutes(5));
 
             this.MainPage = new BottomTabbedPage();
@@ -85,6 +60,32 @@ namespace DotNetRu.Clients.UI
         public new void SendOnAppLinkRequestReceived(Uri uri)
         {
             this.OnAppLinkRequestReceived(uri);
+        }
+
+        protected override void OnStart()
+        {
+            // Update Audit on startup.
+            // Task.Run(UpdateService.UpdateAudit);
+
+            var config = AppConfig.GetConfig();
+
+            if (!AppCenter.Configured)
+            {
+                Push.PushNotificationReceived += async (sender, e) =>
+                {
+                    Logger.Track($"PushReceived", e.CustomData);
+
+                    await UpdateService.UpdateAudit();
+
+                    CrossLocalNotifications.Current.Show("New meetup announced", "New meetup announced. Open app to see details");
+                };
+
+                AppCenter.Start(
+                    $"ios={config.AppCenteriOSKey};android={config.AppCenterAndroidKey};",
+                    typeof(Analytics),
+                    typeof(Crashes),
+                    typeof(Push));
+            }
         }
 
         protected override void OnResume()
