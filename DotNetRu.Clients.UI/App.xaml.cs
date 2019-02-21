@@ -6,9 +6,7 @@ namespace DotNetRu.Clients.UI
 {
     using System;
     using System.Globalization;
-    using System.Text;
-    using System.Threading.Tasks;
-    
+
     using DotNetRu.Clients.Portable.Interfaces;
     using DotNetRu.Clients.Portable.Model;
     using DotNetRu.Clients.Portable.Services;
@@ -25,7 +23,6 @@ namespace DotNetRu.Clients.UI
     using Microsoft.AppCenter.Analytics;
     using Microsoft.AppCenter.Crashes;
     using Microsoft.AppCenter.Push;
-    using Newtonsoft.Json;
     using Plugin.LocalNotifications;
     using Xamarin.Essentials;
     using Xamarin.Forms;
@@ -47,7 +44,7 @@ namespace DotNetRu.Clients.UI
 
             this.InitializeComponent();
 
-            // Update Audit on startup. Temporarily disabled due to update issues
+            // Update Audit on startup.
             // Task.Run(UpdateService.UpdateAudit);
 
             var config = AppConfig.GetConfig();
@@ -58,7 +55,7 @@ namespace DotNetRu.Clients.UI
             {
                 Push.PushNotificationReceived += async (sender, e) =>
                 {
-                    Logger.Track($"PushReceived {e.Title}, {e.Message}", e.CustomData);
+                    Logger.Track($"PushReceived", e.CustomData);
 
                     await UpdateService.UpdateAudit();
 
@@ -71,6 +68,8 @@ namespace DotNetRu.Clients.UI
                 typeof(Analytics),
                 typeof(Crashes),
                 typeof(Push));
+
+            CrossLocalNotifications.Current.Show("5 minutes delay test", "5 minutes delay test", 1, DateTime.Now.AddMinutes(5));
 
             this.MainPage = new BottomTabbedPage();
         }
