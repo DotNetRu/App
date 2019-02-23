@@ -1,5 +1,6 @@
 using DotNetRu.Clients.Portable.Model;
 using DotNetRu.Clients.UI.Pages.Speakers;
+using DotNetRu.Clients.UI.Speakers;
 using DotNetRu.DataStore.Audit.Models;
 using Xamarin.Forms;
 
