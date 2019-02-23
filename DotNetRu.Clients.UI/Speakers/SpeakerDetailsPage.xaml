@@ -38,7 +38,7 @@
                                 NumberOfTapsRequired="1" />
                     </ffimageloading:CachedImage.GestureRecognizers>
                 </ffimageloading:CachedImage>
-                <Grid Padding="0, 0, 15, 0"
+                <Grid Padding="0, 0, 0, 15"
                       IsClippedToBounds="True"
                       RowSpacing="0" ColumnSpacing="0"
                       VerticalOptions="End"                      
@@ -66,7 +66,7 @@
                     <StackLayout Grid.Row="0"
                                  Grid.Column="0"                                 
                                  BackgroundColor="{DynamicResource PrimaryLight}"
-                                 Padding="0, -30, 2, 5"
+                                 Padding="5, 0, -30, 2"
                                  Margin="0"                                  
                                  VerticalOptions="End">
                         <Label x:Name="speakerFullNameLabel"                               
@@ -98,7 +98,7 @@
                     <StackLayout Grid.Row="1"
                                  Grid.Column="0"                                 
                                  BackgroundColor="{DynamicResource HighlightLight}"
-                                 Padding="0, -5, 1, 5"
+                                 Padding="5, 0, -5, 1"
                                  Margin="0"
                                  IsVisible="{Binding Source={x:Reference speakerTitleLabel},Path=Text,Converter={StaticResource GenericIsVisibleConverter}}"
                                  VerticalOptions="End">
