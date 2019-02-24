@@ -43,8 +43,6 @@ namespace DotNetRu.Clients.UI
 
             this.InitializeComponent();
 
-            // CrossLocalNotifications.Current.Show("5 minutes delay test", "5 minutes delay test", 1, DateTime.Now.AddMinutes(5));
-
             this.MainPage = new BottomTabbedPage();
         }
 
@@ -68,18 +66,17 @@ namespace DotNetRu.Clients.UI
                 Push.PushNotificationReceived += async (sender, e) =>
                 {
                     Logger.Track($"PushReceived", e.CustomData);
+                    Preferences.Set("PushReceived", DateTime.Now);
 
                     await UpdateService.UpdateAudit();
-
-                    // CrossLocalNotifications.Current.Show("New meetup announced", "New meetup announced. Open app to see details");
                 };
-
-                AppCenter.Start(
-                    $"ios={config.AppCenteriOSKey};android={config.AppCenterAndroidKey};",
-                    typeof(Analytics),
-                    typeof(Crashes),
-                    typeof(Push));
             }
+
+            AppCenter.Start(
+                $"ios={config.AppCenteriOSKey};android={config.AppCenterAndroidKey};",
+                typeof(Analytics),
+                typeof(Crashes),
+                typeof(Push));
         }
 
         protected override void OnResume()
