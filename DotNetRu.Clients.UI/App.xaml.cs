@@ -68,7 +68,7 @@ namespace DotNetRu.Clients.UI
                     Logger.Track($"PushReceived", e.CustomData);
                     Preferences.Set("PushReceived", DateTime.Now);
 
-                    // await UpdateService.UpdateAudit();
+                    UpdateService.UpdateAudit().RunSynchronously();
                 };
             }
 
