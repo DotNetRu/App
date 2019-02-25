@@ -63,12 +63,12 @@ namespace DotNetRu.Clients.UI
 
             if (!AppCenter.Configured)
             {
-                Push.PushNotificationReceived += async (sender, e) =>
+                Push.PushNotificationReceived += (sender, e) =>
                 {
                     Logger.Track($"PushReceived", e.CustomData);
                     Preferences.Set("PushReceived", DateTime.Now);
 
-                    await UpdateService.UpdateAudit();
+                    // await UpdateService.UpdateAudit();
                 };
             }
 
