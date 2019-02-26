@@ -28,7 +28,6 @@ namespace DotNetRu.DataStore.Audit.Services
                 var logger = DependencyService.Get<ILogger>();
 
                 var config = AppConfig.GetConfig();
-
                 logger.Track("AuditUpdate. Started updating audit", new Dictionary<string, string>()
                 {
                     { "UpdateFunctionURL", config.UpdateFunctionURL }
@@ -41,12 +40,15 @@ namespace DotNetRu.DataStore.Audit.Services
                     currentCommitSha = auditVersion.CommitHash;
                 }
 
+                var downloadingTime = Stopwatch.StartNew();
+
                 var updateContent = await config.UpdateFunctionURL
                     .SetQueryParam("fromCommitSha", currentCommitSha)
                     .GetJsonAsync<UpdateContent>();
 
-                var stopwatch = new Stopwatch();
-                stopwatch.Start();
+                downloadingTime.Stop();
+
+                var updateTime = Stopwatch.StartNew();
 
                 using (var auditRealm = Realm.GetInstance("Audit.realm"))
                 {
@@ -71,9 +73,12 @@ namespace DotNetRu.DataStore.Audit.Services
                     }
                 }
 
-                stopwatch.Stop();
+                updateTime.Stop();
 
-                logger.Track("AuditUpdate. Finished updating audit");
+                logger.Track("Finished audit update", new Dictionary<string, string>() {
+                    { "Downloading time", downloadingTime.Elapsed.ToString() },
+                    { "Update Realm time", updateTime.Elapsed.ToString() },
+                });
             }
             catch (Exception e)
             {
