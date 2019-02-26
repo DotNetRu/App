@@ -27,7 +27,12 @@ namespace DotNetRu.DataStore.Audit.Services
             {
                 var logger = DependencyService.Get<ILogger>();
 
-                logger.Track("AuditUpdate. Started updating audit");
+                var config = AppConfig.GetConfig();
+
+                logger.Track("AuditUpdate. Started updating audit", new Dictionary<string, string>()
+                {
+                    { "UpdateFunctionURL", config.UpdateFunctionURL }
+                });
 
                 string currentCommitSha;
                 using (var auditRealm = Realm.GetInstance("Audit.realm"))
@@ -35,8 +40,6 @@ namespace DotNetRu.DataStore.Audit.Services
                     var auditVersion = auditRealm.All<AuditVersion>().Single();
                     currentCommitSha = auditVersion.CommitHash;
                 }
-
-                var config = AppConfig.GetConfig();
 
                 var updateContent = await config.UpdateFunctionURL
                     .SetQueryParam("fromCommitSha", currentCommitSha)
