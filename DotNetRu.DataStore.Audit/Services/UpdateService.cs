@@ -12,10 +12,9 @@ namespace DotNetRu.DataStore.Audit.Services
     using DotNetRu.DataStore.Audit.RealmModels;
     using DotNetRu.Utils;
     using DotNetRu.Utils.Interfaces;
-    using Flurl;
-    using Flurl.Http;
+    using Newtonsoft.Json;
     using PushNotifications;
-    using RealmGenerator.Entities;    
+    using RealmGenerator.Entities;
     using Realms;
     using Xamarin.Forms;
 
@@ -42,9 +41,9 @@ namespace DotNetRu.DataStore.Audit.Services
 
                 var downloadingTime = Stopwatch.StartNew();
 
-                var updateContent = await config.UpdateFunctionURL
-                    .SetQueryParam("fromCommitSha", currentCommitSha)
-                    .GetJsonAsync<UpdateContent>();
+                var httpClient = new HttpClient();
+                var updateJSON = await httpClient.GetStringAsync($"{config.UpdateFunctionURL}?fromCommitSha={currentCommitSha}");
+                var updateContent = JsonConvert.DeserializeObject<UpdateContent>(updateJSON);
 
                 downloadingTime.Stop();
 
