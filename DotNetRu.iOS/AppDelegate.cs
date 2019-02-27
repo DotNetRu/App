@@ -8,6 +8,7 @@ namespace DotNetRu.iOS
     using DotNetRu.Clients.Portable.Model;
     using DotNetRu.Clients.UI;
     using DotNetRu.iOS.Renderers;
+    using DotNetRu.Utils;
     using DotNetRu.Utils.Helpers;
     using FFImageLoading.Forms.Platform;
     using FFImageLoading.Transformations;
@@ -247,6 +248,28 @@ namespace DotNetRu.iOS
         {
             this.CheckForAppLink(userActivity);
             return true;
+        }
+
+        public override void PerformFetch(UIApplication application, Action<UIBackgroundFetchResult> completionHandler)
+        {
+            // Do Background Fetch	
+            var downloadSuccessful = false;
+
+            try
+            {
+                // need for dependency services
+                Forms.Init(); 
+            }
+            catch (Exception ex)
+            {
+                ex.Data["Method"] = "PerformFetch";
+                DotNetRuLogger.Report(ex);
+            }
+
+            // If you don't call this, your application will be terminated by the OS.	
+            // Allows OS to collect stats like data cost and power consumption	
+            var resultFlag = downloadSuccessful ? UIBackgroundFetchResult.NewData : UIBackgroundFetchResult.Failed;
+            completionHandler(resultFlag);
         }
 
         #endregion
