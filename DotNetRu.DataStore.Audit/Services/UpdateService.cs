@@ -4,6 +4,7 @@ namespace DotNetRu.DataStore.Audit.Services
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Linq;
+    using System.Net;
     using System.Net.Http;
     using System.Threading.Tasks;
 
@@ -41,8 +42,8 @@ namespace DotNetRu.DataStore.Audit.Services
 
                 var downloadingTime = Stopwatch.StartNew();
 
-                var httpClient = new HttpClient();
-                var updateJSON = await httpClient.GetStringAsync($"{config.UpdateFunctionURL}?fromCommitSha={currentCommitSha}");
+                var httpClient = new HttpClient();              
+                var updateJSON = new WebClient().DownloadString($"{config.UpdateFunctionURL}?fromCommitSha={currentCommitSha}");
                 var updateContent = JsonConvert.DeserializeObject<UpdateContent>(updateJSON);
 
                 downloadingTime.Stop();
