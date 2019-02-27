@@ -6,12 +6,14 @@ namespace DotNetRu.DataStore.Audit.Services
     using System.Linq;
     using System.Net;
     using System.Net.Http;
+    using System.Text;
     using System.Threading.Tasks;
 
     using AutoMapper;
     using DotNetRu.Clients.UI;
     using DotNetRu.DataStore.Audit.RealmModels;
     using DotNetRu.Utils;
+    using DotNetRu.Utils.Helpers;
     using DotNetRu.Utils.Interfaces;
     using Newtonsoft.Json;
     using PushNotifications;
@@ -42,9 +44,12 @@ namespace DotNetRu.DataStore.Audit.Services
 
                 var downloadingTime = Stopwatch.StartNew();
 
-                var httpClient = new HttpClient();              
-                var updateJSON = new WebClient().DownloadString($"{config.UpdateFunctionURL}?fromCommitSha={currentCommitSha}");
-                var updateContent = JsonConvert.DeserializeObject<UpdateContent>(updateJSON);
+                //var httpClient = new HttpClient();              
+                //var updateJSON = new WebClient().DownloadString($"{config.UpdateFunctionURL}?fromCommitSha={currentCommitSha}");
+                //var updateContent = JsonConvert.DeserializeObject<UpdateContent>(updateJSON);
+
+                var updateBytes = ResourceHelper.ExtractResource("DotNetRu.DataStore.Audit.response.json");
+                var updateContent = JsonConvert.DeserializeObject<UpdateContent>(Encoding.Default.GetString(updateBytes));
 
                 downloadingTime.Stop();
 
@@ -62,7 +67,7 @@ namespace DotNetRu.DataStore.Audit.Services
                         UpdateModels(mapper, auditRealm, updateContent.Talks);
                         UpdateModels(mapper, auditRealm, updateContent.Meetups);
 
-                        UpdateSpeakerAvatars(auditRealm, updateContent.Photos);
+                        // UpdateSpeakerAvatars(auditRealm, updateContent.Photos);
 
                         var auditVersion = auditRealm.All<AuditVersion>().Single();
 
