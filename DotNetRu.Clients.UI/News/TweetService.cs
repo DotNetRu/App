@@ -5,8 +5,8 @@ namespace DotNetRu.Clients.Portable.Services
     using System.Threading.Tasks;
 
     using DotNetRu.Clients.Portable.Model;
+    using DotNetRu.Clients.UI;
     using DotNetRu.Utils;
-    using Flurl;
     using Flurl.Http;
 
     public class TweetService
@@ -15,8 +15,9 @@ namespace DotNetRu.Clients.Portable.Services
         {
             try
             {
-                var tweets = await "https://tweetazure.azurewebsites.net/api"
-                    .AppendPathSegment("tweets")
+                var config = AppConfig.GetConfig();
+
+                var tweets = await config.TweetFunctionUrl
                     .GetJsonAsync<List<Tweet>>();
 
                 return tweets;
