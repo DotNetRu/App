@@ -13,7 +13,7 @@ namespace DotNetRu.Clients.UI
         public string PushNotificationsChannel { get; set; }
 
         public string UpdateFunctionURL { get; set; }
-        public string TweetFunctionUrl { get; set; }
+        public string TweetFunctionURL { get; set; }
 
         public static AppConfig GetConfig()
         {
@@ -24,7 +24,7 @@ namespace DotNetRu.Clients.UI
                 AppCenteriOSKey = "1e7f311f-1055-4ec9-8b00-0302015ab8ae",
                 PushNotificationsChannel = "AuditUpdateDebug",
                 UpdateFunctionURL = "https://dotnetruazure.azurewebsites.net/api/Update",
-                TweetFunctionUrl = "https://dotnettweetservice.azurewebsites.net/api/Tweets"
+                TweetFunctionURL = "https://dotnettweetservice.azurewebsites.net/api/Tweets"
             };
 #endif
 

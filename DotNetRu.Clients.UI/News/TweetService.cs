@@ -17,7 +17,7 @@ namespace DotNetRu.Clients.Portable.Services
             {
                 var config = AppConfig.GetConfig();
 
-                var tweets = await config.TweetFunctionUrl
+                var tweets = await config.TweetFunctionURL
                     .GetJsonAsync<List<Tweet>>();
 
                 return tweets;
