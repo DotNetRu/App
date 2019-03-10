@@ -23,7 +23,7 @@ namespace DotNetRu.Clients.UI
                 AppCenterAndroidKey = "6f9a7703-8ca4-477e-9558-7e095f7d20aa",
                 AppCenteriOSKey = "1e7f311f-1055-4ec9-8b00-0302015ab8ae",
                 PushNotificationsChannel = "AuditUpdateDebug",
-                UpdateFunctionURL = "https://dotnetruapp.azurewebsites.net/api/Update",
+                UpdateFunctionURL = "https://dotnetruazure.azurewebsites.net/api/Update",
                 TweetFunctionUrl = "https://dotnettweetservice.azurewebsites.net/api/Tweets"
             };
 #endif
