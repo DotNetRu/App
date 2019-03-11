@@ -6,7 +6,7 @@
     xmlns:pages="clr-namespace:DotNetRu.Clients.UI.Pages;assembly=DotNetRu.Clients.UI"
     xmlns:controls="clr-namespace:DotNetRu.Clients.UI.Controls;assembly=DotNetRu.Clients.UI"
     xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
-    x:Class="DotNetRu.Clients.UI.Pages.Speakers.SpeakerDetailsPage"
+    x:Class="DotNetRu.Clients.UI.Speakers.SpeakerDetailsPage"
     Title="{Binding Resources[SpeakerInfo]}"
     x:Name="SpeakerInfo"
     NavigationPage.BackButtonTitle="Back"
@@ -32,30 +32,87 @@
                     Aspect="AspectFill"                    
                     LoadingPlaceholder="resource://DotNetRu.Clients.UI.Speakers.speaker_placeholder.png"
                     ErrorPlaceholder="resource://DotNetRu.Clients.UI.Speakers.speaker_placeholder.png">
-                    <Image.GestureRecognizers>
+                    <ffimageloading:CachedImage.GestureRecognizers>
                         <TapGestureRecognizer
                                 Tapped="OnTapGestureRecognizerTapped"
                                 NumberOfTapsRequired="1" />
-                    </Image.GestureRecognizers>
+                    </ffimageloading:CachedImage.GestureRecognizers>
                 </ffimageloading:CachedImage>
-                <StackLayout
-                         Padding="{StaticResource StandardPadding}"
-                         Spacing="0"
-                         VerticalOptions="End"
-                         HorizontalOptions="FillAndExpand">
-                    <Label x:Name="speakerFullNameLabel"
-                            Text="{Binding SpeakerModel.FullName}"
-                            FontSize="18"
-                            TextColor="White">
-                        <Label.FontFamily>
-                            <OnPlatform x:TypeArguments="x:String" Android="sans-serif-light" iOS="HelveticaNeue-Light"/>
-                        </Label.FontFamily>
-                    </Label>
-                    <Label x:Name="speakerTitleLabel"
-                           Text="{Binding SpeakerModel.Title}"
-                           FontSize="12"
-                           TextColor="White"/>
-                </StackLayout>
+                <Grid Padding="0, 0, 0, 15"
+                      IsClippedToBounds="True"
+                      RowSpacing="0" ColumnSpacing="0"
+                      VerticalOptions="End"                      
+                      HorizontalOptions="FillAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="175" />
+                        <ColumnDefinition Width="35" />                        
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <StackLayout Grid.Row="0"
+                                 Grid.Column="1"
+                                 IsClippedToBounds="True">
+                        <StackLayout BackgroundColor="{DynamicResource PrimaryLight}"                                                                                                            
+                                     Rotation="20"
+                                     Scale="2"
+                                     TranslationY="-10"
+                                     TranslationX="-20"
+                                     VerticalOptions="FillAndExpand">
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout Grid.Row="0"
+                                 Grid.Column="0"                                 
+                                 BackgroundColor="{DynamicResource PrimaryLight}"
+                                 Padding="5, 0, -30, 2"
+                                 Margin="0"                                  
+                                 VerticalOptions="End">
+                        <Label x:Name="speakerFullNameLabel"                               
+                               Text="{Binding SpeakerModel.FullName}"
+                               FontSize="15"                               
+                               HorizontalOptions="FillAndExpand"                            
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Start"  
+                               VerticalOptions="Center"                                                          
+                               MaxLines="2"                           
+                               LineBreakMode="TailTruncation"                                                          
+                               TextColor="White">
+                            <Label.FontFamily>
+                                <OnPlatform x:TypeArguments="x:String" Android="sans-serif-light" iOS="HelveticaNeue-Light"/>
+                            </Label.FontFamily>
+                        </Label>
+                    </StackLayout>                    
+                    <StackLayout Grid.Row="1"
+                                 Grid.Column="1"
+                                 IsClippedToBounds="True">
+                        <StackLayout BackgroundColor="{DynamicResource HighlightLight}"                                                                                                            
+                                     Rotation="20"
+                                     Scale="2"
+                                     TranslationY="-10"
+                                     TranslationX="-40"
+                                     VerticalOptions="FillAndExpand">
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout Grid.Row="1"
+                                 Grid.Column="0"                                 
+                                 BackgroundColor="{DynamicResource HighlightLight}"
+                                 Padding="5, 0, -5, 1"
+                                 Margin="0"
+                                 IsVisible="{Binding Source={x:Reference speakerTitleLabel},Path=Text,Converter={StaticResource GenericIsVisibleConverter}}"
+                                 VerticalOptions="End">
+                        <Label x:Name="speakerTitleLabel"                           
+                               Text="{Binding SpeakerModel.Title}"                               
+                               FontSize="12"
+                               HorizontalOptions="FillAndExpand"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center"                               
+                               MaxLines="2"
+                               LineBreakMode="TailTruncation"                           
+                               TextColor="White"/>
+                    </StackLayout>                    
+                </Grid>
             </Grid>
             <StackLayout Grid.Row="1" Spacing="0">
                 <StackLayout BackgroundColor="{DynamicResource WindowBackgroundTable}"

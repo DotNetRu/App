@@ -1,34 +1,18 @@
-namespace DotNetRu.Clients.UI.Pages.Speakers
+using System;
+using DotNetRu.Clients.Portable.Model;
+using DotNetRu.Clients.Portable.ViewModel;
+using DotNetRu.Clients.UI.Helpers;
+using DotNetRu.Clients.UI.Pages.Sessions;
+using DotNetRu.Clients.UI.Pages.Speakers;
+using DotNetRu.DataStore.Audit.Models;
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+namespace DotNetRu.Clients.UI.Speakers
 {
-    using System;
-
-    using DotNetRu.Clients.Portable.Model;
-    using DotNetRu.Clients.Portable.ViewModel;
-    using DotNetRu.Clients.UI.Helpers;
-    using DotNetRu.Clients.UI.Pages.Sessions;
-    using DotNetRu.DataStore.Audit.Models;
-
-    using Xamarin.Forms;
-
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SpeakerDetailsPage
     {
-        private SpeakerDetailsViewModel speakerDetailsViewModel;
-
-        public SpeakerDetailsPage(SpeakerModel speakerModel)
-            : this()
-        {
-            this.SpeakerModel = speakerModel;
-
-            this.speakerImage.Error += (source, arg) =>
-            {
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    this.speakerFullNameLabel.FontSize *= 2;
-                    this.speakerTitleLabel.FontSize *= 2;
-                });
-            };
-        }
-
         public SpeakerDetailsPage()
         {
             this.InitializeComponent();
@@ -51,6 +35,23 @@ namespace DotNetRu.Clients.UI.Pages.Speakers
                 {
                     this.ListViewFollow.UpdateListViewHeight();
                 };
+        }
+
+        private SpeakerDetailsViewModel speakerDetailsViewModel;
+
+        public SpeakerDetailsPage(SpeakerModel speakerModel)
+            : this()
+        {
+            this.SpeakerModel = speakerModel;
+
+            this.speakerImage.Error += (source, arg) =>
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    this.speakerFullNameLabel.FontSize *= 2;
+                    this.speakerTitleLabel.FontSize *= 2;
+                });
+            };
         }
 
         public override AppPage PageType => AppPage.Speaker;
@@ -99,7 +100,7 @@ namespace DotNetRu.Clients.UI.Pages.Speakers
 
             list.SelectedItem = null;
         }
-       
+
         private void Cell_OnAppearing(object sender, EventArgs e)
         {
             var viewCell = (ViewCell)sender;

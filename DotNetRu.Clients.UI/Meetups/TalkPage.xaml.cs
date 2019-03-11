@@ -6,7 +6,7 @@ using DotNetRu.Clients.Portable.Model;
 using DotNetRu.Clients.Portable.ViewModel;
 using DotNetRu.Clients.UI.Controls;
 using DotNetRu.Clients.UI.Helpers;
-using DotNetRu.Clients.UI.Pages.Speakers;
+using DotNetRu.Clients.UI.Speakers;
 using DotNetRu.DataStore.Audit.Models;
 
 using Xamarin.Forms;
@@ -36,8 +36,8 @@ namespace DotNetRu.Clients.UI.Pages.Sessions
                 return;
             }
 
-             var speakerDetails =
-                new SpeakerDetailsPage() { SpeakerModel = speaker };
+            var speakerDetails =
+               new SpeakerDetailsPage() { SpeakerModel = speaker };
 
              await NavigationService.PushAsync(this.Navigation, speakerDetails);
             this.ListViewSpeakers.SelectedItem = null;

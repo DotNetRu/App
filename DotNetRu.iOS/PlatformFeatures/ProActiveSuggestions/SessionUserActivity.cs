@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using CoreSpotlight;
@@ -65,26 +65,24 @@ namespace DotNetRu.iOS.PlatformFeatures.ProActiveSuggestions
             // Provide context
             var attributes =
                 new CSSearchableItemAttributeSet($"{AboutThisApp.PackageName}.session")
-                    {
-                        Keywords =
+                {
+                    Keywords =
                             keywords.ToArray()
                                 .Select(
                                     k =>
                                         k.ToString())
                                 .ToArray(),
-                        Url = NSUrl.FromString(
+                    Url = NSUrl.FromString(
                             talkModel.GetAppLink()
                                 .AppLinkUri
                                 .AbsoluteUri)
-                    };
-            if (talkModel.StartTime.HasValue && talkModel.StartTime > DateTime.MinValue)
-            {
-                attributes.DueDate = talkModel.StartTime.Value.ToNSDate();
-                attributes.StartDate = talkModel.StartTime.Value.ToNSDate();
-                attributes.EndDate = talkModel.EndTime?.ToNSDate();
+                };
 
-                attributes.ImportantDates = new[] { attributes.StartDate, attributes.EndDate };
-            }
+            attributes.DueDate = talkModel.Sessions.First().StartTime.DateTime.ToNSDate();
+            attributes.StartDate = talkModel.Sessions.First().StartTime.DateTime.ToNSDate();
+            attributes.EndDate = talkModel.Sessions.First().EndTime.DateTime.ToNSDate();
+
+            attributes.ImportantDates = new[] { attributes.StartDate, attributes.EndDate };
 
             this.activity.ContentAttributeSet = attributes;
             this.activity.EligibleForHandoff = true;

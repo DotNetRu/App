@@ -38,6 +38,11 @@ namespace DotNetRu.Utils
             Analytics.TrackEvent(trackIdentifier, new Dictionary<string, string> { { key, value } });
         }
 
+        public void Track(string trackIdentifier, IDictionary<string, string> values)
+        {
+            Analytics.TrackEvent(trackIdentifier, values);
+        }
+
         public static void Report(Exception exception)
         {
             Crashes.TrackError(exception);

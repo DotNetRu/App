@@ -1,4 +1,4 @@
-﻿namespace DotNetRu.Clients.Portable.ViewModel
+namespace DotNetRu.Clients.Portable.ViewModel
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -20,29 +20,13 @@
 
         public List<Category> Categories { get; } = new List<Category>();
 
-        private void SetShowAllCategories(bool showAll)
-        {
-            // first save changes to individual filters
-            this.Save();
-            this.Settings.ShowAllCategories = showAll;
-            foreach (var category in this.Categories)
-            {
-                //category.IsEnabled = !this.Settings.ShowAllCategories;
-                //category.IsFiltered = this.Settings.ShowAllCategories
-                //                      || this.Settings.FilteredCategories.Contains(category.Name);
-            }
-        }
-
-        public async Task LoadCategoriesAsync()
+        public void LoadCategories()
         {
             this.Categories.Clear();
             var items = new List<Category>();
 
             foreach (var category in items.OrderBy(c => c.Name))
             {
-                //category.IsFiltered = this.Settings.ShowAllCategories
-                //                      || this.Settings.FilteredCategories.Contains(category.Name);
-                //category.IsEnabled = !this.Settings.ShowAllCategories;
                 this.Categories.Add(category);
             }
 
@@ -52,12 +36,9 @@
 
         public void Save()
         {
-            if (!this.Settings.ShowAllCategories)
-            {
-                this.Settings.FilteredCategories = string.Join(
-                    "|",
-                    this.Categories?.Where(c => c.IsFiltered).Select(c => c.Name));
-            }
+            this.Settings.FilteredCategories = string.Join(
+                "|",
+                this.Categories?.Where(c => c.IsFiltered).Select(c => c.Name));
         }
     }
 }

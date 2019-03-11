@@ -24,7 +24,9 @@ namespace DotNetRu.Clients.UI
     using Microsoft.AppCenter;
     using Microsoft.AppCenter.Analytics;
     using Microsoft.AppCenter.Crashes;
+    using Microsoft.AppCenter.Push;
     using Newtonsoft.Json;
+    using Plugin.LocalNotifications;
     using Xamarin.Essentials;
     using Xamarin.Forms;
 
@@ -50,10 +52,25 @@ namespace DotNetRu.Clients.UI
 
             var config = AppConfig.GetConfig();
 
+            // This should come before AppCenter.Start() is called
+            // Avoid duplicate event registration:
+            if (!AppCenter.Configured)
+            {
+                Push.PushNotificationReceived += async (sender, e) =>
+                {
+                    Logger.Track($"PushReceived {e.Title}, {e.Message}", e.CustomData);
+
+                    await UpdateService.UpdateAudit();
+
+                    CrossLocalNotifications.Current.Show("New meetup announced", "New meetup announced. Open app to see details");
+                };
+            }
+
             AppCenter.Start(
                 $"ios={config.AppCenteriOSKey};android={config.AppCenterAndroidKey};",
                 typeof(Analytics),
-                typeof(Crashes));
+                typeof(Crashes),
+                typeof(Push));
 
             this.MainPage = new BottomTabbedPage();
         }

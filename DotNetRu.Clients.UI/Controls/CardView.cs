@@ -1,4 +1,4 @@
-﻿namespace DotNetRu.Clients.UI.Controls
+namespace DotNetRu.Clients.UI.Controls
 {
     using Xamarin.Forms;
 
@@ -10,7 +10,7 @@
             if (Device.RuntimePlatform == Device.iOS)
             {
                 this.HasShadow = false;
-                this.OutlineColor = Color.Transparent;
+                this.BorderColor = Color.Transparent;
                 this.BackgroundColor = Color.Transparent;
             }
         }

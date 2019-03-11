@@ -1,6 +1,5 @@
-﻿namespace DotNetRu.Droid
+namespace DotNetRu.Droid
 {
-    using System.Reflection;
 
     using Android.App;
     using Android.Content;
@@ -10,9 +9,7 @@
     using DotNetRu.Droid.Helpers;
     using DotNetRu.Droid.Notifications;
     using DotNetRu.Utils.Helpers;
-
-    using FFImageLoading.Forms.Droid;
-
+    using FFImageLoading.Forms.Platform;
     using FormsToolkit.Droid;
 
     using ImageCircle.Forms.Plugin.Droid;
