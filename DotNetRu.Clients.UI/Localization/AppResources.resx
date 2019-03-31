@@ -141,6 +141,9 @@
   <data name="CodeFromSession" xml:space="preserve">
     <value>Code from Session</value>
   </data>
+  <data name="CopiedToClipboard" xml:space="preserve">
+    <value>Copied to clipboard</value>
+  </data>
   <data name="CreatedBy" xml:space="preserve">
     <value>Created by DotNetRu Team with &lt;3</value>
   </data>

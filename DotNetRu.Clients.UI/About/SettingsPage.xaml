@@ -66,7 +66,9 @@
                     StyleId="disclosure"/>
                 <TextCell 
                     Text="{Binding AppVersion}"
-                    TextColor="{StaticResource LabelSectionText}" />
+                    TextColor="{StaticResource LabelSectionText}"
+                    Command="{Binding CopyAppVersionCommand}"                    
+                    StyleId="disclosure" />
             </TableSection>
 
             <TableSection Title="{Binding Resources[Settings]}">

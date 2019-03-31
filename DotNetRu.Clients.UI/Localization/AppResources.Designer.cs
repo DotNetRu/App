@@ -133,7 +133,16 @@ namespace DotNetRu.Clients.UI.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Created by DotNetRu Team with &lt;3.
+        ///   Ищет локализованную строку, похожую на Copied to clipboard.
+        /// </summary>
+        public static string CopiedToClipboard {
+            get {
+                return ResourceManager.GetString("CopiedToClipboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Created by DotNetRu Team with &lt;3.
         /// </summary>
         public static string CreatedBy {
             get {
