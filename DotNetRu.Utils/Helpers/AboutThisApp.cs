@@ -1,4 +1,4 @@
-﻿namespace DotNetRu.Utils.Helpers
+namespace DotNetRu.Utils.Helpers
 {
     public static class AboutThisApp
     {
@@ -13,12 +13,14 @@
         public const string Developer = "DotNetRu Team";
 
         public const string DotNetRuLink = "http://dotnet.ru/";
-        public const string SpbLink = "https://vk.com/SpbDotNet";
-        public const string SaratovLink = "https://vk.com/SarDotNet";
-        public const string KrasnoyarskLink = "https://vk.com/KryDotNet";
+
         public const string KazanLink = "https://vk.com/kzndotnet";
+        public const string KrasnoyarskLink = "https://vk.com/KryDotNet";
         public const string MoscowLink = "https://vk.com/MskDotNet";
         public const string NovosibirskLink = "https://www.meetup.com/NskDotNet/";
+        public const string OmskLink = "https://vk.com/OmsDotNet";
+        public const string SaratovLink = "https://vk.com/SarDotNet";
+        public const string SpbLink = "https://vk.com/SpbDotNet";
 
         public const string DeveloperWebsite = "http://dotnet.ru";
 
