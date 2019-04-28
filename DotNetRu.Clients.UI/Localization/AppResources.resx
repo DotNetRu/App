@@ -214,6 +214,9 @@ Sergey Polezhaev</value>
   <data name="Novosibirsk" xml:space="preserve">
     <value>Novosibirsk</value>
   </data>
+  <data name="Omsk" xml:space="preserve">
+    <value>Omsk</value>
+  </data>
   <data name="OpenSourceNotice" xml:space="preserve">
     <value>Open Source Notice</value>
   </data>

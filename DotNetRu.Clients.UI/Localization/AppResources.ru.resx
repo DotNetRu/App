@@ -286,4 +286,7 @@
   <data name="CopiedToClipboard" xml:space="preserve">
     <value>Скопировано в буфер обмена</value>
   </data>
+  <data name="Omsk" xml:space="preserve">
+    <value>Омск</value>
+  </data>
 </root>
