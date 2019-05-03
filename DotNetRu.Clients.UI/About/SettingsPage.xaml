@@ -45,6 +45,7 @@
                 <cells:CommunityViewCell Community="{x:Static model:Communities.Krasnoyarksk}"/>
                 <cells:CommunityViewCell Community="{x:Static model:Communities.Kazan}"/>
                 <cells:CommunityViewCell Community="{x:Static model:Communities.Novosibirsk}"/>
+                <cells:CommunityViewCell Community="{x:Static model:Communities.Omsk}"/>
             </TableSection>
 
             <TableSection Title="{Binding Resources[AboutApp]}">
@@ -66,7 +67,9 @@
                     StyleId="disclosure"/>
                 <TextCell 
                     Text="{Binding AppVersion}"
-                    TextColor="{StaticResource LabelSectionText}" />
+                    TextColor="{StaticResource LabelSectionText}"
+                    Command="{Binding CopyAppVersionCommand}"                    
+                    StyleId="disclosure" />
             </TableSection>
 
             <TableSection Title="{Binding Resources[Settings]}">

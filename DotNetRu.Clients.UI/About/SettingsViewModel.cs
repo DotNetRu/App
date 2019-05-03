@@ -8,16 +8,25 @@ namespace DotNetRu.Clients.Portable.ViewModel
     using DotNetRu.Clients.Portable.Services;
     using DotNetRu.Clients.UI.Localization;
     using DotNetRu.Utils.Helpers;
-
+    using Xamarin.Essentials;
     using Xamarin.Forms;
 
     public class SettingsViewModel : ViewModelBase
     {
+        private readonly IToast toaster;
+
         private Language selectedLanguage;
 
         public SettingsViewModel(Command openCreditsCommand, Command openTechnologiesUsedCommand, Command openFriendsCommand)
         {
+            this.toaster = DependencyService.Get<IToast>();
+
             this.OpenCreditsCommand = openCreditsCommand;
+            this.CopyAppVersionCommand = new Command(async () =>
+            {
+                await Clipboard.SetTextAsync(AppVersion);                
+                toaster.SendToast(AppResources.ResourceManager.GetString("CopiedToClipboard"));
+            });
             this.OpenTechnologiesUsedCommand = openTechnologiesUsedCommand;
             this.OpenFriendsCommand = openFriendsCommand;
 
@@ -30,6 +39,8 @@ namespace DotNetRu.Clients.Portable.ViewModel
         }
 
         public Command OpenCreditsCommand { get; set; }
+
+        public Command CopyAppVersionCommand { get; set; }
 
         public Command OpenTechnologiesUsedCommand { get; set; }
 
