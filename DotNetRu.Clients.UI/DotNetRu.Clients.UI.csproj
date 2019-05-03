@@ -22,15 +22,12 @@
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.4.859" />
     <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.4.859" />
     <PackageReference Include="Xamarin.Forms" Version="3.5.0.129452" />
+    <PackageReference Include="LiveXAML" Version="2.1.72" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DotNetRu.DataStore.Audit\DotNetRu.DataStore.Audit.csproj">
-      <Project>{7B4C73DF-8A4A-4AD1-92D9-A064065CDD71}</Project>
-      <Name>DotNetRu.DataStore.Audit</Name>
     </ProjectReference>
     <ProjectReference Include="..\DotNetRu.Utils\DotNetRu.Utils.csproj">
-      <Project>{dfa0f0f6-c396-412e-86a9-e9095f71cc36}</Project>
-      <Name>DotNetRu.Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

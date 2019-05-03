@@ -55,21 +55,26 @@
                 <ColumnDefinition Width="*"/>
               </Grid.ColumnDefinitions>
               <StackLayout Spacing="{StaticResource SmallSpacing}" VerticalOptions="Center">
-                <Grid>
-                  <imagecircle:CircleImage WidthRequest="35" HeightRequest="35" VerticalOptions="Center" HorizontalOptions="Center"
-                      FillColor="{Binding StartTime, Converter={StaticResource EventColorDisplayConverter}}"/>
-                  <Label Text="{Binding  StartTime, Converter={StaticResource EventDayNumberDisplayConverter}}"
-                         VerticalTextAlignment="Center"
-                         HorizontalTextAlignment="Center"
-                         Style="{DynamicResource EvolveListItemTextStyle}"
-                         TextColor="White"
-                         StyleId="MeetupModelItemCircleDate"/>
-                </Grid>
-                <Label  Text="{Binding StartTime, Converter={StaticResource EventDayDisplayConverter}, ConverterParameter={Binding Resources[CultureInfo]}}"
-                           VerticalTextAlignment="Center"
-                           HorizontalTextAlignment="Center"
-                           Style="{DynamicResource EvolveListItemDetailTextStyle}"
-                           StyleId="MeetupModelItemDay"/>
+                <Frame 
+                    HeightRequest="35" 
+                    WidthRequest="35" 
+                    CornerRadius="20" 
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Padding="0"
+                    BackgroundColor="{Binding StartTime, Converter={StaticResource EventColorDisplayConverter}}">
+                    <Label 
+                        Text="{Binding  StartTime, Converter={StaticResource EventDayNumberDisplayConverter}}" 
+                        TextColor="White" 
+                        HorizontalOptions="Center" 
+                        VerticalOptions="Center" 
+                        HorizontalTextAlignment="Center" 
+                        VerticalTextAlignment="Center" />
+                </Frame>
+                <Label Text="{Binding StartTime, Converter={StaticResource EventDayDisplayConverter}, ConverterParameter={Binding Resources[CultureInfo]}}"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Center"
+                       HorizontalOptions="Center"/>
               </StackLayout>
 
               <StackLayout Grid.Column="1" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
@@ -78,24 +83,7 @@
                 <Label Text="{Binding ., Converter={StaticResource EventDateDisplayConverter}}"
                        Style="{DynamicResource EvolveListItemDetailTextStyle}" StyleId="MeetupModelItemTime"/>
               </StackLayout>
-            </Grid>
-
-            <!--<Grid HeightRequest="180" BackgroundColor="{DynamicResource Primary}">
-              <Image Source="{Binding ImageUrl, Converter={StaticResource EventImageConverter}}" 
-                VerticalOptions="FillAndExpand"
-                HorizontalOptions="FillAndExpand"
-                Aspect="AspectFill"
-                HeightRequest="150"
-                StyleId="EventItemImage"/>
-              <StackLayout Padding="{StaticResource StandardPadding}" 
-                           Spacing="{StaticResource SmallSpacing}"
-                           VerticalOptions="End"
-                           BackgroundColor="{StaticResource PrimaryDarkTranslucent}"
-                           HorizontalOptions="FillAndExpand">
-                <Label Text="{Binding Title}" Style="{DynamicResource EvolveListItemTextStyle}" TextColor="White" LineBreakMode="NoWrap" StyleId="EventItemTitle"/>
-                <Label Text="{Binding ., Converter={StaticResource EventDateDisplayConverter}}" Style="{DynamicResource EvolveListItemDetailTextStyle}" TextColor="White" LineBreakMode="NoWrap" StyleId="EventItemDate"/>
-              </StackLayout>
-            </Grid>-->
+            </Grid>           
           </ViewCell>
         </DataTemplate>
       </ListView.ItemTemplate>
