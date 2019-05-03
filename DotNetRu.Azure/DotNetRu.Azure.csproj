@@ -4,10 +4,10 @@
     <AzureFunctionsVersion>v2</AzureFunctionsVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="8.0.0" />
-    <PackageReference Include="LibGit2Sharp" Version="0.25.4" />
-    <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.24" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+    <PackageReference Include="AutoMapper" Version="8.1.0" />
+    <PackageReference Include="LibGit2Sharp" Version="0.26.0" />
+    <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.27" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
     <PackageReference Include="Octokit" Version="0.32.0" />
   </ItemGroup>
   <ItemGroup>
