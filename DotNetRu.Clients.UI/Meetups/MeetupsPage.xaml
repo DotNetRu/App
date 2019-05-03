@@ -33,7 +33,7 @@
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <StackLayout Spacing="{StaticResource SmallSpacing}" VerticalOptions="Center">
-                                <Frame HeightRequest="35" WidthRequest="35" CornerRadius="20" HorizontalOptions="Center" VerticalOptions="Center" Padding="0" BackgroundColor="{Binding StartTime, Converter={StaticResource EventColorDisplayConverter}}">
+                                <Frame HasShadow="false" HeightRequest="40" WidthRequest="40" CornerRadius="20" HorizontalOptions="Center" VerticalOptions="Center" Padding="0" BackgroundColor="{Binding StartTime, Converter={StaticResource EventColorDisplayConverter}}">
                                     <Label Text="{Binding  StartTime, Converter={StaticResource EventDayNumberDisplayConverter}}" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
                                 </Frame>
                                 <Label Text="{Binding StartTime, Converter={StaticResource EventDayDisplayConverter}, ConverterParameter={Binding Resources[CultureInfo]}}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" HorizontalOptions="Center" />
