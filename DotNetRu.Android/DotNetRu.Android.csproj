@@ -145,7 +145,6 @@
     <Compile Include="Renderers\SwitchCellEx.cs" />
     <Compile Include="Helpers\Toaster.cs" />
     <Compile Include="Helpers\ListViewSelectionOnTopEffect.cs" />
-    <Compile Include="Helpers\AppVersionProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\fontawesome.ttf" />
