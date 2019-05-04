@@ -297,7 +297,6 @@
     <Compile Include="Renderers\SelectedTabPageRenderer.cs" />
     <Compile Include="Helpers\LaunchTwitter.cs" />
     <Compile Include="Helpers\LaunchFacebook.cs" />
-    <Compile Include="Helpers\AppVersionProvider.cs" />
     <Compile Include="ShortcutIdentifier.cs" />
     <Compile Include="ViewController.cs" />
     <Compile Include="ViewController.designer.cs">

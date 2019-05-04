@@ -24,8 +24,8 @@ namespace DotNetRu.Clients.Portable.ViewModel
             this.OpenCreditsCommand = openCreditsCommand;
             this.CopyAppVersionCommand = new Command(async () =>
             {
-                await Clipboard.SetTextAsync(AppVersion);                
-                toaster.SendToast(AppResources.ResourceManager.GetString("CopiedToClipboard"));
+                // await Clipboard.SetTextAsync(AppVersion);                
+                // toaster.SendToast(AppResources.ResourceManager.GetString("CopiedToClipboard"));
             });
             this.OpenTechnologiesUsedCommand = openTechnologiesUsedCommand;
             this.OpenFriendsCommand = openFriendsCommand;
@@ -70,8 +70,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
 
         public ImageSource BackgroundImage { get; set; }
 
-        public string AppVersion =>
-            $"{AppResources.Version} {DependencyService.Get<IAppVersionProvider>()?.AppVersion ?? "1.0"}";
+        public string AppVersion => $"{AppResources.Version} {VersionTracking.CurrentVersion} ({VersionTracking.CurrentBuild})";
 
         private void UpdateViewModel()
         {
