@@ -6,13 +6,13 @@ namespace DotNetRu.Clients.UI
 {
     using System;
     using System.Globalization;
-    using System.Text;
     using System.Threading.Tasks;
     
     using DotNetRu.Clients.Portable.Interfaces;
     using DotNetRu.Clients.Portable.Model;
     using DotNetRu.Clients.Portable.Services;
     using DotNetRu.Clients.Portable.ViewModel;
+    using DotNetRu.Clients.UI.Helpers;
     using DotNetRu.Clients.UI.Localization;
     using DotNetRu.Clients.UI.Pages;
     using DotNetRu.DataStore.Audit.Services;
@@ -25,7 +25,7 @@ namespace DotNetRu.Clients.UI
     using Microsoft.AppCenter.Analytics;
     using Microsoft.AppCenter.Crashes;
     using Microsoft.AppCenter.Push;
-    using Newtonsoft.Json;
+   
     using Plugin.LocalNotifications;
     using Xamarin.Essentials;
     using Xamarin.Forms;
@@ -47,7 +47,12 @@ namespace DotNetRu.Clients.UI
 
             this.InitializeComponent();
 
-            Task.Run(UpdateService.UpdateAudit);
+            Task.Run(UpdateService.UpdateAudit)
+                .ContinueWith
+                (
+                    t => AuditRefresher.Refresh(t.Result),
+                    TaskContinuationOptions.OnlyOnRanToCompletion
+                );
 
             var config = AppConfig.GetConfig();
 
@@ -59,9 +64,9 @@ namespace DotNetRu.Clients.UI
                 {
                     Logger.Track($"PushReceived {e.Title}, {e.Message}", e.CustomData);
 
-                    await UpdateService.UpdateAudit();
-
+                    var result = await UpdateService.UpdateAudit();
                     CrossLocalNotifications.Current.Show("New meetup announced", "New meetup announced. Open app to see details");
+                    AuditRefresher.Refresh(result);
                 };
             }
 

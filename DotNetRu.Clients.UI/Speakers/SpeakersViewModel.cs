@@ -5,7 +5,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Windows.Input;
-
+    using DotNetRu.Clients.UI.Helpers;
     using DotNetRu.DataStore.Audit.Models;
     using DotNetRu.DataStore.Audit.Services;
     using DotNetRu.Utils;
@@ -22,6 +22,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
         public SpeakersViewModel(INavigation navigation)
             : base(navigation)
         {
+            MessagingCenter.Subscribe<AuditRefresher>(this, MessageKeys.SpeakersChanged, sender => this.UpdateSpeakers());
         }
 
         public ObservableRangeCollection<Grouping<char, SpeakerModel>> speakers = new ObservableRangeCollection<Grouping<char, SpeakerModel>>();
@@ -82,8 +83,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
                 // TODO: update data when we'll have finally managed to get them directly from github
                 if (!this.Speakers.Any() || force)
                 {
-                    IEnumerable<SpeakerModel> speakers = RealmService.Get<SpeakerModel>();
-                    this.SortSpeakers(speakers);
+                    UpdateSpeakers();
                 }
 
                 // TODO uncomment
@@ -119,6 +119,15 @@ namespace DotNetRu.Clients.Portable.ViewModel
             }
 
             return;
+        }
+
+        private void UpdateSpeakers()
+        {
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                IEnumerable<SpeakerModel> speakers = RealmService.Get<SpeakerModel>();
+                this.SortSpeakers(speakers);
+            });
         }
     }
 }
