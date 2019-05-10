@@ -3,7 +3,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
     using System;
     using System.Linq;
     using System.Windows.Input;
-
+    using DotNetRu.Clients.UI.Helpers;
     using DotNetRu.DataStore.Audit.Models;
     using DotNetRu.DataStore.Audit.Services;
     using DotNetRu.Utils;
@@ -23,6 +23,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
         public FriendsViewModel(INavigation navigation)
             : base(navigation)
         {
+            MessagingCenter.Subscribe<AuditRefresher>(this, MessageKeys.FriendsChanged, sender => this.UpdateFriends());
         }
 
         public ObservableRangeCollection<FriendModel> Friends { get; } = new ObservableRangeCollection<FriendModel>();
@@ -60,7 +61,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
             {
                 this.IsBusy = true;
 
-                this.Friends.ReplaceRange(RealmService.Get<FriendModel>().OrderByDescending(x => x.NumberOfMeetups));
+                UpdateFriends();
             }
             catch (Exception ex)
             {
@@ -71,6 +72,14 @@ namespace DotNetRu.Clients.Portable.ViewModel
             {
                 this.IsBusy = false;
             }
+        }
+
+        private void UpdateFriends()
+        {
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                this.Friends.ReplaceRange(RealmService.Get<FriendModel>().OrderByDescending(x => x.NumberOfMeetups));
+            });
         }
     }
 }

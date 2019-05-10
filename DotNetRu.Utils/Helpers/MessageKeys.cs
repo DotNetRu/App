@@ -1,8 +1,14 @@
-﻿namespace DotNetRu.Utils.Helpers
+namespace DotNetRu.Utils.Helpers
 {
     public static class MessageKeys
     {
         public const string LanguageChanged = "LanguageChanged";
+
+        public const string FriendsChanged = "FriendsChanged";
+
+        public const string MeetupsChanged = "MeetupsChanged";
+
+        public const string SpeakersChanged = "SpeakersChanged";
 
         public const string UpdateTitles = "UpdateTitles";
 
