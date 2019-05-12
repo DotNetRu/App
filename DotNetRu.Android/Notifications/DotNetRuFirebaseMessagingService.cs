@@ -4,7 +4,7 @@
 
     using Android.App;
     using Android.Util;
-
+    using DotNetRu.Clients.UI.Helpers;
     using DotNetRu.DataStore.Audit.Services;
 
     using Firebase.Messaging;
@@ -18,10 +18,14 @@
             Log.Debug("Push", "AuditUpdate. Push Notification receviced!");
 
             await UpdateService.UpdateAudit().ContinueWith(
-                t => NotificationHelper.SendNotification(
-                    Application.Context,
-                    "New meetup",
-                    "New meetup announced!"),
+                t =>
+                {
+                    NotificationHelper.SendNotification(
+                      Application.Context,
+                      "New meetup",
+                      "New meetup announced!");
+                    AuditRefresher.Refresh(t.Result);
+                },
                 TaskContinuationOptions.OnlyOnRanToCompletion);
         }
     }

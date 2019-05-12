@@ -5,6 +5,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
 
     using DotNetRu.Clients.Portable.Helpers;
     using DotNetRu.Clients.Portable.Model.Extensions;
+    using DotNetRu.Clients.UI.Helpers;
     using DotNetRu.DataStore.Audit.Models;
     using DotNetRu.DataStore.Audit.Services;
     using DotNetRu.Utils;
@@ -26,6 +27,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
             : base(navigation)
         {
             MessagingCenter.Subscribe<LocalizedResources>(this, MessageKeys.LanguageChanged, sender => this.UpdateMeetups());
+            MessagingCenter.Subscribe<AuditRefresher>(this, MessageKeys.MeetupsChanged, sender => this.UpdateMeetups());
             this.Title = "Meetups";
         }
 
@@ -56,7 +58,10 @@ namespace DotNetRu.Clients.Portable.ViewModel
 
         public void UpdateMeetups()
         {
-            this.MeetupsByMonth.ReplaceRange(RealmService.Get<MeetupModel>().GroupByMonth());
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                this.MeetupsByMonth.ReplaceRange(RealmService.Get<MeetupModel>().GroupByMonth());
+            });
         }
 
         public bool ExecuteLoadMeetups()

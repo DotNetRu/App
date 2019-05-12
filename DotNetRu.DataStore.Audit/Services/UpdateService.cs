@@ -21,8 +21,9 @@ namespace DotNetRu.DataStore.Audit.Services
 
     public static class UpdateService
     {
-        public static async Task UpdateAudit()
+        public static async Task<UpdateResults> UpdateAudit()
         {
+            var result = UpdateResults.None;
             try
             {
                 var logger = DependencyService.Get<ILogger>();
@@ -71,11 +72,31 @@ namespace DotNetRu.DataStore.Audit.Services
                 stopwatch.Stop();
 
                 logger.Track("AuditUpdate. Finished updating audit");
+
+                if (updateContent.Speakers.Length > 0 ||
+                    updateContent.Photos.Length > 0)
+                {
+                    result = result | UpdateResults.Speakers;
+                }
+                if (updateContent.Friends.Length > 0 ||
+                    updateContent.Speakers.Length > 0 ||
+                    updateContent.Venues.Length > 0 ||
+                    updateContent.Talks.Length > 0 ||
+                    updateContent.Meetups.Length > 0)
+                {
+                    result = result | UpdateResults.Meetups;
+                }
+                if (updateContent.Friends.Length > 0)
+                {
+                    result = result | UpdateResults.Friends;
+                }
             }
             catch (Exception e)
             {
                 DotNetRuLogger.Report(e);
             }
+
+            return result;
         }
 
         private static void UpdateSpeakerAvatars(Realm auditRealm, IEnumerable<string> photoURLs)
@@ -92,15 +113,15 @@ namespace DotNetRu.DataStore.Audit.Services
         }
 
         private static void UpdateModels<T>(IMapper mapper, Realm auditRealm, IEnumerable<T> entities)
-        {
+        {            
             foreach (var entity in entities)
             {
                 var realmType = mapper.ConfigurationProvider.GetAllTypeMaps().Single(x => x.SourceType == typeof(T))
                     .DestinationType;
 
                 var realmObject = mapper.Map(entity, typeof(T), realmType);
-
-                auditRealm.Add(realmObject as RealmObject, update: true);
+                
+                auditRealm.Add(realmObject as RealmObject, update: true);                
             }
         }
 
@@ -148,7 +169,7 @@ namespace DotNetRu.DataStore.Audit.Services
                         cfg.CreateMap<MeetupEntity, Meetup>()
                             .ForMember(
                                 dest => dest.Sessions,
-                                o => o.MapFrom((src, dest, sessions, context) => context.Mapper.Map(src.Sessions, dest.Sessions)))
+                                o => o.MapFrom(src => src.Sessions))
                             .AfterMap(
                                 (src, dest) =>
                                     {
@@ -164,5 +185,14 @@ namespace DotNetRu.DataStore.Audit.Services
 
             return config.CreateMapper();            
         }
+    }
+
+    [Flags]
+    public enum UpdateResults
+    {
+        None = 0,
+        Speakers = 1,
+        Meetups = 2,
+        Friends = 4
     }
 }
