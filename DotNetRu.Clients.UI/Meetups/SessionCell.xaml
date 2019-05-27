@@ -1,4 +1,4 @@
-<ContentView 
+﻿<ContentView 
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
     xmlns:imagecircle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
@@ -8,6 +8,7 @@
     <ContentView.Resources>
         <ResourceDictionary>
             <converters:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter" />
+            <converters:SessionTimeDisplayConverter x:Key="SessionTimeDisplayConverter" />            
         </ResourceDictionary>
     </ContentView.Resources>
     <Grid Padding="{DynamicResource StandardPadding}" 
@@ -42,21 +43,17 @@
 
         <Label Grid.Row="1"
                Grid.Column="1"
-               Text="{Binding Time}"
-               Style="{DynamicResource EvolveListItemDetailTextStyle}"/>
+               VerticalOptions="End"
+               Text="{Binding ., Converter={StaticResource SessionTimeDisplayConverter}}" 
+               Style="{DynamicResource EvolveListItemDetailTextStyle}"
+               StyleId="SessionTime"/>
 
         <Label Grid.Row="2"
                Grid.Column="1"
                 Text="{Binding Talk.SpeakerNames}" 
                 Style="{DynamicResource EvolveListItemDetailTextStyle}"
                 StyleId="SpeakerNames"/>
-
-        <!--<Label Grid.Row="3"
-                   VerticalOptions="End"
-                   Text="{Binding ., Converter={StaticResource SessionTimeDisplayConverter}}" 
-                   Style="{DynamicResource EvolveListItemDetailTextStyle}"
-                   StyleId="SessionTime"/>-->
-
+                               
         <!--<Label Grid.Row="3" Grid.Column="1"
 		           VerticalOptions="End"
                    Text="{Binding Level}" 

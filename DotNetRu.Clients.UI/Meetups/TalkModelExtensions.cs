@@ -41,17 +41,6 @@ namespace DotNetRu.Clients.Portable.Model.Extensions
                 $"http://{AboutThisApp.AppLinksBaseDomain}/{AboutThisApp.SessionsSiteSubdirectory}/#{talkModel.Id}";
         }
 
-        public static string GetDisplayTime(this TalkModel talkModel)
-        {
-            var start = talkModel.Sessions.First().StartTime;
-
-            var startString = start.ToString("t");
-            var end = talkModel.Sessions.First().EndTime;
-            var endString = end.ToString("t");
-
-            return $"{startString}–{endString}";
-        }
-
         public static IEnumerable<TalkModel> Search(this IEnumerable<TalkModel> sessions, string searchText)
         {
             if (string.IsNullOrWhiteSpace(searchText))

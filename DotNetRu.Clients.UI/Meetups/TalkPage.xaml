@@ -29,27 +29,19 @@
         HorizontalOptions="FillAndExpand"
         BackgroundColor="{DynamicResource Primary}">
             <Label
-          Text="{Binding TalkModel.Title}"
-          FontSize="Large"
-          Style="{DynamicResource TitleStyle}"
-          TextColor="White"
-          HorizontalTextAlignment="Center"
-          StyleId="SessionTitle"/>
-            <!--<Label
-                        x:Name="SessionDate"
-                        Text="{Binding TalkModel, Converter={StaticResource SessionDateDisplayConverter}}"
-                        Style="{DynamicResource EvolveDetailTextStyle}"
-                        TextColor="White"
-                        StyleId="SessionDate"/>-->
+              Text="{Binding TalkModel.Title}"
+              FontSize="Large"
+              Style="{DynamicResource TitleStyle}"
+              TextColor="White"
+              HorizontalTextAlignment="Center"
+              StyleId="SessionTitle"/>
         </StackLayout>
         <controls:AlwaysScrollView x:Name="MainScroll">
             <StackLayout Spacing="0">
                 <StackLayout
             BackgroundColor="{DynamicResource WindowBackgroundTable}"
             Spacing="{DynamicResource CardSpacing}"
-            Padding="{DynamicResource CardPadding}">
-
-
+            Padding="{DynamicResource CardPadding}">            
                     <controls:CardView IsVisible="{Binding TalkModel.Speakers, Converter={StaticResource GenericIsVisibleConverter}}">
                         <!--Speakers-->
                         <StackLayout Spacing="0">
@@ -165,7 +157,7 @@
                         </StackLayout>
                     </controls:CardView>
 
-                    <controls:CardView IsVisible="{Binding TalkModel.Room, Converter={StaticResource GenericIsVisibleConverter}}">
+                    <controls:CardView IsVisible="False">
                         <StackLayout Spacing="0">
                             <controls:LabelSection Text="Location"/>
                             <controls:HeaderDivider/>
