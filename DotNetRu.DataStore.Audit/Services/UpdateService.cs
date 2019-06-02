@@ -173,10 +173,13 @@ namespace DotNetRu.DataStore.Audit.Services
                             .AfterMap(
                                 (src, dest) =>
                                     {
-                                        foreach (string friendId in src.FriendIds)
+                                        if (src.FriendIds != null)
                                         {
-                                            var friend = auditRealm.Find<Friend>(friendId);
-                                            dest.Friends.Add(friend);
+                                            foreach (string friendId in src.FriendIds)
+                                            {
+                                                var friend = auditRealm.Find<Friend>(friendId);
+                                                dest.Friends.Add(friend);
+                                            }
                                         }
 
                                         dest.Venue = auditRealm.Find<Venue>(src.VenueId);
