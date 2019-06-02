@@ -31,7 +31,7 @@ namespace DotNetRu.DataStore.Audit.Services
         {
             var realmType = Mapper.Configuration.GetAllTypeMaps().Single(x => x.DestinationType == typeof(TAppModel)).SourceType;
 
-            return AuditRealm.All(realmType.Name).AsEnumerable().Select(Mapper.Map<TAppModel>);
+            return AuditRealm.All(realmType.Name).ToList().Select(Mapper.Map<TAppModel>);
         }
 
         private static void InitializeAutoMapper()

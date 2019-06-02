@@ -59,23 +59,23 @@ namespace DotNetRu.Azure
 
             realm.Write(() => { realm.Add(auditVersion); });
 
-            InitializeAudoMapper(realm, auditRepoPath);
+            var mapper = InitializeAudoMapper(realm, auditRepoPath);
 
-            realm.AddEntities<SpeakerEntity, Speaker>(auditRepoPath, "speakers");
-            realm.AddEntities<FriendEntity, Friend>(auditRepoPath, "friends");
-            realm.AddEntities<VenueEntity, Venue>(auditRepoPath, "venues");
-            realm.AddEntities<CommunityEntity, Community>(auditRepoPath, "communities");
-            realm.AddEntities<TalkEntity, Talk>(auditRepoPath, "talks");
-            realm.AddEntities<MeetupEntity, Meetup>(auditRepoPath, "meetups");
+            realm.AddEntities<SpeakerEntity, Speaker>(Path.Combine(auditRepoPath, "db", "speakers"), mapper);
+            realm.AddEntities<FriendEntity, Friend>(Path.Combine(auditRepoPath, "db", "friends"), mapper);
+            realm.AddEntities<VenueEntity, Venue>(Path.Combine(auditRepoPath, "db", "venues"), mapper);
+            realm.AddEntities<CommunityEntity, Community>(Path.Combine(auditRepoPath, "db", "communities"), mapper);
+            realm.AddEntities<TalkEntity, Talk>(Path.Combine(auditRepoPath, "db", "talks"), mapper);
+            realm.AddEntities<MeetupEntity, Meetup>(Path.Combine(auditRepoPath, "db", "meetups"), mapper);
 
             realm.Dispose();
 
             return File.ReadAllBytes(config.DatabasePath);
         }
 
-        private static void InitializeAudoMapper(Realm realm, string auditPath)
+        private static IMapper InitializeAudoMapper(Realm realm, string auditPath)
         {
-            Mapper.Initialize(
+            var mapperConfig = new MapperConfiguration(
                 cfg =>
                 {
                     cfg.CreateMap<SpeakerEntity, Speaker>().AfterMap(
@@ -124,15 +124,20 @@ namespace DotNetRu.Azure
                         .AfterMap(
                             (src, dest) =>
                             {
-                                foreach (string friendId in src.FriendIds)
+                                if (src.FriendIds != null)
                                 {
-                                    var friend = realm.Find<Friend>(friendId);
-                                    dest.Friends.Add(friend);
+                                    foreach (string friendId in src.FriendIds)
+                                    {
+                                        var friend = realm.Find<Friend>(friendId);
+                                        dest.Friends.Add(friend);
+                                    }
                                 }
 
                                 dest.Venue = realm.Find<Venue>(src.VenueId);
                             });
                 });
+
+            return mapperConfig.CreateMapper();
         }
     }
 }
