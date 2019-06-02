@@ -120,7 +120,7 @@ namespace DotNetRu.Azure
                     cfg.CreateMap<MeetupEntity, Meetup>()
                         .ForMember(
                             dest => dest.Sessions,
-                            o => o.MapFrom((src, dest, sessions, context) => context.Mapper.Map(src.Sessions, dest.Sessions)))
+                            o => o.MapFrom(src => src.Sessions))
                         .AfterMap(
                             (src, dest) =>
                             {
