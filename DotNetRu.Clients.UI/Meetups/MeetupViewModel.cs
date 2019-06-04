@@ -3,6 +3,11 @@ using System.Linq;
 using System.Windows.Input;
 
 using DotNetRu.Clients.Portable.Helpers;
+using DotNetRu.Clients.Portable.Model;
+using DotNetRu.Clients.Portable.ViewModel;
+using DotNetRu.Clients.UI;
+using DotNetRu.Clients.UI.Helpers;
+using DotNetRu.Clients.UI.Pages.Sessions;
 using DotNetRu.DataStore.Audit.Models;
 using DotNetRu.Utils.Helpers;
 
@@ -10,8 +15,8 @@ using FormsToolkit;
 
 using Xamarin.Forms;
 
-namespace DotNetRu.Clients.Portable.ViewModel
-{    
+namespace DotNetRu.Clients.UI.Meetups
+{
     public class MeetupViewModel : ViewModelBase
     {
         private TalkModel selectedTalkModel;
@@ -19,54 +24,53 @@ namespace DotNetRu.Clients.Portable.ViewModel
         public MeetupViewModel(INavigation navigation, MeetupModel meetupModel = null)
             : base(navigation)
         {
-            this.MeetupModel = meetupModel;
+            MeetupModel = meetupModel;
 
             MessagingCenter.Subscribe<LocalizedResources>(
                 this,
                 MessageKeys.LanguageChanged,
-                sender => this.OnPropertyChanged(nameof(this.MeetupDate)));
-
-            this.TapVenueCommand = new Command(this.OnVenueTapped);
+                sender => OnPropertyChanged(nameof(MeetupDate)));
         }
 
-        public IReadOnlyList<SessionModel> Sessions => this.MeetupModel.Sessions.ToList();
+        public IReadOnlyList<SessionModel> Sessions => MeetupModel.Sessions.ToList();
 
-        public IReadOnlyList<FriendModel> Friends => this.MeetupModel.Friends.ToList();
+        public IReadOnlyList<FriendModel> Friends => MeetupModel.Friends.ToList();
 
         public MeetupModel MeetupModel { get; set; }
 
-        public VenueModel VenueModel => this.MeetupModel.Venue;
+        public VenueModel VenueModel => MeetupModel.Venue;
 
-        public string MeetupDate => this.MeetupModel.StartTime?.ToString("D");
+        public string MeetupDate => MeetupModel.StartTime?.ToString("D");
 
-        public string MeetupTime => $"{this.Sessions.First().StartTime.LocalDateTime.ToShortTimeString()} — {this.Sessions.Last().EndTime.LocalDateTime.ToShortTimeString()}";
+        public string MeetupTime => $"{Sessions.First().StartTime.LocalDateTime.ToShortTimeString()} — {Sessions.Last().EndTime.LocalDateTime.ToShortTimeString()}";
 
         public TalkModel SelectedTalkModel
         {
-            get => this.selectedTalkModel;
+            get => selectedTalkModel;
 
             set
             {
-                this.selectedTalkModel = value;
-                this.OnPropertyChanged();
-                if (this.selectedTalkModel == null)
+                selectedTalkModel = value;
+                OnPropertyChanged();
+                if (selectedTalkModel == null)
                 {
                     return;
                 }
 
-                MessagingService.Current.SendMessage(MessageKeys.NavigateToSession, this.selectedTalkModel);
+                MessagingService.Current.SendMessage(MessageKeys.NavigateToSession, selectedTalkModel);
 
-                this.SelectedTalkModel = null;
+                SelectedTalkModel = null;
             }
         }
 
-        public bool NoSessionsFound => !this.MeetupModel.Sessions.Any();
+        public bool NoSessionsFound => !MeetupModel.Sessions.Any();
 
-        public ICommand TapVenueCommand { get; set; }
+        public ICommand TapVenueCommand => new Command(() => LaunchBrowserCommand.Execute(VenueModel.MapUrl));
 
-        public void OnVenueTapped()
+        public ICommand SessionSelectedCommand => new Command<TalkModel>(async session =>
         {
-            this.LaunchBrowserCommand.Execute(this.VenueModel.MapUrl);
-        }
+            App.Logger.TrackPage(AppPage.Talk.ToString(), session.Title);
+            await NavigationService.PushAsync(Navigation, new TalkPage(session));
+        });
     }
 }

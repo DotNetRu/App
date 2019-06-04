@@ -1,14 +1,14 @@
 using DotNetRu.Clients.Portable.Model;
-using DotNetRu.Clients.Portable.ViewModel;
 using DotNetRu.Clients.UI.Controls;
 using DotNetRu.Clients.UI.Helpers;
+using DotNetRu.Clients.UI.Meetups;
 using DotNetRu.Clients.UI.Pages.Friends;
 using DotNetRu.DataStore.Audit.Models;
 using System.Collections.Generic;
 using Xamarin.Forms;
 
 namespace DotNetRu.Clients.UI.Pages.Sessions
-{    
+{
     public partial class MeetupDetailsPage
     {
         private MeetupViewModel meetupViewModel;
@@ -70,7 +70,7 @@ namespace DotNetRu.Clients.UI.Pages.Sessions
             AdjustListView(ListViewFriends, MeetupViewModel?.Friends);
         }
 
-        private void AdjustListView<T>(NonScrollableListView listView, IReadOnlyCollection<T> items)
+        private void AdjustListView<T>(ListView listView, IReadOnlyCollection<T> items)
         {
             var count = items?.Count ?? 0;
             if (count == 0)
