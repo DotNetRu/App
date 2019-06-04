@@ -15,7 +15,11 @@
     Icon="tab_sessions.png"
     BackgroundColor="{DynamicResource WindowBackground}"
     x:DataType="meetups:MeetupViewModel">
-    <ContentPage.Content>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
         <ScrollView BackgroundColor="{DynamicResource WindowBackgroundTable}">
             <StackLayout BackgroundColor="{DynamicResource WindowBackgroundTable}"
                   Spacing="{DynamicResource CardSpacing}"
@@ -152,7 +156,6 @@
                 </controls:CardView>
             </StackLayout>
         </ScrollView>
-    </ContentPage.Content>
 </pages:BasePage>
 
 <!--<local:CardView>
