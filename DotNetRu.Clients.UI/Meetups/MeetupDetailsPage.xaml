@@ -19,6 +19,7 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <converters:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter" />
+            <converters:SessionTimeDisplayConverter x:Key="SessionTimeDisplayConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <ScrollView BackgroundColor="{DynamicResource WindowBackgroundTable}">
