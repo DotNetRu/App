@@ -1,8 +1,5 @@
 using DotNetRu.Clients.Portable.Model;
-using DotNetRu.Clients.UI.Controls;
-using DotNetRu.Clients.UI.Helpers;
 using DotNetRu.Clients.UI.Meetups;
-using DotNetRu.Clients.UI.Pages.Friends;
 using DotNetRu.DataStore.Audit.Models;
 using System.Collections.Generic;
 using Xamarin.Forms;
@@ -20,39 +17,6 @@ namespace DotNetRu.Clients.UI.Pages.Sessions
             this.BindingContext = this.meetupViewModel = new MeetupViewModel(this.Navigation, meetup);
 
             this.ItemId = meetup.Id;
-
-            ListViewTalks.ItemSelected += OnSessionTapped;            
-            ListViewFriends.ItemSelected += OnFriendTapped;
-        }
-
-        private async void OnSessionTapped(object sender, SelectedItemChangedEventArgs e)
-        {
-            if (!(ListViewTalks.SelectedItem is SessionModel session))
-            {
-                return;
-            }
-
-            var sessionDetails = new TalkPage(session.Talk);
-
-            await NavigationService.PushAsync(Navigation, sessionDetails);
-            ListViewTalks.SelectedItem = null;
-        }
-
-        private async void OnFriendTapped(object sender, SelectedItemChangedEventArgs e)
-        {
-            if (!(ListViewFriends.SelectedItem is FriendModel sponsor))
-            {
-                return;
-            }
-
-            var sponsorDetails = new FriendDetailsPage
-            {
-                FriendModel = sponsor
-            };
-
-
-            await NavigationService.PushAsync(Navigation, sponsorDetails);
-            ListViewFriends.SelectedItem = null;
         }
 
         public override AppPage PageType => AppPage.Meetup;
@@ -62,9 +26,6 @@ namespace DotNetRu.Clients.UI.Pages.Sessions
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
-            ListViewTalks.ItemTapped += ListViewTapped;
-            ListViewFriends.ItemTapped += ListViewTapped;
 
             AdjustListView(ListViewTalks, MeetupViewModel?.Sessions);
             AdjustListView(ListViewFriends, MeetupViewModel?.Friends);
@@ -89,24 +50,6 @@ namespace DotNetRu.Clients.UI.Pages.Sessions
             }
 
             listView.HeightRequest = count * listView.RowHeight - adjust;
-        }
-
-        protected override void OnDisappearing()
-        {
-            base.OnDisappearing();
-
-            ListViewFriends.ItemTapped -= ListViewTapped;
-            ListViewTalks.ItemTapped -= ListViewTapped;
-        }
-
-        private void ListViewTapped(object sender, ItemTappedEventArgs e)
-        {
-            if (!(sender is ListView list))
-            {
-                return;
-            }
-
-            list.SelectedItem = null;
         }
     }
 }

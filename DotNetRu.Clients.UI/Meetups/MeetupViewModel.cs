@@ -5,13 +5,11 @@ using System.Windows.Input;
 using DotNetRu.Clients.Portable.Helpers;
 using DotNetRu.Clients.Portable.Model;
 using DotNetRu.Clients.Portable.ViewModel;
-using DotNetRu.Clients.UI;
 using DotNetRu.Clients.UI.Helpers;
+using DotNetRu.Clients.UI.Pages.Friends;
 using DotNetRu.Clients.UI.Pages.Sessions;
 using DotNetRu.DataStore.Audit.Models;
 using DotNetRu.Utils.Helpers;
-
-using FormsToolkit;
 
 using Xamarin.Forms;
 
@@ -19,8 +17,6 @@ namespace DotNetRu.Clients.UI.Meetups
 {
     public class MeetupViewModel : ViewModelBase
     {
-        private TalkModel selectedTalkModel;
-
         public MeetupViewModel(INavigation navigation, MeetupModel meetupModel = null)
             : base(navigation)
         {
@@ -44,25 +40,6 @@ namespace DotNetRu.Clients.UI.Meetups
 
         public string MeetupTime => $"{Sessions.First().StartTime.LocalDateTime.ToShortTimeString()} — {Sessions.Last().EndTime.LocalDateTime.ToShortTimeString()}";
 
-        public TalkModel SelectedTalkModel
-        {
-            get => selectedTalkModel;
-
-            set
-            {
-                selectedTalkModel = value;
-                OnPropertyChanged();
-                if (selectedTalkModel == null)
-                {
-                    return;
-                }
-
-                MessagingService.Current.SendMessage(MessageKeys.NavigateToSession, selectedTalkModel);
-
-                SelectedTalkModel = null;
-            }
-        }
-
         public bool NoSessionsFound => !MeetupModel.Sessions.Any();
 
         public ICommand TapVenueCommand => new Command(() => LaunchBrowserCommand.Execute(VenueModel.MapUrl));
@@ -71,6 +48,17 @@ namespace DotNetRu.Clients.UI.Meetups
         {
             App.Logger.TrackPage(AppPage.Talk.ToString(), session.Title);
             await NavigationService.PushAsync(Navigation, new TalkPage(session));
+        });
+
+        public ICommand FriendSelectedCommand => new Command<FriendModel>(async friend =>
+        {
+            var sponsorDetails = new FriendDetailsPage
+            {
+                FriendModel = friend
+            };
+
+            App.Logger.TrackPage(AppPage.Friend.ToString(), friend.Name);
+            await NavigationService.PushAsync(Navigation, sponsorDetails);
         });
     }
 }

@@ -137,95 +137,53 @@
                 <StackLayout Spacing="0">
                     <controls:LabelSection Text="{Binding Resources[Friends]}"/>
                     <controls:HeaderDivider/>
-                    <controls:NonScrollableListView
-                    x:Name="ListViewFriends"
-                    ItemsSource="{Binding Friends}"
-                    StyleId="SessionSpeakers"
-                    RowHeight="120">
-                        <controls:NonScrollableListView.SeparatorColor>
+                    <ListView
+                        x:Name="ListViewFriends"
+                        ItemsSource="{Binding Friends}"
+                        StyleId="SessionSpeakers"
+                        RowHeight="120">
+                        <ListView.SeparatorColor>
                             <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ListSeparator}"/>
-                        </controls:NonScrollableListView.SeparatorColor>
-                        <controls:NonScrollableListView.ItemTemplate>
-                            <DataTemplate>
+                        </ListView.SeparatorColor>
+                        <ListView.Effects>
+                            <effects:NonScrollableEffect />
+                        </ListView.Effects>
+                        <ListView.Behaviors>
+                            <behaviorsPack:SelectedItemBehavior Command="{Binding FriendSelectedCommand}"/>
+                        </ListView.Behaviors>                        
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="models:FriendModel">
                                 <ViewCell StyleId="disclosure">
-                                    <cells:MeetupFriendCellView />
+                                    <StackLayout Spacing="0" HeightRequest="120">
+                                        <StackLayout.Padding>
+                                            <OnPlatform x:TypeArguments="Thickness" iOS="0" Android="0,4"/>
+                                        </StackLayout.Padding>
+                                        <controls:CardView HeightRequest="120">
+                                            <Grid Padding="{DynamicResource StandardPadding}" ColumnSpacing="{DynamicResource StandardSpacing}">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="10*" />
+                                                    <ColumnDefinition Width="90*" />
+                                                    <ColumnDefinition Width="10*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Image
+                                                    Grid.Column="1"
+                                                    Margin="16"
+                                                    HorizontalOptions="FillAndExpand"
+                                                    VerticalOptions="FillAndExpand"
+                                                    StyleId="SponsorImage"
+                                                    Source="{Binding LogoSmall, Converter={StaticResource ByteArrayToImageSourceConverter}}"
+                                                    Aspect="AspectFit">
+                                                </Image>
+                                            </Grid>
+                                        </controls:CardView>
+                                    </StackLayout>
                                 </ViewCell>
                             </DataTemplate>
-                        </controls:NonScrollableListView.ItemTemplate>
-                    </controls:NonScrollableListView>
+                        </ListView.ItemTemplate>
+                    </ListView>
                     <controls:FooterDivider/>
                 </StackLayout>
             </controls:CardView>
         </StackLayout>
     </ScrollView>
 </pages:BasePage>
-
-<!--<local:CardView>
-                      <StackLayout Spacing="0">
-                            <local:LabelSection Text="Follow"/> 
-                            <local:HeaderDivider/>
-                             <Grid Padding="{StaticResource StandardPadding}" 
-                                           BackgroundColor="White"
-                                           ColumnSpacing="{StaticResource StandardSpacing}">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions> 
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="24"/>
-                                </Grid.ColumnDefinitions>
-                               <Grid.IsVisible>
-                                <OnPlatform x:TypeArguments="x:Boolean" iOS="false" Android="true" WinPhone="true"/>
-                               </Grid.IsVisible>
-                                <Button StyleId="ReminderButton"
-                                        IsVisible="{Binding ShowReminder}"
-                                        Text="{Binding IsReminderSet, Converter={StaticResource HasReminderTextConverter}}"
-                                        BackgroundColor="{StaticResource PrimaryDark}"
-                                        Command="{Binding ReminderCommand}"
-                                        TextColor="White"/>                                        
-                             </Grid>
-   
-                             <StackLayout Padding="16,0" Spacing="8" Orientation="Horizontal" BackgroundColor="White">
-                                <StackLayout.IsVisible>
-                                    <OnPlatform x:TypeArguments="x:Boolean" iOS="true" Android="false" WinPhone="false"/>
-                                </StackLayout.IsVisible>
-                                <Button 
-                                    StyleId="ReminderButton"
-                                    IsVisible="{Binding ShowReminder}"
-                                    Text="{Binding IsReminderSet, Converter={StaticResource HasReminderTextConverter}}"
-                                    FontAttributes="Bold"
-                                    HorizontalOptions="StartAndExpand"
-                                    TextColor="{DynamicResource Primary}"
-                                    Command="{Binding ReminderCommand}" />
-                             </StackLayout>
-                             <local:SectionDivider/>                              
-                            <local:FooterDivider/>
-                         </StackLayout>
-                     </local:CardView>-->
-
-<!--<StackLayout>
-            <StackLayout.Padding>
-                <OnPlatform x:TypeArguments="Thickness" Android="0,8,8,8" iOS="0" WinPhone="0"/>
-            </StackLayout.Padding>
-            <StackLayout.BackgroundColor>
-                <OnPlatform x:TypeArguments="Color" Android="{StaticResource Primary}"/>
-            </StackLayout.BackgroundColor>
-             <SearchBar Text="{Binding Filter, Mode=TwoWay}" 
-                        Placeholder="Search"
-                        SearchCommand="{Binding FilterSessionsCommand}"
-                        FontSize="Small" >
-                        <SearchBar.PlaceholderColor>
-                            <OnPlatform x:TypeArguments="Color" Android="White"/>
-                        </SearchBar.PlaceholderColor>
-                        <SearchBar.BackgroundColor>
-                            <OnPlatform x:TypeArguments="Color" Android="{StaticResource Primary}"/>
-                        </SearchBar.BackgroundColor>
-                        <SearchBar.TextColor>
-                            <OnPlatform x:TypeArguments="Color" Android="White"/>
-                        </SearchBar.TextColor>
-                        <SearchBar.CancelButtonColor>
-                            <OnPlatform x:TypeArguments="Color" Android="White" iOS="{StaticResource Primary}"/>
-                        </SearchBar.CancelButtonColor>
-            </SearchBar>
-        </StackLayout>-->
