@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>netcoreapp2.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="AutoMapper" Version="8.1.1" />
+        <PackageReference Include="Realm.Database" Version="3.4.0" />
+        <PackageReference Include="LibGit2Sharp" Version="0.26.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\DotNetRu.Models\DotNetRu.Models.csproj" />
+    </ItemGroup>
+
+</Project>
