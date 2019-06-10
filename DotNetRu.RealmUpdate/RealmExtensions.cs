@@ -18,7 +18,7 @@ namespace RealmGenerator
 
             var auditFiles = await client.Repository.Content.GetAllContents(Program.DotNetRuAppRepositoryID, $"db/{entityFolderName}");
 
-            foreach (var file in auditFiles)
+            Parallel.ForEach(auditFiles, async file =>
             {
                 string downloadUrl;
                 switch (entityFolderName)
@@ -35,7 +35,7 @@ namespace RealmGenerator
                 var entity = await FileHelper.DownloadEntityAsync<TEntity>(downloadUrl);
 
                 xmlEntities.Add(entity);
-            }
+            });
 
             return xmlEntities;
         }
