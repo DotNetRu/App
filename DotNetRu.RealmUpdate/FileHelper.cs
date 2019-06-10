@@ -1,16 +1,22 @@
+using System.IO;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Xml;
+using System.Xml.Serialization;
+
 namespace RealmGenerator
 {
-    using System.Xml;
-    using System.Xml.Serialization;
-
     public class FileHelper
     {
-        public static T LoadFromFile<T>(string path)
+        public static async Task<T> DownloadEntityAsync<T>(string url)
         {
-            var xmlReader = XmlReader.Create(path);
+            var httpClient = new HttpClient();
+            var xmlContent = await httpClient.GetStringAsync(url);
+
+            var reader = new StringReader(xmlContent);
             var xmlSerializer = new XmlSerializer(typeof(T));
 
-            return (T)xmlSerializer.Deserialize(xmlReader);
+            return (T)xmlSerializer.Deserialize(reader);
         }
     }
 }
