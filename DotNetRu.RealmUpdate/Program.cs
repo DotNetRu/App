@@ -4,7 +4,6 @@ using Octokit;
 using RealmGenerator;
 using RealmGenerator.Entities;
 using Realms;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -30,9 +29,6 @@ namespace Conference.RealmUpdate
 
         public static async Task PopulateRealm(string realmPath)
         {
-            // TODO remove
-            IList<int> dummy = new List<int>();
-
             var mapper = InitializeAudoMapper();
 
             // speakers
@@ -111,7 +107,7 @@ namespace Conference.RealmUpdate
             var realmMeetups = xmlMeetups.Select(meetupMapper.Map<Meetup>).ToArray();
 
             // audit version
-            var client = new GitHubClient(new Octokit.ProductHeaderValue("dotnetru-app"));
+            var client = new GitHubClient(new ProductHeaderValue("dotnetru-app"));
             var reference = await client.Git.Reference.Get(DotNetRuAppRepositoryID, "heads/master");
             var auditVersion = new AuditVersion
             {

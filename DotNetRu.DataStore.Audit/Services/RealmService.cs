@@ -1,22 +1,21 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using AutoMapper;
+
+using DotNetRu.DataStore.Audit.Extensions;
+using DotNetRu.DataStore.Audit.Models;
+using DotNetRu.DataStore.Audit.RealmModels;
+using DotNetRu.Utils.Helpers;
+using Realms;
+using Xamarin.Essentials;
+
 namespace DotNetRu.DataStore.Audit.Services
 {
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
-    using System.Reflection;
-    using AutoMapper;
-
-    using DotNetRu.DataStore.Audit.Extensions;
-    using DotNetRu.DataStore.Audit.Models;
-    using DotNetRu.DataStore.Audit.RealmModels;
-    using DotNetRu.Utils.Helpers;
-    using Realms;
-    using Xamarin.Essentials;
-
     public class RealmService
     {
-        private const string RealmResourceName = "DotNetRu.DataStore.Audit.Audit.realm";
+        private const string RealmResourceName = "DotNetRu.DataStore.Audit.DotNetRuOffline.realm";
         private static Realm auditRealm;
 
         public static Realm AuditRealm => auditRealm ?? (auditRealm = Realm.GetInstance("Audit.realm"));
