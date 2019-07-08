@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <OutputType>Exe</OutputType>
         <TargetFramework>netcoreapp2.1</TargetFramework>
@@ -8,7 +8,7 @@
     <ItemGroup>
         <PackageReference Include="AutoMapper" Version="8.1.1" />
         <PackageReference Include="Octokit" Version="0.32.0" />
-        <PackageReference Include="Realm.Database" Version="3.4.0" />
+        <PackageReference Include="Realm" Version="4.0.1" />
     </ItemGroup>
 
     <ItemGroup>

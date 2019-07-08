@@ -1,167 +1,77 @@
-using AutoMapper;
-using DotNetRu.DataStore.Audit.RealmModels;
-using Octokit;
 using RealmGenerator;
-using RealmGenerator.Entities;
 using Realms;
+using Realms.Sync;
+using System;
 using System.IO;
-using System.Linq;
-using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace Conference.RealmUpdate
 {
     public class Program
     {
-        private static string realmPath = @"DotNetRu.DataStore.Audit/DotNetRuOffline.realm";
+        private static string realmOfflinePath = @"DotNetRu.DataStore.Audit/DotNetRuOffline.realm";
 
-        public const int DotNetRuAppRepositoryID = 89862917;
+        private static string realmOnlineName = "dotnetru_300619";
 
         public static async Task Main()
         {
-            var directory = Directory.GetCurrentDirectory();
-            var realmFullPath = $"{directory}/../../../../{realmPath}";
+            // await UpdateOfflineRealm();
 
-            Realm.DeleteRealm(new RealmConfiguration(realmFullPath));
-
-            await PopulateRealm(realmFullPath);
+            await UpdateOnlineRealm();
         }
 
-        public static async Task PopulateRealm(string realmPath)
+        private static async void UpdateOfflineRealm()
         {
-            var mapper = InitializeAudoMapper();
+            var auditData = await UpdateManager.GetAuditData();
 
-            // speakers
-            var xmlSpeakers = await RealmExtensions.GetXmlEntitiesAsync<SpeakerEntity>("speakers");
-            var realmSpeakers = xmlSpeakers.Select(mapper.Map<Speaker>).ToArray();
+            var realmFullPath = $"{Directory.GetCurrentDirectory()}/../../../../{realmOfflinePath}";
+            Realm.DeleteRealm(new RealmConfiguration(realmFullPath));
 
-            // friends
-            var xmlFriends = await RealmExtensions.GetXmlEntitiesAsync<FriendEntity>("friends");
-            var realmFriends = xmlFriends.Select(mapper.Map<Friend>).ToArray();
-
-            // venues
-            var xmlVenues = await RealmExtensions.GetXmlEntitiesAsync<VenueEntity>("venues");
-            var realmVenues = xmlVenues.Select(mapper.Map<Venue>).ToArray();
-
-            // communities
-            var xmlCommunities = await RealmExtensions.GetXmlEntitiesAsync<CommunityEntity>("communities");
-            var realmCommunities = xmlCommunities.Select(mapper.Map<Community>).ToArray();
-
-            // talks
-            var xmlTalks = await RealmExtensions.GetXmlEntitiesAsync<TalkEntity>("talks");
-
-            var talkMapper = new MapperConfiguration(cfg =>
-            {
-                cfg.CreateMap<TalkEntity, Talk>().AfterMap(
-                    (src, dest) =>
-                    {
-                        foreach (string speakerId in src.SpeakerIds)
-                        {
-                            var speaker = realmSpeakers.Single(s => s.Id == speakerId); // realm.Find<Speaker>(speakerId);
-                            dest.Speakers.Add(speaker);
-                        }
-
-                        if (src.SeeAlsoTalkIds != null)
-                        {
-                            foreach (string talkId in src.SeeAlsoTalkIds)
-                            {
-                                // TODO change to TalkModel
-                                dest.SeeAlsoTalksIds.Add(talkId);
-                            }
-                        }
-                    });
-            }).CreateMapper();
-
-            var realmTalks = xmlTalks.Select(talkMapper.Map<Talk>).ToArray();
-
-            // meetups
-            var xmlMeetups = await RealmExtensions.GetXmlEntitiesAsync<MeetupEntity>("meetups");
-
-            var meetupMapper = new MapperConfiguration(cfg =>
-            {
-                cfg.CreateMap<MeetupEntity, Meetup>()
-                    .ForMember(
-                        dest => dest.Sessions,
-                        o => o.MapFrom(src => src.Sessions))
-                    .AfterMap(
-                        (src, dest) =>
-                        {
-                            if (src.FriendIds != null)
-                            {
-                                foreach (string friendId in src.FriendIds)
-                                {
-                                    var friend = realmFriends.Single(f => f.Id == friendId); // realm.Find<Friend>(friendId);
-                                    dest.Friends.Add(friend);
-                                }
-                            }
-
-                            dest.Venue = realmVenues.Single(venue => venue.Id == src.VenueId); // realm.Find<Venue>(src.VenueId);
-                        });
-                cfg.CreateMap<SessionEntity, Session>().AfterMap(
-                    (src, dest) =>
-                    {
-                        dest.Talk = realmTalks.Single(talk => talk.Id == src.TalkId); // realm.Find<Talk>(src.TalkId);
-                    });
-            }).CreateMapper();
-
-            var realmMeetups = xmlMeetups.Select(meetupMapper.Map<Meetup>).ToArray();
-
-            // audit version
-            var client = new GitHubClient(new ProductHeaderValue("dotnetru-app"));
-            var reference = await client.Git.Reference.Get(DotNetRuAppRepositoryID, "heads/master");
-            var auditVersion = new AuditVersion
-            {
-                CommitHash = reference.Object.Sha
-            };
-
-            // use single thread (after all awaits) to manage realm
-            var realm = Realm.GetInstance(realmPath);
-
+            var realm = Realm.GetInstance(realmFullPath);
             using (var transaction = realm.BeginWrite())
             {
-                realm.Add(auditVersion);
+                realm.Add(auditData.AuditVersion);
 
-                realm.AddRange(realmSpeakers);
-                realm.AddRange(realmFriends);
-                realm.AddRange(realmVenues);
-                realm.AddRange(realmCommunities);
-                realm.AddRange(realmTalks);
-                realm.AddRange(realmMeetups);
+                realm.AddRange(auditData.Speakers);
+                realm.AddRange(auditData.Friends);
+                realm.AddRange(auditData.Venues);
+                realm.AddRange(auditData.Communities);
+                realm.AddRange(auditData.Talks);
+                realm.AddRange(auditData.Meetups);
 
                 transaction.Commit();
             }
         }
 
-        private static IMapper InitializeAudoMapper()
+        private static async Task UpdateOnlineRealm()
         {
-            var mapperConfig = new MapperConfiguration(
-                cfg =>
-                {
-                    cfg.CreateMap<SpeakerEntity, Speaker>().AfterMap(
-                        async (src, dest) =>
-                        {
-                            // TODO get URL from XML entity
-                            var avatarSmallUrl = $"https://raw.githubusercontent.com/DotNetRu/Audit/master/db/speakers/{src.Id}/avatar.small.jpg";
+            var auditData = await UpdateManager.GetAuditData();
 
-                            dest.AvatarSmall = await new HttpClient().GetByteArrayAsync(avatarSmallUrl);
-                            dest.AvatarURL = $"https://raw.githubusercontent.com/DotNetRu/Audit/master/db/speakers/{src.Id}/avatar.jpg";
-                        });
-                    cfg.CreateMap<VenueEntity, Venue>();
-                    cfg.CreateMap<FriendEntity, Friend>().AfterMap(
-                        async (src, dest) =>
-                        {
-                            var friendId = src.Id;
+            SyncConfigurationBase.LogLevel = LogLevel.Debug;
 
-                            var logoSmallUrl = $"https://raw.githubusercontent.com/DotNetRu/Audit/master/db/friends/{src.Id}/logo.small.png";
-                            var logoUrl = $"https://raw.githubusercontent.com/DotNetRu/Audit/master/db/friends/{src.Id}/logo.png";
+            var realmUrl = new Uri($"realms://dotnet.de1a.cloud.realm.io/{realmOnlineName}");
 
-                            dest.LogoSmall = await new HttpClient().GetByteArrayAsync(logoSmallUrl);
-                            dest.Logo = await new HttpClient().GetByteArrayAsync(logoUrl);
-                        });
-                    cfg.CreateMap<CommunityEntity, Community>();
-                });
+            var user = await User.LoginAsync(Credentials.UsernamePassword("*", "*", createUser: false), new Uri("https://dotnet.de1a.cloud.realm.io"));
 
-            return mapperConfig.CreateMapper();
+            var tempRealmFile = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+            var syncConfiguration = new FullSyncConfiguration(realmUrl, user, tempRealmFile);
+
+            var realm = await Realm.GetInstanceAsync(syncConfiguration);
+            using (var transaction = realm.BeginWrite())
+            {
+                realm.Add(auditData.AuditVersion);
+
+                realm.AddRange(auditData.Speakers);
+                realm.AddRange(auditData.Friends);
+                realm.AddRange(auditData.Venues);
+                realm.AddRange(auditData.Communities);
+                realm.AddRange(auditData.Talks);
+                realm.AddRange(auditData.Meetups);
+
+                transaction.Commit();
+            }
+
+            await Task.Delay(TimeSpan.FromMinutes(1));
         }
     }
 }
