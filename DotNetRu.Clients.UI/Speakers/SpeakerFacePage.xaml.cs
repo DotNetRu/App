@@ -1,12 +1,13 @@
 namespace DotNetRu.Clients.UI.Pages.Speakers
 {
+    using System;
     using DotNetRu.Clients.Portable.Model;
 
     public partial class SpeakerFacePage
     {
-        public string AvatarURL { get; set; }
+        public Uri AvatarURL { get; set; }
 
-        public SpeakerFacePage(string speakerID, string avatarURL)
+        public SpeakerFacePage(string speakerID, Uri avatarURL)
         {
             this.InitializeComponent();
             this.AvatarURL = avatarURL;

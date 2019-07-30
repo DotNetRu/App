@@ -15,12 +15,12 @@ namespace Conference.RealmUpdate
 
         public static async Task Main()
         {
-            // await UpdateOfflineRealm();
+            await UpdateOfflineRealm();
 
-            await UpdateOnlineRealm();
+            // await UpdateOnlineRealm();
         }
 
-        private static async void UpdateOfflineRealm()
+        private static async Task UpdateOfflineRealm()
         {
             var auditData = await UpdateManager.GetAuditData();
 

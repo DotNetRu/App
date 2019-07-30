@@ -1,5 +1,6 @@
-﻿namespace DotNetRu.DataStore.Audit.Models
+namespace DotNetRu.DataStore.Audit.Models
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -46,8 +47,8 @@
 
         public IEnumerable<MeetupModel> Meetups { get; set; }
 
-        public byte[] LogoSmall { get; set; }
+        public Uri LogoSmall { get; set; }
 
-        public byte[] Logo { get; set; }
+        public Uri Logo { get; set; }
     }
 }

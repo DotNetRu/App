@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <pages:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="DotNetRu.Clients.UI.Pages.Speakers.SpeakersPage"
     xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
     xmlns:pages="clr-namespace:DotNetRu.Clients.UI.Pages;assembly=DotNetRu.Clients.UI"
     xmlns:cells="clr-namespace:DotNetRu.Clients.UI.Cells;assembly=DotNetRu.Clients.UI"
+    xmlns:models="clr-namespace:DotNetRu.DataStore.Audit.Models;assembly=DotNetRu.DataStore.Audit"
     Title="{Binding Resources[Speakers]}"
     x:Name="SpeakersScreen"
     Icon="tab_speakers.png"
@@ -43,8 +43,8 @@
                         </ViewCell>
                     </DataTemplate>
                 </ListView.GroupHeaderTemplate>
-                <ListView.ItemTemplate>
-                    <DataTemplate>
+                <ListView.ItemTemplate >
+                    <DataTemplate x:DataType="models:SpeakerModel">
                         <ViewCell StyleId="disclosure">
                             <cells:SpeakerCellView />
                         </ViewCell>

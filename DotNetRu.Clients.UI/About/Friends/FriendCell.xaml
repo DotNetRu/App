@@ -1,14 +1,9 @@
-﻿<ContentView 
+<ContentView 
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:DotNetRu.Clients.UI.Controls;assembly=DotNetRu.Clients.UI"
     xmlns:converters="clr-namespace:DotNetRu.Clients.UI.Converters;assembly=DotNetRu.Clients.UI"
     x:Class="DotNetRu.Clients.UI.Cells.FriendCell">
-    <ContentView.Resources>
-        <ResourceDictionary>
-            <converters:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter" />
-        </ResourceDictionary>
-    </ContentView.Resources>
     <StackLayout Spacing="0" HeightRequest="120">
         <StackLayout.Padding>
             <OnPlatform x:TypeArguments="Thickness" iOS="0" Android="0,4"/>
@@ -24,7 +19,7 @@
                     HorizontalOptions="FillAndExpand"
                     VerticalOptions="FillAndExpand"
                     StyleId="SponsorImage"
-                    Source="{Binding LogoSmall, Converter={StaticResource ByteArrayToImageSourceConverter}}"
+                    Source="{Binding LogoSmall}"
                     Aspect="AspectFit">
                 </Image>
                 <StackLayout VerticalOptions="Center" Grid.Column="1" Spacing="0" StyleId="SponsorCell">

@@ -58,8 +58,6 @@ namespace DotNetRu.DataStore.Audit.Services
                         UpdateModels(mapper, auditRealm, updateContent.Talks);
                         UpdateModels(mapper, auditRealm, updateContent.Meetups);
 
-                        UpdateSpeakerAvatars(auditRealm, updateContent.Photos);
-
                         var auditVersion = auditRealm.All<AuditVersion>().Single();
 
                         auditVersion.CommitHash = updateContent.LatestVersion;
@@ -99,19 +97,6 @@ namespace DotNetRu.DataStore.Audit.Services
             return result;
         }
 
-        private static void UpdateSpeakerAvatars(Realm auditRealm, IEnumerable<string> photoURLs)
-        {
-            foreach (var photoURL in photoURLs)
-            {
-                var speakerID = photoURL.Split('/').Reverse().Skip(1).Take(1).Single();
-
-                byte[] speakerAvatar = new HttpClient().GetByteArrayAsync(photoURL).Result;
-
-                var speaker = auditRealm.Find<Speaker>(speakerID);
-                speaker.AvatarSmall = speakerAvatar;
-            }
-        }
-
         private static void UpdateModels<T>(IMapper mapper, Realm auditRealm, IEnumerable<T> entities)
         {            
             foreach (var entity in entities)
@@ -130,16 +115,6 @@ namespace DotNetRu.DataStore.Audit.Services
             var config = new MapperConfiguration(
                 cfg =>
                     {
-                        cfg.CreateMap<SpeakerEntity, Speaker>().AfterMap(
-                            (src, dest) =>
-                                {
-                                    var speakerID = src.Id;
-                                    var existingSpeaker = auditRealm.Find<Speaker>(speakerID);
-                                    if (existingSpeaker != null)
-                                    {
-                                        dest.AvatarSmall = existingSpeaker.AvatarSmall;
-                                    }
-                                });
                         cfg.CreateMap<VenueEntity, Venue>();
                         cfg.CreateMap<FriendEntity, Friend>();
                         cfg.CreateMap<CommunityEntity, Community>();

@@ -18,7 +18,6 @@
     x:DataType="meetups:MeetupViewModel">
     <ContentPage.Resources>
         <ResourceDictionary>
-            <converters:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter" />
             <converters:SessionTimeDisplayConverter x:Key="SessionTimeDisplayConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -76,12 +75,11 @@
                                             <ColumnDefinition Width="Auto"/>
                                             <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
-
                                         <imagecircle:CircleImage 
                                                 Grid.Column="0"
                                                 Grid.Row="0"
                                                 Grid.RowSpan="3"
-                                                Source="{Binding Talk.SpeakerAvatar, Converter={StaticResource ByteArrayToImageSourceConverter}}"
+                                                Source="{Binding Talk.SpeakerAvatar}"
                                                 VerticalOptions="Center"
                                                 Aspect="AspectFill"
                                                 WidthRequest="44"
@@ -171,7 +169,7 @@
                                                     HorizontalOptions="FillAndExpand"
                                                     VerticalOptions="FillAndExpand"
                                                     StyleId="SponsorImage"
-                                                    Source="{Binding LogoSmall, Converter={StaticResource ByteArrayToImageSourceConverter}}"
+                                                    Source="{Binding LogoSmall}"
                                                     Aspect="AspectFit">
                                                 </Image>
                                             </Grid>

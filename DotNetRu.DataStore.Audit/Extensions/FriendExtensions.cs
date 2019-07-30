@@ -1,5 +1,6 @@
-﻿namespace DotNetRu.DataStore.Audit.Extensions
+namespace DotNetRu.DataStore.Audit.Extensions
 {
+    using System;
     using System.Linq;
 
     using DotNetRu.DataStore.Audit.Models;
@@ -17,8 +18,8 @@
                            WebsiteUrl = friend.Url,
                            Meetups = friend.Meetups.ToList().Select(x => x.ToModel())
                                .OrderBy(x => x.StartTime),
-                           LogoSmall = friend.LogoSmall,
-                           Logo = friend.Logo
+                           LogoSmall = new Uri(friend.LogoSmallURL),
+                           Logo = new Uri(friend.LogoURL)
                        };
         }
     }

@@ -112,7 +112,7 @@ namespace RealmGenerator
                     {
                         foreach (string speakerId in src.SpeakerIds)
                         {
-                            var speaker = realmSpeakers.Single(s => s.Id == speakerId); // realm.Find<Speaker>(speakerId);
+                            var speaker = realmSpeakers.Single(s => s.Id == speakerId);
                             dest.Speakers.Add(speaker);
                         }
 
@@ -187,25 +187,17 @@ namespace RealmGenerator
                 cfg =>
                 {
                     cfg.CreateMap<SpeakerEntity, Speaker>().AfterMap(
-                        async (src, dest) =>
+                        (src, dest) =>
                         {
-                            // TODO get URL from XML entity
-                            var avatarSmallUrl = $"https://raw.githubusercontent.com/DotNetRu/Audit/master/db/speakers/{src.Id}/avatar.small.jpg";
-
-                            dest.AvatarSmall = await new HttpClient().GetByteArrayAsync(avatarSmallUrl);
+                            dest.AvatarSmallURL = $"https://raw.githubusercontent.com/DotNetRu/Audit/master/db/speakers/{src.Id}/avatar.small.jpg";
                             dest.AvatarURL = $"https://raw.githubusercontent.com/DotNetRu/Audit/master/db/speakers/{src.Id}/avatar.jpg";
                         });
                     cfg.CreateMap<VenueEntity, Venue>();
                     cfg.CreateMap<FriendEntity, Friend>().AfterMap(
-                        async (src, dest) =>
+                        (src, dest) =>
                         {
-                            var friendId = src.Id;
-
-                            var logoSmallUrl = $"https://raw.githubusercontent.com/DotNetRu/Audit/master/db/friends/{src.Id}/logo.small.png";
-                            var logoUrl = $"https://raw.githubusercontent.com/DotNetRu/Audit/master/db/friends/{src.Id}/logo.png";
-
-                            dest.LogoSmall = await new HttpClient().GetByteArrayAsync(logoSmallUrl);
-                            dest.Logo = await new HttpClient().GetByteArrayAsync(logoUrl);
+                            dest.LogoSmallURL = $"https://raw.githubusercontent.com/DotNetRu/Audit/master/db/friends/{src.Id}/logo.small.png";
+                            dest.LogoURL = $"https://raw.githubusercontent.com/DotNetRu/Audit/master/db/friends/{src.Id}/logo.small.png";
                         });
                     cfg.CreateMap<CommunityEntity, Community>();
                 });
