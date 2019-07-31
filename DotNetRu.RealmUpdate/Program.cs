@@ -11,13 +11,16 @@ namespace Conference.RealmUpdate
     {
         private static string realmOfflinePath = @"DotNetRu.DataStore.Audit/DotNetRuOffline.realm";
 
-        private static string realmOnlineName = "dotnetru_300619";
+        private static string realmOnlineName = "dotnetru_300719";
 
         public static async Task Main()
         {
-            await UpdateOfflineRealm();
+            var tasks = new[] {
+                UpdateOfflineRealm(),
+                UpdateOnlineRealm()
+            };
 
-            // await UpdateOnlineRealm();
+            await Task.WhenAll(tasks);
         }
 
         private static async Task UpdateOfflineRealm()
@@ -51,6 +54,7 @@ namespace Conference.RealmUpdate
 
             var realmUrl = new Uri($"realms://dotnet.de1a.cloud.realm.io/{realmOnlineName}");
 
+            // TODO load credentials from file
             var user = await User.LoginAsync(Credentials.UsernamePassword("*", "*", createUser: false), new Uri("https://dotnet.de1a.cloud.realm.io"));
 
             var tempRealmFile = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
