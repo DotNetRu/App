@@ -155,6 +155,7 @@ namespace RealmGenerator
                 cfg.CreateMap<SessionEntity, Session>().AfterMap(
                     (src, dest) =>
                     {
+                        dest.Id = src.TalkId;
                         dest.Talk = realmTalks.Single(talk => talk.Id == src.TalkId);
                     });
             }).CreateMapper();

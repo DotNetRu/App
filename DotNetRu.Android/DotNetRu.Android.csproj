@@ -134,7 +134,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Notifications\DotNetRuFirebaseIIDService.cs" />
-    <Compile Include="Notifications\DotNetRuFirebaseMessagingService.cs" />
     <Compile Include="Notifications\DotNetRuPushReceiver.cs" />
     <Compile Include="Helpers\LocaleUtils.cs" />
     <Compile Include="Localize.cs" />

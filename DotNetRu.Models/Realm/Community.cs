@@ -1,9 +1,10 @@
-﻿namespace DotNetRu.DataStore.Audit.RealmModels
+namespace DotNetRu.DataStore.Audit.RealmModels
 {
     using Realms;
 
     public class Community : RealmObject
     {
+        [PrimaryKey]
         public string Id { get; set; }
 
         public string Name { get; set; }

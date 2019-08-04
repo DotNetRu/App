@@ -23,7 +23,6 @@ namespace DotNetRu.Clients.Portable.ViewModel
         public FriendsViewModel(INavigation navigation)
             : base(navigation)
         {
-            MessagingCenter.Subscribe<AuditRefresher>(this, MessageKeys.FriendsChanged, sender => this.UpdateFriends());
         }
 
         public ObservableRangeCollection<FriendModel> Friends { get; } = new ObservableRangeCollection<FriendModel>();

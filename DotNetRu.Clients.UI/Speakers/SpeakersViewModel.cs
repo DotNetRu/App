@@ -22,7 +22,6 @@ namespace DotNetRu.Clients.Portable.ViewModel
         public SpeakersViewModel(INavigation navigation)
             : base(navigation)
         {
-            MessagingCenter.Subscribe<AuditRefresher>(this, MessageKeys.SpeakersChanged, sender => this.UpdateSpeakers());
         }
 
         public ObservableRangeCollection<Grouping<char, SpeakerModel>> speakers = new ObservableRangeCollection<Grouping<char, SpeakerModel>>();
@@ -125,7 +124,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
         {
             Device.BeginInvokeOnMainThread(() =>
             {
-                IEnumerable<SpeakerModel> speakers = RealmService.Get<SpeakerModel>();
+                var speakers = RealmService.Get<SpeakerModel>();
                 this.SortSpeakers(speakers);
             });
         }

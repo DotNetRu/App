@@ -27,7 +27,6 @@ namespace DotNetRu.Clients.Portable.ViewModel
             : base(navigation)
         {
             MessagingCenter.Subscribe<LocalizedResources>(this, MessageKeys.LanguageChanged, sender => this.UpdateMeetups());
-            MessagingCenter.Subscribe<AuditRefresher>(this, MessageKeys.MeetupsChanged, sender => this.UpdateMeetups());
             this.Title = "Meetups";
         }
 

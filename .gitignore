@@ -281,3 +281,4 @@ __pycache__/
 
 Resource.designer.cs
 *.lock
+/DotNetRu.RealmUpdate/config.json

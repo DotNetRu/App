@@ -47,13 +47,6 @@ namespace DotNetRu.Clients.UI
 
             this.InitializeComponent();
 
-            Task.Run(UpdateService.UpdateAudit)
-                .ContinueWith
-                (
-                    t => AuditRefresher.Refresh(t.Result),
-                    TaskContinuationOptions.OnlyOnRanToCompletion
-                );
-
             var config = AppConfig.GetConfig();
 
             // This should come before AppCenter.Start() is called
@@ -64,9 +57,7 @@ namespace DotNetRu.Clients.UI
                 {
                     Logger.Track($"PushReceived {e.Title}, {e.Message}", e.CustomData);
 
-                    var result = await UpdateService.UpdateAudit();
                     CrossLocalNotifications.Current.Show("New meetup announced", "New meetup announced. Open app to see details");
-                    AuditRefresher.Refresh(result);
                 };
             }
 

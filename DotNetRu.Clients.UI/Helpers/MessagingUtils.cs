@@ -1,4 +1,4 @@
-﻿using DotNetRu.Clients.Portable.Interfaces;
+using DotNetRu.Clients.Portable.Interfaces;
 using DotNetRu.Utils.Helpers;
 using FormsToolkit;
 using Xamarin.Forms;

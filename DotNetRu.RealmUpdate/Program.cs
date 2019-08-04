@@ -1,7 +1,9 @@
+using Microsoft.Extensions.Configuration;
 using RealmGenerator;
 using Realms;
 using Realms.Sync;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -11,13 +13,13 @@ namespace Conference.RealmUpdate
     {
         private static string realmOfflinePath = @"DotNetRu.DataStore.Audit/DotNetRuOffline.realm";
 
-        private static string realmOnlineName = "dotnetru_300719";
+        private static string realmOnlineName = "dotnetru_040819";
 
         public static async Task Main()
         {
             var tasks = new[] {
                 UpdateOfflineRealm(),
-                UpdateOnlineRealm()
+                // UpdateOnlineRealm()
             };
 
             await Task.WhenAll(tasks);
@@ -25,7 +27,13 @@ namespace Conference.RealmUpdate
 
         private static async Task UpdateOfflineRealm()
         {
+            var stopwatch = Stopwatch.StartNew();
+
             var auditData = await UpdateManager.GetAuditData();
+
+            stopwatch.Stop();
+
+            Console.WriteLine($"Get data from GitHub time: {stopwatch.Elapsed}");
 
             var realmFullPath = $"{Directory.GetCurrentDirectory()}/../../../../{realmOfflinePath}";
             Realm.DeleteRealm(new RealmConfiguration(realmFullPath));
@@ -54,8 +62,12 @@ namespace Conference.RealmUpdate
 
             var realmUrl = new Uri($"realms://dotnet.de1a.cloud.realm.io/{realmOnlineName}");
 
-            // TODO load credentials from file
-            var user = await User.LoginAsync(Credentials.UsernamePassword("*", "*", createUser: false), new Uri("https://dotnet.de1a.cloud.realm.io"));
+            var config = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("config.json", optional: true, reloadOnChange: true)
+                .Build();
+
+            var user = await User.LoginAsync(Credentials.UsernamePassword(config["Login"], config["Password"], createUser: false), new Uri("https://dotnet.de1a.cloud.realm.io"));
 
             var tempRealmFile = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
             var syncConfiguration = new FullSyncConfiguration(realmUrl, user, tempRealmFile);
@@ -75,7 +87,7 @@ namespace Conference.RealmUpdate
                 transaction.Commit();
             }
 
-            await Task.Delay(TimeSpan.FromMinutes(1));
+            await Task.Delay(TimeSpan.FromSeconds(30));
         }
     }
 }
