@@ -7,7 +7,6 @@ namespace DotNetRu.Droid
     using Android.OS;
 
     using DotNetRu.Droid.Helpers;
-    using DotNetRu.Droid.Notifications;
     using DotNetRu.Utils.Helpers;
     using FFImageLoading.Forms.Platform;
     using FormsToolkit.Droid;
@@ -81,14 +80,11 @@ namespace DotNetRu.Droid
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
-#if ENABLE_LIVE_PLAYER
-#else
             this.SetTheme(Resource.Style.MyTheme);
 
             Forms.SetFlags("FastRenderers_Experimental");
 
             FormsAppCompatActivity.ToolbarResource = Resource.Layout.toolbar;
-#endif
 
             base.OnCreate(savedInstanceState);
 
@@ -101,8 +97,6 @@ namespace DotNetRu.Droid
             ImageCircleRenderer.Init();
 
             CachedImageRenderer.Init(enableFastRenderer: true);
-
-            NotificationHelper.InitializePushNotifications();
 
             this.LoadApplication(new Clients.UI.App());
             this.OnNewIntent(this.Intent);

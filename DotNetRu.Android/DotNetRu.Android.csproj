@@ -115,9 +115,6 @@
     <PackageReference Include="Xamarin.FFImageLoading" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
-    <PackageReference Include="Xamarin.Firebase.Messaging">
-      <Version>60.1142.1</Version>
-    </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="4.0.0.482894" />
     <PackageReference Include="Xamarin.GooglePlayServices.Base">
       <Version>60.1142.1</Version>
@@ -133,12 +130,9 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Notifications\DotNetRuFirebaseIIDService.cs" />
-    <Compile Include="Notifications\DotNetRuPushReceiver.cs" />
     <Compile Include="Helpers\LocaleUtils.cs" />
     <Compile Include="Localize.cs" />
     <Compile Include="MainActivity.cs" />
-    <Compile Include="Notifications\NotificationHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="MainApplication.cs" />
