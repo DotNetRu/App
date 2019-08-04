@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <SolutionDir>..\</SolutionDir>
@@ -15,7 +15,7 @@
     <PackageReference Include="Realm" Version="4.0.1" />
     <PackageReference Include="RealmClone" Version="1.0.3" />
     <PackageReference Include="Xamarin.Essentials" Version="1.1.0" />
-    <PackageReference Include="Xamarin.Forms" Version="4.0.0.482894" />
+    <PackageReference Include="Xamarin.Forms" Version="4.1.0.618606" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="DotNetRuOffline.realm" />
