@@ -57,7 +57,7 @@ namespace DotNetRu.DataStore.Audit.Services
 
             var config = AppConfig.GetConfig();
 
-            RealmUri = new Uri($"realms://{RealmServerURL}/{config.AppCenterDatabaseKey}");
+            RealmUri = new Uri($"realms://{RealmServerURL}/{config.RealmDatabaseKey}");
 
             if (VersionTracking.IsFirstLaunchForCurrentBuild)
             {
