@@ -47,14 +47,6 @@ namespace RealmGenerator
             return xmlEntities;
         }
 
-        public static void AddRange<TEntity>(this Realm realm, IEnumerable<TEntity> entities) where TEntity : RealmObject
-        {
-            foreach (var entity in entities)
-            {
-                realm.Add(entity, update: true);
-            }
-        }
-
         public static async Task<IEnumerable<RepositoryContent>> GetFiles(string directory)
         {
             var contentFiles = new List<RepositoryContent>();
@@ -82,6 +74,7 @@ namespace RealmGenerator
             return contentFiles;
         }
 
+        // TODO download ZIP with needed commit
         public static async Task<AuditData> GetAuditData()
         { 
             var mapper = InitializeAudoMapper();

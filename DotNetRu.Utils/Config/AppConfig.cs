@@ -14,7 +14,7 @@ namespace DotNetRu.Clients.UI
 
         public string UpdateFunctionURL { get; set; }
         public string TweetFunctionURL { get; set; }
-        public object AppCenterDatabaseKey { get; set; }
+        public object RealmDatabaseKey { get; set; }
 
         public static AppConfig GetConfig()
         {
@@ -26,7 +26,7 @@ namespace DotNetRu.Clients.UI
                 PushNotificationsChannel = "AuditUpdateDebug",
                 UpdateFunctionURL = "https://dotnetruazure.azurewebsites.net/api/Update",
                 TweetFunctionURL = "https://dotnettweetservice.azurewebsites.net/api/Tweets",
-                AppCenterDatabaseKey = "dotnetru_040819"
+                RealmDatabaseKey = "dotnetru_040819"
             };
 #endif
 
