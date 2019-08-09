@@ -15,9 +15,9 @@ using Xamarin.Forms;
 
 namespace DotNetRu.Clients.UI.Meetups
 {
-    public class MeetupViewModel : ViewModelBase
+    public class MeetupDetailsViewModel : ViewModelBase
     {
-        public MeetupViewModel(INavigation navigation, MeetupModel meetupModel = null)
+        public MeetupDetailsViewModel(INavigation navigation, MeetupModel meetupModel = null)
             : base(navigation)
         {
             MeetupModel = meetupModel;
@@ -44,10 +44,10 @@ namespace DotNetRu.Clients.UI.Meetups
 
         public ICommand TapVenueCommand => new Command(() => LaunchBrowserCommand.Execute(VenueModel.MapUrl));
 
-        public ICommand SessionSelectedCommand => new Command<TalkModel>(async session =>
+        public ICommand SessionSelectedCommand => new Command<SessionModel>(async session =>
         {
-            App.Logger.TrackPage(AppPage.Talk.ToString(), session.Title);
-            await NavigationService.PushAsync(Navigation, new TalkPage(session));
+            App.Logger.TrackPage(AppPage.Talk.ToString(), session.Talk.Title);
+            await NavigationService.PushAsync(Navigation, new TalkPage(session.Talk));
         });
 
         public ICommand FriendSelectedCommand => new Command<FriendModel>(async friend =>

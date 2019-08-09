@@ -8,20 +8,20 @@ namespace DotNetRu.Clients.UI.Pages.Sessions
 {
     public partial class MeetupDetailsPage
     {
-        private MeetupViewModel meetupViewModel;
+        private MeetupDetailsViewModel meetupViewModel;
 
         public MeetupDetailsPage(MeetupModel meetup)
         {
             this.InitializeComponent();
 
-            this.BindingContext = this.meetupViewModel = new MeetupViewModel(this.Navigation, meetup);
+            this.BindingContext = this.meetupViewModel = new MeetupDetailsViewModel(this.Navigation, meetup);
 
             this.ItemId = meetup.Id;
         }
 
         public override AppPage PageType => AppPage.Meetup;
 
-        private MeetupViewModel MeetupViewModel => meetupViewModel ?? (meetupViewModel = BindingContext as MeetupViewModel);
+        private MeetupDetailsViewModel MeetupViewModel => meetupViewModel ?? (meetupViewModel = BindingContext as MeetupDetailsViewModel);
 
         protected override void OnAppearing()
         {

@@ -15,7 +15,7 @@
     Title="{Binding MeetupModel.Title}"
     Icon="tab_sessions.png"
     BackgroundColor="{DynamicResource WindowBackground}"
-    x:DataType="meetups:MeetupViewModel">
+    x:DataType="meetups:MeetupDetailsViewModel">
     <ContentPage.Resources>
         <ResourceDictionary>
             <converters:SessionTimeDisplayConverter x:Key="SessionTimeDisplayConverter" />
