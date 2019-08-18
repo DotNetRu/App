@@ -3,8 +3,6 @@ namespace DotNetRu.Clients.UI.Converters
     using System;
     using System.Diagnostics;
     using System.Globalization;
-
-    using DotNetRu.Clients.Portable.Model.Extensions;
     using DotNetRu.DataStore.Audit.Models;
 
     using Xamarin.Forms;
@@ -15,12 +13,15 @@ namespace DotNetRu.Clients.UI.Converters
         {
             try
             {
-                if (!(value is TalkModel session))
+                if (!(value is SessionModel session))
                 {
                     return string.Empty;
                 }
 
-                return session.GetDisplayTime();
+                var startString = session.StartTime.ToString("t");
+                var endString = session.EndTime.ToString("t");
+
+                return $"{startString}–{endString}";
             }
             catch (Exception ex)
             {

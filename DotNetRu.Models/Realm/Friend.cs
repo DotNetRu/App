@@ -1,4 +1,4 @@
-﻿namespace DotNetRu.DataStore.Audit.RealmModels
+namespace DotNetRu.DataStore.Audit.RealmModels
 {
     using System.Linq;
 
@@ -15,9 +15,9 @@
 
         public string Description { get; set; }
 
-        public byte[] LogoSmall { get; set; }
+        public string LogoSmallURL { get; set; }
 
-        public byte[] Logo { get; set; }
+        public string LogoURL { get; set; }
 
         [Backlink(nameof(Meetup.Friends))]
         public IQueryable<Meetup> Meetups { get; }

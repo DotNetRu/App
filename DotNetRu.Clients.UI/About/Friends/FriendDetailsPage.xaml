@@ -1,4 +1,4 @@
-﻿<pages:BasePage
+<pages:BasePage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="DotNetRu.Clients.UI.Pages.Friends.FriendDetailsPage"
@@ -11,7 +11,6 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <toolkit:HasDataConverter x:Key="GenericIsVisibleConverter"/>
-            <converters:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <controls:AlwaysScrollView>
@@ -25,12 +24,12 @@
                         <StackLayout Padding="{StaticResource StandardPadding}" >
                             <StackLayout Padding="32,16,32,0">
                                 <Image
-                    HorizontalOptions="FillAndExpand"
-                    VerticalOptions="FillAndExpand"
-                    Aspect="AspectFit"
-                    StyleId="SponsorDetailImage"
-                    Source="{Binding FriendModel.Logo, Converter={StaticResource ByteArrayToImageSourceConverter}}"
-                    HeightRequest="150">
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="FillAndExpand"
+                                    Aspect="AspectFit"
+                                    StyleId="SponsorDetailImage"
+                                    Source="{Binding FriendModel.Logo}"
+                                    HeightRequest="150">
                                 </Image>
                             </StackLayout>
                             <StackLayout Spacing="0">

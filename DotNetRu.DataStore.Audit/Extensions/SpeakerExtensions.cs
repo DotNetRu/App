@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 
 using DotNetRu.DataStore.Audit.Models;
@@ -20,8 +21,8 @@ namespace DotNetRu.DataStore.Audit.Extensions
                            GitHubUrl = speaker.GitHubUrl,
                            BlogUrl = speaker.BlogUrl,
                            Biography = speaker.Description,
-                           AvatarSmall = speaker.AvatarSmall,
-                           AvatarURL = speaker.AvatarURL,
+                           AvatarSmallURL = new Uri(speaker.AvatarSmallURL),
+                           AvatarURL = new Uri(speaker.AvatarURL),
                            Talks = speaker.Talks.ToList().Select(x => x.ToModel())
                        };
         }

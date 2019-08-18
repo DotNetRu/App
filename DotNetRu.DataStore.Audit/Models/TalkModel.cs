@@ -1,5 +1,6 @@
 namespace DotNetRu.DataStore.Audit.Models
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
@@ -78,10 +79,8 @@ namespace DotNetRu.DataStore.Audit.Models
             }
         }
 
-        public byte[] SpeakerAvatar => this.Speakers.Count() > 1
-                                                ? ResourceHelper.ExtractResource(
-                                                    "DotNetRu.DataStore.Audit.Storage.SeveralSpeakers.png")
-                                                : this.Speakers.Single().AvatarSmall;
+        // TODO use several speakers common photo
+        public Uri SpeakerAvatar => this.Speakers.First().AvatarSmallURL;
 
         public string SpeakerNames => string.Join(",", this.Speakers.Select(x => x.FullName));
 

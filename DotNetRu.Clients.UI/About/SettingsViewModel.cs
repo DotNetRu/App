@@ -24,8 +24,8 @@ namespace DotNetRu.Clients.Portable.ViewModel
             this.OpenCreditsCommand = openCreditsCommand;
             this.CopyAppVersionCommand = new Command(async () =>
             {
-                // await Clipboard.SetTextAsync(AppVersion);                
-                // toaster.SendToast(AppResources.ResourceManager.GetString("CopiedToClipboard"));
+                await Clipboard.SetTextAsync(AppVersion);                
+                toaster.SendToast(AppResources.ResourceManager.GetString("CopiedToClipboard"));
             });
             this.OpenTechnologiesUsedCommand = openTechnologiesUsedCommand;
             this.OpenFriendsCommand = openFriendsCommand;

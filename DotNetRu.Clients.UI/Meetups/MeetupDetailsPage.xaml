@@ -1,174 +1,187 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <pages:BasePage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:pages="clr-namespace:DotNetRu.Clients.UI.Pages;assembly=DotNetRu.Clients.UI"
     xmlns:controls="clr-namespace:DotNetRu.Clients.UI.Controls;assembly=DotNetRu.Clients.UI"
     xmlns:cells="clr-namespace:DotNetRu.Clients.UI.Cells;assembly=DotNetRu.Clients.UI"
+    xmlns:meetups="clr-namespace:DotNetRu.Clients.UI.Meetups;assembly=DotNetRu.Clients.UI"  
+    xmlns:imagecircle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+    xmlns:behaviorsPack="clr-namespace:Xamarin.Forms.BehaviorsPack;assembly=Xamarin.Forms.BehaviorsPack"
+    xmlns:effects="clr-namespace:DotNetRu.Clients.UI.Effects"
+    xmlns:models="clr-namespace:DotNetRu.DataStore.Audit.Models;assembly=DotNetRu.DataStore.Audit"
+    xmlns:converters="clr-namespace:DotNetRu.Clients.UI.Converters"
     x:Class="DotNetRu.Clients.UI.Pages.Sessions.MeetupDetailsPage"
     x:Name="Meetup"
     Title="{Binding MeetupModel.Title}"
     Icon="tab_sessions.png"
-    BackgroundColor="{DynamicResource WindowBackground}">
-  <ContentPage.Content>
+    BackgroundColor="{DynamicResource WindowBackground}"
+    x:DataType="meetups:MeetupDetailsViewModel">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:SessionTimeDisplayConverter x:Key="SessionTimeDisplayConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ScrollView BackgroundColor="{DynamicResource WindowBackgroundTable}">
-      <StackLayout BackgroundColor="{DynamicResource WindowBackgroundTable}"
+        <StackLayout BackgroundColor="{DynamicResource WindowBackgroundTable}"
                   Spacing="{DynamicResource CardSpacing}"
                   Padding="{DynamicResource CardPadding}">
-        <controls:CardView>
-          <StackLayout Spacing="0">
-            <controls:LabelSection Text="{Binding Resources[Talks]}"/>
-            <controls:HeaderDivider/>
-            <StackLayout IsVisible="{Binding IsBusy}">
-              <StackLayout.Orientation>
-                <OnPlatform x:TypeArguments="StackOrientation" iOS="Horizontal"/>
-              </StackLayout.Orientation>
-              <ActivityIndicator IsRunning="{Binding IsBusy}" >
-                <ActivityIndicator.Color>
-                  <OnPlatform x:TypeArguments="Color" Android="{StaticResource Accent}"/>
-                </ActivityIndicator.Color>
-              </ActivityIndicator>
-              <Label Text="{Binding Resources[LoadingTalks]}" HorizontalOptions="Center" Style="{DynamicResource EvolveListItemTextStyle}"/>
-            </StackLayout>
-            <StackLayout IsVisible="{Binding NoSessionsFound}"
+            <controls:CardView>
+                <StackLayout Spacing="0">
+                    <controls:LabelSection Text="{Binding Resources[Talks]}"/>
+                    <controls:HeaderDivider/>
+                    <StackLayout IsVisible="{Binding IsBusy}">
+                        <StackLayout.Orientation>
+                            <OnPlatform x:TypeArguments="StackOrientation" iOS="Horizontal"/>
+                        </StackLayout.Orientation>
+                        <ActivityIndicator IsRunning="{Binding IsBusy}" >
+                            <ActivityIndicator.Color>
+                                <OnPlatform x:TypeArguments="Color" Android="{StaticResource Accent}"/>
+                            </ActivityIndicator.Color>
+                        </ActivityIndicator>
+                        <Label Text="{Binding Resources[LoadingTalks]}" HorizontalOptions="Center" Style="{DynamicResource EvolveListItemTextStyle}"/>
+                    </StackLayout>
+                    <StackLayout IsVisible="{Binding NoSessionsFound}"
                           HorizontalOptions="FillAndExpand"
                           VerticalOptions="CenterAndExpand"
                           BackgroundColor="{DynamicResource WindowBackground}"
                           Padding="16,0">
-              <Label Text="{Binding Resources[NoTalksFound]}" HorizontalOptions="Center" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand" FontSize="22" TextColor="#D3D2D2"/>
-            </StackLayout>
-            <controls:NonScrollableListView
-                x:Name="ListViewTalks"
-                ItemsSource="{Binding Sessions}"
-                StyleId="SessionSpeakers"
-                RowHeight="120">
-              <controls:NonScrollableListView.SeparatorColor>
-                <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ListSeparator}"/>
-              </controls:NonScrollableListView.SeparatorColor>
-              <controls:NonScrollableListView.ItemTemplate>
-                <DataTemplate>
-                  <ViewCell StyleId="disclosure">
-                    <cells:SessionCellView />
-                  </ViewCell>
-                </DataTemplate>
-              </controls:NonScrollableListView.ItemTemplate>
-            </controls:NonScrollableListView>
-            <controls:FooterDivider/>
-          </StackLayout>
-        </controls:CardView>
+                        <Label Text="{Binding Resources[NoTalksFound]}" HorizontalOptions="Center" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand" FontSize="22" TextColor="#D3D2D2"/>
+                    </StackLayout>
+                    <ListView
+                            x:Name="ListViewTalks"
+                            ItemsSource="{Binding Sessions}"
+                            StyleId="SessionSpeakers"
+                            RowHeight="120">
+                        <ListView.SeparatorColor>
+                            <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ListSeparator}"/>
+                        </ListView.SeparatorColor>
+                        <ListView.Effects>
+                            <effects:NonScrollableEffect />
+                        </ListView.Effects>
+                        <ListView.Behaviors>
+                            <behaviorsPack:SelectedItemBehavior Command="{Binding SessionSelectedCommand}"/>
+                        </ListView.Behaviors>
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="models:SessionModel">
+                                <ViewCell StyleId="disclosure">
+                                    <Grid Padding="{DynamicResource StandardPadding}" 
+                                              ColumnSpacing="{StaticResource StandardSpacing}">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <imagecircle:CircleImage 
+                                                Grid.Column="0"
+                                                Grid.Row="0"
+                                                Grid.RowSpan="3"
+                                                Source="{Binding Talk.SpeakerAvatar}"
+                                                VerticalOptions="Center"
+                                                Aspect="AspectFill"
+                                                WidthRequest="44"
+                                                HeightRequest="44">
+                                        </imagecircle:CircleImage>
 
-        <controls:CardView>
-          <controls:CardView.GestureRecognizers>
-            <TapGestureRecognizer Command="{Binding TapVenueCommand}"/>
-          </controls:CardView.GestureRecognizers>
-          <StackLayout Spacing="0">
-            <controls:LabelSection Text="{Binding Resources[Venue]}"/>
-            <controls:HeaderDivider/>
-            <StackLayout Padding="{StaticResource StandardPadding}" BackgroundColor="White">
-                <Label Text="{Binding MeetupDate}"  Style="{DynamicResource EvolveListItemTextStyle}" StyleId="SessionAbstract"/>
-                <Label Text="{Binding MeetupTime}"  Style="{DynamicResource EvolveListItemTextStyle}" StyleId="SessionAbstract"/>
-              <controls:HeaderDivider/>
-              <Label Text="{Binding VenueModel.Name}" Style="{DynamicResource EvolveListItemTextStyle}" StyleId="SessionAbstract"/>
-              <Label Text="{Binding VenueModel.Address}" Style="{DynamicResource EvolveListItemTextStyle}" StyleId="SessionAbstract"/>
-            </StackLayout>
-            <controls:FooterDivider/>
-          </StackLayout>
-        </controls:CardView>
+                                        <Label Grid.Row="0"
+                                               Grid.Column="1"               
+                                                Text="{Binding Talk.Title}" 
+                                                Style="{DynamicResource EvolveListItemTextStyle}"
+                                                StyleId="SessionItem"/>
 
-        <controls:CardView>
-            <StackLayout Spacing="0">
-                <controls:LabelSection Text="{Binding Resources[Friends]}"/>
-                <controls:HeaderDivider/>                
-                <controls:NonScrollableListView
-                    x:Name="ListViewFriends"
-                    ItemsSource="{Binding Friends}"
-                    StyleId="SessionSpeakers"
-                    RowHeight="120">
-                    <controls:NonScrollableListView.SeparatorColor>
-                        <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ListSeparator}"/>
-                    </controls:NonScrollableListView.SeparatorColor>
-                    <controls:NonScrollableListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell StyleId="disclosure">
-                                <cells:MeetupFriendCellView />
-                            </ViewCell>
-                        </DataTemplate>
-                    </controls:NonScrollableListView.ItemTemplate>
-                </controls:NonScrollableListView>
-                <controls:FooterDivider/>
-            </StackLayout>
-        </controls:CardView>
-      </StackLayout>
+                                        <Label Grid.Row="1"
+                                               Grid.Column="1"
+                                               VerticalOptions="End"
+                                               Text="{Binding ., Converter={StaticResource SessionTimeDisplayConverter}}" 
+                                               Style="{DynamicResource EvolveListItemDetailTextStyle}"
+                                               StyleId="SessionTime"/>
+
+                                        <Label Grid.Row="2"
+                                               Grid.Column="1"
+                                                Text="{Binding Talk.SpeakerNames}" 
+                                                Style="{DynamicResource EvolveListItemDetailTextStyle}"
+                                                StyleId="SpeakerNames"/>
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <controls:FooterDivider/>
+                </StackLayout>
+            </controls:CardView>
+
+            <controls:CardView>
+                <controls:CardView.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding TapVenueCommand}"/>
+                </controls:CardView.GestureRecognizers>
+                <StackLayout Spacing="0">
+                    <controls:LabelSection Text="{Binding Resources[Venue]}"/>
+                    <controls:HeaderDivider/>
+                    <StackLayout Padding="{StaticResource StandardPadding}" BackgroundColor="White">
+                        <Label Text="{Binding MeetupDate}"  Style="{DynamicResource EvolveListItemTextStyle}" StyleId="SessionAbstract"/>
+                        <Label Text="{Binding MeetupTime}"  Style="{DynamicResource EvolveListItemTextStyle}" StyleId="SessionAbstract"/>
+                        <controls:HeaderDivider/>
+                        <Label Text="{Binding VenueModel.Name}" Style="{DynamicResource EvolveListItemTextStyle}" StyleId="SessionAbstract"/>
+                        <Label Text="{Binding VenueModel.Address}" Style="{DynamicResource EvolveListItemTextStyle}" StyleId="SessionAbstract"/>
+                    </StackLayout>
+                    <controls:FooterDivider/>
+                </StackLayout>
+            </controls:CardView>
+
+            <controls:CardView>
+                <StackLayout Spacing="0">
+                    <controls:LabelSection Text="{Binding Resources[Friends]}"/>
+                    <controls:HeaderDivider/>
+                    <ListView
+                        x:Name="ListViewFriends"
+                        ItemsSource="{Binding Friends}"
+                        StyleId="SessionSpeakers"
+                        RowHeight="120">
+                        <ListView.SeparatorColor>
+                            <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ListSeparator}"/>
+                        </ListView.SeparatorColor>
+                        <ListView.Effects>
+                            <effects:NonScrollableEffect />
+                        </ListView.Effects>
+                        <ListView.Behaviors>
+                            <behaviorsPack:SelectedItemBehavior Command="{Binding FriendSelectedCommand}"/>
+                        </ListView.Behaviors>                        
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="models:FriendModel">
+                                <ViewCell StyleId="disclosure">
+                                    <StackLayout Spacing="0" HeightRequest="120">
+                                        <StackLayout.Padding>
+                                            <OnPlatform x:TypeArguments="Thickness" iOS="0" Android="0,4"/>
+                                        </StackLayout.Padding>
+                                        <controls:CardView HeightRequest="120">
+                                            <Grid Padding="{DynamicResource StandardPadding}" ColumnSpacing="{DynamicResource StandardSpacing}">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="10*" />
+                                                    <ColumnDefinition Width="90*" />
+                                                    <ColumnDefinition Width="10*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Image
+                                                    Grid.Column="1"
+                                                    Margin="16"
+                                                    HorizontalOptions="FillAndExpand"
+                                                    VerticalOptions="FillAndExpand"
+                                                    StyleId="SponsorImage"
+                                                    Source="{Binding LogoSmall}"
+                                                    Aspect="AspectFit">
+                                                </Image>
+                                            </Grid>
+                                        </controls:CardView>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <controls:FooterDivider/>
+                </StackLayout>
+            </controls:CardView>
+        </StackLayout>
     </ScrollView>
-  </ContentPage.Content>
 </pages:BasePage>
-
-<!--<local:CardView>
-                      <StackLayout Spacing="0">
-                            <local:LabelSection Text="Follow"/> 
-                            <local:HeaderDivider/>
-                             <Grid Padding="{StaticResource StandardPadding}" 
-                                           BackgroundColor="White"
-                                           ColumnSpacing="{StaticResource StandardSpacing}">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions> 
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="24"/>
-                                </Grid.ColumnDefinitions>
-                               <Grid.IsVisible>
-                                <OnPlatform x:TypeArguments="x:Boolean" iOS="false" Android="true" WinPhone="true"/>
-                               </Grid.IsVisible>
-                                <Button StyleId="ReminderButton"
-                                        IsVisible="{Binding ShowReminder}"
-                                        Text="{Binding IsReminderSet, Converter={StaticResource HasReminderTextConverter}}"
-                                        BackgroundColor="{StaticResource PrimaryDark}"
-                                        Command="{Binding ReminderCommand}"
-                                        TextColor="White"/>                                        
-                             </Grid>
-   
-                             <StackLayout Padding="16,0" Spacing="8" Orientation="Horizontal" BackgroundColor="White">
-                                <StackLayout.IsVisible>
-                                    <OnPlatform x:TypeArguments="x:Boolean" iOS="true" Android="false" WinPhone="false"/>
-                                </StackLayout.IsVisible>
-                                <Button 
-                                    StyleId="ReminderButton"
-                                    IsVisible="{Binding ShowReminder}"
-                                    Text="{Binding IsReminderSet, Converter={StaticResource HasReminderTextConverter}}"
-                                    FontAttributes="Bold"
-                                    HorizontalOptions="StartAndExpand"
-                                    TextColor="{DynamicResource Primary}"
-                                    Command="{Binding ReminderCommand}" />
-                             </StackLayout>
-                             <local:SectionDivider/>                              
-                            <local:FooterDivider/>
-                         </StackLayout>
-                     </local:CardView>-->
-
-<!--<StackLayout>
-            <StackLayout.Padding>
-                <OnPlatform x:TypeArguments="Thickness" Android="0,8,8,8" iOS="0" WinPhone="0"/>
-            </StackLayout.Padding>
-            <StackLayout.BackgroundColor>
-                <OnPlatform x:TypeArguments="Color" Android="{StaticResource Primary}"/>
-            </StackLayout.BackgroundColor>
-             <SearchBar Text="{Binding Filter, Mode=TwoWay}" 
-                        Placeholder="Search"
-                        SearchCommand="{Binding FilterSessionsCommand}"
-                        FontSize="Small" >
-                        <SearchBar.PlaceholderColor>
-                            <OnPlatform x:TypeArguments="Color" Android="White"/>
-                        </SearchBar.PlaceholderColor>
-                        <SearchBar.BackgroundColor>
-                            <OnPlatform x:TypeArguments="Color" Android="{StaticResource Primary}"/>
-                        </SearchBar.BackgroundColor>
-                        <SearchBar.TextColor>
-                            <OnPlatform x:TypeArguments="Color" Android="White"/>
-                        </SearchBar.TextColor>
-                        <SearchBar.CancelButtonColor>
-                            <OnPlatform x:TypeArguments="Color" Android="White" iOS="{StaticResource Primary}"/>
-                        </SearchBar.CancelButtonColor>
-            </SearchBar>
-        </StackLayout>-->

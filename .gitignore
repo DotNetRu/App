@@ -280,3 +280,5 @@ __pycache__/
 /DotNetRu.DataStore.Audit/Audit.realm.lock
 
 Resource.designer.cs
+*.lock
+/DotNetRu.RealmUpdate/config.json

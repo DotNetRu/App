@@ -27,7 +27,7 @@ namespace DotNetRu.DataStore.Audit.RealmModels
 
         public string ContactsUrl { get; set; }
 
-        public byte[] AvatarSmall { get; set; }
+        public string AvatarSmallURL { get; set; }
 
         public string AvatarURL { get; set; }
 

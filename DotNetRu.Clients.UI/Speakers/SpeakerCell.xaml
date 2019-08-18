@@ -4,11 +4,6 @@
     xmlns:imagecircle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
     xmlns:converters="clr-namespace:DotNetRu.Clients.UI.Converters;assembly=DotNetRu.Clients.UI"
     x:Class="DotNetRu.Clients.UI.Cells.SpeakerCellView">
-    <ContentView.Resources>
-        <ResourceDictionary>
-            <converters:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter" />
-        </ResourceDictionary>
-    </ContentView.Resources>
     <ContentView.Content>
         <Grid Padding="16,5" ColumnSpacing="{StaticResource StandardSpacing}">
               <Grid.ColumnDefinitions>
@@ -16,7 +11,7 @@
                 <ColumnDefinition Width="*"/>
               </Grid.ColumnDefinitions>
               <imagecircle:CircleImage FillColor="{DynamicResource Primary}" 
-                                       Source="{Binding AvatarSmall, Converter={StaticResource ByteArrayToImageSourceConverter}}"                                       
+                                       Source="{Binding AvatarSmallURL}"                                       
                                        VerticalOptions="Center"
                                        Aspect="AspectFill"
                                        WidthRequest="44"

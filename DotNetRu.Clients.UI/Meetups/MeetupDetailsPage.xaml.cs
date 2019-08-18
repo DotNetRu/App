@@ -1,76 +1,37 @@
 using DotNetRu.Clients.Portable.Model;
-using DotNetRu.Clients.Portable.ViewModel;
-using DotNetRu.Clients.UI.Controls;
-using DotNetRu.Clients.UI.Helpers;
-using DotNetRu.Clients.UI.Pages.Friends;
+using DotNetRu.Clients.UI.Meetups;
 using DotNetRu.DataStore.Audit.Models;
 using System.Collections.Generic;
 using Xamarin.Forms;
 
 namespace DotNetRu.Clients.UI.Pages.Sessions
-{    
+{
     public partial class MeetupDetailsPage
     {
-        private MeetupViewModel meetupViewModel;
+        private MeetupDetailsViewModel meetupViewModel;
 
         public MeetupDetailsPage(MeetupModel meetup)
         {
             this.InitializeComponent();
 
-            this.BindingContext = this.meetupViewModel = new MeetupViewModel(this.Navigation, meetup);
+            this.BindingContext = this.meetupViewModel = new MeetupDetailsViewModel(this.Navigation, meetup);
 
             this.ItemId = meetup.Id;
-
-            ListViewTalks.ItemSelected += OnSessionTapped;            
-            ListViewFriends.ItemSelected += OnFriendTapped;
-        }
-
-        private async void OnSessionTapped(object sender, SelectedItemChangedEventArgs e)
-        {
-            if (!(ListViewTalks.SelectedItem is SessionModel session))
-            {
-                return;
-            }
-
-            var sessionDetails = new TalkPage(session.Talk);
-
-            await NavigationService.PushAsync(Navigation, sessionDetails);
-            ListViewTalks.SelectedItem = null;
-        }
-
-        private async void OnFriendTapped(object sender, SelectedItemChangedEventArgs e)
-        {
-            if (!(ListViewFriends.SelectedItem is FriendModel sponsor))
-            {
-                return;
-            }
-
-            var sponsorDetails = new FriendDetailsPage
-            {
-                FriendModel = sponsor
-            };
-
-
-            await NavigationService.PushAsync(Navigation, sponsorDetails);
-            ListViewFriends.SelectedItem = null;
         }
 
         public override AppPage PageType => AppPage.Meetup;
 
-        private MeetupViewModel MeetupViewModel => meetupViewModel ?? (meetupViewModel = BindingContext as MeetupViewModel);
+        private MeetupDetailsViewModel MeetupViewModel => meetupViewModel ?? (meetupViewModel = BindingContext as MeetupDetailsViewModel);
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
 
-            ListViewTalks.ItemTapped += ListViewTapped;
-            ListViewFriends.ItemTapped += ListViewTapped;
-
             AdjustListView(ListViewTalks, MeetupViewModel?.Sessions);
             AdjustListView(ListViewFriends, MeetupViewModel?.Friends);
         }
 
-        private void AdjustListView<T>(NonScrollableListView listView, IReadOnlyCollection<T> items)
+        private void AdjustListView<T>(ListView listView, IReadOnlyCollection<T> items)
         {
             var count = items?.Count ?? 0;
             if (count == 0)
@@ -89,24 +50,6 @@ namespace DotNetRu.Clients.UI.Pages.Sessions
             }
 
             listView.HeightRequest = count * listView.RowHeight - adjust;
-        }
-
-        protected override void OnDisappearing()
-        {
-            base.OnDisappearing();
-
-            ListViewFriends.ItemTapped -= ListViewTapped;
-            ListViewTalks.ItemTapped -= ListViewTapped;
-        }
-
-        private void ListViewTapped(object sender, ItemTappedEventArgs e)
-        {
-            if (!(sender is ListView list))
-            {
-                return;
-            }
-
-            list.SelectedItem = null;
         }
     }
 }

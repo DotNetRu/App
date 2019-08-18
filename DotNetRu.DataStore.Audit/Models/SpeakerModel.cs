@@ -1,5 +1,6 @@
 namespace DotNetRu.DataStore.Audit.Models
 {
+    using System;
     using System.Collections.Generic;
 
     public sealed class SpeakerModel
@@ -69,8 +70,8 @@ namespace DotNetRu.DataStore.Audit.Models
             }
         }
 
-        public byte[] AvatarSmall { get; set; }
+        public Uri AvatarSmallURL { get; set; }
 
-        public string AvatarURL { get; set; }
+        public Uri AvatarURL { get; set; }
     }
 }
