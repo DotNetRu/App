@@ -13,8 +13,12 @@
   <ItemGroup>
     <ProjectReference Include="..\DotNetRu.DataStore.Audit\DotNetRu.DataStore.Audit.csproj" />
     <ProjectReference Include="..\DotNetRu.Models\DotNetRu.Models.csproj" />
+    <ProjectReference Include="..\DotNetRu.RealmUpdate\DotNetRu.RealmUpdate.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <None Update="config.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="host.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

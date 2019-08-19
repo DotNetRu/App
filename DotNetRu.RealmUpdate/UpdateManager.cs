@@ -1,16 +1,17 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
 using System.Threading.Tasks;
 using AutoMapper;
 using DotNetRu.DataStore.Audit.RealmModels;
-using DotNetRu.RealmUpdate;
+using MoreLinq;
 using Octokit;
+using RealmClone;
+using RealmGenerator;
 using RealmGenerator.Entities;
 using Realms;
 
-namespace RealmGenerator
+namespace DotNetRu.RealmUpdate
 {
     public static class UpdateManager
     {
@@ -76,7 +77,7 @@ namespace RealmGenerator
 
         // TODO download ZIP with needed commit
         public static async Task<AuditData> GetAuditData()
-        { 
+        {
             var mapper = InitializeAudoMapper();
 
             // speakers
@@ -103,7 +104,7 @@ namespace RealmGenerator
                 cfg.CreateMap<TalkEntity, Talk>().AfterMap(
                     (src, dest) =>
                     {
-                        foreach (string speakerId in src.SpeakerIds)
+                        foreach (var speakerId in src.SpeakerIds)
                         {
                             var speaker = realmSpeakers.Single(s => s.Id == speakerId);
                             dest.Speakers.Add(speaker);
@@ -111,7 +112,7 @@ namespace RealmGenerator
 
                         if (src.SeeAlsoTalkIds != null)
                         {
-                            foreach (string talkId in src.SeeAlsoTalkIds)
+                            foreach (var talkId in src.SeeAlsoTalkIds)
                             {
                                 // TODO change to TalkModel
                                 dest.SeeAlsoTalksIds.Add(talkId);
@@ -136,7 +137,7 @@ namespace RealmGenerator
                         {
                             if (src.FriendIds != null)
                             {
-                                foreach (string friendId in src.FriendIds)
+                                foreach (var friendId in src.FriendIds)
                                 {
                                     var friend = realmFriends.Single(f => f.Id == friendId);
                                     dest.Friends.Add(friend);
@@ -197,6 +198,42 @@ namespace RealmGenerator
                 });
 
             return mapperConfig.CreateMapper();
+        }
+
+        public static void UpdateRealm(Realm realm, AuditData auditData)
+        {
+            using (var transaction = realm.BeginWrite())
+            {
+                MoveRealmObjects(realm, new[] { auditData.AuditVersion }, x => x.CommitHash);
+                MoveRealmObjects(realm, auditData.Communities, x => x.Id);
+                MoveRealmObjects(realm, auditData.Friends, x => x.Id);
+                MoveRealmObjects(realm, auditData.Meetups, x => x.Id);
+
+                MoveRealmObjects(realm, auditData.Meetups.SelectMany(m => m.Sessions), x => x.Id);
+
+                MoveRealmObjects(realm, auditData.Speakers, x => x.Id);
+                MoveRealmObjects(realm, auditData.Talks, x => x.Id);
+                MoveRealmObjects(realm, auditData.Venues, x => x.Id);
+
+                transaction.Commit();
+            }
+        }
+
+        public static void MoveRealmObjects<T, TKey>(Realm realm, IEnumerable<T> newObjects, Func<T, TKey> keySelector) where T : RealmObject
+        {
+            // TODO use primary key
+            var oldObjects = realm.All<T>().ToList();
+
+            var objectsToRemove = oldObjects.ExceptBy(newObjects, keySelector).ToList();
+
+            foreach (var @object in objectsToRemove)
+            {
+                realm.Remove(@object);
+            }
+            foreach (var @object in newObjects)
+            {
+                realm.Add(@object.Clone(), update: true);
+            }
         }
     }
 }

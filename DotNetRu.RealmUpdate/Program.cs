@@ -1,15 +1,10 @@
 using DotNetRu.RealmUpdate;
 using Microsoft.Extensions.Configuration;
-using MoreLinq;
-using RealmClone;
-using RealmGenerator;
 using Realms;
 using Realms.Sync;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Conference.RealmUpdate
@@ -42,7 +37,7 @@ namespace Conference.RealmUpdate
             Realm.DeleteRealm(new RealmConfiguration(realmFullPath));
 
             var realm = Realm.GetInstance(realmFullPath);
-            UpdateRealm(realm, auditData);
+            UpdateManager.UpdateRealm(realm, auditData);
         }
 
         private static async Task UpdateOnlineRealm(AuditData auditData)
@@ -63,45 +58,9 @@ namespace Conference.RealmUpdate
 
             var realm = await Realm.GetInstanceAsync(syncConfiguration);
 
-            UpdateRealm(realm, auditData);
+            UpdateManager.UpdateRealm(realm, auditData);
 
             await Task.Delay(TimeSpan.FromSeconds(30));
-        }
-
-        private static void UpdateRealm(Realm realm, AuditData auditData)
-        {
-            using (var transaction = realm.BeginWrite())
-            {
-                MoveRealmObjects(realm, new[] { auditData.AuditVersion }, x => x.CommitHash);
-                MoveRealmObjects(realm, auditData.Communities, x => x.Id);
-                MoveRealmObjects(realm, auditData.Friends, x => x.Id);
-                MoveRealmObjects(realm, auditData.Meetups, x => x.Id);
-
-                MoveRealmObjects(realm, auditData.Meetups.SelectMany(m => m.Sessions), x => x.Id);
-
-                MoveRealmObjects(realm, auditData.Speakers, x => x.Id);
-                MoveRealmObjects(realm, auditData.Talks, x => x.Id);
-                MoveRealmObjects(realm, auditData.Venues, x => x.Id);
-
-                transaction.Commit();
-            }
-        }
-
-        public static void MoveRealmObjects<T, TKey>(Realm realm, IEnumerable<T> newObjects, Func<T, TKey> keySelector) where T : RealmObject
-        {
-            // TODO use primary key
-            var oldObjects = realm.All<T>().ToList();
-
-            var objectsToRemove = oldObjects.ExceptBy(newObjects, keySelector).ToList();
-
-            foreach (var @object in objectsToRemove)
-            {
-                realm.Remove(@object);
-            }
-            foreach (var @object in newObjects)
-            {
-                realm.Add(@object.Clone(), update: true);
-            }
         }
     }
 }
