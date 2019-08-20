@@ -20,7 +20,8 @@ namespace DotNetRu.Azure
         [FunctionName("update")]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)] HttpRequest req,
-            ILogger log)
+            ILogger log,
+            ExecutionContext context)
         {
             try
             {
@@ -35,13 +36,24 @@ namespace DotNetRu.Azure
                 var realmData = await UpdateManager.GetAuditData();
 
                 var config = new ConfigurationBuilder()
-                    .SetBasePath(Directory.GetCurrentDirectory())
+                    .SetBasePath(context.FunctionAppDirectory)
                     .AddJsonFile("config.json", optional: true, reloadOnChange: true)
                     .Build();
 
-                var user = await User.LoginAsync(
-                    Credentials.UsernamePassword(config["Login"], config["Password"], createUser: false), 
-                    new Uri("https://dotnet.de1a.cloud.realm.io"));
+                User user = null;
+                try
+                {
+                    user = await User.LoginAsync(
+                        Credentials.UsernamePassword(config["Login"], config["Password"], createUser: false),
+                        new Uri("https://dotnet.de1a.cloud.realm.io"));
+                }
+                catch (Exception e)
+                {
+                    log.LogCritical(e, "Error while logging in");
+                    user = await User.LoginAsync(
+                        Credentials.UsernamePassword(config["Login"], config["Password"], createUser: false),
+                        new Uri("https://dotnet.de1a.cloud.realm.io"));
+                }
 
                 var tempRealmFile = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
                 var syncConfiguration = new FullSyncConfiguration(realmUrl, user, tempRealmFile);
