@@ -60,7 +60,7 @@ namespace Conference.RealmUpdate
 
             UpdateManager.UpdateRealm(realm, auditData);
 
-            await Task.Delay(TimeSpan.FromSeconds(30));
+            await Task.Delay(TimeSpan.FromSeconds(2));
         }
     }
 }

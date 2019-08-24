@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -17,35 +18,39 @@ namespace DotNetRu.RealmUpdate
     {
         public const int DotNetRuAppRepositoryID = 89862917;
 
+        // TODO use async streams once available
         public static async Task<IEnumerable<TEntity>> GetXmlEntitiesAsync<TEntity>(string entityFolderName)
         {
-            // TODO use async streams once available
-            var xmlEntities = new List<TEntity>();
+            var timer = Stopwatch.StartNew();
 
             var client = new GitHubClient(new ProductHeaderValue("dotnetru-app"));
 
             var auditFiles = await client.Repository.Content.GetAllContents(DotNetRuAppRepositoryID, $"db/{entityFolderName}");
 
-            foreach (var file in auditFiles)
-            {
-                string downloadUrl;
-                switch (entityFolderName)
-                {
-                    case "speakers":
-                    case "friends":
-                        downloadUrl = $"https://raw.githubusercontent.com/DotNetRu/Audit/master/db/{entityFolderName}/{file.Name}/index.xml";
-                        break;
-                    default:
-                        downloadUrl = file.DownloadUrl;
-                        break;
-                }
+            var xmlEntities = await Task.WhenAll(auditFiles.Select(file => DownloadXml<TEntity>(entityFolderName, file)));
 
-                var entity = await FileHelper.DownloadEntityAsync<TEntity>(downloadUrl);
+            timer.Stop();
 
-                xmlEntities.Add(entity);
-            }
+            Console.WriteLine($"{entityFolderName}: {timer.Elapsed}");
 
             return xmlEntities;
+        }
+
+        private static Task<TEntity> DownloadXml<TEntity>(string entityFolderName, RepositoryContent file)
+        {
+            string downloadUrl;
+            switch (entityFolderName)
+            {
+                case "speakers":
+                case "friends":
+                    downloadUrl = $"https://raw.githubusercontent.com/DotNetRu/Audit/master/db/{entityFolderName}/{file.Name}/index.xml";
+                    break;
+                default:
+                    downloadUrl = file.DownloadUrl;
+                    break;
+            }
+
+            return FileHelper.DownloadEntityAsync<TEntity>(downloadUrl);
         }
 
         public static async Task<IEnumerable<RepositoryContent>> GetFiles(string directory)
@@ -75,7 +80,6 @@ namespace DotNetRu.RealmUpdate
             return contentFiles;
         }
 
-        // TODO download ZIP with needed commit
         public static async Task<AuditData> GetAuditData()
         {
             var mapper = InitializeAudoMapper();
