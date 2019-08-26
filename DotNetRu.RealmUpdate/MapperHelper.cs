@@ -64,7 +64,6 @@ namespace DotNetRu.RealmUpdate
             }).CreateMapper();
         }
 
-
         internal static IMapper GetAutoMapper()
         {
             var mapperConfig = new MapperConfiguration(

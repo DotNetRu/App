@@ -17,12 +17,12 @@ namespace DotNetRu.Azure
 {
     public static class RealmUpdateFunction
     {
-        public static string CurrentRealmName = "dotnet_prod_090819";
+        public static string CurrentRealmName = "dotnetru_prod_090819";
 
         [FunctionName("update")]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)] HttpRequest req,
-            ILogger log,
+            ILogger logger,
             ExecutionContext context)
         {
             try
@@ -31,7 +31,7 @@ namespace DotNetRu.Azure
                     ? req.Headers["RealmName"].ToString()
                     : CurrentRealmName;
 
-                log.LogInformation("Realm to update {RealmName}", realmName);
+                logger.LogInformation("Realm to update {RealmName}", realmName);
 
                 var realmUrl = new Uri($"realms://dotnet.de1a.cloud.realm.io/{realmName}");
 
@@ -40,20 +40,20 @@ namespace DotNetRu.Azure
                     .AddJsonFile("config.json", optional: true, reloadOnChange: true)
                     .Build();
 
-                var user = await GetUser(log, config);
+                var user = await GetUser(logger, config);
 
                 var realm = await GetRealm(realmUrl, user);
 
                 var currentVersion = GetCurrentVersion(realm);
 
-                var updateDelta = await UpdateManager.GetAuditUpdate(currentVersion);
+                var updateDelta = await UpdateManager.GetAuditUpdate(currentVersion, logger);
 
                 realm = await GetRealm(realmUrl, user);
                 RealmHelper.UpdateRealm(realm, updateDelta);
             }
             catch (Exception e)
             {
-                log.LogCritical(e, "Error while updating realm");
+                logger.LogCritical(e, "Error while updating realm");
                 return new ObjectResult(e) { StatusCode = StatusCodes.Status500InternalServerError };
             }
 

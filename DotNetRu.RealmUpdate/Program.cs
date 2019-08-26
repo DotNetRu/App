@@ -1,6 +1,5 @@
 using DotNetRu.RealmUpdate;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 using Realms;
 using Realms.Sync;
 using System;
@@ -19,10 +18,7 @@ namespace Conference.RealmUpdate
         public static async Task Main()
         {
             var stopwatch = Stopwatch.StartNew();
-
-            var logger = new LoggerFactory().CreateLogger("RealmUpdate");
-
-            var auditData = await UpdateManager.GetAuditData();
+            var auditData = await UpdateManager.GetAuditData("7651c70e9967b8119cfebab9a6042e07bfbd935c");
             stopwatch.Stop();
 
             Console.WriteLine($"Get data from GitHub time: {stopwatch.Elapsed}");
@@ -41,12 +37,12 @@ namespace Conference.RealmUpdate
             Realm.DeleteRealm(new RealmConfiguration(realmFullPath));
 
             var realm = Realm.GetInstance(realmFullPath);
-            RealmHelper.UpdateRealm(realm, auditData);
+            RealmHelper.ReplaceRealm(realm, auditData);
         }
 
         private static async Task UpdateOnlineRealm(AuditUpdate auditData)
         {
-            SyncConfigurationBase.LogLevel = Realms.Sync.LogLevel.Debug;
+            SyncConfigurationBase.LogLevel = LogLevel.Debug;
 
             var realmUrl = new Uri($"realms://dotnet.de1a.cloud.realm.io/{realmOnlineName}");
 
@@ -55,14 +51,16 @@ namespace Conference.RealmUpdate
                 .AddJsonFile("config.json", optional: true, reloadOnChange: true)
                 .Build();
 
-            var user = await User.LoginAsync(Credentials.UsernamePassword(config["Login"], config["Password"], createUser: false), new Uri("https://dotnet.de1a.cloud.realm.io"));
+            var user = await User.LoginAsync(
+                Credentials.UsernamePassword(config["Login"], config["Password"], createUser: false), 
+                new Uri("https://dotnet.de1a.cloud.realm.io"));
 
             var tempRealmFile = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
             var syncConfiguration = new FullSyncConfiguration(realmUrl, user, tempRealmFile);
 
             var realm = await Realm.GetInstanceAsync(syncConfiguration);
 
-            RealmHelper.UpdateRealm(realm, auditData);
+            RealmHelper.ReplaceRealm(realm, auditData);
 
             await Task.Delay(TimeSpan.FromSeconds(2));
         }

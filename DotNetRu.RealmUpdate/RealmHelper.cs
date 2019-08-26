@@ -13,6 +13,25 @@ namespace DotNetRu.RealmUpdate
         {
             using (var transaction = realm.BeginWrite())
             {
+                UpdateRealmObjects(realm, new[] { auditData.AuditVersion });
+                UpdateRealmObjects(realm, auditData.Communities);
+                UpdateRealmObjects(realm, auditData.Friends);
+                UpdateRealmObjects(realm, auditData.Meetups);
+
+                UpdateRealmObjects(realm, auditData.Meetups.SelectMany(m => m.Sessions));
+
+                UpdateRealmObjects(realm, auditData.Speakers);
+                UpdateRealmObjects(realm, auditData.Talks);
+                UpdateRealmObjects(realm, auditData.Venues);
+
+                transaction.Commit();
+            }
+        }
+
+        public static void ReplaceRealm(Realm realm, AuditUpdate auditData)
+        {
+            using (var transaction = realm.BeginWrite())
+            {
                 MoveRealmObjects(realm, new[] { auditData.AuditVersion }, x => x.CommitHash);
                 MoveRealmObjects(realm, auditData.Communities, x => x.Id);
                 MoveRealmObjects(realm, auditData.Friends, x => x.Id);
@@ -25,6 +44,14 @@ namespace DotNetRu.RealmUpdate
                 MoveRealmObjects(realm, auditData.Venues, x => x.Id);
 
                 transaction.Commit();
+            }
+        }
+
+        private static void UpdateRealmObjects<T>(Realm realm, IEnumerable<T> newObjects) where T : RealmObject
+        {
+            foreach (var @object in newObjects)
+            {
+                realm.Add(@object.Clone(), update: true);
             }
         }
 
