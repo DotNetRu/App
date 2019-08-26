@@ -1,4 +1,4 @@
-﻿namespace RealmGenerator.Entities
+namespace DotNetRu.Models.XML
 {
     using System.Xml.Serialization;
 

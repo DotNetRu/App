@@ -3,7 +3,7 @@ using DotNetRu.DataStore.Audit.RealmModels;
 
 namespace DotNetRu.RealmUpdate
 {
-    public class AuditData
+    public class AuditUpdate
     {
         public AuditVersion AuditVersion { get; set; }
 

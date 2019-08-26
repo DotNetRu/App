@@ -1,4 +1,4 @@
-﻿namespace RealmGenerator.Entities
+namespace DotNetRu.Models.XML
 {
     using System;
     using System.Xml.Serialization;
@@ -16,7 +16,7 @@
         public string[] FriendIds { get; set; }
 
         public string VenueId { get; set; }
-        
+
         public SessionEntity[] Sessions { get; set; }
     }
 }

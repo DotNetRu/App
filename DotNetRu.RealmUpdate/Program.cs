@@ -1,5 +1,6 @@
 using DotNetRu.RealmUpdate;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Realms;
 using Realms.Sync;
 using System;
@@ -18,6 +19,9 @@ namespace Conference.RealmUpdate
         public static async Task Main()
         {
             var stopwatch = Stopwatch.StartNew();
+
+            var logger = new LoggerFactory().CreateLogger("RealmUpdate");
+
             var auditData = await UpdateManager.GetAuditData();
             stopwatch.Stop();
 
@@ -31,18 +35,18 @@ namespace Conference.RealmUpdate
             await Task.WhenAll(tasks);
         }
 
-        private static async Task UpdateOfflineRealm(AuditData auditData)
+        private static async Task UpdateOfflineRealm(AuditUpdate auditData)
         {
             var realmFullPath = $"{Directory.GetCurrentDirectory()}/../../../../{realmOfflinePath}";
             Realm.DeleteRealm(new RealmConfiguration(realmFullPath));
 
             var realm = Realm.GetInstance(realmFullPath);
-            UpdateManager.UpdateRealm(realm, auditData);
+            RealmHelper.UpdateRealm(realm, auditData);
         }
 
-        private static async Task UpdateOnlineRealm(AuditData auditData)
+        private static async Task UpdateOnlineRealm(AuditUpdate auditData)
         {
-            SyncConfigurationBase.LogLevel = LogLevel.Debug;
+            SyncConfigurationBase.LogLevel = Realms.Sync.LogLevel.Debug;
 
             var realmUrl = new Uri($"realms://dotnet.de1a.cloud.realm.io/{realmOnlineName}");
 
@@ -58,7 +62,7 @@ namespace Conference.RealmUpdate
 
             var realm = await Realm.GetInstanceAsync(syncConfiguration);
 
-            UpdateManager.UpdateRealm(realm, auditData);
+            RealmHelper.UpdateRealm(realm, auditData);
 
             await Task.Delay(TimeSpan.FromSeconds(2));
         }

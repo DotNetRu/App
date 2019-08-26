@@ -1,4 +1,4 @@
-using RealmGenerator.Entities;
+using DotNetRu.Models.XML;
 
 namespace PushNotifications
 {

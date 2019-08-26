@@ -10,6 +10,8 @@ using System;
 using System.IO;
 using DotNetRu.RealmUpdate;
 using Microsoft.Extensions.Configuration;
+using DotNetRu.DataStore.Audit.RealmModels;
+using System.Linq;
 
 namespace DotNetRu.Azure
 {
@@ -33,42 +35,64 @@ namespace DotNetRu.Azure
 
                 var realmUrl = new Uri($"realms://dotnet.de1a.cloud.realm.io/{realmName}");
 
-                var realmData = await UpdateManager.GetAuditData();
-
                 var config = new ConfigurationBuilder()
                     .SetBasePath(context.FunctionAppDirectory)
                     .AddJsonFile("config.json", optional: true, reloadOnChange: true)
                     .Build();
 
-                User user = null;
-                try
-                {
-                    user = await User.LoginAsync(
-                        Credentials.UsernamePassword(config["Login"], config["Password"], createUser: false),
-                        new Uri("https://dotnet.de1a.cloud.realm.io"));
-                }
-                catch (Exception e)
-                {
-                    log.LogCritical(e, "Error while logging in");
-                    user = await User.LoginAsync(
-                        Credentials.UsernamePassword(config["Login"], config["Password"], createUser: false),
-                        new Uri("https://dotnet.de1a.cloud.realm.io"));
-                }
+                var user = await GetUser(log, config);
 
-                var tempRealmFile = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-                var syncConfiguration = new FullSyncConfiguration(realmUrl, user, tempRealmFile);
+                var realm = await GetRealm(realmUrl, user);
 
-                var realm = await Realm.GetInstanceAsync(syncConfiguration);
+                var currentVersion = GetCurrentVersion(realm);
 
-                UpdateManager.UpdateRealm(realm, realmData);
+                var updateDelta = await UpdateManager.GetAuditUpdate(currentVersion);
+
+                realm = await GetRealm(realmUrl, user);
+                RealmHelper.UpdateRealm(realm, updateDelta);
             }
             catch (Exception e)
             {
                 log.LogCritical(e, "Error while updating realm");
-                return new ObjectResult(e.Message) { StatusCode = StatusCodes.Status500InternalServerError };
+                return new ObjectResult(e) { StatusCode = StatusCodes.Status500InternalServerError };
             }
 
             return new OkResult();
+        }
+
+        private static async Task<Realm> GetRealm(Uri realmUrl, User user)
+        {
+            var tempRealmFile = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+            var syncConfiguration = new FullSyncConfiguration(realmUrl, user, tempRealmFile);
+
+            return await Realm.GetInstanceAsync(syncConfiguration);
+        }
+
+        private static string GetCurrentVersion(Realm realm)
+        {
+            var auditVersion = realm.All<AuditVersion>();
+
+            return auditVersion.Single().CommitHash;
+        }
+
+        private static async Task<User> GetUser(ILogger log, IConfigurationRoot config)
+        {
+            User user;
+            try
+            {
+                user = await User.LoginAsync(
+                    Credentials.UsernamePassword(config["Login"], config["Password"], createUser: false),
+                    new Uri("https://dotnet.de1a.cloud.realm.io"));
+            }
+            catch (Exception e)
+            {
+                log.LogCritical(e, "Error while logging in");
+                user = await User.LoginAsync(
+                    Credentials.UsernamePassword(config["Login"], config["Password"], createUser: false),
+                    new Uri("https://dotnet.de1a.cloud.realm.io"));
+            }
+
+            return user;
         }
     }
 }
