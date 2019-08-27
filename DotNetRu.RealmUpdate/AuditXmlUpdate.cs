@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using DotNetRu.Models.XML;
 
 namespace DotNetRu.RealmUpdate
@@ -16,5 +17,18 @@ namespace DotNetRu.RealmUpdate
         public IEnumerable<TalkEntity> Talks { get; set; }
 
         public IEnumerable<VenueEntity> Venues { get; set; }
+
+        public AuditXmlUpdate Concat(AuditXmlUpdate other)
+        {
+            return new AuditXmlUpdate
+            {
+                Communities = this.Communities.Concat(other.Communities),
+                Friends = this.Friends.Concat(other.Friends),
+                Meetups = this.Meetups.Concat(other.Meetups),
+                Speakers = this.Speakers.Concat(other.Speakers),
+                Talks = this.Talks.Concat(other.Talks),
+                Venues = this.Venues.Concat(other.Venues)
+            };
+        }
     }
 }

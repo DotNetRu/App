@@ -13,7 +13,8 @@ namespace DotNetRu.RealmUpdate
         {
             using (var transaction = realm.BeginWrite())
             {
-                UpdateRealmObjects(realm, new[] { auditData.AuditVersion });
+                MoveRealmObjects(realm, new[] { auditData.AuditVersion }, x => x.CommitHash);
+
                 UpdateRealmObjects(realm, auditData.Communities);
                 UpdateRealmObjects(realm, auditData.Friends);
                 UpdateRealmObjects(realm, auditData.Meetups);

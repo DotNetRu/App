@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using DotNetRu.DataStore.Audit.RealmModels;
 using DotNetRu.Models.XML;
 using Microsoft.Extensions.Logging;
+using MoreLinq;
 using Octokit;
 
 namespace DotNetRu.RealmUpdate
@@ -146,16 +147,79 @@ namespace DotNetRu.RealmUpdate
             logger.LogInformation("Getting file URLs time {GetFileUrlsTime}", timer.Elapsed);
 
             timer.Restart();
-
-            // TODO Download dependencies
             var auditXmlUpdate = await DownloadFilesFromGitHub(fileUrls);
-
             timer.Stop();
             logger.LogInformation("Downloading files from GitHub time {DownloadFileTime}", timer.Elapsed);
+
+            timer.Restart();
+
+            var missingFiles = GetDependencies(auditXmlUpdate);
+            var missingXmlUpdate = await DownloadFilesFromGitHub(missingFiles);
+
+            auditXmlUpdate = auditXmlUpdate.Concat(missingXmlUpdate);
+
+            timer.Stop();
+            logger.LogInformation("Downloading missing files from GitHub time {DownloadMissingFileTime}", timer.Elapsed);
 
             var latestCommit = await GetLatestCommit();
 
             return GetAuditUpdate(auditXmlUpdate, latestCommit);
+        }
+
+        private static IEnumerable<Uri> GetDependencies(AuditXmlUpdate auditXmlUpdate)
+        {
+            var missingSpeakers = auditXmlUpdate.Talks.SelectMany(talk => GetMissingSpeakers(auditXmlUpdate, talk));
+
+            var missingFriends = auditXmlUpdate.Meetups.SelectMany(meetup => GetMissingFriends(auditXmlUpdate, meetup));
+
+            var missingVenues = auditXmlUpdate.Meetups.SelectMany(meetup => GetMissingVenues(auditXmlUpdate, meetup));
+
+            var missingTalks = auditXmlUpdate.Meetups.SelectMany(meetup => GetMissingTalks(auditXmlUpdate, meetup));
+
+            // TODO talk -> speakers
+
+            return missingSpeakers
+                .Concat(missingFriends)
+                .Concat(missingVenues)
+                .Concat(missingTalks);
+        }
+
+        private static IEnumerable<Uri> GetMissingVenues(AuditXmlUpdate auditXmlUpdate, MeetupEntity meetup)
+        {
+            var isNewVenue = auditXmlUpdate.Venues.Any(venue => venue.Id == meetup.VenueId);
+
+            return isNewVenue ?
+                Enumerable.Empty<Uri>() :
+                new Uri[] { new Uri($"https://raw.githubusercontent.com/DotNetRu/Audit/master/db/venues/{meetup.VenueId}.xml") };
+        }
+
+        private static IEnumerable<Uri> GetMissingTalks(AuditXmlUpdate auditXmlUpdate, MeetupEntity meetup)
+        {
+            var existingTalks = meetup.Sessions
+                .Select(session => session.TalkId)
+                .ExceptBy(auditXmlUpdate.Talks.Select(talk => talk.Id), x => x);
+
+            var talkUrls = existingTalks.Select(talk =>
+                new Uri($"https://raw.githubusercontent.com/DotNetRu/Audit/master/db/talks/{talk}.xml"));
+            return talkUrls;
+        }
+
+        private static IEnumerable<Uri> GetMissingFriends(AuditXmlUpdate auditXmlUpdate, MeetupEntity meetup)
+        {
+            var existingFriends = meetup.FriendIds.ExceptBy(auditXmlUpdate.Friends.Select(friend => friend.Id), x => x);
+
+            var friendUrls = existingFriends.Select(friend =>
+                new Uri($"https://raw.githubusercontent.com/DotNetRu/Audit/master/db/friends/{friend}/index.xml"));
+            return friendUrls;
+        }
+
+        private static IEnumerable<Uri> GetMissingSpeakers(AuditXmlUpdate auditXmlUpdate, TalkEntity talk)
+        {
+            var existingSpeakers = talk.SpeakerIds.ExceptBy(auditXmlUpdate.Speakers.Select(speaker => speaker.Id), x => x);
+
+            var speakerUrls = existingSpeakers.Select(speaker =>
+                new Uri($"https://raw.githubusercontent.com/DotNetRu/Audit/master/db/speakers/{speaker}/index.xml"));
+            return speakerUrls;
         }
     }
 }
