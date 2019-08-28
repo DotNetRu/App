@@ -16,6 +16,11 @@ namespace DotNetRu.Azure
             ILogger logger)
         {
             var httpClient = new HttpClient();
+            foreach (var header in req.Headers)
+            {
+                httpClient.DefaultRequestHeaders.Add(header.Key, header.Value.ToArray());
+            }
+
             httpClient.PostAsync("https://dotnetruapp.azurewebsites.net/api/realmUpdate", new StringContent(""));
 
             return new OkResult();
