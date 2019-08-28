@@ -19,7 +19,7 @@ namespace DotNetRu.Azure
     {
         public static string CurrentRealmName = "dotnetru_prod_090819";
 
-        [FunctionName("update")]
+        [FunctionName("realmUpdate")]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)] HttpRequest req,
             ILogger logger,
