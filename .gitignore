@@ -283,3 +283,4 @@ Resource.designer.cs
 *.lock
 /DotNetRu.RealmUpdate/config.json
 /DotNetRu.Azure/config.json
+/DotNetRu.Azure/pushconfig.json
