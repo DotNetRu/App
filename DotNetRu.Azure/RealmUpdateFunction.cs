@@ -12,6 +12,7 @@ using DotNetRu.RealmUpdate;
 using Microsoft.Extensions.Configuration;
 using DotNetRu.DataStore.Audit.RealmModels;
 using System.Linq;
+using System.Net.Http;
 
 namespace DotNetRu.Azure
 {
@@ -50,6 +51,26 @@ namespace DotNetRu.Azure
 
                 realm = await GetRealm(realmUrl, user);
                 RealmHelper.UpdateRealm(realm, updateDelta);
+
+                // TODO separate DBs by different Realm Clouds
+                var environment = realmName.Contains("prod") ? "production" : "beta";
+
+                var pushConfigs = ConfigManager.GetPushConfigs(context);
+                var pushConfig = pushConfigs.Single(c => c.AppType == environment);
+
+                foreach (var meetup in updateDelta.Meetups.Where(meetup => meetup.Sessions.First().StartTime > DateTime.Now))
+                {
+                    var httpClient = new HttpClient();
+                    httpClient.DefaultRequestHeaders.Add("X-API-Token", pushConfig.ApiToken);
+
+                    var pushContent = new PushContent()
+                    {
+                        Title = $"{meetup.Name} is announced!",
+                        Body = "Open DotNetRu app for details"
+                    };
+
+                    await httpClient.PostAsJsonAsync($"https://dotnetruapp.azurewebsites.net/api/{environment}/push", pushContent);
+                }
             }
             catch (Exception e)
             {

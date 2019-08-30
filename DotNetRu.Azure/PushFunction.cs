@@ -7,7 +7,6 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System.Net.Http;
 using System;
-using Microsoft.Extensions.Configuration;
 using System.Linq;
 
 namespace DotNetRu.Azure
@@ -30,18 +29,8 @@ namespace DotNetRu.Azure
 
                 logger.LogInformation("Function is called with {AppType}, {Title}, {Body}", appType, pushContent.Title, pushContent.Body);
 
-                var config = new ConfigurationBuilder()
-                    .SetBasePath(context.FunctionAppDirectory)
-                    .AddJsonFile("pushconfig.json", optional: true, reloadOnChange: true)
-                    .Build();
-
-                var pushConfigs = config
-                    .GetSection("PushConfig")
-                    .Get<PushConfig[]>();
-
+                var pushConfigs = ConfigManager.GetPushConfigs(context);
                 var pushConfig = pushConfigs.Single(x => x.AppType == appType);
-
-                var httpClient = new HttpClient();
 
                 var apiHeader = request.Headers["X-API-Token"].ToString();
                 var apiToken = pushConfig.ApiToken;
@@ -51,9 +40,10 @@ namespace DotNetRu.Azure
                     return new UnauthorizedResult();
                 }
 
+                var httpClient = new HttpClient();
                 httpClient.DefaultRequestHeaders.Add("X-API-Token", pushConfig.AppCenterApiToken);
 
-                var appCenterPushNotification = new AppCenterPushNotification()
+                var appCenterPushNotification = new AppCenterPushNotification
                 {
                     NotificationContent = new NotificationContent()
                     {
