@@ -237,6 +237,7 @@ namespace DotNetRu.DataStore.Audit.Services
             cfg.CreateMap<Talk, TalkModel>().ConvertUsing(x => x.ToModel());
             cfg.CreateMap<RealmModels.Session, SessionModel>().ConvertUsing(x => x.ToModel());
             cfg.CreateMap<Meetup, MeetupModel>().ConvertUsing(x => x.ToModel());
+            cfg.CreateMap<Community, CommunityModel>().ConvertUsing(x => x.ToModel());
         });
 
         public static IEnumerable<TAppModel> Get<TAppModel>()
