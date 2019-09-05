@@ -1,0 +1,81 @@
+<pages:BasePage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="DotNetRu.Clients.UI.Pages.About.AboutPage"
+    xmlns:pages="clr-namespace:DotNetRu.Clients.UI.Pages;assembly=DotNetRu.Clients.UI"
+    xmlns:utils="clr-namespace:DotNetRu.Utils.Helpers;assembly=DotNetRu.Utils"
+    xmlns:model="clr-namespace:DotNetRu.Clients.Portable.Model;assembly=DotNetRu.Clients.UI"
+    xmlns:cells="clr-namespace:DotNetRu.Clients.UI.Cells"
+    x:Name="About"
+    Title="{Binding Resources[About]}"
+    Icon="tab_about.png"
+    NavigationPage.BackButtonTitle="Info">
+
+    <TableView Intent="Data" HasUnevenRows="True">
+        <TableRoot>
+            <TableSection Title="{Binding Resources[AboutDotNetRu]}" >
+                <ViewCell>
+                    <Label Margin="10" Style="{DynamicResource EvolveListItemTextStyle}" >
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding Resources[AboutText], Mode=OneWay}"/>
+                                <Span Text="dotnet.ru"
+                                      TextColor="Blue"
+                                      TextDecorations="Underline">
+                                    <Span.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding LaunchBrowserCommand}"
+                                                              CommandParameter="https://dotnet.ru" />
+                                    </Span.GestureRecognizers>
+                                </Span>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </ViewCell>
+                <TextCell 
+                    Text="{Binding Resources[Friends]}" 
+                    TextColor="{StaticResource LabelSectionText}"
+                    StyleId="disclosure" 
+                    Command="{Binding OpenFriendsCommand}"/>
+            </TableSection>
+
+            <TableSection Title="{Binding Resources[OurCommunities]}">
+                <cells:CommunityViewCell Community="{x:Static model:Communities.SaintPetersburg}"/>
+                <cells:CommunityViewCell Community="{x:Static model:Communities.Moscow}"/>
+                <cells:CommunityViewCell Community="{x:Static model:Communities.Saratov}"/>
+                <cells:CommunityViewCell Community="{x:Static model:Communities.Krasnoyarksk}"/>
+                <cells:CommunityViewCell Community="{x:Static model:Communities.Kazan}"/>
+                <cells:CommunityViewCell Community="{x:Static model:Communities.Novosibirsk}"/>
+                <cells:CommunityViewCell Community="{x:Static model:Communities.Omsk}"/>
+            </TableSection>
+
+            <TableSection Title="{Binding Resources[AboutApp]}">
+                <TextCell                    
+                    Text="{Binding Resources[CreatedBy]}"
+                    TextColor="{StaticResource LabelSectionText}"
+                    Command="{Binding OpenCreditsCommand}"                    
+                    StyleId="disclosure"/>
+                <TextCell                    
+                    Text="{Binding Resources[IssueTracker]}"
+                    TextColor="{StaticResource LabelSectionText}"
+                    Command="{Binding LaunchBrowserCommand}"
+                    CommandParameter="{Binding Source={x:Static utils:AboutThisApp.IssueTracker}}"                    
+                    StyleId="disclosure"/>
+                <TextCell                    
+                    Text="{Binding Resources[TechnologyUsed]}"
+                    TextColor="{StaticResource LabelSectionText}"
+                    Command="{Binding OpenTechnologiesUsedCommand}"                    
+                    StyleId="disclosure"/>
+                <TextCell 
+                    Text="{Binding AppVersion}"
+                    TextColor="{StaticResource LabelSectionText}"
+                    Command="{Binding CopyAppVersionCommand}" />
+            </TableSection>
+
+            <TableSection Title="{Binding Resources[Settings]}">
+                <ViewCell>
+                    <Picker Margin="10" ItemsSource="{Binding Languages}" HorizontalOptions="FillAndExpand" Title="{Binding Resources[SelectLanguage]}" SelectedItem="{Binding SelectedLanguage, Mode=TwoWay}" />
+                </ViewCell>
+            </TableSection>
+        </TableRoot>
+    </TableView>
+</pages:BasePage>

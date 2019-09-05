@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <ProduceReferenceAssembly>True</ProduceReferenceAssembly>
@@ -27,10 +27,13 @@
     <PackageReference Include="Xamarin.Forms.BehaviorsPack" Version="2.1.1" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DotNetRu.DataStore.Audit\DotNetRu.DataStore.Audit.csproj"/>
-    <ProjectReference Include="..\DotNetRu.Utils\DotNetRu.Utils.csproj"/>
+    <ProjectReference Include="..\DotNetRu.DataStore.Audit\DotNetRu.DataStore.Audit.csproj" />
+    <ProjectReference Include="..\DotNetRu.Utils\DotNetRu.Utils.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="About\AboutPage.xaml.cs">
+      <DependentUpon>AboutPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Localization\AppResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
