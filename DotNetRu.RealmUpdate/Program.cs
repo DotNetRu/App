@@ -11,27 +11,21 @@ namespace Conference.RealmUpdate
 {
     public class Program
     {
-        private static string realmOfflinePath = @"DotNetRu.DataStore.Audit/DotNetRuOffline.realm";
-
-        private static string realmOnlineName = "dotnetru_040819";
+        private static string realmOfflinePath = @"DotNetRu.DataStore.Audit/DotNetRuOffline.realm";        
 
         public static async Task Main()
         {
             var stopwatch = Stopwatch.StartNew();
-            var auditData = await UpdateManager.GetAuditData("7651c70e9967b8119cfebab9a6042e07bfbd935c");
+            var auditData = await UpdateManager.GetAuditData();
             stopwatch.Stop();
 
             Console.WriteLine($"Get data from GitHub time: {stopwatch.Elapsed}");
 
-            var tasks = new[] {
-                // UpdateOfflineRealm(auditData),
-                UpdateOnlineRealm(auditData)
-            };
-
-            await Task.WhenAll(tasks);
+            UpdateOfflineRealm(auditData);
+            await UpdateOnlineRealm(auditData);
         }
 
-        private static async Task UpdateOfflineRealm(AuditUpdate auditData)
+        private static void UpdateOfflineRealm(AuditUpdate auditData)
         {
             var realmFullPath = $"{Directory.GetCurrentDirectory()}/../../../../{realmOfflinePath}";
             Realm.DeleteRealm(new RealmConfiguration(realmFullPath));
@@ -44,7 +38,10 @@ namespace Conference.RealmUpdate
         {
             SyncConfigurationBase.LogLevel = LogLevel.Debug;
 
-            var realmUrl = new Uri($"realms://dotnet.de1a.cloud.realm.io/{realmOnlineName}");
+            var realmURL = "dotnetru.de1a.cloud.realm.io";
+
+            var realmOnlineName = "dotnetru_050919";
+            var realmUrl = new Uri($"realms://{realmURL}/{realmOnlineName}");
 
             var config = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
@@ -53,7 +50,7 @@ namespace Conference.RealmUpdate
 
             var user = await User.LoginAsync(
                 Credentials.UsernamePassword(config["Login"], config["Password"], createUser: false), 
-                new Uri("https://dotnet.de1a.cloud.realm.io"));
+                new Uri($"https://{realmURL}"));
 
             var tempRealmFile = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
             var syncConfiguration = new FullSyncConfiguration(realmUrl, user, tempRealmFile);

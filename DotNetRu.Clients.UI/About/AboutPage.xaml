@@ -3,79 +3,150 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="DotNetRu.Clients.UI.Pages.About.AboutPage"
     xmlns:pages="clr-namespace:DotNetRu.Clients.UI.Pages;assembly=DotNetRu.Clients.UI"
-    xmlns:utils="clr-namespace:DotNetRu.Utils.Helpers;assembly=DotNetRu.Utils"
-    xmlns:model="clr-namespace:DotNetRu.Clients.Portable.Model;assembly=DotNetRu.Clients.UI"
-    xmlns:cells="clr-namespace:DotNetRu.Clients.UI.Cells"
+    xmlns:about="clr-namespace:DotNetRu.Clients.UI.About"
+    xmlns:behaviorsPack="clr-namespace:Xamarin.Forms.BehaviorsPack;assembly=Xamarin.Forms.BehaviorsPack"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:converters="clr-namespace:DotNetRu.Clients.UI.Converters"
     x:Name="About"
     Title="{Binding Resources[About]}"
     Icon="tab_about.png"
     NavigationPage.BackButtonTitle="Info">
+    
+    <pages:BasePage.Resources>
+        <ResourceDictionary>
+            <converters:TranslateConverter x:Key="TranslateConverter"/>
 
-    <TableView Intent="Data" HasUnevenRows="True">
-        <TableRoot>
-            <TableSection Title="{Binding Resources[AboutDotNetRu]}" >
-                <ViewCell>
-                    <Label Margin="10" Style="{DynamicResource EvolveListItemTextStyle}" >
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="{Binding Resources[AboutText], Mode=OneWay}"/>
-                                <Span Text="dotnet.ru"
+            <DataTemplate x:Key="settingsTemplate">
+                <ViewCell StyleId="disclosure">
+                    <Picker Margin="10" 
+                            ItemsSource="{Binding Source={x:Reference About}, Path=BindingContext.Languages}" 
+                            HorizontalOptions="FillAndExpand" 
+                            Title="{Binding Resources[SelectLanguage]}" 
+                            SelectedItem="{Binding Source={x:Reference About}, Path=BindingContext.SelectedLanguage, Mode=TwoWay}" />
+                </ViewCell>
+            </DataTemplate>
+
+            <DataTemplate x:Key="friendsTemplate">
+                <TextCell 
+                    Text="{Binding Source={x:Reference About}, Path=BindingContext.Resources[Friends]}"
+                    StyleId="disclosure"/>
+            </DataTemplate>
+
+            <DataTemplate x:Key="menuItemTemplate">
+                <ViewCell StyleId="disclosure">
+                    <StackLayout BackgroundColor="White" Padding="{DynamicResource StandardPadding}">
+                        <Label
+                            Text="{Binding MenuItem.Name, Converter={StaticResource TranslateConverter}}"
+                            VerticalTextAlignment="Center"
+                            VerticalOptions="Center"/>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+
+            <DataTemplate x:Key="communityTemplate" x:DataType="about:AboutPageItem">
+                <ViewCell StyleId="disclosure">
+                    <FlexLayout Direction="Row" BackgroundColor="White">
+                        <ffimageloading:CachedImage    
+                                FlexLayout.Basis="30%"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand"                            
+                                StyleId="SponsorImage"
+                                HeightRequest="80"
+                                Source="{Binding Community.LogoUrl}"
+                                Aspect="AspectFit">
+                        </ffimageloading:CachedImage>
+                        <Label
+                            FlexLayout.Basis="70%"
+                            Text="{Binding Community.Name, Converter={StaticResource TranslateConverter}}" 
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center"
+                            VerticalTextAlignment="Center"
+                            HorizontalTextAlignment="Center"
+                            StyleId="SponsorName"/>
+                    </FlexLayout>
+                </ViewCell>
+            </DataTemplate>
+            
+            <about:AboutTemplateSelector x:Key="AboutTemplateSelector"
+                                         CommunityTemplate="{StaticResource communityTemplate}"
+                                         MenuItemTemplate="{StaticResource menuItemTemplate}"
+                                         SettingsTemplate="{StaticResource settingsTemplate}"
+                                         FriendsTemplate="{StaticResource friendsTemplate}"/>
+        </ResourceDictionary>
+    </pages:BasePage.Resources>
+    
+    <ListView x:Name="AboutListView"
+            ItemsSource="{Binding AboutPageItems}"
+            ItemTemplate="{StaticResource AboutTemplateSelector}"
+            SelectionMode="Single"
+            HasUnevenRows="True"
+            Header="{Binding .}"
+            Footer="{Binding .}"
+            IsGroupingEnabled="True">
+        <ListView.Behaviors>
+            <behaviorsPack:SelectedItemBehavior Command="{Binding SelectedItemCommand}"/>
+        </ListView.Behaviors>
+        <ListView.HeaderTemplate>
+            <DataTemplate>
+                <Label Margin="10" Style="{DynamicResource EvolveListItemTextStyle}" BackgroundColor="White">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding Resources[AboutText], Mode=OneWay}"/>
+                            <Span Text="dotnet.ru"
                                       TextColor="Blue"
                                       TextDecorations="Underline">
-                                    <Span.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding LaunchBrowserCommand}"
-                                                              CommandParameter="https://dotnet.ru" />
-                                    </Span.GestureRecognizers>
-                                </Span>
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
-                </ViewCell>
-                <TextCell 
-                    Text="{Binding Resources[Friends]}" 
-                    TextColor="{StaticResource LabelSectionText}"
-                    StyleId="disclosure" 
-                    Command="{Binding OpenFriendsCommand}"/>
-            </TableSection>
-
-            <TableSection Title="{Binding Resources[OurCommunities]}">
-                <cells:CommunityViewCell Community="{x:Static model:Communities.SaintPetersburg}"/>
-                <cells:CommunityViewCell Community="{x:Static model:Communities.Moscow}"/>
-                <cells:CommunityViewCell Community="{x:Static model:Communities.Saratov}"/>
-                <cells:CommunityViewCell Community="{x:Static model:Communities.Krasnoyarksk}"/>
-                <cells:CommunityViewCell Community="{x:Static model:Communities.Kazan}"/>
-                <cells:CommunityViewCell Community="{x:Static model:Communities.Novosibirsk}"/>
-                <cells:CommunityViewCell Community="{x:Static model:Communities.Omsk}"/>
-            </TableSection>
-
-            <TableSection Title="{Binding Resources[AboutApp]}">
-                <TextCell                    
-                    Text="{Binding Resources[CreatedBy]}"
-                    TextColor="{StaticResource LabelSectionText}"
-                    Command="{Binding OpenCreditsCommand}"                    
-                    StyleId="disclosure"/>
-                <TextCell                    
-                    Text="{Binding Resources[IssueTracker]}"
-                    TextColor="{StaticResource LabelSectionText}"
-                    Command="{Binding LaunchBrowserCommand}"
-                    CommandParameter="{Binding Source={x:Static utils:AboutThisApp.IssueTracker}}"                    
-                    StyleId="disclosure"/>
-                <TextCell                    
-                    Text="{Binding Resources[TechnologyUsed]}"
-                    TextColor="{StaticResource LabelSectionText}"
-                    Command="{Binding OpenTechnologiesUsedCommand}"                    
-                    StyleId="disclosure"/>
-                <TextCell 
-                    Text="{Binding AppVersion}"
-                    TextColor="{StaticResource LabelSectionText}"
-                    Command="{Binding CopyAppVersionCommand}" />
-            </TableSection>
-
-            <TableSection Title="{Binding Resources[Settings]}">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding LaunchBrowserCommand}"
+                                                          CommandParameter="https://dotnet.ru" />
+                                </Span.GestureRecognizers>
+                            </Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </DataTemplate>
+        </ListView.HeaderTemplate>
+        <ListView.GroupHeaderTemplate>
+            <DataTemplate>
                 <ViewCell>
-                    <Picker Margin="10" ItemsSource="{Binding Languages}" HorizontalOptions="FillAndExpand" Title="{Binding Resources[SelectLanguage]}" SelectedItem="{Binding SelectedLanguage, Mode=TwoWay}" />
+                    <StackLayout VerticalOptions="Center">
+                        <StackLayout.BackgroundColor>
+                            <OnPlatform x:TypeArguments="Color" Android="#F5F5F5"/>
+                        </StackLayout.BackgroundColor>
+                        <StackLayout.Padding>
+                            <OnPlatform x:TypeArguments="Thickness" iOS="16,0" Android="16,8"/>
+                        </StackLayout.Padding>
+                        <Label Text="{Binding Key, Converter={StaticResource TranslateConverter}}" 
+                            VerticalOptions="Center" 
+                            VerticalTextAlignment="Center">
+                            <Label.FontAttributes>
+                                <OnPlatform x:TypeArguments="FontAttributes" iOS="Bold"/>
+                            </Label.FontAttributes>
+                            <Label.FontSize>
+                                <OnPlatform x:TypeArguments="x:Double" iOS="16" Android="18"/>
+                            </Label.FontSize>
+                            <Label.FontFamily>
+                                <OnPlatform x:TypeArguments="x:String" Android="sans-serif-light"/>
+                            </Label.FontFamily>
+                            <Label.TextColor>
+                                <OnPlatform x:TypeArguments="Color"/>
+                            </Label.TextColor>
+                        </Label>
+                    </StackLayout>
                 </ViewCell>
-            </TableSection>
-        </TableRoot>
-    </TableView>
+            </DataTemplate>
+        </ListView.GroupHeaderTemplate>
+        <ListView.FooterTemplate>
+            <DataTemplate>
+                <StackLayout Padding="{DynamicResource StandardPadding}" BackgroundColor="#F5F5F5">
+                    <Label Text="{Binding AppVersion}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding CopyAppVersionCommand}">
+                            </TapGestureRecognizer>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+            </DataTemplate>
+        </ListView.FooterTemplate>
+    </ListView>       
 </pages:BasePage>

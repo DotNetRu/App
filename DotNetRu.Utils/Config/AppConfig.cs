@@ -14,7 +14,9 @@ namespace DotNetRu.Clients.UI
 
         public string UpdateFunctionURL { get; set; }
         public string TweetFunctionURL { get; set; }
-        public object RealmDatabaseKey { get; set; }
+        public string RealmDatabase { get; set; }
+
+        public string RealmServerUrl { get; set; }
 
         public static AppConfig GetConfig()
         {
@@ -26,8 +28,9 @@ namespace DotNetRu.Clients.UI
                 PushNotificationsChannel = "AuditUpdateDebug",
                 UpdateFunctionURL = "https://dotnetruazure.azurewebsites.net/api/Update",
                 TweetFunctionURL = "https://dotnettweetservice.azurewebsites.net/api/Tweets",
-                RealmDatabaseKey = "dotnetru_040819"
-            };
+                RealmDatabase = "dotnetru_050919",
+                RealmServerUrl = "dotnetru.de1a.cloud.realm.io"
+        };
 #endif
 
 #pragma warning disable CS0162 // Unreachable code detected

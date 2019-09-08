@@ -237,16 +237,16 @@
   <data name="OurCommunities" xml:space="preserve">
     <value>Наши сообщества</value>
   </data>
-  <data name="Krasnoyarsk" xml:space="preserve">
+  <data name="KryDotNet" xml:space="preserve">
     <value>Красноярск</value>
   </data>
-  <data name="Moscow" xml:space="preserve">
+  <data name="MskDotNet" xml:space="preserve">
     <value>Москва</value>
   </data>
-  <data name="SaintPetersburg" xml:space="preserve">
+  <data name="SpbDotNet" xml:space="preserve">
     <value>Санкт-Петербург</value>
   </data>
-  <data name="Saratov" xml:space="preserve">
+  <data name="SarDotNet" xml:space="preserve">
     <value>Саратов</value>
   </data>
   <data name="AboutApp" xml:space="preserve">
@@ -261,7 +261,7 @@
   <data name="CodeFromSession" xml:space="preserve">
     <value>Примеры кода</value>
   </data>
-  <data name="Kazan" xml:space="preserve">
+  <data name="KznDotNet" xml:space="preserve">
     <value>Казань</value>
   </data>
   <data name="Credits" xml:space="preserve">
@@ -277,7 +277,7 @@
   <data name="Settings" xml:space="preserve">
     <value>Настройки</value>
   </data>
-  <data name="Novosibirsk" xml:space="preserve">
+  <data name="NskDotNet" xml:space="preserve">
     <value>Новосибирск</value>
   </data>
   <data name="SeeAlso" xml:space="preserve">
@@ -286,7 +286,16 @@
   <data name="CopiedToClipboard" xml:space="preserve">
     <value>Скопировано в буфер обмена</value>
   </data>
-  <data name="Omsk" xml:space="preserve">
+  <data name="OmsDotNet" xml:space="preserve">
     <value>Омск</value>
+  </data>
+  <data name="NnvDotNet" xml:space="preserve">
+    <value>Нижний Новгород</value>
+  </data>
+  <data name="SamDotNet" xml:space="preserve">
+    <value>Самара</value>
+  </data>
+  <data name="UfaDotNet" xml:space="preserve">
+    <value>Уфа</value>
   </data>
 </root>

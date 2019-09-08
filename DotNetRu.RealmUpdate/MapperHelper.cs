@@ -82,7 +82,11 @@ namespace DotNetRu.RealmUpdate
                             dest.LogoSmallURL = $"https://raw.githubusercontent.com/DotNetRu/Audit/master/db/friends/{src.Id}/logo.small.png";
                             dest.LogoURL = $"https://raw.githubusercontent.com/DotNetRu/Audit/master/db/friends/{src.Id}/logo.small.png";
                         });
-                    cfg.CreateMap<CommunityEntity, Community>();
+                    cfg.CreateMap<CommunityEntity, Community>().AfterMap(
+                        (src, dest) =>
+                        {
+                            dest.LogoUrl = $"https://raw.githubusercontent.com/AnatolyKulakov/SpbDotNet/master/Swag/{src.Id.ToLower()}-squared-logo-bordered/{src.Id.ToLower()}-squared-logo-br-200.png";
+                        });
                 });
 
             return mapperConfig.CreateMapper();

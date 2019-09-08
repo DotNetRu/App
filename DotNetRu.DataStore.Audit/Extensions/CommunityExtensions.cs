@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using DotNetRu.DataStore.Audit.Models;
 using DotNetRu.DataStore.Audit.RealmModels;
 
@@ -14,7 +12,9 @@ namespace DotNetRu.DataStore.Audit.Extensions
             {
                 Id = community.Id,
                 City = community.City,
-                Name = community.Name
+                Name = community.Name,
+                VkUrl = new Uri(community.VkUrl),
+                LogoUrl = new Uri(community.LogoUrl)
             };
         }
     }

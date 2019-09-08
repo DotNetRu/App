@@ -1,3 +1,5 @@
+using System;
+
 namespace DotNetRu.Utils.Helpers
 {
     public static class AboutThisApp
@@ -14,21 +16,7 @@ namespace DotNetRu.Utils.Helpers
 
         public const string DotNetRuLink = "http://dotnet.ru/";
 
-        public const string KazanLink = "https://vk.com/kzndotnet";
-        public const string KrasnoyarskLink = "https://vk.com/KryDotNet";
-        public const string MoscowLink = "https://vk.com/MskDotNet";
-        public const string NovosibirskLink = "https://www.meetup.com/NskDotNet/";
-        public const string OmskLink = "https://vk.com/OmsDotNet";
-        public const string SaratovLink = "https://vk.com/SarDotNet";
-        public const string SpbLink = "https://vk.com/SpbDotNet";
-
-        public const string DeveloperWebsite = "http://dotnet.ru";
-
-        public const string MontemagnoWebsite = "https://montemagno.com";
-
-        public const string OpenSourceUrl = "https://github.com/DotNetRu/App";
-
-        public const string IssueTracker = "https://github.com/DotNetRu/App/issues";
+        public static readonly Uri IssueTracker = new Uri("https://github.com/DotNetRu/App/issues");
 
         // TODO fix, should be link to oss licenses
         public const string OpenSourceNoticeUrl = "https://github.com/DotNetRu/App/blob/master/LICENSE.md";

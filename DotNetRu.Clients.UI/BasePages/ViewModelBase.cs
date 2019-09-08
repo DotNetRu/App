@@ -33,41 +33,33 @@ namespace DotNetRu.Clients.Portable.ViewModel
         public Settings Settings => Settings.Current;
 
         public ICommand LaunchBrowserCommand => this.launchBrowserCommand
-                                                ?? (this.launchBrowserCommand = new Command<string>(
+                                                ?? (this.launchBrowserCommand = new Command<Uri>(
                                                         async (t) => await this.ExecuteLaunchBrowserAsync(t)));
 
         protected INavigation Navigation { get; }
 
         protected ILogger Logger { get; } = DependencyService.Get<ILogger>();
 
-        public async Task ExecuteLaunchBrowserAsync(string arg)
+        public async Task ExecuteLaunchBrowserAsync(Uri link)
         {
             if (this.IsBusy)
             {
                 return;
             }
+           
+            var stringLink = link.ToString();
 
-            if (!arg.StartsWith("http://", StringComparison.OrdinalIgnoreCase)
-                && !arg.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
-            {
-                arg = "http://" + arg;
-            }
-
-            arg = arg.Trim();
-
-            var lower = arg.ToLowerInvariant();
-
-            this.Logger.Track(DotNetRuLoggerKeys.LaunchedBrowser, "Url", lower);
+            this.Logger.Track(DotNetRuLoggerKeys.LaunchedBrowser, "Url", stringLink);
 
             if (Device.RuntimePlatform == Device.iOS)
             {
-                if (lower.Contains("twitter.com"))
+                if (stringLink.ToString().Contains("twitter.com"))
                 {
                     try
                     {
-                        var id = arg.Substring(lower.LastIndexOf("/", StringComparison.Ordinal) + 1);
+                        var id = stringLink.Substring(stringLink.LastIndexOf("/", StringComparison.Ordinal) + 1);
                         var launchTwitter = DependencyService.Get<ILaunchTwitter>();
-                        if (lower.Contains("/status/"))
+                        if (stringLink.Contains("/status/"))
                         {
                             // status
                             if (launchTwitter.OpenStatus(id))
@@ -90,11 +82,11 @@ namespace DotNetRu.Clients.Portable.ViewModel
                     }
                 }
 
-                if (lower.Contains("facebook.com"))
+                if (stringLink.Contains("facebook.com"))
                 {
                     try
                     {
-                        var id = arg.Substring(lower.LastIndexOf("/", StringComparison.Ordinal) + 1);
+                        var id = stringLink.Substring(stringLink.LastIndexOf("/", StringComparison.Ordinal) + 1);
                         var launchFacebook = DependencyService.Get<ILaunchFacebook>();
                         if (launchFacebook.OpenUserName(id))
                         {
@@ -110,7 +102,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
 
             try
             {
-                await Browser.OpenAsync(arg, BrowserLaunchMode.SystemPreferred);
+                await Browser.OpenAsync(link, BrowserLaunchMode.SystemPreferred);
             }
             catch
             {

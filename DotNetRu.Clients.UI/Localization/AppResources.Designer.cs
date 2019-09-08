@@ -133,7 +133,7 @@ namespace DotNetRu.Clients.UI.Localization {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Copied to clipboard.
+        ///   Looks up a localized string similar to Copied to clipboard.
         /// </summary>
         public static string CopiedToClipboard {
             get {
@@ -142,7 +142,7 @@ namespace DotNetRu.Clients.UI.Localization {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Created by DotNetRu Team with &lt;3.
+        ///   Looks up a localized string similar to Created by DotNetRu Team with &lt;3.
         /// </summary>
         public static string CreatedBy {
             get {
@@ -212,20 +212,29 @@ namespace DotNetRu.Clients.UI.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kazan.
+        ///   Looks up a localized string similar to Krasnoyarsk.
         /// </summary>
-        public static string Kazan {
+        public static string Krasnoyarsk {
             get {
-                return ResourceManager.GetString("Kazan", resourceCulture);
+                return ResourceManager.GetString("Krasnoyarsk", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Krasnoyarsk.
         /// </summary>
-        public static string Krasnoyarsk {
+        public static string KryDotNet {
             get {
-                return ResourceManager.GetString("Krasnoyarsk", resourceCulture);
+                return ResourceManager.GetString("KryDotNet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kazan.
+        /// </summary>
+        public static string KznDotNet {
+            get {
+                return ResourceManager.GetString("KznDotNet", resourceCulture);
             }
         }
         
@@ -304,9 +313,9 @@ namespace DotNetRu.Clients.UI.Localization {
         /// <summary>
         ///   Looks up a localized string similar to Moscow.
         /// </summary>
-        public static string Moscow {
+        public static string MskDotNet {
             get {
-                return ResourceManager.GetString("Moscow", resourceCulture);
+                return ResourceManager.GetString("MskDotNet", resourceCulture);
             }
         }
         
@@ -316,6 +325,15 @@ namespace DotNetRu.Clients.UI.Localization {
         public static string News {
             get {
                 return ResourceManager.GetString("News", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nizhny Novgorod.
+        /// </summary>
+        public static string NnvDotNet {
+            get {
+                return ResourceManager.GetString("NnvDotNet", resourceCulture);
             }
         }
         
@@ -331,23 +349,23 @@ namespace DotNetRu.Clients.UI.Localization {
         /// <summary>
         ///   Looks up a localized string similar to Novosibirsk.
         /// </summary>
-        public static string Novosibirsk {
+        public static string NskDotNet {
             get {
-                return ResourceManager.GetString("Novosibirsk", resourceCulture);
+                return ResourceManager.GetString("NskDotNet", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Omsk.
+        ///   Looks up a localized string similar to Omsk.
         /// </summary>
-        public static string Omsk {
+        public static string OmsDotNet {
             get {
-                return ResourceManager.GetString("Omsk", resourceCulture);
+                return ResourceManager.GetString("OmsDotNet", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Open Source Notice.
+        ///   Looks up a localized string similar to Open Source Notice.
         /// </summary>
         public static string OpenSourceNotice {
             get {
@@ -383,25 +401,25 @@ namespace DotNetRu.Clients.UI.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Saint-Petersburg.
+        ///   Looks up a localized string similar to Samara.
         /// </summary>
-        public static string SaintPetersburg {
+        public static string SamDotNet {
             get {
-                return ResourceManager.GetString("SaintPetersburg", resourceCulture);
+                return ResourceManager.GetString("SamDotNet", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Saratov.
         /// </summary>
-        public static string Saratov {
+        public static string SarDotNet {
             get {
-                return ResourceManager.GetString("Saratov", resourceCulture);
+                return ResourceManager.GetString("SarDotNet", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на See also.
+        ///   Looks up a localized string similar to See also.
         /// </summary>
         public static string SeeAlso {
             get {
@@ -410,7 +428,7 @@ namespace DotNetRu.Clients.UI.Localization {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Select a language.
+        ///   Looks up a localized string similar to Select a language.
         /// </summary>
         public static string SelectLanguage {
             get {
@@ -442,6 +460,15 @@ namespace DotNetRu.Clients.UI.Localization {
         public static string Social {
             get {
                 return ResourceManager.GetString("Social", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saint Petersburg.
+        /// </summary>
+        public static string SpbDotNet {
+            get {
+                return ResourceManager.GetString("SpbDotNet", resourceCulture);
             }
         }
         
@@ -541,6 +568,15 @@ namespace DotNetRu.Clients.UI.Localization {
         public static string Tomorrow {
             get {
                 return ResourceManager.GetString("Tomorrow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ufa.
+        /// </summary>
+        public static string UfaDotNet {
+            get {
+                return ResourceManager.GetString("UfaDotNet", resourceCulture);
             }
         }
         

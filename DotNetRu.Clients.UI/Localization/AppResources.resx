@@ -172,11 +172,14 @@ Sergey Polezhaev</value>
   <data name="IssueTracker" xml:space="preserve">
     <value>Report an issue</value>
   </data>
-  <data name="Kazan" xml:space="preserve">
-    <value>Kazan</value>
-  </data>
   <data name="Krasnoyarsk" xml:space="preserve">
     <value>Krasnoyarsk</value>
+  </data>
+  <data name="KryDotNet" xml:space="preserve">
+    <value>Krasnoyarsk</value>
+  </data>
+  <data name="KznDotNet" xml:space="preserve">
+    <value>Kazan</value>
   </data>
   <data name="Language" xml:space="preserve">
     <value>Language</value>
@@ -202,19 +205,22 @@ Sergey Polezhaev</value>
   <data name="Meetups" xml:space="preserve">
     <value>Meetups</value>
   </data>
-  <data name="Moscow" xml:space="preserve">
+  <data name="MskDotNet" xml:space="preserve">
     <value>Moscow</value>
   </data>
   <data name="News" xml:space="preserve">
     <value>News</value>
   </data>
+  <data name="NnvDotNet" xml:space="preserve">
+    <value>Nizhny Novgorod</value>
+  </data>
   <data name="NoTalksFound" xml:space="preserve">
     <value>No talks found</value>
   </data>
-  <data name="Novosibirsk" xml:space="preserve">
+  <data name="NskDotNet" xml:space="preserve">
     <value>Novosibirsk</value>
   </data>
-  <data name="Omsk" xml:space="preserve">
+  <data name="OmsDotNet" xml:space="preserve">
     <value>Omsk</value>
   </data>
   <data name="OpenSourceNotice" xml:space="preserve">
@@ -229,10 +235,10 @@ Sergey Polezhaev</value>
   <data name="PrivacyPolicy" xml:space="preserve">
     <value>Privacy Policy</value>
   </data>
-  <data name="SaintPetersburg" xml:space="preserve">
-    <value>Saint-Petersburg</value>
+  <data name="SamDotNet" xml:space="preserve">
+    <value>Samara</value>
   </data>
-  <data name="Saratov" xml:space="preserve">
+  <data name="SarDotNet" xml:space="preserve">
     <value>Saratov</value>
   </data>
   <data name="SeeAlso" xml:space="preserve">
@@ -249,6 +255,9 @@ Sergey Polezhaev</value>
   </data>
   <data name="Social" xml:space="preserve">
     <value>Social</value>
+  </data>
+  <data name="SpbDotNet" xml:space="preserve">
+    <value>Saint Petersburg</value>
   </data>
   <data name="SpeakerInfo" xml:space="preserve">
     <value>Speaker</value>
@@ -282,6 +291,9 @@ Sergey Polezhaev</value>
   </data>
   <data name="Tomorrow" xml:space="preserve">
     <value>Tomorrow</value>
+  </data>
+  <data name="UfaDotNet" xml:space="preserve">
+    <value>Ufa</value>
   </data>
   <data name="Venue" xml:space="preserve">
     <value>Venue</value>

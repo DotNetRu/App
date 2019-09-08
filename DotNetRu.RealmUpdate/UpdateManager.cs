@@ -17,6 +17,13 @@ namespace DotNetRu.RealmUpdate
     {
         public const int DotNetRuAppRepositoryID = 89862917;
 
+        public static async Task<AuditUpdate> GetAuditData()
+        {
+            var latestCommit = await GetLatestCommit();
+
+            return await GetAuditData(latestCommit);
+        }
+
         public static async Task<AuditUpdate> GetAuditData(string commitSha)
         {
             var client = new GitHubClient(new ProductHeaderValue("DotNetRu"));

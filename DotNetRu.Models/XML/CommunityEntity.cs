@@ -12,5 +12,7 @@ namespace DotNetRu.Models.XML
         public string City { get; set; }
 
         public string TimeZone { get; set; }
+
+        public string VkUrl { get; set; }
     }
 }
