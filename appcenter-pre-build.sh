@@ -2,7 +2,6 @@
 
 sed -i '' "s/APP_CENTER_ANDROID_KEY/$AppCenterAndroidKey/" $APPCENTER_SOURCE_DIRECTORY/DotNetRu.Utils/Config/config.json
 sed -i '' "s/APP_CENTER_IOS_KEY/$AppCenteriOSKey/" $APPCENTER_SOURCE_DIRECTORY/DotNetRu.Utils/Config/config.json
-sed -i '' "s/PUSH_NOTIFICATIONS_CHANNEL/$PushNotificationsChannelKey/" $APPCENTER_SOURCE_DIRECTORY/DotNetRu.Utils/Config/config.json
-sed -i '' "s%UPDATE_FUNCTION_URL%$UpdateFunctionURLKey%" $APPCENTER_SOURCE_DIRECTORY/DotNetRu.Utils/Config/config.json
 sed -i '' "s%TWEET_FUNCTION_URL%$TweetFunctionURLKey%" $APPCENTER_SOURCE_DIRECTORY/DotNetRu.Utils/Config/config.json
-sed -i '' "s%REALM_DATABASE_KEY%$RealmDatabase%" $APPCENTER_SOURCE_DIRECTORY/DotNetRu.Utils/Config/config.json
+sed -i '' "s%REALM_DATABASE%$RealmDatabase%" $APPCENTER_SOURCE_DIRECTORY/DotNetRu.Utils/Config/config.json
+sed -i '' "s%REALM_SERVER_URL%$RealmServerUrl%" $APPCENTER_SOURCE_DIRECTORY/DotNetRu.Utils/Config/config.json

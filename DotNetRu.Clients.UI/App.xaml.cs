@@ -1,35 +1,30 @@
 using Xamarin.Forms.Xaml;
+using System;
+using System.Globalization;
+
+using DotNetRu.Clients.Portable.Interfaces;
+using DotNetRu.Clients.Portable.Model;
+using DotNetRu.Clients.Portable.Services;
+using DotNetRu.Clients.Portable.ViewModel;
+using DotNetRu.Clients.UI.Localization;
+using DotNetRu.Clients.UI.Pages;
+using DotNetRu.DataStore.Audit.Services;
+using DotNetRu.Utils.Helpers;
+using DotNetRu.Utils.Interfaces;
+
+using FormsToolkit;
+
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
+using Microsoft.AppCenter.Push;
+using Xamarin.Essentials;
+using Xamarin.Forms;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 
 namespace DotNetRu.Clients.UI
 {
-    using System;
-    using System.Globalization;
-    using System.Threading.Tasks;
-    
-    using DotNetRu.Clients.Portable.Interfaces;
-    using DotNetRu.Clients.Portable.Model;
-    using DotNetRu.Clients.Portable.Services;
-    using DotNetRu.Clients.Portable.ViewModel;
-    using DotNetRu.Clients.UI.Helpers;
-    using DotNetRu.Clients.UI.Localization;
-    using DotNetRu.Clients.UI.Pages;
-    using DotNetRu.DataStore.Audit.Services;
-    using DotNetRu.Utils.Helpers;
-    using DotNetRu.Utils.Interfaces;
-
-    using FormsToolkit;
-
-    using Microsoft.AppCenter;
-    using Microsoft.AppCenter.Analytics;
-    using Microsoft.AppCenter.Crashes;
-    using Microsoft.AppCenter.Push;
-   
-    using Plugin.LocalNotifications;
-    using Xamarin.Essentials;
-    using Xamarin.Forms;
-
     public partial class App
     {
         private static ILogger logger;
@@ -48,18 +43,6 @@ namespace DotNetRu.Clients.UI
             this.InitializeComponent();
 
             var config = AppConfig.GetConfig();
-
-            // This should come before AppCenter.Start() is called
-            // Avoid duplicate event registration:
-            if (!AppCenter.Configured)
-            {
-                Push.PushNotificationReceived += async (sender, e) =>
-                {
-                    Logger.Track($"PushReceived {e.Title}, {e.Message}", e.CustomData);
-
-                    CrossLocalNotifications.Current.Show("New meetup announced", "New meetup announced. Open app to see details");
-                };
-            }
 
             AppCenter.Start(
                 $"ios={config.AppCenteriOSKey};android={config.AppCenterAndroidKey};",
@@ -95,50 +78,6 @@ namespace DotNetRu.Clients.UI
             // Handle when your app resumes
             Settings.Current.IsConnected = Connectivity.NetworkAccess == NetworkAccess.Internet;
             Connectivity.ConnectivityChanged += this.ConnectivityChanged;
-
-            // Handle when your app starts
-            MessagingService.Current.Subscribe<MessagingServiceAlert>(
-                MessageKeys.Message,
-                async (m, info) =>
-                    {
-                        var task = Current?.MainPage?.DisplayAlert(info.Title, info.Message, info.Cancel);
-
-                        if (task == null)
-                        {
-                            return;
-                        }
-
-                        await task;
-                        info.OnCompleted?.Invoke();
-                    });
-
-            MessagingService.Current.Subscribe<MessagingServiceQuestion>(
-                MessageKeys.Question,
-                async (m, q) =>
-                    {
-                        var task = Current?.MainPage?.DisplayAlert(q.Title, q.Question, q.Positive, q.Negative);
-                        if (task == null)
-                        {
-                            return;
-                        }
-
-                        var result = await task;
-                        q.OnCompleted?.Invoke(result);
-                    });
-
-            MessagingService.Current.Subscribe<MessagingServiceChoice>(
-                MessageKeys.Choice,
-                async (m, q) =>
-                    {
-                        var task = Current?.MainPage?.DisplayActionSheet(q.Title, q.Cancel, q.Destruction, q.Items);
-                        if (task == null)
-                        {
-                            return;
-                        }
-
-                        var result = await task;
-                        q.OnCompleted?.Invoke(result);
-                    });
         }
 
         protected override void OnAppLinkRequestReceived(Uri uri)

@@ -1,9 +1,7 @@
 {
     "AppCenterAndroidKey": "APP_CENTER_ANDROID_KEY",
     "AppCenteriOSKey": "APP_CENTER_IOS_KEY",
-    "PushNotificationsChannel": "PUSH_NOTIFICATIONS_CHANNEL",
-    "UpdateFunctionURL": "UPDATE_FUNCTION_URL",
     "TweetFunctionURL": "TWEET_FUNCTION_URL",
-    "RealmDatabase": "REALM_DATABASE_KEY",
+    "RealmDatabase": "REALM_DATABASE",
     "RealmServerUrl": "REALM_SERVER_URL"
 }
