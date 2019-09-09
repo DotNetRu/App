@@ -10,16 +10,10 @@ using System.Threading.Tasks;
 namespace Conference.RealmUpdate
 {
     public class Program
-    {
-        private static string realmOfflinePath = @"DotNetRu.DataStore.Audit/DotNetRuOffline.realm";        
-
+    {        
         public static async Task Main()
         {
-            var stopwatch = Stopwatch.StartNew();
             var auditData = await UpdateManager.GetAuditData();
-            stopwatch.Stop();
-
-            Console.WriteLine($"Get data from GitHub time: {stopwatch.Elapsed}");
 
             UpdateOfflineRealm(auditData);
             await UpdateOnlineRealm(auditData);
@@ -27,6 +21,8 @@ namespace Conference.RealmUpdate
 
         private static void UpdateOfflineRealm(AuditUpdate auditData)
         {
+            var realmOfflinePath = @"DotNetRu.DataStore.Audit/DotNetRuOffline.realm";
+
             var realmFullPath = $"{Directory.GetCurrentDirectory()}/../../../../{realmOfflinePath}";
             Realm.DeleteRealm(new RealmConfiguration(realmFullPath));
 
@@ -39,8 +35,8 @@ namespace Conference.RealmUpdate
             SyncConfigurationBase.LogLevel = LogLevel.Debug;
 
             var realmURL = "dotnetru.de1a.cloud.realm.io";
-
             var realmOnlineName = "dotnetru_050919";
+
             var realmUrl = new Uri($"realms://{realmURL}/{realmOnlineName}");
 
             var config = new ConfigurationBuilder()
