@@ -1,7 +1,7 @@
 {
     "AppCenterAndroidKey": "APP_CENTER_ANDROID_KEY",
     "AppCenteriOSKey": "APP_CENTER_IOS_KEY",
-    "TweetFunctionURL": "TWEET_FUNCTION_URL",
+    "TweetFunctionUrl": "TWEET_FUNCTION_URL",
     "RealmDatabase": "REALM_DATABASE",
     "RealmServerUrl": "REALM_SERVER_URL"
 }
