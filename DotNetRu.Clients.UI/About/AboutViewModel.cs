@@ -21,7 +21,6 @@ using Xamarin.Forms;
 
 namespace DotNetRu.Clients.Portable.ViewModel
 {
-    // TODO Nice UI
     public class AboutViewModel : ViewModelBase
     {
 

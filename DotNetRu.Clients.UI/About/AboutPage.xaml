@@ -17,19 +17,25 @@
             <converters:TranslateConverter x:Key="TranslateConverter"/>
 
             <DataTemplate x:Key="settingsTemplate">
-                <ViewCell StyleId="disclosure">
-                    <Picker Margin="10" 
-                            ItemsSource="{Binding Source={x:Reference About}, Path=BindingContext.Languages}" 
-                            HorizontalOptions="FillAndExpand" 
-                            Title="{Binding Resources[SelectLanguage]}" 
-                            SelectedItem="{Binding Source={x:Reference About}, Path=BindingContext.SelectedLanguage, Mode=TwoWay}" />
+                <ViewCell>
+                    <StackLayout BackgroundColor="White">
+                        <Picker ItemsSource="{Binding Source={x:Reference About}, Path=BindingContext.Languages}" 
+                                HorizontalOptions="FillAndExpand" 
+                                Title="{Binding Resources[SelectLanguage]}"
+                                SelectedItem="{Binding Source={x:Reference About}, Path=BindingContext.SelectedLanguage, Mode=TwoWay}" />
+                    </StackLayout>
                 </ViewCell>
             </DataTemplate>
 
             <DataTemplate x:Key="friendsTemplate">
-                <TextCell 
-                    Text="{Binding Source={x:Reference About}, Path=BindingContext.Resources[Friends]}"
-                    StyleId="disclosure"/>
+                <ViewCell StyleId="disclosure">
+                    <StackLayout BackgroundColor="White" Padding="{DynamicResource StandardPadding}">
+                        <Label
+                            Text="{Binding Source={x:Reference About}, Path=BindingContext.Resources[Friends]}"
+                            VerticalTextAlignment="Center"
+                            VerticalOptions="Center"/>
+                    </StackLayout>
+                </ViewCell>
             </DataTemplate>
 
             <DataTemplate x:Key="menuItemTemplate">
@@ -82,27 +88,29 @@
             HasUnevenRows="True"
             Header="{Binding .}"
             Footer="{Binding .}"
-            IsGroupingEnabled="True">
+            IsGroupingEnabled="True">            
         <ListView.Behaviors>
             <behaviorsPack:SelectedItemBehavior Command="{Binding SelectedItemCommand}"/>
         </ListView.Behaviors>
         <ListView.HeaderTemplate>
             <DataTemplate>
-                <Label Margin="10" Style="{DynamicResource EvolveListItemTextStyle}" BackgroundColor="White">
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <Span Text="{Binding Resources[AboutText], Mode=OneWay}"/>
-                            <Span Text="dotnet.ru"
-                                      TextColor="Blue"
-                                      TextDecorations="Underline">
-                                <Span.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding LaunchBrowserCommand}"
-                                                          CommandParameter="https://dotnet.ru" />
-                                </Span.GestureRecognizers>
-                            </Span>
-                        </FormattedString>
-                    </Label.FormattedText>
-                </Label>
+                <StackLayout BackgroundColor="White" Padding="{DynamicResource StandardPadding}">
+                    <Label Style="{DynamicResource EvolveListItemTextStyle}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding Resources[AboutText], Mode=OneWay}"/>
+                                <Span Text="dotnet.ru"
+                                          TextColor="Blue"
+                                          TextDecorations="Underline">
+                                    <Span.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding LaunchBrowserCommand}"
+                                                              CommandParameter="https://dotnet.ru" />
+                                    </Span.GestureRecognizers>
+                                </Span>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </StackLayout>
             </DataTemplate>
         </ListView.HeaderTemplate>
         <ListView.GroupHeaderTemplate>
