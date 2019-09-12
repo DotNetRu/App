@@ -1,169 +1,69 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using AutoMapper;
 using DotNetRu.DataStore.Audit.RealmModels;
-using DotNetRu.RealmUpdate;
+using DotNetRu.Models.XML;
+using Microsoft.Extensions.Logging;
+using MoreLinq;
 using Octokit;
-using RealmGenerator.Entities;
-using Realms;
 
-namespace RealmGenerator
+namespace DotNetRu.RealmUpdate
 {
     public static class UpdateManager
     {
         public const int DotNetRuAppRepositoryID = 89862917;
 
-        public static async Task<IEnumerable<TEntity>> GetXmlEntitiesAsync<TEntity>(string entityFolderName)
+        public static async Task<AuditUpdate> GetAuditData()
         {
-            // TODO use async streams once available
-            var xmlEntities = new List<TEntity>();
+            var latestCommit = await GetLatestCommit();
 
-            var client = new GitHubClient(new ProductHeaderValue("dotnetru-app"));
-
-            var auditFiles = await client.Repository.Content.GetAllContents(DotNetRuAppRepositoryID, $"db/{entityFolderName}");
-
-            foreach (var file in auditFiles)
-            {
-                string downloadUrl;
-                switch (entityFolderName)
-                {
-                    case "speakers":
-                    case "friends":
-                        downloadUrl = $"https://raw.githubusercontent.com/DotNetRu/Audit/master/db/{entityFolderName}/{file.Name}/index.xml";
-                        break;
-                    default:
-                        downloadUrl = file.DownloadUrl;
-                        break;
-                }
-
-                var entity = await FileHelper.DownloadEntityAsync<TEntity>(downloadUrl);
-
-                xmlEntities.Add(entity);
-            }
-
-            return xmlEntities;
+            return await GetAuditData(latestCommit);
         }
 
-        public static async Task<IEnumerable<RepositoryContent>> GetFiles(string directory)
+        public static async Task<AuditUpdate> GetAuditData(string commitSha)
         {
-            var contentFiles = new List<RepositoryContent>();
+            var client = new GitHubClient(new ProductHeaderValue("DotNetRu"));
 
-            var client = new GitHubClient(new ProductHeaderValue("dotnetru-app"));
+            var treeResponse = await client.Git.Tree.GetRecursive(DotNetRuAppRepositoryID, commitSha);
+            var filePaths = treeResponse.Tree.Select(x => x.Path);
 
-            var auditFiles = await client.Repository.Content.GetAllContents(DotNetRuAppRepositoryID, directory);
+            var fileUris = filePaths
+                .Where(filePath => filePath.EndsWith(".xml"))
+                .Select(filePath => new Uri($"https://raw.githubusercontent.com/DotNetRu/Audit/master/{filePath}"));
 
-            foreach (var file in auditFiles)
-            {
-                switch (file.Type.Value)
-                {
-                    case ContentType.File:
-                        contentFiles.Add(file);
-                        break;
-                    case ContentType.Dir:
-                        var nestedFiles = await GetFiles($"{directory}/{file.Name}");
-                        contentFiles.AddRange(nestedFiles);
-                        break;
-                    default:
-                        throw new NotImplementedException();
-                }
-            }
+            var auditXmlUpdate = await DownloadFilesFromGitHub(fileUris);
 
-            return contentFiles;
+            return GetAuditUpdate(auditXmlUpdate, commitSha);
         }
 
-        // TODO download ZIP with needed commit
-        public static async Task<AuditData> GetAuditData()
-        { 
-            var mapper = InitializeAudoMapper();
+        private static AuditUpdate GetAuditUpdate(AuditXmlUpdate auditXmlUpdate, string commitSha)
+        {
+            var mapper = MapperHelper.GetAutoMapper();
 
-            // speakers
-            var xmlSpeakers = await GetXmlEntitiesAsync<SpeakerEntity>("speakers");
-            var realmSpeakers = xmlSpeakers.Select(mapper.Map<Speaker>).ToArray();
+            var realmSpeakers = auditXmlUpdate.Speakers.Select(mapper.Map<Speaker>).ToArray();
 
-            // friends
-            var xmlFriends = await GetXmlEntitiesAsync<FriendEntity>("friends");
-            var realmFriends = xmlFriends.Select(mapper.Map<Friend>).ToArray();
+            var realmFriends = auditXmlUpdate.Friends.Select(mapper.Map<Friend>).ToArray();
 
-            // venues
-            var xmlVenues = await GetXmlEntitiesAsync<VenueEntity>("venues");
-            var realmVenues = xmlVenues.Select(mapper.Map<Venue>).ToArray();
+            var realmVenues = auditXmlUpdate.Venues.Select(mapper.Map<Venue>).ToArray();
 
-            // communities
-            var xmlCommunities = await GetXmlEntitiesAsync<CommunityEntity>("communities");
-            var realmCommunities = xmlCommunities.Select(mapper.Map<Community>).ToArray();
+            var realmCommunities = auditXmlUpdate.Communities.Select(mapper.Map<Community>).ToArray();
 
-            // talks
-            var xmlTalks = await GetXmlEntitiesAsync<TalkEntity>("talks");
+            var talkMapper = MapperHelper.GetTalkMapper(realmSpeakers);
+            var realmTalks = auditXmlUpdate.Talks.Select(talkMapper.Map<Talk>).ToArray();
 
-            var talkMapper = new MapperConfiguration(cfg =>
-            {
-                cfg.CreateMap<TalkEntity, Talk>().AfterMap(
-                    (src, dest) =>
-                    {
-                        foreach (string speakerId in src.SpeakerIds)
-                        {
-                            var speaker = realmSpeakers.Single(s => s.Id == speakerId);
-                            dest.Speakers.Add(speaker);
-                        }
+            var meetupMapper = MapperHelper.GetMeetupMapper(realmFriends, realmVenues, realmTalks);
+            var realmMeetups = auditXmlUpdate.Meetups.Select(meetupMapper.Map<Meetup>).ToArray();
 
-                        if (src.SeeAlsoTalkIds != null)
-                        {
-                            foreach (string talkId in src.SeeAlsoTalkIds)
-                            {
-                                // TODO change to TalkModel
-                                dest.SeeAlsoTalksIds.Add(talkId);
-                            }
-                        }
-                    });
-            }).CreateMapper();
-
-            var realmTalks = xmlTalks.Select(talkMapper.Map<Talk>).ToArray();
-
-            // meetups
-            var xmlMeetups = await GetXmlEntitiesAsync<MeetupEntity>("meetups");
-
-            var meetupMapper = new MapperConfiguration(cfg =>
-            {
-                cfg.CreateMap<MeetupEntity, Meetup>()
-                    .ForMember(
-                        dest => dest.Sessions,
-                        o => o.MapFrom(src => src.Sessions))
-                    .AfterMap(
-                        (src, dest) =>
-                        {
-                            if (src.FriendIds != null)
-                            {
-                                foreach (string friendId in src.FriendIds)
-                                {
-                                    var friend = realmFriends.Single(f => f.Id == friendId);
-                                    dest.Friends.Add(friend);
-                                }
-                            }
-
-                            dest.Venue = realmVenues.Single(venue => venue.Id == src.VenueId);
-                        });
-                cfg.CreateMap<SessionEntity, Session>().AfterMap(
-                    (src, dest) =>
-                    {
-                        dest.Id = src.TalkId;
-                        dest.Talk = realmTalks.Single(talk => talk.Id == src.TalkId);
-                    });
-            }).CreateMapper();
-
-            var realmMeetups = xmlMeetups.Select(meetupMapper.Map<Meetup>).ToArray();
-
-            // audit version
-            var client = new GitHubClient(new ProductHeaderValue("dotnetru-app"));
-            var reference = await client.Git.Reference.Get(DotNetRuAppRepositoryID, "heads/master");
             var auditVersion = new AuditVersion
             {
-                CommitHash = reference.Object.Sha
+                CommitHash = commitSha
             };
 
-            return new AuditData
+            return new AuditUpdate
             {
                 AuditVersion = auditVersion,
                 Venues = realmVenues,
@@ -175,28 +75,158 @@ namespace RealmGenerator
             };
         }
 
-        private static IMapper InitializeAudoMapper()
+        private static async Task<string> GetLatestCommit()
         {
-            var mapperConfig = new MapperConfiguration(
-                cfg =>
-                {
-                    cfg.CreateMap<SpeakerEntity, Speaker>().AfterMap(
-                        (src, dest) =>
-                        {
-                            dest.AvatarSmallURL = $"https://raw.githubusercontent.com/DotNetRu/Audit/master/db/speakers/{src.Id}/avatar.small.jpg";
-                            dest.AvatarURL = $"https://raw.githubusercontent.com/DotNetRu/Audit/master/db/speakers/{src.Id}/avatar.jpg";
-                        });
-                    cfg.CreateMap<VenueEntity, Venue>();
-                    cfg.CreateMap<FriendEntity, Friend>().AfterMap(
-                        (src, dest) =>
-                        {
-                            dest.LogoSmallURL = $"https://raw.githubusercontent.com/DotNetRu/Audit/master/db/friends/{src.Id}/logo.small.png";
-                            dest.LogoURL = $"https://raw.githubusercontent.com/DotNetRu/Audit/master/db/friends/{src.Id}/logo.small.png";
-                        });
-                    cfg.CreateMap<CommunityEntity, Community>();
-                });
+            var client = new GitHubClient(new ProductHeaderValue("dotnetru-app"));
+            var reference = await client.Git.Reference.Get(DotNetRuAppRepositoryID, "heads/master");
+            return reference.Object.Sha;
+        }
 
-            return mapperConfig.CreateMapper();
+        private static async Task<AuditXmlUpdate> DownloadFilesFromGitHub(IEnumerable<Uri> links)
+        {
+            var httpClient = new HttpClient();
+
+            var streamTasks = links.Select(
+                async link => new
+                {
+                    FileType = GetFileType(link),
+                    Content = await httpClient.GetStringAsync(link)
+                });
+            var fileContents = await Task.WhenAll(streamTasks);
+
+            // TODO get all dependencies
+            var xmlMeetups = fileContents.Where(x => x.FileType == FileType.Meetup).Select(x => x.Content.Deserialize<MeetupEntity>());
+            var xmlTalks = fileContents.Where(x => x.FileType == FileType.Talk).Select(x => x.Content.Deserialize<TalkEntity>());
+            var xmlSpeakers = fileContents.Where(x => x.FileType == FileType.Speaker).Select(x => x.Content.Deserialize<SpeakerEntity>());
+            var xmlFriends = fileContents.Where(x => x.FileType == FileType.Friend).Select(x => x.Content.Deserialize<FriendEntity>());
+            var xmlVenues = fileContents.Where(x => x.FileType == FileType.Venue).Select(x => x.Content.Deserialize<VenueEntity>());
+            var xmlCommunities = fileContents.Where(x => x.FileType == FileType.Community).Select(x => x.Content.Deserialize<CommunityEntity>());
+
+            return new AuditXmlUpdate()
+            {
+                Speakers = xmlSpeakers,
+                Friends = xmlFriends,
+                Venues = xmlVenues,
+                Communities = xmlCommunities,
+                Talks = xmlTalks,
+                Meetups = xmlMeetups
+            };
+        }
+
+        private static FileType GetFileType(Uri link)
+        {
+            switch (link.ToString())
+            {
+                case var str when new Regex(@".*meetups.*").IsMatch(str):
+                    return FileType.Meetup;
+                case var str when new Regex(@".*talks.*").IsMatch(str):
+                    return FileType.Talk;
+                case var str when new Regex(@".*speakers.*").IsMatch(str):
+                    return FileType.Speaker;
+                case var str when new Regex(@".*friends.*").IsMatch(str):
+                    return FileType.Friend;
+                case var str when new Regex(@".*venues.*").IsMatch(str):
+                    return FileType.Venue;
+                case var str when new Regex(@".*communities.*").IsMatch(str):
+                    return FileType.Community;
+            }
+
+            throw new InvalidOperationException("Unknown URL provided");
+        }
+
+        public static async Task<AuditUpdate> GetAuditUpdate(string fromCommitSha, ILogger logger)
+        {
+            var client = new GitHubClient(new ProductHeaderValue("DotNetRu"));
+
+            var reference = await client.Git.Reference.Get(DotNetRuAppRepositoryID, "heads/master");
+            var latestMasterCommitSha = reference.Object.Sha;
+
+            var timer = Stopwatch.StartNew();
+
+            // TODO handle deletions
+            var contentUpdate = await client.Repository.Commit.Compare(
+                                    DotNetRuAppRepositoryID,
+                                    fromCommitSha,
+                                    latestMasterCommitSha);
+            var fileUrls = contentUpdate.Files.Where(x => x.Filename.EndsWith(".xml")).Select(file => new Uri(file.RawUrl));
+
+            timer.Stop();
+            logger.LogInformation("Getting file URLs time {GetFileUrlsTime}", timer.Elapsed);
+
+            timer.Restart();
+            var auditXmlUpdate = await DownloadFilesFromGitHub(fileUrls);
+            timer.Stop();
+            logger.LogInformation("Downloading files from GitHub time {DownloadFileTime}", timer.Elapsed);
+
+            timer.Restart();
+
+            var missingFiles = GetDependencies(auditXmlUpdate);
+            var missingXmlUpdate = await DownloadFilesFromGitHub(missingFiles);
+
+            auditXmlUpdate = auditXmlUpdate.Concat(missingXmlUpdate);
+
+            timer.Stop();
+            logger.LogInformation("Downloading missing files from GitHub time {DownloadMissingFileTime}", timer.Elapsed);
+
+            var latestCommit = await GetLatestCommit();
+
+            return GetAuditUpdate(auditXmlUpdate, latestCommit);
+        }
+
+        private static IEnumerable<Uri> GetDependencies(AuditXmlUpdate auditXmlUpdate)
+        {
+            var missingSpeakers = auditXmlUpdate.Talks.SelectMany(talk => GetMissingSpeakers(auditXmlUpdate, talk));
+
+            var missingFriends = auditXmlUpdate.Meetups.SelectMany(meetup => GetMissingFriends(auditXmlUpdate, meetup));
+
+            var missingVenues = auditXmlUpdate.Meetups.SelectMany(meetup => GetMissingVenues(auditXmlUpdate, meetup));
+
+            var missingTalks = auditXmlUpdate.Meetups.SelectMany(meetup => GetMissingTalks(auditXmlUpdate, meetup));
+
+            // TODO talk -> speakers
+
+            return missingSpeakers
+                .Concat(missingFriends)
+                .Concat(missingVenues)
+                .Concat(missingTalks);
+        }
+
+        private static IEnumerable<Uri> GetMissingVenues(AuditXmlUpdate auditXmlUpdate, MeetupEntity meetup)
+        {
+            var isNewVenue = auditXmlUpdate.Venues.Any(venue => venue.Id == meetup.VenueId);
+
+            return isNewVenue ?
+                Enumerable.Empty<Uri>() :
+                new Uri[] { new Uri($"https://raw.githubusercontent.com/DotNetRu/Audit/master/db/venues/{meetup.VenueId}.xml") };
+        }
+
+        private static IEnumerable<Uri> GetMissingTalks(AuditXmlUpdate auditXmlUpdate, MeetupEntity meetup)
+        {
+            var existingTalks = meetup.Sessions
+                .Select(session => session.TalkId)
+                .ExceptBy(auditXmlUpdate.Talks.Select(talk => talk.Id), x => x);
+
+            var talkUrls = existingTalks.Select(talk =>
+                new Uri($"https://raw.githubusercontent.com/DotNetRu/Audit/master/db/talks/{talk}.xml"));
+            return talkUrls;
+        }
+
+        private static IEnumerable<Uri> GetMissingFriends(AuditXmlUpdate auditXmlUpdate, MeetupEntity meetup)
+        {
+            var existingFriends = meetup.FriendIds.ExceptBy(auditXmlUpdate.Friends.Select(friend => friend.Id), x => x);
+
+            var friendUrls = existingFriends.Select(friend =>
+                new Uri($"https://raw.githubusercontent.com/DotNetRu/Audit/master/db/friends/{friend}/index.xml"));
+            return friendUrls;
+        }
+
+        private static IEnumerable<Uri> GetMissingSpeakers(AuditXmlUpdate auditXmlUpdate, TalkEntity talk)
+        {
+            var existingSpeakers = talk.SpeakerIds.ExceptBy(auditXmlUpdate.Speakers.Select(speaker => speaker.Id), x => x);
+
+            var speakerUrls = existingSpeakers.Select(speaker =>
+                new Uri($"https://raw.githubusercontent.com/DotNetRu/Audit/master/db/speakers/{speaker}/index.xml"));
+            return speakerUrls;
         }
     }
 }

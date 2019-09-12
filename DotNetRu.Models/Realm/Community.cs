@@ -12,5 +12,9 @@ namespace DotNetRu.DataStore.Audit.RealmModels
         public string City { get; set; }
 
         public string TimeZone { get; set; }
+
+        public string VkUrl { get; set; }
+
+        public string LogoUrl { get; set; }
     }
 }

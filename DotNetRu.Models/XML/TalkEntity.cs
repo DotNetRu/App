@@ -1,4 +1,4 @@
-﻿namespace RealmGenerator.Entities
+namespace DotNetRu.Models.XML
 {
     using System.Xml.Serialization;
 
@@ -11,7 +11,7 @@
         public string[] SpeakerIds { get; set; }
 
         [XmlArrayItem("TalkId", IsNullable = false)]
-        public string[] SeeAlsoTalkIds { get; set; }        
+        public string[] SeeAlsoTalkIds { get; set; }
 
         public string Title { get; set; }
 

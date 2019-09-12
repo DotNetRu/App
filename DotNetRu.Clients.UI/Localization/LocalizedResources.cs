@@ -12,12 +12,13 @@ namespace DotNetRu.Clients.Portable.Helpers
     {
         public LocalizedResources()
         {
+            // TODO Subscribe only once
             MessagingCenter.Subscribe<object, CultureChangedMessage>(this, string.Empty, this.OnCultureChanged);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
        
-        public string this[string key] => AppResources.ResourceManager.GetString(key);
+        public string this[string key] => AppResources.ResourceManager.GetString(key, AppResources.Culture);
 
         private void OnCultureChanged(object s, CultureChangedMessage cultureChangedMessage)
         {           

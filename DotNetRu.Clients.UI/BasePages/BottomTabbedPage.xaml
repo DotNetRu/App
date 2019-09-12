@@ -1,4 +1,4 @@
-﻿<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:home="clr-namespace:DotNetRu.Clients.UI.Pages.Home;assembly=DotNetRu.Clients.UI"
              xmlns:speakers="clr-namespace:DotNetRu.Clients.UI.Pages.Speakers;assembly=DotNetRu.Clients.UI"
@@ -74,7 +74,7 @@
             </OnPlatform>
         </NavigationPage.Icon>
         <x:Arguments>
-            <about:SettingsPage />
+            <about:AboutPage />
         </x:Arguments>
     </NavigationPage>
 </TabbedPage>

@@ -1,4 +1,4 @@
-﻿namespace RealmGenerator.Entities
+namespace DotNetRu.Models.XML
 {
     using System.Xml.Serialization;
 
@@ -12,5 +12,7 @@
         public string City { get; set; }
 
         public string TimeZone { get; set; }
+
+        public string VkUrl { get; set; }
     }
 }

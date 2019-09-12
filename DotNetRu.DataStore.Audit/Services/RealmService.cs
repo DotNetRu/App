@@ -31,12 +31,6 @@ namespace DotNetRu.DataStore.Audit.Services
         {
         }
 
-        private static readonly string RealmServerURL = "dotnet.de1a.cloud.realm.io";
-
-        private static readonly Uri RealmServerUri = new Uri($"https://{RealmServerURL}");
-
-        private static Uri RealmUri;
-
         private const string RealmOfflineResourceName = "DotNetRu.DataStore.Audit.DotNetRuOffline.realm";
 
         private static Realm OfflineRealm { get; set; }
@@ -57,12 +51,12 @@ namespace DotNetRu.DataStore.Audit.Services
 
             var config = AppConfig.GetConfig();
 
-            RealmUri = new Uri($"realms://{RealmServerURL}/{config.RealmDatabaseKey}");
+            var realmDatabaseUri = new Uri($"realms://{config.RealmServerUrl}/{config.RealmDatabase}");
 
             if (VersionTracking.IsFirstLaunchForCurrentBuild)
             {
                 CopyEmbeddedRealm();
-                DeleteOnlineRealm();
+                DeleteOnlineRealm(realmDatabaseUri);
             }
 
             OfflineRealm = Realm.GetInstance(GetOfflineRealmPath());
@@ -76,12 +70,13 @@ namespace DotNetRu.DataStore.Audit.Services
             Realms.Sync.Session.Error += HandlerRealmSyncErrors();
             SyncConfigurationBase.UserAgent = $"{AppInfo.Name} ({AppInfo.PackageName} {AppInfo.VersionString})";
 
-            ResumeCloudSync();
+            var realmServerUri = new Uri($"https://{config.RealmServerUrl}");
+            ResumeCloudSync(realmServerUri, realmDatabaseUri);
 
             Initialized = true;
         }
 
-        public static async void ResumeCloudSync()
+        public static async void ResumeCloudSync(Uri realmServerUri, Uri realmDatabaseUri)
         {
             try
             {
@@ -93,9 +88,9 @@ namespace DotNetRu.DataStore.Audit.Services
                 // get or create Realm user
                 var user = User.AllLoggedIn.Any()
                     ? User.AllLoggedIn.First()
-                    : await CreateRealmUser(RealmServerUri);
+                    : await CreateRealmUser(realmServerUri);
 
-                var syncConfiguration = new FullSyncConfiguration(RealmUri, user);
+                var syncConfiguration = new FullSyncConfiguration(realmDatabaseUri, user);
 
                 var cloudRealm = Preferences.Get(IsOnlineRealmCreated, false)
                     ? OpenRealmSync(syncConfiguration)
@@ -121,6 +116,9 @@ namespace DotNetRu.DataStore.Audit.Services
 
         private static EventHandler<Realms.ErrorEventArgs> HandlerRealmSyncErrors()
         {
+            var config = AppConfig.GetConfig();
+            var realmDatabaseUri = new Uri($"realms://{config.RealmServerUrl}/{config.RealmDatabase}");
+
             return async (s, errorArgs) =>
             {
                 Preferences.Set(SyncError, true);
@@ -131,7 +129,7 @@ namespace DotNetRu.DataStore.Audit.Services
                 {
                     Analytics.TrackEvent("Client reset error");
 
-                    DeleteOnlineRealm();
+                    DeleteOnlineRealm(realmDatabaseUri);
                     await RemoveCachedUsers();
 
                     return;
@@ -144,7 +142,7 @@ namespace DotNetRu.DataStore.Audit.Services
                         await RemoveCachedUsers();
                         break;
                     case ErrorCode.PermissionDenied:
-                        DeleteOnlineRealm();
+                        DeleteOnlineRealm(realmDatabaseUri);
                         await RemoveCachedUsers();
                         break;
                 }
@@ -167,7 +165,7 @@ namespace DotNetRu.DataStore.Audit.Services
                 if (Preferences.Get(SyncError, defaultValue: false))
                 {
                     Crashes.TrackError(new Exception("Failed to initiate first time cloud realm connection"));
-                    DeleteOnlineRealm();
+                    DeleteOnlineRealm(syncConfiguration.ServerUri);
 
                     // stick with offline realm
                     return null;
@@ -203,7 +201,7 @@ namespace DotNetRu.DataStore.Audit.Services
             return Path.Combine(documentsPath, "ConferenceOffline.realm");
         }
 
-        private static void DeleteOnlineRealm()
+        private static void DeleteOnlineRealm(Uri realmDatabaseUri)
         {
             try
             {
@@ -212,7 +210,7 @@ namespace DotNetRu.DataStore.Audit.Services
                 var users = User.AllLoggedIn;
                 if (users.Any())
                 {
-                    var syncConfiguration = new FullSyncConfiguration(RealmUri, users.First());
+                    var syncConfiguration = new FullSyncConfiguration(realmDatabaseUri, users.First());
                     Realm.DeleteRealm(syncConfiguration);
                 }
 
@@ -237,6 +235,7 @@ namespace DotNetRu.DataStore.Audit.Services
             cfg.CreateMap<Talk, TalkModel>().ConvertUsing(x => x.ToModel());
             cfg.CreateMap<RealmModels.Session, SessionModel>().ConvertUsing(x => x.ToModel());
             cfg.CreateMap<Meetup, MeetupModel>().ConvertUsing(x => x.ToModel());
+            cfg.CreateMap<Community, CommunityModel>().ConvertUsing(x => x.ToModel());
         });
 
         public static IEnumerable<TAppModel> Get<TAppModel>()

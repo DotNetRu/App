@@ -1,7 +1,7 @@
-﻿using System;
+using System;
 using System.Xml.Serialization;
 
-namespace RealmGenerator.Entities
+namespace DotNetRu.Models.XML
 {
     [XmlType("Session")]
     public class SessionEntity
