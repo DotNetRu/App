@@ -229,6 +229,9 @@ Sergey Polezhaev</value>
   <data name="OurCommunities" xml:space="preserve">
     <value>Our communities</value>
   </data>
+  <data name="PnzDotNet" xml:space="preserve">
+    <value>Penza</value>
+  </data>
   <data name="PresentationSlides" xml:space="preserve">
     <value>Presentation Slides</value>
   </data>

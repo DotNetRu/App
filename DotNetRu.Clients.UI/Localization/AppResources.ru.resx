@@ -298,4 +298,7 @@
   <data name="UfaDotNet" xml:space="preserve">
     <value>Уфа</value>
   </data>
+  <data name="PnzDotNet" xml:space="preserve">
+    <value>Пенза</value>
+  </data>
 </root>
