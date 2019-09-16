@@ -175,6 +175,9 @@ Sergey Polezhaev</value>
   <data name="Krasnoyarsk" xml:space="preserve">
     <value>Krasnoyarsk</value>
   </data>
+  <data name="KrdDotNet" xml:space="preserve">
+    <value>Krasnodar</value>
+  </data>
   <data name="KryDotNet" xml:space="preserve">
     <value>Krasnoyarsk</value>
   </data>

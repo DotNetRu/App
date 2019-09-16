@@ -221,6 +221,15 @@ namespace DotNetRu.Clients.UI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Krasnodar.
+        /// </summary>
+        public static string KrdDotNet {
+            get {
+                return ResourceManager.GetString("KrdDotNet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Krasnoyarsk.
         /// </summary>
         public static string KryDotNet {

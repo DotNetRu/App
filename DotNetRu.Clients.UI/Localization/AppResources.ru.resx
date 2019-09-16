@@ -301,4 +301,7 @@
   <data name="PnzDotNet" xml:space="preserve">
     <value>Пенза</value>
   </data>
+  <data name="KrdDotNet" xml:space="preserve">
+    <value>Краснодар</value>
+  </data>
 </root>
