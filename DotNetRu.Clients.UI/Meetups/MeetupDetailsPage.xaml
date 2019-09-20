@@ -66,29 +66,17 @@
 
             <DataTemplate x:Key ="friendTemplate" x:DataType="meetups:MeetupDetailsPageItem">
                 <ViewCell StyleId="disclosure">
-                    <StackLayout Spacing="0" HeightRequest="120">
-                        <StackLayout.Padding>
-                            <OnPlatform x:TypeArguments="Thickness" iOS="0" Android="0,4"/>
-                        </StackLayout.Padding>
-                        <controls:CardView HeightRequest="120">
-                            <Grid Padding="{DynamicResource StandardPadding}" ColumnSpacing="{DynamicResource StandardSpacing}">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="10*" />
-                                    <ColumnDefinition Width="90*" />
-                                    <ColumnDefinition Width="10*" />
-                                </Grid.ColumnDefinitions>
-                                <Image
-                                    Grid.Column="1"
-                                    Margin="16"
-                                    HorizontalOptions="FillAndExpand"
-                                    VerticalOptions="FillAndExpand"
-                                    StyleId="SponsorImage"
-                                    Source="{Binding Friend.LogoSmall}"
-                                    Aspect="AspectFit">
-                                </Image>
-                            </Grid>
-                        </controls:CardView>
-                    </StackLayout>
+                    <FlexLayout BackgroundColor="White">
+                        <Image
+                            FlexLayout.Basis="100%"
+                            HeightRequest="50"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand"
+                            StyleId="SponsorImage"
+                            Source="{Binding Friend.LogoSmall}"
+                            Aspect="AspectFit">
+                        </Image>
+                    </FlexLayout>
                 </ViewCell>
             </DataTemplate>
 
@@ -110,51 +98,44 @@
                                          SessionTemplate="{StaticResource sessionTemplate}"/>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <ScrollView BackgroundColor="{DynamicResource WindowBackgroundTable}">
-        <StackLayout BackgroundColor="{DynamicResource WindowBackgroundTable}"
-                  Spacing="{DynamicResource CardSpacing}"
-                  Padding="{DynamicResource CardPadding}">
-
-            <ListView x:Name="MeetupListView"
-                ItemsSource="{Binding MeetupDetailsPageItems}"
-                ItemTemplate="{StaticResource MeetupDetailsTemplateSelector}"
-                SelectionMode="Single"
-                HasUnevenRows="True"
-                IsGroupingEnabled="True">
-                <ListView.Behaviors>
-                    <behaviorsPack:SelectedItemBehavior Command="{Binding SelectedItemCommand}"/>
-                </ListView.Behaviors>
-                <ListView.GroupHeaderTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout VerticalOptions="Center">
-                                <StackLayout.BackgroundColor>
-                                    <OnPlatform x:TypeArguments="Color" Android="#F5F5F5"/>
-                                </StackLayout.BackgroundColor>
-                                <StackLayout.Padding>
-                                    <OnPlatform x:TypeArguments="Thickness" iOS="16,0" Android="16,8"/>
-                                </StackLayout.Padding>
-                                <Label Text="{Binding Key, Converter={StaticResource TranslateConverter}}" 
-                                        VerticalOptions="Center" 
-                                        VerticalTextAlignment="Center">
-                                    <Label.FontAttributes>
-                                        <OnPlatform x:TypeArguments="FontAttributes" iOS="Bold"/>
-                                    </Label.FontAttributes>
-                                    <Label.FontSize>
-                                        <OnPlatform x:TypeArguments="x:Double" iOS="16" Android="18"/>
-                                    </Label.FontSize>
-                                    <Label.FontFamily>
-                                        <OnPlatform x:TypeArguments="x:String" Android="sans-serif-light"/>
-                                    </Label.FontFamily>
-                                    <Label.TextColor>
-                                        <OnPlatform x:TypeArguments="Color"/>
-                                    </Label.TextColor>
-                                </Label>
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.GroupHeaderTemplate>
-            </ListView>
-        </StackLayout>
-    </ScrollView>
+    <ListView x:Name="MeetupListView"
+        ItemsSource="{Binding MeetupDetailsPageItems}"
+        ItemTemplate="{StaticResource MeetupDetailsTemplateSelector}"
+        SelectionMode="Single"
+        HasUnevenRows="True"
+        IsGroupingEnabled="True">
+        <ListView.Behaviors>
+            <behaviorsPack:SelectedItemBehavior Command="{Binding SelectedItemCommand}"/>
+        </ListView.Behaviors>
+        <ListView.GroupHeaderTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <StackLayout VerticalOptions="Center">
+                        <StackLayout.BackgroundColor>
+                            <OnPlatform x:TypeArguments="Color" Android="#F5F5F5"/>
+                        </StackLayout.BackgroundColor>
+                        <StackLayout.Padding>
+                            <OnPlatform x:TypeArguments="Thickness" iOS="16,0" Android="16,8"/>
+                        </StackLayout.Padding>
+                        <Label Text="{Binding Key, Converter={StaticResource TranslateConverter}}" 
+                                VerticalOptions="Center" 
+                                VerticalTextAlignment="Center">
+                            <Label.FontAttributes>
+                                <OnPlatform x:TypeArguments="FontAttributes" iOS="Bold"/>
+                            </Label.FontAttributes>
+                            <Label.FontSize>
+                                <OnPlatform x:TypeArguments="x:Double" iOS="16" Android="18"/>
+                            </Label.FontSize>
+                            <Label.FontFamily>
+                                <OnPlatform x:TypeArguments="x:String" Android="sans-serif-light"/>
+                            </Label.FontFamily>
+                            <Label.TextColor>
+                                <OnPlatform x:TypeArguments="Color"/>
+                            </Label.TextColor>
+                        </Label>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.GroupHeaderTemplate>
+    </ListView>
 </pages:BasePage>

@@ -40,7 +40,7 @@ namespace DotNetRu.Clients.UI.Meetups
             var pageItems = new List<Grouping<string, MeetupDetailsPageItem>>();
 
             var sessions = MeetupModel.Sessions.ToList();
-            pageItems.Add(new Grouping<string, MeetupDetailsPageItem>("Sessions", sessions.Select(x => new MeetupDetailsPageItem
+            pageItems.Add(new Grouping<string, MeetupDetailsPageItem>("Talks", sessions.Select(x => new MeetupDetailsPageItem
             {
                 Session = x,
                 ItemType = MeetupDetailsItemType.Session
