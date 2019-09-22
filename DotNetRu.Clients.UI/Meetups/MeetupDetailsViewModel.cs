@@ -35,7 +35,11 @@ namespace DotNetRu.Clients.UI.Meetups
             MessagingCenter.Subscribe<LocalizedResources>(
                 this,
                 MessageKeys.LanguageChanged,
-                sender => OnPropertyChanged(nameof(MeetupDate)));
+                sender =>
+                {
+                    MeetupDetailsPageItems.ReplaceRange(GetMeetupDetailsPageItems());
+                }
+                );
 
             UpdateRemainderStatusCommand.Execute(parameter: null);
 
@@ -93,7 +97,6 @@ namespace DotNetRu.Clients.UI.Meetups
 
         private async Task ExecuteLoadEventDetailsCommandAsync()
         {
-
             if (IsBusy)
             {
                 return;
@@ -126,13 +129,9 @@ namespace DotNetRu.Clients.UI.Meetups
             set
             {
                 isReminderSet = value;
-
-                ChangeCalendarButtonName = value ? "Remove from Calendar" : "Add to Calendar";
-                OnPropertyChanged(nameof(ChangeCalendarButtonName));
+                OnPropertyChanged(nameof(IsReminderSet));
             }
         }
-
-        public string ChangeCalendarButtonName { get; set; }
 
         private async Task HandleSelection(MeetupDetailsPageItem item)
         {
@@ -163,11 +162,11 @@ namespace DotNetRu.Clients.UI.Meetups
 
                         if (!result)
                         {
-                            toaster.SendToast("Error occured");
+                            toaster.SendToast(this.Resources["ErrorOccured"]);
                             return;
                         }
 
-                        toaster.SendToast("Removed from Calendar");
+                        toaster.SendToast(this.Resources["RemovedFromCalendar"]);
                         this.Logger.Track(DotNetRuLoggerKeys.ReminderRemoved, "Title", this.MeetupModel.Title);
                         this.IsReminderSet = false;
                     }
@@ -189,11 +188,11 @@ namespace DotNetRu.Clients.UI.Meetups
                         var result = await CalendarService.AddCalendarEventAsync(MeetupModel.Id, calendarEvent);
                         if (!result)
                         {
-                            toaster.SendToast("Error occured");
+                            toaster.SendToast(this.Resources["ErrorOccured"]);
                             return;
                         }
 
-                        toaster.SendToast("Added to Calendar");
+                        toaster.SendToast(this.Resources["AddedToCalendar"]);
 
                         this.Logger.Track(DotNetRuLoggerKeys.ReminderAdded, "Title", this.MeetupModel.Title);
                         this.IsReminderSet = true;

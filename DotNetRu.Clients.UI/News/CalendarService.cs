@@ -1,11 +1,18 @@
-﻿using System;using System.Threading.Tasks;using Plugin.Calendars.Abstractions;using Plugin.Calendars;using Plugin.Permissions;using Plugin.Permissions.Abstractions;using Xamarin.Forms;using Microsoft.AppCenter.Crashes;using Microsoft.AppCenter.Analytics;using Xamarin.Essentials;
+using System;using System.Threading.Tasks;using Plugin.Calendars.Abstractions;using Plugin.Calendars;using Plugin.Permissions;using Plugin.Permissions.Abstractions;using Xamarin.Forms;using Microsoft.AppCenter.Crashes;using Microsoft.AppCenter.Analytics;using Xamarin.Essentials;
 
 namespace DotNetRu.Clients.UI.News{    public static class CalendarService    {
         private const string CalendarName = "DotNetRu";
 
         private static string GetEventIDKey(string eventID) => "calendar_" + eventID;
 
-        private static void SaveExternalEventID(string eventID, string externalEventID) => Preferences.Set(GetEventIDKey(eventID), externalEventID);        private static string GetExternalEventID(string eventID) => Preferences.Get(GetEventIDKey(eventID), string.Empty);        private static void RemoveExternalEventID(string eventID) => Preferences.Set(GetEventIDKey(eventID), string.Empty);        public static string CalendarID        {            get => Preferences.Get(nameof(CalendarID), string.Empty);            set => Preferences.Set(nameof(CalendarID), value);        }        public static async Task<bool> HasReminderAsync(string id)        {
+        private static void SaveExternalEventID(string eventID, string externalEventID) => Preferences.Set(GetEventIDKey(eventID), externalEventID);        private static string GetExternalEventID(string eventID) => Preferences.Get(GetEventIDKey(eventID), string.Empty);        private static void RemoveExternalEventID(string eventID) => Preferences.Set(GetEventIDKey(eventID), string.Empty);        public static string CalendarID        {            get => Preferences.Get(nameof(CalendarID), string.Empty);            set => Preferences.Set(nameof(CalendarID), value);        }
+
+        public static bool WasCalendarUsed        {            get => Preferences.Get(nameof(WasCalendarUsed), false);            set => Preferences.Set(nameof(WasCalendarUsed), value);        }        public static async Task<bool> HasReminderAsync(string id)        {
+            if (!WasCalendarUsed)
+            {
+                return false;
+            }
+
             var hasPermissions = await GetCalendarPermissionsAsync();            if (!hasPermissions)
             {                return false;
             }            var externalId = GetExternalEventID(id);            if (string.IsNullOrWhiteSpace(externalId))

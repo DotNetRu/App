@@ -15,6 +15,7 @@
         <ResourceDictionary>
             <converters:TranslateConverter x:Key="TranslateConverter"/>
             <converters:SessionTimeDisplayConverter x:Key="SessionTimeDisplayConverter"/>
+            <converters:HasReminderTextConverter x:Key="HasReminderTextConverter"/>
 
             <DataTemplate x:Key="sessionTemplate" x:DataType="meetups:MeetupDetailsPageItem">
                 <ViewCell StyleId="disclosure">
@@ -95,7 +96,7 @@
                 <ViewCell>
                     <StackLayout BackgroundColor="White" Padding="{DynamicResource StandardPadding}">
                         <Label
-                            Text="{Binding Source={x:Reference Meetup}, Path=BindingContext.ChangeCalendarButtonName}"
+                            Text="{Binding Source={x:Reference Meetup}, Path=BindingContext.IsReminderSet, Converter={StaticResource HasReminderTextConverter}}"
                             VerticalTextAlignment="Center"
                             HorizontalTextAlignment="Start"
                             VerticalOptions="Center"

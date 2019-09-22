@@ -1,8 +1,8 @@
-﻿namespace DotNetRu.Clients.UI.Converters
+namespace DotNetRu.Clients.UI.Converters
 {
     using System;
     using System.Globalization;
-
+    using DotNetRu.Clients.UI.Localization;
     using Xamarin.Forms;
 
     public class HasReminderTextConverter : IValueConverter
@@ -14,7 +14,7 @@
                 return string.Empty;
             }
 
-            return (bool)value ? "Remove from Calendar" : "Add to Calendar";
+            return AppResources.ResourceManager.GetString((bool)value ? "RemoveFromCalendar" : "AddToCalendar", AppResources.Culture);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
