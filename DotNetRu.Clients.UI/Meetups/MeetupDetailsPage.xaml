@@ -10,8 +10,7 @@
     x:Class="DotNetRu.Clients.UI.Pages.Sessions.MeetupDetailsPage"
     x:Name="Meetup"
     Title="{Binding MeetupModel.Title}"
-    Icon="tab_sessions.png"
-    BackgroundColor="{DynamicResource WindowBackground}">
+    Icon="tab_sessions.png">
     <ContentPage.Resources>
         <ResourceDictionary>
             <converters:TranslateConverter x:Key="TranslateConverter"/>
@@ -93,13 +92,14 @@
             </DataTemplate>
 
             <DataTemplate x:Key="calendarTemplate">
-                <ViewCell StyleId="disclosure">
+                <ViewCell>
                     <StackLayout BackgroundColor="White" Padding="{DynamicResource StandardPadding}">
                         <Label
                             Text="{Binding Source={x:Reference Meetup}, Path=BindingContext.ChangeCalendarButtonName}"
                             VerticalTextAlignment="Center"
-                            HorizontalTextAlignment="Center"
-                            VerticalOptions="Center"/>
+                            HorizontalTextAlignment="Start"
+                            VerticalOptions="Center"
+                            TextColor="Purple"/>
                     </StackLayout>
                 </ViewCell>
             </DataTemplate>
@@ -116,7 +116,8 @@
         ItemTemplate="{StaticResource MeetupDetailsTemplateSelector}"
         SelectionMode="Single"
         HasUnevenRows="True"
-        IsGroupingEnabled="True">
+        IsGroupingEnabled="True"
+        Footer="">
         <ListView.Behaviors>
             <behaviorsPack:SelectedItemBehavior Command="{Binding SelectedItemCommand}"/>
         </ListView.Behaviors>

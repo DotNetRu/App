@@ -48,8 +48,7 @@ namespace DotNetRu.iOS.PlatformFeatures.ProActiveSuggestions
                                };
 
             var keywords = new NSMutableSet<NSString>(
-                new NSString(speakerModel.FirstName),
-                new NSString(speakerModel.LastName));
+                new NSString(speakerModel.FullName));
             if (speakerModel.Talks != null)
             {
                 foreach (var session in speakerModel.Talks)

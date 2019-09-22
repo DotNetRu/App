@@ -15,6 +15,7 @@ using DotNetRu.Clients.UI.Pages.Sessions;
 using DotNetRu.DataStore.Audit.Models;
 using DotNetRu.Utils.Helpers;
 using DotNetRu.Utils.Interfaces;
+using Microsoft.AppCenter.Crashes;
 using MvvmHelpers;
 using Plugin.Calendars.Abstractions;
 using Xamarin.Forms;
@@ -35,6 +36,8 @@ namespace DotNetRu.Clients.UI.Meetups
                 this,
                 MessageKeys.LanguageChanged,
                 sender => OnPropertyChanged(nameof(MeetupDate)));
+
+            UpdateRemainderStatusCommand.Execute(parameter: null);
 
             MeetupDetailsPageItems.ReplaceRange(GetMeetupDetailsPageItems());
         }
@@ -64,10 +67,12 @@ namespace DotNetRu.Clients.UI.Meetups
                 ItemType = MeetupDetailsItemType.Friend
             })));
 
-            pageItems.Add(new Grouping<string, MeetupDetailsPageItem>("Calendar", friends.Select(x => new MeetupDetailsPageItem
-            {
-                ItemType = MeetupDetailsItemType.Calendar
-            })));
+            pageItems.Add(new Grouping<string, MeetupDetailsPageItem>("Calendar", new MeetupDetailsPageItem[] {
+                new MeetupDetailsPageItem
+                {
+                    ItemType = MeetupDetailsItemType.Calendar
+                }
+            }));
 
             return pageItems;
         }
@@ -84,12 +89,50 @@ namespace DotNetRu.Clients.UI.Meetups
 
         public string MeetupTime => $"{Sessions.First().StartTime.LocalDateTime.ToShortTimeString()} — {Sessions.Last().EndTime.LocalDateTime.ToShortTimeString()}";
 
-        public ICommand SelectedItemCommand => new Command<MeetupDetailsPageItem>(async item => await HandleSelection(item));
+        public ICommand UpdateRemainderStatusCommand => new Command(async () => await ExecuteLoadEventDetailsCommandAsync());
 
-        bool isReminderSet;        public bool IsReminderSet        {            get { return isReminderSet; }            set { SetProperty(ref isReminderSet, value); }        }
+        private async Task ExecuteLoadEventDetailsCommandAsync()
+        {
 
-        public string ChangeCalendarButtonName =>
-            IsReminderSet ? "Remove from calendar" : "Add calendar";
+            if (IsBusy)
+            {
+                return;
+            }
+
+            try
+            {
+                IsBusy = true;
+                IsReminderSet = await CalendarService.HasReminderAsync(MeetupModel.Id);
+            }
+            catch (Exception ex)
+            {
+                Crashes.TrackError(ex);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+    public ICommand SelectedItemCommand => new Command<MeetupDetailsPageItem>(async item => await HandleSelection(item));
+
+        private bool isReminderSet;
+        public bool IsReminderSet
+        {
+            get
+            {
+                return isReminderSet;
+            }
+            set
+            {
+                isReminderSet = value;
+
+                ChangeCalendarButtonName = value ? "Remove from Calendar" : "Add to Calendar";
+                OnPropertyChanged(nameof(ChangeCalendarButtonName));
+            }
+        }
+
+        public string ChangeCalendarButtonName { get; set; }
 
         private async Task HandleSelection(MeetupDetailsPageItem item)
         {
@@ -111,7 +154,6 @@ namespace DotNetRu.Clients.UI.Meetups
                     App.Logger.TrackPage(AppPage.Talk.ToString(), item.Session.Talk.Title);
                     await NavigationService.PushAsync(Navigation, new TalkPage(item.Session.Talk));
                     break;
-                    // TODO change button name
                 case MeetupDetailsItemType.Calendar:
                     var toaster = DependencyService.Get<IToast>();
 
@@ -125,7 +167,7 @@ namespace DotNetRu.Clients.UI.Meetups
                             return;
                         }
 
-                        toaster.SendToast(this.Resources["RemovedFromCalendar"]);
+                        toaster.SendToast("Removed from Calendar");
                         this.Logger.Track(DotNetRuLoggerKeys.ReminderRemoved, "Title", this.MeetupModel.Title);
                         this.IsReminderSet = false;
                     }
@@ -151,7 +193,7 @@ namespace DotNetRu.Clients.UI.Meetups
                             return;
                         }
 
-                        toaster.SendToast(this.Resources["AddedToCalendar"]);
+                        toaster.SendToast("Added to Calendar");
 
                         this.Logger.Track(DotNetRuLoggerKeys.ReminderAdded, "Title", this.MeetupModel.Title);
                         this.IsReminderSet = true;
