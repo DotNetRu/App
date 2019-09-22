@@ -11,6 +11,8 @@ namespace DotNetRu.Clients.UI.Meetups
 
         public DataTemplate SessionTemplate { get; set; }
 
+        public DataTemplate CalendarTemplate { get; set; }
+
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
         {
             var aboutPageItem = item as MeetupDetailsPageItem;
@@ -23,6 +25,8 @@ namespace DotNetRu.Clients.UI.Meetups
                     return SessionTemplate;
                 case MeetupDetailsItemType.Venue:
                     return VenueTemplate;
+                case MeetupDetailsItemType.Calendar:
+                    return CalendarTemplate;
                 default:
                     throw new NotImplementedException();
             }

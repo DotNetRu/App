@@ -4,6 +4,7 @@ namespace DotNetRu.Clients.UI.Meetups
     {
         Friend,
         Venue,
-        Session
+        Session,
+        Calendar
     }
 }

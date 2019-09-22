@@ -92,10 +92,23 @@
                 </ViewCell>
             </DataTemplate>
 
+            <DataTemplate x:Key="calendarTemplate">
+                <ViewCell StyleId="disclosure">
+                    <StackLayout BackgroundColor="White" Padding="{DynamicResource StandardPadding}">
+                        <Label
+                            Text="{Binding Source={x:Reference Meetup}, Path=BindingContext.ChangeCalendarButtonName}"
+                            VerticalTextAlignment="Center"
+                            HorizontalTextAlignment="Center"
+                            VerticalOptions="Center"/>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+
             <meetups:MeetupDetailsTemplateSelector x:Key="MeetupDetailsTemplateSelector"
                                          FriendTemplate="{StaticResource friendTemplate}"
                                          VenueTemplate="{StaticResource venueTemplate}"
-                                         SessionTemplate="{StaticResource sessionTemplate}"/>
+                                         SessionTemplate="{StaticResource sessionTemplate}"
+                                         CalendarTemplate="{StaticResource calendarTemplate}"/>
         </ResourceDictionary>
     </ContentPage.Resources>
     <ListView x:Name="MeetupListView"

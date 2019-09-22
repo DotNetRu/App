@@ -5,21 +5,25 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 
 using DotNetRu.Clients.Portable.Helpers;
+using DotNetRu.Clients.Portable.Interfaces;
 using DotNetRu.Clients.Portable.Model;
 using DotNetRu.Clients.Portable.ViewModel;
 using DotNetRu.Clients.UI.Helpers;
+using DotNetRu.Clients.UI.News;
 using DotNetRu.Clients.UI.Pages.Friends;
 using DotNetRu.Clients.UI.Pages.Sessions;
 using DotNetRu.DataStore.Audit.Models;
 using DotNetRu.Utils.Helpers;
+using DotNetRu.Utils.Interfaces;
 using MvvmHelpers;
+using Plugin.Calendars.Abstractions;
 using Xamarin.Forms;
 
 namespace DotNetRu.Clients.UI.Meetups
 {
     public class MeetupDetailsViewModel : ViewModelBase
     {
-        public ObservableRangeCollection<Grouping<string, MeetupDetailsPageItem>> MeetupDetailsPageItems { get; } = 
+        public ObservableRangeCollection<Grouping<string, MeetupDetailsPageItem>> MeetupDetailsPageItems { get; } =
             new ObservableRangeCollection<Grouping<string, MeetupDetailsPageItem>>();
 
         public MeetupDetailsViewModel(INavigation navigation, MeetupModel meetupModel = null)
@@ -60,6 +64,11 @@ namespace DotNetRu.Clients.UI.Meetups
                 ItemType = MeetupDetailsItemType.Friend
             })));
 
+            pageItems.Add(new Grouping<string, MeetupDetailsPageItem>("Calendar", friends.Select(x => new MeetupDetailsPageItem
+            {
+                ItemType = MeetupDetailsItemType.Calendar
+            })));
+
             return pageItems;
         }
 
@@ -76,6 +85,11 @@ namespace DotNetRu.Clients.UI.Meetups
         public string MeetupTime => $"{Sessions.First().StartTime.LocalDateTime.ToShortTimeString()} — {Sessions.Last().EndTime.LocalDateTime.ToShortTimeString()}";
 
         public ICommand SelectedItemCommand => new Command<MeetupDetailsPageItem>(async item => await HandleSelection(item));
+
+        bool isReminderSet;        public bool IsReminderSet        {            get { return isReminderSet; }            set { SetProperty(ref isReminderSet, value); }        }
+
+        public string ChangeCalendarButtonName =>
+            IsReminderSet ? "Remove from calendar" : "Add calendar";
 
         private async Task HandleSelection(MeetupDetailsPageItem item)
         {
@@ -97,52 +111,53 @@ namespace DotNetRu.Clients.UI.Meetups
                     App.Logger.TrackPage(AppPage.Talk.ToString(), item.Session.Talk.Title);
                     await NavigationService.PushAsync(Navigation, new TalkPage(item.Session.Talk));
                     break;
+                    // TODO change button name
+                case MeetupDetailsItemType.Calendar:
+                    var toaster = DependencyService.Get<IToast>();
+
+                    if (this.IsReminderSet)
+                    {
+                        var result = await CalendarService.RemoveCalendarEventAsync(MeetupModel.Id);
+
+                        if (!result)
+                        {
+                            toaster.SendToast("Error occured");
+                            return;
+                        }
+
+                        toaster.SendToast(this.Resources["RemovedFromCalendar"]);
+                        this.Logger.Track(DotNetRuLoggerKeys.ReminderRemoved, "Title", this.MeetupModel.Title);
+                        this.IsReminderSet = false;
+                    }
+                    else
+                    {
+                        var calendarEvent = new CalendarEvent
+                        {
+                            AllDay = false,
+                            Description = this.MeetupModel.Title,
+                            Location = this.Sessions.First().Meetup.Venue.Address,
+                            Name = this.MeetupModel.Title,
+                            Start = this.Sessions.First().StartTime.LocalDateTime,
+                            End = this.Sessions.Last().EndTime.LocalDateTime,
+                            Reminders = new[] {
+                                new CalendarEventReminder                                {                                    Method = CalendarReminderMethod.Default,                                    TimeBefore = TimeSpan.FromMinutes(60)                                }
+                            }   
+                        };
+
+                        var result = await CalendarService.AddCalendarEventAsync(MeetupModel.Id, calendarEvent);
+                        if (!result)
+                        {
+                            toaster.SendToast("Error occured");
+                            return;
+                        }
+
+                        toaster.SendToast(this.Resources["AddedToCalendar"]);
+
+                        this.Logger.Track(DotNetRuLoggerKeys.ReminderAdded, "Title", this.MeetupModel.Title);
+                        this.IsReminderSet = true;
+                    }
+                    break;
             }
-        }
-
-        public ICommand ReminderCommand => new Command(() => this.ExecuteReminderCommand());
-
-        private void ExecuteReminderCommand()
-        {
-            //var calendarEvent = new CalendarEvent
-            // //{		             {
-            // //    var result = await ReminderService.AddReminderAsync(		                 AllDay = false,
-            // //                     this.TalkModel.Id,		                 Description = this.TalkModel.Abstract,
-            // //                     new Plugin.Calendars.Abstractions.CalendarEvent		                 Location = this.TalkModel.Sessions.First().Meetup.Venue.Address,
-            // //                         {		                 Name = this.TalkModel.Title,
-            // //                             AllDay = false,		                 Start = this.TalkModel.Sessions.First().StartTime.LocalDateTime,
-            // //                             Description =		                 End = this.TalkModel.Sessions.First().EndTime.LocalDateTime
-            // //                                 this.TalkModel.Abstract,		             };
-            // //                             Location =		             if (this.IsReminderSet)
-            // //                                 this.TalkModel.Room?.Name		             {
-            // //                                 ?? string.Empty,		                 var result = await ReminderService.DeleteSessionAsync(calendarEvent);
-            // //                             Name = this.TalkModel.Title,		
-            // //                             Start = this.TalkModel.StartTime		                 if (!result)
-            // //                                 .Value,		                 {
-            // //                             End = this.TalkModel.EndTime.Value		                     return;
-            // //                         });		                 }
-
-
-
-            //MessagingUtils.SendToast(this.Resources["RemovedFromCalendar"]);
-            ////    if (!result)		                 this.Logger.Track(DotNetRuLoggerKeys.ReminderRemoved, "Title", this.TalkModel.Title);
-            ////    {		                 this.IsReminderSet = false;
-            ////        return;		             }
-            ////    }		             else
-
-            //{
-            //    //    this.Logger.Track(DotNetRuLoggerKeys.ReminderAdded, "Title", this.TalkModel.Title);		                 var result = await ReminderService.AddSessionAsync(calendarEvent);
-            //    //    this.IsReminderSet = true;		
-            //    //}		                 if (!result)
-            //    //else		                 {
-            //    //{		                     return;
-            //    //    var result = await ReminderService.RemoveReminderAsync(this.TalkModel.Id);		                 }
-            //    //    if (!result)		
-            //    //    {		                 MessagingUtils.SendToast(this.Resources["AddedToCalendar"]);
-            //    //        return;		                 this.Logger.Track(DotNetRuLoggerKeys.ReminderAdded, "Title", this.TalkModel.Title);
-            //    //    }		                 this.IsReminderSet = true;
-
-            //}
         }
     }
 }
