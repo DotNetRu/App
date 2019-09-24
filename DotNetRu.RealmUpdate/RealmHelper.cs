@@ -53,23 +53,19 @@ namespace DotNetRu.RealmUpdate
 
         private static void ReplaceRealmObjects<T, TKey>(Realm realm, IEnumerable<T> newObjects, Func<T, TKey> keySelector) where T : RealmObject
         {
-            using (var transaction = realm.BeginWrite())
+            // TODO use primary key
+            var oldObjects = realm.All<T>().ToList();
+
+            var objectsToRemove = oldObjects.ExceptBy(newObjects, keySelector).ToList();
+
+            foreach (var @object in objectsToRemove)
             {
-                // TODO use primary key
-                var oldObjects = realm.All<T>().ToList();
+                realm.Write(() => realm.Remove(@object));
+            }
 
-                var objectsToRemove = oldObjects.ExceptBy(newObjects, keySelector).ToList();
-
-                foreach (var @object in objectsToRemove)
-                {
-                    realm.Remove(@object);
-                }
-                foreach (var @object in newObjects)
-                {
-                    realm.Add(@object.Clone(), update: true);
-                }
-
-                transaction.Commit();
+            foreach (var @object in newObjects)
+            {
+                realm.Write(() => realm.Add(@object.Clone(), update: true));
             }
         }
     }
