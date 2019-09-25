@@ -38,10 +38,6 @@ namespace DotNetRu.Clients.UI
             var language = LanguageService.GetCurrentLanguage();
             AppResources.Culture = new CultureInfo(language.GetLanguageCode());
 
-            RealmService.Initialize();
-
-            this.InitializeComponent();
-
             var config = AppConfig.GetConfig();
 
             AppCenter.Start(
@@ -50,6 +46,9 @@ namespace DotNetRu.Clients.UI
                 typeof(Crashes),
                 typeof(Push));
 
+            RealmService.Initialize();
+
+            this.InitializeComponent();
             this.MainPage = new BottomTabbedPage();
         }
 

@@ -14,8 +14,9 @@ namespace DotNetRu.Utils.Helpers
                     return null;
                 }
 
+                // TODO fix reading
                 byte[] resultBytes = new byte[resFilestream.Length];
-                resFilestream.Read(resultBytes, 0, resultBytes.Length);
+                var read = resFilestream.Read(resultBytes, 0, resultBytes.Length);
                 return resultBytes;
             }
         }
