@@ -5,7 +5,6 @@ namespace DotNetRu.Clients.Portable.ViewModel
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Windows.Input;
-    using DotNetRu.Clients.UI.Helpers;
     using DotNetRu.DataStore.Audit.Models;
     using DotNetRu.DataStore.Audit.Services;
     using DotNetRu.Utils;
@@ -31,9 +30,9 @@ namespace DotNetRu.Clients.Portable.ViewModel
 
         private void SortSpeakers(IEnumerable<SpeakerModel> speakers)
         {            
-            var speakersSorted = speakers.Select(speaker => new { speaker, firstChar = Char.ToUpperInvariant(speaker.FirstName[0])})
+            var speakersSorted = speakers.Select(speaker => new { speaker, firstChar = Char.ToUpperInvariant(speaker.FullName[0])})
                                          .OrderBy(s => 'A' <= s.firstChar && s.firstChar <= 'Z') //english names in the bottom
-                                         .ThenBy(s => s.speaker.FirstName)
+                                         .ThenBy(s => s.speaker.FullName)
                                          .GroupBy(s => s.firstChar)
                                          .Select(g => new Grouping<char, SpeakerModel>(g.Key, g.Select(s => s.speaker)));
 

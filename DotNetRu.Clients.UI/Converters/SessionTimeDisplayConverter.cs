@@ -18,8 +18,8 @@ namespace DotNetRu.Clients.UI.Converters
                     return string.Empty;
                 }
 
-                var startString = session.StartTime.ToString("t");
-                var endString = session.EndTime.ToString("t");
+                var startString = session.StartTime.LocalDateTime.ToString("t");
+                var endString = session.EndTime.LocalDateTime.ToString("t");
 
                 return $"{startString}–{endString}";
             }

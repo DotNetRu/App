@@ -213,7 +213,7 @@ namespace DotNetRu.RealmUpdate
 
         private static IEnumerable<Uri> GetMissingFriends(AuditXmlUpdate auditXmlUpdate, MeetupEntity meetup)
         {
-            var existingFriends = meetup.FriendIds.ExceptBy(auditXmlUpdate.Friends.Select(friend => friend.Id), x => x);
+            var existingFriends = meetup.FriendIds.EmptyIfNull().ExceptBy(auditXmlUpdate.Friends.Select(friend => friend.Id), x => x);
 
             var friendUrls = existingFriends.Select(friend =>
                 new Uri($"https://raw.githubusercontent.com/DotNetRu/Audit/master/db/friends/{friend}/index.xml"));

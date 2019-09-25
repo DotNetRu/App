@@ -18,8 +18,6 @@ namespace DotNetRu.Azure
 {
     public static class RealmUpdateFunction
     {
-        public static string CurrentRealmName = "dotnetru_prod_090819";
-
         [FunctionName("realmUpdate")]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)] HttpRequest req,
@@ -28,32 +26,33 @@ namespace DotNetRu.Azure
         {
             try
             {
+                var config = new ConfigurationBuilder()
+                 .SetBasePath(context.FunctionAppDirectory)
+                 .AddJsonFile("config.json", optional: true, reloadOnChange: true)
+                 .Build();
+
                 var realmName = req.Headers.ContainsKey("RealmName")
                     ? req.Headers["RealmName"].ToString()
-                    : CurrentRealmName;
+                    : config["RealmName"];
 
-                logger.LogInformation("Realm to update {RealmName}", realmName);
+                var realmServerUrl = req.Headers.ContainsKey("RealmServerUrl")
+                    ? req.Headers["RealmServerUrl"].ToString()
+                    : config["RealmServerUrl"];
 
-                var realmUrl = new Uri($"realms://dotnet.de1a.cloud.realm.io/{realmName}");
+                logger.LogInformation("Realm to update {RealmServerUrl}/{RealmName}", realmServerUrl, realmName);
 
-                var config = new ConfigurationBuilder()
-                    .SetBasePath(context.FunctionAppDirectory)
-                    .AddJsonFile("config.json", optional: true, reloadOnChange: true)
-                    .Build();
+                var user = await GetUser(logger, config, new Uri($"https://{realmServerUrl}"));
 
-                var user = await GetUser(logger, config);
-
+                var realmUrl = new Uri($"realms://{realmServerUrl}/{realmName}");
                 var realm = await GetRealm(realmUrl, user);
 
                 var currentVersion = GetCurrentVersion(realm);
-
                 var updateDelta = await UpdateManager.GetAuditUpdate(currentVersion, logger);
 
                 realm = await GetRealm(realmUrl, user);
                 RealmHelper.UpdateRealm(realm, updateDelta);
 
-                // TODO separate DBs by different Realm Clouds
-                var environment = realmName.Contains("prod") ? "production" : "beta";
+                var environment = realmServerUrl.Contains("dotnetru") ? "beta" : "production";
 
                 var pushConfigs = ConfigManager.GetPushConfigs(context);
                 var pushConfig = pushConfigs.Single(c => c.AppType == environment);
@@ -96,21 +95,25 @@ namespace DotNetRu.Azure
             return auditVersion.Single().CommitHash;
         }
 
-        private static async Task<User> GetUser(ILogger log, IConfigurationRoot config)
+        private static async Task<User> GetUser(ILogger log, IConfigurationRoot config, Uri realmServerUrl)
         {
             User user;
+
+            var login = config["Login"];
+            var password = config["Password"];
+
             try
             {
                 user = await User.LoginAsync(
-                    Credentials.UsernamePassword(config["Login"], config["Password"], createUser: false),
-                    new Uri("https://dotnet.de1a.cloud.realm.io"));
+                    Credentials.UsernamePassword(login, password, createUser: false),
+                    realmServerUrl);
             }
             catch (Exception e)
             {
                 log.LogCritical(e, "Error while logging in");
                 user = await User.LoginAsync(
-                    Credentials.UsernamePassword(config["Login"], config["Password"], createUser: false),
-                    new Uri("https://dotnet.de1a.cloud.realm.io"));
+                    Credentials.UsernamePassword(login, password, createUser: false),
+                    realmServerUrl);
             }
 
             return user;

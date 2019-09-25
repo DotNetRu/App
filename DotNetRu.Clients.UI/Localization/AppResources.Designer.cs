@@ -77,6 +77,18 @@ namespace DotNetRu.Clients.UI.Localization {
             }
         }
         
+        public static string AddedToCalendar {
+            get {
+                return ResourceManager.GetString("AddedToCalendar", resourceCulture);
+            }
+        }
+        
+        public static string AddToCalendar {
+            get {
+                return ResourceManager.GetString("AddToCalendar", resourceCulture);
+            }
+        }
+        
         public static string AllDay {
             get {
                 return ResourceManager.GetString("AllDay", resourceCulture);
@@ -86,6 +98,12 @@ namespace DotNetRu.Clients.UI.Localization {
         public static string Biography {
             get {
                 return ResourceManager.GetString("Biography", resourceCulture);
+            }
+        }
+        
+        public static string Calendar {
+            get {
+                return ResourceManager.GetString("Calendar", resourceCulture);
             }
         }
         
@@ -119,6 +137,12 @@ namespace DotNetRu.Clients.UI.Localization {
             }
         }
         
+        public static string ErrorOccured {
+            get {
+                return ResourceManager.GetString("ErrorOccured", resourceCulture);
+            }
+        }
+        
         public static string Follow {
             get {
                 return ResourceManager.GetString("Follow", resourceCulture);
@@ -146,6 +170,12 @@ namespace DotNetRu.Clients.UI.Localization {
         public static string Krasnoyarsk {
             get {
                 return ResourceManager.GetString("Krasnoyarsk", resourceCulture);
+            }
+        }
+        
+        public static string KrdDotNet {
+            get {
+                return ResourceManager.GetString("KrdDotNet", resourceCulture);
             }
         }
         
@@ -257,6 +287,12 @@ namespace DotNetRu.Clients.UI.Localization {
             }
         }
         
+        public static string PnzDotNet {
+            get {
+                return ResourceManager.GetString("PnzDotNet", resourceCulture);
+            }
+        }
+        
         public static string PresentationSlides {
             get {
                 return ResourceManager.GetString("PresentationSlides", resourceCulture);
@@ -266,6 +302,18 @@ namespace DotNetRu.Clients.UI.Localization {
         public static string PrivacyPolicy {
             get {
                 return ResourceManager.GetString("PrivacyPolicy", resourceCulture);
+            }
+        }
+        
+        public static string RemovedFromCalendar {
+            get {
+                return ResourceManager.GetString("RemovedFromCalendar", resourceCulture);
+            }
+        }
+        
+        public static string RemoveFromCalendar {
+            get {
+                return ResourceManager.GetString("RemoveFromCalendar", resourceCulture);
             }
         }
         

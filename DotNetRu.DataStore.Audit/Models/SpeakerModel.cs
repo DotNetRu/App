@@ -7,10 +7,6 @@ namespace DotNetRu.DataStore.Audit.Models
     {
         public string Id { get; set; }
 
-        public string FirstName { get; set; }
-
-        public string LastName { get; set; }
-
         public string Biography { get; set; }
 
         /// <summary>
@@ -50,7 +46,7 @@ namespace DotNetRu.DataStore.Audit.Models
 
         public IEnumerable<TalkModel> Talks { get; set; }
 
-        public string FullName => $"{this.FirstName.Trim()} {this.LastName.Trim()}";
+        public string FullName { get; set; }
 
         public string Title
         {

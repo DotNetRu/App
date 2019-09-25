@@ -141,52 +141,6 @@ namespace DotNetRu.Clients.Portable.ViewModel
             }
         }
 
-        public ICommand ReminderCommand => this.reminderCommand
-                                           ?? (this.reminderCommand = new Command(
-                                                   () => this.ExecuteReminderCommand()));
-
-        private void ExecuteReminderCommand()
-        {
-            //if (!this.IsReminderSet)
-            //{
-            //    var result = await ReminderService.AddReminderAsync(
-            //                     this.TalkModel.Id,
-            //                     new Plugin.Calendars.Abstractions.CalendarEvent
-            //                         {
-            //                             AllDay = false,
-            //                             Description =
-            //                                 this.TalkModel.Abstract,
-            //                             Location =
-            //                                 this.TalkModel.Room?.Name
-            //                                 ?? string.Empty,
-            //                             Name = this.TalkModel.Title,
-            //                             Start = this.TalkModel.StartTime
-            //                                 .Value,
-            //                             End = this.TalkModel.EndTime.Value
-            //                         });
-
-
-            //    if (!result)
-            //    {
-            //        return;
-            //    }
-
-            //    this.Logger.Track(DotNetRuLoggerKeys.ReminderAdded, "Title", this.TalkModel.Title);
-            //    this.IsReminderSet = true;
-            //}
-            //else
-            //{
-            //    var result = await ReminderService.RemoveReminderAsync(this.TalkModel.Id);
-            //    if (!result)
-            //    {
-            //        return;
-            //    }
-
-            //    this.Logger.Track(DotNetRuLoggerKeys.ReminderRemoved, "Title", this.TalkModel.Title);
-            //    this.IsReminderSet = false;
-            //}
-        }
-
         public ICommand ShareCommand => this.shareCommand
                                         ?? (this.shareCommand = new Command(
                                                 async () => await this.ExecuteShareCommandAsync()));

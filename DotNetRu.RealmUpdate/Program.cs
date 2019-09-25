@@ -3,7 +3,6 @@ using Microsoft.Extensions.Configuration;
 using Realms;
 using Realms.Sync;
 using System;
-using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 

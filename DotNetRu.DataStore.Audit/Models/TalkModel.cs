@@ -5,7 +5,6 @@ namespace DotNetRu.DataStore.Audit.Models
     using System.Linq;
     using System.Text;
     using DotNetRu.DataStore.Audit.Services;
-    using DotNetRu.Utils.Helpers;
     using Xamarin.Forms;
 
     public class TalkModel : IIdentified
@@ -69,8 +68,7 @@ namespace DotNetRu.DataStore.Audit.Models
                 {
                     foreach (var p in this.Speakers)
                     {
-                        builder.Append(
-                            $"{p.FirstName} {p.LastName}{Delimiter}{p.FirstName}{Delimiter}{p.LastName}{Delimiter}");
+                        builder.Append($"{p.FullName}{Delimiter}");
                     }
                 }
 
@@ -82,7 +80,7 @@ namespace DotNetRu.DataStore.Audit.Models
         // TODO use several speakers common photo
         public Uri SpeakerAvatar => this.Speakers.First().AvatarSmallURL;
 
-        public string SpeakerNames => string.Join(",", this.Speakers.Select(x => x.FullName));
+        public string SpeakerNames => string.Join(", ", this.Speakers.Select(x => x.FullName));
 
         public ImageSource CommunityLogo => ImageSource.FromResource(
            "DotNetRu.DataStore.Audit.Images.logos." + this.Sessions.First().Meetup.CommunityID + ".png");

@@ -13,8 +13,7 @@ namespace DotNetRu.DataStore.Audit.Extensions
             return new SpeakerModel
                        {
                            Id = speaker.Id,
-                           FirstName = speaker.Name,
-                           LastName = string.Empty,
+                           FullName = speaker.Name,
                            CompanyName = speaker.CompanyName,
                            CompanyWebsiteUrl = speaker.CompanyUrl,
                            TwitterUrl = speaker.TwitterUrl,
