@@ -16,7 +16,7 @@
     <PackageReference Include="Realm" Version="4.0.1" />
     <PackageReference Include="RealmClone" Version="1.0.4" />
     <PackageReference Include="Xamarin.Essentials" Version="1.2.0" />
-    <PackageReference Include="Xamarin.Forms" Version="4.1.0.618606" />
+    <PackageReference Include="Xamarin.Forms" Version="4.4.0.991265" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="DotNetRuOffline.realm" />
