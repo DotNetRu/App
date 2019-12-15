@@ -163,7 +163,7 @@ namespace DotNetRu.RealmUpdate
             var missingFiles = GetDependencies(auditXmlUpdate);
             var missingXmlUpdate = await DownloadFilesFromGitHub(missingFiles);
 
-            auditXmlUpdate = auditXmlUpdate.Concat(missingXmlUpdate);
+            auditXmlUpdate = auditXmlUpdate.Merge(missingXmlUpdate);
 
             timer.Stop();
             logger.LogInformation("Downloading missing files from GitHub time {DownloadMissingFileTime}", timer.Elapsed);

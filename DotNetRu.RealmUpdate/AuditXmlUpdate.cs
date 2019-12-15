@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DotNetRu.Models.XML;
+using MoreLinq;
 
 namespace DotNetRu.RealmUpdate
 {
@@ -18,16 +19,16 @@ namespace DotNetRu.RealmUpdate
 
         public IEnumerable<VenueEntity> Venues { get; set; }
 
-        public AuditXmlUpdate Concat(AuditXmlUpdate other)
+        public AuditXmlUpdate Merge(AuditXmlUpdate other)
         {
             return new AuditXmlUpdate
             {
-                Communities = this.Communities.Concat(other.Communities),
-                Friends = this.Friends.Concat(other.Friends),
-                Meetups = this.Meetups.Concat(other.Meetups),
-                Speakers = this.Speakers.Concat(other.Speakers),
-                Talks = this.Talks.Concat(other.Talks),
-                Venues = this.Venues.Concat(other.Venues)
+                Communities = this.Communities.Concat(other.Communities).DistinctBy(x => x.Name),
+                Friends = this.Friends.Concat(other.Friends).DistinctBy(x => x.Id),
+                Meetups = this.Meetups.Concat(other.Meetups).DistinctBy(x => x.Id),
+                Speakers = this.Speakers.Concat(other.Speakers).DistinctBy(x => x.Id),
+                Talks = this.Talks.Concat(other.Talks).DistinctBy(x => x.Id),
+                Venues = this.Venues.Concat(other.Venues).DistinctBy(x => x.Id)
             };
         }
     }
