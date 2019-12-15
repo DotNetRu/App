@@ -5,6 +5,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Realm" Version="4.0.1" />
+        <PackageReference Include="Realm" Version="4.1.0" />
     </ItemGroup>
 </Project>
