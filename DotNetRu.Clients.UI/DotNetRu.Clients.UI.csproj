@@ -23,7 +23,6 @@
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.Forms" Version="4.1.0.618606" />
-    <PackageReference Include="LiveXAML" Version="2.1.72" />
     <PackageReference Include="Xamarin.Forms.BehaviorsPack" Version="2.1.1" />
     <PackageReference Include="CClarke.Plugin.Calendars" Version="1.0.0" />
   </ItemGroup>
