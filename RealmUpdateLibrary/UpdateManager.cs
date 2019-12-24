@@ -11,7 +11,7 @@ using Microsoft.Extensions.Logging;
 using MoreLinq;
 using Octokit;
 
-namespace DotNetRu.RealmUpdate
+namespace DotNetRu.RealmUpdateLibrary
 {
     public static class UpdateManager
     {

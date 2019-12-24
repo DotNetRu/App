@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using DotNetRu.DataStore.Audit.RealmModels;
 
-namespace DotNetRu.RealmUpdate
+namespace DotNetRu.RealmUpdateLibrary
 {
     public class AuditUpdate
     {

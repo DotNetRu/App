@@ -3,7 +3,7 @@ using AutoMapper;
 using DotNetRu.DataStore.Audit.RealmModels;
 using DotNetRu.Models.XML;
 
-namespace DotNetRu.RealmUpdate
+namespace DotNetRu.RealmUpdateLibrary
 {
     public static class MapperHelper
     {

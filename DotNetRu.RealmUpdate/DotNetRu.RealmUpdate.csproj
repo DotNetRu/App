@@ -6,18 +6,14 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="AutoMapper" Version="9.0.0" />
         <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
         <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.2.0" />
-        <PackageReference Include="Microsoft.Extensions.Logging" Version="2.2.0" />
         <PackageReference Include="morelinq" Version="3.2.0" />
-        <PackageReference Include="Octokit" Version="0.32.0" />
-        <PackageReference Include="Realm" Version="4.1.0" />
-        <PackageReference Include="RealmClone" Version="1.0.4" />
     </ItemGroup>
 
     <ItemGroup>
         <ProjectReference Include="..\DotNetRu.Models\DotNetRu.Models.csproj" />
+        <ProjectReference Include="..\RealmUpdateLibrary\DotNetRu.RealmUpdateLibrary.csproj" />
     </ItemGroup>
 
     <ItemGroup>

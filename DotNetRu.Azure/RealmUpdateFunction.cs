@@ -8,11 +8,11 @@ using Realms.Sync;
 using Realms;
 using System;
 using System.IO;
-using DotNetRu.RealmUpdate;
 using Microsoft.Extensions.Configuration;
 using DotNetRu.DataStore.Audit.RealmModels;
 using System.Linq;
 using System.Net.Http;
+using DotNetRu.RealmUpdateLibrary;
 
 namespace DotNetRu.Azure
 {

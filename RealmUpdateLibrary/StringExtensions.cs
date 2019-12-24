@@ -1,7 +1,7 @@
 using System.IO;
 using System.Xml.Serialization;
 
-namespace DotNetRu.RealmUpdate
+namespace DotNetRu.RealmUpdateLibrary
 {
     public static class StringExtensions
     {

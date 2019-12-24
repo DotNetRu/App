@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace DotNetRu.RealmUpdate
+namespace DotNetRu.RealmUpdateLibrary
 {
     public static partial class EnumerableExtensions
     {

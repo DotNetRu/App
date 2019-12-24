@@ -1,4 +1,4 @@
-using DotNetRu.RealmUpdate;
+using DotNetRu.RealmUpdateLibrary;
 using Microsoft.Extensions.Configuration;
 using Realms;
 using Realms.Sync;

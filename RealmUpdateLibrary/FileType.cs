@@ -1,9 +1,9 @@
-namespace DotNetRu.RealmUpdate
+namespace DotNetRu.RealmUpdateLibrary
 {
-    internal enum FileType
+    public enum FileType
     {
         Meetup,
-        
+
         Community,
 
         Friend,

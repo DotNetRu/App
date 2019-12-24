@@ -3,7 +3,7 @@ using System.Linq;
 using DotNetRu.Models.XML;
 using MoreLinq;
 
-namespace DotNetRu.RealmUpdate
+namespace DotNetRu.RealmUpdateLibrary
 {
     public class AuditXmlUpdate
     {
@@ -23,12 +23,12 @@ namespace DotNetRu.RealmUpdate
         {
             return new AuditXmlUpdate
             {
-                Communities = this.Communities.Concat(other.Communities).DistinctBy(x => x.Name),
-                Friends = this.Friends.Concat(other.Friends).DistinctBy(x => x.Id),
-                Meetups = this.Meetups.Concat(other.Meetups).DistinctBy(x => x.Id),
-                Speakers = this.Speakers.Concat(other.Speakers).DistinctBy(x => x.Id),
-                Talks = this.Talks.Concat(other.Talks).DistinctBy(x => x.Id),
-                Venues = this.Venues.Concat(other.Venues).DistinctBy(x => x.Id)
+                Communities = Communities.Concat(other.Communities).DistinctBy(x => x.Name),
+                Friends = Friends.Concat(other.Friends).DistinctBy(x => x.Id),
+                Meetups = Meetups.Concat(other.Meetups).DistinctBy(x => x.Id),
+                Speakers = Speakers.Concat(other.Speakers).DistinctBy(x => x.Id),
+                Talks = Talks.Concat(other.Talks).DistinctBy(x => x.Id),
+                Venues = Venues.Concat(other.Venues).DistinctBy(x => x.Id)
             };
         }
     }
