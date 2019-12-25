@@ -37,6 +37,8 @@ namespace DotNetRu.Utils.Helpers
         public const string Question = "question";
 
         public const string Choice = "choice";
+
+        public const string RealmUpdated = nameof(RealmUpdated);
     }
 }
 

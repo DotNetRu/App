@@ -4,19 +4,18 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using DotNetRu.Clients.UI;
 using DotNetRu.DataStore.Audit.Extensions;
 using DotNetRu.DataStore.Audit.Models;
 using DotNetRu.DataStore.Audit.RealmModels;
+using DotNetRu.RealmUpdateLibrary;
 using DotNetRu.Utils.Helpers;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
-using MoreLinq;
 using Realms;
 using Realms.Sync;
 using Realms.Sync.Exceptions;
 using Xamarin.Essentials;
-using static DotNetRu.DataStore.Audit.Services.RealmHelpers;
+using Xamarin.Forms;
 
 namespace DotNetRu.DataStore.Audit.Services
 {
@@ -33,104 +32,148 @@ namespace DotNetRu.DataStore.Audit.Services
 
         private const string RealmOfflineResourceName = "DotNetRu.DataStore.Audit.DotNetRuOffline.realm";
 
-        private static Realm OfflineRealm { get; set; }
+        public static Realm OfflineRealm { get; set; }
 
         private static Realm OnlineRealm { get; set; }
 
-        private static string SyncError = nameof(SyncError);
         private static string IsOnlineRealmCreated = nameof(IsOnlineRealmCreated);
 
-        private static bool Initialized = false;
-
-        public static void Initialize()
+        public static void InitializeOfflineDatabase()
         {
-            if (Initialized)
-            {
-                return;
-            }
-
-            var config = AppConfig.GetConfig();
-
-            var realmDatabaseUri = new Uri($"realms://{config.RealmServerUrl}/{config.RealmDatabase}");
-
-            if (VersionTracking.IsFirstLaunchForCurrentBuild)
+            var shouldCopyEmbeddedRealm = VersionTracking.IsFirstLaunchForCurrentBuild;
+#if DEBUG
+            shouldCopyEmbeddedRealm = true;
+#endif
+            if (shouldCopyEmbeddedRealm)
             {
                 CopyEmbeddedRealm();
-                DeleteOnlineRealm(realmDatabaseUri);
             }
 
             OfflineRealm = Realm.GetInstance(GetOfflineRealmPath());
             OfflineRealm.Error += (s, e) =>
             {
-                Crashes.TrackError(e.Exception);
+                Crashes.TrackError(e.Exception, new Dictionary<string, string>
+                    {
+                        {"Realm fatal error", "unknown" },
+                        {"Error description", $"Some error reported by offline realm. See {e.Exception?.Message}" }
+                    });
             };
 
-            // OfflineRealm.RealmChanged += (s, e) => MessagingCenter.Send(Instance, MessageKeys.RealmUpdated);
-
-            Realms.Sync.Session.Error += HandlerRealmSyncErrors();
-            SyncConfigurationBase.UserAgent = $"{AppInfo.Name} ({AppInfo.PackageName} {AppInfo.VersionString})";
-
-            var realmServerUri = new Uri($"https://{config.RealmServerUrl}");
-            ResumeCloudSync(realmServerUri, realmDatabaseUri);
-
-            Initialized = true;
+            OfflineRealm.RealmChanged += (s, e) => MessagingCenter.Send(Instance, MessageKeys.RealmUpdated);
         }
 
-        public static async void ResumeCloudSync(Uri realmServerUri, Uri realmDatabaseUri)
+        public static async Task InitializeCloudSync(string realmServer, string realmDatabase)
         {
+            Console.WriteLine("Initialize cloud sync");
+
+            var realmDatabaseUrl = new Uri($"realms://{realmServer}/{realmDatabase}");
+
+            var shouldCleanOnlineRealm = VersionTracking.IsFirstLaunchForCurrentBuild;
+#if DEBUG
+            shouldCleanOnlineRealm = true;
+#endif
+            if (shouldCleanOnlineRealm)
+            {
+                DeleteOnlineRealm(realmDatabaseUrl);
+                try
+                {
+                    await RealmHelpers.RemoveCachedUsers();
+                }
+                catch (Exception e)
+                {
+                    Crashes.TrackError(e, new Dictionary<string, string>
+                    {
+                        {"Realm fatal error", "false" },
+                        {"Error description", $"Failed to remove cached users. See {e.Message}" }
+                    });
+                }
+            }
+
+            Realms.Sync.Session.Error += HandlerRealmSyncErrors(realmDatabaseUrl);
+            SyncConfigurationBase.UserAgent = $"{AppInfo.Name} ({AppInfo.PackageName} {AppInfo.VersionString})";
+
+            var realmServerUri = new Uri($"https://{realmServer}");
+            OnlineRealm = await GetCloudRealm(realmServerUri, realmDatabaseUrl);
+        }
+
+        public static async Task<Realm> GetCloudRealm(Uri realmServerUri, Uri realmDatabaseUri)
+        {
+            User user;
             try
             {
-                if (OnlineRealm != null)
-                {
-                    return;
-                }
-
-                // get or create Realm user
-                var user = User.AllLoggedIn.Any()
-                    ? User.AllLoggedIn.First()
-                    : await CreateRealmUser(realmServerUri);
-
-                var syncConfiguration = new FullSyncConfiguration(realmDatabaseUri, user);
-
-                var cloudRealm = Preferences.Get(IsOnlineRealmCreated, false)
-                    ? OpenRealmSync(syncConfiguration)
-                    : await OpenRealmAsync(syncConfiguration);
-
-                if (cloudRealm != null)
-                {
-                    cloudRealm.Error += (s, e) =>
-                    {
-                        Crashes.TrackError(e.Exception);
-                    };
-
-                    cloudRealm.RealmChanged += (s, e) => UpdateRealm(OfflineRealm, cloudRealm);
-                }
-
-                OnlineRealm = cloudRealm;
+                user = await RealmHelpers.GetRealmUser(realmServerUri);
             }
             catch (Exception e)
             {
-                Crashes.TrackError(e);
+                Crashes.TrackError(e, new Dictionary<string, string>
+                {
+                    {"Realm fatal error", "true" },
+                    {"Error description", $"Failed to create realm user. See {e.Message}" }
+                });
+                return null;
+            }
+
+            try
+            {
+                var syncConfiguration = new FullSyncConfiguration(realmDatabaseUri, user);
+
+                var cloudRealm = await OpenCloudRealm(syncConfiguration);
+
+                if (cloudRealm != null)
+                {
+                    RealmSyncManager.UpdateRealm(OfflineRealm, cloudRealm);
+
+                    cloudRealm.Error += (s, e) =>
+                    {
+                        Crashes.TrackError(e.Exception, new Dictionary<string, string>
+                            {
+                                {"Realm fatal error", "unknown" },
+                                {"Error description", $"Some error reported by online realm. See {e.Exception?.Message}" }
+                            });
+                    };
+
+                    cloudRealm.RealmChanged += (s, e) =>
+                    {
+                        try
+                        {
+                            RealmSyncManager.UpdateRealm(OfflineRealm, cloudRealm);
+                        }
+                        catch (Exception ex)
+                        {
+                            Crashes.TrackError(ex, new Dictionary<string, string>
+                                {
+                                    {"Realm fatal error", "true" },
+                                    {"Error description", $"Failed to update offline realm. See {ex.Message}" }
+                                });
+                        }
+                    };
+                }
+
+                return cloudRealm;
+            }
+            catch (Exception e)
+            {
+                Crashes.TrackError(e, new Dictionary<string, string>
+                    {
+                        {"Realm fatal error", "unknown" },
+                        {"Error description", $"Error on getting cloud realm. See {e.Message}" }
+                    });
+                return null;
             }
         }
 
-        private static EventHandler<Realms.ErrorEventArgs> HandlerRealmSyncErrors()
+        private static EventHandler<Realms.ErrorEventArgs> HandlerRealmSyncErrors(Uri realmDatabaseUri)
         {
-            var config = AppConfig.GetConfig();
-            var realmDatabaseUri = new Uri($"realms://{config.RealmServerUrl}/{config.RealmDatabase}");
-
             return async (s, errorArgs) =>
             {
-                Preferences.Set(SyncError, true);
-
                 var sessionException = (SessionException)errorArgs.Exception;
 
                 if (sessionException.ErrorCode.IsClientResetError())
                 {
-                    Analytics.TrackEvent("Client reset error");
+                    Analytics.TrackEvent("Realm client reset");
 
                     DeleteOnlineRealm(realmDatabaseUri);
-                    await RemoveCachedUsers();
+                    await RealmHelpers.RemoveCachedUsers();
 
                     return;
                 }
@@ -139,55 +182,31 @@ namespace DotNetRu.DataStore.Audit.Services
                 {
                     case ErrorCode.AccessTokenExpired:
                     case ErrorCode.BadUserAuthentication:
-                        await RemoveCachedUsers();
-                        break;
                     case ErrorCode.PermissionDenied:
-                        DeleteOnlineRealm(realmDatabaseUri);
-                        await RemoveCachedUsers();
+                        await RealmHelpers.RemoveCachedUsers();
                         break;
                 }
 
-                Crashes.TrackError(sessionException, new Dictionary<string, string>() {
-                    { "ErrorType", sessionException.ErrorCode.ToString() }
+                Crashes.TrackError(sessionException, new Dictionary<string, string> {
+                    { "ErrorType", sessionException.ErrorCode.ToString() },
+                    {"Realm fatal error", "unknown" },
+                    {"Error description", $"Realm sync error reported by realm. See {sessionException.Message}" }
                 });
             };
         }
 
-        private static async Task<Realm> OpenRealmAsync(FullSyncConfiguration syncConfiguration)
+        private static async Task<Realm> OpenCloudRealm(FullSyncConfiguration syncConfiguration)
         {
-            try
+            if (Settings.IsOnlineRealmCreated)
             {
-                Preferences.Set(SyncError, false);
-
-                var realm = await Realm.GetInstanceAsync(syncConfiguration);
-
-                // TODO report as github issue
-                if (Preferences.Get(SyncError, defaultValue: false))
-                {
-                    Crashes.TrackError(new Exception("Failed to initiate first time cloud realm connection"));
-                    DeleteOnlineRealm(syncConfiguration.ServerUri);
-
-                    // stick with offline realm
-                    return null;
-                }
-                else
-                {
-                    Preferences.Set(IsOnlineRealmCreated, true);
-                    UpdateRealm(OfflineRealm, realm);
-
-                    return realm;
-                }
+                return Realm.GetInstance(syncConfiguration);
             }
-            catch (Exception e)
-            {
-                Crashes.TrackError(e);
-                return null;
-            }
-        }
 
-        private static Realm OpenRealmSync(FullSyncConfiguration syncConfiguration)
-        {
-            return Realm.GetInstance(syncConfiguration);
+            var realm = await Realm.GetInstanceAsync(syncConfiguration);
+
+            Settings.IsOnlineRealmCreated = true;
+
+            return realm;
         }
 
         private static void CopyEmbeddedRealm()
@@ -205,7 +224,7 @@ namespace DotNetRu.DataStore.Audit.Services
         {
             try
             {
-                CloseRealmSafely(OnlineRealm);
+                Console.WriteLine("Try to remove cloud realm");
 
                 var users = User.AllLoggedIn;
                 if (users.Any())
@@ -213,17 +232,19 @@ namespace DotNetRu.DataStore.Audit.Services
                     var syncConfiguration = new FullSyncConfiguration(realmDatabaseUri, users.First());
                     Realm.DeleteRealm(syncConfiguration);
                 }
-
-                Analytics.TrackEvent("Online realm removed");
             }
             catch (Exception e)
             {
-                Crashes.TrackError(e);
+                Crashes.TrackError(e, new Dictionary<string, string>
+                    {
+                        {"Realm fatal error", "true" },
+                        {"Error description", $"Error on deleting cloud realm. See {e.Message}" }
+                    });
             }
             finally
             {
                 OnlineRealm = null;
-                Preferences.Set(IsOnlineRealmCreated, false);
+                Settings.IsOnlineRealmCreated = false;
             }
         }
 
@@ -245,30 +266,6 @@ namespace DotNetRu.DataStore.Audit.Services
             var mapper = MapperConfiguration.CreateMapper();
 
             return OfflineRealm.All(realmType.Name).ToList().Select(mapper.Map<TAppModel>);
-        }
-
-        private static void UpdateRealm(Realm offline, Realm online)
-        {
-            try
-            {
-                using (var transaction = offline.BeginWrite())
-                {
-                    MoveRealmObjects<AuditVersion, string>(online, offline, x => x.CommitHash);
-                    MoveRealmObjects<Community, string>(online, offline, x => x.Id);
-                    MoveRealmObjects<Friend, string>(online, offline, x => x.Id);
-                    MoveRealmObjects<Meetup, string>(online, offline, x => x.Id);
-                    MoveRealmObjects<RealmModels.Session, string>(online, offline, x => x.Id);
-                    MoveRealmObjects<Speaker, string>(online, offline, x => x.Id);
-                    MoveRealmObjects<Talk, string>(online, offline, x => x.Id);
-                    MoveRealmObjects<Venue, string>(online, offline, x => x.Id);
-
-                    transaction.Commit();
-                }
-            }
-            catch (Exception e)
-            {
-                Crashes.TrackError(e);
-            }
         }
     }
 }

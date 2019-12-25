@@ -6,7 +6,7 @@ using Realms;
 
 namespace DotNetRu.RealmUpdateLibrary
 {
-    public class RealmHelper
+    public class DotNetRuRealmHelper
     {
         public static void UpdateRealm(Realm realm, AuditUpdate auditData)
         {

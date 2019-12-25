@@ -26,7 +26,7 @@ namespace Conference.RealmUpdate
             Realm.DeleteRealm(new RealmConfiguration(realmFullPath));
 
             var realm = Realm.GetInstance(realmFullPath);
-            RealmHelper.ReplaceRealm(realm, auditData);
+            DotNetRuRealmHelper.ReplaceRealm(realm, auditData);
         }
 
         private static async Task UpdateOnlineRealm(AuditUpdate auditData)
@@ -52,7 +52,7 @@ namespace Conference.RealmUpdate
 
             var realm = await Realm.GetInstanceAsync(syncConfiguration);
 
-            RealmHelper.ReplaceRealm(realm, auditData);
+            DotNetRuRealmHelper.ReplaceRealm(realm, auditData);
 
             await Task.Delay(TimeSpan.FromSeconds(2));
         }

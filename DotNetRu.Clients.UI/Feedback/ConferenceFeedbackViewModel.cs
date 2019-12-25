@@ -72,8 +72,6 @@ namespace DotNetRu.Clients.Portable.ViewModel
                                         "conferencefeedback_finished");
                                 }
                         });
-
-                Settings.Current.LeaveConferenceFeedback();
             }
             catch (Exception ex)
             {

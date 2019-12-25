@@ -2,10 +2,9 @@ namespace DotNetRu.Clients.Portable.ViewModel
 {
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading.Tasks;
 
     using DotNetRu.DataStore.Audit.Models;
-
+    using DotNetRu.Utils.Helpers;
     using Xamarin.Forms;
 
     public class FilterSessionsViewModel : ViewModelBase
@@ -36,7 +35,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
 
         public void Save()
         {
-            this.Settings.FilteredCategories = string.Join(
+            Settings.FilteredCategories = string.Join(
                 "|",
                 this.Categories?.Where(c => c.IsFiltered).Select(c => c.Name));
         }

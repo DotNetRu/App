@@ -48,7 +48,7 @@ namespace DotNetRu.Azure
                 var updateDelta = await UpdateManager.GetAuditUpdate(currentVersion, logger);
 
                 realm = await GetRealm(realmUrl, user);
-                RealmHelper.UpdateRealm(realm, updateDelta);
+                DotNetRuRealmHelper.UpdateRealm(realm, updateDelta);
 
                 foreach (var meetup in updateDelta.Meetups.Where(meetup => meetup.Sessions.First().StartTime > DateTime.Now))
                 {

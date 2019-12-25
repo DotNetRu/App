@@ -12,8 +12,6 @@ namespace DotNetRu.Clients.Portable.ViewModel
     using Xamarin.Essentials;
     using Xamarin.Forms;
 
-    using Settings = Utils.Helpers.Settings;
-
     public class ViewModelBase : BaseViewModel
     {
         private ICommand launchBrowserCommand;
@@ -29,8 +27,6 @@ namespace DotNetRu.Clients.Portable.ViewModel
         {
             get;
         }
-
-        public Settings Settings => Settings.Current;
 
         public ICommand LaunchBrowserCommand => this.launchBrowserCommand
                                                 ?? (this.launchBrowserCommand = new Command<Uri>(
