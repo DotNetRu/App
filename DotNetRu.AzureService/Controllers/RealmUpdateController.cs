@@ -18,14 +18,18 @@ namespace DotNetRu.Azure
     {
         private readonly ILogger logger;
 
-        private readonly AppSettings appSettings;
+        private readonly RealmSettings realmSettings;
+
+        private readonly PushNotificationsManager pushNotificationsManager;
 
         public RealmUpdateController(
             ILogger<RealmUpdateController> logger,
-            AppSettings appSettings)
+            RealmSettings appSettings,
+            PushNotificationsManager pushNotificationsManager)
         {
             this.logger = logger;
-            this.appSettings = appSettings;
+            this.realmSettings = appSettings;
+            this.pushNotificationsManager = pushNotificationsManager;
         }
 
         [HttpPost]
@@ -33,11 +37,11 @@ namespace DotNetRu.Azure
         {
             try
             {
-                logger.LogInformation("Realm to update {RealmServerUrl}/{RealmName}", appSettings.RealmServerUrl, appSettings.RealmName);
+                logger.LogInformation("Realm to update {RealmServerUrl}/{RealmName}", realmSettings.RealmServerUrl, realmSettings.RealmName);
 
                 var user = await this.GetUser();
 
-                var realmUrl = new Uri($"realms://{appSettings.RealmServerUrl}/{appSettings.RealmName}");
+                var realmUrl = new Uri($"realms://{realmSettings.RealmServerUrl}/{realmSettings.RealmName}");
                 var realm = await GetRealm(realmUrl, user);
 
                 var currentVersion = GetCurrentVersion(realm);
@@ -46,30 +50,23 @@ namespace DotNetRu.Azure
                 realm = await GetRealm(realmUrl, user);
                 RealmHelper.UpdateRealm(realm, updateDelta);
 
-                return new OkObjectResult(appSettings);
+                foreach (var meetup in updateDelta.Meetups.Where(meetup => meetup.Sessions.First().StartTime > DateTime.Now))
+                {
+                    var pushContent = new PushContent()
+                    {
+                        Title = $"{meetup.Name} is announced!",
+                        Body = "Open DotNetRu app for details"
+                    };
 
-                //var environment = realmServerUrl.Contains("dotnetru") ? "beta" : "production";
 
-                //var pushConfigs = ConfigManager.GetPushConfigs(context);
-                //var pushConfig = pushConfigs.Single(c => c.AppType == environment);
+                    await pushNotificationsManager.SendPushNotifications(pushContent);
+                }
 
-                //foreach (var meetup in updateDelta.Meetups.Where(meetup => meetup.Sessions.First().StartTime > DateTime.Now))
-                //{
-                //    var httpClient = new HttpClient();
-                //    httpClient.DefaultRequestHeaders.Add("X-API-Token", pushConfig.ApiToken);
-
-                //    var pushContent = new PushContent()
-                //    {
-                //        Title = $"{meetup.Name} is announced!",
-                //        Body = "Open DotNetRu app for details"
-                //    };
-
-                //    await httpClient.PostAsJsonAsync($"https://dotnetruapp.azurewebsites.net/api/{environment}/push", pushContent);
-                //}
+                return new OkObjectResult(realmSettings);
             }
             catch (Exception e)
             {
-                logger.LogCritical(e, "Unhanled error while updating realm");
+                logger.LogCritical(e, "Unhandled error while updating realm");
                 return new ObjectResult(e) { 
                     StatusCode = StatusCodes.Status500InternalServerError 
                 };
@@ -94,8 +91,8 @@ namespace DotNetRu.Azure
         private async Task<User> GetUser()
         {
             return await Realms.Sync.User.LoginAsync(
-                    Credentials.UsernamePassword(appSettings.Login, appSettings.Password, createUser: false),
-                    new Uri($"https://{appSettings.RealmServerUrl}"));
+                    Credentials.UsernamePassword(realmSettings.Login, realmSettings.Password, createUser: false),
+                    new Uri($"https://{realmSettings.RealmServerUrl}"));
         }
     }
 }

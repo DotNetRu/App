@@ -1,3 +1,4 @@
+using DotNetRu.Azure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -18,10 +19,16 @@ namespace DotNetRu.AzureService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var appSettings = new AppSettings();
-            Configuration.Bind("RealmOptions", appSettings);
+            var realmSettings = new RealmSettings();
+            Configuration.Bind("RealmOptions", realmSettings);
 
-            services.AddSingleton(appSettings);
+            var pushSettings = new PushSettings();
+            Configuration.Bind("PushOptions", pushSettings);
+
+            services.AddSingleton(realmSettings);
+            services.AddSingleton(pushSettings);
+
+            services.AddScoped<PushNotificationsManager>();
 
             services.AddControllers();
 

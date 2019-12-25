@@ -1,6 +1,6 @@
 namespace DotNetRu.AzureService
 {
-    public class AppSettings
+    public class RealmSettings
     {
         public string Login { get; set; }
 

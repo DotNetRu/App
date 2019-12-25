@@ -1,72 +1,46 @@
-//using System.Threading.Tasks;
-//using Microsoft.AspNetCore.Mvc;
-//using Microsoft.AspNetCore.Http;
-//using Microsoft.Extensions.Logging;
-//using Newtonsoft.Json;
-//using System.Net.Http;
-//using System;
-//using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
+using System;
+using DotNetRu.AzureService;
 
-//namespace DotNetRu.Azure
-//{
-//    public static class PushNotificationsController
-//    {
-//        [FunctionName("Push")]
-//        public static async Task<IActionResult> Run(
-//            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "{appType}/push")] HttpRequest request,
-//            string appType,
-//            ILogger logger,
-//            ExecutionContext context)
-//        {
-//            try
-//            {
-//                var appCenterPushUrl = "https://api.appcenter.ms/v0.1/apps/DotNetRu/{0}/push/notifications";
+namespace DotNetRu.Azure
+{
+    [Route("push-notifications")]
+    public class PushNotificationsController
+    {
+        private readonly ILogger logger;
 
-//                var json = await request.ReadAsStringAsync();
-//                var pushContent = JsonConvert.DeserializeObject<PushContent>(json);
+        private readonly PushNotificationsManager pushNotificationsManager;
 
-//                logger.LogInformation("Function is called with {AppType}, {Title}, {Body}", appType, pushContent.Title, pushContent.Body);
+        public PushNotificationsController(
+            ILogger<PushNotificationsController> logger,
+            PushNotificationsManager pushNotificationsManager)
+        {
+            this.logger = logger;
+            this.pushNotificationsManager = pushNotificationsManager;
+        }
 
-//                var pushConfigs = ConfigManager.GetPushConfigs(context);
-//                var pushConfig = pushConfigs.Single(x => x.AppType == appType);
+        [HttpPost]
+        public async Task<IActionResult> Run([FromBody] PushContent pushContent)
+        {
+            try
+            {
+                await pushNotificationsManager.SendPushNotifications(pushContent);
+            }
+            catch (Exception e)
+            {
+                logger.LogCritical(e, "Error while sending push notifications");
+                return new ObjectResult(e.Message)
+                {
+                    StatusCode = StatusCodes.Status500InternalServerError
+                };
+            }
 
-//                var apiHeader = request.Headers["X-API-Token"].ToString();
-//                var apiToken = pushConfig.ApiToken;
+            return new OkResult();
+        }
 
-//                if (apiHeader != apiToken)
-//                {
-//                    return new UnauthorizedResult();
-//                }
 
-//                var httpClient = new HttpClient();
-//                httpClient.DefaultRequestHeaders.Add("X-API-Token", pushConfig.AppCenterApiToken);
-
-//                var appCenterPushNotification = new AppCenterPushNotification
-//                {
-//                    NotificationContent = new NotificationContent()
-//                    {
-//                        Name = "Conference update",
-//                        Body = pushContent.Body,
-//                        Title = pushContent.Title
-//                    },
-//                    NotificationTarget = null
-//                };
-
-//                foreach (var app in pushConfig.AppCenterAppNames)
-//                {
-//                    var push = await httpClient.PostAsJsonAsync(string.Format(appCenterPushUrl, app), appCenterPushNotification);
-//                    push.EnsureSuccessStatusCode();
-//                }
-//            }
-//            catch (Exception e)
-//            {
-//                logger.LogCritical(e, "Error while sending push notifications");
-//                return new ObjectResult(e.Message) {
-//                    StatusCode = StatusCodes.Status500InternalServerError
-//                };
-//            }
-
-//            return new OkResult();
-//        }
-//    }
-//}
+    }
+}

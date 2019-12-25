@@ -1,10 +1,8 @@
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace DotNetRu.Azure
 {
-    public class PushConfig
+    public class PushSettings
     {
         public string AppType { get; set; }
 
