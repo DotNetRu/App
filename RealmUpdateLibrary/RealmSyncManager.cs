@@ -4,26 +4,12 @@ using System.Linq;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using Realms;
+using Realms.Schema;
 
 namespace DotNetRu.RealmUpdateLibrary
 {
     public static class RealmSyncManager
     {
-        // TODO remove this hack that ensures right update order
-        public static readonly IList<string> ObjectList = new List<string>()
-        {
-            "Activity",
-            "Category",
-            "Complexity",
-            "ConferenceInfo",
-            "ConferenceMap",
-            "Event",
-            "Location",
-            "Speaker",
-            "Talk",
-            "Sponsor"
-        };
-
         public static void UpdateRealm(Realm offline, Realm online)
         {
             Analytics.TrackEvent("Start updating offline realm");
@@ -39,18 +25,70 @@ namespace DotNetRu.RealmUpdateLibrary
                 return;
             }
 
+            var adjucencyList = GetAdjecencyList(offline.Schema);
+            var updateOrder = BreadthFirstSearch(adjucencyList, offline.Schema.First());
+
             using (var transaction = offline.BeginWrite())
             {
-                foreach (var objectName in ObjectList)
+                foreach (var objectSchema in updateOrder)
                 {
-                    var objectSchema = offline.Schema.Single(s => s.Name == objectName);
                     var keyProperty = objectSchema.Single(property => property.IsPrimaryKey);
-
                     MoveRealmObjects(fromRealm: online, toRealm: offline, objectSchema.Name, keyProperty.Name);
                 }
 
                 transaction.Commit();
             }
+        }
+
+        private static Dictionary<ObjectSchema, HashSet<ObjectSchema>> GetAdjecencyList(RealmSchema realmSchema)
+        {
+            var resultDictionary = new Dictionary<ObjectSchema, HashSet<ObjectSchema>>();
+
+            foreach (var objectShema in realmSchema)
+            {
+                var hashset = new HashSet<ObjectSchema>();
+                foreach (var property in objectShema)
+                {
+                    var type = Type.GetType(property.ObjectType);
+
+                    var objectSchema = realmSchema.SingleOrDefault(obj => obj.Name == property.ObjectType);
+                    if (objectSchema != null)
+                    {
+                        hashset.Add(objectSchema);
+                    }
+                }
+
+                resultDictionary[objectShema] = hashset;
+            }
+
+            return resultDictionary;
+        }
+
+        private static HashSet<T> BreadthFirstSearch<T>(Dictionary<T, HashSet<T>> adjacencyList, T start)
+        {
+            var visited = new HashSet<T>();
+
+            if (!adjacencyList.ContainsKey(start))
+                return visited;
+
+            var queue = new Queue<T>();
+            queue.Enqueue(start);
+
+            while (queue.Count > 0)
+            {
+                var vertex = queue.Dequeue();
+
+                if (visited.Contains(vertex))
+                    continue;
+
+                visited.Add(vertex);
+
+                foreach (var neighbor in adjacencyList[vertex])
+                    if (!visited.Contains(neighbor))
+                        queue.Enqueue(neighbor);
+            }
+
+            return visited;
         }
 
         private static void MoveRealmObjects(Realm fromRealm, Realm toRealm, string className, string primaryKeyPropertyName)
