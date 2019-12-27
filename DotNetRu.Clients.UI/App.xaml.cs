@@ -2,13 +2,11 @@ using Xamarin.Forms.Xaml;
 using System;
 using System.Globalization;
 
-using DotNetRu.Clients.Portable.Interfaces;
 using DotNetRu.Clients.Portable.Services;
 using DotNetRu.Clients.Portable.ViewModel;
 using DotNetRu.Clients.UI.Localization;
 using DotNetRu.Clients.UI.Pages;
 using DotNetRu.DataStore.Audit.Services;
-using DotNetRu.Utils.Helpers;
 using DotNetRu.Utils.Interfaces;
 
 using Microsoft.AppCenter;
@@ -26,8 +24,6 @@ namespace DotNetRu.Clients.UI
     public partial class App
     {
         private static ILogger logger;
-
-        private bool registered;
 
         public static bool IsAppCtorCalled { get; set; } = false;
 
@@ -95,8 +91,7 @@ namespace DotNetRu.Clients.UI
 
         protected override void OnResume()
         {
-            Settings.IsConnected = Connectivity.NetworkAccess == NetworkAccess.Internet;
-            Connectivity.ConnectivityChanged += this.ConnectivityChanged;
+
         }
 
         protected override void OnAppLinkRequestReceived(Uri uri)
@@ -106,22 +101,7 @@ namespace DotNetRu.Clients.UI
 
         protected override void OnSleep()
         {
-            Connectivity.ConnectivityChanged -= this.ConnectivityChanged;
-        }
 
-        protected void ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
-        {
-            var currentlyConnected = e.NetworkAccess == NetworkAccess.Internet;
-
-            // save current state and then set it
-            var wasConnected = Settings.IsConnected;
-            Settings.IsConnected = currentlyConnected;
-            if (wasConnected && !currentlyConnected)
-            {
-                var toaster = DependencyService.Get<IToast>();
-                toaster.SendToast(
-                    "Uh Oh, It looks like you have gone offline. Check your internet connection to get the latest data.");
-            }
         }
     }
 }
