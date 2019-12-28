@@ -62,12 +62,10 @@
     <DebugSymbols>false</DebugSymbols>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
-    <AndroidTlsProvider>
-    </AndroidTlsProvider>
-    <AndroidHttpClientHandlerType>Android</AndroidHttpClientHandlerType>
     <AndroidExplicitCrunch>true</AndroidExplicitCrunch>
     <AndroidDexTool>d8</AndroidDexTool>
-    <AndroidLinkTool>r8</AndroidLinkTool>
+    <AotAssemblies>true</AotAssemblies>
+    <EnableLLVM>true</EnableLLVM>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="FormsToolkit" Version="2.0.1" />
@@ -341,11 +339,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xxxhdpi\icon_github.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProguardConfiguration Include="proguard.cfg">
-      <SubType>Designer</SubType>
-    </ProguardConfiguration>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
