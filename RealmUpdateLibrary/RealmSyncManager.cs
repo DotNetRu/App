@@ -26,7 +26,7 @@ namespace DotNetRu.RealmUpdateLibrary
             }
 
             var adjucencyList = GetAdjecencyList(offline.Schema);
-            var updateOrder = BreadthFirstSearch(adjucencyList, offline.Schema.First());
+            var updateOrder = BreadthFirstSearch(adjucencyList).Reverse();
 
             using (var transaction = offline.BeginWrite())
             {
@@ -47,9 +47,16 @@ namespace DotNetRu.RealmUpdateLibrary
             foreach (var objectShema in realmSchema)
             {
                 var hashset = new HashSet<ObjectSchema>();
+
+                var objectType = Type.GetType($"DotNetRu.DataStore.Audit.RealmModels.{objectShema.Name}, DotNetRu.Models");
+                var backlinks = objectType.GetProperties().Where(prop => Attribute.IsDefined(prop, typeof(BacklinkAttribute)));
+
                 foreach (var property in objectShema)
                 {
-                    var type = Type.GetType(property.ObjectType);
+                    if (backlinks.Any(backlink => backlink.Name == property.Name))
+                    {
+                        continue;
+                    }
 
                     var objectSchema = realmSchema.SingleOrDefault(obj => obj.Name == property.ObjectType);
                     if (objectSchema != null)
@@ -64,28 +71,31 @@ namespace DotNetRu.RealmUpdateLibrary
             return resultDictionary;
         }
 
-        private static HashSet<T> BreadthFirstSearch<T>(Dictionary<T, HashSet<T>> adjacencyList, T start)
+        private static HashSet<T> BreadthFirstSearch<T>(Dictionary<T, HashSet<T>> adjacencyList)
         {
             var visited = new HashSet<T>();
 
-            if (!adjacencyList.ContainsKey(start))
-                return visited;
-
-            var queue = new Queue<T>();
-            queue.Enqueue(start);
-
-            while (queue.Count > 0)
+            foreach (var currentVertex in adjacencyList)
             {
-                var vertex = queue.Dequeue();
-
-                if (visited.Contains(vertex))
+                if (visited.Contains(currentVertex.Key))
                     continue;
 
-                visited.Add(vertex);
+                var queue = new Queue<T>();
+                queue.Enqueue(currentVertex.Key);
 
-                foreach (var neighbor in adjacencyList[vertex])
-                    if (!visited.Contains(neighbor))
-                        queue.Enqueue(neighbor);
+                while (queue.Count > 0)
+                {
+                    var vertex = queue.Dequeue();
+
+                    if (visited.Contains(vertex))
+                        continue;
+
+                    visited.Add(vertex);
+
+                    foreach (var neighbor in adjacencyList[vertex])
+                        if (!visited.Contains(neighbor))
+                            queue.Enqueue(neighbor);
+                }
             }
 
             return visited;
