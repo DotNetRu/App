@@ -15,7 +15,7 @@ namespace DotNetRu.RealmUpdateLibrary
             Analytics.TrackEvent("Start updating offline realm");
 
             // block update if online realm is empty
-            if (!online.All("ConferenceInfo").Any())
+            if (!online.All(offline.Schema.First().Name).Any())
             {
                 Crashes.TrackError(new InvalidOperationException("Attempt to remove data from offline realm"), new Dictionary<string, string>
                     {
