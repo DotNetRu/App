@@ -30,7 +30,7 @@ namespace DotNetRu.DataStore.Audit.Services
         {
         }
 
-        private const string RealmOfflineResourceName = "DotNetRu.DataStore.Audit.DotNetRuOffline.realm";
+        private const string RealmOfflineResourceName = "DotNetRuOffline.realm";
 
         public static Realm OfflineRealm { get; set; }
 

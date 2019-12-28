@@ -18,21 +18,40 @@
     </PackageReference>
     <PackageReference Include="morelinq" Version="3.3.2" />
     <PackageReference Include="Realm" Version="4.1.0" />
-    <PackageReference Include="RealmClone" Version="1.0.5" />
     <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
     <PackageReference Include="Xamarin.Forms" Version="4.4.0.991265" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="DotNetRuOffline.realm" />
-    <EmbeddedResource Include="Images\logos\KznDotNet.png" />
-    <EmbeddedResource Include="Images\logos\NskDotNet.png" />
-    <EmbeddedResource Include="Images\logos\OmsDotNet.png" />
-    <EmbeddedResource Include="Images\SeveralSpeakers.png" />
-    <EmbeddedResource Include="Images\logos\EkbDotNet.png" />
-    <EmbeddedResource Include="Images\logos\KryDotNet.png" />
-    <EmbeddedResource Include="Images\logos\MskDotNet.png" />
-    <EmbeddedResource Include="Images\logos\SarDotNet.png" />
-    <EmbeddedResource Include="Images\logos\SpbDotNet.png" />
+    <EmbeddedResource Include="DotNetRuOffline.realm">
+      <LogicalName>DotNetRuOffline.realm</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\logos\KznDotNet.png">
+      <LogicalName>KznDotNet.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\logos\NskDotNet.png">
+      <LogicalName>NskDotNet.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\logos\OmsDotNet.png">
+      <LogicalName>OmsDotNet.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\SeveralSpeakers.png">
+      <LogicalName>SeveralSpeakers.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\logos\EkbDotNet.png">
+      <LogicalName>EkbDotNet.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\logos\KryDotNet.png">
+      <LogicalName>KryDotNet.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\logos\MskDotNet.png">
+      <LogicalName>MskDotNet.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\logos\SarDotNet.png">
+      <LogicalName>SarDotNet.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\logos\SpbDotNet.png">
+      <LogicalName>SpbDotNet.png</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DotNetRu.Models\DotNetRu.Models.csproj" />
