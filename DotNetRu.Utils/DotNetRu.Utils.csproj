@@ -4,7 +4,9 @@
       <ProduceReferenceAssembly>True</ProduceReferenceAssembly>
   </PropertyGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Config\config.json" />
+    <EmbeddedResource Include="Config\config.json">
+      <LogicalName>config.json</LogicalName>
+    </EmbeddedResource>
 
     <None Include="Config\config.DEV.json">
         <DependentUpon>config.json</DependentUpon>

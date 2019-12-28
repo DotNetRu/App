@@ -18,7 +18,7 @@ namespace DotNetRu.Clients.UI
 
         public static AppConfig GetConfig()
         {
-            var configBytes = ResourceHelper.ExtractResource("DotNetRu.Utils.Config.config.json");
+            var configBytes = ResourceHelper.ExtractResource("config.json");
             var configBytesAsString = Encoding.UTF8.GetString(configBytes);
             return JsonConvert.DeserializeObject<AppConfig>(configBytesAsString);
         }
