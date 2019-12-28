@@ -5,11 +5,17 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="config.json" />
+    <None Remove="Config\config %28copy%29.json" />
+    <None Remove="Config\config %28copy%29.DEV.json" />
   </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Config\config.json" />
-  </ItemGroup>
 
+    <None Include="Config\config.DEV.json">
+        <DependentUpon>config.json</DependentUpon>
+    </None>
+    <None Include="Config\config.PROD.json">
+        <DependentUpon>config.json</DependentUpon>
+    </None>
   <ItemGroup>
     <PackageReference Include="Microsoft.AppCenter" Version="2.6.4" />
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="2.6.4" />

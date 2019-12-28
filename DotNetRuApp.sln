@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetRu.iOS", "DotNetRu.iO
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetRu.Clients.UI", "DotNetRu.Clients.UI\DotNetRu.Clients.UI.csproj", "{CD2623BD-3609-4BE9-80EF-0974F3A1A27D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetRu.Utils", "DotNetRu.Utils\DotNetRu.Utils.csproj", "{DFA0F0F6-C396-412E-86A9-E9095F71CC36}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetRu.Utils", "DotNetRu.Utils\DotNetRu.Utils.csproj", "{DFA0F0F6-C396-412E-86A9-E9095F71CC36}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetRu.DataStore.Audit", "DotNetRu.DataStore.Audit\DotNetRu.DataStore.Audit.csproj", "{7B4C73DF-8A4A-4AD1-92D9-A064065CDD71}"
 EndProject
