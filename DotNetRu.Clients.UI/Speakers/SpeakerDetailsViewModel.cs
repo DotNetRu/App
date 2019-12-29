@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 using DotNetRu.DataStore.Audit.Models;
@@ -112,7 +113,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
                     return;
                 }
 
-                this.LaunchBrowserCommand.Execute(this.selectedFollowItem.Parameter);
+                this.LaunchBrowserCommand.Execute(new Uri(this.selectedFollowItem.Parameter));
 
                 this.SelectedFollowItem = null;
             }
