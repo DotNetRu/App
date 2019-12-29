@@ -32,7 +32,7 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<false/>
+	<true/>
 	<key>UIPrerenderedIcon</key>
 	<true/>
 	<key>UILaunchStoryboardName~ipad</key>
@@ -151,5 +151,7 @@
 	<string>LaunchScreen</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Location is needed to display your current location on maps.</string>
+	<key>UIUserInterfaceStyle</key>
+	<string>Light</string>
 </dict>
 </plist>
