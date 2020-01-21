@@ -13,8 +13,8 @@ using DotNetRu.AzureService;
 
 namespace DotNetRu.Azure
 {
-    [Route("realm-update")]
-    public class RealmUpdateController : ControllerBase
+    [Route("realm")]
+    public class RealmController : ControllerBase
     {
         private readonly ILogger logger;
 
@@ -22,8 +22,8 @@ namespace DotNetRu.Azure
 
         private readonly PushNotificationsManager pushNotificationsManager;
 
-        public RealmUpdateController(
-            ILogger<RealmUpdateController> logger,
+        public RealmController(
+            ILogger<RealmController> logger,
             RealmSettings appSettings,
             PushNotificationsManager pushNotificationsManager)
         {
@@ -33,6 +33,7 @@ namespace DotNetRu.Azure
         }
 
         [HttpPost]
+        [Route("update")]
         public async Task<IActionResult> UpdateMobileData()
         {
             try
@@ -71,6 +72,25 @@ namespace DotNetRu.Azure
                     StatusCode = StatusCodes.Status500InternalServerError 
                 };
             }
+        }
+
+        [HttpGet]
+        [Route("generate")]
+        public async Task<FileStreamResult> GenerateOfflineRealm()
+        {
+            var auditData = await UpdateManager.GetAuditData();
+
+            var realmOfflinePath = $"{Path.GetTempPath()}/DotNetRuOffline.realm";
+            Realm.DeleteRealm(new RealmConfiguration(realmOfflinePath));
+
+            var realm = Realm.GetInstance(realmOfflinePath);
+            DotNetRuRealmHelper.ReplaceRealm(realm, auditData);
+
+            var stream = System.IO.File.OpenRead(realmOfflinePath);
+            return new FileStreamResult(stream, "application/octet-stream")
+            {
+                FileDownloadName = "DotNetRuOffline.realm"
+            };
         }
 
         private static async Task<Realm> GetRealm(Uri realmUrl, User user)
