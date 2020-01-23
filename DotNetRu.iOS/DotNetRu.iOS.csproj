@@ -325,7 +325,7 @@
       <Name>DotNetRu.DataStore.Audit</Name>
     </ProjectReference>
     <ProjectReference Include="..\DotNetRu.Utils\DotNetRu.Utils.csproj">
-      <Project>{BF31BC1D-97BF-4AE0-AF9C-4F8201995342}</Project>
+      <Project>{DFA0F0F6-C396-412E-86A9-E9095F71CC36}</Project>
       <Name>DotNetRu.Utils</Name>
     </ProjectReference>
   </ItemGroup>

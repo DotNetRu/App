@@ -106,11 +106,13 @@ namespace DotNetRu.RealmUpdateLibrary
             var newObjects = fromRealm.All(className)
                 .ToList()
                 .Cast<RealmObject>()
-                .Select(RealmExtensions.Clone);
+                .Select(RealmExtensions.Clone)
+                .ToList();
 
             var oldObjects = toRealm.All(className)
                 .ToList()
-                .Cast<RealmObject>();
+                .Cast<RealmObject>()
+                .ToList();
 
             var objectsToRemove = oldObjects.Where(obj =>
             {
