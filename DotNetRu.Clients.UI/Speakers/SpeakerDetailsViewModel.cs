@@ -32,7 +32,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
                 this.FollowItems.Add(
                     new MenuItem
                     {
-                        Name = SpeakerModel.BlogUrl.StripUrlForDisplay(),
+                        Name = SpeakerModel.BlogUrl,
                         Parameter = SpeakerModel.BlogUrl,
                         Icon = "icon_blog.png"
                     });
@@ -75,7 +75,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
                     new MenuItem
                     {
                         Name = "LinkedIn",
-                        Parameter = SpeakerModel.LinkedInUrl.StripUrlForDisplay(),
+                        Parameter = SpeakerModel.LinkedInUrl,
                         Icon = "icon_linkedin.png"
                     });
             }
@@ -88,7 +88,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
                     new MenuItem
                     {
                         Name = $"{gitHubValue}",
-                        Parameter = SpeakerModel.GitHubUrl.StripUrlForDisplay(),
+                        Parameter = SpeakerModel.GitHubUrl,
                         Icon = "icon_github.png"
                     });                
             }
