@@ -1,63 +1,20 @@
 namespace DotNetRu.Utils.Helpers
 {
-    using System.ComponentModel;
-    using System.Runtime.CompilerServices;
     using Xamarin.Essentials;
 
-    public class Settings : INotifyPropertyChanged
+    public static class Settings
     {
-        static Settings settings;
-
-        public static Settings Current => settings ?? (settings = new Settings());
-
-        public void LeaveConferenceFeedback()
+        public static bool IsOnlineRealmCreated
         {
-            Preferences.Set("conferencefeedback_finished", true);
+            get => Preferences.Get(nameof(IsOnlineRealmCreated), defaultValue: false);
+            set => Preferences.Set(nameof(IsOnlineRealmCreated), value);
         }
 
-        static readonly bool ShowAllCategoriesDefault = true;
-
-        public bool ShowAllCategories
+        public static bool IsConnected
         {
-            get => Preferences.Get(nameof(ShowAllCategories), ShowAllCategoriesDefault);
-
-            set => Preferences.Set(nameof(ShowAllCategories), value);
+            get => Preferences.Get(nameof(IsConnected), defaultValue: true);
+            set => Preferences.Set(nameof(IsConnected), value);
         }
-
-        static readonly string FilteredCategoriesDefault = string.Empty;
-
-
-        public string FilteredCategories
-        {
-            get => Preferences.Get(nameof(this.FilteredCategories), FilteredCategoriesDefault);
-
-            set => Preferences.Set(nameof(this.FilteredCategories), value);
-        }
-
-        private bool isConnected;
-
-        public bool IsConnected
-        {
-            get => this.isConnected;
-
-            set
-            {
-                if (this.isConnected == value)
-                {
-                    return;
-                }
-                this.isConnected = value;
-                this.OnPropertyChanged();
-            }
-        }
-
-        #region INotifyPropertyChanged implementation
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        internal void OnPropertyChanged([CallerMemberName] string name = "") =>
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-
-        #endregion
+        public static string FilteredCategories { get; set; }
     }
 }
