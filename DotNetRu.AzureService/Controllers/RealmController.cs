@@ -46,12 +46,12 @@ namespace DotNetRu.Azure
                 var realm = await GetRealm(realmUrl, user);
 
                 var currentVersion = GetCurrentVersion(realm);
-                var updateDelta = await UpdateManager.GetAuditUpdate(currentVersion, logger);
+                var auditData = await UpdateManager.GetAuditData();
 
                 realm = await GetRealm(realmUrl, user);
-                DotNetRuRealmHelper.ReplaceRealm(realm, updateDelta);
+                DotNetRuRealmHelper.UpdateRealm(realm, auditData);
 
-                foreach (var meetup in updateDelta.Meetups.Where(meetup => meetup.Sessions.First().StartTime > DateTime.Now))
+                foreach (var meetup in auditData.Meetups.Where(meetup => meetup.Sessions.First().StartTime > DateTime.Now))
                 {
                     var pushContent = new PushContent()
                     {
@@ -76,9 +76,11 @@ namespace DotNetRu.Azure
 
         [HttpGet]
         [Route("generate")]
-        public async Task<FileStreamResult> GenerateOfflineRealm()
+        public async Task<FileStreamResult> GenerateOfflineRealm([FromQuery] string commitSha)
         {
-            var auditData = await UpdateManager.GetAuditData();
+            var auditData = commitSha != null
+                ? await UpdateManager.GetAuditData(commitSha)
+                : await UpdateManager.GetAuditData();
 
             var realmOfflinePath = $"{Path.GetTempPath()}/DotNetRuOffline.realm";
             Realm.DeleteRealm(new RealmConfiguration(realmOfflinePath));

@@ -8,6 +8,34 @@ namespace DotNetRu.RealmUpdateLibrary
 {
     public static class DotNetRuRealmHelper
     {
+        public static void UpdateRealm(Realm realm, AuditUpdate auditData)
+        {
+            ReplaceRealmObjects(realm, new[] { auditData.AuditVersion }, x => x.CommitHash);
+
+            using (var transaction = realm.BeginWrite())
+            {
+                UpdateRealmObjects(realm, auditData.Communities);
+                UpdateRealmObjects(realm, auditData.Friends);
+                UpdateRealmObjects(realm, auditData.Meetups);
+
+                UpdateRealmObjects(realm, auditData.Meetups.SelectMany(m => m.Sessions));
+
+                UpdateRealmObjects(realm, auditData.Speakers);
+                UpdateRealmObjects(realm, auditData.Talks);
+                UpdateRealmObjects(realm, auditData.Venues);
+
+                transaction.Commit();
+            }
+        }
+
+        private static void UpdateRealmObjects<T>(Realm realm, IEnumerable<T> newObjects) where T : RealmObject
+        {
+            foreach (var @object in newObjects)
+            {
+                realm.Add(@object.Clone(), update: true);
+            }
+        }
+
         public static void ReplaceRealm(Realm realm, AuditUpdate auditData)
         {
             ReplaceRealmObjects(realm, new[] { auditData.AuditVersion }, x => x.CommitHash);

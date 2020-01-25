@@ -44,28 +44,32 @@ namespace DotNetRu.RealmUpdateLibrary
         {
             var resultDictionary = new Dictionary<ObjectSchema, HashSet<ObjectSchema>>();
 
-            foreach (var objectShema in realmSchema)
+            var type = typeof(ObjectSchema);
+            var fieldType = type.GetField("Type", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+
+            foreach (var objectSchema in realmSchema)
             {
                 var hashset = new HashSet<ObjectSchema>();
 
-                var objectType = Type.GetType($"DotNetRu.DataStore.Audit.RealmModels.{objectShema.Name}, DotNetRu.Models");
+                var objectType = fieldType.GetValue(objectSchema) as Type;
+                
                 var backlinks = objectType.GetProperties().Where(prop => Attribute.IsDefined(prop, typeof(BacklinkAttribute)));
 
-                foreach (var property in objectShema)
+                foreach (var property in objectSchema)
                 {
                     if (backlinks.Any(backlink => backlink.Name == property.Name))
                     {
                         continue;
                     }
 
-                    var objectSchema = realmSchema.SingleOrDefault(obj => obj.Name == property.ObjectType);
-                    if (objectSchema != null)
+                    var existingObjectSchema = realmSchema.SingleOrDefault(obj => obj.Name == property.ObjectType);
+                    if (existingObjectSchema != null)
                     {
-                        hashset.Add(objectSchema);
+                        hashset.Add(existingObjectSchema);
                     }
                 }
 
-                resultDictionary[objectShema] = hashset;
+                resultDictionary[objectSchema] = hashset;
             }
 
             return resultDictionary;
@@ -106,11 +110,13 @@ namespace DotNetRu.RealmUpdateLibrary
             var newObjects = fromRealm.All(className)
                 .ToList()
                 .Cast<RealmObject>()
-                .Select(RealmExtensions.Clone);
+                .Select(RealmExtensions.Clone)
+                .ToList();
 
             var oldObjects = toRealm.All(className)
                 .ToList()
-                .Cast<RealmObject>();
+                .Cast<RealmObject>()
+                .ToList();
 
             var objectsToRemove = oldObjects.Where(obj =>
             {

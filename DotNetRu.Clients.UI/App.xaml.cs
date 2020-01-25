@@ -84,7 +84,7 @@ namespace DotNetRu.Clients.UI
                     {"TimeZone", TimeZoneInfo.Local.ToSerializedString()}
                 });
 
-            // await RealmService.InitializeCloudSync(config.RealmServerUrl, config.RealmDatabase);
+            await RealmService.InitializeCloudSync(config.RealmServerUrl, config.RealmDatabase);
 
             IsOnStartCalled = true;
         }
