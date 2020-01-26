@@ -17,6 +17,7 @@ namespace DotNetRu.AzureService
                 {
                     logging.ClearProviders();
                     logging.AddConsole();
+                    logging.AddAzureWebAppDiagnostics();
                 })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {

@@ -10,6 +10,7 @@ using Realms;
 using DotNetRu.DataStore.Audit.RealmModels;
 using DotNetRu.RealmUpdateLibrary;
 using DotNetRu.AzureService;
+using Microsoft.AspNetCore.Hosting;
 
 namespace DotNetRu.Azure
 {
@@ -22,14 +23,18 @@ namespace DotNetRu.Azure
 
         private readonly PushNotificationsManager pushNotificationsManager;
 
+        private readonly IWebHostEnvironment webHostEnvironment;
+
         public RealmController(
-            ILogger<RealmController> logger,
+            ILogger<DiagnosticsController> logger,
             RealmSettings appSettings,
-            PushNotificationsManager pushNotificationsManager)
+            PushNotificationsManager pushNotificationsManager,
+            IWebHostEnvironment webHostEnvironment)
         {
             this.logger = logger;
             this.realmSettings = appSettings;
             this.pushNotificationsManager = pushNotificationsManager;
+            this.webHostEnvironment = webHostEnvironment;
         }
 
         [HttpPost]
@@ -46,12 +51,12 @@ namespace DotNetRu.Azure
                 var realm = await GetRealm(realmUrl, user);
 
                 var currentVersion = GetCurrentVersion(realm);
-                var auditData = await UpdateManager.GetAuditData();
+                var auditUpdate = await UpdateManager.GetAuditUpdate(currentVersion, logger);
 
                 realm = await GetRealm(realmUrl, user);
-                DotNetRuRealmHelper.UpdateRealm(realm, auditData);
+                DotNetRuRealmHelper.UpdateRealm(realm, auditUpdate);
 
-                foreach (var meetup in auditData.Meetups.Where(meetup => meetup.Sessions.First().StartTime > DateTime.Now))
+                foreach (var meetup in auditUpdate.Meetups.Where(meetup => meetup.Sessions.First().StartTime > DateTime.Now))
                 {
                     var pushContent = new PushContent()
                     {
@@ -75,7 +80,7 @@ namespace DotNetRu.Azure
         }
 
         [HttpGet]
-        [Route("generate")]
+        [Route("generate/offline")]
         public async Task<FileStreamResult> GenerateOfflineRealm([FromQuery] string commitSha)
         {
             var auditData = commitSha != null
@@ -95,6 +100,30 @@ namespace DotNetRu.Azure
             };
         }
 
+        [HttpGet]
+        [Route("generate/online")]
+        public async Task<IActionResult> GenerateOnlineRealm(
+            [FromQuery] string commitSha, 
+            [FromQuery] string realmServerUrl, 
+            [FromQuery] string realmName)
+        {
+            var auditData = commitSha != null
+                ? await UpdateManager.GetAuditData(commitSha)
+                : await UpdateManager.GetAuditData();
+
+            logger.LogInformation("Realm to update {RealmServerUrl}/{RealmName}", realmServerUrl, realmName);
+
+            var user = await this.GetUser();
+
+            var realmUrl = new Uri($"realms://{realmServerUrl}/{realmName}");
+            var realm = await GetRealm(realmUrl, user);
+
+            realm = await GetRealm(realmUrl, user);
+            DotNetRuRealmHelper.ReplaceRealm(realm, auditData);
+
+            return new OkObjectResult("Success");
+        }
+
         private static async Task<Realm> GetRealm(Uri realmUrl, User user)
         {
             var tempRealmFile = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
@@ -112,6 +141,8 @@ namespace DotNetRu.Azure
 
         private async Task<User> GetUser()
         {
+            SyncConfigurationBase.Initialize(UserPersistenceMode.NotEncrypted, basePath: Path.GetTempPath());
+
             return await Realms.Sync.User.LoginAsync(
                     Credentials.UsernamePassword(realmSettings.Login, realmSettings.Password, createUser: false),
                     new Uri($"https://{realmSettings.RealmServerUrl}"));

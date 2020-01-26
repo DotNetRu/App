@@ -8,6 +8,7 @@ namespace DotNetRu.RealmUpdateLibrary
 {
     public static class DotNetRuRealmHelper
     {
+        // TODO support deletion
         public static void UpdateRealm(Realm realm, AuditUpdate auditData)
         {
             ReplaceRealmObjects(realm, new[] { auditData.AuditVersion }, x => x.CommitHash);
