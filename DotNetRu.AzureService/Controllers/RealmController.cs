@@ -10,7 +10,6 @@ using Realms;
 using DotNetRu.DataStore.Audit.RealmModels;
 using DotNetRu.RealmUpdateLibrary;
 using DotNetRu.AzureService;
-using Microsoft.AspNetCore.Hosting;
 
 namespace DotNetRu.Azure
 {
@@ -23,18 +22,14 @@ namespace DotNetRu.Azure
 
         private readonly PushNotificationsManager pushNotificationsManager;
 
-        private readonly IWebHostEnvironment webHostEnvironment;
-
         public RealmController(
             ILogger<DiagnosticsController> logger,
             RealmSettings appSettings,
-            PushNotificationsManager pushNotificationsManager,
-            IWebHostEnvironment webHostEnvironment)
+            PushNotificationsManager pushNotificationsManager)
         {
             this.logger = logger;
             this.realmSettings = appSettings;
             this.pushNotificationsManager = pushNotificationsManager;
-            this.webHostEnvironment = webHostEnvironment;
         }
 
         [HttpPost]
@@ -45,28 +40,7 @@ namespace DotNetRu.Azure
             {
                 logger.LogInformation("Realm to update {RealmServerUrl}/{RealmName}", realmSettings.RealmServerUrl, realmSettings.RealmName);
 
-                var user = await this.GetUser();
-
-                var realmUrl = new Uri($"realms://{realmSettings.RealmServerUrl}/{realmSettings.RealmName}");
-                var realm = await GetRealm(realmUrl, user);
-
-                var currentVersion = GetCurrentVersion(realm);
-                var auditUpdate = await UpdateManager.GetAuditUpdate(currentVersion, logger);
-
-                realm = await GetRealm(realmUrl, user);
-                DotNetRuRealmHelper.UpdateRealm(realm, auditUpdate);
-
-                foreach (var meetup in auditUpdate.Meetups.Where(meetup => meetup.Sessions.First().StartTime > DateTime.Now))
-                {
-                    var pushContent = new PushContent()
-                    {
-                        Title = $"{meetup.Name} is announced!",
-                        Body = "Open DotNetRu app for details"
-                    };
-
-
-                    await pushNotificationsManager.SendPushNotifications(pushContent);
-                }
+                await UpdateOnlineRealm();
 
                 return new OkObjectResult(realmSettings);
             }
@@ -76,6 +50,49 @@ namespace DotNetRu.Azure
                 return new ObjectResult(e) { 
                     StatusCode = StatusCodes.Status500InternalServerError 
                 };
+            }
+        }
+
+        [HttpPost]
+        [Route("trigger_update")]
+        public async Task<IActionResult> UpdateMobileDataAsync()
+        {
+            logger.LogInformation("Realm to update {RealmServerUrl}/{RealmName}", realmSettings.RealmServerUrl, realmSettings.RealmName);
+
+            UpdateOnlineRealm();
+
+            return new OkObjectResult(realmSettings);
+        }
+
+        private async Task UpdateOnlineRealm()
+        {
+            var user = await this.GetUser();
+
+            var realmUrl = new Uri($"realms://{realmSettings.RealmServerUrl}/{realmSettings.RealmName}");
+            var realm = await GetRealm(realmUrl, user);
+
+            var currentVersion = GetCurrentVersion(realm);
+
+            realm = await GetRealm(realmUrl, user);
+
+            var auditUpdate = await UpdateManager.GetAuditUpdate(currentVersion, logger);
+            DotNetRuRealmHelper.UpdateRealm(realm, auditUpdate);
+
+            await SendMeetupsNotifications(auditUpdate);
+        }
+
+        private async Task SendMeetupsNotifications(AuditUpdate auditUpdate)
+        {
+            foreach (var meetup in auditUpdate.Meetups.Where(meetup => meetup.Sessions.First().StartTime > DateTime.Now))
+            {
+                var pushContent = new PushContent()
+                {
+                    Title = $"{meetup.Name} is announced!",
+                    Body = "Open DotNetRu app for details"
+                };
+
+
+                await pushNotificationsManager.SendPushNotifications(pushContent);
             }
         }
 
