@@ -72,7 +72,7 @@
     <DefineConstants>MOBILE</DefineConstants>
     <CodesignProvision>
     </CodesignProvision>
-    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
     <BuildIpa>true</BuildIpa>
     <MtouchFastDev>false</MtouchFastDev>
     <MtouchLink>SdkOnly</MtouchLink>
@@ -108,7 +108,7 @@
     <MtouchDebug>true</MtouchDebug>
     <IpaPackageName>
     </IpaPackageName>
-    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
     <CodesignProvision>
     </CodesignProvision>
     <DeviceSpecificBuild>true</DeviceSpecificBuild>
