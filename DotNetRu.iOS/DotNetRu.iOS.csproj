@@ -46,7 +46,7 @@
     <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
     <MtouchFastDev>true</MtouchFastDev>
     <CodesignKey>iPhone Developer</CodesignKey>
-    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
     <CodesignProvision>
     </CodesignProvision>
     <CodesignEntitlements>
@@ -87,7 +87,7 @@
     <MtouchLink>SdkOnly</MtouchLink>
     <DefineConstants>ENABLE_TEST_CLOUD;MOBILE</DefineConstants>
     <CodesignKey>iPhone Distribution</CodesignKey>
-    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
     <CodesignEntitlements>
     </CodesignEntitlements>
   </PropertyGroup>
