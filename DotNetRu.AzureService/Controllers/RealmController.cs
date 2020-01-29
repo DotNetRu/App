@@ -40,7 +40,18 @@ namespace DotNetRu.Azure
             {
                 logger.LogInformation("Realm to update {RealmServerUrl}/{RealmName}", realmSettings.RealmServerUrl, realmSettings.RealmName);
 
-                await UpdateOnlineRealm();
+                var user = await this.GetUser();
+
+                var realmUrl = new Uri($"realms://{realmSettings.RealmServerUrl}/{realmSettings.RealmName}");
+                var realm = await GetRealm(realmUrl, user);
+
+                var currentVersion = GetCurrentVersion(realm);
+                var auditUpdate = await UpdateManager.GetAuditUpdate(currentVersion, logger);
+
+                realm = await GetRealm(realmUrl, user);
+                DotNetRuRealmHelper.UpdateRealm(realm, auditUpdate);
+
+                await SendMeetupsNotifications(auditUpdate);
 
                 return new OkObjectResult(realmSettings);
             }
@@ -72,10 +83,8 @@ namespace DotNetRu.Azure
             var realm = await GetRealm(realmUrl, user);
 
             var currentVersion = GetCurrentVersion(realm);
-
-            realm = await GetRealm(realmUrl, user);
-
             var auditUpdate = await UpdateManager.GetAuditUpdate(currentVersion, logger);
+
             DotNetRuRealmHelper.UpdateRealm(realm, auditUpdate);
 
             await SendMeetupsNotifications(auditUpdate);

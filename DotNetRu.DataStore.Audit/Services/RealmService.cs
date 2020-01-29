@@ -14,6 +14,7 @@ using Microsoft.AppCenter.Crashes;
 using Realms;
 using Realms.Sync;
 using Realms.Sync.Exceptions;
+using Realms.Utils;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -121,7 +122,7 @@ namespace DotNetRu.DataStore.Audit.Services
 
                 if (cloudRealm != null)
                 {
-                    RealmSyncManager.UpdateRealm(OfflineRealm, cloudRealm);
+                    RealmSyncManager.UpdateRealm(cloudRealm, OfflineRealm);
 
                     cloudRealm.Error += (s, e) =>
                     {
@@ -136,7 +137,7 @@ namespace DotNetRu.DataStore.Audit.Services
                     {
                         try
                         {
-                            RealmSyncManager.UpdateRealm(OfflineRealm, cloudRealm);
+                            RealmSyncManager.UpdateRealm(cloudRealm, OfflineRealm);
                         }
                         catch (Exception ex)
                         {
