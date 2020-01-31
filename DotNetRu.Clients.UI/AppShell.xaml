@@ -1,0 +1,41 @@
+<Shell
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="DotNetRu.Clients.UI.AppShell"
+    xmlns:home="clr-namespace:DotNetRu.Clients.UI.Pages.Home;assembly=DotNetRu.Clients.UI"
+    xmlns:speakers="clr-namespace:DotNetRu.Clients.UI.Pages.Speakers;assembly=DotNetRu.Clients.UI"
+    xmlns:about="clr-namespace:DotNetRu.Clients.UI.Pages.About;assembly=DotNetRu.Clients.UI"
+    xmlns:meetups="clr-namespace:DotNetRu.Clients.UI.Pages.Meetups;assembly=DotNetRu.Clients.UI"
+    FlyoutBehavior="Disabled"> 
+
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Style x:Key="BottomTabStyle" TargetType="Element">
+                <Setter Property="Shell.ForegroundColor" Value="White" />
+                <Setter Property="Shell.TitleColor" Value="{OnPlatform iOS=Black, Android=White}" />
+                <Setter Property="Shell.DisabledColor" Value="Gray" />
+                <Setter Property="Shell.UnselectedColor" Value="Gray" />
+                <Setter Property="Shell.TabBarBackgroundColor" Value="White" />
+                <Setter Property="Shell.TabBarForegroundColor" Value="{StaticResource Primary}"/>
+                <Setter Property="Shell.TabBarUnselectedColor" Value="Gray"/>
+                <Setter Property="Shell.TabBarTitleColor" Value="{StaticResource Primary}"/>
+            </Style>
+            <Style TargetType="TabBar" BasedOn="{StaticResource BottomTabStyle}" />
+        </ResourceDictionary>
+    </Shell.Resources>
+
+    <TabBar Route="root">
+        <Tab Title="News" Icon="tab_feed.png" Route="news">
+            <ShellContent ContentTemplate="{DataTemplate home:NewsPage}" />
+        </Tab>
+        <Tab Title="Speakers" Icon="tab_speakers.png" Route="speakers">
+            <ShellContent ContentTemplate="{DataTemplate speakers:SpeakersPage}" />
+        </Tab>
+        <Tab Title="Meetups" Icon="tab_events.png" Route="meetups">
+            <ShellContent ContentTemplate="{DataTemplate meetups:MeetupsPage}" />
+        </Tab>
+        <Tab Title="About" Icon="tab_about.png" Route="about">
+            <ShellContent ContentTemplate="{DataTemplate about:AboutPage}" />
+        </Tab>
+    </TabBar>
+</Shell>

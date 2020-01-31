@@ -52,6 +52,9 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Update="AppShell.xaml">
+      <LogicalName>AppShell.xaml</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Update="About\CommunityViewCell.xaml">
@@ -73,9 +76,6 @@
       <Generator>MSBuild:Compile</Generator>
     </None>
     <None Update="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="BasePages\BottomTabbedPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
     <None Update="BasePages\EvolveGroupHeaderView.xaml">

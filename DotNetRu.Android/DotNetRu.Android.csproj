@@ -155,13 +155,12 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-mdpi\ic_evals.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\menu_evals.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\menu_evals.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\menu_speakers.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\menu_speakers.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\menu_speakers.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\menu_speakers.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\menu_speakers.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\tab_speakers.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\tab_speakers.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\tab_speakers.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\tab_speakers.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\tab_speakers.png" />
     <AndroidResource Include="Resources\drawable-hdpi\icon_facebook.png" />
     <AndroidResource Include="Resources\drawable-mdpi\icon_facebook.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\icon_facebook.png" />
@@ -179,46 +178,44 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\icon_video.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\toolbar.axml" />
     <AndroidResource Include="Resources\values\colors.xml" />
     <AndroidResource Include="Resources\values\styles.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable-hdpi\menu_sponsors.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\menu_events.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\tab_events.png" />
     <AndroidResource Include="Resources\drawable-hdpi\menu_venue.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\menu_feed.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\menu_info.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\menu_sessions.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\tab_feed.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\tab_about.png" />
     <AndroidResource Include="Resources\drawable-hdpi\menu_settings.png" />
     <AndroidResource Include="Resources\drawable-hdpi\toolbar_share.png" />
     <AndroidResource Include="Resources\drawable-mdpi\menu_sponsors.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\menu_events.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\tab_events.png" />
     <AndroidResource Include="Resources\drawable-mdpi\menu_venue.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\menu_feed.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\menu_info.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\tab_feed.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\tab_about.png" />
     <AndroidResource Include="Resources\drawable-mdpi\menu_sessions.png" />
     <AndroidResource Include="Resources\drawable-mdpi\menu_settings.png" />
     <AndroidResource Include="Resources\drawable-mdpi\toolbar_share.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\menu_sponsors.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\menu_events.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\tab_events.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\menu_venue.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\menu_feed.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\menu_info.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\tab_feed.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\tab_about.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\menu_sessions.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\menu_settings.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\toolbar_share.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\menu_sponsors.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\menu_events.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\menu_feed.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\menu_info.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\tab_events.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\tab_feed.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\tab_about.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\menu_sessions.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\menu_settings.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\toolbar_share.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\menu_sponsors.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\menu_events.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\menu_feed.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\menu_info.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\tab_events.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\tab_feed.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\tab_about.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\menu_sessions.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\menu_settings.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\toolbar_share.png" />
