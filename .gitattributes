@@ -2,3 +2,6 @@
 *.realm binary
 *.jar binary
 *.png binary
+*.gif binary
+*.ttf binary
+*.dll binary
