@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -86,32 +86,32 @@
     </PackageReference>
     <PackageReference Include="Refractored.MvvmHelpers" Version="1.3.0" />
     <PackageReference Include="Xam.Plugins.Forms.ImageCircle" Version="3.0.0.5" />
-    <PackageReference Include="Xamarin.Android.Support.CustomTabs">
-      <Version>28.0.0.3</Version>
+    <PackageReference Include="Xamarin.AndroidX.Browser">
+      <Version>1.0.0-preview02</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Android.Support.Annotations">
-      <Version>28.0.0.3</Version>
+    <PackageReference Include="Xamarin.AndroidX.Annotation">
+      <Version>1.0.2-preview02</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Android.Support.Compat">
-      <Version>28.0.0.3</Version>
+    <PackageReference Include="Xamarin.AndroidX.Core">
+      <Version>1.0.1-preview02</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Android.Support.Core.UI">
-      <Version>28.0.0.3</Version>
+    <PackageReference Include="Xamarin.AndroidX.Legacy.Support.Core.UI">
+      <Version>1.0.0-preview02</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Android.Support.Core.Utils">
-      <Version>28.0.0.3</Version>
+    <PackageReference Include="Xamarin.AndroidX.Legacy.Support.Core.Utils">
+      <Version>1.0.0-preview02</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Android.Support.Design" Version="28.0.0.3" />
-    <PackageReference Include="Xamarin.Android.Support.Fragment">
-      <Version>28.0.0.3</Version>
+    <PackageReference Include="Xamarin.Google.Android.Material" Version="1.0.0-preview02" />
+    <PackageReference Include="Xamarin.AndroidX.Fragment">
+      <Version>1.0.0-preview02</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Android.Support.Media.Compat">
-      <Version>28.0.0.3</Version>
+    <PackageReference Include="Xamarin.AndroidX.Media">
+      <Version>1.0.1-preview02</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Android.Support.v4" Version="28.0.0.3" />
-    <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="28.0.0.3" />
-    <PackageReference Include="Xamarin.Android.Support.v7.CardView" Version="28.0.0.3" />
-    <PackageReference Include="Xamarin.Android.Support.v7.MediaRouter" Version="28.0.0.3" />
+    <PackageReference Include="Xamarin.AndroidX.Legacy.Support.V4" Version="1.0.0-preview02" />
+    <PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.0.2-preview02" />
+    <PackageReference Include="Xamarin.AndroidX.CardView" Version="1.0.0-preview02" />
+    <PackageReference Include="Xamarin.AndroidX.MediaRouter" Version="1.0.0-preview02" />
     <PackageReference Include="Xamarin.Essentials">
       <Version>1.3.1</Version>
     </PackageReference>
@@ -119,7 +119,7 @@
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.Forms" Version="4.4.0.991640" />
-  </ItemGroup>
+  <PackageReference Include="Xamarin.AndroidX.Migration" Version="1.0.0-preview03" /></ItemGroup>
   <ItemGroup>
     <AndroidExternalJavaLibrary Include="org.apache.http.legacy.jar" />
   </ItemGroup>
