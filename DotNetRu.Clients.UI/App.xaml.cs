@@ -5,7 +5,6 @@ using System.Globalization;
 using DotNetRu.Clients.Portable.Services;
 using DotNetRu.Clients.Portable.ViewModel;
 using DotNetRu.Clients.UI.Localization;
-using DotNetRu.Clients.UI.Pages;
 using DotNetRu.DataStore.Audit.Services;
 using DotNetRu.Utils.Interfaces;
 
@@ -44,7 +43,7 @@ namespace DotNetRu.Clients.UI
             }
 
             this.InitializeComponent();
-            this.MainPage = new BottomTabbedPage();
+            this.MainPage = new AppShell();
         }
 
         // TODO change to SeriLog

@@ -82,10 +82,6 @@ namespace DotNetRu.Droid
         {
             this.SetTheme(Resource.Style.MyTheme);
 
-            Forms.SetFlags("FastRenderers_Experimental");
-
-            FormsAppCompatActivity.ToolbarResource = Resource.Layout.toolbar;
-
             base.OnCreate(savedInstanceState);
 
             Forms.Init(this, savedInstanceState);

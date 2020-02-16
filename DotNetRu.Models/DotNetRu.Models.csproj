@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>netstandard2.0</TargetFramework>
+        <TargetFramework>netstandard2.1</TargetFramework>
         <ProduceReferenceAssembly>True</ProduceReferenceAssembly>
     </PropertyGroup>
 
@@ -9,6 +9,6 @@
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Realm" Version="4.1.0" />
+        <PackageReference Include="Realm" Version="4.3.0" />
     </ItemGroup>
 </Project>

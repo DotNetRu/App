@@ -30,7 +30,9 @@ namespace DotNetRu.AzureService
 
             services.AddScoped<PushNotificationsManager>();
 
-            services.AddControllers();
+            services
+                .AddControllers()
+                .AddNewtonsoftJson();
 
             services.AddOpenApiDocument(document => document.DocumentName = "DotNetRu App API");
         }

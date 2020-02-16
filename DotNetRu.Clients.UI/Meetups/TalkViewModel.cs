@@ -105,7 +105,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
                     return;
                 }
 
-                this.LaunchBrowserCommand.Execute(this.selectedSessionMaterialItem.Parameter);
+                this.LaunchBrowserCommand.Execute(new Uri(this.selectedSessionMaterialItem.Parameter));
 
                 this.SelectedSessionMaterialItem = null;
             }
