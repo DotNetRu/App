@@ -322,4 +322,7 @@
   <data name="RemoveFromCalendar" xml:space="preserve">
     <value>Удалить из календаря</value>
   </data>
+  <data name="EkbDotNet" xml:space="preserve">
+    <value>Екатеринбург</value>
+  </data>
 </root>
