@@ -2,13 +2,14 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <SolutionDir>..\</SolutionDir>
-    <ProduceReferenceAssembly>True</ProduceReferenceAssembly>      
+    <ProduceReferenceAssembly>True</ProduceReferenceAssembly>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="DotNetRuOffline.realm" />
+    <None Remove="Images\logos\KrdDotNet.png" />
     <None Remove="Images\logos\NskDotNet.png" />
     <None Remove="Images\logos\OmsDotNet.png" />
-  </ItemGroup>  
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="9.0.0" />
     <PackageReference Include="Flurl.Http" Version="2.4.2" />
@@ -24,6 +25,9 @@
   <ItemGroup>
     <EmbeddedResource Include="DotNetRuOffline.realm">
       <LogicalName>DotNetRuOffline.realm</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\logos\KrdDotNet.png">
+        <LogicalName>KrdDotNet.png</LogicalName>
     </EmbeddedResource>
     <EmbeddedResource Include="Images\logos\KznDotNet.png">
       <LogicalName>KznDotNet.png</LogicalName>
