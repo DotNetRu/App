@@ -1,151 +1,178 @@
 <pages:BasePage
+    x:Class="DotNetRu.Clients.UI.Pages.Sessions.MeetupDetailsPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:pages="clr-namespace:DotNetRu.Clients.UI.Pages;assembly=DotNetRu.Clients.UI"
-    xmlns:controls="clr-namespace:DotNetRu.Clients.UI.Controls;assembly=DotNetRu.Clients.UI"
-    xmlns:meetups="clr-namespace:DotNetRu.Clients.UI.Meetups;assembly=DotNetRu.Clients.UI"  
-    xmlns:imagecircle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
     xmlns:behaviorsPack="clr-namespace:Xamarin.Forms.BehaviorsPack;assembly=Xamarin.Forms.BehaviorsPack"
+    xmlns:controls="clr-namespace:DotNetRu.Clients.UI.Controls;assembly=DotNetRu.Clients.UI"
     xmlns:converters="clr-namespace:DotNetRu.Clients.UI.Converters"
-    x:Class="DotNetRu.Clients.UI.Pages.Sessions.MeetupDetailsPage"
+    xmlns:imagecircle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+    xmlns:meetups="clr-namespace:DotNetRu.Clients.UI.Meetups;assembly=DotNetRu.Clients.UI"
+    xmlns:pages="clr-namespace:DotNetRu.Clients.UI.Pages;assembly=DotNetRu.Clients.UI"
     x:Name="Meetup"
     Title="{Binding MeetupModel.Title}"
     Icon="tab_sessions.png">
     <ContentPage.Resources>
         <ResourceDictionary>
-            <converters:TranslateConverter x:Key="TranslateConverter"/>
-            <converters:SessionTimeDisplayConverter x:Key="SessionTimeDisplayConverter"/>
-            <converters:HasReminderTextConverter x:Key="HasReminderTextConverter"/>
+            <converters:TranslateConverter x:Key="TranslateConverter" />
+            <converters:SessionTimeDisplayConverter x:Key="SessionTimeDisplayConverter" />
+            <converters:HasReminderTextConverter x:Key="HasReminderTextConverter" />
+            <converters:TalkLogoConverter x:Key="TalkLogoConverter" />
 
             <DataTemplate x:Key="sessionTemplate" x:DataType="meetups:MeetupDetailsPageItem">
                 <ViewCell StyleId="disclosure">
-                    <Grid Padding="{DynamicResource StandardPadding}" 
-                          ColumnSpacing="{StaticResource StandardSpacing}"
-                          BackgroundColor="White">
+                    <Grid
+                        Padding="{DynamicResource StandardPadding}"
+                        BackgroundColor="White"
+                        ColumnSpacing="{StaticResource StandardSpacing}">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <imagecircle:CircleImage 
-                                Grid.Column="0"
-                                Grid.Row="0"
-                                Grid.RowSpan="3"
-                                Source="{Binding Session.Talk.SpeakerAvatar}"
-                                VerticalOptions="Center"
-                                Aspect="AspectFill"
-                                WidthRequest="44"
-                                HeightRequest="44">
-                        </imagecircle:CircleImage>
+                        <imagecircle:CircleImage
+                            Grid.Row="0"
+                            Grid.RowSpan="3"
+                            Grid.Column="0"
+                            Aspect="AspectFill"
+                            HeightRequest="44"
+                            Source="{Binding Session.Talk, Converter={StaticResource TalkLogoConverter}}"
+                            VerticalOptions="Center"
+                            WidthRequest="44" />
 
-                        <Label Grid.Row="0"
-                                Grid.Column="1"               
-                                Text="{Binding Session.Talk.Title}" 
-                                Style="{DynamicResource EvolveListItemTextStyle}"
-                                StyleId="SessionItem"/>
-
-                        <Label Grid.Row="1"
-                                Grid.Column="1"
-                                VerticalOptions="End"
-                                Text="{Binding Session, Converter={StaticResource SessionTimeDisplayConverter}}" 
-                                Style="{DynamicResource EvolveListItemDetailTextStyle}"
-                                StyleId="SessionTime"/>
-
-                        <Label Grid.Row="2"
+                        <Label
+                            Grid.Row="0"
                             Grid.Column="1"
-                            Text="{Binding Session.Talk.SpeakerNames}" 
+                            Style="{DynamicResource EvolveListItemTextStyle}"
+                            StyleId="SessionItem"
+                            Text="{Binding Session.Talk.Title}" />
+
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="1"
                             Style="{DynamicResource EvolveListItemDetailTextStyle}"
-                            StyleId="SpeakerNames"/>
+                            StyleId="SessionTime"
+                            Text="{Binding Session, Converter={StaticResource SessionTimeDisplayConverter}}"
+                            VerticalOptions="End" />
+
+                        <Label
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            Style="{DynamicResource EvolveListItemDetailTextStyle}"
+                            StyleId="SpeakerNames"
+                            Text="{Binding Session.Talk.SpeakerNames}" />
                     </Grid>
                 </ViewCell>
             </DataTemplate>
 
-            <DataTemplate x:Key ="friendTemplate" x:DataType="meetups:MeetupDetailsPageItem">
+            <DataTemplate x:Key="friendTemplate" x:DataType="meetups:MeetupDetailsPageItem">
                 <ViewCell StyleId="disclosure">
                     <FlexLayout BackgroundColor="White">
                         <Image
+                            Aspect="AspectFit"
                             FlexLayout.Basis="100%"
                             HeightRequest="50"
                             HorizontalOptions="FillAndExpand"
-                            VerticalOptions="FillAndExpand"
-                            StyleId="SponsorImage"
                             Source="{Binding Friend.LogoSmall}"
-                            Aspect="AspectFit">
-                        </Image>
+                            StyleId="SponsorImage"
+                            VerticalOptions="FillAndExpand" />
                     </FlexLayout>
                 </ViewCell>
             </DataTemplate>
 
             <DataTemplate x:Key="venueTemplate">
                 <ViewCell StyleId="disclosure">
-                    <StackLayout Padding="{StaticResource StandardPadding}" BackgroundColor="White" BindingContext="{x:Reference Meetup}">
-                        <Label Text="{Binding BindingContext.MeetupDate}" Style="{DynamicResource EvolveListItemTextStyle}" StyleId="SessionAbstract"/>
-                        <Label Text="{Binding BindingContext.MeetupTime}"  Style="{DynamicResource EvolveListItemTextStyle}" StyleId="SessionAbstract"/>
-                        <controls:HeaderDivider/>
-                        <Label Text="{Binding BindingContext.VenueModel.Name}" Style="{DynamicResource EvolveListItemTextStyle}" StyleId="SessionAbstract"/>
-                        <Label Text="{Binding BindingContext.VenueModel.Address}" Style="{DynamicResource EvolveListItemTextStyle}" StyleId="SessionAbstract"/>
+                    <StackLayout
+                        Padding="{StaticResource StandardPadding}"
+                        BackgroundColor="White"
+                        BindingContext="{x:Reference Meetup}">
+                        <Label
+                            Style="{DynamicResource EvolveListItemTextStyle}"
+                            StyleId="SessionAbstract"
+                            Text="{Binding BindingContext.MeetupDate}" />
+                        <Label
+                            Style="{DynamicResource EvolveListItemTextStyle}"
+                            StyleId="SessionAbstract"
+                            Text="{Binding BindingContext.MeetupTime}" />
+                        <controls:HeaderDivider />
+                        <Label
+                            Style="{DynamicResource EvolveListItemTextStyle}"
+                            StyleId="SessionAbstract"
+                            Text="{Binding BindingContext.VenueModel.Name}" />
+                        <Label
+                            Style="{DynamicResource EvolveListItemTextStyle}"
+                            StyleId="SessionAbstract"
+                            Text="{Binding BindingContext.VenueModel.Address}" />
                     </StackLayout>
                 </ViewCell>
             </DataTemplate>
 
             <DataTemplate x:Key="calendarTemplate">
                 <ViewCell>
-                    <StackLayout BackgroundColor="White" Padding="{DynamicResource StandardPadding}">
+                    <StackLayout Padding="{DynamicResource StandardPadding}" BackgroundColor="White">
                         <Label
-                            Text="{Binding Source={x:Reference Meetup}, Path=BindingContext.IsReminderSet, Converter={StaticResource HasReminderTextConverter}}"
-                            VerticalTextAlignment="Center"
                             HorizontalTextAlignment="Start"
+                            Text="{Binding Source={x:Reference Meetup}, Path=BindingContext.IsReminderSet, Converter={StaticResource HasReminderTextConverter}}"
+                            TextColor="Purple"
                             VerticalOptions="Center"
-                            TextColor="Purple"/>
+                            VerticalTextAlignment="Center" />
                     </StackLayout>
                 </ViewCell>
             </DataTemplate>
 
-            <meetups:MeetupDetailsTemplateSelector x:Key="MeetupDetailsTemplateSelector"
-                                         FriendTemplate="{StaticResource friendTemplate}"
-                                         VenueTemplate="{StaticResource venueTemplate}"
-                                         SessionTemplate="{StaticResource sessionTemplate}"
-                                         CalendarTemplate="{StaticResource calendarTemplate}"/>
+            <meetups:MeetupDetailsTemplateSelector
+                x:Key="MeetupDetailsTemplateSelector"
+                CalendarTemplate="{StaticResource calendarTemplate}"
+                FriendTemplate="{StaticResource friendTemplate}"
+                SessionTemplate="{StaticResource sessionTemplate}"
+                VenueTemplate="{StaticResource venueTemplate}" />
         </ResourceDictionary>
     </ContentPage.Resources>
-    <ListView x:Name="MeetupListView"
-        ItemsSource="{Binding MeetupDetailsPageItems}"
-        ItemTemplate="{StaticResource MeetupDetailsTemplateSelector}"
-        SelectionMode="Single"
+    <ListView
+        x:Name="MeetupListView"
+        Footer=""
         HasUnevenRows="True"
         IsGroupingEnabled="True"
-        Footer="">
+        ItemTemplate="{StaticResource MeetupDetailsTemplateSelector}"
+        ItemsSource="{Binding MeetupDetailsPageItems}"
+        SelectionMode="Single">
         <ListView.Behaviors>
-            <behaviorsPack:SelectedItemBehavior Command="{Binding SelectedItemCommand}"/>
+            <behaviorsPack:SelectedItemBehavior Command="{Binding SelectedItemCommand}" />
         </ListView.Behaviors>
         <ListView.GroupHeaderTemplate>
             <DataTemplate>
                 <ViewCell>
                     <StackLayout VerticalOptions="Center">
                         <StackLayout.BackgroundColor>
-                            <OnPlatform x:TypeArguments="Color" Android="#F5F5F5"/>
+                            <OnPlatform x:TypeArguments="Color" Android="#F5F5F5" />
                         </StackLayout.BackgroundColor>
                         <StackLayout.Padding>
-                            <OnPlatform x:TypeArguments="Thickness" iOS="16,0" Android="16,8"/>
+                            <OnPlatform
+                                x:TypeArguments="Thickness"
+                                Android="16,8"
+                                iOS="16,0" />
                         </StackLayout.Padding>
-                        <Label Text="{Binding Key, Converter={StaticResource TranslateConverter}}" 
-                                VerticalOptions="Center" 
-                                VerticalTextAlignment="Center">
+                        <Label
+                            Text="{Binding Key, Converter={StaticResource TranslateConverter}}"
+                            VerticalOptions="Center"
+                            VerticalTextAlignment="Center">
                             <Label.FontAttributes>
-                                <OnPlatform x:TypeArguments="FontAttributes" iOS="Bold"/>
+                                <OnPlatform x:TypeArguments="FontAttributes" iOS="Bold" />
                             </Label.FontAttributes>
                             <Label.FontSize>
-                                <OnPlatform x:TypeArguments="x:Double" iOS="16" Android="18"/>
+                                <OnPlatform
+                                    x:TypeArguments="x:Double"
+                                    Android="18"
+                                    iOS="16" />
                             </Label.FontSize>
                             <Label.FontFamily>
-                                <OnPlatform x:TypeArguments="x:String" Android="sans-serif-light"/>
+                                <OnPlatform x:TypeArguments="x:String" Android="sans-serif-light" />
                             </Label.FontFamily>
                             <Label.TextColor>
-                                <OnPlatform x:TypeArguments="Color"/>
+                                <OnPlatform x:TypeArguments="Color" />
                             </Label.TextColor>
                         </Label>
                     </StackLayout>
