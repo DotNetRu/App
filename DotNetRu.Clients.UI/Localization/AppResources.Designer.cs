@@ -203,7 +203,7 @@ namespace DotNetRu.Clients.UI.Localization {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на EkbDotNet.
+        ///   Ищет локализованную строку, похожую на Ekaterinburg.
         /// </summary>
         public static string EkbDotNet {
             get {
