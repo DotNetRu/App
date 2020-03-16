@@ -147,6 +147,9 @@
   <data name="Calendar" xml:space="preserve">
     <value>Calendar</value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
   <data name="CodeFromSession" xml:space="preserve">
     <value>Code from Session</value>
   </data>
@@ -205,8 +208,14 @@ Sergey Polezhaev</value>
   <data name="Loading" xml:space="preserve">
     <value>Loading Social Feed...</value>
   </data>
+  <data name="LoadingFriends" xml:space="preserve">
+    <value>Loading Friends...</value>
+  </data>
   <data name="LoadingMeetups" xml:space="preserve">
-    <value>Loading meetups..</value>
+    <value>Loading meetups...</value>
+  </data>
+  <data name="LoadingSpeakers" xml:space="preserve">
+    <value>Loading Speakers...</value>
   </data>
   <data name="LoadingTalks" xml:space="preserve">
     <value>Loading talks...</value>
@@ -288,6 +297,9 @@ Sergey Polezhaev</value>
   </data>
   <data name="Speakers" xml:space="preserve">
     <value>Speakers</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Submit</value>
   </data>
   <data name="Talk" xml:space="preserve">
     <value>Talk</value>
