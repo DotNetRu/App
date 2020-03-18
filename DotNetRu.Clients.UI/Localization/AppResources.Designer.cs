@@ -151,6 +151,15 @@ namespace DotNetRu.Clients.UI.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Cancel.
+        /// </summary>
+        public static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Code from Session.
         /// </summary>
         public static string CodeFromSession {
@@ -320,11 +329,29 @@ namespace DotNetRu.Clients.UI.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Loading Friends....
+        /// </summary>
+        public static string LoadingFriends {
+            get {
+                return ResourceManager.GetString("LoadingFriends", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Loading meetups...
         /// </summary>
         public static string LoadingMeetups {
             get {
                 return ResourceManager.GetString("LoadingMeetups", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Loading Speakers...
+        /// </summary>
+        public static string LoadingSpeakers {
+            get {
+                return ResourceManager.GetString("LoadingSpeakers", resourceCulture);
             }
         }
         
@@ -568,6 +595,15 @@ namespace DotNetRu.Clients.UI.Localization {
         public static string Speakers {
             get {
                 return ResourceManager.GetString("Speakers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Submit.
+        /// </summary>
+        public static string Submit {
+            get {
+                return ResourceManager.GetString("Submit", resourceCulture);
             }
         }
         

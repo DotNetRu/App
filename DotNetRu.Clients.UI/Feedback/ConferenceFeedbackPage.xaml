@@ -1,53 +1,63 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<pages:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DotNetRu.Clients.UI.Pages.Home.ConferenceFeedbackPage"
-             xmlns:pages="clr-namespace:DotNetRu.Clients.UI.Pages;assembly=DotNetRu.Clients.UI"
-                Title="{Binding Title}"
-             NavigationPage.BackButtonTitle="Back"
-             BackgroundColor="{DynamicResource WindowBackground}">
+<pages:BasePage
+    x:Class="DotNetRu.Clients.UI.Pages.Home.ConferenceFeedbackPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:DotNetRu.Clients.UI.Pages;assembly=DotNetRu.Clients.UI"
+    Title="{Binding Title}"
+    BackgroundColor="{DynamicResource WindowBackground}"
+    NavigationPage.BackButtonTitle="Back">
 
-  <ContentPage.ToolbarItems>
-    <ToolbarItem Text="Cancel" Command="{Binding DoneCommand}" x:Name="ToolbarDone"/>
-  </ContentPage.ToolbarItems>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            x:Name="ToolbarDone"
+            Command="{Binding DoneCommand}"
+            Text="{Binding Resources[Cancel]}" />
+    </ContentPage.ToolbarItems>
 
-  <Grid Padding="24">
-    <Grid.RowDefinitions>
-      <RowDefinition Height="*"/>
-      <RowDefinition Height="Auto"/>
-    </Grid.RowDefinitions>
+    <Grid Padding="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
 
-    <ScrollView VerticalOptions="FillAndExpand">
+        <ScrollView VerticalOptions="FillAndExpand">
 
-      <StackLayout VerticalOptions="FillAndExpand" Spacing="{DynamicResource CardSpacing}"
-                    Padding="{DynamicResource CardPadding}">
+            <StackLayout
+                Padding="{DynamicResource CardPadding}"
+                Spacing="{DynamicResource CardSpacing}"
+                VerticalOptions="FillAndExpand" />
+        </ScrollView>
 
-      </StackLayout>
-    </ScrollView>
+        <StackLayout Grid.Row="1" Padding="{StaticResource StandardPadding}">
+            <Button
+                Command="{Binding SubmitFeedbackCommand}"
+                IsEnabled="{Binding IsNotBusy}"
+                StyleId="ButtonSubmit"
+                Text="{Binding Resources[Submit]}">
 
-    <StackLayout Padding="{StaticResource StandardPadding}" Grid.Row="1">
-      <Button
-          Text="Submit"
-          StyleId="ButtonSubmit"
-          Command="{Binding SubmitFeedbackCommand}"
-          IsEnabled="{Binding IsNotBusy}">
-
-        <Button.FontAttributes>
-          <OnPlatform x:TypeArguments="FontAttributes" iOS="Bold"/>
-        </Button.FontAttributes>
-        <Button.BackgroundColor>
-          <OnPlatform x:TypeArguments="Color" Android="{StaticResource PrimaryDark}" iOS="Transparent"/>
-        </Button.BackgroundColor>
-        <Button.TextColor>
-          <OnPlatform x:TypeArguments="Color" Android="White" iOS="{StaticResource PrimaryDark}"/>
-        </Button.TextColor>
-        <Button.BorderWidth>
-          <OnPlatform x:TypeArguments="x:Double" iOS="1"/>
-        </Button.BorderWidth>
-        <Button.BorderColor>
-          <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ButtonBorder}"/>
-        </Button.BorderColor>
-      </Button>
-    </StackLayout>
-  </Grid>
+                <Button.FontAttributes>
+                    <OnPlatform x:TypeArguments="FontAttributes" iOS="Bold" />
+                </Button.FontAttributes>
+                <Button.BackgroundColor>
+                    <OnPlatform
+                        x:TypeArguments="Color"
+                        Android="{StaticResource PrimaryDark}"
+                        iOS="Transparent" />
+                </Button.BackgroundColor>
+                <Button.TextColor>
+                    <OnPlatform
+                        x:TypeArguments="Color"
+                        Android="White"
+                        iOS="{StaticResource PrimaryDark}" />
+                </Button.TextColor>
+                <Button.BorderWidth>
+                    <OnPlatform x:TypeArguments="x:Double" iOS="1" />
+                </Button.BorderWidth>
+                <Button.BorderColor>
+                    <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ButtonBorder}" />
+                </Button.BorderColor>
+            </Button>
+        </StackLayout>
+    </Grid>
 </pages:BasePage>

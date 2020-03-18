@@ -226,10 +226,10 @@
     <value>Доклады</value>
   </data>
   <data name="LoadingMeetups" xml:space="preserve">
-    <value>Загрузка встреч..</value>
+    <value>Загрузка встреч...</value>
   </data>
   <data name="LoadingTalks" xml:space="preserve">
-    <value>Загрузка докладов..</value>
+    <value>Загрузка докладов...</value>
   </data>
   <data name="NoTalksFound" xml:space="preserve">
     <value>Доклады не найдены</value>
@@ -322,6 +322,17 @@
   <data name="RemoveFromCalendar" xml:space="preserve">
     <value>Удалить из календаря</value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="LoadingFriends" xml:space="preserve">
+    <value>Загрузка друзей...</value>
+  </data>
+  <data name="LoadingSpeakers" xml:space="preserve">
+    <value>Загрузка спикеров...</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Подтвердить</value>
   <data name="EkbDotNet" xml:space="preserve">
     <value>Екатеринбург</value>
   </data>
