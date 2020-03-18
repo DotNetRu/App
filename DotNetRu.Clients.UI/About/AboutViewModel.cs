@@ -52,9 +52,19 @@ namespace DotNetRu.Clients.Portable.ViewModel
             }));
 
             var communities = RealmService.Get<CommunityModel>();
-            aboutPageItems.Add(new Grouping<string, AboutPageItem>("OurCommunities", communities.Select(x => new AboutPageItem
+            var sessions = RealmService.Get<MeetupModel>();
+            var communitiesWithFirstSessionDate = communities.Join(
+                sessions,
+                c => c.Id,
+                s => s.CommunityID,
+                (c, s) => new
+                {
+                    Community = c,
+                    FirstSessionDate = s.Sessions.OrderBy(session => session.StartTime).FirstOrDefault()?.StartTime
+                }).OrderBy(x => x.FirstSessionDate).GroupBy(x => x.Community.Id).Select(x => x.First());
+            aboutPageItems.Add(new Grouping<string, AboutPageItem>("OurCommunities", communitiesWithFirstSessionDate.Select(x => new AboutPageItem
             {
-                Community = x,
+                Community = x.Community,
                 AboutItemType = AboutItemType.Community
             })));
 
