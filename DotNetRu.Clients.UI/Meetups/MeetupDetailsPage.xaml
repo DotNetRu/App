@@ -16,6 +16,7 @@
             <converters:TranslateConverter x:Key="TranslateConverter" />
             <converters:SessionTimeDisplayConverter x:Key="SessionTimeDisplayConverter" />
             <converters:HasReminderTextConverter x:Key="HasReminderTextConverter" />
+            <converters:MeetupDetailsPageItemsToVisibleConverter x:Key="MeetupDetailsPageItemsToVisibleConverter" />
             <converters:TalkLogoConverter x:Key="TalkLogoConverter" />
 
             <DataTemplate x:Key="sessionTemplate" x:DataType="meetups:MeetupDetailsPageItem">
@@ -145,7 +146,10 @@
         <ListView.GroupHeaderTemplate>
             <DataTemplate>
                 <ViewCell>
-                    <StackLayout VerticalOptions="Center">
+                    <StackLayout
+                        HeightRequest="{Binding Items, Converter={StaticResource MeetupDetailsPageItemsToVisibleConverter}, ConverterParameter=25}"
+                        IsVisible="{Binding Items, Converter={StaticResource MeetupDetailsPageItemsToVisibleConverter}}"
+                        VerticalOptions="Center">
                         <StackLayout.BackgroundColor>
                             <OnPlatform x:TypeArguments="Color" Android="#F5F5F5" />
                         </StackLayout.BackgroundColor>
