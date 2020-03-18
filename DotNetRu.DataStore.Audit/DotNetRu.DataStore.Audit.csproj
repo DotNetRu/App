@@ -2,13 +2,18 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <SolutionDir>..\</SolutionDir>
-    <ProduceReferenceAssembly>True</ProduceReferenceAssembly>      
+    <ProduceReferenceAssembly>True</ProduceReferenceAssembly>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="DotNetRuOffline.realm" />
+    <None Remove="Images\logos\KrdDotNet.png" />
+    <None Remove="Images\logos\NnvDotNet.png" />
     <None Remove="Images\logos\NskDotNet.png" />
     <None Remove="Images\logos\OmsDotNet.png" />
-  </ItemGroup>  
+    <None Remove="Images\logos\PnzDotNet.png" />
+    <None Remove="Images\logos\SamDotNet.png" />
+    <None Remove="Images\logos\UfaDotNet.png" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="9.0.0" />
     <PackageReference Include="Flurl.Http" Version="2.4.2" />
@@ -25,14 +30,29 @@
     <EmbeddedResource Include="DotNetRuOffline.realm">
       <LogicalName>DotNetRuOffline.realm</LogicalName>
     </EmbeddedResource>
+    <EmbeddedResource Include="Images\logos\KrdDotNet.png">
+        <LogicalName>KrdDotNet.png</LogicalName>
+    </EmbeddedResource>
     <EmbeddedResource Include="Images\logos\KznDotNet.png">
       <LogicalName>KznDotNet.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\logos\NnvDotNet.png">
+      <LogicalName>NnvDotNet.png</LogicalName>
     </EmbeddedResource>
     <EmbeddedResource Include="Images\logos\NskDotNet.png">
       <LogicalName>NskDotNet.png</LogicalName>
     </EmbeddedResource>
     <EmbeddedResource Include="Images\logos\OmsDotNet.png">
       <LogicalName>OmsDotNet.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\logos\PnzDotNet.png">
+        <LogicalName>PnzDotNet.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\logos\SamDotNet.png">
+        <LogicalName>SamDotNet.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\logos\UfaDotNet.png">
+        <LogicalName>UfaDotNet.png</LogicalName>
     </EmbeddedResource>
     <EmbeddedResource Include="Images\SeveralSpeakers.png">
       <LogicalName>SeveralSpeakers.png</LogicalName>
