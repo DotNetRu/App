@@ -17,6 +17,7 @@
             <converters:SessionTimeDisplayConverter x:Key="SessionTimeDisplayConverter" />
             <converters:HasReminderTextConverter x:Key="HasReminderTextConverter" />
             <converters:MeetupDetailsPageItemsToVisibleConverter x:Key="MeetupDetailsPageItemsToVisibleConverter" />
+            <converters:TalkLogoConverter x:Key="TalkLogoConverter" />
 
             <DataTemplate x:Key="sessionTemplate" x:DataType="meetups:MeetupDetailsPageItem">
                 <ViewCell StyleId="disclosure">
@@ -39,7 +40,7 @@
                             Grid.Column="0"
                             Aspect="AspectFill"
                             HeightRequest="44"
-                            Source="{Binding Session.Talk.SpeakerAvatar}"
+                            Source="{Binding Session.Talk, Converter={StaticResource TalkLogoConverter}}"
                             VerticalOptions="Center"
                             WidthRequest="44" />
 

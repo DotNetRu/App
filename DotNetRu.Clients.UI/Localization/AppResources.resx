@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -168,6 +168,9 @@ Sergey Polezhaev</value>
   </data>
   <data name="DotNetRu" xml:space="preserve">
     <value>DotNetRu</value>
+  </data>
+  <data name="EkbDotNet" xml:space="preserve">
+    <value>Ekaterinburg</value>
   </data>
   <data name="ErrorOccured" xml:space="preserve">
     <value>Error occured</value>

@@ -3,6 +3,7 @@ namespace DotNetRu.DataStore.Audit.Models
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Reflection;
     using System.Text;
     using DotNetRu.DataStore.Audit.Services;
     using Xamarin.Forms;
@@ -11,7 +12,7 @@ namespace DotNetRu.DataStore.Audit.Models
     {
         private const string Delimiter = "|";
 
-        private readonly IList<string> seeAlsoTalksIds;        
+        private readonly IList<string> seeAlsoTalksIds;
 
         private string haystack;
 
@@ -33,7 +34,7 @@ namespace DotNetRu.DataStore.Audit.Models
 
         public IEnumerable<SpeakerModel> Speakers { get; set; }
 
-        public IEnumerable<TalkModel> SeeAlsoTalks => CachedModelsProvider<TalkModel>.Get(seeAlsoTalksIds);        
+        public IEnumerable<TalkModel> SeeAlsoTalks => CachedModelsProvider<TalkModel>.Get(seeAlsoTalksIds);
 
         public ICollection<Category> Categories { get; set; }
 
@@ -83,7 +84,7 @@ namespace DotNetRu.DataStore.Audit.Models
         public string SpeakerNames => string.Join(", ", this.Speakers.Select(x => x.FullName));
 
         public ImageSource CommunityLogo => ImageSource.FromResource(
-           "DotNetRu.DataStore.Audit.Images.logos." + this.Sessions.First().Meetup.CommunityID + ".png");
+            this.Sessions.First().Meetup.CommunityID + ".png", typeof(RealmService).GetTypeInfo().Assembly);
 
         public IEnumerable<SessionModel> Sessions { get; set; }
     }
