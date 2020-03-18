@@ -1,78 +1,89 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<pages:BasePage 
-    xmlns="http://xamarin.com/schemas/2014/forms" 
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:pages="clr-namespace:DotNetRu.Clients.UI.Pages;assembly=DotNetRu.Clients.UI"
-    xmlns:converters="clr-namespace:DotNetRu.Clients.UI.Converters;assembly=DotNetRu.Clients.UI"
-    xmlns:controls="clr-namespace:DotNetRu.Clients.UI.Controls;assembly=DotNetRu.Clients.UI"
+<?xml version="1.0" encoding="UTF-8" ?>
+<pages:BasePage
     x:Class="DotNetRu.Clients.UI.Pages.Sessions.FeedbackPage"
-    BackgroundColor="{DynamicResource WindowBackground}"
-    Title="Rate Session">
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:DotNetRu.Clients.UI.Controls;assembly=DotNetRu.Clients.UI"
+    xmlns:converters="clr-namespace:DotNetRu.Clients.UI.Converters;assembly=DotNetRu.Clients.UI"
+    xmlns:pages="clr-namespace:DotNetRu.Clients.UI.Pages;assembly=DotNetRu.Clients.UI"
+    Title="Rate Session"
+    BackgroundColor="{DynamicResource WindowBackground}">
     <ContentPage.Resources>
-     <ResourceDictionary>
-        <converters:RatingConverter x:Key="RatingConverter" />
-     </ResourceDictionary>
+        <ResourceDictionary>
+            <converters:RatingConverter x:Key="RatingConverter" />
+        </ResourceDictionary>
     </ContentPage.Resources>
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Cancel" Command="{Binding DoneCommand}" x:Name="ToolbarDone"/>
+        <ToolbarItem
+            x:Name="ToolbarDone"
+            Command="{Binding DoneCommand}"
+            Text="{Binding Resources[Cancel]}" />
     </ContentPage.ToolbarItems>
     <Grid Padding="24">
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <StackLayout VerticalOptions="Center" Spacing="{StaticResource StandardSpacing}">
-            <Image Source="icon_sessions_big_purple.png" HorizontalOptions="Center" />
-            <Label Text="{Binding Session.Title}" 
-                HorizontalTextAlignment="Center" HorizontalOptions="Center" 
+        <StackLayout Spacing="{StaticResource StandardSpacing}" VerticalOptions="Center">
+            <Image HorizontalOptions="Center" Source="icon_sessions_big_purple.png" />
+            <Label
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"
+                Style="{DynamicResource EvolveListItemTextStyle}"
                 StyleId="LabelSessionName"
-                Style="{DynamicResource EvolveListItemTextStyle}"/>
+                Text="{Binding Session.Title}" />
 
-            <Grid RowSpacing="18" HorizontalOptions="Center">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="20"/>
-            </Grid.RowDefinitions>
+            <Grid HorizontalOptions="Center" RowSpacing="18">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20" />
+                </Grid.RowDefinitions>
 
-            <controls:RatingControl x:Name="RatingControl" Grid.Column="1" />
-          </Grid>
+                <controls:RatingControl x:Name="RatingControl" Grid.Column="1" />
+            </Grid>
 
-            <Label Text="{Binding Source={x:Reference RatingControl},
-                   Path=Rating, Converter={StaticResource RatingConverter}}" 
-                   Style="{DynamicResource EvolveListItemDetailTextStyle}"
-                   StyleId="Status"
-                   HorizontalOptions="Center"/>
+            <Label
+                HorizontalOptions="Center"
+                Style="{DynamicResource EvolveListItemDetailTextStyle}"
+                StyleId="Status"
+                Text="{Binding Source={x:Reference RatingControl}, Path=Rating, Converter={StaticResource RatingConverter}}" />
         </StackLayout>
-        <StackLayout Padding="{StaticResource StandardPadding}" Grid.Row="1">
+        <StackLayout Grid.Row="1" Padding="{StaticResource StandardPadding}">
             <Button
-                Text="Submit"  
-                StyleId="ButtonSubmit"
                 Command="{Binding SubmitRatingCommand}"
-                CommandParameter="{Binding Source={x:Reference RatingControl},Path=Rating}"
-                IsEnabled="{Binding IsNotBusy}">
+                CommandParameter="{Binding Source={x:Reference RatingControl}, Path=Rating}"
+                IsEnabled="{Binding IsNotBusy}"
+                StyleId="ButtonSubmit"
+                Text="{Binding Resources[Submit]}">
 
                 <Button.FontAttributes>
-                    <OnPlatform x:TypeArguments="FontAttributes" iOS="Bold"/>
+                    <OnPlatform x:TypeArguments="FontAttributes" iOS="Bold" />
                 </Button.FontAttributes>
                 <Button.BackgroundColor>
-                    <OnPlatform x:TypeArguments="Color" Android="{StaticResource PrimaryDark}" iOS="Transparent"/>
+                    <OnPlatform
+                        x:TypeArguments="Color"
+                        Android="{StaticResource PrimaryDark}"
+                        iOS="Transparent" />
                 </Button.BackgroundColor>
                 <Button.TextColor>
-                    <OnPlatform x:TypeArguments="Color" Android="White" iOS="{StaticResource PrimaryDark}"/>
+                    <OnPlatform
+                        x:TypeArguments="Color"
+                        Android="White"
+                        iOS="{StaticResource PrimaryDark}" />
                 </Button.TextColor>
                 <Button.BorderWidth>
-                    <OnPlatform x:TypeArguments="x:Double" iOS="1"/>
-                </Button.BorderWidth> 
+                    <OnPlatform x:TypeArguments="x:Double" iOS="1" />
+                </Button.BorderWidth>
                 <Button.BorderColor>
-                   <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ButtonBorder}"/>
-                </Button.BorderColor> 
+                    <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ButtonBorder}" />
+                </Button.BorderColor>
             </Button>
-            </StackLayout>
+        </StackLayout>
     </Grid>
 </pages:BasePage>

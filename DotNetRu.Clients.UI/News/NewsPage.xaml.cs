@@ -1,3 +1,5 @@
+using Xamarin.Essentials;
+
 namespace DotNetRu.Clients.UI.Pages.Home
 {
     using System;
@@ -29,7 +31,14 @@ namespace DotNetRu.Clients.UI.Pages.Home
                             Command = this.NewsViewModel.RefreshCommand
                         });
             }
-            this.ListViewSocial.ItemSelected += (sender, e) => this.ListViewSocial.SelectedItem = null;
+            this.ListViewSocial.ItemSelected += async (sender, e) =>
+            {
+                if (e.SelectedItem is Tweet tweet && !string.IsNullOrWhiteSpace(tweet.Url))
+                {
+                    await Launcher.OpenAsync(new Uri(tweet.Url));
+                }
+                this.ListViewSocial.SelectedItem = null;
+            };
         }
 
         public override AppPage PageType => AppPage.News;

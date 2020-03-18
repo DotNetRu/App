@@ -7,6 +7,7 @@ namespace DotNetRu.Clients.UI
         public AppShell()
         {
             InitializeComponent();
+            this.BindingContext = new AppShellViewModel();
 
             var primaryColor = (Color)Application.Current.Resources["Primary"];
 
