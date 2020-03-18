@@ -212,6 +212,15 @@ namespace DotNetRu.Clients.UI.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Ekaterinburg.
+        /// </summary>
+        public static string EkbDotNet {
+            get {
+                return ResourceManager.GetString("EkbDotNet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Error occured.
         /// </summary>
         public static string ErrorOccured {
@@ -329,7 +338,7 @@ namespace DotNetRu.Clients.UI.Localization {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Loading meetups....
+        ///   Ищет локализованную строку, похожую на Loading meetups...
         /// </summary>
         public static string LoadingMeetups {
             get {
@@ -338,7 +347,7 @@ namespace DotNetRu.Clients.UI.Localization {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Loading Speakers....
+        ///   Ищет локализованную строку, похожую на Loading Speakers...
         /// </summary>
         public static string LoadingSpeakers {
             get {

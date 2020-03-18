@@ -333,5 +333,7 @@
   </data>
   <data name="Submit" xml:space="preserve">
     <value>Подтвердить</value>
+  <data name="EkbDotNet" xml:space="preserve">
+    <value>Екатеринбург</value>
   </data>
 </root>
