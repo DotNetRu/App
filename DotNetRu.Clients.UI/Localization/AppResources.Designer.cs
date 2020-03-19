@@ -221,6 +221,24 @@ namespace DotNetRu.Clients.UI.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Enter search term.
+        /// </summary>
+        public static string Enter_search_term {
+            get {
+                return ResourceManager.GetString("Enter search term", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Enter speaker fullname.
+        /// </summary>
+        public static string Enter_speaker_fullname {
+            get {
+                return ResourceManager.GetString("Enter speaker fullname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Error occured.
         /// </summary>
         public static string ErrorOccured {
@@ -338,7 +356,7 @@ namespace DotNetRu.Clients.UI.Localization {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Loading meetups...
+        ///   Ищет локализованную строку, похожую на Loading meetups....
         /// </summary>
         public static string LoadingMeetups {
             get {
@@ -347,7 +365,7 @@ namespace DotNetRu.Clients.UI.Localization {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Loading Speakers...
+        ///   Ищет локализованную строку, похожую на Loading Speakers....
         /// </summary>
         public static string LoadingSpeakers {
             get {

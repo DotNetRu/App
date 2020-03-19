@@ -1,8 +1,10 @@
 using DotNetRu.Clients.Portable.Model;
 using DotNetRu.Clients.Portable.ViewModel;
+using DotNetRu.Clients.UI.Handlers;
 using DotNetRu.Clients.UI.Helpers;
 using DotNetRu.Clients.UI.Speakers;
 using DotNetRu.DataStore.Audit.Models;
+using ImageCircle.Forms.Plugin.Abstractions;
 using Xamarin.Forms;
 
 namespace DotNetRu.Clients.UI.Pages.Speakers
@@ -13,12 +15,51 @@ namespace DotNetRu.Clients.UI.Pages.Speakers
 
         SpeakersViewModel speakersViewModel;
 
-        SpeakersViewModel ViewModel => this.speakersViewModel ?? (this.speakersViewModel = this.BindingContext as SpeakersViewModel);
+        SpeakersViewModel ViewModel => this.speakersViewModel ??= this.BindingContext as SpeakersViewModel;
 
         public SpeakersPage()
         {
             this.InitializeComponent();
             this.BindingContext = new SpeakersViewModel(this.Navigation);
+
+            Shell.SetSearchHandler(this, new SpeakersSearchHandler(this.BindingContext as SpeakersViewModel, this)
+            {
+                Placeholder = (this.BindingContext as SpeakersViewModel)?.Resources["Enter speaker fullname"] ?? "Enter speaker fullname",
+                ShowsResults = true,
+                DisplayMemberName = nameof(SpeakerModel.FullName),
+                ItemTemplate = new DataTemplate(() =>
+                {
+                    var grid = new Grid { VerticalOptions = LayoutOptions.Center, Padding = 16.5, ColumnSpacing = (double)Application.Current.Resources["StandardSpacing"] };
+                    grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(0, GridUnitType.Auto) });
+                    grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+
+                    var circleImage = new CircleImage
+                    {
+                        FillColor = (Color)Application.Current.Resources["Primary"],
+                        VerticalOptions = LayoutOptions.Center,
+                        Aspect = Aspect.AspectFill,
+                        HeightRequest = 44,
+                        WidthRequest = 44
+                    };
+                    circleImage.SetBinding(Image.SourceProperty, nameof(SpeakerModel.AvatarSmallURL));
+
+                    var stackLayout = new StackLayout
+                    {
+                        VerticalOptions = LayoutOptions.Center,
+                        Spacing = (double)Application.Current.Resources["SmallSpacing"]
+                    };
+                    var fullNameLabel = new Label { Style = (Style)Application.Current.Resources["EvolveListItemTextStyle"] };
+                    fullNameLabel.SetBinding(Label.TextProperty, nameof(SpeakerModel.FullName));
+                    stackLayout.Children.Add(fullNameLabel);
+                    var titleLabel = new Label { Style = (Style)Application.Current.Resources["EvolveListItemDetailTextStyle"] };
+                    titleLabel.SetBinding(Label.TextProperty, nameof(SpeakerModel.Title));
+                    stackLayout.Children.Add(titleLabel);
+
+                    grid.Children.Add(circleImage);
+                    grid.Children.Add(stackLayout, 1, 0);
+                    return grid;
+                })
+            });
 
             if (Device.RuntimePlatform == Device.Android)
             {
