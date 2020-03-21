@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Android.Widget;
 using DotNetRu.Droid.Helpers;
 using Xamarin.Forms;
@@ -15,14 +15,10 @@ namespace DotNetRu.Droid.Helpers
         {
             try
             {
-                var listView = this.Control as AbsListView;
-
-                if (listView == null)
+                if (this.Control is AbsListView listView)
                 {
-                    return;
+                    listView.SetDrawSelectorOnTop(true);
                 }
-
-                listView.SetDrawSelectorOnTop(true);
             }
             catch (Exception)
             {

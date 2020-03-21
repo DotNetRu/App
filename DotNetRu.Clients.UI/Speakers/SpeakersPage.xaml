@@ -26,6 +26,9 @@
                 IsVisible="{Binding IsNotBusy}"
                 ItemsSource="{Binding Speakers}"
                 RowHeight="90">
+                <ListView.Effects>
+                    <OnPlatform x:TypeArguments="Effect" Android="{StaticResource ListViewSelectionOnTopEffect}" />
+                </ListView.Effects>
                 <ListView.SeparatorColor>
                     <OnPlatform
                         x:TypeArguments="Color"
