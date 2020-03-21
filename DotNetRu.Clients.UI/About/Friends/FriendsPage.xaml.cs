@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using DotNetRu.Clients.Portable.Model;
 using DotNetRu.Clients.Portable.ViewModel;
 using DotNetRu.Clients.UI.Helpers;
@@ -15,11 +15,6 @@ namespace DotNetRu.Clients.UI.Pages.Friends
         {
             this.InitializeComponent();
             this.BindingContext = new FriendsViewModel(this.Navigation);
-
-            if (Device.RuntimePlatform == Device.Android)
-            {
-                this.ListViewFriends.Effects.Add(Effect.Resolve("Xpirit.ListViewSelectionOnTopEffect"));
-            }
 
             if (Device.RuntimePlatform == Device.UWP)
             {
@@ -41,7 +36,7 @@ namespace DotNetRu.Clients.UI.Pages.Friends
         }
 
         public FriendsViewModel FriendsViewModel =>
-            this.friendsViewModel ?? (this.friendsViewModel = this.BindingContext as FriendsViewModel);
+            this.friendsViewModel ??= this.BindingContext as FriendsViewModel;
 
         public override AppPage PageType => AppPage.Friends;
 

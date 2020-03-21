@@ -13,17 +13,12 @@ namespace DotNetRu.Clients.UI.Pages.Speakers
 
         SpeakersViewModel speakersViewModel;
 
-        SpeakersViewModel ViewModel => this.speakersViewModel ?? (this.speakersViewModel = this.BindingContext as SpeakersViewModel);
+        SpeakersViewModel ViewModel => this.speakersViewModel ??= this.BindingContext as SpeakersViewModel;
 
         public SpeakersPage()
         {
             this.InitializeComponent();
             this.BindingContext = new SpeakersViewModel(this.Navigation);
-
-            if (Device.RuntimePlatform == Device.Android)
-            {
-                this.ListViewSpeakers.Effects.Add(Effect.Resolve("Xpirit.ListViewSelectionOnTopEffect"));
-            }
 
             this.ListViewSpeakers.ItemSelected += async (sender, e) =>
                 {
