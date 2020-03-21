@@ -1,4 +1,6 @@
-﻿namespace DotNetRu.Clients.UI.Pages
+using System.Diagnostics;
+
+namespace DotNetRu.Clients.UI.Pages
 {
     using System;
 
@@ -9,7 +11,7 @@
 
     public abstract class BasePage : ContentPage, IProvidePageInfo
     {
-        private DateTime appeared;
+        private Stopwatch appeared;
 
         public abstract AppPage PageType { get; }
 
@@ -17,7 +19,7 @@
 
         protected override void OnAppearing()
         {
-            this.appeared = DateTime.UtcNow;
+            this.appeared = Stopwatch.StartNew();
             App.Logger.TrackPage(this.PageType.ToString(), this.ItemId);
 
             base.OnAppearing();
@@ -25,7 +27,7 @@
 
         protected override void OnDisappearing()
         {
-            App.Logger.TrackTimeSpent(this.PageType.ToString(), this.ItemId, DateTime.UtcNow - this.appeared);
+            App.Logger.TrackTimeSpent(this.PageType.ToString(), this.ItemId, TimeSpan.FromTicks(DateTime.UtcNow.Ticks).Subtract(this.appeared.Elapsed));
             base.OnDisappearing();
         }
     }
