@@ -20,6 +20,11 @@ namespace DotNetRu.Clients.UI.Pages.Speakers
             this.InitializeComponent();
             this.BindingContext = new SpeakersViewModel(this.Navigation);
 
+            if (Device.RuntimePlatform == Device.Android)
+            {
+                this.ListViewSpeakers.Effects.Add(Effect.Resolve("Xpirit.ListViewSelectionOnTopEffect"));
+            }
+
             this.ListViewSpeakers.ItemSelected += async (sender, e) =>
                 {
                     if (!(this.ListViewSpeakers.SelectedItem is SpeakerModel speaker))

@@ -2,14 +2,51 @@
     x:Class="DotNetRu.Clients.UI.Pages.Speakers.SpeakersPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:abstractions="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
     xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
     xmlns:cells="clr-namespace:DotNetRu.Clients.UI.Cells;assembly=DotNetRu.Clients.UI"
+    xmlns:handlers="clr-namespace:DotNetRu.Clients.UI.Handlers;assembly=DotNetRu.Clients.UI"
     xmlns:models="clr-namespace:DotNetRu.DataStore.Audit.Models;assembly=DotNetRu.DataStore.Audit"
     xmlns:pages="clr-namespace:DotNetRu.Clients.UI.Pages;assembly=DotNetRu.Clients.UI"
     x:Name="SpeakersScreen"
     Title="{Binding Resources[Speakers]}"
     BackgroundColor="{DynamicResource WindowBackground}"
     Icon="tab_speakers.png">
+    <Shell.SearchHandler>
+        <handlers:SpeakersSearchHandler
+            DisplayMemberName="{Binding FullName}"
+            ItemsSource="{Binding Speakers}"
+            Placeholder="{Binding Resources[Enter speaker fullname]}"
+            ShowsResults="True">
+            <handlers:SpeakersSearchHandler.ItemTemplate>
+                <DataTemplate>
+                    <Grid
+                        Padding="16,5"
+                        ColumnSpacing="{StaticResource StandardSpacing}"
+                        VerticalOptions="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <abstractions:CircleImage
+                            Aspect="AspectFill"
+                            FillColor="{DynamicResource Primary}"
+                            HeightRequest="44"
+                            Source="{Binding AvatarSmallURL}"
+                            VerticalOptions="Start"
+                            WidthRequest="44" />
+                        <StackLayout
+                            Grid.Column="1"
+                            Spacing="{StaticResource SmallSpacing}"
+                            VerticalOptions="Center">
+                            <Label Style="{DynamicResource EvolveListItemTextStyle}" Text="{Binding FullName}" />
+                            <Label Style="{DynamicResource EvolveListItemDetailTextStyle}" Text="{Binding Title}" />
+                        </StackLayout>
+                    </Grid>
+                </DataTemplate>
+            </handlers:SpeakersSearchHandler.ItemTemplate>
+        </handlers:SpeakersSearchHandler>
+    </Shell.SearchHandler>
     <ContentPage.Content>
         <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <ListView
