@@ -148,7 +148,28 @@ namespace DotNetRu.Clients.UI.Localization {
                 return ResourceManager.GetString("EkbDotNet", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Enter search term.
+        /// </summary>
+        public static string Enter_search_term {
+            get {
+                return ResourceManager.GetString("Enter search term", resourceCulture);
+            }
+        }
         
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Enter speaker fullname.
+        /// </summary>
+        public static string Enter_speaker_fullname {
+            get {
+                return ResourceManager.GetString("Enter speaker fullname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Error occured.
+        /// </summary>
         public static string ErrorOccured {
             get {
                 return ResourceManager.GetString("ErrorOccured", resourceCulture);
@@ -226,13 +247,19 @@ namespace DotNetRu.Clients.UI.Localization {
                 return ResourceManager.GetString("LoadingFriends", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Loading meetups....
+        /// </summary>
         public static string LoadingMeetups {
             get {
                 return ResourceManager.GetString("LoadingMeetups", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Loading Speakers....
+        /// </summary>
         public static string LoadingSpeakers {
             get {
                 return ResourceManager.GetString("LoadingSpeakers", resourceCulture);

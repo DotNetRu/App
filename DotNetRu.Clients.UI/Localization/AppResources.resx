@@ -175,6 +175,12 @@ Sergey Polezhaev</value>
   <data name="EkbDotNet" xml:space="preserve">
     <value>Ekaterinburg</value>
   </data>
+  <data name="Enter search term" xml:space="preserve">
+    <value>Enter search term</value>
+  </data>
+  <data name="Enter speaker fullname" xml:space="preserve">
+    <value>Enter speaker fullname</value>
+  </data>
   <data name="ErrorOccured" xml:space="preserve">
     <value>Error occured</value>
   </data>

@@ -43,7 +43,7 @@ namespace DotNetRu.Clients.UI.Pages.Home
 
         public override AppPage PageType => AppPage.News;
 
-        public NewsViewModel NewsViewModel => this.newsViewModel ?? (this.newsViewModel = this.BindingContext as NewsViewModel);
+        public NewsViewModel NewsViewModel => this.newsViewModel ??= this.BindingContext as NewsViewModel;
 
         protected override void OnAppearing()
         {
