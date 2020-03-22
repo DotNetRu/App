@@ -1,8 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using DotNetRu.Clients.Portable.Model;
-using DotNetRu.Clients.Portable.ViewModel;
-using DotNetRu.Clients.UI.Pages.Home;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -10,31 +9,34 @@ namespace DotNetRu.Clients.UI.Handlers
 {
     public class NewsSearchHandler : SearchHandler
     {
-        private readonly NewsViewModel _viewModel;
+        private IEnumerable<Tweet> _tweets;
 
-        private readonly NewsPage _page;
-
-        public NewsSearchHandler(NewsViewModel viewModel, NewsPage page)
-        {
-            _viewModel = viewModel;
-            _page = page;
-        }
+        private bool _isFirstSearch = true;
 
         protected override void OnQueryChanged(string oldValue, string newValue)
         {
             base.OnQueryChanged(oldValue, newValue);
 
-            if (string.IsNullOrWhiteSpace(newValue))
+            if (ItemsSource is IEnumerable<Tweet> tweets)
             {
-                ItemsSource = null;
-            }
-            else
-            {
-                ItemsSource = this._viewModel.Tweets.Where(x =>
-                        x.Text.Contains(newValue, StringComparison.InvariantCultureIgnoreCase) ||
-                        x.Name.Contains(newValue, StringComparison.InvariantCultureIgnoreCase))
-                    .OrderBy(x => x.CreatedDate)
-                    .ToList();
+                if (_isFirstSearch)
+                {
+                    this._tweets = tweets;
+                    this._isFirstSearch = false;
+                }
+
+                if (string.IsNullOrWhiteSpace(newValue))
+                {
+                    ItemsSource = this._tweets;
+                }
+                else
+                {
+                    ItemsSource = this._tweets.Where(x =>
+                            x.Text.Contains(newValue, StringComparison.InvariantCultureIgnoreCase) ||
+                            x.Name.Contains(newValue, StringComparison.InvariantCultureIgnoreCase))
+                        .OrderBy(x => x.CreatedDate)
+                        .ToList();
+                }
             }
         }
 

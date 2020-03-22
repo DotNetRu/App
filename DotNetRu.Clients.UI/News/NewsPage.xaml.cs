@@ -1,5 +1,3 @@
-using DotNetRu.Clients.UI.Handlers;
-using ImageCircle.Forms.Plugin.Abstractions;
 using Xamarin.Essentials;
 
 namespace DotNetRu.Clients.UI.Pages.Home
@@ -22,49 +20,6 @@ namespace DotNetRu.Clients.UI.Pages.Home
         {
             this.InitializeComponent();
             this.BindingContext = new NewsViewModel();
-
-            Shell.SetSearchHandler(this, new NewsSearchHandler(this.BindingContext as NewsViewModel, this)
-            {
-                Placeholder = (this.BindingContext as NewsViewModel)?.Resources["Enter search term"] ?? "Enter search term",
-                ShowsResults = true,
-                DisplayMemberName = nameof(Tweet.Text),
-                ItemTemplate = new DataTemplate(() =>
-                {
-                    var grid = new Grid { VerticalOptions = LayoutOptions.Center, Padding = 16.5, ColumnSpacing = (double)Application.Current.Resources["StandardSpacing"] };
-                    grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(0, GridUnitType.Auto) });
-                    grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
-
-                    var circleImage = new CircleImage
-                    {
-                        FillColor = (Color)Application.Current.Resources["Primary"],
-                        VerticalOptions = LayoutOptions.Start,
-                        HorizontalOptions = LayoutOptions.Center,
-                        Aspect = Aspect.AspectFill,
-                        HeightRequest = 44,
-                        WidthRequest = 44
-                    };
-                    circleImage.SetBinding(Image.SourceProperty, nameof(Tweet.Image));
-
-                    var stackLayout = new StackLayout
-                    {
-                        VerticalOptions = LayoutOptions.Center,
-                        Spacing = (double)Application.Current.Resources["SmallSpacing"]
-                    };
-                    var tweetNameLabel = new Label { Style = (Style)Application.Current.Resources["EvolveListItemTextStyle"] };
-                    tweetNameLabel.SetBinding(Label.TextProperty, nameof(Tweet.Name));
-                    stackLayout.Children.Add(tweetNameLabel);
-                    var tweetDateDisplayLabel = new Label { Style = (Style)Application.Current.Resources["EvolveListItemDetailTextStyle"] };
-                    tweetDateDisplayLabel.SetBinding(Label.TextProperty, nameof(Tweet.DateDisplay));
-                    stackLayout.Children.Add(tweetDateDisplayLabel);
-                    var tweetTextLabel = new Label { Style = (Style)Application.Current.Resources["EvolveListItemDetailTextStyle"] };
-                    tweetTextLabel.SetBinding(Label.TextProperty, nameof(Tweet.Text));
-                    stackLayout.Children.Add(tweetTextLabel);
-
-                    grid.Children.Add(circleImage);
-                    grid.Children.Add(stackLayout, 1, 0);
-                    return grid;
-                })
-            });
 
             if (Device.RuntimePlatform == Device.UWP)
             {
