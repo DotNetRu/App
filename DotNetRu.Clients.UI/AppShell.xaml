@@ -5,7 +5,7 @@
     xmlns:about="clr-namespace:DotNetRu.Clients.UI.Pages.About;assembly=DotNetRu.Clients.UI"
     xmlns:home="clr-namespace:DotNetRu.Clients.UI.Pages.Home;assembly=DotNetRu.Clients.UI"
     xmlns:meetups="clr-namespace:DotNetRu.Clients.UI.Pages.Meetups;assembly=DotNetRu.Clients.UI"
-    xmlns:speakers="clr-namespace:DotNetRu.Clients.UI.Pages.Speakers;assembly=DotNetRu.Clients.UI"
+    xmlns:speakers="clr-namespace:DotNetRu.Clients.UI.Pages.Speakers;assembly=DotNetRu.Clients.UI" xmlns:ui="clr-namespace:DotNetRu.Clients.UI"
     FlyoutBehavior="Disabled">
 
     <Shell.Resources>
@@ -25,33 +25,33 @@
     </Shell.Resources>
 
     <TabBar Route="root">
-        <Tab
+        <ui:CustomTab
             x:Name="NewsTab"
             Title="{Binding Resources[News]}"
             Icon="tab_feed.png"
             Route="news">
             <ShellContent ContentTemplate="{DataTemplate home:NewsPage}" />
-        </Tab>
-        <Tab
+        </ui:CustomTab>
+        <ui:CustomTab
             x:Name="SpeakersTab"
             Title="{Binding Resources[Speakers]}"
             Icon="tab_speakers.png"
             Route="speakers">
             <ShellContent ContentTemplate="{DataTemplate speakers:SpeakersPage}" />
-        </Tab>
-        <Tab
+        </ui:CustomTab>
+        <ui:CustomTab
             x:Name="MeetupsTab"
             Title="{Binding Resources[Meetups]}"
             Icon="tab_events.png"
             Route="meetups">
             <ShellContent ContentTemplate="{DataTemplate meetups:MeetupsPage}" />
-        </Tab>
-        <Tab
+        </ui:CustomTab>
+        <ui:CustomTab
             x:Name="AboutTab"
             Title="{Binding Resources[About]}"
             Icon="tab_about.png"
             Route="about">
             <ShellContent ContentTemplate="{DataTemplate about:AboutPage}" />
-        </Tab>
+        </ui:CustomTab>
     </TabBar>
 </Shell>
