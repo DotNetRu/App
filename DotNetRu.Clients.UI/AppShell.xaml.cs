@@ -1,7 +1,9 @@
+using System.Linq;
 using DotNetRu.Clients.Portable.Helpers;
-using DotNetRu.Clients.Portable.ViewModel;
+using DotNetRu.Clients.UI.Localization;
 using DotNetRu.Utils.Helpers;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 
 namespace DotNetRu.Clients.UI
 {
@@ -26,13 +28,7 @@ namespace DotNetRu.Clients.UI
         {
             Device.BeginInvokeOnMainThread(() =>
             {
-                if (this.BindingContext is ViewModelBase viewModel)
-                {
-                    this.NewsTab.Title = viewModel.Resources["News"] ?? this.NewsTab.Title;
-                    this.SpeakersTab.Title = viewModel.Resources["Speakers"] ?? this.SpeakersTab.Title;
-                    this.MeetupsTab.Title = viewModel.Resources["Meetups"] ?? this.MeetupsTab.Title;
-                    this.AboutTab.Title = viewModel.Resources["About"] ?? this.AboutTab.Title;
-                }
+                this.TabBar.Items.Where(i => i is LocalizableTab).Cast<LocalizableTab>().ForEach(x => x.Update());
             });
         }
     }
