@@ -26,24 +26,28 @@
 
     <TabBar Route="root">
         <Tab
+            x:Name="NewsTab"
             Title="{Binding Resources[News]}"
             Icon="tab_feed.png"
             Route="news">
             <ShellContent ContentTemplate="{DataTemplate home:NewsPage}" />
         </Tab>
         <Tab
+            x:Name="SpeakersTab"
             Title="{Binding Resources[Speakers]}"
             Icon="tab_speakers.png"
             Route="speakers">
             <ShellContent ContentTemplate="{DataTemplate speakers:SpeakersPage}" />
         </Tab>
         <Tab
+            x:Name="MeetupsTab"
             Title="{Binding Resources[Meetups]}"
             Icon="tab_events.png"
             Route="meetups">
             <ShellContent ContentTemplate="{DataTemplate meetups:MeetupsPage}" />
         </Tab>
         <Tab
+            x:Name="AboutTab"
             Title="{Binding Resources[About]}"
             Icon="tab_about.png"
             Route="about">
