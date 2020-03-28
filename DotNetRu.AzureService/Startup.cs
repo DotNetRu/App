@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace DotNetRu.AzureService
 {
@@ -22,10 +23,14 @@ namespace DotNetRu.AzureService
             var realmSettings = new RealmSettings();
             Configuration.Bind("RealmOptions", realmSettings);
 
+            var tweetSettings = new TweetSettings();
+            Configuration.Bind("TweetOptions", tweetSettings);
+
             var pushSettings = new PushSettings();
             Configuration.Bind("PushOptions", pushSettings);
 
             services.AddSingleton(realmSettings);
+            services.AddSingleton(tweetSettings);
             services.AddSingleton(pushSettings);
 
             services.AddScoped<PushNotificationsManager>();
@@ -38,8 +43,10 @@ namespace DotNetRu.AzureService
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory logFactory)
         {
+            ApplicationLogging.LoggerFactory = logFactory;
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
