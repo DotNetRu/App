@@ -4,8 +4,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:about="clr-namespace:DotNetRu.Clients.UI.Pages.About;assembly=DotNetRu.Clients.UI"
     xmlns:home="clr-namespace:DotNetRu.Clients.UI.Pages.Home;assembly=DotNetRu.Clients.UI"
+    xmlns:localization="clr-namespace:DotNetRu.Clients.UI.Localization;assembly=DotNetRu.Clients.UI"
     xmlns:meetups="clr-namespace:DotNetRu.Clients.UI.Pages.Meetups;assembly=DotNetRu.Clients.UI"
-    xmlns:speakers="clr-namespace:DotNetRu.Clients.UI.Pages.Speakers;assembly=DotNetRu.Clients.UI" xmlns:ui="clr-namespace:DotNetRu.Clients.UI"
+    xmlns:speakers="clr-namespace:DotNetRu.Clients.UI.Pages.Speakers;assembly=DotNetRu.Clients.UI"
     FlyoutBehavior="Disabled">
 
     <Shell.Resources>
@@ -24,30 +25,34 @@
         </ResourceDictionary>
     </Shell.Resources>
 
-    <TabBar Route="root">
-        <ui:CustomTab
+    <TabBar x:Name="TabBar" Route="root">
+        <localization:LocalizableTab
             Title="{Binding Resources[News]}"
             Icon="tab_feed.png"
+            ResourceName="News"
             Route="news">
             <ShellContent ContentTemplate="{DataTemplate home:NewsPage}" />
-        </ui:CustomTab>
-        <ui:CustomTab
+        </localization:LocalizableTab>
+        <localization:LocalizableTab
             Title="{Binding Resources[Speakers]}"
             Icon="tab_speakers.png"
+            ResourceName="Speakers"
             Route="speakers">
             <ShellContent ContentTemplate="{DataTemplate speakers:SpeakersPage}" />
-        </ui:CustomTab>
-        <ui:CustomTab
+        </localization:LocalizableTab>
+        <localization:LocalizableTab
             Title="{Binding Resources[Meetups]}"
             Icon="tab_events.png"
+            ResourceName="Meetups"
             Route="meetups">
             <ShellContent ContentTemplate="{DataTemplate meetups:MeetupsPage}" />
-        </ui:CustomTab>
-        <ui:CustomTab
+        </localization:LocalizableTab>
+        <localization:LocalizableTab
             Title="{Binding Resources[About]}"
             Icon="tab_about.png"
+            ResourceName="About"
             Route="about">
             <ShellContent ContentTemplate="{DataTemplate about:AboutPage}" />
-        </ui:CustomTab>
+        </localization:LocalizableTab>
     </TabBar>
 </Shell>
