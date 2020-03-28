@@ -27,7 +27,10 @@ namespace DotNetRu.Clients.UI.Handlers
                     this._speakerGroups = speakerGroups;
                     this._isFirstSearch = false;
                 }
+            }
 
+            if (ItemsSource is IEnumerable<SpeakerModel> || ItemsSource is IEnumerable<Grouping<char, SpeakerModel>>)
+            {
                 if (string.IsNullOrWhiteSpace(newValue))
                 {
                     ItemsSource = this._speakerGroups;
