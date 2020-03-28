@@ -10,4 +10,11 @@ namespace DotNetRu.AzureService
 
         public string RealmName { get; set; }
     }
+
+    public class TweetSettings
+    {
+        public string ConsumerKey { get; set; }
+
+        public string ConsumerSecret { get; set; }
+    }
 }
