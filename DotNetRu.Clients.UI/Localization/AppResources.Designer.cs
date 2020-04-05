@@ -107,6 +107,12 @@ namespace DotNetRu.Clients.UI.Localization {
             }
         }
         
+        public static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
         public static string CodeFromSession {
             get {
                 return ResourceManager.GetString("CodeFromSession", resourceCulture);
@@ -134,6 +140,24 @@ namespace DotNetRu.Clients.UI.Localization {
         public static string DotNetRu {
             get {
                 return ResourceManager.GetString("DotNetRu", resourceCulture);
+            }
+        }
+        
+        public static string EkbDotNet {
+            get {
+                return ResourceManager.GetString("EkbDotNet", resourceCulture);
+            }
+        }
+        
+        public static string Enter_search_term {
+            get {
+                return ResourceManager.GetString("Enter search term", resourceCulture);
+            }
+        }
+        
+        public static string Enter_speaker_fullname {
+            get {
+                return ResourceManager.GetString("Enter speaker fullname", resourceCulture);
             }
         }
         
@@ -209,9 +233,21 @@ namespace DotNetRu.Clients.UI.Localization {
             }
         }
         
+        public static string LoadingFriends {
+            get {
+                return ResourceManager.GetString("LoadingFriends", resourceCulture);
+            }
+        }
+        
         public static string LoadingMeetups {
             get {
                 return ResourceManager.GetString("LoadingMeetups", resourceCulture);
+            }
+        }
+        
+        public static string LoadingSpeakers {
+            get {
+                return ResourceManager.GetString("LoadingSpeakers", resourceCulture);
             }
         }
         
@@ -374,6 +410,12 @@ namespace DotNetRu.Clients.UI.Localization {
         public static string Speakers {
             get {
                 return ResourceManager.GetString("Speakers", resourceCulture);
+            }
+        }
+        
+        public static string Submit {
+            get {
+                return ResourceManager.GetString("Submit", resourceCulture);
             }
         }
         

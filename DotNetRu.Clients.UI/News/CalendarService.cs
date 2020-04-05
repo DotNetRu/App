@@ -122,10 +122,10 @@ namespace DotNetRu.Clients.UI.News
         public static async Task<bool> GetCalendarPermissionsAsync()
         {
             var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Calendar);
-            if (status != PermissionStatus.Granted)
+            if (status != Plugin.Permissions.Abstractions.PermissionStatus.Granted)
             {
                 var request = await CrossPermissions.Current.RequestPermissionsAsync(Permission.Calendar);
-                if (!request.ContainsKey(Permission.Calendar) || request[Permission.Calendar] != PermissionStatus.Granted)
+                if (!request.ContainsKey(Permission.Calendar) || request[Permission.Calendar] != Plugin.Permissions.Abstractions.PermissionStatus.Granted)
                 {
                     Analytics.TrackEvent("Calendar Permission Denied");
                     return false;

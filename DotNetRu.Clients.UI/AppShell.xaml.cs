@@ -1,4 +1,9 @@
+using System.Linq;
+using DotNetRu.Clients.Portable.Helpers;
+using DotNetRu.Clients.UI.Localization;
+using DotNetRu.Utils.Helpers;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 
 namespace DotNetRu.Clients.UI
 {
@@ -7,6 +12,7 @@ namespace DotNetRu.Clients.UI
         public AppShell()
         {
             InitializeComponent();
+            this.BindingContext = new AppShellViewModel();
 
             var primaryColor = (Color)Application.Current.Resources["Primary"];
 
@@ -14,6 +20,16 @@ namespace DotNetRu.Clients.UI
 
             // Can't set BackgrounColor as StaticResource, see https://github.com/xamarin/Xamarin.Forms/issues/7055
             SetBackgroundColor(this, backgroundColor);
+
+            MessagingCenter.Subscribe<LocalizedResources>(this, MessageKeys.LanguageChanged, sender => this.UpdateTabBarLocalization());
+        }
+
+        public void UpdateTabBarLocalization()
+        {
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                this.TabBar.Items.Where(i => i is LocalizableTab).Cast<LocalizableTab>().ForEach(x => x.Update());
+            });
         }
     }
 }

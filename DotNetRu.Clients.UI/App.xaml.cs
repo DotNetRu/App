@@ -15,6 +15,7 @@ using Microsoft.AppCenter.Push;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using System.Collections.Generic;
+using Realms.Sync;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 
@@ -30,6 +31,12 @@ namespace DotNetRu.Clients.UI
 
         public App()
         {
+            // workaround for https://github.com/realm/realm-dotnet/issues/1967
+            if (Xamarin.Forms.Device.RuntimePlatform != Xamarin.Forms.Device.iOS)
+            {
+                SyncConfigurationBase.Initialize(UserPersistenceMode.NotEncrypted);
+            }
+
             VersionTracking.Track();
 
             var language = LanguageService.GetCurrentLanguage();

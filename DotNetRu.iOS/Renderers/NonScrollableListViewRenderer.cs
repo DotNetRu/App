@@ -1,4 +1,4 @@
-﻿using DotNetRu.Clients.UI.Controls;
+using DotNetRu.Clients.UI.Controls;
 using DotNetRu.iOS.Renderers;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
@@ -20,7 +20,8 @@ namespace DotNetRu.iOS.Renderers
             if (this.Control != null)
             {
                 this.Control.ScrollEnabled = false;
-            }            
+                this.Control.ShowsVerticalScrollIndicator = false;
+            }
         }
     }
 }

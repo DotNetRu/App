@@ -1,12 +1,13 @@
 <Shell
+    x:Class="DotNetRu.Clients.UI.AppShell"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="DotNetRu.Clients.UI.AppShell"
-    xmlns:home="clr-namespace:DotNetRu.Clients.UI.Pages.Home;assembly=DotNetRu.Clients.UI"
-    xmlns:speakers="clr-namespace:DotNetRu.Clients.UI.Pages.Speakers;assembly=DotNetRu.Clients.UI"
     xmlns:about="clr-namespace:DotNetRu.Clients.UI.Pages.About;assembly=DotNetRu.Clients.UI"
+    xmlns:home="clr-namespace:DotNetRu.Clients.UI.Pages.Home;assembly=DotNetRu.Clients.UI"
+    xmlns:localization="clr-namespace:DotNetRu.Clients.UI.Localization;assembly=DotNetRu.Clients.UI"
     xmlns:meetups="clr-namespace:DotNetRu.Clients.UI.Pages.Meetups;assembly=DotNetRu.Clients.UI"
-    FlyoutBehavior="Disabled"> 
+    xmlns:speakers="clr-namespace:DotNetRu.Clients.UI.Pages.Speakers;assembly=DotNetRu.Clients.UI"
+    FlyoutBehavior="Disabled">
 
     <Shell.Resources>
         <ResourceDictionary>
@@ -16,26 +17,42 @@
                 <Setter Property="Shell.DisabledColor" Value="Gray" />
                 <Setter Property="Shell.UnselectedColor" Value="Gray" />
                 <Setter Property="Shell.TabBarBackgroundColor" Value="White" />
-                <Setter Property="Shell.TabBarForegroundColor" Value="{StaticResource Primary}"/>
-                <Setter Property="Shell.TabBarUnselectedColor" Value="Gray"/>
-                <Setter Property="Shell.TabBarTitleColor" Value="{StaticResource Primary}"/>
+                <Setter Property="Shell.TabBarForegroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="Shell.TabBarUnselectedColor" Value="Gray" />
+                <Setter Property="Shell.TabBarTitleColor" Value="{StaticResource Primary}" />
             </Style>
-            <Style TargetType="TabBar" BasedOn="{StaticResource BottomTabStyle}" />
+            <Style BasedOn="{StaticResource BottomTabStyle}" TargetType="TabBar" />
         </ResourceDictionary>
     </Shell.Resources>
 
-    <TabBar Route="root">
-        <Tab Title="News" Icon="tab_feed.png" Route="news">
+    <TabBar x:Name="TabBar" Route="root">
+        <localization:LocalizableTab
+            Title="{Binding Resources[News]}"
+            Icon="tab_feed.png"
+            ResourceName="News"
+            Route="news">
             <ShellContent ContentTemplate="{DataTemplate home:NewsPage}" />
-        </Tab>
-        <Tab Title="Speakers" Icon="tab_speakers.png" Route="speakers">
+        </localization:LocalizableTab>
+        <localization:LocalizableTab
+            Title="{Binding Resources[Speakers]}"
+            Icon="tab_speakers.png"
+            ResourceName="Speakers"
+            Route="speakers">
             <ShellContent ContentTemplate="{DataTemplate speakers:SpeakersPage}" />
-        </Tab>
-        <Tab Title="Meetups" Icon="tab_events.png" Route="meetups">
+        </localization:LocalizableTab>
+        <localization:LocalizableTab
+            Title="{Binding Resources[Meetups]}"
+            Icon="tab_events.png"
+            ResourceName="Meetups"
+            Route="meetups">
             <ShellContent ContentTemplate="{DataTemplate meetups:MeetupsPage}" />
-        </Tab>
-        <Tab Title="About" Icon="tab_about.png" Route="about">
+        </localization:LocalizableTab>
+        <localization:LocalizableTab
+            Title="{Binding Resources[About]}"
+            Icon="tab_about.png"
+            ResourceName="About"
+            Route="about">
             <ShellContent ContentTemplate="{DataTemplate about:AboutPage}" />
-        </Tab>
+        </localization:LocalizableTab>
     </TabBar>
 </Shell>

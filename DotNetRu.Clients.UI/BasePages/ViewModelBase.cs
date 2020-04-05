@@ -32,7 +32,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
                                                 ?? (this.launchBrowserCommand = new Command<Uri>(
                                                         async (t) => await this.ExecuteLaunchBrowserAsync(t)));
 
-        protected INavigation Navigation { get; }
+        protected internal INavigation Navigation { get; }
 
         protected ILogger Logger { get; } = DependencyService.Get<ILogger>();
 
