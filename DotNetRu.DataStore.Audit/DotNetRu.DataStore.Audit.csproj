@@ -23,8 +23,8 @@
     </PackageReference>
     <PackageReference Include="morelinq" Version="3.3.2" />
     <PackageReference Include="Realm" Version="4.3.0" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.5.1" />
-    <PackageReference Include="Xamarin.Forms" Version="4.5.0.396" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.5.2" />
+    <PackageReference Include="Xamarin.Forms" Version="4.5.0.530" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="DotNetRuOffline.realm">
