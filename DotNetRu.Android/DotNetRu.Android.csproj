@@ -138,6 +138,7 @@
     <Compile Include="Localize.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Renderers\NonScrollableListViewRenderer.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="MainApplication.cs" />
     <Compile Include="Helpers\Settings.cs" />

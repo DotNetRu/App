@@ -32,6 +32,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DotNetRu.DataStore.Audit\DotNetRu.DataStore.Audit.csproj" />
+    <ProjectReference Include="..\DotNetRu.Models\DotNetRu.Models.csproj" />
     <ProjectReference Include="..\DotNetRu.Utils\DotNetRu.Utils.csproj" />
   </ItemGroup>
   <ItemGroup>

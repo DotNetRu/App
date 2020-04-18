@@ -2,7 +2,7 @@ using System;
 
 namespace DotNetRu.Azure
 {
-    public class Tweet
+    public class Tweet : ISocialPost
     {
         public Tweet(ulong statusID)
         {
@@ -25,7 +25,7 @@ namespace DotNetRu.Azure
 
         public int NumberOfComments { get; set; }
 
-        public ulong StatusID { get; }
+        internal ulong StatusID { get; }
 
         public string Text { get; set; }
 
