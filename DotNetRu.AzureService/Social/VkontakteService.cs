@@ -57,6 +57,7 @@ namespace DotNetRu.Azure
                     {
                         wallGetParams.Domain = communityGroup.Key;
                     }
+
                     var communityGroupPosts = (await api.Wall.GetAsync(wallGetParams)).WallPosts;
                     result.AddRange(communityGroupPosts.Select(communityGroupPost => GetVkontaktePost(communityGroupPost, communityGroup.Key)));
                 }
@@ -70,6 +71,19 @@ namespace DotNetRu.Azure
                     if (postsWithoutDuplicates[i].CopyHistory.Select(x => x.PostId).Intersect(postIds).Any())
                     {
                         postsWithoutDuplicates.RemoveAt(i);
+                    }
+                }
+
+                // set correct name for posts from user
+                var users = await api.Users.GetAsync(postsWithoutDuplicates
+                    .Where(x => x.OwnerId != null && x.FromId != null && x.OwnerId != x.FromId)
+                    .Select(x => x.FromId.ToString()));
+                foreach (var post in postsWithoutDuplicates.Where(x => x.OwnerId != null && x.FromId != null && x.OwnerId != x.FromId))
+                {
+                    var user = users.FirstOrDefault(x => x.Id == post.FromId);
+                    if (user?.LastName != null)
+                    {
+                        post.Name = $"{user.FirstName} {user.LastName}";
                     }
                 }
 

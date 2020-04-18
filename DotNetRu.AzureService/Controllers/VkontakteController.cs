@@ -28,7 +28,7 @@ namespace DotNetRu.Azure
         }
 
         [HttpGet]
-        [Route("get_original")]
+        [Route("get_original_posts")]
         public async Task<IActionResult> GetOriginalPosts()
         {
             try

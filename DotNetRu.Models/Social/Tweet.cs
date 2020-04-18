@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.Serialization;
 
 namespace DotNetRu.Models.Social
 {
@@ -9,6 +10,7 @@ namespace DotNetRu.Models.Social
             StatusId = statusId;
         }
 
+        [IgnoreDataMember]
         public ulong StatusId { get; }
 
         public SocialMediaType SocialMediaType => SocialMediaType.Twitter;

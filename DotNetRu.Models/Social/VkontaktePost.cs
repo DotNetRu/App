@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace DotNetRu.Models.Social
 {
@@ -10,8 +11,10 @@ namespace DotNetRu.Models.Social
             this.PostId = postId;
         }
 
+        [IgnoreDataMember]
         public long? PostId { get; }
 
+        [IgnoreDataMember]
         public List<CopyHistory> CopyHistory { get; set; }
 
         public SocialMediaType SocialMediaType => SocialMediaType.Vkontakte;
