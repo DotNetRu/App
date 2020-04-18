@@ -12,7 +12,7 @@ namespace DotNetRu.Clients.Portable.Services
     using DotNetRu.Utils;
     using Flurl.Http;
 
-    public static class TweetService
+    public static class VkontakteService
     {
         public static async Task<List<ISocialPost>> GetAsync()
         {
@@ -20,10 +20,10 @@ namespace DotNetRu.Clients.Portable.Services
             {
                 var config = AppConfig.GetConfig();
 
-                var tweets = await config.TweetFunctionUrl
-                    .GetJsonAsync<List<Tweet>>();
+                var vkontaktePosts = await config.VkontakteFunctionUrl
+                    .GetJsonAsync<List<VkontaktePost>>();
 
-                return tweets.Cast<ISocialPost>().ToList();
+                return vkontaktePosts.Cast<ISocialPost>().ToList();
             }
             catch (Exception e)
             {

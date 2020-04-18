@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DotNetRu.Clients.Portable.Model;
+using DotNetRu.Models.Social;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -9,7 +10,7 @@ namespace DotNetRu.Clients.UI.Handlers
 {
     public class NewsSearchHandler : SearchHandler
     {
-        private IEnumerable<Tweet> _tweets;
+        private IEnumerable<ISocialPost> _socialPosts;
 
         private bool _isFirstSearch = true;
 
@@ -17,21 +18,21 @@ namespace DotNetRu.Clients.UI.Handlers
         {
             base.OnQueryChanged(oldValue, newValue);
 
-            if (ItemsSource is IEnumerable<Tweet> tweets)
+            if (ItemsSource is IEnumerable<ISocialPost> socialPosts)
             {
                 if (_isFirstSearch)
                 {
-                    this._tweets = tweets;
+                    this._socialPosts = socialPosts;
                     this._isFirstSearch = false;
                 }
 
                 if (string.IsNullOrWhiteSpace(newValue))
                 {
-                    ItemsSource = this._tweets;
+                    ItemsSource = this._socialPosts;
                 }
                 else
                 {
-                    ItemsSource = this._tweets.Where(x =>
+                    ItemsSource = this._socialPosts.Where(x =>
                             x.Text.Contains(newValue, StringComparison.InvariantCultureIgnoreCase) ||
                             x.Name.Contains(newValue, StringComparison.InvariantCultureIgnoreCase))
                         .OrderBy(x => x.CreatedDate)
@@ -43,11 +44,11 @@ namespace DotNetRu.Clients.UI.Handlers
         protected override async void OnItemSelected(object item)
         {
             base.OnItemSelected(item);
-            if (item is Tweet tweet && !string.IsNullOrWhiteSpace(tweet.Url))
+            if (item is ISocialPost socialPost && !string.IsNullOrWhiteSpace(socialPost.Url))
             {
-                App.Logger.TrackPage(AppPage.Tweet.ToString(), tweet.Url);
+                App.Logger.TrackPage(AppPage.SocialPost.ToString(), socialPost.Url);
 
-                await Launcher.OpenAsync(new Uri(tweet.Url));
+                await Launcher.OpenAsync(new Uri(socialPost.Url));
             }
         }
     }

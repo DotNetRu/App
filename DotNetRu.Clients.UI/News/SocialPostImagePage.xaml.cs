@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using DotNetRu.Clients.Portable.Interfaces;
 using DotNetRu.Clients.Portable.Model;
@@ -6,11 +6,11 @@ using Xamarin.Forms;
 
 namespace DotNetRu.Clients.UI.Pages.Home
 {
-	public partial class TweetImagePage : BasePage
+	public partial class SocialPostImagePage : BasePage
 	{
-		public override AppPage PageType => AppPage.TweetImage;
+		public override AppPage PageType => AppPage.SocialPostImage;
 
-        public TweetImagePage(string image)
+        public SocialPostImagePage(string image)
         {
             this.InitializeComponent();
             var item = new ToolbarItem

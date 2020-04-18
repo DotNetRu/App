@@ -1,5 +1,5 @@
 <ContentView
-    x:Class="DotNetRu.Clients.UI.Cells.TweetCell"
+    x:Class="DotNetRu.Clients.UI.Cells.SocialPostCell"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
@@ -76,7 +76,7 @@
                     HorizontalOptions="Start"
                     IsVisible="{Binding HasAttachedImage}"
                     LoadingPlaceholder="loading_apple.gif"
-                    Source="{Binding TweetedImageUri}" />
+                    Source="{Binding PostedImageUri}" />
             </Grid>
             <StackLayout
                 Grid.Row="2"
@@ -87,7 +87,7 @@
                     HeightRequest="20"
                     Source="icon_retweet.png"
                     WidthRequest="20" />
-                <Label Margin="0,0,40,0" Text="{Binding NumberOfRetweets}" />
+                <Label Margin="0,0,40,0" Text="{Binding NumberOfReposts}" />
                 <Image
                     Margin="0,0,5,0"
                     HeightRequest="20"

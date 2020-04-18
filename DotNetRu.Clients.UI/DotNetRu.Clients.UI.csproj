@@ -32,7 +32,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DotNetRu.DataStore.Audit\DotNetRu.DataStore.Audit.csproj" />
-    <ProjectReference Include="..\DotNetRu.Models\DotNetRu.Models.csproj" />
     <ProjectReference Include="..\DotNetRu.Utils\DotNetRu.Utils.csproj" />
   </ItemGroup>
   <ItemGroup>
@@ -46,6 +45,12 @@
     </Compile>
     <Compile Update="Meetups\MeetupDetailsPage.xaml.cs">
       <DependentUpon>MeetupDetailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="News\SocialPostCell.xaml.cs">
+      <DependentUpon>SocialPostCell.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="News\SocialPostImagePage.xaml.cs">
+      <DependentUpon>SocialPostImagePage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -136,10 +141,10 @@
     <None Update="News\NewsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
-    <None Update="News\TweetCell.xaml">
+    <None Update="News\SocialPostCell.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
-    <None Update="News\TweetImagePage.xaml">
+    <None Update="News\SocialPostImagePage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
     <None Update="Pages\BottomTabbedPage.xaml">

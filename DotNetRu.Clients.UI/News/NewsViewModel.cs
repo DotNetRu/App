@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using DotNetRu.Models.Social;
+
 namespace DotNetRu.Clients.Portable.ViewModel
 {
     using System;
@@ -41,7 +44,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
 
         private ICommand loadSessionsCommand;
 
-        private Tweet selectedTweet;
+        private ISocialPost selectedSocialPost;
 
         private bool socialError;
 
@@ -57,7 +60,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
                 (m) => { Device.BeginInvokeOnMainThread(this.EvaluateVisualState); });
         }
 
-        public ObservableRangeCollection<Tweet> Tweets { get; set; } = new ObservableRangeCollection<Tweet>();
+        public ObservableRangeCollection<ISocialPost> SocialPosts { get; set; } = new ObservableRangeCollection<ISocialPost>();
 
         public ObservableRangeCollection<TalkModel> Sessions { get; } = new ObservableRangeCollection<TalkModel>();
 
@@ -109,9 +112,9 @@ namespace DotNetRu.Clients.Portable.ViewModel
             }
         }
 
-        public bool NotLoadingSocial => this.Tweets.Any() || !this.LoadingSocial;
+        public bool NotLoadingSocial => this.SocialPosts.Any() || !this.LoadingSocial;
 
-        public bool ActivityIndicatorVisibility => !this.Tweets.Any() && this.LoadingSocial;
+        public bool ActivityIndicatorVisibility => !this.SocialPosts.Any() && this.LoadingSocial;
 
         public bool ShowBuyTicketButton =>
             FeatureFlags.ShowBuyTicketButton && EventInfo.StartOfConference.AddDays(-1) >= DateTime.Now;
@@ -139,7 +142,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
 
         public ICommand LoadSocialCommand =>
             this.loadSocialCommand ?? (this.loadSocialCommand =
-                                           new Command(async () => await this.ExecuteLoadTweetsCommandAsync()));
+                                           new Command(async () => await this.ExecuteLoadSocialPostsCommandAsync()));
 
         public bool SocialError
         {
@@ -147,21 +150,21 @@ namespace DotNetRu.Clients.Portable.ViewModel
             set => this.SetProperty(ref this.socialError, value);
         }
 
-        public Tweet SelectedTweet
+        public ISocialPost SelectedSocialPost
         {
-            get => this.selectedTweet;
+            get => this.selectedSocialPost;
             set
             {
-                this.selectedTweet = value;
+                this.selectedSocialPost = value;
                 this.OnPropertyChanged();
-                if (this.selectedTweet == null)
+                if (this.selectedSocialPost == null)
                 {
                     return;
                 }
 
-                this.LaunchBrowserCommand.Execute(this.selectedTweet.Url);
+                this.LaunchBrowserCommand.Execute(this.selectedSocialPost.Url);
 
-                this.SelectedTweet = null;
+                this.SelectedSocialPost = null;
             }
         }
 
@@ -249,7 +252,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
                 this.NextForceRefresh = DateTime.UtcNow.AddMinutes(45);
                 this.IsBusy = true;
 
-                await this.ExecuteLoadTweetsCommandAsync();
+                await this.ExecuteLoadSocialPostsCommandAsync();
             }
             catch (Exception ex)
             {
@@ -262,7 +265,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
             }
         }
 
-        private async Task ExecuteLoadTweetsCommandAsync()
+        private async Task ExecuteLoadSocialPostsCommandAsync()
         {
             if (this.LoadingSocial)
             {
@@ -273,14 +276,22 @@ namespace DotNetRu.Clients.Portable.ViewModel
             try
             {
                 this.SocialError = false;
-                var tweets = await TweetService.Get();
+                var socialPosts = new List<ISocialPost>();
 
-                this.Tweets.ReplaceRange(tweets);
+                var tweets = await TweetService.GetAsync();
+                socialPosts.AddRange(tweets);
+
+                var vkontaktePosts = await VkontakteService.GetAsync();
+                socialPosts.AddRange(vkontaktePosts);
+
+                //ToDo: add more social media
+
+                this.SocialPosts.ReplaceRange(socialPosts.OrderByDescending(x => x.CreatedDate));
             }
             catch (Exception ex)
             {
                 this.SocialError = true;
-                ex.Data["method"] = "ExecuteLoadTweetsCommandAsync";
+                ex.Data["method"] = "ExecuteLoadSocialPostsCommandAsync";
                 DotNetRuLogger.Report(ex);
             }
             finally

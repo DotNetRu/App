@@ -14,7 +14,7 @@
     <Shell.SearchHandler>
         <handlers:NewsSearchHandler
             DisplayMemberName="{Binding Text}"
-            ItemsSource="{Binding Tweets}"
+            ItemsSource="{Binding SocialPosts}"
             Placeholder="{Binding Resources[Enter search term]}"
             ShowsResults="True">
             <handlers:NewsSearchHandler.ItemTemplate>
@@ -56,16 +56,16 @@
             IsPullToRefreshEnabled="True"
             IsRefreshing="{Binding IsBusy, Mode=OneWay}"
             IsVisible="{Binding NotLoadingSocial}"
-            ItemsSource="{Binding Tweets}"
+            ItemsSource="{Binding SocialPosts}"
             RefreshCommand="{Binding RefreshCommand}"
-            SelectedItem="{Binding SelectedTweet, Mode=TwoWay}">
+            SelectedItem="{Binding SelectedSocialPost, Mode=TwoWay}">
             <ListView.SeparatorColor>
                 <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ListSeparator}" />
             </ListView.SeparatorColor>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <cells:TweetCell />
+                        <cells:SocialPostCell />
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>

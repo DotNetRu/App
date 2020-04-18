@@ -1,16 +1,17 @@
 using System;
-using System.Collections.Generic;
 
-namespace DotNetRu.Azure
+namespace DotNetRu.Models.Social
 {
-    //ToDo: объединить с Tweet под общим интерфейсом ICommunityPost (который может реализовать ITweet и IFacebookPost и IVkontaktePost)
-
-    public class VkontaktePost : ISocialPost
+    public class Tweet : ISocialPost
     {
-        public VkontaktePost(long? postId)
+        public Tweet(ulong statusID)
         {
-            this.PostId = postId;
+            StatusID = statusID;
         }
+
+        public ulong StatusID { get; }
+
+        public SocialMediaType SocialMediaType => SocialMediaType.Twitter;
 
         private string postedImage;
 
@@ -21,12 +22,6 @@ namespace DotNetRu.Azure
             get => this.postedImage;
             set => this.postedImage = value;
         }
-
-        public long? PostId { get; }
-
-        public long? FromId { get; set; }
-
-        public long? OwnerId { get; set; }
 
         public int? NumberOfViews { get; set; }
 
@@ -50,9 +45,7 @@ namespace DotNetRu.Azure
 
         public string SubtitleDisplay => "@" + this.ScreenName;
 
-        public string DateDisplay => CreatedDate?.ToShortDateString();
-
-        public List<CopyHistory> CopyHistory { get; set; }
+        public string DateDisplay => this.CreatedDate?.ToShortDateString();
 
         public Uri PostedImageUri
         {
@@ -77,12 +70,10 @@ namespace DotNetRu.Azure
         }
 
         public bool HasAttachedImage => !string.IsNullOrWhiteSpace(this.PostedImage);
-    }
 
-    public class CopyHistory
-    {
-        public long? PostId { get; set; }
-
-        public long? FromId { get; set; }
+        public override string ToString()
+        {
+            return $"[Name={Name};Text={Text};Reposts={NumberOfReposts};Likes={NumberOfLikes}";
+        }
     }
 }

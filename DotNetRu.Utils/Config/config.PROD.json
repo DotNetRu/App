@@ -2,6 +2,8 @@
     "AppCenterAndroidKey": "8467f873-4456-4a6f-9fe5-476612bcf687",
     "AppCenteriOSKey": "0ad34829-faf2-42f9-a8e3-40559725cf44",
     "TweetFunctionUrl": "https://dotnettweetservice.azurewebsites.net/api/Tweets",
+    //"TweetFunctionUrl": "https://localhost:44316/tweet/get_original",
+    "VkontakteFunctionUrl": "https://localhost:44316/vkontakte/get_original", //ToDo: поменять адрес
     "RealmDatabase": "dotnetru_prod_281219",
     "RealmServerUrl": "dotnetru.de1a.cloud.realm.io"
 }
