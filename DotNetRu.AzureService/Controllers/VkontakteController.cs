@@ -33,6 +33,7 @@ namespace DotNetRu.Azure
         {
             try
             {
+                //ToDo: добавить кэширование результатов, чтобы не исчерпать лимит VK API
                 var posts = await VkontakteService.GetAsync(this.vkontakteSettings);
                 var json = JsonConvert.SerializeObject(posts);
 

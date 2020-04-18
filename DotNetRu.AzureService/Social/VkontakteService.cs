@@ -39,10 +39,13 @@ namespace DotNetRu.Azure
                 _communityGroups = (await api.Groups.GetByIdAsync(vkontakteSettings.CommunityGroups.Select(x =>
                 {
                     if (long.TryParse(x.Key, out var groupId))
+                    {
                         return Math.Abs(groupId).ToString();
+                    }
 
                     return x.Key;
                 }), null, GroupsFields.All)).ToList();
+
                 foreach (var communityGroup in vkontakteSettings.CommunityGroups)
                 {
                     var wallGetParams = new WallGetParams { Count = communityGroup.Value };
@@ -55,10 +58,7 @@ namespace DotNetRu.Azure
                         wallGetParams.Domain = communityGroup.Key;
                     }
                     var communityGroupPosts = (await api.Wall.GetAsync(wallGetParams)).WallPosts;
-                    foreach (var communityGroupPost in communityGroupPosts)
-                    {
-                        result.Add(GetVkontaktePost(communityGroupPost, communityGroup.Key));
-                    }
+                    result.AddRange(communityGroupPosts.Select(communityGroupPost => GetVkontaktePost(communityGroupPost, communityGroup.Key)));
                 }
 
                 var postsWithoutDuplicates = result.GroupBy(p => p.PostId).Select(g => g.First()).ToList();
@@ -90,6 +90,7 @@ namespace DotNetRu.Azure
             var currentGroup = post.OwnerId != null ? _communityGroups.FirstOrDefault(x => x.Id == Math.Abs((long)post.OwnerId)) : null;
             return new VkontaktePost(post.Id)
             {
+                //ToDo: разобраться, откуда правильно брать PostedImage
                 //PostedImage = $"https://vk.com/{(long.TryParse(communityGroupId, out var groupId) ? $"club{Math.Abs(groupId)}" : communityGroupId)}?w=wall{post.OwnerId}_{post.Id}",
                 PostedImage = post.Attachments?.Where(x => x.Type == typeof(Link) && (x.Instance as Link)?.Image != null).ToList().Count > 0
                     ? (post.Attachments?.Where(x => x.Type == typeof(Link) && (x.Instance as Link)?.Image != null).ToList()[0].Instance as Link)?.Image ?? string.Empty
@@ -101,12 +102,14 @@ namespace DotNetRu.Azure
                 OwnerId = post.OwnerId,
                 ScreenName = currentGroup?.ScreenName,
                 Text = post.Text,
-                Name = currentGroup?.Name,
-                //Name = string.IsNullOrWhiteSpace(currentGroup?.Name)
+                //ToDo: разобраться, что выводить, если Text пуст
+                //Text = string.IsNullOrWhiteSpace(post.Text)
                 //    ? (post.Attachments?.FirstOrDefault(x => x.Type == typeof(Link) && x.Instance is Link)?.Instance as Link)?.Description
-                //    : currentGroup?.Name,
+                //    : post.Text,
+                Name = currentGroup?.Name,
                 CreatedDate = post.Date?.ToLocalTime(),
                 Url = $"https://vk.com/{(long.TryParse(communityGroupId, out var groupId) ? $"club{Math.Abs(groupId)}" : communityGroupId)}?w=wall{post.OwnerId}_{post.Id}",
+                //ToDo: сейчас отображается логотип сообщества, а не изображение из поста. Исправить
                 Image = currentGroup?.Photo200?.ToString(),
                 CopyHistory = post.CopyHistory.Select(x => new CopyHistory
                 {

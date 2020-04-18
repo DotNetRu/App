@@ -67,8 +67,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
         public DateTime NextForceRefresh { get; set; }
 
         public ICommand RefreshCommand =>
-            this.refreshCommand
-            ?? (this.refreshCommand = new Command(async () => await this.ExecuteRefreshCommandAsync()));
+            this.refreshCommand ??= new Command(async () => await this.ExecuteRefreshCommandAsync());
 
         public Notification Notification
         {
@@ -83,8 +82,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
         }
 
         public ICommand LoadNotificationsCommand =>
-            this.loadNotificationsCommand
-            ?? (this.loadNotificationsCommand = new Command(this.ExecuteLoadNotificationsCommand));
+            this.loadNotificationsCommand ??= new Command(this.ExecuteLoadNotificationsCommand);
 
         public bool LoadingSessions
         {
@@ -93,7 +91,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
         }
 
         public ICommand LoadSessionsCommand =>
-            this.loadSessionsCommand ?? (this.loadSessionsCommand = new Command(this.ExecuteLoadSessionsCommandAsync));
+            this.loadSessionsCommand ??= new Command(this.ExecuteLoadSessionsCommandAsync);
 
         public bool NoSessions
         {
@@ -124,7 +122,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
         public string SocialHeader => "Social";
 
         public ICommand BuyTicketNowCommand =>
-            this.buyTicketNowCommand ?? (this.buyTicketNowCommand = new Command(this.ExecuteBuyTicketNowCommand));
+            this.buyTicketNowCommand ??= new Command(this.ExecuteBuyTicketNowCommand);
 
         private void ExecuteBuyTicketNowCommand()
         {
@@ -132,8 +130,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
         }
 
         public ICommand ShowConferenceFeedbackCommand =>
-            this.showConferenceFeedbackCommand ?? (this.showConferenceFeedbackCommand =
-                                                       new Command(this.ExecuteShowConferenceFeedbackCommand));
+            this.showConferenceFeedbackCommand ??= new Command(this.ExecuteShowConferenceFeedbackCommand);
 
         private void ExecuteShowConferenceFeedbackCommand()
         {
@@ -141,8 +138,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
         }
 
         public ICommand LoadSocialCommand =>
-            this.loadSocialCommand ?? (this.loadSocialCommand =
-                                           new Command(async () => await this.ExecuteLoadSocialPostsCommandAsync()));
+            this.loadSocialCommand ??= new Command(async () => await this.ExecuteLoadSocialPostsCommandAsync());
 
         public bool SocialError
         {
@@ -205,7 +201,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
             {
                 this.NoSessions = false;
                 this.Sessions.Clear();
-                this.OnPropertyChanged("Sessions");
+                this.OnPropertyChanged(nameof(Sessions));
 
                 // var sessions = await this.StoreManager.SessionStore.GetNextSessions(2);
                 // if (sessions != null) this.Sessions.AddRange(sessions);
@@ -284,7 +280,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
                 var vkontaktePosts = await VkontakteService.GetAsync();
                 socialPosts.AddRange(vkontaktePosts);
 
-                //ToDo: add more social media
+                //ToDo: добавить больше соц. сетей
 
                 this.SocialPosts.ReplaceRange(socialPosts.OrderByDescending(x => x.CreatedDate));
             }

@@ -52,7 +52,7 @@ namespace DotNetRu.Azure
 
                 var unitedTweets = spbDotNetTweets.Union(dotnetRuTweets).Where(tweet => !tweet.PossiblySensitive).Select(GetTweet);
 
-                var tweetsWithoutDuplicates = unitedTweets.GroupBy(tw => tw.StatusID).Select(g => g.First());
+                var tweetsWithoutDuplicates = unitedTweets.GroupBy(tw => tw.StatusId).Select(g => g.First());
 
                 var sortedTweets = tweetsWithoutDuplicates.OrderByDescending(x => x.CreatedDate).Cast<ISocialPost>().ToList();
 

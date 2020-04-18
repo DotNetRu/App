@@ -4,12 +4,12 @@ namespace DotNetRu.Models.Social
 {
     public class Tweet : ISocialPost
     {
-        public Tweet(ulong statusID)
+        public Tweet(ulong statusId)
         {
-            StatusID = statusID;
+            StatusId = statusId;
         }
 
-        public ulong StatusID { get; }
+        public ulong StatusId { get; }
 
         public SocialMediaType SocialMediaType => SocialMediaType.Twitter;
 

@@ -94,6 +94,11 @@
                     Source="icon_heart.png"
                     WidthRequest="20" />
                 <Label Margin="0,0,40,0" Text="{Binding NumberOfLikes}" />
+                <!--
+                    ToDo: добавить отображение количества просмотров - Binding NumberOfViews
+                    Для этого добавить иконку (глаз), как в Вконтакте.
+                    Если API соцсети не поддерживает получение кол-ва просмотров (как Twitter), то скрывать через конвертер.
+                -->
             </StackLayout>
         </Grid>
     </ContentView.Content>
