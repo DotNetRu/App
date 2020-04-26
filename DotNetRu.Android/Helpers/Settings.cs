@@ -4,7 +4,7 @@ namespace DotNetRu.Droid.Helpers
 {
     internal static class Settings
     {
-        private static readonly int NotificationIdDefault = 0;
+        private const int NotificationIdDefault = 0;
 
         internal static int NotificationID
         {

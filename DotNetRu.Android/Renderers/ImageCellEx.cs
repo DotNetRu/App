@@ -1,4 +1,4 @@
-﻿using Android.Content;
+using Android.Content;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
@@ -18,9 +18,7 @@ namespace DotNetRu.Droid.Renderers
         {
             var cell = (LinearLayout) base.GetCellCore(item, convertView, parent, context);
 
-            var image = cell.GetChildAt(0) as ImageView;
-
-            if (image != null)
+            if (cell.GetChildAt(0) is ImageView image)
             {
                 var layoutParams = (LinearLayout.LayoutParams) image.LayoutParameters;
                 layoutParams.Height = ViewGroup.LayoutParams.WrapContent;
@@ -29,13 +27,13 @@ namespace DotNetRu.Droid.Renderers
                 int px12 = (int) TypedValue.ApplyDimension(
                     ComplexUnitType.Dip,
                     12f,
-                    context.Resources.DisplayMetrics
+                    context?.Resources.DisplayMetrics
                 );
 
                 int px8 = (int) TypedValue.ApplyDimension(
                     ComplexUnitType.Dip,
                     8f,
-                    context.Resources.DisplayMetrics
+                    context?.Resources.DisplayMetrics
                 );
 
                 layoutParams.SetMargins(px12, px8, 0, px8);
@@ -57,7 +55,6 @@ namespace DotNetRu.Droid.Renderers
                 return cell;
 
             secondaryLabel.SetTextSize(ComplexUnitType.Dip, 13);
-
 
             return cell;
         }

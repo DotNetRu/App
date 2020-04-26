@@ -1,10 +1,10 @@
-﻿using Xamarin.Forms;
+using Xamarin.Forms;
 
 namespace DotNetRu.Clients.UI.Cells
 {
-    public partial class TweetCell : ContentView
+    public partial class SocialPostCell : ContentView
     {
-        public TweetCell()
+        public SocialPostCell()
         {
             this.InitializeComponent();
         }

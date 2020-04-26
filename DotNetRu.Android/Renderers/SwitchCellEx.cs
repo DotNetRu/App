@@ -1,4 +1,4 @@
-﻿using Android.Content;
+using Android.Content;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
@@ -40,13 +40,13 @@ namespace DotNetRu.Droid.Renderers
             int px12 = (int) TypedValue.ApplyDimension(
                 ComplexUnitType.Dip,
                 12f,
-                context.Resources.DisplayMetrics
+                context?.Resources.DisplayMetrics
             );
 
             int px8 = (int) TypedValue.ApplyDimension(
                 ComplexUnitType.Dip,
                 8f,
-                context.Resources.DisplayMetrics
+                context?.Resources.DisplayMetrics
             );
 
             layoutParams.SetMargins(px8, px8, px12, px8);

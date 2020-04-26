@@ -12,6 +12,8 @@ namespace DotNetRu.Clients.UI
 
         public string TweetFunctionUrl { get; set; }
 
+        public string VkontakteFunctionUrl { get; set; }
+
         public string RealmDatabase { get; set; }
 
         public string RealmServerUrl { get; set; }

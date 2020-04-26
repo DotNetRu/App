@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using DotNetRu.AzureService;
+using DotNetRu.Models.Social;
 using LinqToTwitter;
 using Microsoft.Extensions.Logging;
 
 namespace DotNetRu.Azure
 {
-    internal class TweetService
+    internal static class TweetService
     {
         private static readonly ILogger Logger = ApplicationLogging.CreateLogger(nameof(TweetService));
 
@@ -19,7 +20,7 @@ namespace DotNetRu.Azure
         /// <returns>
         /// Returns a list of tweets.
         /// </returns>
-        internal static async Task<List<Tweet>> GetAsync(TweetSettings tweetSettings)
+        internal static async Task<List<ISocialPost>> GetAsync(TweetSettings tweetSettings)
         {
             try
             {
@@ -51,9 +52,9 @@ namespace DotNetRu.Azure
 
                 var unitedTweets = spbDotNetTweets.Union(dotnetRuTweets).Where(tweet => !tweet.PossiblySensitive).Select(GetTweet);
 
-                var tweetsWithoutDuplicates = unitedTweets.GroupBy(tw => tw.StatusID).Select(g => g.First());
+                var tweetsWithoutDuplicates = unitedTweets.GroupBy(tw => tw.StatusId).Select(g => g.First());
 
-                var sortedTweets = tweetsWithoutDuplicates.OrderByDescending(x => x.CreatedDate).ToList();
+                var sortedTweets = tweetsWithoutDuplicates.OrderByDescending(x => x.CreatedDate).Cast<ISocialPost>().ToList();
 
                 return sortedTweets;
             }
@@ -62,7 +63,7 @@ namespace DotNetRu.Azure
                 Logger.LogError(e, "Unhandled error while getting original tweets");
             }
 
-            return new List<Tweet>();
+            return new List<ISocialPost>();
         }
 
         private static Tweet GetTweet(Status tweet)
@@ -81,12 +82,12 @@ namespace DotNetRu.Azure
 
             return new Tweet(sourceTweet.StatusID)
             {
-                TweetedImage =
+                PostedImage =
                                tweet.Entities?.MediaEntities.Count > 0
                                    ? tweet.Entities?.MediaEntities?[0].MediaUrlHttps ?? string.Empty
                                    : string.Empty,
                 NumberOfLikes = sourceTweet.FavoriteCount,
-                NumberOfRetweets = sourceTweet.RetweetCount,
+                NumberOfReposts = sourceTweet.RetweetCount,
                 ScreenName = sourceTweet.User?.ScreenNameResponse ?? string.Empty,
                 Text = sourceTweet.FullText.ConvertToUsualUrl(urlLinks),
                 Name = sourceTweet.User?.Name,

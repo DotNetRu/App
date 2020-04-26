@@ -26,11 +26,15 @@ namespace DotNetRu.AzureService
             var tweetSettings = new TweetSettings();
             Configuration.Bind("TweetOptions", tweetSettings);
 
+            var vkontakteSettings = new VkontakteSettings();
+            Configuration.Bind("VkontakteOptions", vkontakteSettings);
+
             var pushSettings = new PushSettings();
             Configuration.Bind("PushOptions", pushSettings);
 
             services.AddSingleton(realmSettings);
             services.AddSingleton(tweetSettings);
+            services.AddSingleton(vkontakteSettings);
             services.AddSingleton(pushSettings);
 
             services.AddScoped<PushNotificationsManager>();

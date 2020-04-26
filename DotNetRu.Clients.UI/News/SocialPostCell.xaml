@@ -1,0 +1,120 @@
+<ContentView
+    x:Class="DotNetRu.Clients.UI.Cells.SocialPostCell"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations">
+    <ContentView.Content>
+        <Grid
+            Padding="0,10,5,10"
+            ColumnSpacing="0"
+            RowSpacing="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="70" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <forms:CachedImage
+                Grid.Row="0"
+                Grid.RowSpan="3"
+                Grid.Column="0"
+                Margin="10"
+                DownsampleToViewSize="true"
+                HeightRequest="70"
+                HorizontalOptions="Center"
+                Source="{Binding Image}"
+                VerticalOptions="Start"
+                WidthRequest="70">
+                <forms:CachedImage.Transformations>
+                    <transformations:CircleTransformation />
+                </forms:CachedImage.Transformations>
+            </forms:CachedImage>
+
+            <StackLayout
+                Grid.Row="0"
+                Grid.Column="1"
+                Orientation="Horizontal">
+                <Label
+                    Margin="0,0,0,0"
+                    FontSize="Small"
+                    LineBreakMode="TailTruncation"
+                    Style="{StaticResource BoldLabel}"
+                    Text="{Binding Name}"
+                    TextColor="#000000" />
+                <Label
+                    Margin="0,0,0,0"
+                    FontSize="8"
+                    Text="•"
+                    TextColor="#6d747a"
+                    VerticalTextAlignment="Center" />
+                <Label
+                    Margin="0,0,0,0"
+                    FontSize="Small"
+                    Text="{Binding DateDisplay}"
+                    TextColor="#6d747a" />
+            </StackLayout>
+            <Grid
+                Grid.Row="1"
+                Grid.Column="1"
+                Margin="0,5,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Label
+                    Grid.Row="0"
+                    Text="{Binding Text}"
+                    TextColor="#000000" />
+                <forms:CachedImage
+                    Grid.Row="1"
+                    Margin="0,10,10,10"
+                    HeightRequest="150"
+                    HorizontalOptions="Start"
+                    IsVisible="{Binding HasAttachedImage}"
+                    LoadingPlaceholder="loading_apple.gif"
+                    Source="{Binding PostedImageUri}" />
+            </Grid>
+            <StackLayout
+                Grid.Row="2"
+                Grid.Column="1"
+                Orientation="Horizontal">
+                <Image
+                    Margin="0,0,5,0"
+                    HeightRequest="20"
+                    Source="icon_retweet.png"
+                    WidthRequest="20" />
+                <Label Margin="0,0,40,0" Text="{Binding NumberOfReposts}" />
+                <Image
+                    Margin="0,0,5,0"
+                    HeightRequest="20"
+                    Source="icon_heart.png"
+                    WidthRequest="20" />
+                <Label Margin="0,0,40,0" Text="{Binding NumberOfLikes}" />
+                <!--
+                    ToDo: добавить отображение количества просмотров - Binding NumberOfViews
+                    Для этого добавить иконку (глаз), как в Вконтакте.
+                    Если API соцсети не поддерживает получение кол-ва просмотров (как Twitter), то скрывать через конвертер.
+                -->
+            </StackLayout>
+        </Grid>
+    </ContentView.Content>
+</ContentView>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
