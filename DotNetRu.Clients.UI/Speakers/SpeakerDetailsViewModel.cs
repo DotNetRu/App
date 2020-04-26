@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-
+using System.Linq;
 using DotNetRu.DataStore.Audit.Models;
 using DotNetRu.Utils.Helpers;
 
@@ -11,7 +11,7 @@ using MvvmHelpers;
 using MenuItem = DotNetRu.Clients.Portable.Model.MenuItem;
 
 namespace DotNetRu.Clients.Portable.ViewModel
-{    
+{
     public class SpeakerDetailsViewModel : ViewModelBase
     {
         private MenuItem selectedFollowItem;
@@ -90,13 +90,13 @@ namespace DotNetRu.Clients.Portable.ViewModel
                         Name = $"{gitHubValue}",
                         Parameter = SpeakerModel.GitHubUrl,
                         Icon = "icon_github.png"
-                    });                
+                    });
             }
         }
 
         public SpeakerModel SpeakerModel { get; set; }
 
-        public IEnumerable<TalkModel> Talks => this.SpeakerModel.Talks;
+        public IEnumerable<TalkModel> Talks => this.SpeakerModel.Talks.OrderByDescending(t => t.Sessions.FirstOrDefault()?.Meetup?.StartTime);
 
         public ObservableRangeCollection<MenuItem> FollowItems { get; } = new ObservableRangeCollection<MenuItem>();
 
