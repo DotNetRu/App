@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 
 namespace DotNetRu.Azure
 {
-    [Route("tweet")]
+    [Route("")]
     public class TweetController : ControllerBase
     {
         private readonly ILogger logger;
@@ -28,7 +28,7 @@ namespace DotNetRu.Azure
         }
 
         [HttpGet]
-        [Route("get_original")]
+        [Route("tweets")]
         public async Task<IActionResult> GetOriginalTweets()
         {
             try

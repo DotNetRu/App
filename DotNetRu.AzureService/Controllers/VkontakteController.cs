@@ -8,27 +8,23 @@ using Newtonsoft.Json;
 
 namespace DotNetRu.Azure
 {
-    [Route("vkontakte")]
+    [Route("")]
     public class VkontakteController : ControllerBase
     {
         private readonly ILogger logger;
 
         private readonly VkontakteSettings vkontakteSettings;
 
-        private readonly PushNotificationsManager pushNotificationsManager;
-
         public VkontakteController(
             ILogger<DiagnosticsController> logger,
-            VkontakteSettings vkontakteSettings,
-            PushNotificationsManager pushNotificationsManager)
+            VkontakteSettings vkontakteSettings)
         {
             this.logger = logger;
             this.vkontakteSettings = vkontakteSettings;
-            this.pushNotificationsManager = pushNotificationsManager;
         }
 
         [HttpGet]
-        [Route("get_original_posts")]
+        [Route("VkontaktePosts")]
         public async Task<IActionResult> GetOriginalPosts()
         {
             try
