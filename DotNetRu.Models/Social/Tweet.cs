@@ -83,6 +83,32 @@ namespace DotNetRu.Models.Social
 
         public bool HasAttachedImage => !string.IsNullOrWhiteSpace(this.PostedImage);
 
+        public Uri PostedVideoUri
+        {
+            get
+            {
+                try
+                {
+                    if (string.IsNullOrWhiteSpace(this.PostedVideo?.Uri))
+                    {
+                        return null;
+                    }
+
+                    return new Uri(this.PostedVideo.Uri);
+                }
+                catch
+                {
+                    // TODO ignored
+                }
+
+                return null;
+            }
+        }
+
+        public Uri PostedVideoImageUri => this.PostedVideo?.ImageUri;
+
+        public bool HasAttachedVideo => this.PostedVideo != null;
+
         public override string ToString()
         {
             return $"[Name={Name};Text={Text};Reposts={NumberOfReposts};Likes={NumberOfLikes}";

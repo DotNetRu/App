@@ -41,5 +41,11 @@ namespace DotNetRu.Models.Social
         public Uri PostedImageUri { get; }
 
         public bool HasAttachedImage { get; }
+
+        public Uri PostedVideoUri { get; }
+
+        public bool HasAttachedVideo { get; }
+
+        public Uri PostedVideoImageUri { get; }
     }
 }
