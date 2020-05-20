@@ -18,6 +18,8 @@ namespace DotNetRu.AzureService
         public string ConsumerKey { get; set; }
 
         public string ConsumerSecret { get; set; }
+
+        public List<string> CommunityGroups { get; set; }
     }
 
     public class VkontakteSettings

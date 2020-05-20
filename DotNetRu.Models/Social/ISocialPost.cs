@@ -10,6 +10,10 @@ namespace DotNetRu.Models.Social
 
         public string PostedImage { get; set; }
 
+        public bool HasVideo { get; }
+
+        public PostedVideo PostedVideo { get; set; }
+
         public int? NumberOfViews { get; set; }
 
         public int? NumberOfLikes { get; set; }

@@ -25,6 +25,16 @@ namespace DotNetRu.Models.Social
             set => this.postedImage = value;
         }
 
+        private PostedVideo postedVideo;
+
+        public bool HasVideo => this.postedVideo != null;
+
+        public PostedVideo PostedVideo
+        {
+            get => this.postedVideo;
+            set => this.postedVideo = value;
+        }
+
         public int? NumberOfViews { get; set; }
 
         public int? NumberOfLikes { get; set; }

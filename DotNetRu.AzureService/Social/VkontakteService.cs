@@ -74,6 +74,16 @@ namespace DotNetRu.Azure
                     }
                 }
 
+                //ToDo: exclude duplicates for reposted posts!
+                // fill posts with empty Text, PostedImage and PostedVideo from CopyHistory
+                foreach (var post in postsWithoutDuplicates)
+                {
+                    if (string.IsNullOrWhiteSpace(post.Text) && post.CopyHistory.Any() && string.IsNullOrWhiteSpace(post.PostedImage) && post.PostedVideo == null)
+                    {
+                        post.Text = $"Reposted: {GetPostText(post)}";
+                    }
+                }
+
                 // set correct name for posts from user
                 var users = await api.Users.GetAsync(postsWithoutDuplicates
                     .Where(x => x.OwnerId != null && x.FromId != null && x.OwnerId != x.FromId)
@@ -102,20 +112,28 @@ namespace DotNetRu.Azure
         private static VkontaktePost GetVkontaktePost(Post post, string communityGroupId)
         {
             var currentGroup = post.OwnerId != null ? _communityGroups.FirstOrDefault(x => x.Id == Math.Abs((long)post.OwnerId)) : null;
+            var postedVideo = post.Attachments?.Where(x => x.Type == typeof(Video) && (x.Instance as Video)?.Id != null).FirstOrDefault()?.Instance as Video;
             return new VkontaktePost(post.Id)
             {
                 //ToDo: разобраться, откуда правильно брать PostedImage
                 //PostedImage = $"https://vk.com/{(long.TryParse(communityGroupId, out var groupId) ? $"club{Math.Abs(groupId)}" : communityGroupId)}?w=wall{post.OwnerId}_{post.Id}",
-                PostedImage = post.Attachments?.Where(x => x.Type == typeof(Link) && (x.Instance as Link)?.Image != null).ToList().Count > 0
-                    ? (post.Attachments?.Where(x => x.Type == typeof(Link) && (x.Instance as Link)?.Image != null).ToList()[0].Instance as Link)?.Image ?? string.Empty
-                    : string.Empty,
+                PostedImage = (post.Attachments?.Where(x => x.Type == typeof(Link) && (x.Instance as Link)?.Image != null).FirstOrDefault()?.Instance as Link)?.Image ?? string.Empty,
+                PostedVideo = postedVideo != null
+                    ? new PostedVideo
+                    {
+                        Title = postedVideo.Title,
+                        Description = postedVideo.Description,
+                        ImageUri = postedVideo.Image.FirstOrDefault()?.Url,
+                        Uri = $"https://vk.com/video{post.OwnerId}_{postedVideo.Id}"
+                    }
+                    : null,
                 NumberOfViews = post.Views?.Count,
                 NumberOfLikes = post.Likes?.Count,
                 NumberOfReposts = post.Reposts?.Count,
                 FromId = post.FromId,
                 OwnerId = post.OwnerId,
                 ScreenName = currentGroup?.ScreenName,
-                Text = post.Text,
+                Text = post.Text, //GetPostText(post), // - заменяем пустой текст текстом перерепоста?
                 //ToDo: разобраться, что выводить, если Text пуст
                 //Text = string.IsNullOrWhiteSpace(post.Text)
                 //    ? (post.Attachments?.FirstOrDefault(x => x.Type == typeof(Link) && x.Instance is Link)?.Instance as Link)?.Description
@@ -128,9 +146,18 @@ namespace DotNetRu.Azure
                 CopyHistory = post.CopyHistory.Select(x => new CopyHistory
                 {
                     PostId = x.Id,
-                    FromId = x.FromId
+                    FromId = x.FromId,
+                    Text = x.Text
                 }).ToList(),
             };
+        }
+
+        private static string GetPostText(VkontaktePost post)
+        {
+            if (!string.IsNullOrWhiteSpace(post?.Text))
+                return post.Text;
+
+            return post?.CopyHistory?.FirstOrDefault(x => !string.IsNullOrWhiteSpace(x.Text))?.Text ?? string.Empty;
         }
     }
 }
