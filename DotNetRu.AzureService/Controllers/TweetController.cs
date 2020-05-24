@@ -33,8 +33,7 @@ namespace DotNetRu.Azure
         {
             try
             {
-                //ToDo: нужно ли кэшировать получаемые данные (по аналогии с постами ВКонтакте) или у twitter нет ограничения на число запросов в api?
-                var tweets = await TweetService.GetAsync(tweetSettings);
+                var tweets = await CacheHelper.PostsCache.GetOrCreateAsync("tweets", async () => await TweetService.GetAsync(this.tweetSettings));
                 var json = JsonConvert.SerializeObject(tweets);
 
                 return new OkObjectResult(json);

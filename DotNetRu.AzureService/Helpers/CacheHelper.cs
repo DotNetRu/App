@@ -1,11 +1,15 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using DotNetRu.Models.Social;
 using Microsoft.Extensions.Caching.Memory;
 
 namespace DotNetRu.Azure
 {
     internal static class CacheHelper
     {
+        internal static readonly MemoryCacheWithPolicy<IList<ISocialPost>> PostsCache = new MemoryCacheWithPolicy<IList<ISocialPost>>();
+
         private static int _expirationInMinutes;
 
         /// <summary>
