@@ -115,8 +115,6 @@ namespace DotNetRu.Azure
             var postedVideo = post.Attachments?.Where(x => x.Type == typeof(Video) && (x.Instance as Video)?.Id != null).FirstOrDefault()?.Instance as Video;
             return new VkontaktePost(post.Id)
             {
-                //ToDo: разобраться, откуда правильно брать PostedImage
-                //PostedImage = $"https://vk.com/{(long.TryParse(communityGroupId, out var groupId) ? $"club{Math.Abs(groupId)}" : communityGroupId)}?w=wall{post.OwnerId}_{post.Id}",
                 PostedImage = (post.Attachments?.Where(x => x.Type == typeof(Link) && (x.Instance as Link)?.Image != null).FirstOrDefault()?.Instance as Link)?.Image ?? string.Empty,
                 PostedVideo = postedVideo != null
                     ? new PostedVideo
@@ -133,15 +131,10 @@ namespace DotNetRu.Azure
                 FromId = post.FromId,
                 OwnerId = post.OwnerId,
                 ScreenName = currentGroup?.ScreenName,
-                Text = post.Text, //GetPostText(post), // - заменяем пустой текст текстом перерепоста?
-                //ToDo: разобраться, что выводить, если Text пуст
-                //Text = string.IsNullOrWhiteSpace(post.Text)
-                //    ? (post.Attachments?.FirstOrDefault(x => x.Type == typeof(Link) && x.Instance is Link)?.Instance as Link)?.Description
-                //    : post.Text,
+                Text = post.Text,
                 Name = currentGroup?.Name,
                 CreatedDate = post.Date?.ToLocalTime(),
                 Url = $"https://vk.com/{(long.TryParse(communityGroupId, out var groupId) ? $"club{Math.Abs(groupId)}" : communityGroupId)}?w=wall{post.OwnerId}_{post.Id}",
-                //ToDo: сейчас отображается логотип сообщества, а не изображение из поста. Исправить
                 Image = currentGroup?.Photo200?.ToString(),
                 CopyHistory = post.CopyHistory.Select(x => new CopyHistory
                 {

@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using DotNetRu.AzureService;
+using DotNetRu.Models.Social;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -15,6 +17,14 @@ namespace DotNetRu.Azure
 
         private readonly VkontakteSettings vkontakteSettings;
 
+        private static readonly CacheHelper.MemoryCacheWithPolicy<IList<ISocialPost>> PostsCache;
+
+        static VkontakteController()
+        {
+            PostsCache = new CacheHelper.MemoryCacheWithPolicy<IList<ISocialPost>>();
+            CacheHelper.SetExpirationInMinutes(5);
+        }
+
         public VkontakteController(
             ILogger<DiagnosticsController> logger,
             VkontakteSettings vkontakteSettings)
@@ -25,12 +35,18 @@ namespace DotNetRu.Azure
 
         [HttpGet]
         [Route("VkontaktePosts")]
-        public async Task<IActionResult> GetOriginalPosts()
+        public async Task<IActionResult> GetOriginalPosts(
+            //IDictionary<string, int> dict
+            )
         {
             try
             {
-                //ToDo: добавить кэширование результатов, чтобы не исчерпать лимит VK API
-                var posts = await VkontakteService.GetAsync(this.vkontakteSettings);
+                //var cacheKey = string.Join(";", dict.Select(x => $"{x.Key}:{x.Value}").ToArray());
+
+                // в дальнейшем key будет выбираться, исходя из параметров запроса пользователя (на какие сообщества он подписан)
+                // или либо получать данные со всех сообществ, а отбирать их уже в клиенте
+                var posts = await PostsCache.GetOrCreateAsync("vkontaktePosts", async () => await VkontakteService.GetAsync(this.vkontakteSettings));
+
                 var json = JsonConvert.SerializeObject(posts);
 
                 return new OkObjectResult(json);

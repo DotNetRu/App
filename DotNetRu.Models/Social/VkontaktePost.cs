@@ -115,7 +115,7 @@ namespace DotNetRu.Models.Social
 
         public Uri PostedVideoImageUri => this.PostedVideo?.ImageUri;
 
-        public bool HasAttachedVideo => this.PostedVideo != null;
+        public bool HasAttachedVideo => this.HasVideo;
     }
 
     public class CopyHistory
