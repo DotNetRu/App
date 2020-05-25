@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using DotNetRu.AzureService;
 using Microsoft.AspNetCore.Http;
@@ -26,15 +28,18 @@ namespace DotNetRu.Azure
         [HttpGet]
         [Route("VkontaktePosts")]
         public async Task<IActionResult> GetOriginalPosts(
-            //IDictionary<string, int> dict
+            // key - имя комьюнти - "dotnetru"
+            // value - число загружаемых постов (от 0 до 100)
+            IDictionary<string, byte> communities = null
             )
         {
             try
             {
-                //var cacheKey = string.Join(";", dict.Select(x => $"{x.Key}:{x.Value}").ToArray());
+                var cacheKey = "vkontaktePosts";
+                if (communities != null)
+                    cacheKey += string.Join(";", communities.Select(x => $"{x.Key}:{x.Value}").ToArray());
 
-                // в дальнейшем key будет выбираться, исходя из параметров запроса пользователя (на какие сообщества он подписан)
-                var posts = await CacheHelper.PostsCache.GetOrCreateAsync("vkontaktePosts", async () => await VkontakteService.GetAsync(this.vkontakteSettings));
+                var posts = await CacheHelper.PostsCache.GetOrCreateAsync(cacheKey, async () => await VkontakteService.GetAsync(this.vkontakteSettings));
 
                 var json = JsonConvert.SerializeObject(posts);
 
