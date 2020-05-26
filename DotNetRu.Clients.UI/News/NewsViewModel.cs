@@ -275,9 +275,20 @@ namespace DotNetRu.Clients.Portable.ViewModel
                 var socialPosts = new List<ISocialPost>();
 
                 var tweets = await TweetService.GetAsync();
+
+                //ToDo: заменить и проверить после обновления Azure-сервиса
+                //var tweets = await TweetService.GetBySubscriptionsAsync(Helpers.Settings.CommunitySubscriptions
+                //    .Where(x => x.IsSelected && x.Type == SocialMediaType.Twitter).Select(x => x.CommunityName)
+                //    .ToList());
                 socialPosts.AddRange(tweets);
 
                 var vkontaktePosts = await VkontakteService.GetAsync();
+
+                //ToDo: заменить и проверить после обновления Azure-сервиса
+                //var vkontaktePosts = await VkontakteService.GetBySubscriptionsAsync(Helpers.Settings
+                //    .CommunitySubscriptions
+                //    .Where(x => x.IsSelected && x.Type == SocialMediaType.Vkontakte)
+                //    .ToDictionary(x => x.CommunityName, x => x.LoadedPosts));
                 socialPosts.AddRange(vkontaktePosts);
 
                 //ToDo: добавить больше соц. сетей

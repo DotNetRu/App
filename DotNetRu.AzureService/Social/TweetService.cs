@@ -20,7 +20,7 @@ namespace DotNetRu.Azure
         /// <returns>
         /// Returns a list of tweets.
         /// </returns>
-        internal static async Task<List<ISocialPost>> GetAsync(TweetSettings tweetSettings)
+        internal static async Task<List<ISocialPost>> GetAsync(TweetSettings tweetSettings, List<string> communities)
         {
             try
             {
@@ -40,7 +40,7 @@ namespace DotNetRu.Azure
                 using var twitterContext = new TwitterContext(auth);
 
                 IEnumerable<Status> unitedTweets = new List<Status>();
-                foreach (var communityGroup in tweetSettings.CommunityGroups)
+                foreach (var communityGroup in communities)
                 {
                     var communityGroupTweets =
                         await (from tweet in twitterContext.Status

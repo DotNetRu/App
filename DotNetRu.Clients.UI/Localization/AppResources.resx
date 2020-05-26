@@ -153,6 +153,9 @@
   <data name="CodeFromSession" xml:space="preserve">
     <value>Code from Session</value>
   </data>
+  <data name="Copied" xml:space="preserve">
+    <value>Copied</value>
+  </data>
   <data name="CopiedToClipboard" xml:space="preserve">
     <value>Copied to clipboard</value>
   </data>
@@ -283,6 +286,9 @@ Sergey Polezhaev</value>
   <data name="SarDotNet" xml:space="preserve">
     <value>Saratov</value>
   </data>
+  <data name="SaveSubscriptions" xml:space="preserve">
+    <value>Save Subscriptions</value>
+  </data>
   <data name="SeeAlso" xml:space="preserve">
     <value>See also</value>
   </data>
@@ -309,6 +315,15 @@ Sergey Polezhaev</value>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>Submit</value>
+  </data>
+  <data name="Subscriptions" xml:space="preserve">
+    <value>Subscriptions</value>
+  </data>
+  <data name="SubscriptionsLabel" xml:space="preserve">
+    <value>Here you can select a list of community groups from which you want to receive news. You can also specify how many news posts to display for each group (from 0 to 100).</value>
+  </data>
+  <data name="SubscriptionsSavedMessage" xml:space="preserve">
+    <value>Community newsletter subscription options have been saved.</value>
   </data>
   <data name="Talk" xml:space="preserve">
     <value>Talk</value>

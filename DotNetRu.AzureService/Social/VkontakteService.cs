@@ -25,7 +25,7 @@ namespace DotNetRu.Azure
         /// <returns>
         /// Returns a list of vkontakte posts.
         /// </returns>
-        internal static async Task<List<ISocialPost>> GetAsync(VkontakteSettings vkontakteSettings)
+        internal static async Task<List<ISocialPost>> GetAsync(VkontakteSettings vkontakteSettings, Dictionary<string, byte> communities)
         {
             var result = new List<VkontaktePost>();
             try
@@ -36,7 +36,7 @@ namespace DotNetRu.Azure
                     AccessToken = vkontakteSettings.ServiceKey
                 });
 
-                _communityGroups = (await api.Groups.GetByIdAsync(vkontakteSettings.CommunityGroups.Select(x =>
+                _communityGroups = (await api.Groups.GetByIdAsync(communities.Select(x =>
                 {
                     if (long.TryParse(x.Key, out var groupId))
                     {
@@ -46,7 +46,7 @@ namespace DotNetRu.Azure
                     return x.Key;
                 }), null, GroupsFields.All)).ToList();
 
-                foreach (var communityGroup in vkontakteSettings.CommunityGroups)
+                foreach (var communityGroup in communities)
                 {
                     var wallGetParams = new WallGetParams { Count = communityGroup.Value };
                     if (long.TryParse(communityGroup.Key, out var groupId))
@@ -58,8 +58,9 @@ namespace DotNetRu.Azure
                         wallGetParams.Domain = communityGroup.Key;
                     }
 
-                    var communityGroupPosts = (await api.Wall.GetAsync(wallGetParams)).WallPosts;
-                    result.AddRange(communityGroupPosts.Select(communityGroupPost => GetVkontaktePost(communityGroupPost, communityGroup.Key)));
+                    var communityGroupPosts = (await api.Wall.GetAsync(wallGetParams))?.WallPosts;
+                    if (communityGroupPosts != null)
+                        result.AddRange(communityGroupPosts.Select(communityGroupPost => GetVkontaktePost(communityGroupPost, communityGroup.Key)));
                 }
 
                 var postsWithoutDuplicates = result.GroupBy(p => p.PostId).Select(g => g.First()).ToList();

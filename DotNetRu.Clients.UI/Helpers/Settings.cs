@@ -1,3 +1,9 @@
+using System.Collections.Generic;
+using System.Linq;
+using DotNetRu.Clients.UI;
+using DotNetRu.Models.Social;
+using Newtonsoft.Json;
+
 namespace DotNetRu.Clients.Portable.Helpers
 {
     using System;
@@ -35,6 +41,36 @@ namespace DotNetRu.Clients.Portable.Helpers
             }
 
             return Language.English;
+        }
+
+        private static IList<CommunitySubscription> _defaultCommunitySubscriptions;
+        internal static IList<CommunitySubscription> DefaultCommunitySubscriptions
+        {
+            get
+            {
+                return _defaultCommunitySubscriptions ??= AppConfig.GetConfig()
+                    .CommunityGroups.ToList();
+            }
+        }
+
+        public static IList<CommunitySubscription> CommunitySubscriptions
+        {
+            get
+            {
+                string communitySubscriptions = Preferences.Get(nameof(CommunitySubscriptions), JsonConvert.SerializeObject(DefaultCommunitySubscriptions));
+                return JsonConvert.DeserializeObject<IList<CommunitySubscription>>(communitySubscriptions);
+            }
+
+            set
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException(nameof(value));
+                }
+
+                string communitySubscriptions = JsonConvert.SerializeObject(value);
+                Preferences.Set(nameof(CommunitySubscriptions), communitySubscriptions);
+            }
         }
     }
 }

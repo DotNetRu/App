@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using System.Text;
+using DotNetRu.Models.Social;
 using DotNetRu.Utils.Helpers;
 using Newtonsoft.Json;
 
@@ -12,11 +14,17 @@ namespace DotNetRu.Clients.UI
 
         public string TweetFunctionUrl { get; set; }
 
+        public string SubscriptionTweetFunctionUrl { get; set; }
+
         public string VkontakteFunctionUrl { get; set; }
+
+        public string SubscriptionVkontakteFunctionUrl { get; set; }
 
         public string RealmDatabase { get; set; }
 
         public string RealmServerUrl { get; set; }
+
+        public List<CommunitySubscription> CommunityGroups { get; set; }
 
         public static AppConfig GetConfig()
         {

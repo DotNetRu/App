@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DotNetRu.AzureService;
+using DotNetRu.Clients.UI;
+using DotNetRu.Models.Social;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -25,21 +27,42 @@ namespace DotNetRu.Azure
             this.vkontakteSettings = vkontakteSettings;
         }
 
+        [HttpPost]
+        [Route("subscriptionVkontaktePosts")]
+        public async Task<IActionResult> GetOriginalPostsBySubscriptions(
+            [FromBody] Dictionary<string, byte> communities = null
+        )
+        {
+            return await GetOriginalPosts(communities);
+        }
+
         [HttpGet]
         [Route("VkontaktePosts")]
-        public async Task<IActionResult> GetOriginalPosts(
+        public async Task<IActionResult> GetAllOriginalPosts()
+        {
+            return await GetOriginalPosts(AppConfig.GetConfig().CommunityGroups
+                .Where(x => x.IsSelected && x.Type == SocialMediaType.Vkontakte)
+                .ToDictionary(x => x.CommunityName, x => x.LoadedPosts));
+        }
+
+        private async Task<IActionResult> GetOriginalPosts(
             // key - имя комьюнти - "dotnetru"
             // value - число загружаемых постов (от 0 до 100)
-            IDictionary<string, byte> communities = null
+            Dictionary<string, byte> communities
             )
         {
             try
             {
                 var cacheKey = "vkontaktePosts";
-                if (communities != null)
-                    cacheKey += string.Join(";", communities.Select(x => $"{x.Key}:{x.Value}").ToArray());
+                if (communities == null || !communities.Any())
+                    communities = AppConfig.GetConfig().CommunityGroups.Where(x => x.IsSelected && x.Type == SocialMediaType.Vkontakte)
+                        .ToDictionary(x => x.CommunityName, x => x.LoadedPosts);
 
-                var posts = await CacheHelper.PostsCache.GetOrCreateAsync(cacheKey, async () => await VkontakteService.GetAsync(this.vkontakteSettings));
+                cacheKey += string.Join(";", communities.OrderBy(x => x.Key).Select(x => $"{x.Key}:{x.Value}").ToArray());
+
+                var posts = await CacheHelper.PostsCache.GetOrCreateAsync(cacheKey,
+                    async () => await VkontakteService.GetAsync(this.vkontakteSettings,
+                        communities));
 
                 var json = JsonConvert.SerializeObject(posts);
 

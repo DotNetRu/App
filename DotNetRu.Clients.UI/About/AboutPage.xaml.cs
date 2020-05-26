@@ -11,7 +11,7 @@ namespace DotNetRu.Clients.UI.Pages.About
     public partial class AboutPage
     {
         public AboutPage()
-        {            
+        {
             this.InitializeComponent();
 
             var settingsViewModel = new AboutViewModel(this.Navigation);
@@ -33,6 +33,15 @@ namespace DotNetRu.Clients.UI.Pages.About
         private async void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
         {
             await Browser.OpenAsync(AboutThisApp.DotNetRuLink, BrowserLaunchMode.SystemPreferred);
+        }
+
+        private void LoadedPosts_OnValueChanged(object sender, ValueChangedEventArgs e)
+        {
+            if (sender is Slider slider)
+            {
+                var newStep = Math.Round(e.NewValue / 5.0d);
+                slider.Value = newStep * 5.0d;
+            }
         }
     }
 }

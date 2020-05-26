@@ -13,6 +13,7 @@ using DotNetRu.Clients.UI.Pages.Friends;
 using DotNetRu.Clients.UI.Pages.Info;
 using DotNetRu.DataStore.Audit.Models;
 using DotNetRu.DataStore.Audit.Services;
+using DotNetRu.Models.Social;
 using DotNetRu.Utils.Helpers;
 using Microsoft.AppCenter.Analytics;
 using MvvmHelpers;
@@ -44,7 +45,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
         {
             var aboutPageItems = new List<Grouping<string, AboutPageItem>>();
 
-            aboutPageItems.Add(new Grouping<string, AboutPageItem>("Friends", new AboutPageItem[] {
+            aboutPageItems.Add(new Grouping<string, AboutPageItem>("Friends", new [] {
                 new AboutPageItem
                 {
                     AboutItemType = AboutItemType.Friends
@@ -68,7 +69,31 @@ namespace DotNetRu.Clients.Portable.ViewModel
                 AboutItemType = AboutItemType.Community
             })));
 
-            var aboutAppItems = new Model.MenuItem[]
+            //ToDo: добавить сортировку элементов
+            var communitySubscriptions = Helpers.Settings.CommunitySubscriptions;
+            aboutPageItems.Add(new Grouping<string, AboutPageItem>("Subscriptions",
+                new []
+                {
+                    new AboutPageItem
+                    {
+                        AboutItemType = AboutItemType.Text,
+                        Text = AppResources.SubscriptionsLabel
+                    }
+                }.Union(
+                communitySubscriptions.Select(x => new AboutPageItem
+                    {
+                        Subscription = x,
+                        AboutItemType = AboutItemType.Subscriptions
+                    }).Union(new []
+                    {
+                        new AboutPageItem
+                        {
+                            AboutItemType = AboutItemType.MenuItem,
+                            MenuItem = new Model.MenuItem { Name = "SaveSubscriptions", Parameter="SaveSubscriptions"}
+                        }
+                    }))));
+
+            var aboutAppItems = new []
             {
                 new Model.MenuItem { Name = "CreatedBy", Parameter="CreatedBy"},
                 new Model.MenuItem { Name = "IssueTracker", Parameter="IssueTracker"},
@@ -80,7 +105,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
                 AboutItemType = AboutItemType.MenuItem
             })));
 
-            aboutPageItems.Add(new Grouping<string, AboutPageItem>("Settings", new AboutPageItem[] {
+            aboutPageItems.Add(new Grouping<string, AboutPageItem>("Settings", new [] {
                 new AboutPageItem
                 {
                     AboutItemType = AboutItemType.Settings
@@ -123,6 +148,22 @@ namespace DotNetRu.Clients.Portable.ViewModel
                         case "TechnologyUsed":
                             await NavigationService.PushAsync(this.Navigation, new TechnologiesUsedPage());
                             break;
+                        case "SaveSubscriptions":
+                            Helpers.Settings.CommunitySubscriptions = AboutPageItems
+                                .SelectMany(x => x.Items)
+                                .Where(x => x.AboutItemType == AboutItemType.Subscriptions)
+                                .Select(x => new CommunitySubscription
+                                {
+                                    IsSelected = x.Subscription.IsSelected,
+                                    LoadedPosts = x.Subscription.LoadedPosts,
+                                    CommunityName = x.Subscription.CommunityName,
+                                    Type = x.Subscription.Type
+                                }).ToList();
+                                await Application.Current.MainPage.DisplayAlert(
+                                string.Empty,
+                                AppResources.SubscriptionsSavedMessage,
+                                "OK");
+                            break;
                         case "CreatedBy":
                             await Application.Current.MainPage.DisplayAlert(
                                 "Credits",
@@ -133,6 +174,24 @@ namespace DotNetRu.Clients.Portable.ViewModel
                     break;
                 case AboutItemType.Community:
                     await ExecuteLaunchBrowserAsync(item.Community.VkUrl);
+                    break;
+                case AboutItemType.Subscriptions:
+                    switch (item.Subscription.Type)
+                    {
+                        case SocialMediaType.Vkontakte:
+                            await ExecuteLaunchBrowserAsync(new Uri($"https://vk.com/{item.Subscription.CommunityName}"));
+                            break;
+                        case SocialMediaType.Twitter:
+                            await ExecuteLaunchBrowserAsync(new Uri($"https://twitter.com/{item.Subscription.CommunityName}"));
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+                case AboutItemType.Text:
+                    var toaster = DependencyService.Get<IToast>();
+                    await Clipboard.SetTextAsync(item.Text);
+                    toaster.SendToast(AppResources.Copied);
                     break;
                 case AboutItemType.Friends:
                     await NavigationService.PushAsync(this.Navigation, new FriendsPage());
@@ -180,7 +239,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
 
             var toaster = DependencyService.Get<IToast>();
             await Clipboard.SetTextAsync(AppVersion);
-            toaster.SendToast("Copied");
+            toaster.SendToast(AppResources.Copied);
         });
 
         private void HandleLanguageChange()
