@@ -1,8 +1,108 @@
 {
     "AppCenterAndroidKey": "8467f873-4456-4a6f-9fe5-476612bcf687",
     "AppCenteriOSKey": "0ad34829-faf2-42f9-a8e3-40559725cf44",
-    "TweetFunctionUrl": "https://dotnettweetservice.azurewebsites.net/api/Tweets",
-    "VkontakteFunctionUrl": "https://dotnettweetservice.azurewebsites.net/api/VkontaktePosts", //ToDo: поменять адрес при необходимости или разместить метод по этому адресу
+    "TweetFunctionUrl": "https://dotnetruappservice.azurewebsites.net/tweets",
+    "SubscriptionTweetFunctionUrl": "https://dotnetruappservice.azurewebsites.net/subscriptionTweets",
+    "VkontakteFunctionUrl": "https://dotnetruappservice.azurewebsites.net/vkontaktePosts",
+    "SubscriptionVkontakteFunctionUrl": "https://dotnetruappservice.azurewebsites.net/subscriptionVkontaktePosts",
     "RealmDatabase": "dotnetru_prod_281219",
-    "RealmServerUrl": "dotnetru.de1a.cloud.realm.io"
+    "RealmServerUrl": "dotnetru.de1a.cloud.realm.io",
+    "CommunityGroups": [
+        {
+            "Type": 1,
+            "IsSelected": true,
+            "CommunityName": "DotNetRu",
+            "LoadedPosts": 10
+        },
+        {
+            "Type": 1,
+            "IsSelected": true,
+            "CommunityName": "SpbDotNet",
+            "LoadedPosts": 10
+        },
+        {
+            "Type": 1,
+            "IsSelected": true,
+            "CommunityName": "EkbDotNet",
+            "LoadedPosts": 5
+        },
+        {
+            "Type": 1,
+            "IsSelected": true,
+            "CommunityName": "KrdDotNet",
+            "LoadedPosts": 5
+        },
+        {
+            "Type": 1,
+            "IsSelected": true,
+            "CommunityName": "KryDotNet",
+            "LoadedPosts": 5
+        },
+        {
+            "Type": 1,
+            "IsSelected": true,
+            "CommunityName": "KznDotNet",
+            "LoadedPosts": 5
+        },
+        {
+            "Type": 1,
+            "IsSelected": true,
+            "CommunityName": "MskDotNet",
+            "LoadedPosts": 5
+        },
+        {
+            "Type": 1,
+            "IsSelected": true,
+            "CommunityName": "NnvDotNet",
+            "LoadedPosts": 5
+        },
+        {
+            "Type": 1,
+            "IsSelected": true,
+            "CommunityName": "NskDotNet",
+            "LoadedPosts": 5
+        },
+        {
+            "Type": 1,
+            "IsSelected": true,
+            "CommunityName": "OmsDotNet",
+            "LoadedPosts": 5
+        },
+        {
+            "Type": 1,
+            "IsSelected": true,
+            "CommunityName": "PnzDotNet",
+            "LoadedPosts": 5
+        },
+        {
+            "Type": 1,
+            "IsSelected": true,
+            "CommunityName": "SamDotNet",
+            "LoadedPosts": 5
+        },
+        {
+            "Type": 1,
+            "IsSelected": true,
+            "CommunityName": "SarDotNet",
+            "LoadedPosts": 5
+        },
+        {
+            "Type": 1,
+            "IsSelected": true,
+            "CommunityName": "UfaDotNet",
+            "LoadedPosts": 5
+        },
+        {
+            "Type": 0,
+            "IsSelected": true,
+            "CommunityName": "DotNetRu",
+            "LoadedPosts": 0
+        },
+        {
+            "Type": 0,
+            "IsSelected": true,
+            "CommunityName": "SpbDotNet",
+            "LoadedPosts": 0
+        }
+    ]
 }
