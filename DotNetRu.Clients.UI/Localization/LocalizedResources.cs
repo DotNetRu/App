@@ -17,11 +17,11 @@ namespace DotNetRu.Clients.Portable.Helpers
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-       
+
         public string this[string key] => AppResources.ResourceManager.GetString(key, AppResources.Culture);
 
         private void OnCultureChanged(object s, CultureChangedMessage cultureChangedMessage)
-        {           
+        {
             AppResources.Culture = cultureChangedMessage.NewCultureInfo;
 
             // set for locale-aware methods

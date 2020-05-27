@@ -11,9 +11,9 @@ using DotNetRu.Clients.UI.Helpers;
 using DotNetRu.Clients.UI.Localization;
 using DotNetRu.Clients.UI.Pages.Friends;
 using DotNetRu.Clients.UI.Pages.Info;
+using DotNetRu.Clients.UI.Pages.Subscriptions;
 using DotNetRu.DataStore.Audit.Models;
 using DotNetRu.DataStore.Audit.Services;
-using DotNetRu.Models.Social;
 using DotNetRu.Utils.Helpers;
 using Microsoft.AppCenter.Analytics;
 using MvvmHelpers;
@@ -45,10 +45,17 @@ namespace DotNetRu.Clients.Portable.ViewModel
         {
             var aboutPageItems = new List<Grouping<string, AboutPageItem>>();
 
-            aboutPageItems.Add(new Grouping<string, AboutPageItem>("Friends", new [] {
+            aboutPageItems.Add(new Grouping<string, AboutPageItem>(nameof(AppResources.Friends), new [] {
                 new AboutPageItem
                 {
                     AboutItemType = AboutItemType.Friends
+                }
+            }));
+
+            aboutPageItems.Add(new Grouping<string, AboutPageItem>(nameof(AppResources.Subscriptions), new[] {
+                new AboutPageItem
+                {
+                    AboutItemType = AboutItemType.Subscriptions
                 }
             }));
 
@@ -63,49 +70,25 @@ namespace DotNetRu.Clients.Portable.ViewModel
                     Community = c,
                     FirstSessionDate = s.Sessions.OrderBy(session => session.StartTime).FirstOrDefault()?.StartTime
                 }).OrderBy(x => x.FirstSessionDate).GroupBy(x => x.Community.Id).Select(x => x.First());
-            aboutPageItems.Add(new Grouping<string, AboutPageItem>("OurCommunities", communitiesWithFirstSessionDate.Select(x => new AboutPageItem
+            aboutPageItems.Add(new Grouping<string, AboutPageItem>(nameof(AppResources.OurCommunities), communitiesWithFirstSessionDate.Select(x => new AboutPageItem
             {
                 Community = x.Community,
                 AboutItemType = AboutItemType.Community
             })));
 
-            //ToDo: добавить сортировку элементов
-            var communitySubscriptions = Helpers.Settings.CommunitySubscriptions;
-            aboutPageItems.Add(new Grouping<string, AboutPageItem>("Subscriptions",
-                new []
-                {
-                    new AboutPageItem
-                    {
-                        AboutItemType = AboutItemType.Text,
-                        Text = AppResources.SubscriptionsLabel
-                    }
-                }.Union(
-                communitySubscriptions.Select(x => new AboutPageItem
-                    {
-                        Subscription = x,
-                        AboutItemType = AboutItemType.Subscriptions
-                    }).Union(new []
-                    {
-                        new AboutPageItem
-                        {
-                            AboutItemType = AboutItemType.MenuItem,
-                            MenuItem = new Model.MenuItem { Name = "SaveSubscriptions", Parameter="SaveSubscriptions"}
-                        }
-                    }))));
-
             var aboutAppItems = new []
             {
-                new Model.MenuItem { Name = "CreatedBy", Parameter="CreatedBy"},
-                new Model.MenuItem { Name = "IssueTracker", Parameter="IssueTracker"},
-                new Model.MenuItem { Name = "TechnologyUsed", Parameter="TechnologyUsed"},
+                new Model.MenuItem { Name = nameof(AppResources.CreatedBy), Parameter=nameof(AppResources.CreatedBy)},
+                new Model.MenuItem { Name = nameof(AppResources.IssueTracker), Parameter=nameof(AppResources.IssueTracker)},
+                new Model.MenuItem { Name = nameof(AppResources.TechnologyUsed), Parameter=nameof(AppResources.TechnologyUsed)},
             };
-            aboutPageItems.Add(new Grouping<string, AboutPageItem>("AboutApp", aboutAppItems.Select(x => new AboutPageItem
+            aboutPageItems.Add(new Grouping<string, AboutPageItem>(nameof(AppResources.AboutApp), aboutAppItems.Select(x => new AboutPageItem
             {
                 MenuItem = x,
                 AboutItemType = AboutItemType.MenuItem
             })));
 
-            aboutPageItems.Add(new Grouping<string, AboutPageItem>("Settings", new [] {
+            aboutPageItems.Add(new Grouping<string, AboutPageItem>(nameof(AppResources.Settings), new [] {
                 new AboutPageItem
                 {
                     AboutItemType = AboutItemType.Settings
@@ -142,29 +125,13 @@ namespace DotNetRu.Clients.Portable.ViewModel
                 case AboutItemType.MenuItem:
                     switch (item.MenuItem.Parameter)
                     {
-                        case "IssueTracker":
+                        case nameof(AppResources.IssueTracker):
                             await ExecuteLaunchBrowserAsync(AboutThisApp.IssueTracker);
                             break;
-                        case "TechnologyUsed":
+                        case nameof(AppResources.TechnologyUsed):
                             await NavigationService.PushAsync(this.Navigation, new TechnologiesUsedPage());
                             break;
-                        case "SaveSubscriptions":
-                            Helpers.Settings.CommunitySubscriptions = AboutPageItems
-                                .SelectMany(x => x.Items)
-                                .Where(x => x.AboutItemType == AboutItemType.Subscriptions)
-                                .Select(x => new CommunitySubscription
-                                {
-                                    IsSelected = x.Subscription.IsSelected,
-                                    LoadedPosts = x.Subscription.LoadedPosts,
-                                    CommunityName = x.Subscription.CommunityName,
-                                    Type = x.Subscription.Type
-                                }).ToList();
-                                await Application.Current.MainPage.DisplayAlert(
-                                string.Empty,
-                                AppResources.SubscriptionsSavedMessage,
-                                "OK");
-                            break;
-                        case "CreatedBy":
+                        case nameof(AppResources.CreatedBy):
                             await Application.Current.MainPage.DisplayAlert(
                                 "Credits",
                                 AppResources.Credits,
@@ -175,19 +142,6 @@ namespace DotNetRu.Clients.Portable.ViewModel
                 case AboutItemType.Community:
                     await ExecuteLaunchBrowserAsync(item.Community.VkUrl);
                     break;
-                case AboutItemType.Subscriptions:
-                    switch (item.Subscription.Type)
-                    {
-                        case SocialMediaType.Vkontakte:
-                            await ExecuteLaunchBrowserAsync(new Uri($"https://vk.com/{item.Subscription.CommunityName}"));
-                            break;
-                        case SocialMediaType.Twitter:
-                            await ExecuteLaunchBrowserAsync(new Uri($"https://twitter.com/{item.Subscription.CommunityName}"));
-                            break;
-                        default:
-                            break;
-                    }
-                    break;
                 case AboutItemType.Text:
                     var toaster = DependencyService.Get<IToast>();
                     await Clipboard.SetTextAsync(item.Text);
@@ -195,6 +149,9 @@ namespace DotNetRu.Clients.Portable.ViewModel
                     break;
                 case AboutItemType.Friends:
                     await NavigationService.PushAsync(this.Navigation, new FriendsPage());
+                    break;
+                case AboutItemType.Subscriptions:
+                    await NavigationService.PushAsync(this.Navigation, new SubscriptionsPage());
                     break;
             }
         }
@@ -235,7 +192,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
 
         public ICommand CopyAppVersionCommand => new Command(async () =>
         {
-            Analytics.TrackEvent("App version copied", new Dictionary<string, string>() { ["AppVersion"] = AppVersion });
+            Analytics.TrackEvent("App version copied", new Dictionary<string, string> { ["AppVersion"] = AppVersion });
 
             var toaster = DependencyService.Get<IToast>();
             await Clipboard.SetTextAsync(AppVersion);

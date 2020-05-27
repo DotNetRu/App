@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DotNetRu.AzureService;
-using DotNetRu.Clients.UI;
-using DotNetRu.Models.Social;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -20,6 +18,8 @@ namespace DotNetRu.Azure
         private readonly TweetSettings tweetSettings;
 
         private readonly PushNotificationsManager pushNotificationsManager;
+
+        private readonly List<string> defaultCommunities = new List<string> {"DotNetRu", "SpbDotNet"};
 
         public TweetController(
             ILogger<DiagnosticsController> logger,
@@ -44,8 +44,7 @@ namespace DotNetRu.Azure
         [Route("tweets")]
         public async Task<IActionResult> GetAllOriginalTweets()
         {
-            return await GetOriginalTweets(AppConfig.GetConfig().CommunityGroups
-                .Where(x => x.IsSelected && x.Type == SocialMediaType.Twitter).Select(x => x.CommunityName).ToList());
+            return await GetOriginalTweets(defaultCommunities);
         }
 
         private async Task<IActionResult> GetOriginalTweets(
@@ -56,7 +55,7 @@ namespace DotNetRu.Azure
             {
                 var cacheKey = "tweets";
                 if (communities == null || !communities.Any())
-                    communities = AppConfig.GetConfig().CommunityGroups.Where(x => x.IsSelected && x.Type == SocialMediaType.Twitter).Select(x => x.CommunityName).ToList();
+                    communities = defaultCommunities;
 
                 cacheKey += string.Join(";", communities.OrderBy(x => x).ToArray());
 

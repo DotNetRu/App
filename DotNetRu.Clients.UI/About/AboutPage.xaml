@@ -82,52 +82,14 @@
                 </ViewCell>
             </DataTemplate>
 
-            <DataTemplate x:Key="subscriptionsTemplate" x:DataType="about:AboutPageItem">
+            <DataTemplate x:Key="subscriptionsTemplate">
                 <ViewCell StyleId="disclosure">
-                    <FlexLayout BackgroundColor="White" Direction="Row">
-                        <CheckBox
-                            FlexLayout.Basis="10%"
-                            HeightRequest="40"
-                            IsChecked="{Binding Path=Subscription.IsSelected, Mode=TwoWay}" />
-                        <Image
-                            Margin="5,0,10,0"
-                            FlexLayout.Basis="10%"
-                            HeightRequest="40"
-                            Source="{Binding Path=Subscription.Type, Converter={StaticResource SocialMediaTypeConverter}}"
-                            VerticalOptions="Center" />
+                    <StackLayout Padding="{DynamicResource StandardPadding}" BackgroundColor="White">
                         <Label
-                            FlexLayout.Basis="40%"
-                            HeightRequest="40"
-                            HorizontalOptions="Center"
-                            HorizontalTextAlignment="Center"
-                            StyleId="SponsorName"
-                            Text="{Binding Path=Subscription.CommunityName, Mode=OneWay, Converter={StaticResource TranslateConverter}}"
+                            Text="{Binding Source={x:Reference About}, Path=BindingContext.Resources[Subscriptions]}"
                             VerticalOptions="Center"
                             VerticalTextAlignment="Center" />
-                        <Label
-                            x:Name="LoadedPostsValue"
-                            FlexLayout.Basis="10%"
-                            HeightRequest="40"
-                            HorizontalOptions="Center"
-                            HorizontalTextAlignment="Center"
-                            IsVisible="{Binding Path=Subscription.Type, Converter={StaticResource SocialMediaTypeConverter}}"
-                            StyleId="SponsorName"
-                            Text="{Binding Source={x:Reference LoadedPosts}, Path=Value}"
-                            VerticalOptions="Center"
-                            VerticalTextAlignment="Center" />
-                        <Slider
-                            x:Name="LoadedPosts"
-                            FlexLayout.Basis="30%"
-                            HeightRequest="30"
-                            IsVisible="{Binding Path=Subscription.Type, Converter={StaticResource SocialMediaTypeConverter}}"
-                            Maximum="100"
-                            MaximumTrackColor="Green"
-                            Minimum="0"
-                            MinimumTrackColor="Red"
-                            ValueChanged="LoadedPosts_OnValueChanged"
-                            VerticalOptions="CenterAndExpand"
-                            Value="{Binding Path=Subscription.LoadedPosts, Mode=TwoWay}" />
-                    </FlexLayout>
+                    </StackLayout>
                 </ViewCell>
             </DataTemplate>
 

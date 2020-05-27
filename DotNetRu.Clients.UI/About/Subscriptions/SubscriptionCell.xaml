@@ -1,0 +1,62 @@
+<ContentView
+    x:Class="DotNetRu.Clients.UI.Cells.SubscriptionCell"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:DotNetRu.Clients.UI.Controls;assembly=DotNetRu.Clients.UI"
+    xmlns:converters="clr-namespace:DotNetRu.Clients.UI.Converters;assembly=DotNetRu.Clients.UI"
+    xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
+    <ContentView.Resources>
+        <converters:TranslateConverter x:Key="TranslateConverter" />
+        <converters:SocialMediaTypeConverter x:Key="SocialMediaTypeConverter" />
+    </ContentView.Resources>
+    <StackLayout HeightRequest="40" Spacing="0">
+        <StackLayout.Padding>
+            <OnPlatform
+                x:TypeArguments="Thickness"
+                Android="0,4"
+                iOS="0" />
+        </StackLayout.Padding>
+        <FlexLayout BackgroundColor="White" Direction="Row">
+            <CheckBox
+                FlexLayout.Basis="10%"
+                HeightRequest="40"
+                IsChecked="{Binding Path=IsSelected, Mode=TwoWay}" />
+            <Image
+                Margin="5,0,10,0"
+                FlexLayout.Basis="10%"
+                HeightRequest="40"
+                Source="{Binding Path=Type, Converter={StaticResource SocialMediaTypeConverter}}"
+                VerticalOptions="Center" />
+            <Label
+                FlexLayout.Basis="40%"
+                HeightRequest="40"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"
+                Text="{Binding Path=Community.Name, Mode=OneWay, Converter={StaticResource TranslateConverter}}"
+                VerticalOptions="Center"
+                VerticalTextAlignment="Center" />
+            <Label
+                x:Name="LoadedPostsValue"
+                FlexLayout.Basis="10%"
+                HeightRequest="40"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"
+                IsVisible="{Binding Path=Type, Converter={StaticResource SocialMediaTypeConverter}}"
+                Text="{Binding Source={x:Reference LoadedPosts}, Path=Value}"
+                VerticalOptions="Center"
+                VerticalTextAlignment="Center" />
+            <Slider
+                x:Name="LoadedPosts"
+                FlexLayout.Basis="30%"
+                HeightRequest="30"
+                IsVisible="{Binding Path=Type, Converter={StaticResource SocialMediaTypeConverter}}"
+                Maximum="100"
+                MaximumTrackColor="Green"
+                Minimum="0"
+                MinimumTrackColor="Red"
+                ValueChanged="LoadedPosts_OnValueChanged"
+                VerticalOptions="CenterAndExpand"
+                Value="{Binding Path=LoadedPosts, Mode=TwoWay}" />
+        </FlexLayout>
+    </StackLayout>
+</ContentView>

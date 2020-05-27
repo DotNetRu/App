@@ -170,7 +170,8 @@ DotNetRu Team
 Pavel Fedotovsky
 Anatoly Kulakov
 Yury Belousov
-Sergey Polezhaev</value>
+Sergey Polezhaev
+Nikolay Chebotov</value>
   </data>
   <data name="DotNetRu" xml:space="preserve">
     <value>DotNetRu</value>
@@ -229,6 +230,9 @@ Sergey Polezhaev</value>
   <data name="LoadingSpeakers" xml:space="preserve">
     <value>Loading Speakers...</value>
   </data>
+  <data name="LoadingSubscriptions" xml:space="preserve">
+    <value>Loading Subscriptions...</value>
+  </data>
   <data name="LoadingTalks" xml:space="preserve">
     <value>Loading talks...</value>
   </data>
@@ -280,6 +284,9 @@ Sergey Polezhaev</value>
   <data name="RemoveFromCalendar" xml:space="preserve">
     <value>Remove from Calendar</value>
   </data>
+  <data name="ResetSubscriptions" xml:space="preserve">
+    <value>Reset Subscriptions</value>
+  </data>
   <data name="SamDotNet" xml:space="preserve">
     <value>Samara</value>
   </data>
@@ -321,6 +328,9 @@ Sergey Polezhaev</value>
   </data>
   <data name="SubscriptionsLabel" xml:space="preserve">
     <value>Here you can select a list of community groups from which you want to receive news. You can also specify how many news posts to display for each group (from 0 to 100).</value>
+  </data>
+  <data name="SubscriptionsResetedMessage" xml:space="preserve">
+    <value>Community newsletter subscription options have been reseted.</value>
   </data>
   <data name="SubscriptionsSavedMessage" xml:space="preserve">
     <value>Community newsletter subscription options have been saved.</value>

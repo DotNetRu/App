@@ -1,7 +1,6 @@
 using System.Collections.Generic;
-using System.Linq;
-using DotNetRu.Clients.UI;
-using DotNetRu.Models.Social;
+using DotNetRu.DataStore.Audit.Helpers;
+using DotNetRu.DataStore.Audit.Models;
 using Newtonsoft.Json;
 
 namespace DotNetRu.Clients.Portable.Helpers
@@ -43,22 +42,12 @@ namespace DotNetRu.Clients.Portable.Helpers
             return Language.English;
         }
 
-        private static IList<CommunitySubscription> _defaultCommunitySubscriptions;
-        internal static IList<CommunitySubscription> DefaultCommunitySubscriptions
+        public static IList<SubscriptionModel> CommunitySubscriptions
         {
             get
             {
-                return _defaultCommunitySubscriptions ??= AppConfig.GetConfig()
-                    .CommunityGroups.ToList();
-            }
-        }
-
-        public static IList<CommunitySubscription> CommunitySubscriptions
-        {
-            get
-            {
-                string communitySubscriptions = Preferences.Get(nameof(CommunitySubscriptions), JsonConvert.SerializeObject(DefaultCommunitySubscriptions));
-                return JsonConvert.DeserializeObject<IList<CommunitySubscription>>(communitySubscriptions);
+                string communitySubscriptions = Preferences.Get(nameof(CommunitySubscriptions), JsonConvert.SerializeObject(SubscriptionsHelper.DefaultCommunitySubscriptions));
+                return JsonConvert.DeserializeObject<IList<SubscriptionModel>>(communitySubscriptions);
             }
 
             set

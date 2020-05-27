@@ -1,6 +1,4 @@
-using System.Collections.Generic;
 using System.Text;
-using DotNetRu.Models.Social;
 using DotNetRu.Utils.Helpers;
 using Newtonsoft.Json;
 
@@ -23,8 +21,6 @@ namespace DotNetRu.Clients.UI
         public string RealmDatabase { get; set; }
 
         public string RealmServerUrl { get; set; }
-
-        public List<CommunitySubscription> CommunityGroups { get; set; }
 
         public static AppConfig GetConfig()
         {

@@ -61,6 +61,8 @@
     <EmbeddedResource Update="AppShell.xaml">
       <LogicalName>AppShell.xaml</LogicalName>
     </EmbeddedResource>
+    <EmbeddedResource Update="Localization\AppResources.ru.resx">
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Update="About\CommunityViewCell.xaml">
@@ -75,7 +77,19 @@
     <None Update="About\Friends\FriendsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
-    <None Update="About\SettingsPage.xaml">
+      <None Update="About\Subscriptions\SubscriptionCell.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="About\Subscriptions\SubscriptionsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+      <None Update="About\SettingsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="About\Subscriptions\SubscriptionCell.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="About\Subscriptions\SubscriptionsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
     <None Update="About\TechnologiesUsedPage.xaml">

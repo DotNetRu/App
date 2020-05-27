@@ -203,7 +203,8 @@ namespace DotNetRu.Clients.UI.Localization {
         ///Pavel Fedotovsky
         ///Anatoly Kulakov
         ///Yury Belousov
-        ///Sergey Polezhaev.
+        ///Sergey Polezhaev
+        ///Nikolay Chebotov.
         /// </summary>
         public static string Credits {
             get {
@@ -383,6 +384,15 @@ namespace DotNetRu.Clients.UI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Loading Subscriptions....
+        /// </summary>
+        public static string LoadingSubscriptions {
+            get {
+                return ResourceManager.GetString("LoadingSubscriptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Loading talks....
         /// </summary>
         public static string LoadingTalks {
@@ -536,6 +546,15 @@ namespace DotNetRu.Clients.UI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reset Subscriptions.
+        /// </summary>
+        public static string ResetSubscriptions {
+            get {
+                return ResourceManager.GetString("ResetSubscriptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Samara.
         /// </summary>
         public static string SamDotNet {
@@ -658,6 +677,15 @@ namespace DotNetRu.Clients.UI.Localization {
         public static string SubscriptionsLabel {
             get {
                 return ResourceManager.GetString("SubscriptionsLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Community newsletter subscription options have been reseted..
+        /// </summary>
+        public static string SubscriptionsResetedMessage {
+            get {
+                return ResourceManager.GetString("SubscriptionsResetedMessage", resourceCulture);
             }
         }
         

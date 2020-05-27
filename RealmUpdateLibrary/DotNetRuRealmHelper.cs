@@ -14,20 +14,18 @@ namespace DotNetRu.RealmUpdateLibrary
         {
             ReplaceRealmObjects(realm, new[] { auditData.AuditVersion }, x => x.CommitHash);
 
-            using (var transaction = realm.BeginWrite())
-            {
-                UpdateRealmObjects(realm, auditData.Communities);
-                UpdateRealmObjects(realm, auditData.Friends);
-                UpdateRealmObjects(realm, auditData.Meetups);
+            using var transaction = realm.BeginWrite();
+            UpdateRealmObjects(realm, auditData.Communities);
+            UpdateRealmObjects(realm, auditData.Friends);
+            UpdateRealmObjects(realm, auditData.Meetups);
 
-                UpdateRealmObjects(realm, auditData.Meetups.SelectMany(m => m.Sessions));
+            UpdateRealmObjects(realm, auditData.Meetups.SelectMany(m => m.Sessions));
 
-                UpdateRealmObjects(realm, auditData.Speakers);
-                UpdateRealmObjects(realm, auditData.Talks);
-                UpdateRealmObjects(realm, auditData.Venues);
+            UpdateRealmObjects(realm, auditData.Speakers);
+            UpdateRealmObjects(realm, auditData.Talks);
+            UpdateRealmObjects(realm, auditData.Venues);
 
-                transaction.Commit();
-            }
+            transaction.Commit();
         }
 
         private static void UpdateRealmObjects<T>(Realm realm, IEnumerable<T> newObjects) where T : RealmObject

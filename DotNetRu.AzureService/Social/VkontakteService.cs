@@ -58,7 +58,8 @@ namespace DotNetRu.Azure
                         wallGetParams.Domain = communityGroup.Key;
                     }
 
-                    var communityGroupPosts = (await api.Wall.GetAsync(wallGetParams))?.WallPosts;
+                    var wall = await api.Wall.GetAsync(wallGetParams);
+                    var communityGroupPosts = wall?.WallPosts;
                     if (communityGroupPosts != null)
                         result.AddRange(communityGroupPosts.Select(communityGroupPost => GetVkontaktePost(communityGroupPost, communityGroup.Key)));
                 }
