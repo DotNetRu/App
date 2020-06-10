@@ -127,9 +127,9 @@ namespace DotNetRu.Azure
                         Uri = $"https://vk.com/video{post.OwnerId}_{postedVideo.Id}"
                     }
                     : null,
-                NumberOfViews = post.Views?.Count,
-                NumberOfLikes = post.Likes?.Count,
-                NumberOfReposts = post.Reposts?.Count,
+                NumberOfViews = post.Views?.Count ?? 0,
+                NumberOfLikes = post.Likes?.Count ?? 0,
+                NumberOfReposts = post.Reposts?.Count ?? 0,
                 FromId = post.FromId,
                 OwnerId = post.OwnerId,
                 ScreenName = currentGroup?.ScreenName,
