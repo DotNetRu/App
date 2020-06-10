@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using AutoMapper;
 using DotNetRu.DataStore.Audit.RealmModels;
@@ -53,7 +54,8 @@ namespace DotNetRu.RealmUpdateLibrary
                                 }
                             }
 
-                            dest.Venue = realmVenues.Single(venue => venue.Id == src.VenueId);
+                            if (src.VenueId != null)
+                                dest.Venue = realmVenues.Single(venue => venue.Id == src.VenueId);
                         });
                 cfg.CreateMap<SessionEntity, Session>().AfterMap(
                     (src, dest) =>
