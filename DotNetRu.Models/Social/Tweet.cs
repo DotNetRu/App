@@ -25,6 +25,16 @@ namespace DotNetRu.Models.Social
             set => this.postedImage = value;
         }
 
+        private PostedVideo postedVideo;
+
+        public bool HasVideo => this.postedVideo != null;
+
+        public PostedVideo PostedVideo
+        {
+            get => this.postedVideo;
+            set => this.postedVideo = value;
+        }
+
         public int? NumberOfViews { get; set; }
 
         public int? NumberOfLikes { get; set; }
@@ -72,6 +82,32 @@ namespace DotNetRu.Models.Social
         }
 
         public bool HasAttachedImage => !string.IsNullOrWhiteSpace(this.PostedImage);
+
+        public Uri PostedVideoUri
+        {
+            get
+            {
+                try
+                {
+                    if (string.IsNullOrWhiteSpace(this.PostedVideo?.Uri))
+                    {
+                        return null;
+                    }
+
+                    return new Uri(this.PostedVideo.Uri);
+                }
+                catch
+                {
+                    // TODO ignored
+                }
+
+                return null;
+            }
+        }
+
+        public Uri PostedVideoImageUri => this.PostedVideo?.ImageUri;
+
+        public bool HasAttachedVideo => this.PostedVideo != null;
 
         public override string ToString()
         {

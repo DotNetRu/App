@@ -6,6 +6,10 @@ namespace DotNetRu.Clients.UI.About
     {
         public DataTemplate CommunityTemplate { get; set; }
 
+        public DataTemplate SubscriptionsTemplate { get; set; }
+
+        public DataTemplate TextTemplate { get; set; }
+
         public DataTemplate MenuItemTemplate { get; set; }
 
         public DataTemplate SettingsTemplate { get; set; }
@@ -16,10 +20,14 @@ namespace DotNetRu.Clients.UI.About
         {
             var aboutPageItem = item as AboutPageItem;
 
-            switch (aboutPageItem.AboutItemType)
+            switch (aboutPageItem?.AboutItemType)
             {
                 case AboutItemType.Community:
                     return CommunityTemplate;
+                case AboutItemType.Subscriptions:
+                    return SubscriptionsTemplate;
+                case AboutItemType.Text:
+                    return TextTemplate;
                 case AboutItemType.MenuItem:
                     return MenuItemTemplate;
                 case AboutItemType.Settings:

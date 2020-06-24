@@ -102,7 +102,7 @@ namespace DotNetRu.RealmUpdateLibrary
             var xmlVenues = fileContents.Where(x => x.FileType == FileType.Venue).Select(x => x.Content.Deserialize<VenueEntity>());
             var xmlCommunities = fileContents.Where(x => x.FileType == FileType.Community).Select(x => x.Content.Deserialize<CommunityEntity>());
 
-            return new AuditXmlUpdate()
+            return new AuditXmlUpdate
             {
                 Speakers = xmlSpeakers,
                 Friends = xmlFriends,

@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using DotNetRu.AzureService;
 using Microsoft.AspNetCore.Http;
@@ -17,6 +19,8 @@ namespace DotNetRu.Azure
 
         private readonly PushNotificationsManager pushNotificationsManager;
 
+        private readonly List<string> defaultCommunities = new List<string> {"DotNetRu", "SpbDotNet"};
+
         public TweetController(
             ILogger<DiagnosticsController> logger,
             TweetSettings tweetSettings,
@@ -27,13 +31,38 @@ namespace DotNetRu.Azure
             this.pushNotificationsManager = pushNotificationsManager;
         }
 
+        [HttpPost]
+        [Route("subscriptionTweets")]
+        public async Task<IActionResult> GetOriginalTweetsBySubscriptions(
+            [FromBody]List<string> communities = null
+        )
+        {
+            return await GetOriginalTweets(communities);
+        }
+
         [HttpGet]
         [Route("tweets")]
-        public async Task<IActionResult> GetOriginalTweets()
+        public async Task<IActionResult> GetAllOriginalTweets()
+        {
+            return await GetOriginalTweets(defaultCommunities);
+        }
+
+        private async Task<IActionResult> GetOriginalTweets(
+            List<string> communities
+        )
         {
             try
             {
-                var tweets = await TweetService.GetAsync(tweetSettings);
+                var cacheKey = "tweets";
+                if (communities == null || !communities.Any())
+                    communities = defaultCommunities;
+
+                cacheKey += string.Join(";", communities.OrderBy(x => x).ToArray());
+
+                var tweets = await CacheHelper.PostsCache.GetOrCreateAsync(cacheKey,
+                    async () => await TweetService.GetAsync(this.tweetSettings,
+                        communities));
+
                 var json = JsonConvert.SerializeObject(tweets);
 
                 return new OkObjectResult(json);

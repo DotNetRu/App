@@ -32,5 +32,24 @@ namespace DotNetRu.Clients.Portable.Services
 
             return new List<ISocialPost>();
         }
+
+        public static async Task<List<ISocialPost>> GetBySubscriptionsAsync(List<string> communities)
+        {
+            try
+            {
+                var config = AppConfig.GetConfig();
+
+                var tweets = await config.SubscriptionTweetFunctionUrl.PostJsonAsync(communities)
+                    .ReceiveJson<List<Tweet>>();
+
+                return tweets.Cast<ISocialPost>().ToList();
+            }
+            catch (Exception e)
+            {
+                DotNetRuLogger.Report(e);
+            }
+
+            return new List<ISocialPost>();
+        }
     }
 }

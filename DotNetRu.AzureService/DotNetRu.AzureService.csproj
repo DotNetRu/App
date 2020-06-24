@@ -23,7 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DotNetRu.Models\DotNetRu.Models.csproj" />
     <ProjectReference Include="..\RealmUpdateLibrary\DotNetRu.RealmUpdateLibrary.csproj" />
   </ItemGroup>
 

@@ -43,7 +43,9 @@ namespace DotNetRu.Clients.Portable.Model
 
         ConferenceFeedback,
 
-        SpeakerFace
+        SpeakerFace,
+
+        Subscriptions
     }
 }
 

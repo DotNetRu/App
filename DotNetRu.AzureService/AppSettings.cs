@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace DotNetRu.AzureService
 {
     public class RealmSettings
@@ -23,7 +21,5 @@ namespace DotNetRu.AzureService
     public class VkontakteSettings
     {
         public string ServiceKey { get; set; }
-
-        public Dictionary<string, ulong> CommunityGroups { get; set; }
     }
 }

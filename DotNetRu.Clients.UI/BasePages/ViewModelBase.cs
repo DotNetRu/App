@@ -28,9 +28,8 @@ namespace DotNetRu.Clients.Portable.ViewModel
             get;
         }
 
-        public ICommand LaunchBrowserCommand => this.launchBrowserCommand
-                                                ?? (this.launchBrowserCommand = new Command<Uri>(
-                                                        async (t) => await this.ExecuteLaunchBrowserAsync(t)));
+        public ICommand LaunchBrowserCommand => this.launchBrowserCommand ??= new Command<Uri>(
+            async (t) => await this.ExecuteLaunchBrowserAsync(t));
 
         protected internal INavigation Navigation { get; }
 
@@ -42,14 +41,14 @@ namespace DotNetRu.Clients.Portable.ViewModel
             {
                 return;
             }
-           
+
             var stringLink = link.ToString();
 
             this.Logger.Track(DotNetRuLoggerKeys.LaunchedBrowser, "Url", stringLink);
 
             if (Device.RuntimePlatform == Device.iOS)
             {
-                if (stringLink.ToString().Contains("twitter.com"))
+                if (stringLink.Contains("twitter.com"))
                 {
                     try
                     {

@@ -25,7 +25,7 @@ namespace DotNetRu.Azure
         /// <returns>
         /// Returns a list of vkontakte posts.
         /// </returns>
-        internal static async Task<List<ISocialPost>> GetAsync(VkontakteSettings vkontakteSettings)
+        internal static async Task<List<ISocialPost>> GetAsync(VkontakteSettings vkontakteSettings, Dictionary<string, byte> communities)
         {
             var result = new List<VkontaktePost>();
             try
@@ -36,7 +36,7 @@ namespace DotNetRu.Azure
                     AccessToken = vkontakteSettings.ServiceKey
                 });
 
-                _communityGroups = (await api.Groups.GetByIdAsync(vkontakteSettings.CommunityGroups.Select(x =>
+                _communityGroups = (await api.Groups.GetByIdAsync(communities.Select(x =>
                 {
                     if (long.TryParse(x.Key, out var groupId))
                     {
@@ -46,7 +46,7 @@ namespace DotNetRu.Azure
                     return x.Key;
                 }), null, GroupsFields.All)).ToList();
 
-                foreach (var communityGroup in vkontakteSettings.CommunityGroups)
+                foreach (var communityGroup in communities)
                 {
                     var wallGetParams = new WallGetParams { Count = communityGroup.Value };
                     if (long.TryParse(communityGroup.Key, out var groupId))
@@ -58,8 +58,10 @@ namespace DotNetRu.Azure
                         wallGetParams.Domain = communityGroup.Key;
                     }
 
-                    var communityGroupPosts = (await api.Wall.GetAsync(wallGetParams)).WallPosts;
-                    result.AddRange(communityGroupPosts.Select(communityGroupPost => GetVkontaktePost(communityGroupPost, communityGroup.Key)));
+                    var wall = await api.Wall.GetAsync(wallGetParams);
+                    var communityGroupPosts = wall?.WallPosts;
+                    if (communityGroupPosts != null)
+                        result.AddRange(communityGroupPosts.Select(communityGroupPost => GetVkontaktePost(communityGroupPost, communityGroup.Key)));
                 }
 
                 var postsWithoutDuplicates = result.GroupBy(p => p.PostId).Select(g => g.First()).ToList();
@@ -71,6 +73,16 @@ namespace DotNetRu.Azure
                     if (postsWithoutDuplicates[i].CopyHistory.Select(x => x.PostId).Intersect(postIds).Any())
                     {
                         postsWithoutDuplicates.RemoveAt(i);
+                    }
+                }
+
+                //ToDo: exclude duplicates for reposted posts!
+                // fill posts with empty Text, PostedImage and PostedVideo from CopyHistory
+                foreach (var post in postsWithoutDuplicates)
+                {
+                    if (string.IsNullOrWhiteSpace(post.Text) && post.CopyHistory.Any() && string.IsNullOrWhiteSpace(post.PostedImage) && post.PostedVideo == null)
+                    {
+                        post.Text = $"Reposted: {GetPostText(post)}";
                     }
                 }
 
@@ -102,35 +114,45 @@ namespace DotNetRu.Azure
         private static VkontaktePost GetVkontaktePost(Post post, string communityGroupId)
         {
             var currentGroup = post.OwnerId != null ? _communityGroups.FirstOrDefault(x => x.Id == Math.Abs((long)post.OwnerId)) : null;
+            var postedVideo = post.Attachments?.Where(x => x.Type == typeof(Video) && (x.Instance as Video)?.Id != null).FirstOrDefault()?.Instance as Video;
             return new VkontaktePost(post.Id)
             {
-                //ToDo: разобраться, откуда правильно брать PostedImage
-                //PostedImage = $"https://vk.com/{(long.TryParse(communityGroupId, out var groupId) ? $"club{Math.Abs(groupId)}" : communityGroupId)}?w=wall{post.OwnerId}_{post.Id}",
-                PostedImage = post.Attachments?.Where(x => x.Type == typeof(Link) && (x.Instance as Link)?.Image != null).ToList().Count > 0
-                    ? (post.Attachments?.Where(x => x.Type == typeof(Link) && (x.Instance as Link)?.Image != null).ToList()[0].Instance as Link)?.Image ?? string.Empty
-                    : string.Empty,
-                NumberOfViews = post.Views?.Count,
-                NumberOfLikes = post.Likes?.Count,
-                NumberOfReposts = post.Reposts?.Count,
+                PostedImage = (post.Attachments?.Where(x => x.Type == typeof(Link) && (x.Instance as Link)?.Image != null).FirstOrDefault()?.Instance as Link)?.Image ?? string.Empty,
+                PostedVideo = postedVideo != null
+                    ? new PostedVideo
+                    {
+                        Title = postedVideo.Title,
+                        Description = postedVideo.Description,
+                        ImageUri = postedVideo.Image.FirstOrDefault()?.Url,
+                        Uri = $"https://vk.com/video{post.OwnerId}_{postedVideo.Id}"
+                    }
+                    : null,
+                NumberOfViews = post.Views?.Count ?? 0,
+                NumberOfLikes = post.Likes?.Count ?? 0,
+                NumberOfReposts = post.Reposts?.Count ?? 0,
                 FromId = post.FromId,
                 OwnerId = post.OwnerId,
                 ScreenName = currentGroup?.ScreenName,
                 Text = post.Text,
-                //ToDo: разобраться, что выводить, если Text пуст
-                //Text = string.IsNullOrWhiteSpace(post.Text)
-                //    ? (post.Attachments?.FirstOrDefault(x => x.Type == typeof(Link) && x.Instance is Link)?.Instance as Link)?.Description
-                //    : post.Text,
                 Name = currentGroup?.Name,
                 CreatedDate = post.Date?.ToLocalTime(),
                 Url = $"https://vk.com/{(long.TryParse(communityGroupId, out var groupId) ? $"club{Math.Abs(groupId)}" : communityGroupId)}?w=wall{post.OwnerId}_{post.Id}",
-                //ToDo: сейчас отображается логотип сообщества, а не изображение из поста. Исправить
                 Image = currentGroup?.Photo200?.ToString(),
                 CopyHistory = post.CopyHistory.Select(x => new CopyHistory
                 {
                     PostId = x.Id,
-                    FromId = x.FromId
+                    FromId = x.FromId,
+                    Text = x.Text
                 }).ToList(),
             };
+        }
+
+        private static string GetPostText(VkontaktePost post)
+        {
+            if (!string.IsNullOrWhiteSpace(post?.Text))
+                return post.Text;
+
+            return post?.CopyHistory?.FirstOrDefault(x => !string.IsNullOrWhiteSpace(x.Text))?.Text ?? string.Empty;
         }
     }
 }

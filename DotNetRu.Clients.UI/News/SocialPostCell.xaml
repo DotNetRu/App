@@ -2,8 +2,12 @@
     x:Class="DotNetRu.Clients.UI.Cells.SocialPostCell"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:DotNetRu.Clients.UI.Converters;assembly=DotNetRu.Clients.UI"
     xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations">
+    <ContentView.Resources>
+        <converters:SocialMediaTypeConverter x:Key="SocialMediaTypeConverter" />
+    </ContentView.Resources>
     <ContentView.Content>
         <Grid
             Padding="0,10,5,10"
@@ -78,28 +82,44 @@
                     LoadingPlaceholder="loading_apple.gif"
                     Source="{Binding PostedImageUri}" />
             </Grid>
-            <StackLayout
-                Grid.Row="2"
-                Grid.Column="1"
-                Orientation="Horizontal">
-                <Image
-                    Margin="0,0,5,0"
-                    HeightRequest="20"
-                    Source="icon_retweet.png"
-                    WidthRequest="20" />
-                <Label Margin="0,0,40,0" Text="{Binding NumberOfReposts}" />
-                <Image
-                    Margin="0,0,5,0"
-                    HeightRequest="20"
-                    Source="icon_heart.png"
-                    WidthRequest="20" />
-                <Label Margin="0,0,40,0" Text="{Binding NumberOfLikes}" />
-                <!--
-                    ToDo: добавить отображение количества просмотров - Binding NumberOfViews
-                    Для этого добавить иконку (глаз), как в Вконтакте.
-                    Если API соцсети не поддерживает получение кол-ва просмотров (как Twitter), то скрывать через конвертер.
-                -->
-            </StackLayout>
+            <Grid Grid.Row="2" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <StackLayout Grid.Column="0" Orientation="Horizontal">
+                    <Image
+                        Margin="0,0,5,0"
+                        HeightRequest="20"
+                        Source="icon_retweet.png"
+                        WidthRequest="20" />
+                    <Label Text="{Binding NumberOfReposts}" />
+                </StackLayout>
+                <StackLayout
+                    Grid.Column="1"
+                    Margin="30,0,0,0"
+                    Orientation="Horizontal">
+                    <Image
+                        Margin="0,0,5,0"
+                        HeightRequest="20"
+                        Source="icon_heart.png"
+                        WidthRequest="20" />
+                    <Label Text="{Binding NumberOfLikes}" />
+                </StackLayout>
+                <StackLayout
+                    Grid.Column="2"
+                    Margin="30,0,0,0"
+                    Orientation="Horizontal">
+                    <Image
+                        Margin="0,0,5,0"
+                        HeightRequest="20"
+                        IsVisible="{Binding SocialMediaType, Converter={StaticResource SocialMediaTypeConverter}}"
+                        Source="icon_view.png"
+                        WidthRequest="20" />
+                    <Label IsVisible="{Binding SocialMediaType, Converter={StaticResource SocialMediaTypeConverter}}" Text="{Binding NumberOfViews}" />
+                </StackLayout>
+            </Grid>
         </Grid>
     </ContentView.Content>
 </ContentView>
