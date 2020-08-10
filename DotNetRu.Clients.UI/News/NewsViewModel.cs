@@ -209,7 +209,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
             }
             catch (Exception ex)
             {
-                ex.Data["method"] = "ExecuteLoadTalksCommand";
+                ex.Data["method"] = nameof(ExecuteLoadSessionsCommandAsync);
                 DotNetRuLogger.Report(ex);
                 this.NoSessions = true;
             }
@@ -232,7 +232,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
             }
             catch (Exception ex)
             {
-                ex.Data["method"] = "ExecuteLoadNotificationsCommandAsync";
+                ex.Data["method"] = nameof(ExecuteLoadNotificationsCommand);
                 DotNetRuLogger.Report(ex);
             }
             finally
@@ -252,7 +252,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
             }
             catch (Exception ex)
             {
-                ex.Data["method"] = "ExecuteRefreshCommandAsync";
+                ex.Data["method"] = nameof(ExecuteRefreshCommandAsync);
                 DotNetRuLogger.Report(ex);
             }
             finally
@@ -274,21 +274,15 @@ namespace DotNetRu.Clients.Portable.ViewModel
                 this.SocialError = false;
                 var socialPosts = new List<ISocialPost>();
 
-                var tweets = await TweetService.GetAsync();
-
-                //ToDo: заменить и проверить после обновления Azure-сервиса
-                //var tweets = await TweetService.GetBySubscriptionsAsync(Helpers.Settings.CommunitySubscriptions
-                //    .Where(x => x.IsSelected && x.Type == SocialMediaType.Twitter).Select(x => x.CommunityName)
-                //    .ToList());
+                var tweets = await TweetService.GetBySubscriptionsAsync(Helpers.Settings.CommunitySubscriptions
+                    .Where(x => x.IsSelected && x.Type == SocialMediaType.Twitter).Select(x => x.Community.Name)
+                    .ToList());
                 socialPosts.AddRange(tweets);
 
-                var vkontaktePosts = await VkontakteService.GetAsync();
-
-                //ToDo: заменить и проверить после обновления Azure-сервиса
-                //var vkontaktePosts = await VkontakteService.GetBySubscriptionsAsync(Helpers.Settings
-                //    .CommunitySubscriptions
-                //    .Where(x => x.IsSelected && x.Type == SocialMediaType.Vkontakte)
-                //    .ToDictionary(x => x.CommunityName, x => x.LoadedPosts));
+                var vkontaktePosts = await VkontakteService.GetBySubscriptionsAsync(Helpers.Settings
+                    .CommunitySubscriptions
+                    .Where(x => x.IsSelected && x.Type == SocialMediaType.Vkontakte && x.LoadedPosts > 0)
+                    .ToDictionary(x => x.Community.Name, x => x.LoadedPosts));
                 socialPosts.AddRange(vkontaktePosts);
 
                 //ToDo: добавить больше соц. сетей
@@ -298,7 +292,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
             catch (Exception ex)
             {
                 this.SocialError = true;
-                ex.Data["method"] = "ExecuteLoadSocialPostsCommandAsync";
+                ex.Data["method"] = nameof(ExecuteLoadSocialPostsCommandAsync);
                 DotNetRuLogger.Report(ex);
             }
             finally

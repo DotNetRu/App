@@ -109,6 +109,8 @@ namespace DotNetRu.Models.Social
 
         public bool HasAttachedVideo => this.PostedVideo != null;
 
+        public string CommunityGroupId { get; set; }
+
         public override string ToString()
         {
             return $"[Name={Name};Text={Text};Reposts={NumberOfReposts};Likes={NumberOfLikes}";

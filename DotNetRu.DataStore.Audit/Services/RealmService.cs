@@ -268,5 +268,14 @@ namespace DotNetRu.DataStore.Audit.Services
 
             return OfflineRealm.All(realmType.Name).ToList().Select(mapper.Map<TAppModel>);
         }
+
+        public static IEnumerable<TAppModel> Get<TAppModel>(Realm realm)
+        {
+            var realmType = MapperConfiguration.GetAllTypeMaps().Single(x => x.DestinationType == typeof(TAppModel)).SourceType;
+
+            var mapper = MapperConfiguration.CreateMapper();
+
+            return realm?.All(realmType.Name).ToList().Select(mapper.Map<TAppModel>);
+        }
     }
 }

@@ -116,6 +116,8 @@ namespace DotNetRu.Models.Social
         public Uri PostedVideoImageUri => this.PostedVideo?.ImageUri;
 
         public bool HasAttachedVideo => this.HasVideo;
+
+        public string CommunityGroupId { get; set; }
     }
 
     public class CopyHistory

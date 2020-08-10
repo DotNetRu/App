@@ -47,5 +47,7 @@ namespace DotNetRu.Models.Social
         public bool HasAttachedVideo { get; }
 
         public Uri PostedVideoImageUri { get; }
+
+        public string CommunityGroupId { get; set; }
     }
 }

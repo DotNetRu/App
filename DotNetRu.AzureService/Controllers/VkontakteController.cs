@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DotNetRu.AzureService;
+using DotNetRu.AzureService.Helpers;
+using DotNetRu.Models.Social;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -17,14 +19,18 @@ namespace DotNetRu.Azure
 
         private readonly VkontakteSettings vkontakteSettings;
 
+        private readonly RealmSettings realmSettings;
+
         private readonly Dictionary<string, byte> defaultCommunities = new Dictionary<string, byte> { { "DotNetRu", 10 } };
 
         public VkontakteController(
             ILogger<DiagnosticsController> logger,
-            VkontakteSettings vkontakteSettings)
+            VkontakteSettings vkontakteSettings,
+            RealmSettings realmSettings)
         {
             this.logger = logger;
             this.vkontakteSettings = vkontakteSettings;
+            this.realmSettings = realmSettings;
         }
 
         [HttpPost]
@@ -51,16 +57,21 @@ namespace DotNetRu.Azure
         {
             try
             {
-                var cacheKey = "vkontaktePosts";
                 if (communities == null || !communities.Any())
                     communities = defaultCommunities;
 
-                cacheKey += string.Join(";",
-                    communities.OrderBy(x => x.Key).Select(x => $"{x.Key}:{x.Value}").ToArray());
+                var allCommunities = (await realmSettings.GetAllCommunitiesAsync(SocialMediaType.Vkontakte))
+                    .ToDictionary(x => x.Community.Name, x => x.LoadedPosts);
 
-                var posts = await CacheHelper.PostsCache.GetOrCreateAsync(cacheKey,
+                var allPosts = await CacheHelper.PostsCache.GetOrCreateAsync("vkontaktePosts",
                     async () => await VkontakteService.GetAsync(this.vkontakteSettings,
-                        communities));
+                        allCommunities));
+
+                var posts = new List<ISocialPost>();
+                foreach (var community in communities)
+                    posts.AddRange(allPosts.Where(x =>
+                            x.CommunityGroupId.Equals(community.Key, StringComparison.InvariantCultureIgnoreCase))
+                        .Take(community.Value));
 
                 var json = JsonConvert.SerializeObject(posts);
 

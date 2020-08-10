@@ -81,6 +81,7 @@ namespace DotNetRu.Azure
 
             return new Tweet(sourceTweet.StatusID)
             {
+                CommunityGroupId = tweet.ScreenName,
                 PostedImage =
                     tweet.Entities?.MediaEntities?.FirstOrDefault(x => x.Type == "photo")?.MediaUrlHttps ?? string.Empty,
                 PostedVideo = null,
