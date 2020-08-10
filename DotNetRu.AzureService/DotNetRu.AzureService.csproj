@@ -17,7 +17,7 @@
     <PackageReference Include="Microsoft.Extensions.Logging.AzureAppServices" Version="3.1.6" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.8" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="NSwag.AspNetCore" Version="13.6.2" />
+    <PackageReference Include="NSwag.AspNetCore" Version="13.7.0" />
     <PackageReference Include="Realm" Version="4.3.0" />
     <PackageReference Include="VkNet" Version="1.55.0" />
   </ItemGroup>
