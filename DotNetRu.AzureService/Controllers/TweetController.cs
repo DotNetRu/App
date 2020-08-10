@@ -59,8 +59,7 @@ namespace DotNetRu.Azure
         {
             try
             {
-                if (communities == null || !communities.Any())
-                    communities = defaultCommunities;
+                communities ??= defaultCommunities;
 
                 var allCommunities = (await realmSettings.GetAllCommunitiesAsync(SocialMediaType.Twitter))
                     .Select(x => x.Community.Name).ToList();
