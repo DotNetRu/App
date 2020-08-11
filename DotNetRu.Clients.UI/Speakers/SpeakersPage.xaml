@@ -22,12 +22,9 @@
                 <DataTemplate>
                     <Grid
                         Padding="16,5"
+                        ColumnDefinitions="Auto, *"
                         ColumnSpacing="{StaticResource StandardSpacing}"
                         VerticalOptions="Center">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
                         <abstractions:CircleImage
                             Aspect="AspectFill"
                             FillColor="{DynamicResource Primary}"

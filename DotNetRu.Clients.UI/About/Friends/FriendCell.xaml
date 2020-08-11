@@ -1,30 +1,41 @@
-<ContentView 
-    xmlns="http://xamarin.com/schemas/2014/forms" 
+<ContentView
+    x:Class="DotNetRu.Clients.UI.Cells.FriendCell"
+    xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:DotNetRu.Clients.UI.Controls;assembly=DotNetRu.Clients.UI"
-    xmlns:converters="clr-namespace:DotNetRu.Clients.UI.Converters;assembly=DotNetRu.Clients.UI"
-    x:Class="DotNetRu.Clients.UI.Cells.FriendCell">
-    <StackLayout Spacing="0" HeightRequest="120">
+    xmlns:converters="clr-namespace:DotNetRu.Clients.UI.Converters;assembly=DotNetRu.Clients.UI">
+    <StackLayout HeightRequest="120" Spacing="0">
         <StackLayout.Padding>
-            <OnPlatform x:TypeArguments="Thickness" iOS="0" Android="0,4"/>
+            <OnPlatform
+                x:TypeArguments="Thickness"
+                Android="0,4"
+                iOS="0" />
         </StackLayout.Padding>
         <controls:CardView HeightRequest="120">
-            <Grid Padding="16" ColumnSpacing="16" BackgroundColor="White">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-
+            <Grid
+                Padding="16"
+                BackgroundColor="White"
+                ColumnDefinitions="*, *"
+                ColumnSpacing="16">
                 <Image
+                    Aspect="AspectFit"
                     HorizontalOptions="FillAndExpand"
-                    VerticalOptions="FillAndExpand"
-                    StyleId="SponsorImage"
                     Source="{Binding LogoSmall}"
-                    Aspect="AspectFit">
-                </Image>
-                <StackLayout VerticalOptions="Center" Grid.Column="1" Spacing="0" StyleId="SponsorCell">
-                    <Label Text="{Binding Name}" Style="{DynamicResource EvolveListItemTextStyle}" StyleId="SponsorName"/>
-                    <Label Text="{Binding SponsorLevel.Name, StringFormat='{0} Sponsor'}" Style="{DynamicResource EvolveListItemDetailTextStyle}" StyleId="SponsorLevel"/>
+                    StyleId="SponsorImage"
+                    VerticalOptions="FillAndExpand" />
+                <StackLayout
+                    Grid.Column="1"
+                    Spacing="0"
+                    StyleId="SponsorCell"
+                    VerticalOptions="Center">
+                    <Label
+                        Style="{DynamicResource EvolveListItemTextStyle}"
+                        StyleId="SponsorName"
+                        Text="{Binding Name}" />
+                    <Label
+                        Style="{DynamicResource EvolveListItemDetailTextStyle}"
+                        StyleId="SponsorLevel"
+                        Text="{Binding SponsorLevel.Name, StringFormat='{0} Sponsor'}" />
                 </StackLayout>
 
             </Grid>

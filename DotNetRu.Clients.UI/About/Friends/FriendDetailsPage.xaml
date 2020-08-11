@@ -72,17 +72,13 @@
                             <controls:NonScrollableListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell StyleId="disclosure">
-                                        <Grid ColumnSpacing="{StaticResource StandardSpacing}">
+                                        <Grid ColumnDefinitions="Auto, *" ColumnSpacing="{StaticResource StandardSpacing}">
                                             <Grid.Padding>
                                                 <OnPlatform
                                                     x:TypeArguments="Thickness"
                                                     Android="16,8"
                                                     iOS="16,12" />
                                             </Grid.Padding>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto" />
-                                                <ColumnDefinition Width="*" />
-                                            </Grid.ColumnDefinitions>
                                             <Image Source="{Binding Icon}" VerticalOptions="Center" />
                                             <Label
                                                 Grid.Column="1"
@@ -114,17 +110,13 @@
                             <controls:NonScrollableListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell StyleId="disclosure">
-                                        <Grid ColumnSpacing="{StaticResource StandardSpacing}">
+                                        <Grid ColumnDefinitions="Auto, Auto" ColumnSpacing="{StaticResource StandardSpacing}">
                                             <Grid.Padding>
                                                 <OnPlatform
                                                     x:TypeArguments="Thickness"
                                                     Android="16,8"
                                                     iOS="16,12" />
                                             </Grid.Padding>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto" />
-                                                <ColumnDefinition Width="Auto" />
-                                            </Grid.ColumnDefinitions>
                                             <imagecircle:CircleImage
                                                 Grid.Column="0"
                                                 Aspect="AspectFill"

@@ -11,17 +11,10 @@
     <ContentView.Content>
         <Grid
             Padding="0,10,5,10"
+            ColumnDefinitions="70, *"
             ColumnSpacing="0"
+            RowDefinitions="Auto, Auto, Auto"
             RowSpacing="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="70" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
             <forms:CachedImage
                 Grid.Row="0"
                 Grid.RowSpan="3"
@@ -64,11 +57,8 @@
             <Grid
                 Grid.Row="1"
                 Grid.Column="1"
-                Margin="0,5,0,0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
+                Margin="0,5,0,0"
+                RowDefinitions="*, Auto">
                 <Label
                     Grid.Row="0"
                     Text="{Binding Text}"
@@ -82,13 +72,15 @@
                     LoadingPlaceholder="loading_apple.gif"
                     Source="{Binding PostedImageUri}" />
             </Grid>
-            <Grid Grid.Row="2" Grid.Column="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <StackLayout Grid.Column="0" Orientation="Horizontal">
+            <Grid
+                Grid.Row="2"
+                Grid.Column="1"
+                ColumnDefinitions="Auto, Auto, Auto"
+                RowDefinitions="20">
+                <StackLayout
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Orientation="Horizontal">
                     <Image
                         Margin="0,0,5,0"
                         HeightRequest="20"
@@ -97,6 +89,7 @@
                     <Label Text="{Binding NumberOfReposts}" />
                 </StackLayout>
                 <StackLayout
+                    Grid.Row="0"
                     Grid.Column="1"
                     Margin="30,0,0,0"
                     Orientation="Horizontal">
@@ -108,6 +101,7 @@
                     <Label Text="{Binding NumberOfLikes}" />
                 </StackLayout>
                 <StackLayout
+                    Grid.Row="0"
                     Grid.Column="2"
                     Margin="30,0,0,0"
                     Orientation="Horizontal">

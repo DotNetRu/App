@@ -24,16 +24,9 @@
                     <Grid
                         Padding="{DynamicResource StandardPadding}"
                         BackgroundColor="White"
-                        ColumnSpacing="{StaticResource StandardSpacing}">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
+                        ColumnDefinitions="Auto, Auto"
+                        ColumnSpacing="{StaticResource StandardSpacing}"
+                        RowDefinitions="Auto, Auto, Auto">
                         <imagecircle:CircleImage
                             Grid.Row="0"
                             Grid.RowSpan="3"
