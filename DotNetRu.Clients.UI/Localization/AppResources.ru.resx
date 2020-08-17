@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -361,5 +361,17 @@
   </data>
   <data name="SubscriptionsResetedMessage" xml:space="preserve">
     <value>Параметры подписки на новости сообществ были сброшены.</value>
+  </data>
+  <data name="LoadingSubscriptions" xml:space="preserve">
+    <value>Загрузка подписок...</value>
+  </data>
+  <data name="KrdDotNet" xml:space="preserve">
+    <value>Краснодар</value>
+  </data>
+  <data name="Krasnoyarsk" xml:space="preserve">
+    <value>Красноярск</value>
+  </data>
+  <data name="DotNetRu" xml:space="preserve">
+    <value>DotNetRu</value>
   </data>
 </root>

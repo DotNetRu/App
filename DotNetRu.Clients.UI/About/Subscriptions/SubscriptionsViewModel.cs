@@ -94,7 +94,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
 
         internal async Task ResetSubscriptionsAsync()
         {
-            Helpers.Settings.CommunitySubscriptions = SubscriptionsHelper.DefaultCommunitySubscriptions;
+            Helpers.Settings.CommunitySubscriptions = SubscriptionsHelper.GetDefaultCommunitySubscriptions();
             UpdateSubscriptions();
             await Application.Current.MainPage.DisplayAlert(string.Empty, Resources[nameof(AppResources.SubscriptionsResetedMessage)], "OK");
         }

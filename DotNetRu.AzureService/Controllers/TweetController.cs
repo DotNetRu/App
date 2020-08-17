@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DotNetRu.AzureService;
+using DotNetRu.AzureService.Helpers;
+using DotNetRu.Models.Social;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -17,6 +19,8 @@ namespace DotNetRu.Azure
 
         private readonly TweetSettings tweetSettings;
 
+        private readonly RealmSettings realmSettings;
+
         private readonly PushNotificationsManager pushNotificationsManager;
 
         private readonly List<string> defaultCommunities = new List<string> {"DotNetRu", "SpbDotNet"};
@@ -24,10 +28,12 @@ namespace DotNetRu.Azure
         public TweetController(
             ILogger<DiagnosticsController> logger,
             TweetSettings tweetSettings,
+            RealmSettings realmSettings,
             PushNotificationsManager pushNotificationsManager)
         {
             this.logger = logger;
             this.tweetSettings = tweetSettings;
+            this.realmSettings = realmSettings;
             this.pushNotificationsManager = pushNotificationsManager;
         }
 
@@ -53,15 +59,19 @@ namespace DotNetRu.Azure
         {
             try
             {
-                var cacheKey = "tweets";
-                if (communities == null || !communities.Any())
-                    communities = defaultCommunities;
+                communities ??= defaultCommunities;
 
-                cacheKey += string.Join(";", communities.OrderBy(x => x).ToArray());
+                var allCommunities = (await realmSettings.GetAllCommunitiesAsync(SocialMediaType.Twitter))
+                    .Select(x => x.Community.Name).ToList();
 
-                var tweets = await CacheHelper.PostsCache.GetOrCreateAsync(cacheKey,
+                var allTweets = await CacheHelper.PostsCache.GetOrCreateAsync("tweets",
                     async () => await TweetService.GetAsync(this.tweetSettings,
-                        communities));
+                        allCommunities));
+
+                var tweets = new List<ISocialPost>();
+                foreach (var community in communities)
+                    tweets.AddRange(allTweets.Where(x =>
+                        x.CommunityGroupId.Equals(community, StringComparison.InvariantCultureIgnoreCase)));
 
                 var json = JsonConvert.SerializeObject(tweets);
 

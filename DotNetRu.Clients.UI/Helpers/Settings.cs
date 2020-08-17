@@ -46,7 +46,7 @@ namespace DotNetRu.Clients.Portable.Helpers
         {
             get
             {
-                string communitySubscriptions = Preferences.Get(nameof(CommunitySubscriptions), JsonConvert.SerializeObject(SubscriptionsHelper.DefaultCommunitySubscriptions));
+                string communitySubscriptions = Preferences.Get(nameof(CommunitySubscriptions), JsonConvert.SerializeObject(SubscriptionsHelper.GetDefaultCommunitySubscriptions()));
                 return JsonConvert.DeserializeObject<IList<SubscriptionModel>>(communitySubscriptions);
             }
 

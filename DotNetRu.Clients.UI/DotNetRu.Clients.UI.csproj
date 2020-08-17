@@ -12,10 +12,10 @@
   <ItemGroup>
     <PackageReference Include="Flurl.Http" Version="2.4.2" />
     <PackageReference Include="FormsToolkit" Version="2.0.1" />
-    <PackageReference Include="Microsoft.AppCenter" Version="3.2.2" />
-    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="3.2.2" />
-    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="3.2.2" />
-    <PackageReference Include="Microsoft.AppCenter.Push" Version="3.2.2" />
+    <PackageReference Include="Microsoft.AppCenter" Version="3.4.0" />
+    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="3.4.0" />
+    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="3.4.0" />
+    <PackageReference Include="Microsoft.AppCenter.Push" Version="3.4.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -28,7 +28,7 @@
     <PackageReference Include="Xamarin.FFImageLoading" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
-    <PackageReference Include="Xamarin.Forms" Version="4.7.0.968" />
+    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1269" />
     <PackageReference Include="Xamarin.Forms.BehaviorsPack" Version="2.1.1" />
     <PackageReference Include="CClarke.Plugin.Calendars" Version="1.0.14" />
   </ItemGroup>

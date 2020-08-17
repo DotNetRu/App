@@ -18,7 +18,7 @@ namespace DotNetRu.Clients.Portable.Model
 
         public void Update()
         {
-            this.Name = AppResources.ResourceManager.GetString(this.ResourceName);
+            this.Name = AppResources.ResourceManager.GetString(this.ResourceName, AppResources.Culture);
         }
     }
 }

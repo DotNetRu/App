@@ -48,20 +48,27 @@ namespace DotNetRu.Azure
 
                 foreach (var communityGroup in communities)
                 {
-                    var wallGetParams = new WallGetParams { Count = communityGroup.Value };
-                    if (long.TryParse(communityGroup.Key, out var groupId))
+                    try
                     {
-                        wallGetParams.OwnerId = groupId;
-                    }
-                    else
-                    {
-                        wallGetParams.Domain = communityGroup.Key;
-                    }
+                        var wallGetParams = new WallGetParams { Count = communityGroup.Value };
+                        if (long.TryParse(communityGroup.Key, out var groupId))
+                        {
+                            wallGetParams.OwnerId = groupId;
+                        }
+                        else
+                        {
+                            wallGetParams.Domain = communityGroup.Key;
+                        }
 
-                    var wall = await api.Wall.GetAsync(wallGetParams);
-                    var communityGroupPosts = wall?.WallPosts;
-                    if (communityGroupPosts != null)
-                        result.AddRange(communityGroupPosts.Select(communityGroupPost => GetVkontaktePost(communityGroupPost, communityGroup.Key)));
+                        var wall = await api.Wall.GetAsync(wallGetParams);
+                        var communityGroupPosts = wall?.WallPosts;
+                        if (communityGroupPosts != null)
+                            result.AddRange(communityGroupPosts.Select(communityGroupPost => GetVkontaktePost(communityGroupPost, communityGroup.Key)));
+                    }
+                    catch (Exception e)
+                    {
+                        Logger.LogError(e, "Unhandled error while getting original vkontakte posts");
+                    }
                 }
 
                 var postsWithoutDuplicates = result.GroupBy(p => p.PostId).Select(g => g.First()).ToList();
@@ -117,6 +124,7 @@ namespace DotNetRu.Azure
             var postedVideo = post.Attachments?.Where(x => x.Type == typeof(Video) && (x.Instance as Video)?.Id != null).FirstOrDefault()?.Instance as Video;
             return new VkontaktePost(post.Id)
             {
+                CommunityGroupId = communityGroupId,
                 PostedImage = (post.Attachments?.Where(x => x.Type == typeof(Link) && (x.Instance as Link)?.Image != null).FirstOrDefault()?.Instance as Link)?.Image ?? string.Empty,
                 PostedVideo = postedVideo != null
                     ? new PostedVideo
