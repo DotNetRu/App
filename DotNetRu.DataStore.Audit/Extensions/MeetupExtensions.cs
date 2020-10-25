@@ -18,7 +18,7 @@ namespace DotNetRu.DataStore.Audit.Extensions
                 Title = meetup.Name,
                 StartTime = meetup.Sessions.First().StartTime.DateTime,
                 EndTime = meetup.Sessions.Last().EndTime.DateTime,
-                Venue = meetup.Venue.ToModel(),
+                Venue = meetup.Venue?.ToModel(),
                 Sessions = meetup.Sessions.Select(x => x.ToModel()),
                 Friends = meetup.Friends.Select(x => x.ToModel())
             };

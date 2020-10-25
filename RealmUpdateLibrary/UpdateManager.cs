@@ -5,10 +5,8 @@ using System.Linq;
 using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using DotNetRu.DataStore.Audit.RealmModels;
 using DotNetRu.Models.XML;
 using Microsoft.Extensions.Logging;
-using MoreLinq;
 using Octokit;
 
 namespace DotNetRu.RealmUpdateLibrary
@@ -17,14 +15,14 @@ namespace DotNetRu.RealmUpdateLibrary
     {
         public const int DotNetRuAppRepositoryID = 89862917;
 
-        public static async Task<AuditUpdate> GetAuditData()
+        public static async Task<AuditXmlUpdate> GetAuditData()
         {
             var latestCommit = await GetLatestCommit();
 
             return await GetAuditData(latestCommit);
         }
 
-        public static async Task<AuditUpdate> GetAuditData(string commitSha)
+        public static async Task<AuditXmlUpdate> GetAuditData(string commitSha)
         {
             var client = new GitHubClient(new ProductHeaderValue("DotNetRu"));
 
@@ -32,47 +30,47 @@ namespace DotNetRu.RealmUpdateLibrary
             var filePaths = treeResponse.Tree.Select(x => x.Path);
 
             var fileUris = filePaths
-                .Where(filePath => filePath.EndsWith(".xml"))
+                .Where(filePath => filePath.EndsWith(".xml", StringComparison.InvariantCulture))
                 .Select(filePath => new Uri($"https://raw.githubusercontent.com/DotNetRu/Audit/master/{filePath}"));
 
             var auditXmlUpdate = await DownloadFilesFromGitHub(fileUris);
 
-            return GetAuditUpdate(auditXmlUpdate, commitSha);
+            return auditXmlUpdate;
         }
 
-        private static AuditUpdate GetAuditUpdate(AuditXmlUpdate auditXmlUpdate, string commitSha)
+        public static async Task<AuditXmlUpdate> GetAuditUpdate(string fromCommitSha, ILogger logger)
         {
-            var mapper = MapperHelper.GetAutoMapper();
+            var client = new GitHubClient(new ProductHeaderValue("DotNetRu"));
 
-            var realmSpeakers = auditXmlUpdate.Speakers.Select(mapper.Map<Speaker>).ToArray();
+            var reference = await client.Git.Reference.Get(DotNetRuAppRepositoryID, "heads/master");
+            var latestMasterCommitSha = reference.Object.Sha;
 
-            var realmFriends = auditXmlUpdate.Friends.Select(mapper.Map<Friend>).ToArray();
+            var timer = Stopwatch.StartNew();
 
-            var realmVenues = auditXmlUpdate.Venues.Select(mapper.Map<Venue>).ToArray();
+            // TODO handle deletions
+            // https://developer.github.com/v3/repos/commits/#compare-two-commits
+            var contentUpdate = await client.Repository.Commit.Compare(
+                                    DotNetRuAppRepositoryID,
+                                    fromCommitSha,
+                                    latestMasterCommitSha);
+            var fileUrls = contentUpdate.Files
+                .Where(x => x.Filename.EndsWith(".xml", StringComparison.InvariantCulture))
+                .Select(file => new Uri(file.RawUrl));
 
-            var realmCommunities = auditXmlUpdate.Communities.Select(mapper.Map<Community>).ToArray();
+            timer.Stop();
+            logger.LogInformation("Getting file URLs time {GetFileUrlsTime}", timer.Elapsed);
 
-            var talkMapper = MapperHelper.GetTalkMapper(realmSpeakers);
-            var realmTalks = auditXmlUpdate.Talks.Select(talkMapper.Map<Talk>).ToArray();
+            timer.Restart();
+            var auditXmlUpdate = await DownloadFilesFromGitHub(fileUrls);
+            timer.Stop();
+            logger.LogInformation("Downloading files from GitHub time {DownloadFileTime}", timer.Elapsed);
 
-            var meetupMapper = MapperHelper.GetMeetupMapper(realmFriends, realmVenues, realmTalks);
-            var realmMeetups = auditXmlUpdate.Meetups.Select(meetupMapper.Map<Meetup>).ToArray();
+            var latestCommit = await GetLatestCommit();
 
-            var auditVersion = new AuditVersion
-            {
-                CommitHash = commitSha
-            };
+            auditXmlUpdate.FromCommitSha = fromCommitSha;
+            auditXmlUpdate.ToCommitSha = latestCommit;
 
-            return new AuditUpdate
-            {
-                AuditVersion = auditVersion,
-                Venues = realmVenues,
-                Communities = realmCommunities,
-                Friends = realmFriends,
-                Meetups = realmMeetups,
-                Speakers = realmSpeakers,
-                Talks = realmTalks
-            };
+            return auditXmlUpdate;
         }
 
         private static async Task<string> GetLatestCommit()
@@ -84,7 +82,7 @@ namespace DotNetRu.RealmUpdateLibrary
 
         private static async Task<AuditXmlUpdate> DownloadFilesFromGitHub(IEnumerable<Uri> links)
         {
-            var httpClient = new HttpClient();
+            using var httpClient = new HttpClient();
 
             var streamTasks = links.Select(
                 async link => new
@@ -94,7 +92,6 @@ namespace DotNetRu.RealmUpdateLibrary
                 });
             var fileContents = await Task.WhenAll(streamTasks);
 
-            // TODO get all dependencies
             var xmlMeetups = fileContents.Where(x => x.FileType == FileType.Meetup).Select(x => x.Content.Deserialize<MeetupEntity>());
             var xmlTalks = fileContents.Where(x => x.FileType == FileType.Talk).Select(x => x.Content.Deserialize<TalkEntity>());
             var xmlSpeakers = fileContents.Where(x => x.FileType == FileType.Speaker).Select(x => x.Content.Deserialize<SpeakerEntity>());
@@ -132,101 +129,6 @@ namespace DotNetRu.RealmUpdateLibrary
             }
 
             throw new InvalidOperationException("Unknown URL provided");
-        }
-
-        public static async Task<AuditUpdate> GetAuditUpdate(string fromCommitSha, ILogger logger)
-        {
-            var client = new GitHubClient(new ProductHeaderValue("DotNetRu"));
-
-            var reference = await client.Git.Reference.Get(DotNetRuAppRepositoryID, "heads/master");
-            var latestMasterCommitSha = reference.Object.Sha;
-
-            var timer = Stopwatch.StartNew();
-
-            // TODO handle deletions
-            var contentUpdate = await client.Repository.Commit.Compare(
-                                    DotNetRuAppRepositoryID,
-                                    fromCommitSha,
-                                    latestMasterCommitSha);
-            var fileUrls = contentUpdate.Files.Where(x => x.Filename.EndsWith(".xml")).Select(file => new Uri(file.RawUrl));
-
-            timer.Stop();
-            logger.LogInformation("Getting file URLs time {GetFileUrlsTime}", timer.Elapsed);
-
-            timer.Restart();
-            var auditXmlUpdate = await DownloadFilesFromGitHub(fileUrls);
-            timer.Stop();
-            logger.LogInformation("Downloading files from GitHub time {DownloadFileTime}", timer.Elapsed);
-
-            timer.Restart();
-
-            var missingFiles = GetDependencies(auditXmlUpdate);
-            var missingXmlUpdate = await DownloadFilesFromGitHub(missingFiles);
-
-            auditXmlUpdate = auditXmlUpdate.Merge(missingXmlUpdate);
-
-            timer.Stop();
-            logger.LogInformation("Downloading missing files from GitHub time {DownloadMissingFileTime}", timer.Elapsed);
-
-            var latestCommit = await GetLatestCommit();
-
-            return GetAuditUpdate(auditXmlUpdate, latestCommit);
-        }
-
-        private static IEnumerable<Uri> GetDependencies(AuditXmlUpdate auditXmlUpdate)
-        {
-            var missingSpeakers = auditXmlUpdate.Talks.SelectMany(talk => GetMissingSpeakers(auditXmlUpdate, talk));
-
-            var missingFriends = auditXmlUpdate.Meetups.SelectMany(meetup => GetMissingFriends(auditXmlUpdate, meetup));
-
-            var missingVenues = auditXmlUpdate.Meetups.SelectMany(meetup => GetMissingVenues(auditXmlUpdate, meetup));
-
-            var missingTalks = auditXmlUpdate.Meetups.SelectMany(meetup => GetMissingTalks(auditXmlUpdate, meetup));
-
-            // TODO talk -> speakers
-
-            return missingSpeakers
-                .Concat(missingFriends)
-                .Concat(missingVenues)
-                .Concat(missingTalks);
-        }
-
-        private static IEnumerable<Uri> GetMissingVenues(AuditXmlUpdate auditXmlUpdate, MeetupEntity meetup)
-        {
-            var isNewVenue = auditXmlUpdate.Venues.Any(venue => venue.Id == meetup.VenueId);
-
-            return isNewVenue ?
-                Enumerable.Empty<Uri>() :
-                new Uri[] { new Uri($"https://raw.githubusercontent.com/DotNetRu/Audit/master/db/venues/{meetup.VenueId}.xml") };
-        }
-
-        private static IEnumerable<Uri> GetMissingTalks(AuditXmlUpdate auditXmlUpdate, MeetupEntity meetup)
-        {
-            var existingTalks = meetup.Sessions
-                .Select(session => session.TalkId)
-                .ExceptBy(auditXmlUpdate.Talks.Select(talk => talk.Id), x => x);
-
-            var talkUrls = existingTalks.Select(talk =>
-                new Uri($"https://raw.githubusercontent.com/DotNetRu/Audit/master/db/talks/{talk}.xml"));
-            return talkUrls;
-        }
-
-        private static IEnumerable<Uri> GetMissingFriends(AuditXmlUpdate auditXmlUpdate, MeetupEntity meetup)
-        {
-            var existingFriends = meetup.FriendIds.EmptyIfNull().ExceptBy(auditXmlUpdate.Friends.Select(friend => friend.Id), x => x);
-
-            var friendUrls = existingFriends.Select(friend =>
-                new Uri($"https://raw.githubusercontent.com/DotNetRu/Audit/master/db/friends/{friend}/index.xml"));
-            return friendUrls;
-        }
-
-        private static IEnumerable<Uri> GetMissingSpeakers(AuditXmlUpdate auditXmlUpdate, TalkEntity talk)
-        {
-            var existingSpeakers = talk.SpeakerIds.ExceptBy(auditXmlUpdate.Speakers.Select(speaker => speaker.Id), x => x);
-
-            var speakerUrls = existingSpeakers.Select(speaker =>
-                new Uri($"https://raw.githubusercontent.com/DotNetRu/Audit/master/db/speakers/{speaker}/index.xml"));
-            return speakerUrls;
         }
     }
 }

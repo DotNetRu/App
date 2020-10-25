@@ -89,7 +89,7 @@ namespace DotNetRu.Azure
             await SendMeetupsNotifications(auditUpdate);
         }
 
-        private async Task SendMeetupsNotifications(AuditUpdate auditUpdate)
+        private async Task SendMeetupsNotifications(AuditXmlUpdate auditUpdate)
         {
             foreach (var meetup in auditUpdate.Meetups.Where(meetup => meetup.Sessions.First().StartTime > DateTime.Now))
             {
