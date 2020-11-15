@@ -1,8 +1,6 @@
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using System;
+using DotNetRu.AzureService;
 
 namespace DotNetRu.Azure
 {
@@ -11,29 +9,36 @@ namespace DotNetRu.Azure
     {
         private readonly ILogger logger;
 
+        private readonly RealmSettings realmSettings;
+        private readonly TweetSettings tweetSettings;
+        private readonly PushSettings pushSettings;
+        private readonly VkontakteSettings vkontakteSettings;
+
         public DiagnosticsController(
-            ILogger<DiagnosticsController> logger)
+            ILogger<DiagnosticsController> logger,
+            RealmSettings realmSettings,
+            TweetSettings tweetSettings,
+            VkontakteSettings vkontakteSettings,
+            PushSettings pushSettings)
         {
             this.logger = logger;
+            this.realmSettings = realmSettings;
+            this.tweetSettings = tweetSettings;
+            this.vkontakteSettings = vkontakteSettings;
+            this.pushSettings = pushSettings;
         }
 
-        [HttpPost]
-        [Route("ping")]
-        public async Task<IActionResult> Ping()
+        [HttpGet]
+        [Route("settings")]
+        public IActionResult Settings()
         {
-            try
+            return new ObjectResult(new
             {
-                logger.LogInformation("Ping is requested");
-
-                return new OkObjectResult("Success");
-            }
-            catch (Exception e)
-            {
-                logger.LogCritical(e, "Unhandled error while ping");
-                return new ObjectResult(e) { 
-                    StatusCode = StatusCodes.Status500InternalServerError 
-                };
-            }
+                RealmSettings = realmSettings,
+                TweetSettings = tweetSettings,
+                VkontakteSettings = vkontakteSettings,
+                pushSettings = pushSettings
+            });
         }
     }
 }
