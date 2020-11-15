@@ -38,13 +38,12 @@ namespace DotNetRu.RealmUpdateLibrary
             ReplaceRealmObjects(realm, new[] { auditData.AuditVersion }, x => x.CommitHash);
             ReplaceRealmObjects(realm, auditData.Communities, x => x.Id);
             ReplaceRealmObjects(realm, auditData.Friends, x => x.Id);
-            ReplaceRealmObjects(realm, auditData.Meetups, x => x.Id);
-
-            ReplaceRealmObjects(realm, auditData.Meetups.SelectMany(m => m.Sessions), x => x.Id);
-
             ReplaceRealmObjects(realm, auditData.Speakers, x => x.Id);
             ReplaceRealmObjects(realm, auditData.Talks, x => x.Id);
             ReplaceRealmObjects(realm, auditData.Venues, x => x.Id);
+            ReplaceRealmObjects(realm, auditData.Meetups, x => x.Id);
+
+            ReplaceRealmObjects(realm, auditData.Meetups.SelectMany(m => m.Sessions), x => x.Id);
         }
 
         private static AuditUpdate GetAuditUpdate(Realm realm, AuditXmlUpdate auditXmlUpdate)
