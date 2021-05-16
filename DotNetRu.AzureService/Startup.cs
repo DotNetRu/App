@@ -1,4 +1,5 @@
 using DotNetRu.Azure;
+using DotNetRu.RealmUpdateLibrary;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -38,6 +39,7 @@ namespace DotNetRu.AzureService
             services.AddSingleton(pushSettings);
 
             services.AddScoped<PushNotificationsManager>();
+            services.AddScoped<UpdateManager>();
 
             services
                 .AddControllers()

@@ -11,18 +11,24 @@ using Octokit;
 
 namespace DotNetRu.RealmUpdateLibrary
 {
-    public static class UpdateManager
+    public class UpdateManager
     {
         public const int DotNetRuAppRepositoryID = 89862917;
 
-        public static async Task<AuditXmlUpdate> GetAuditData()
-        {
-            var latestCommit = await GetLatestCommit();
+        private readonly ILogger logger;
 
-            return await GetAuditData(latestCommit);
+        public UpdateManager(ILogger<UpdateManager> logger)
+        {
+            this.logger = logger;
         }
 
-        public static async Task<AuditXmlUpdate> GetAuditData(string commitSha)
+        public async Task<AuditXmlUpdate> GetAuditXmlData()
+        {
+            var latestCommit = await GetLatestCommit();
+            return await GetAuditXmlData(latestCommit);
+        }
+
+        public async Task<AuditXmlUpdate> GetAuditXmlData(string commitSha)
         {
             var client = new GitHubClient(new ProductHeaderValue("DotNetRu"));
 
@@ -35,10 +41,13 @@ namespace DotNetRu.RealmUpdateLibrary
 
             var auditXmlUpdate = await DownloadFilesFromGitHub(fileUris);
 
+            auditXmlUpdate.FromCommitSha = null;
+            auditXmlUpdate.ToCommitSha = commitSha;
+
             return auditXmlUpdate;
         }
 
-        public static async Task<AuditXmlUpdate> GetAuditUpdate(string fromCommitSha, ILogger logger)
+        public async Task<AuditXmlUpdate> GetAuditUpdate(string fromCommitSha)
         {
             var client = new GitHubClient(new ProductHeaderValue("DotNetRu"));
 
@@ -60,15 +69,10 @@ namespace DotNetRu.RealmUpdateLibrary
             timer.Stop();
             logger.LogInformation("Getting file URLs time {GetFileUrlsTime}", timer.Elapsed);
 
-            timer.Restart();
             var auditXmlUpdate = await DownloadFilesFromGitHub(fileUrls);
-            timer.Stop();
-            logger.LogInformation("Downloading files from GitHub time {DownloadFileTime}", timer.Elapsed);
-
-            var latestCommit = await GetLatestCommit();
 
             auditXmlUpdate.FromCommitSha = fromCommitSha;
-            auditXmlUpdate.ToCommitSha = latestCommit;
+            auditXmlUpdate.ToCommitSha = latestMasterCommitSha;
 
             return auditXmlUpdate;
         }
@@ -80,8 +84,11 @@ namespace DotNetRu.RealmUpdateLibrary
             return reference.Object.Sha;
         }
 
-        private static async Task<AuditXmlUpdate> DownloadFilesFromGitHub(IEnumerable<Uri> links)
+        private async Task<AuditXmlUpdate> DownloadFilesFromGitHub(IEnumerable<Uri> links)
         {
+            var timer = Stopwatch.StartNew();
+            logger.LogInformation($"Started downloading files from GitHub, files count = {links.Count()}");
+
             using var httpClient = new HttpClient();
 
             var streamTasks = links.Select(
@@ -99,6 +106,9 @@ namespace DotNetRu.RealmUpdateLibrary
             var xmlVenues = fileContents.Where(x => x.FileType == FileType.Venue).Select(x => x.Content.Deserialize<VenueEntity>());
             var xmlCommunities = fileContents.Where(x => x.FileType == FileType.Community).Select(x => x.Content.Deserialize<CommunityEntity>());
 
+            timer.Stop();
+            logger.LogInformation("Downloading files from GitHub time {DownloadFileTime}", timer.Elapsed);
+
             return new AuditXmlUpdate
             {
                 Speakers = xmlSpeakers,
@@ -110,7 +120,7 @@ namespace DotNetRu.RealmUpdateLibrary
             };
         }
 
-        private static FileType GetFileType(Uri link)
+        private FileType GetFileType(Uri link)
         {
             switch (link.ToString())
             {
