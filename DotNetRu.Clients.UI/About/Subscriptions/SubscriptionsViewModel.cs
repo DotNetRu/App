@@ -69,10 +69,10 @@ namespace DotNetRu.Clients.Portable.ViewModel
             switch (item.Type)
             {
                 case SocialMediaType.Vkontakte:
-                    await ExecuteLaunchBrowserAsync(item.Community.VkUrl);
+                    await ExecuteLaunchBrowserAsync(item.Community.VkUrl ?? new Uri($"https://vk.com/{item.Community.Name}"));
                     break;
                 case SocialMediaType.Twitter:
-                    await ExecuteLaunchBrowserAsync(new Uri($"https://twitter.com/{item.Community.Name}"));
+                    await ExecuteLaunchBrowserAsync(item.Community.TwitterUrl ?? new Uri($"https://twitter.com/{item.Community.Name}"));
                     break;
             }
         }

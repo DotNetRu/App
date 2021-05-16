@@ -122,8 +122,6 @@ namespace DotNetRu.Azure
             DotNetRuRealmHelper.ReplaceRealm(realm, auditData);
             realm.Dispose();
 
-            realm.Dispose();
-
             var stream = System.IO.File.OpenRead(realmOfflinePath);
             return new FileStreamResult(stream, "application/octet-stream")
             {
