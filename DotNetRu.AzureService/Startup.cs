@@ -1,4 +1,5 @@
 using DotNetRu.Azure;
+using DotNetRu.AzureService.Logging;
 using DotNetRu.RealmUpdateLibrary;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -52,6 +53,7 @@ namespace DotNetRu.AzureService
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory logFactory)
         {
             ApplicationLogging.LoggerFactory = logFactory;
+            app.UseRequestResponseLogging();
 
             if (env.IsDevelopment())
             {
