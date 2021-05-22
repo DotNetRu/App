@@ -31,19 +31,21 @@ namespace DotNetRu.Clients.Portable.Model
 
         Notification,
 
-        TweetImage,
+        SocialPostImage,
 
         Filter,
 
         Information,
 
-        Tweet,
+        SocialPost,
 
         Feedback,
 
         ConferenceFeedback,
 
-        SpeakerFace
+        SpeakerFace,
+
+        Subscriptions
     }
 }
 

@@ -5,15 +5,15 @@
 
     public static class VenueExtensions
     {
-        public static VenueModel ToModel(this Venue talkEntity)
+        public static VenueModel ToModel(this Venue venueEntity)
         {
             return new VenueModel
-                       {
-                           Id = talkEntity.Id,
-                           Name = talkEntity.Name,
-                           Address = talkEntity.Address,
-                           MapUrl = talkEntity.MapUrl
-                       };
+            {
+                Id = venueEntity.Id,
+                Name = venueEntity.Name,
+                Address = venueEntity.Address,
+                MapUrl = venueEntity.MapUrl
+            };
         }
     }
 }

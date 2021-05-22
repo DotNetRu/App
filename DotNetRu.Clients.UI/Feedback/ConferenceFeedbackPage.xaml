@@ -15,11 +15,7 @@
             Text="{Binding Resources[Cancel]}" />
     </ContentPage.ToolbarItems>
 
-    <Grid Padding="24">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+    <Grid Padding="24" RowDefinitions="*, Auto">
 
         <ScrollView VerticalOptions="FillAndExpand">
 

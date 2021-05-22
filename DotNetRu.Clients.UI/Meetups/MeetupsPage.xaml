@@ -50,11 +50,10 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell StyleId="disclosure">
-                        <Grid Padding="{StaticResource StandardPadding}" ColumnSpacing="{StaticResource StandardSpacing}">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="50" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
+                        <Grid
+                            Padding="{StaticResource StandardPadding}"
+                            ColumnDefinitions="50, *"
+                            ColumnSpacing="{StaticResource StandardSpacing}">
                             <StackLayout Spacing="{StaticResource SmallSpacing}" VerticalOptions="Center">
                                 <Frame
                                     Padding="0"

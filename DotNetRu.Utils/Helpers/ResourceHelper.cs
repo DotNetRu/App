@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -10,15 +11,11 @@ namespace DotNetRu.Utils.Helpers
         {
             var assembly = Assembly.GetCallingAssembly();
 
-            var resourceFullName = assembly.GetManifestResourceNames().Single(x => x.Contains(resourceName));
-            using (var resFilestream = assembly.GetManifestResourceStream(resourceFullName))
-            {
-                using (var memoryStream = new MemoryStream())
-                {
-                    resFilestream.CopyTo(memoryStream);
-                    return memoryStream.ToArray();
-                }
-            }
+            var resourceFullName = assembly.GetManifestResourceNames().Single(x => x.Contains(resourceName, StringComparison.InvariantCultureIgnoreCase));
+            using var resFileStream = assembly.GetManifestResourceStream(resourceFullName);
+            using var memoryStream = new MemoryStream();
+            resFileStream?.CopyTo(memoryStream);
+            return memoryStream.ToArray();
         }
     }
 }

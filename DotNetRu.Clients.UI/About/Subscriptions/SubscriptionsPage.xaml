@@ -1,0 +1,131 @@
+<pages:BasePage
+    x:Class="DotNetRu.Clients.UI.Pages.Subscriptions.SubscriptionsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviorsPack="clr-namespace:Xamarin.Forms.BehaviorsPack;assembly=Xamarin.Forms.BehaviorsPack"
+    xmlns:cells="clr-namespace:DotNetRu.Clients.UI.Cells;assembly=DotNetRu.Clients.UI"
+    xmlns:converters="clr-namespace:DotNetRu.Clients.UI.Converters;assembly=DotNetRu.Clients.UI"
+    xmlns:pages="clr-namespace:DotNetRu.Clients.UI.Pages;assembly=DotNetRu.Clients.UI"
+    x:Name="CommunitySubscriptionsPage"
+    Title="{Binding Resources[Subscriptions]}"
+    BackgroundColor="{DynamicResource WindowBackground}"
+    Icon="tab_sponsors.png">
+    <!--  ToDo: заменить своей иконкой  -->
+    <pages:BasePage.Resources>
+        <ResourceDictionary>
+            <converters:TranslateConverter x:Key="TranslateConverter" />
+        </ResourceDictionary>
+    </pages:BasePage.Resources>
+    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <ListView
+            x:Name="ListViewSubscriptions"
+            Footer="{Binding .}"
+            HasUnevenRows="True"
+            Header="{Binding .}"
+            IsGroupingEnabled="True"
+            ItemsSource="{Binding SubscriptionItems}"
+            SelectionMode="Single">
+            <ListView.Behaviors>
+                <behaviorsPack:SelectedItemBehavior Command="{Binding SelectedItemCommand}" />
+            </ListView.Behaviors>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell StyleId="disclosure">
+                        <cells:SubscriptionCell HeightRequest="40" />
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.HeaderTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="{DynamicResource StandardPadding}" BackgroundColor="White">
+                        <Label Style="{DynamicResource EvolveListItemTextStyle}" Text="{Binding Resources[SubscriptionsLabel]}" />
+                    </StackLayout>
+                </DataTemplate>
+            </ListView.HeaderTemplate>
+            <ListView.GroupHeaderTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout VerticalOptions="Center">
+                            <StackLayout.BackgroundColor>
+                                <OnPlatform x:TypeArguments="Color" Android="#F5F5F5" />
+                            </StackLayout.BackgroundColor>
+                            <StackLayout.Padding>
+                                <OnPlatform
+                                    x:TypeArguments="Thickness"
+                                    Android="16,8"
+                                    iOS="16,0" />
+                            </StackLayout.Padding>
+                            <Label
+                                Text="{Binding Key, Converter={StaticResource TranslateConverter}}"
+                                VerticalOptions="Center"
+                                VerticalTextAlignment="Center">
+                                <Label.FontAttributes>
+                                    <OnPlatform x:TypeArguments="FontAttributes" iOS="Bold" />
+                                </Label.FontAttributes>
+                                <Label.FontSize>
+                                    <OnPlatform
+                                        x:TypeArguments="x:Double"
+                                        Android="18"
+                                        iOS="16" />
+                                </Label.FontSize>
+                                <Label.FontFamily>
+                                    <OnPlatform x:TypeArguments="x:String" Android="sans-serif-light" />
+                                </Label.FontFamily>
+                                <Label.TextColor>
+                                    <OnPlatform x:TypeArguments="Color" />
+                                </Label.TextColor>
+                            </Label>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.GroupHeaderTemplate>
+            <ListView.FooterTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="{DynamicResource StandardPadding}" BackgroundColor="White">
+                        <Label
+                            Padding="10"
+                            Text="{Binding Resources[SaveSubscriptions]}"
+                            VerticalOptions="Center"
+                            VerticalTextAlignment="Center">
+                            <Label.BackgroundColor>
+                                <OnPlatform x:TypeArguments="Color" Android="#F5F5F5" />
+                            </Label.BackgroundColor>
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding SaveSubscriptionsCommand}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Label
+                            Padding="10"
+                            Text="{Binding Resources[ResetSubscriptions]}"
+                            VerticalOptions="Center"
+                            VerticalTextAlignment="Center">
+                            <Label.BackgroundColor>
+                                <OnPlatform x:TypeArguments="Color" Android="#F5F5F5" />
+                            </Label.BackgroundColor>
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ResetSubscriptionsCommand}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+                </DataTemplate>
+            </ListView.FooterTemplate>
+        </ListView>
+        <StackLayout
+            AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            IsVisible="{Binding IsBusy}">
+            <StackLayout.Orientation>
+                <OnPlatform x:TypeArguments="StackOrientation" iOS="Horizontal" />
+            </StackLayout.Orientation>
+            <ActivityIndicator IsRunning="{Binding IsBusy}">
+                <ActivityIndicator.Color>
+                    <OnPlatform x:TypeArguments="Color" Android="{StaticResource Accent}" />
+                </ActivityIndicator.Color>
+            </ActivityIndicator>
+            <Label
+                HorizontalOptions="Center"
+                Style="{DynamicResource EvolveListItemTextStyle}"
+                Text="{Binding Resources[LoadingSubscriptions]}" />
+        </StackLayout>
+    </StackLayout>
+</pages:BasePage>

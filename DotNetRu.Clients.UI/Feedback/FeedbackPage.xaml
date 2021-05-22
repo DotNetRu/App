@@ -20,11 +20,7 @@
             Command="{Binding DoneCommand}"
             Text="{Binding Resources[Cancel]}" />
     </ContentPage.ToolbarItems>
-    <Grid Padding="24">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+    <Grid Padding="24" RowDefinitions="*, Auto">
 
         <StackLayout Spacing="{StaticResource StandardSpacing}" VerticalOptions="Center">
             <Image HorizontalOptions="Center" Source="icon_sessions_big_purple.png" />
@@ -35,15 +31,11 @@
                 StyleId="LabelSessionName"
                 Text="{Binding Session.Title}" />
 
-            <Grid HorizontalOptions="Center" RowSpacing="18">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="20" />
-                </Grid.RowDefinitions>
+            <Grid
+                ColumnDefinitions="*, Auto, *"
+                HorizontalOptions="Center"
+                RowDefinitions="20"
+                RowSpacing="18">
 
                 <controls:RatingControl x:Name="RatingControl" Grid.Column="1" />
             </Grid>

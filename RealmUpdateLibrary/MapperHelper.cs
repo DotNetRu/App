@@ -2,12 +2,13 @@ using System.Linq;
 using AutoMapper;
 using DotNetRu.DataStore.Audit.RealmModels;
 using DotNetRu.Models.XML;
+using Realms;
 
 namespace DotNetRu.RealmUpdateLibrary
 {
-    public static class MapperHelper
+    public static class MapperManager
     {
-        internal static IMapper GetTalkMapper(Speaker[] realmSpeakers)
+        internal static IMapper GetTalkMapper(Realm realm)
         {
             var talkMapper = new MapperConfiguration(cfg =>
             {
@@ -16,7 +17,7 @@ namespace DotNetRu.RealmUpdateLibrary
                     {
                         foreach (var speakerId in src.SpeakerIds)
                         {
-                            var speaker = realmSpeakers.Single(s => s.Id == speakerId);
+                            var speaker = realm.All<Speaker>().Single(s => s.Id == speakerId);
                             dest.Speakers.Add(speaker);
                         }
 
@@ -33,7 +34,7 @@ namespace DotNetRu.RealmUpdateLibrary
             return talkMapper;
         }
 
-        internal static IMapper GetMeetupMapper(Friend[] realmFriends, Venue[] realmVenues, Talk[] realmTalks)
+        internal static IMapper GetMeetupMapper(Realm realm)
         {
             return new MapperConfiguration(cfg =>
             {
@@ -48,18 +49,21 @@ namespace DotNetRu.RealmUpdateLibrary
                             {
                                 foreach (var friendId in src.FriendIds)
                                 {
-                                    var friend = realmFriends.Single(f => f.Id == friendId);
+                                    var friend = realm.All<Friend>().Single(f => f.Id == friendId);
                                     dest.Friends.Add(friend);
                                 }
                             }
 
-                            dest.Venue = realmVenues.Single(venue => venue.Id == src.VenueId);
+                            if (src.VenueId != null)
+                            {
+                                dest.Venue = realm.All<Venue>().Single(venue => venue.Id == src.VenueId);
+                            }
                         });
                 cfg.CreateMap<SessionEntity, Session>().AfterMap(
                     (src, dest) =>
                     {
                         dest.Id = src.TalkId;
-                        dest.Talk = realmTalks.Single(talk => talk.Id == src.TalkId);
+                        dest.Talk = realm.All<Talk>().Single(talk => talk.Id == src.TalkId);
                     });
             }).CreateMapper();
         }

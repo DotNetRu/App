@@ -17,4 +17,9 @@ namespace DotNetRu.AzureService
 
         public string ConsumerSecret { get; set; }
     }
+
+    public class VkontakteSettings
+    {
+        public string ServiceKey { get; set; }
+    }
 }

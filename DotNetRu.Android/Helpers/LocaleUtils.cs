@@ -1,4 +1,4 @@
-﻿using Android.App;
+using Android.App;
 using Android.Content.Res;
 using Android.Views;
 
@@ -6,7 +6,7 @@ using Java.Util;
 
 namespace DotNetRu.Droid.Helpers
 {
-    public class LocaleUtils
+    public static class LocaleUtils
     {
 
         private static Locale currentLocale;
@@ -23,8 +23,8 @@ namespace DotNetRu.Droid.Helpers
         {
             if (currentLocale != null)
             {
-                Configuration configuration = new Configuration {Locale = currentLocale};
-                wrapper.ApplyOverrideConfiguration(configuration);
+                using Configuration configuration = new Configuration {Locale = currentLocale};
+                wrapper?.ApplyOverrideConfiguration(configuration);
             }
         }
 
@@ -33,10 +33,9 @@ namespace DotNetRu.Droid.Helpers
             if (currentLocale != null)
             {
                 //Wrapping the configuration to avoid Activity endless loop
-                Configuration config = new Configuration(configuration);
-                config.Locale = currentLocale;
-                Resources res = app.BaseContext.Resources;
-                if (res.DisplayMetrics != null)
+                using Configuration config = new Configuration(configuration) {Locale = currentLocale};
+                Resources res = app?.BaseContext.Resources;
+                if (res?.DisplayMetrics != null)
                 {
                     res.UpdateConfiguration(config, res.DisplayMetrics);
                 }

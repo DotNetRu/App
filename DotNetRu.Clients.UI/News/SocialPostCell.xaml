@@ -1,0 +1,134 @@
+<ContentView
+    x:Class="DotNetRu.Clients.UI.Cells.SocialPostCell"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:DotNetRu.Clients.UI.Converters;assembly=DotNetRu.Clients.UI"
+    xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations">
+    <ContentView.Resources>
+        <converters:SocialMediaTypeConverter x:Key="SocialMediaTypeConverter" />
+    </ContentView.Resources>
+    <ContentView.Content>
+        <Grid
+            Padding="0,10,5,10"
+            ColumnDefinitions="70, *"
+            ColumnSpacing="0"
+            RowDefinitions="Auto, Auto, Auto"
+            RowSpacing="0">
+            <forms:CachedImage
+                Grid.Row="0"
+                Grid.RowSpan="3"
+                Grid.Column="0"
+                Margin="10"
+                DownsampleToViewSize="true"
+                HeightRequest="70"
+                HorizontalOptions="Center"
+                Source="{Binding Image}"
+                VerticalOptions="Start"
+                WidthRequest="70">
+                <forms:CachedImage.Transformations>
+                    <transformations:CircleTransformation />
+                </forms:CachedImage.Transformations>
+            </forms:CachedImage>
+
+            <StackLayout
+                Grid.Row="0"
+                Grid.Column="1"
+                Orientation="Horizontal">
+                <Label
+                    Margin="0,0,0,0"
+                    FontSize="Small"
+                    LineBreakMode="TailTruncation"
+                    Style="{StaticResource BoldLabel}"
+                    Text="{Binding Name}"
+                    TextColor="#000000" />
+                <Label
+                    Margin="0,0,0,0"
+                    FontSize="8"
+                    Text="•"
+                    TextColor="#6d747a"
+                    VerticalTextAlignment="Center" />
+                <Label
+                    Margin="0,0,0,0"
+                    FontSize="Small"
+                    Text="{Binding DateDisplay}"
+                    TextColor="#6d747a" />
+            </StackLayout>
+            <Grid
+                Grid.Row="1"
+                Grid.Column="1"
+                Margin="0,5,0,0"
+                RowDefinitions="*, Auto">
+                <Label
+                    Grid.Row="0"
+                    Text="{Binding Text}"
+                    TextColor="#000000" />
+                <forms:CachedImage
+                    Grid.Row="1"
+                    Margin="0,10,10,10"
+                    HeightRequest="150"
+                    HorizontalOptions="Start"
+                    IsVisible="{Binding HasAttachedImage}"
+                    LoadingPlaceholder="loading_apple.gif"
+                    Source="{Binding PostedImageUri}" />
+            </Grid>
+            <Grid
+                Grid.Row="2"
+                Grid.Column="1"
+                ColumnDefinitions="Auto, Auto, Auto"
+                RowDefinitions="20">
+                <StackLayout
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Orientation="Horizontal">
+                    <Image
+                        Margin="0,0,5,0"
+                        HeightRequest="20"
+                        Source="icon_retweet.png"
+                        WidthRequest="20" />
+                    <Label Text="{Binding NumberOfReposts}" />
+                </StackLayout>
+                <StackLayout
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Margin="30,0,0,0"
+                    Orientation="Horizontal">
+                    <Image
+                        Margin="0,0,5,0"
+                        HeightRequest="20"
+                        Source="icon_heart.png"
+                        WidthRequest="20" />
+                    <Label Text="{Binding NumberOfLikes}" />
+                </StackLayout>
+                <StackLayout
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    Margin="30,0,0,0"
+                    Orientation="Horizontal">
+                    <Image
+                        Margin="0,0,5,0"
+                        HeightRequest="20"
+                        IsVisible="{Binding SocialMediaType, Converter={StaticResource SocialMediaTypeConverter}}"
+                        Source="icon_view.png"
+                        WidthRequest="20" />
+                    <Label IsVisible="{Binding SocialMediaType, Converter={StaticResource SocialMediaTypeConverter}}" Text="{Binding NumberOfViews}" />
+                </StackLayout>
+            </Grid>
+        </Grid>
+    </ContentView.Content>
+</ContentView>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

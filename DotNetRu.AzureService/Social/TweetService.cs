@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using DotNetRu.AzureService;
+using DotNetRu.Models.Social;
 using LinqToTwitter;
 using Microsoft.Extensions.Logging;
 
 namespace DotNetRu.Azure
 {
-    internal class TweetService
+    internal static class TweetService
     {
         private static readonly ILogger Logger = ApplicationLogging.CreateLogger(nameof(TweetService));
 
@@ -19,7 +20,7 @@ namespace DotNetRu.Azure
         /// <returns>
         /// Returns a list of tweets.
         /// </returns>
-        internal static async Task<List<Tweet>> GetAsync(TweetSettings tweetSettings)
+        internal static async Task<List<ISocialPost>> GetAsync(TweetSettings tweetSettings, List<string> communities)
         {
             try
             {
@@ -37,23 +38,22 @@ namespace DotNetRu.Azure
                 await auth.AuthorizeAsync();
 
                 using var twitterContext = new TwitterContext(auth);
-                var spbDotNetTweets =
-                    await (from tweet in twitterContext.Status
-                        where tweet.Type == StatusType.User && tweet.ScreenName == "spbdotnet"
-                                                            && tweet.TweetMode == TweetMode.Extended
-                        select tweet).ToListAsync();
 
-                var dotnetRuTweets =
-                    await (from tweet in twitterContext.Status
-                        where tweet.Type == StatusType.User && tweet.ScreenName == "DotNetRu"
-                                                            && tweet.TweetMode == TweetMode.Extended
-                        select tweet).ToListAsync();
+                IEnumerable<Status> unitedTweets = new List<Status>();
+                foreach (var communityGroup in communities)
+                {
+                    var communityGroupTweets =
+                        await (from tweet in twitterContext.Status
+                            where tweet.Type == StatusType.User && tweet.ScreenName == communityGroup &&
+                                  tweet.TweetMode == TweetMode.Extended
+                            select tweet).ToListAsync();
 
-                var unitedTweets = spbDotNetTweets.Union(dotnetRuTweets).Where(tweet => !tweet.PossiblySensitive).Select(GetTweet);
+                    unitedTweets = communityGroupTweets.Union(unitedTweets).Where(tweet => !tweet.PossiblySensitive);
+                }
 
-                var tweetsWithoutDuplicates = unitedTweets.GroupBy(tw => tw.StatusID).Select(g => g.First());
+                var tweetsWithoutDuplicates = unitedTweets.Select(GetTweet).GroupBy(tw => tw.StatusId).Select(g => g.First());
 
-                var sortedTweets = tweetsWithoutDuplicates.OrderByDescending(x => x.CreatedDate).ToList();
+                var sortedTweets = tweetsWithoutDuplicates.OrderByDescending(x => x.CreatedDate).Cast<ISocialPost>().ToList();
 
                 return sortedTweets;
             }
@@ -62,7 +62,7 @@ namespace DotNetRu.Azure
                 Logger.LogError(e, "Unhandled error while getting original tweets");
             }
 
-            return new List<Tweet>();
+            return new List<ISocialPost>();
         }
 
         private static Tweet GetTweet(Status tweet)
@@ -81,12 +81,12 @@ namespace DotNetRu.Azure
 
             return new Tweet(sourceTweet.StatusID)
             {
-                TweetedImage =
-                               tweet.Entities?.MediaEntities.Count > 0
-                                   ? tweet.Entities?.MediaEntities?[0].MediaUrlHttps ?? string.Empty
-                                   : string.Empty,
+                CommunityGroupId = tweet.ScreenName,
+                PostedImage =
+                    tweet.Entities?.MediaEntities?.FirstOrDefault(x => x.Type == "photo")?.MediaUrlHttps ?? string.Empty,
+                PostedVideo = null,
                 NumberOfLikes = sourceTweet.FavoriteCount,
-                NumberOfRetweets = sourceTweet.RetweetCount,
+                NumberOfReposts = sourceTweet.RetweetCount,
                 ScreenName = sourceTweet.User?.ScreenNameResponse ?? string.Empty,
                 Text = sourceTweet.FullText.ConvertToUsualUrl(urlLinks),
                 Name = sourceTweet.User?.Name,

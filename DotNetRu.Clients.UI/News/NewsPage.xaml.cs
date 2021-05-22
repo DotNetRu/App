@@ -1,3 +1,4 @@
+using DotNetRu.Models.Social;
 using Xamarin.Essentials;
 
 namespace DotNetRu.Clients.UI.Pages.Home
@@ -33,9 +34,9 @@ namespace DotNetRu.Clients.UI.Pages.Home
             }
             this.ListViewSocial.ItemSelected += async (sender, e) =>
             {
-                if (e.SelectedItem is Tweet tweet && !string.IsNullOrWhiteSpace(tweet.Url))
+                if (e.SelectedItem is ISocialPost socialPost && !string.IsNullOrWhiteSpace(socialPost.Url))
                 {
-                    await Launcher.OpenAsync(new Uri(tweet.Url));
+                    await Launcher.OpenAsync(new Uri(socialPost.Url));
                 }
                 this.ListViewSocial.SelectedItem = null;
             };
@@ -70,7 +71,7 @@ namespace DotNetRu.Clients.UI.Pages.Home
             }
             else
             {
-                if (this.NewsViewModel?.Tweets.Count == 0)
+                if (this.NewsViewModel?.SocialPosts.Count == 0)
                 {
                     this.NewsViewModel.LoadSocialCommand.Execute(null);
                 }

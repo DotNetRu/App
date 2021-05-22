@@ -1,3 +1,6 @@
+using System.Linq;
+using DotNetRu.Models.Social;
+
 namespace DotNetRu.Clients.Portable.Services
 {
     using System;
@@ -9,9 +12,9 @@ namespace DotNetRu.Clients.Portable.Services
     using DotNetRu.Utils;
     using Flurl.Http;
 
-    public class TweetService
+    public static class TweetService
     {
-        public static async Task<List<Tweet>> Get()
+        public static async Task<List<ISocialPost>> GetAsync()
         {
             try
             {
@@ -20,14 +23,33 @@ namespace DotNetRu.Clients.Portable.Services
                 var tweets = await config.TweetFunctionUrl
                     .GetJsonAsync<List<Tweet>>();
 
-                return tweets;
+                return tweets.Cast<ISocialPost>().ToList();
             }
             catch (Exception e)
             {
                 DotNetRuLogger.Report(e);
             }
 
-            return new List<Tweet>();
+            return new List<ISocialPost>();
+        }
+
+        public static async Task<List<ISocialPost>> GetBySubscriptionsAsync(List<string> communities)
+        {
+            try
+            {
+                var config = AppConfig.GetConfig();
+
+                var tweets = await config.SubscriptionTweetFunctionUrl.PostJsonAsync(communities)
+                    .ReceiveJson<List<Tweet>>();
+
+                return tweets.Cast<ISocialPost>().ToList();
+            }
+            catch (Exception e)
+            {
+                DotNetRuLogger.Report(e);
+            }
+
+            return new List<ISocialPost>();
         }
     }
 }

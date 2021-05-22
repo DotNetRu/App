@@ -5,11 +5,10 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.IO;
 using System.Linq;
-using Realms.Sync;
 using Realms;
-using DotNetRu.DataStore.Audit.RealmModels;
 using DotNetRu.RealmUpdateLibrary;
 using DotNetRu.AzureService;
+using DotNetRu.AzureService.Helpers;
 
 namespace DotNetRu.Azure
 {
@@ -22,14 +21,18 @@ namespace DotNetRu.Azure
 
         private readonly PushNotificationsManager pushNotificationsManager;
 
+        private readonly UpdateManager updateManager;
+
         public RealmController(
             ILogger<DiagnosticsController> logger,
             RealmSettings appSettings,
-            PushNotificationsManager pushNotificationsManager)
+            PushNotificationsManager pushNotificationsManager,
+            UpdateManager updateManager)
         {
             this.logger = logger;
             this.realmSettings = appSettings;
             this.pushNotificationsManager = pushNotificationsManager;
+            this.updateManager = updateManager;
         }
 
         [HttpPost]
@@ -40,15 +43,15 @@ namespace DotNetRu.Azure
             {
                 logger.LogInformation("Realm to update {RealmServerUrl}/{RealmName}", realmSettings.RealmServerUrl, realmSettings.RealmName);
 
-                var user = await this.GetUser();
+                var user = await realmSettings.GetUser();
 
                 var realmUrl = new Uri($"realms://{realmSettings.RealmServerUrl}/{realmSettings.RealmName}");
-                var realm = await GetRealm(realmUrl, user);
+                var realm = await user.GetRealm(realmUrl);
 
-                var currentVersion = GetCurrentVersion(realm);
-                var auditUpdate = await UpdateManager.GetAuditUpdate(currentVersion, logger);
+                var currentVersion = realm.GetCurrentVersion();
+                var auditUpdate = await this.updateManager.GetAuditUpdate(currentVersion);
 
-                realm = await GetRealm(realmUrl, user);
+                realm = await user.GetRealm(realmUrl);
                 DotNetRuRealmHelper.UpdateRealm(realm, auditUpdate);
 
                 await SendMeetupsNotifications(auditUpdate);
@@ -58,8 +61,8 @@ namespace DotNetRu.Azure
             catch (Exception e)
             {
                 logger.LogCritical(e, "Unhandled error while updating realm");
-                return new ObjectResult(e) { 
-                    StatusCode = StatusCodes.Status500InternalServerError 
+                return new ObjectResult(e) {
+                    StatusCode = StatusCodes.Status500InternalServerError
                 };
             }
         }
@@ -77,20 +80,20 @@ namespace DotNetRu.Azure
 
         private async Task UpdateOnlineRealm()
         {
-            var user = await this.GetUser();
+            var user = await realmSettings.GetUser();
 
             var realmUrl = new Uri($"realms://{realmSettings.RealmServerUrl}/{realmSettings.RealmName}");
-            var realm = await GetRealm(realmUrl, user);
+            var realm = await user.GetRealm(realmUrl);
 
-            var currentVersion = GetCurrentVersion(realm);
-            var auditUpdate = await UpdateManager.GetAuditUpdate(currentVersion, logger);
+            var currentVersion = realm.GetCurrentVersion();
+            var auditUpdate = await this.updateManager.GetAuditUpdate(currentVersion);
 
             DotNetRuRealmHelper.UpdateRealm(realm, auditUpdate);
 
             await SendMeetupsNotifications(auditUpdate);
         }
 
-        private async Task SendMeetupsNotifications(AuditUpdate auditUpdate)
+        private async Task SendMeetupsNotifications(AuditXmlUpdate auditUpdate)
         {
             foreach (var meetup in auditUpdate.Meetups.Where(meetup => meetup.Sessions.First().StartTime > DateTime.Now))
             {
@@ -99,7 +102,6 @@ namespace DotNetRu.Azure
                     Title = $"{meetup.Name} is announced!",
                     Body = "Open DotNetRu app for details"
                 };
-
 
                 await pushNotificationsManager.SendPushNotifications(pushContent);
             }
@@ -110,14 +112,16 @@ namespace DotNetRu.Azure
         public async Task<FileStreamResult> GenerateOfflineRealm([FromQuery] string commitSha)
         {
             var auditData = commitSha != null
-                ? await UpdateManager.GetAuditData(commitSha)
-                : await UpdateManager.GetAuditData();
+                ? await this.updateManager.GetAuditXmlData(commitSha)
+                : await this.updateManager.GetAuditXmlData();
 
             var realmOfflinePath = $"{Path.GetTempPath()}/DotNetRuOffline.realm";
             Realm.DeleteRealm(new RealmConfiguration(realmOfflinePath));
 
             var realm = Realm.GetInstance(realmOfflinePath);
             DotNetRuRealmHelper.ReplaceRealm(realm, auditData);
+
+            realm.Dispose();
 
             var stream = System.IO.File.OpenRead(realmOfflinePath);
             return new FileStreamResult(stream, "application/octet-stream")
@@ -126,52 +130,26 @@ namespace DotNetRu.Azure
             };
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("generate/online")]
         public async Task<IActionResult> GenerateOnlineRealm(
-            [FromQuery] string commitSha, 
-            [FromQuery] string realmServerUrl, 
+            [FromQuery] string commitSha,
+            [FromQuery] string realmServerUrl,
             [FromQuery] string realmName)
         {
             var auditData = commitSha != null
-                ? await UpdateManager.GetAuditData(commitSha)
-                : await UpdateManager.GetAuditData();
+                ? await this.updateManager.GetAuditXmlData(commitSha)
+                : await this.updateManager.GetAuditXmlData();
 
             logger.LogInformation("Realm to update {RealmServerUrl}/{RealmName}", realmServerUrl, realmName);
 
-            var user = await this.GetUser();
+            var user = await realmSettings.GetUser();
 
             var realmUrl = new Uri($"realms://{realmServerUrl}/{realmName}");
-            var realm = await GetRealm(realmUrl, user);
-
-            realm = await GetRealm(realmUrl, user);
+            var realm = await user.GetRealm(realmUrl);
             DotNetRuRealmHelper.ReplaceRealm(realm, auditData);
 
-            return new OkObjectResult("Success");
-        }
-
-        private static async Task<Realm> GetRealm(Uri realmUrl, User user)
-        {
-            var tempRealmFile = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-            var syncConfiguration = new FullSyncConfiguration(realmUrl, user, tempRealmFile);
-
-            return await Realm.GetInstanceAsync(syncConfiguration);
-        }
-
-        private static string GetCurrentVersion(Realm realm)
-        {
-            var auditVersion = realm.All<AuditVersion>();
-
-            return auditVersion.Single().CommitHash;
-        }
-
-        private async Task<User> GetUser()
-        {
-            SyncConfigurationBase.Initialize(UserPersistenceMode.NotEncrypted, basePath: Path.GetTempPath());
-
-            return await Realms.Sync.User.LoginAsync(
-                    Credentials.UsernamePassword(realmSettings.Login, realmSettings.Password, createUser: false),
-                    new Uri($"https://{realmSettings.RealmServerUrl}"));
+            return new OkResult();
         }
     }
 }

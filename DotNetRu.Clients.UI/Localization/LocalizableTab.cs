@@ -19,7 +19,7 @@ namespace DotNetRu.Clients.UI.Localization
 
         public void Update()
         {
-            this.Title = AppResources.ResourceManager.GetString(this.ResourceName);
+            this.Title = AppResources.ResourceManager.GetString(this.ResourceName, AppResources.Culture);
         }
 
         protected override Task<Page> OnPopAsync(bool animated)

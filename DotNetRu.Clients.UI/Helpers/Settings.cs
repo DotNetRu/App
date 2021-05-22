@@ -1,3 +1,8 @@
+using System.Collections.Generic;
+using DotNetRu.DataStore.Audit.Helpers;
+using DotNetRu.DataStore.Audit.Models;
+using Newtonsoft.Json;
+
 namespace DotNetRu.Clients.Portable.Helpers
 {
     using System;
@@ -35,6 +40,26 @@ namespace DotNetRu.Clients.Portable.Helpers
             }
 
             return Language.English;
+        }
+
+        public static IList<SubscriptionModel> CommunitySubscriptions
+        {
+            get
+            {
+                string communitySubscriptions = Preferences.Get(nameof(CommunitySubscriptions), JsonConvert.SerializeObject(SubscriptionsHelper.GetDefaultCommunitySubscriptions()));
+                return JsonConvert.DeserializeObject<IList<SubscriptionModel>>(communitySubscriptions);
+            }
+
+            set
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException(nameof(value));
+                }
+
+                string communitySubscriptions = JsonConvert.SerializeObject(value);
+                Preferences.Set(nameof(CommunitySubscriptions), communitySubscriptions);
+            }
         }
     }
 }

@@ -1,4 +1,6 @@
 using DotNetRu.Azure;
+using DotNetRu.AzureService.Logging;
+using DotNetRu.RealmUpdateLibrary;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -26,14 +28,19 @@ namespace DotNetRu.AzureService
             var tweetSettings = new TweetSettings();
             Configuration.Bind("TweetOptions", tweetSettings);
 
+            var vkontakteSettings = new VkontakteSettings();
+            Configuration.Bind("VkontakteOptions", vkontakteSettings);
+
             var pushSettings = new PushSettings();
             Configuration.Bind("PushOptions", pushSettings);
 
             services.AddSingleton(realmSettings);
             services.AddSingleton(tweetSettings);
+            services.AddSingleton(vkontakteSettings);
             services.AddSingleton(pushSettings);
 
             services.AddScoped<PushNotificationsManager>();
+            services.AddScoped<UpdateManager>();
 
             services
                 .AddControllers()
@@ -46,6 +53,7 @@ namespace DotNetRu.AzureService
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory logFactory)
         {
             ApplicationLogging.LoggerFactory = logFactory;
+            app.UseRequestResponseLogging();
 
             if (env.IsDevelopment())
             {
