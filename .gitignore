@@ -285,3 +285,4 @@ Resource.designer.cs
 /DotNetRu.Azure/config.json
 /DotNetRu.Azure/pushconfig.json
 /DotNetRu.AzureService/appsettings.Production.json
+/DotNetRu.AzureService/Properties/ServiceDependencies/DotNetRuAppService - Web Deploy/profile.arm.json

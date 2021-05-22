@@ -21,14 +21,18 @@ namespace DotNetRu.Azure
 
         private readonly PushNotificationsManager pushNotificationsManager;
 
+        private readonly UpdateManager updateManager;
+
         public RealmController(
             ILogger<DiagnosticsController> logger,
             RealmSettings appSettings,
-            PushNotificationsManager pushNotificationsManager)
+            PushNotificationsManager pushNotificationsManager,
+            UpdateManager updateManager)
         {
             this.logger = logger;
             this.realmSettings = appSettings;
             this.pushNotificationsManager = pushNotificationsManager;
+            this.updateManager = updateManager;
         }
 
         [HttpPost]
@@ -45,7 +49,7 @@ namespace DotNetRu.Azure
                 var realm = await user.GetRealm(realmUrl);
 
                 var currentVersion = realm.GetCurrentVersion();
-                var auditUpdate = await UpdateManager.GetAuditUpdate(currentVersion, logger);
+                var auditUpdate = await this.updateManager.GetAuditUpdate(currentVersion);
 
                 realm = await user.GetRealm(realmUrl);
                 DotNetRuRealmHelper.UpdateRealm(realm, auditUpdate);
@@ -82,7 +86,7 @@ namespace DotNetRu.Azure
             var realm = await user.GetRealm(realmUrl);
 
             var currentVersion = realm.GetCurrentVersion();
-            var auditUpdate = await UpdateManager.GetAuditUpdate(currentVersion, logger);
+            var auditUpdate = await this.updateManager.GetAuditUpdate(currentVersion);
 
             DotNetRuRealmHelper.UpdateRealm(realm, auditUpdate);
 
@@ -108,14 +112,16 @@ namespace DotNetRu.Azure
         public async Task<FileStreamResult> GenerateOfflineRealm([FromQuery] string commitSha)
         {
             var auditData = commitSha != null
-                ? await UpdateManager.GetAuditData(commitSha)
-                : await UpdateManager.GetAuditData();
+                ? await this.updateManager.GetAuditXmlData(commitSha)
+                : await this.updateManager.GetAuditXmlData();
 
             var realmOfflinePath = $"{Path.GetTempPath()}/DotNetRuOffline.realm";
             Realm.DeleteRealm(new RealmConfiguration(realmOfflinePath));
 
             var realm = Realm.GetInstance(realmOfflinePath);
             DotNetRuRealmHelper.ReplaceRealm(realm, auditData);
+
+            realm.Dispose();
 
             var stream = System.IO.File.OpenRead(realmOfflinePath);
             return new FileStreamResult(stream, "application/octet-stream")
@@ -124,7 +130,7 @@ namespace DotNetRu.Azure
             };
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("generate/online")]
         public async Task<IActionResult> GenerateOnlineRealm(
             [FromQuery] string commitSha,
@@ -132,8 +138,8 @@ namespace DotNetRu.Azure
             [FromQuery] string realmName)
         {
             var auditData = commitSha != null
-                ? await UpdateManager.GetAuditData(commitSha)
-                : await UpdateManager.GetAuditData();
+                ? await this.updateManager.GetAuditXmlData(commitSha)
+                : await this.updateManager.GetAuditXmlData();
 
             logger.LogInformation("Realm to update {RealmServerUrl}/{RealmName}", realmServerUrl, realmName);
 
@@ -143,7 +149,7 @@ namespace DotNetRu.Azure
             var realm = await user.GetRealm(realmUrl);
             DotNetRuRealmHelper.ReplaceRealm(realm, auditData);
 
-            return new OkObjectResult("Success");
+            return new OkResult();
         }
     }
 }
