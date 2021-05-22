@@ -143,9 +143,7 @@
     <PackageReference Include="Microsoft.AppCenter" Version="4.2.0" />
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.2.0" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.2.0" />
-    <PackageReference Include="Microsoft.AppCenter.Push">
-      <Version>3.4.3</Version>
-    </PackageReference>
+    <PackageReference Include="Microsoft.AppCenter.Push" Version="3.4.3" />
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers">
       <Version>3.3.2</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
