@@ -50,7 +50,11 @@ namespace DotNetRu.DataStore.Audit.Helpers
                             Name = "DotNetRu",
                             City = "Общие",
                             LogoUrl = new Uri(
-                                "https://raw.githubusercontent.com/AnatolyKulakov/SpbDotNet/master/Swag/dotnetru-squared-logo-bordered/dotnetru-squared-logo-br-200.png")
+                                "https://raw.githubusercontent.com/AnatolyKulakov/SpbDotNet/master/Swag/dotnetru-squared-logo-bordered/dotnetru-squared-logo-br-200.png"),
+                            VkUrl = new Uri("https://vk.com/DotNetRu"),
+                            TwitterUrl = new Uri("https://twitter.com/dotnetru"),
+                            TelegramChannelUrl = new Uri("https://t.me/DotNetRu"),
+                            TelegramChatUrl = new Uri("https://t.me/DotNetRuChat")
                         },
                         Type = SocialMediaType.Twitter
                     },
@@ -63,7 +67,13 @@ namespace DotNetRu.DataStore.Audit.Helpers
                             Name = "SpbDotNet",
                             City = "Санкт-Петербург",
                             LogoUrl = new Uri(
-                                "https://raw.githubusercontent.com/AnatolyKulakov/SpbDotNet/master/Swag/spbdotnet-squared-logo-bordered/spbdotnet-squared-logo-br-200.png")
+                                "https://raw.githubusercontent.com/AnatolyKulakov/SpbDotNet/master/Swag/spbdotnet-squared-logo-bordered/spbdotnet-squared-logo-br-200.png"),
+                            VkUrl = new Uri("https://vk.com/SpbDotNet"),
+                            TwitterUrl = new Uri("https://twitter.com/SpbDotNet"),
+                            TelegramChannelUrl = new Uri("https://t.me/SpbDotNet"),
+                            TelegramChatUrl = new Uri("https://t.me/SpbDotNetChat"),
+                            MeetupComUrl = new Uri("https://www.meetup.com/SpbDotNet"),
+                            TimePadUrl = new Uri("https://SpbDotNet.timepad.ru")
                         },
                         Type = SocialMediaType.Twitter
                     },
@@ -77,7 +87,10 @@ namespace DotNetRu.DataStore.Audit.Helpers
                             City = "Общие",
                             LogoUrl = new Uri(
                                 "https://raw.githubusercontent.com/AnatolyKulakov/SpbDotNet/master/Swag/dotnetru-squared-logo-bordered/dotnetru-squared-logo-br-200.png"),
-                            VkUrl = new Uri("https://vk.com/DotNetRu")
+                            VkUrl = new Uri("https://vk.com/DotNetRu"),
+                            TwitterUrl = new Uri("https://twitter.com/dotnetru"),
+                            TelegramChannelUrl = new Uri("https://t.me/DotNetRu"),
+                            TelegramChatUrl = new Uri("https://t.me/DotNetRuChat")
                         },
                         Type = SocialMediaType.Vkontakte
                     }

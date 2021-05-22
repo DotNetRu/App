@@ -118,9 +118,8 @@ namespace DotNetRu.Azure
             var realmOfflinePath = $"{Path.GetTempPath()}/DotNetRuOffline.realm";
             Realm.DeleteRealm(new RealmConfiguration(realmOfflinePath));
 
-            var realm = Realm.GetInstance(realmOfflinePath);
+            using var realm = Realm.GetInstance(realmOfflinePath);
             DotNetRuRealmHelper.ReplaceRealm(realm, auditData);
-
             realm.Dispose();
 
             var stream = System.IO.File.OpenRead(realmOfflinePath);

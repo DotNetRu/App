@@ -27,7 +27,7 @@ namespace DotNetRu.Clients.UI.Pages.Subscriptions
                 await (this.BindingContext as SubscriptionsViewModel)?.ExecuteLaunchBrowserAsync(
                     subscription.Type == SocialMediaType.Vkontakte
                         ? subscription.Community?.VkUrl ?? new Uri($"https://vk.com/{subscription.Community.Name}")
-                        : new Uri($"https://twitter.com/{subscription.Community.Name}"));
+                        : subscription.Community?.TwitterUrl ?? new Uri($"https://twitter.com/{subscription.Community.Name}"));
 
                 this.ListViewSubscriptions.SelectedItem = null;
             };

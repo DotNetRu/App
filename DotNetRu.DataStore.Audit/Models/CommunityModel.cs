@@ -12,6 +12,16 @@ namespace DotNetRu.DataStore.Audit.Models
 
         public Uri VkUrl { get; set; }
 
+        public Uri TwitterUrl { get; set; }
+
+        public Uri TelegramChannelUrl { get; set; }
+
+        public Uri TelegramChatUrl { get; set; }
+
+        public Uri TimePadUrl { get; set; }
+
+        public Uri MeetupComUrl { get; set; }
+
         public Uri LogoUrl { get; set; }
     }
 }
