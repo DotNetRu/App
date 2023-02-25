@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DotNetRu.AzureService;
-using DotNetRu.AzureService.Helpers;
 using DotNetRu.Models.Social;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -19,59 +18,36 @@ namespace DotNetRu.Azure
 
         private readonly TweetSettings tweetSettings;
 
-        private readonly RealmSettings realmSettings;
-
-        private readonly PushNotificationsManager pushNotificationsManager;
-
         private readonly List<string> defaultCommunities = new List<string> {"DotNetRu", "SpbDotNet"};
 
         public TweetController(
             ILogger<DiagnosticsController> logger,
-            TweetSettings tweetSettings,
-            RealmSettings realmSettings,
-            PushNotificationsManager pushNotificationsManager)
+            TweetSettings tweetSettings)
         {
             this.logger = logger;
             this.tweetSettings = tweetSettings;
-            this.realmSettings = realmSettings;
-            this.pushNotificationsManager = pushNotificationsManager;
-        }
-
-        [HttpPost]
-        [Route("subscriptionTweets")]
-        public async Task<IActionResult> GetOriginalTweetsBySubscriptions(
-            [FromBody]List<string> communities = null
-        )
-        {
-            return await GetOriginalTweets(communities);
         }
 
         [HttpGet]
         [Route("tweets")]
-        public async Task<IActionResult> GetAllOriginalTweets()
+        public async Task<IActionResult> GetTweets([FromQuery] List<string> communities = null)
         {
-            return await GetOriginalTweets(defaultCommunities);
+            return await GetOriginalTweets(communities ?? defaultCommunities);
         }
 
-        private async Task<IActionResult> GetOriginalTweets(
-            List<string> communities
-        )
+        private async Task<IActionResult> GetOriginalTweets(List<string> communities)
         {
             try
             {
-                communities ??= defaultCommunities;
-
-                var allCommunities = (await realmSettings.GetAllCommunitiesAsync(SocialMediaType.Twitter))
-                    .Select(x => x.Community.Name).ToList();
-
                 var allTweets = await CacheHelper.PostsCache.GetOrCreateAsync("tweets",
-                    async () => await TweetService.GetAsync(this.tweetSettings,
-                        allCommunities));
+                    async () => await TweetService.GetAsync(this.tweetSettings, communities));
 
                 var tweets = new List<ISocialPost>();
                 foreach (var community in communities)
+                {
                     tweets.AddRange(allTweets.Where(x =>
                         x.CommunityGroupId.Equals(community, StringComparison.InvariantCultureIgnoreCase)));
+                }
 
                 var json = JsonConvert.SerializeObject(tweets);
 
@@ -79,7 +55,7 @@ namespace DotNetRu.Azure
             }
             catch (Exception e)
             {
-                logger.LogCritical(e, "Unhandled error while getting original tweets");
+                logger.LogCritical(e, "Unhandled error while getting tweets");
                 return new ObjectResult(e)
                 {
                     StatusCode = StatusCodes.Status500InternalServerError
