@@ -4,13 +4,12 @@ namespace DotNetRu.Clients.Portable.ViewModel
     using System.Linq;
     using System.Threading.Tasks;
     using System.Windows.Input;
-
-    using DotNetRu.Clients.Portable.Extensions;
+    using DotNetRu.AppUtils;
+    using DotNetRu.AppUtils.Logging;
     using DotNetRu.Clients.Portable.Helpers;
     using DotNetRu.Clients.Portable.Model;
     using DotNetRu.DataStore.Audit.Models;
     using DotNetRu.Utils.Helpers;
-    using DotNetRu.Utils.Interfaces;
 
     using FormsToolkit;
 

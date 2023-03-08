@@ -1,7 +1,7 @@
 using System.Linq;
+using DotNetRu.AppUtils;
 using DotNetRu.Clients.Portable.Helpers;
 using DotNetRu.Clients.UI.Localization;
-using DotNetRu.Utils.Helpers;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 

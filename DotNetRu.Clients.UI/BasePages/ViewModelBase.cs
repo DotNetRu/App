@@ -3,10 +3,9 @@ namespace DotNetRu.Clients.Portable.ViewModel
     using System;
     using System.Threading.Tasks;
     using System.Windows.Input;
-
+    using DotNetRu.AppUtils.Logging;
     using DotNetRu.Clients.Portable.Helpers;
     using DotNetRu.Clients.Portable.Interfaces;
-    using DotNetRu.Utils.Interfaces;
 
     using MvvmHelpers;
     using Xamarin.Essentials;

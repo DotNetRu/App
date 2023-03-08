@@ -35,6 +35,7 @@
   <ItemGroup>
     <ProjectReference Include="..\DotNetRu.DataStore.Audit\DotNetRu.DataStore.Audit.csproj" />
     <ProjectReference Include="..\DotNetRu.Utils\DotNetRu.Utils.csproj" />
+    <ProjectReference Include="..\DotNetRu.AppUtils\DotNetRu.AppUtils.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="About\AboutPage.xaml.cs">

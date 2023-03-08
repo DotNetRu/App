@@ -6,10 +6,8 @@ namespace DotNetRu.Clients.Portable.Services
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-
-    using DotNetRu.Clients.Portable.Model;
-    using DotNetRu.Clients.UI;
-    using DotNetRu.Utils;
+    using DotNetRu.AppUtils.Config;
+    using DotNetRu.AppUtils.Logging;
     using Flurl.Http;
 
     public static class TweetService

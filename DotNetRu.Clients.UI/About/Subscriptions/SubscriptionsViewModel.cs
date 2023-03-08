@@ -7,11 +7,11 @@ namespace DotNetRu.Clients.Portable.ViewModel
     using System.Linq;
     using System.Threading.Tasks;
     using System.Windows.Input;
+    using DotNetRu.AppUtils;
+    using DotNetRu.AppUtils.Logging;
     using DotNetRu.DataStore.Audit.Helpers;
     using DotNetRu.DataStore.Audit.Models;
     using DotNetRu.Models.Social;
-    using DotNetRu.Utils;
-    using DotNetRu.Utils.Helpers;
     using FormsToolkit;
     using MvvmHelpers;
     using Xamarin.Forms;

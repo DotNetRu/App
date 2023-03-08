@@ -8,7 +8,7 @@ using DotNetRu.DataStore.Audit.Extensions;
 using DotNetRu.DataStore.Audit.Models;
 using DotNetRu.DataStore.Audit.RealmModels;
 using DotNetRu.RealmUpdateLibrary;
-using DotNetRu.Utils.Helpers;
+using DotNetRu.AppUtils;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using Realms;

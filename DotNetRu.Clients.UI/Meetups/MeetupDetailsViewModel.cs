@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-
+using DotNetRu.AppUtils;
+using DotNetRu.AppUtils.Logging;
 using DotNetRu.Clients.Portable.Helpers;
 using DotNetRu.Clients.Portable.Interfaces;
 using DotNetRu.Clients.Portable.Model;
@@ -13,8 +14,6 @@ using DotNetRu.Clients.UI.News;
 using DotNetRu.Clients.UI.Pages.Friends;
 using DotNetRu.Clients.UI.Pages.Sessions;
 using DotNetRu.DataStore.Audit.Models;
-using DotNetRu.Utils.Helpers;
-using DotNetRu.Utils.Interfaces;
 using Microsoft.AppCenter.Crashes;
 using MvvmHelpers;
 using Plugin.Calendars.Abstractions;
@@ -181,7 +180,11 @@ namespace DotNetRu.Clients.UI.Meetups
                             Start = this.Sessions.First().StartTime.LocalDateTime,
                             End = this.Sessions.Last().EndTime.LocalDateTime,
                             Reminders = new[] {
-                                new CalendarEventReminder                                {                                    Method = CalendarReminderMethod.Default,                                    TimeBefore = TimeSpan.FromMinutes(60)                                }
+                                new CalendarEventReminder
+                                {
+                                    Method = CalendarReminderMethod.Default,
+                                    TimeBefore = TimeSpan.FromMinutes(60)
+                                }
                             }   
                         };
 

@@ -326,6 +326,9 @@
       <Project>{DFA0F0F6-C396-412E-86A9-E9095F71CC36}</Project>
       <Name>DotNetRu.Utils</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DotNetRu.AppUtils\DotNetRu.AppUtils.csproj">
+      <Name>DotNetRu.AppUtils</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen~ipad.xib" />

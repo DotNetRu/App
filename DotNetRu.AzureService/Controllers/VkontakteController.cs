@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DotNetRu.AzureService;
-using DotNetRu.AzureService.Helpers;
 using DotNetRu.Models.Social;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -19,18 +18,14 @@ namespace DotNetRu.Azure
 
         private readonly VkontakteSettings vkontakteSettings;
 
-        private readonly RealmSettings realmSettings;
-
         private readonly Dictionary<string, byte> defaultCommunities = new Dictionary<string, byte> { { "DotNetRu", 10 } };
 
         public VkontakteController(
             ILogger<DiagnosticsController> logger,
-            VkontakteSettings vkontakteSettings,
-            RealmSettings realmSettings)
+            VkontakteSettings vkontakteSettings)
         {
             this.logger = logger;
             this.vkontakteSettings = vkontakteSettings;
-            this.realmSettings = realmSettings;
         }
 
         [HttpPost]
@@ -59,12 +54,9 @@ namespace DotNetRu.Azure
             {
                 communities ??= defaultCommunities;
 
-                var allCommunities = (await realmSettings.GetAllCommunitiesAsync(SocialMediaType.Vkontakte))
-                    .ToDictionary(x => x.Community.Name, x => x.LoadedPosts);
-
                 var allPosts = await CacheHelper.PostsCache.GetOrCreateAsync("vkontaktePosts",
                     async () => await VkontakteService.GetAsync(this.vkontakteSettings,
-                        allCommunities));
+                        communities));
 
                 var posts = new List<ISocialPost>();
                 foreach (var community in communities)

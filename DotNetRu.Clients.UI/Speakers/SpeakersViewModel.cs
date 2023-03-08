@@ -5,10 +5,10 @@ namespace DotNetRu.Clients.Portable.ViewModel
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Windows.Input;
+    using DotNetRu.AppUtils;
+    using DotNetRu.AppUtils.Logging;
     using DotNetRu.DataStore.Audit.Models;
     using DotNetRu.DataStore.Audit.Services;
-    using DotNetRu.Utils;
-    using DotNetRu.Utils.Helpers;
 
     using FormsToolkit;
 
