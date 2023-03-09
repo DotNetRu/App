@@ -11,6 +11,7 @@
     <PublishProfile>DefaultContainer</PublishProfile>    
   </PropertyGroup>  
 
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'DotNetRu.AzureService' " />
   <ItemGroup>
     <ContainerPort Include="80" Type="tcp" />      
   </ItemGroup>

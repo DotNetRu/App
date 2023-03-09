@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetRu.Models", "DotNetRu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetRu.RealmUpdateLibrary", "RealmUpdateLibrary\DotNetRu.RealmUpdateLibrary.csproj", "{8B68192C-72D3-4F84-93CB-DF0C1984B536}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetRu.AzureService", "DotNetRu.AzureService\DotNetRu.AzureService.csproj", "{F16ADECA-FC75-4779-99A6-D68B18F1D684}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetRu.AppService", "DotNetRu.AppService\DotNetRu.AppService.csproj", "{F16ADECA-FC75-4779-99A6-D68B18F1D684}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
