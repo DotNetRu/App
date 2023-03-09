@@ -14,11 +14,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Config\config.DEV.json">
-      <DependentUpon>..\..\DotNetRu.Utils\Config\config.json</DependentUpon>
+    <None Include="Config\config.DEV.json">
+      <DependentUpon>Config\config.json</DependentUpon>
     </None>
-    <None Update="Config\config.PROD.json">
-      <DependentUpon>..\..\DotNetRu.Utils\Config\config.json</DependentUpon>
+    <None Include="Config\config.PROD.json">
+      <DependentUpon>Config\config.json</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
