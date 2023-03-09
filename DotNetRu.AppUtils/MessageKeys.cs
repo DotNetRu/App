@@ -1,4 +1,5 @@
-namespace DotNetRu.AppUtils;
+namespace DotNetRu.AppUtils
+{
 
 public static class MessageKeys
 {
@@ -39,5 +40,6 @@ public static class MessageKeys
     public const string Choice = "choice";
 
     public const string RealmUpdated = nameof(RealmUpdated);
+}
 }
 

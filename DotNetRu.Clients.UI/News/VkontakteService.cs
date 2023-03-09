@@ -1,4 +1,5 @@
-namespace DotNetRu.Clients.Portable.Services;
+namespace DotNetRu.Clients.Portable.Services
+{
 
 using System.Linq;
 using DotNetRu.Models.Social;
@@ -29,4 +30,5 @@ public static class VkontakteService
 
         return new List<ISocialPost>();
     }
+}
 }

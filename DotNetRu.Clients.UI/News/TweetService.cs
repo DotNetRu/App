@@ -1,4 +1,5 @@
-namespace DotNetRu.Clients.Portable.Services;
+namespace DotNetRu.Clients.Portable.Services
+{
 
 using System.Linq;
 using DotNetRu.Models.Social;
@@ -31,4 +32,5 @@ public static class TweetService
 
         return new List<ISocialPost>();
     }
+}
 }

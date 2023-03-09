@@ -1,4 +1,5 @@
-namespace DotNetRu.AppUtils;
+namespace DotNetRu.AppUtils 
+{
 
 using Xamarin.Essentials;
 
@@ -16,4 +17,5 @@ public static class Settings
         set => Preferences.Set(nameof(IsConnected), value);
     }
     public static string FilteredCategories { get; set; }
+}
 }

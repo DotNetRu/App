@@ -1,9 +1,9 @@
+namespace DotNetRu.AppUtils {
+
 using System;
 using System.IO;
 using System.Linq;
-using System.Reflection;
-
-namespace DotNetRu.AppUtils;
+using System.Reflection;    
 
 public static class ResourceHelper
 {
@@ -17,4 +17,5 @@ public static class ResourceHelper
         resFileStream?.CopyTo(memoryStream);
         return memoryStream.ToArray();
     }
+}
 }

@@ -1,4 +1,5 @@
-namespace DotNetRu.AppUtils.Logging;
+namespace DotNetRu.AppUtils.Logging
+{
 
 public static class DotNetRuLoggerKeys
 {
@@ -13,4 +14,5 @@ public static class DotNetRuLoggerKeys
     public const string ConferenceFeedback = "ConferenceFeedback";
 
     public const string LaunchedBrowser = "LaunchedBrowser";        
+}
 }
