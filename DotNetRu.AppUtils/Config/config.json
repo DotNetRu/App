@@ -1,10 +1,8 @@
 {
     "AppCenterAndroidKey": "6f9a7703-8ca4-477e-9558-7e095f7d20aa",
     "AppCenteriOSKey": "1e7f311f-1055-4ec9-8b00-0302015ab8ae",
-    "TweetFunctionUrl": "https://dotnetruappservice.azurewebsites.net/tweets",
-    "SubscriptionTweetFunctionUrl": "https://dotnetruappservice.azurewebsites.net/subscriptionTweets",
-    "VkontakteFunctionUrl": "https://dotnetruappservice.azurewebsites.net/vkontaktePosts",
-    "SubscriptionVkontakteFunctionUrl": "https://dotnetruappservice.azurewebsites.net/subscriptionVkontaktePosts",
+    "TweetFunctionUrl": "https://bbah0no331g76vo25qmm.containers.yandexcloud.net/tweets",
+    "VkontakteFunctionUrl": "https://bbah0no331g76vo25qmm.containers.yandexcloud.net/vkontaktePosts",
     "RealmDatabase": "dotnetru_050919",
     "RealmServerUrl": "dotnetru.de1a.cloud.realm.io"
 }
