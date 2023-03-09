@@ -1,10 +1,9 @@
 namespace DotNetRu.Clients.Portable.Helpers
 {
     using System.ComponentModel;
-
+    using DotNetRu.AppUtils;
     using DotNetRu.Clients.Portable.Interfaces;
     using DotNetRu.Clients.UI.Localization;
-    using DotNetRu.Utils.Helpers;
 
     using Xamarin.Forms;
 

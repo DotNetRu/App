@@ -1,3 +1,4 @@
+using System.Linq;
 using DotNetRu.Azure;
 using DotNetRu.AzureService.Logging;
 using DotNetRu.RealmUpdateLibrary;
@@ -60,13 +61,15 @@ namespace DotNetRu.AzureService
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
-
             app.UseRouting();
 
-            app.UseAuthorization();
-
-            app.UseOpenApi();
+            app.UseOpenApi(config => config.PostProcess = (document, request) =>
+            {
+                if (env.IsProduction())
+                {
+                    document.Schemes = new[] { NSwag.OpenApiSchema.Https };
+                }
+            });
             app.UseSwaggerUi3();
 
             app.UseEndpoints(endpoints =>

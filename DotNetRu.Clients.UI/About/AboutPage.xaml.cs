@@ -1,5 +1,5 @@
 using System;
-
+using DotNetRu.AppUtils;
 using DotNetRu.Clients.Portable.Model;
 using DotNetRu.Clients.Portable.ViewModel;
 using DotNetRu.Utils.Helpers;

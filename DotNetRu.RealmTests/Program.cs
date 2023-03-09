@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using DotNetRu.Clients.UI;
+using DotNetRu.AppUtils.Config;
 using DotNetRu.DataStore.Audit.Services;
 
 namespace DotNetRu.RealmTests

@@ -16,10 +16,6 @@
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="3.4.3" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="3.4.3" />
     <PackageReference Include="Microsoft.AppCenter.Push" Version="3.4.3" />
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.2">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
     <PackageReference Include="Plugin.Permissions" Version="6.0.1" />
     <PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
     <PackageReference Include="Xam.Plugins.Forms.ImageCircle" Version="3.0.0.5" />
@@ -35,6 +31,7 @@
   <ItemGroup>
     <ProjectReference Include="..\DotNetRu.DataStore.Audit\DotNetRu.DataStore.Audit.csproj" />
     <ProjectReference Include="..\DotNetRu.Utils\DotNetRu.Utils.csproj" />
+    <ProjectReference Include="..\DotNetRu.AppUtils\DotNetRu.AppUtils.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="About\AboutPage.xaml.cs">

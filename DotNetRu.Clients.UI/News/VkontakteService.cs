@@ -1,58 +1,34 @@
-using System.Linq;
-using DotNetRu.Models.Social;
-using Flurl.Http.Content;
-using Newtonsoft.Json;
-
 namespace DotNetRu.Clients.Portable.Services
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
 
-    using DotNetRu.Clients.Portable.Model;
-    using DotNetRu.Clients.UI;
-    using DotNetRu.Utils;
-    using Flurl.Http;
+using System.Linq;
+using DotNetRu.Models.Social;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using DotNetRu.AppUtils.Config;
+using DotNetRu.AppUtils.Logging;
+using Flurl.Http;
 
-    public static class VkontakteService
+public static class VkontakteService
+{
+    public static async Task<IList<ISocialPost>> GetVkPostsAsync(IDictionary<string, byte> communities)
     {
-        public static async Task<List<ISocialPost>> GetAsync()
+        try
         {
-            try
-            {
-                var config = AppConfig.GetConfig();
+            var config = AppConfig.GetConfig();
 
-                var vkontaktePosts = await config.VkontakteFunctionUrl
-                    .GetJsonAsync<List<VkontaktePost>>();
+            var vkontaktePosts = await config.VkontakteFunctionUrl
+                .GetJsonAsync<List<VkontaktePost>>();
 
-                return vkontaktePosts.Cast<ISocialPost>().ToList();
-            }
-            catch (Exception e)
-            {
-                DotNetRuLogger.Report(e);
-            }
-
-            return new List<ISocialPost>();
+            return vkontaktePosts.Cast<ISocialPost>().ToList();
+        }
+        catch (Exception e)
+        {
+            DotNetRuLogger.Report(e);
         }
 
-        public static async Task<List<ISocialPost>> GetBySubscriptionsAsync(IDictionary<string, byte> communities)
-        {
-            try
-            {
-                var config = AppConfig.GetConfig();
-
-                var vkontaktePosts =
-                    await config.SubscriptionVkontakteFunctionUrl.PostJsonAsync(communities)
-                        .ReceiveJson<List<VkontaktePost>>();
-
-                return vkontaktePosts.Cast<ISocialPost>().ToList();
-            }
-            catch (Exception e)
-            {
-                DotNetRuLogger.Report(e);
-            }
-
-            return new List<ISocialPost>();
-        }
+        return new List<ISocialPost>();
     }
+}
 }

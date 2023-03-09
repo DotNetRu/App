@@ -7,11 +7,10 @@ namespace DotNetRu.Clients.Portable.ViewModel
     using System.Linq;
     using System.Threading.Tasks;
     using System.Windows.Input;
-
-    using DotNetRu.Clients.Portable.Model;
+    using DotNetRu.AppUtils;
+    using DotNetRu.AppUtils.Logging;
     using DotNetRu.Clients.Portable.Services;
     using DotNetRu.DataStore.Audit.Models;
-    using DotNetRu.Utils;
     using DotNetRu.Utils.Helpers;
 
     using FormsToolkit;
@@ -274,18 +273,16 @@ namespace DotNetRu.Clients.Portable.ViewModel
                 this.SocialError = false;
                 var socialPosts = new List<ISocialPost>();
 
-                var tweets = await TweetService.GetBySubscriptionsAsync(Helpers.Settings.CommunitySubscriptions
+                var tweets = await TweetService.GetTweetsAsync(Helpers.Settings.CommunitySubscriptions
                     .Where(x => x.IsSelected && x.Type == SocialMediaType.Twitter).Select(x => x.Community.Name)
                     .ToList());
                 socialPosts.AddRange(tweets);
 
-                var vkontaktePosts = await VkontakteService.GetBySubscriptionsAsync(Helpers.Settings
+                var vkontaktePosts = await VkontakteService.GetVkPostsAsync(Helpers.Settings
                     .CommunitySubscriptions
                     .Where(x => x.IsSelected && x.Type == SocialMediaType.Vkontakte && x.LoadedPosts > 0)
                     .ToDictionary(x => x.Community.Name, x => x.LoadedPosts));
                 socialPosts.AddRange(vkontaktePosts);
-
-                //ToDo: добавить больше соц. сетей
 
                 this.SocialPosts.ReplaceRange(socialPosts.OrderByDescending(x => x.CreatedDate));
             }

@@ -16,14 +16,8 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.1.1" />
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.2">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
     <PackageReference Include="morelinq" Version="3.3.2" />
     <PackageReference Include="Realm" Version="5.1.2" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="DotNetRuOffline.realm">
@@ -76,5 +70,6 @@
     <ProjectReference Include="..\DotNetRu.Models\DotNetRu.Models.csproj" />
     <ProjectReference Include="..\DotNetRu.Utils\DotNetRu.Utils.csproj" />
     <ProjectReference Include="..\RealmUpdateLibrary\DotNetRu.RealmUpdateLibrary.csproj" />
+    <ProjectReference Include="..\DotNetRu.AppUtils\DotNetRu.AppUtils.csproj" />
   </ItemGroup>
 </Project>

@@ -4,7 +4,7 @@ namespace DotNetRu.iOS
     using System.ComponentModel;
 
     using CoreSpotlight;
-
+    using DotNetRu.AppUtils.Logging;
     using DotNetRu.Clients.Portable.Model;
     using DotNetRu.Clients.UI;
     using DotNetRu.iOS.Renderers;

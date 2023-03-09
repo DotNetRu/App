@@ -2,9 +2,8 @@ namespace DotNetRu.Clients.Portable.ViewModel
 {
     using System;
     using System.Windows.Input;
-    using DotNetRu.Utils;
-    using DotNetRu.Utils.Helpers;
-    using DotNetRu.Utils.Interfaces;
+    using DotNetRu.AppUtils;
+    using DotNetRu.AppUtils.Logging;
 
     using FormsToolkit;
 

@@ -6,7 +6,6 @@ using DotNetRu.Clients.Portable.Services;
 using DotNetRu.Clients.Portable.ViewModel;
 using DotNetRu.Clients.UI.Localization;
 using DotNetRu.DataStore.Audit.Services;
-using DotNetRu.Utils.Interfaces;
 
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
@@ -16,6 +15,8 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 using System.Collections.Generic;
 using Realms.Sync;
+using DotNetRu.AppUtils.Logging;
+using DotNetRu.AppUtils.Config;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 

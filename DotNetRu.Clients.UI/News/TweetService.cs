@@ -1,55 +1,36 @@
-using System.Linq;
-using DotNetRu.Models.Social;
-
 namespace DotNetRu.Clients.Portable.Services
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
 
-    using DotNetRu.Clients.Portable.Model;
-    using DotNetRu.Clients.UI;
-    using DotNetRu.Utils;
-    using Flurl.Http;
+using System.Linq;
+using DotNetRu.Models.Social;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using DotNetRu.AppUtils.Config;
+using DotNetRu.AppUtils.Logging;
+using Flurl;
+using Flurl.Http;
 
-    public static class TweetService
+public static class TweetService
+{
+    public static async Task<IList<ISocialPost>> GetTweetsAsync(IList<string> communities)
     {
-        public static async Task<List<ISocialPost>> GetAsync()
+        try
         {
-            try
-            {
-                var config = AppConfig.GetConfig();
+            var config = AppConfig.GetConfig();
 
-                var tweets = await config.TweetFunctionUrl
-                    .GetJsonAsync<List<Tweet>>();
+            var tweets = await config.TweetFunctionUrl
+                .SetQueryParam("communities", communities)
+                .GetJsonAsync<IList<Tweet>>();
 
-                return tweets.Cast<ISocialPost>().ToList();
-            }
-            catch (Exception e)
-            {
-                DotNetRuLogger.Report(e);
-            }
-
-            return new List<ISocialPost>();
+            return tweets.Cast<ISocialPost>().ToList();
+        }
+        catch (Exception e)
+        {
+            DotNetRuLogger.Report(e);
         }
 
-        public static async Task<List<ISocialPost>> GetBySubscriptionsAsync(List<string> communities)
-        {
-            try
-            {
-                var config = AppConfig.GetConfig();
-
-                var tweets = await config.SubscriptionTweetFunctionUrl.PostJsonAsync(communities)
-                    .ReceiveJson<List<Tweet>>();
-
-                return tweets.Cast<ISocialPost>().ToList();
-            }
-            catch (Exception e)
-            {
-                DotNetRuLogger.Report(e);
-            }
-
-            return new List<ISocialPost>();
-        }
+        return new List<ISocialPost>();
     }
+}
 }

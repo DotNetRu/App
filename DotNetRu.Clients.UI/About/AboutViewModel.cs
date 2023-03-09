@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using DotNetRu.AppUtils;
 using DotNetRu.Clients.Portable.Helpers;
 using DotNetRu.Clients.Portable.Interfaces;
 using DotNetRu.Clients.Portable.Services;
