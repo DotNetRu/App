@@ -27,8 +27,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\RealmUpdateLibrary\DotNetRu.RealmUpdateLibrary.csproj">
-      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
-    </ProjectReference>
+    <ProjectReference Include="..\RealmUpdateLibrary\DotNetRu.RealmUpdateLibrary.csproj" />
   </ItemGroup>
 </Project>
