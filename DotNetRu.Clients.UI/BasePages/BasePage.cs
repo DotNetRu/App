@@ -7,7 +7,7 @@ namespace DotNetRu.Clients.UI.Pages
     using DotNetRu.Clients.Portable.Interfaces;
     using DotNetRu.Clients.Portable.Model;
 
-    using Xamarin.Forms;
+    using Microsoft.Maui;
 
     public abstract class BasePage : ContentPage, IProvidePageInfo
     {

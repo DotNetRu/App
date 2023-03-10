@@ -3,7 +3,7 @@ using DotNetRu.Clients.Portable.ViewModel;
 using DotNetRu.Clients.UI.Helpers;
 using DotNetRu.Clients.UI.Speakers;
 using DotNetRu.DataStore.Audit.Models;
-using Xamarin.Forms;
+using Microsoft.Maui;
 
 namespace DotNetRu.Clients.UI.Pages.Speakers
 {

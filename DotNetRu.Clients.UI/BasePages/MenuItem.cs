@@ -4,7 +4,7 @@
 
     using MvvmHelpers;
 
-    using Xamarin.Forms;
+    using Microsoft.Maui;
 
     public class MenuItem : ObservableObject
     {

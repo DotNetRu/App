@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Linq;
 using DotNetRu.DataStore.Audit.Models;
 using DotNetRu.Utils.Helpers;
-using Xamarin.Forms;
+using Microsoft.Maui;
 
 namespace DotNetRu.Clients.UI.Converters
 {

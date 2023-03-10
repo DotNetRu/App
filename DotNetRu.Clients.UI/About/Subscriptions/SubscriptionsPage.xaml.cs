@@ -4,7 +4,7 @@ using DotNetRu.Clients.Portable.Model;
 using DotNetRu.Clients.Portable.ViewModel;
 using DotNetRu.DataStore.Audit.Models;
 using DotNetRu.Models.Social;
-using Xamarin.Forms;
+using Microsoft.Maui;
 
 namespace DotNetRu.Clients.UI.Pages.Subscriptions
 {

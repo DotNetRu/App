@@ -2,7 +2,7 @@ using System;
 using System.Diagnostics;
 using DotNetRu.Clients.Portable.Interfaces;
 using DotNetRu.Clients.Portable.Model;
-using Xamarin.Forms;
+using Microsoft.Maui;
 
 namespace DotNetRu.Clients.UI.Pages.Home
 {

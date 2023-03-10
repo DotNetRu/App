@@ -5,7 +5,7 @@ namespace DotNetRu.Clients.Portable.Helpers
     using DotNetRu.Clients.Portable.Interfaces;
     using DotNetRu.Clients.UI.Localization;
 
-    using Xamarin.Forms;
+    using Microsoft.Maui;
 
     public class LocalizedResources : INotifyPropertyChanged
     {

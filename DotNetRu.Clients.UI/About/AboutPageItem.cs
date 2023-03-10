@@ -9,7 +9,7 @@ namespace DotNetRu.Clients.UI.About
 
         public CommunityModel Community { get; set; }
 
-        public MenuItem MenuItem { get; set; }
+        public Portable.Model.MenuItem MenuItem { get; set; }
 
         public string Text { get; set; }
     }

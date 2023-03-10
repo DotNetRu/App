@@ -2,7 +2,7 @@ using DotNetRu.Clients.Portable.Model;
 using DotNetRu.Clients.Portable.ViewModel;
 using DotNetRu.Clients.UI.Cells;
 using FormsToolkit;
-using Xamarin.Forms;
+using Microsoft.Maui;
 
 namespace DotNetRu.Clients.UI.Pages.Sessions
 {

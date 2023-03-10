@@ -2,7 +2,7 @@ using System.Linq;
 using DotNetRu.AppUtils;
 using DotNetRu.Clients.Portable.Helpers;
 using DotNetRu.Clients.UI.Localization;
-using Xamarin.Forms;
+using Microsoft.Maui;
 using Xamarin.Forms.Internals;
 
 namespace DotNetRu.Clients.UI

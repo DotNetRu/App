@@ -17,7 +17,7 @@ using DotNetRu.DataStore.Audit.Models;
 using Microsoft.AppCenter.Crashes;
 using MvvmHelpers;
 using Plugin.Calendars.Abstractions;
-using Xamarin.Forms;
+using Microsoft.Maui;
 
 namespace DotNetRu.Clients.UI.Meetups
 {

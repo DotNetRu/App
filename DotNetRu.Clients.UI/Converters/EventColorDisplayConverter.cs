@@ -4,7 +4,7 @@
     using System.Diagnostics;
     using System.Globalization;
 
-    using Xamarin.Forms;
+    using Microsoft.Maui;
 
     public class EventColorDisplayConverter : IValueConverter
     {

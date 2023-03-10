@@ -4,10 +4,10 @@ using Plugin.Calendars.Abstractions;
 using Plugin.Calendars;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
-using Xamarin.Forms;
+using Microsoft.Maui;
 using Microsoft.AppCenter.Crashes;
 using Microsoft.AppCenter.Analytics;
-using Xamarin.Essentials;
+
 
 namespace DotNetRu.Clients.UI.News
 {

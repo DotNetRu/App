@@ -3,7 +3,7 @@
     using DotNetRu.Clients.Portable.Interfaces;
     using DotNetRu.Clients.Portable.ViewModel;
 
-    using Xamarin.Forms;
+    using Microsoft.Maui;
 
     public static class LanguageService
     {

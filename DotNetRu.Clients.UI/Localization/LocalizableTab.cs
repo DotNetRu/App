@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using Xamarin.Forms;
+using Microsoft.Maui;
 
 namespace DotNetRu.Clients.UI.Localization
 {

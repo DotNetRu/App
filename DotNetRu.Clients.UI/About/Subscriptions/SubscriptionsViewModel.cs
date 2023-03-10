@@ -14,7 +14,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
     using DotNetRu.Models.Social;
     using FormsToolkit;
     using MvvmHelpers;
-    using Xamarin.Forms;
+    using Microsoft.Maui;
 
     public class SubscriptionsViewModel : ViewModelBase
     {

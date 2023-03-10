@@ -15,8 +15,8 @@ namespace DotNetRu.Clients.Portable.ViewModel
 
     using MvvmHelpers;
 
-    using Xamarin.Essentials;
-    using Xamarin.Forms;
+    
+    using Microsoft.Maui;
     using Xamarin.Forms.Internals;
 
     using MenuItem = Model.MenuItem;

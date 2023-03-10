@@ -1,6 +1,6 @@
 ﻿using DotNetRu.Clients.Portable.Model;
 using DotNetRu.Clients.Portable.ViewModel;
-using Xamarin.Forms;
+using Microsoft.Maui;
 
 namespace DotNetRu.Clients.UI.Pages.Home
 {

@@ -6,7 +6,7 @@ namespace DotNetRu.Clients.UI.Converters
 
     using DotNetRu.Clients.Portable.Extensions;
     using DotNetRu.Clients.UI.Localization;
-    using Xamarin.Forms;
+    using Microsoft.Maui;
 
     public class EventDayDisplayConverter : IValueConverter
     {

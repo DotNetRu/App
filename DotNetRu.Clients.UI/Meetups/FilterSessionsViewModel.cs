@@ -4,7 +4,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
     using System.Linq;
     using DotNetRu.AppUtils;
     using DotNetRu.DataStore.Audit.Models;
-    using Xamarin.Forms;
+    using Microsoft.Maui;
 
     public class FilterSessionsViewModel : ViewModelBase
     {

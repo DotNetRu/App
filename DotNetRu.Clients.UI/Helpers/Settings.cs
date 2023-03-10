@@ -8,7 +8,7 @@ namespace DotNetRu.Clients.Portable.Helpers
     using System;
 
     using DotNetRu.Clients.Portable.ViewModel;
-    using Xamarin.Essentials;
+    
 
     public static class Settings
     {

@@ -1,7 +1,7 @@
 ﻿using DotNetRu.DataStore.Audit.Models;
 using DotNetRu.Utils.Helpers;
 using MvvmHelpers;
-using Xamarin.Forms;
+using Microsoft.Maui;
 using MenuItem = DotNetRu.Clients.Portable.Model.MenuItem;
 
 namespace DotNetRu.Clients.Portable.ViewModel

@@ -1,7 +1,7 @@
 using DotNetRu.AppUtils;
 using DotNetRu.Clients.Portable.Interfaces;
 using FormsToolkit;
-using Xamarin.Forms;
+using Microsoft.Maui;
 
 namespace DotNetRu.Clients.Portable.Helpers
 {

@@ -6,7 +6,7 @@ using DotNetRu.Clients.Portable.ViewModel;
 using DotNetRu.Clients.UI.Speakers;
 using DotNetRu.DataStore.Audit.Models;
 using MvvmHelpers;
-using Xamarin.Forms;
+using Microsoft.Maui;
 
 namespace DotNetRu.Clients.UI.Handlers
 {

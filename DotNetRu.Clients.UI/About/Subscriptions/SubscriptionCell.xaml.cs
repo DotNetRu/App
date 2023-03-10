@@ -1,7 +1,7 @@
 namespace DotNetRu.Clients.UI.Cells
 {
     using System;
-    using Xamarin.Forms;
+    using Microsoft.Maui;
 
     public partial class SubscriptionCell
     {

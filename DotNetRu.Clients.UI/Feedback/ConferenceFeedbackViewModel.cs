@@ -7,7 +7,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
 
     using FormsToolkit;
 
-    using Xamarin.Forms;
+    using Microsoft.Maui;
 
     public class ConferenceFeedbackViewModel : ViewModelBase
     {

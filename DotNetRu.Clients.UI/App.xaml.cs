@@ -1,5 +1,3 @@
-using Xamarin.Forms.Xaml;
-using System;
 using System.Globalization;
 
 using DotNetRu.Clients.Portable.Services;
@@ -11,9 +9,6 @@ using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using Microsoft.AppCenter.Push;
-using Xamarin.Essentials;
-using Xamarin.Forms;
-using System.Collections.Generic;
 using Realms.Sync;
 using DotNetRu.AppUtils.Logging;
 using DotNetRu.AppUtils.Config;

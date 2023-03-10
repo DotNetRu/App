@@ -1,5 +1,5 @@
 using DotNetRu.Models.Social;
-using Xamarin.Essentials;
+
 
 namespace DotNetRu.Clients.UI.Pages.Home
 {
@@ -10,7 +10,7 @@ namespace DotNetRu.Clients.UI.Pages.Home
 
     using FormsToolkit;
 
-    using Xamarin.Forms;
+    using Microsoft.Maui;
 
     public partial class NewsPage
     {

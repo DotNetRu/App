@@ -3,7 +3,7 @@ namespace DotNetRu.Clients.UI.Converters
     using System;
     using System.Globalization;
     using DotNetRu.Clients.UI.Localization;
-    using Xamarin.Forms;
+    using Microsoft.Maui;
 
     public class HasReminderTextConverter : IValueConverter
     {

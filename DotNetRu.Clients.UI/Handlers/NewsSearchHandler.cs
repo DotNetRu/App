@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using DotNetRu.Clients.Portable.Model;
 using DotNetRu.Models.Social;
-using Xamarin.Essentials;
-using Xamarin.Forms;
+
+using Microsoft.Maui;
 
 namespace DotNetRu.Clients.UI.Handlers
 {

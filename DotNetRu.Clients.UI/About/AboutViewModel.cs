@@ -18,8 +18,8 @@ using DotNetRu.DataStore.Audit.Services;
 using DotNetRu.Utils.Helpers;
 using Microsoft.AppCenter.Analytics;
 using MvvmHelpers;
-using Xamarin.Essentials;
-using Xamarin.Forms;
+
+using Microsoft.Maui;
 
 namespace DotNetRu.Clients.Portable.ViewModel
 {

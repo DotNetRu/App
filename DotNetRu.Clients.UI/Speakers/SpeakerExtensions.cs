@@ -5,7 +5,7 @@
     using DotNetRu.DataStore.Audit.Models;
     using DotNetRu.Utils.Helpers;
 
-    using Xamarin.Forms;
+    using Microsoft.Maui;
 
     public static class SpeakerExtensions
     {

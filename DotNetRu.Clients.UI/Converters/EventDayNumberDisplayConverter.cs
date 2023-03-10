@@ -6,7 +6,7 @@
 
     using DotNetRu.Clients.Portable.Extensions;
 
-    using Xamarin.Forms;
+    using Microsoft.Maui;
 
     public class EventDayNumberDisplayConverter : IValueConverter
     {

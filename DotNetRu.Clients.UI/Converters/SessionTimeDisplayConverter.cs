@@ -5,7 +5,7 @@ namespace DotNetRu.Clients.UI.Converters
     using System.Globalization;
     using DotNetRu.DataStore.Audit.Models;
 
-    using Xamarin.Forms;
+    using Microsoft.Maui;
 
     public class SessionTimeDisplayConverter : IValueConverter
     {

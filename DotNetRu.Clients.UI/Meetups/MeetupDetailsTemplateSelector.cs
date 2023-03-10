@@ -1,5 +1,5 @@
 using System;
-using Xamarin.Forms;
+using Microsoft.Maui;
 
 namespace DotNetRu.Clients.UI.Meetups
 {

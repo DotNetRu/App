@@ -3,7 +3,7 @@ namespace DotNetRu.Clients.UI.Converters
     using System;
     using System.Globalization;
     using DotNetRu.Models.Social;
-    using Xamarin.Forms;
+    using Microsoft.Maui;
 
     public class SocialMediaTypeConverter : IValueConverter
     {

@@ -1,6 +1,6 @@
 namespace DotNetRu.Clients.UI.Controls
 {
-    using Xamarin.Forms;
+    using Microsoft.Maui;
 
     public class CardView : Frame
     {

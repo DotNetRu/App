@@ -8,8 +8,8 @@ namespace DotNetRu.Clients.Portable.ViewModel
     using DotNetRu.Clients.Portable.Interfaces;
 
     using MvvmHelpers;
-    using Xamarin.Essentials;
-    using Xamarin.Forms;
+    
+    using Microsoft.Maui;
 
     public class ViewModelBase : BaseViewModel
     {

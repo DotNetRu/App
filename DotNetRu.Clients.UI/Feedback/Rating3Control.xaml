@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="DotNetRu.Clients.UI.Controls.Rating3Control"
              xmlns:behaviors="clr-namespace:DotNetRu.Clients.UI.Behaviors;assembly=DotNetRu.Clients.UI">

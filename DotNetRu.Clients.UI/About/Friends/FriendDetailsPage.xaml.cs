@@ -8,7 +8,7 @@
     using DotNetRu.Clients.UI.Pages.Sessions;
     using DotNetRu.DataStore.Audit.Models;
 
-    using Xamarin.Forms;
+    using Microsoft.Maui;
 
     public partial class FriendDetailsPage
     {

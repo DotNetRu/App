@@ -1,6 +1,6 @@
-<pages:BasePage
+﻿<pages:BasePage
     x:Class="DotNetRu.Clients.UI.Pages.About.AboutPage"
-    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:about="clr-namespace:DotNetRu.Clients.UI.About"
     xmlns:behaviorsPack="clr-namespace:Xamarin.Forms.BehaviorsPack;assembly=Xamarin.Forms.BehaviorsPack"
@@ -9,7 +9,6 @@
     xmlns:pages="clr-namespace:DotNetRu.Clients.UI.Pages;assembly=DotNetRu.Clients.UI"
     x:Name="About"
     Title="{Binding Resources[About]}"
-    Icon="tab_about.png"
     NavigationPage.BackButtonTitle="Info">
 
     <pages:BasePage.Resources>

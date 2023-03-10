@@ -1,7 +1,7 @@
 using DotNetRu.Clients.Portable.Model;
 using DotNetRu.Clients.UI.Speakers;
 using DotNetRu.DataStore.Audit.Models;
-using Xamarin.Forms;
+using Microsoft.Maui;
 
 namespace DotNetRu.Clients.UI.Cells
 {

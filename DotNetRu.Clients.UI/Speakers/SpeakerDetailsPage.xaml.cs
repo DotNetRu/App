@@ -5,8 +5,8 @@ using DotNetRu.Clients.UI.Helpers;
 using DotNetRu.Clients.UI.Pages.Sessions;
 using DotNetRu.Clients.UI.Pages.Speakers;
 using DotNetRu.DataStore.Audit.Models;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+using Microsoft.Maui;
+using Microsoft.Maui.Controls.Xaml;
 
 namespace DotNetRu.Clients.UI.Speakers
 {

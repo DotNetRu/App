@@ -1,5 +1,5 @@
 ﻿using DotNetRu.DataStore.Audit.Models;
-using Xamarin.Forms;
+using Microsoft.Maui;
 
 namespace DotNetRu.Clients.UI.Cells
 {

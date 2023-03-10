@@ -7,7 +7,7 @@
     using DotNetRu.Clients.Portable.Model.Extensions;
     using DotNetRu.DataStore.Audit.Models;
 
-    using Xamarin.Forms;
+    using Microsoft.Maui;
     using Xamarin.Forms.Internals;
 
     [Preserve]

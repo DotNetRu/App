@@ -13,7 +13,7 @@ namespace DotNetRu.Clients.Portable.ViewModel
 
     using MvvmHelpers;
 
-    using Xamarin.Forms;
+    using Microsoft.Maui;
 
     public class MeetupsViewModel : ViewModelBase
     {
