@@ -1,376 +1,210 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
-    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <ProjectGuid>{22F77CDE-8816-45D7-A7A1-CA9282145F0A}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <TargetFramework>net7.0-ios</TargetFramework>
     <RootNamespace>DotNetRu.iOS</RootNamespace>
-    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>DotNetRu.iOS</AssemblyName>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
-    <PublishUrl>publish\</PublishUrl>
-    <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
-    <UpdateMode>Foreground</UpdateMode>
-    <UpdateInterval>7</UpdateInterval>
-    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
-    <UpdatePeriodically>false</UpdatePeriodically>
-    <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
-    <UseApplicationTrust>false</UseApplicationTrust>
-    <BootstrapperEnabled>true</BootstrapperEnabled>
-    <SolutionDir>..\</SolutionDir>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <OutputType>Library</OutputType>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>true</ImplicitUsings>
+    <SupportedOSPlatformVersion>13.0</SupportedOSPlatformVersion>
+    <UseMaui>true</UseMaui>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>portable</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
-    <DefineConstants>__UNIFIED__;__MOBILE__;__IOS__;DEBUG;ENABLE_TEST_CLOUD;MOBILE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <CreatePackage>false</CreatePackage>
     <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-    <MtouchArch>x86_64</MtouchArch>
-    <MtouchLink>None</MtouchLink>
-    <MtouchDebug>True</MtouchDebug>
-    <MtouchProfiling>true</MtouchProfiling>
-    <DeviceSpecificBuild>true</DeviceSpecificBuild>
-    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
-    <MtouchFastDev>true</MtouchFastDev>
+    <CodesignProvision>Automatic</CodesignProvision>
     <CodesignKey>iPhone Developer</CodesignKey>
-    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
-    <CodesignProvision>
-    </CodesignProvision>
-    <CodesignEntitlements>
-    </CodesignEntitlements>
-    <IOSDebugOverWiFi>true</IOSDebugOverWiFi>
-    <IOSDebuggerPort>10000</IOSDebuggerPort>
-    <OptimizePNGs>false</OptimizePNGs>
-    <MtouchFloat32>true</MtouchFloat32>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
-    <Optimize>true</Optimize>
-    <OutputPath>bin\iPhone\Release</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <CodesignEntitlements>
-    </CodesignEntitlements>
-    <MtouchArch>ARM64</MtouchArch>
-    <ConsolePause>false</ConsolePause>
-    <CodesignKey>iPhone Distribution</CodesignKey>
-    <MtouchUseLlvm>true</MtouchUseLlvm>
-    <IpaPackageName>
-    </IpaPackageName>
-    <DefineConstants>MOBILE</DefineConstants>
-    <CodesignProvision>
-    </CodesignProvision>
-    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
-    <BuildIpa>true</BuildIpa>
-    <MtouchFastDev>false</MtouchFastDev>
-    <MtouchLink>SdkOnly</MtouchLink>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
-    <Optimize>true</Optimize>
-    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <MtouchArch>i386</MtouchArch>
-    <ConsolePause>false</ConsolePause>
-    <MtouchLink>SdkOnly</MtouchLink>
-    <DefineConstants>ENABLE_TEST_CLOUD;MOBILE</DefineConstants>
-    <CodesignKey>iPhone Distribution</CodesignKey>
-    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
-    <CodesignEntitlements>
-    </CodesignEntitlements>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>portable</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\iPhone\Debug</OutputPath>
-    <DefineConstants>__UNIFIED__;__MOBILE__;__IOS__;DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-    <MtouchArch>ARM64</MtouchArch>
-    <CodesignEntitlements>
-    </CodesignEntitlements>
-    <MtouchProfiling>true</MtouchProfiling>
-    <CodesignKey>iPhone Developer</CodesignKey>
-    <MtouchDebug>true</MtouchDebug>
-    <IpaPackageName>
-    </IpaPackageName>
-    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
-    <CodesignProvision>
-    </CodesignProvision>
-    <DeviceSpecificBuild>true</DeviceSpecificBuild>
-    <MtouchFloat32>true</MtouchFloat32>
-    <MtouchLink>SdkOnly</MtouchLink>
-    <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
-    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
-    <MtouchFastDev>true</MtouchFastDev>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <Optimize>true</Optimize>
-    <OutputPath>bin\iPhone\Release</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <MtouchArch>ARMv7, ARM64</MtouchArch>
-    <ConsolePause>false</ConsolePause>
-    <CodesignKey>iPhone Developer</CodesignKey>
-    <DefineConstants>ENABLE_TEST_CLOUD;MOBILE</DefineConstants>
+    <CreatePackage>false</CreatePackage>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\DotNetRu.iOS.xml</DocumentationFile>
-    <OutputPath>bin\Debug</OutputPath>
-    <WarningLevel>4</WarningLevel>
-    <Optimize>false</Optimize>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
-    <AppExtensionDebugBundleId />
-  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+    <Folder Include="Renderers\" />
+    <Folder Include="Helpers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="ViewController.designer.cs">
+      <DependentUpon>ViewController.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="FormsToolkit" Version="2.0.1" />
     <PackageReference Include="Microsoft.AppCenter" Version="3.4.3" />
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="3.4.3" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="3.4.3" />
     <PackageReference Include="Microsoft.AppCenter.Push" Version="3.4.3" />
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers">
-      <Version>3.3.2</Version>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
     <PackageReference Include="Plugin.Permissions" Version="6.0.1" />
-    <PackageReference Include="Realm">
-      <Version>5.1.2</Version>
+    <PackageReference Include="Realm" Version="5.1.2">
     </PackageReference>
     <PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
-    <PackageReference Include="System.Reflection.Emit">
-      <Version>4.7.0</Version>
+    <PackageReference Include="System.Reflection.Emit" Version="4.7.0">
       <ExcludeAssets>all</ExcludeAssets>
     </PackageReference>
-    <PackageReference Include="Toast.iOS">
-      <Version>1.2.0</Version>
-    </PackageReference>
     <PackageReference Include="Xam.Plugins.Forms.ImageCircle" Version="3.0.0.5" />
-    <PackageReference Include="Xam.Plugins.Notifier">
-      <Version>3.0.1</Version>
+    <PackageReference Include="Xam.Plugins.Notifier" Version="3.0.1">
     </PackageReference>
-    <PackageReference Include="Xamarin.Essentials">
-      <Version>1.6.1</Version>
+    <PackageReference Include="Xamarin.Essentials" Version="1.6.1">
     </PackageReference>
     <PackageReference Include="Xamarin.FFImageLoading" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Core" />
-    <Reference Include="Xamarin.iOS" />
-    <Reference Include="System.Net" />
-    <Reference Include="System.Web.Services" />
+    <BundleResource Condition="'$(_ResourcePrefix)' != ''" Update="Resources\icon_facebook%402x.png">
+      <Link>Resources\icon_facebook%402x.png</Link>
+    </BundleResource>
+    <BundleResource Condition="'$(_ResourcePrefix)' != ''" Update="Resources\toolbar_share%402x.png">
+      <Link>Resources\toolbar_share%402x.png</Link>
+    </BundleResource>
+    <BundleResource Condition="'$(_ResourcePrefix)' != ''" Update="Resources\icon_blog%403x.png">
+      <Link>Resources\icon_blog%403x.png</Link>
+    </BundleResource>
+    <BundleResource Condition="'$(_ResourcePrefix)' != ''" Update="Resources\tab_sessions_selected%403x.png">
+      <Link>Resources\tab_sessions_selected%403x.png</Link>
+    </BundleResource>
+    <BundleResource Condition="'$(_ResourcePrefix)' != ''" Update="Resources\tab_events_selected%403x.png">
+      <Link>Resources\tab_events_selected%403x.png</Link>
+    </BundleResource>
+    <BundleResource Condition="'$(_ResourcePrefix)' != ''" Update="Resources\tab_events_selected%402x.png">
+      <Link>Resources\tab_events_selected%402x.png</Link>
+    </BundleResource>
+    <BundleResource Condition="'$(_ResourcePrefix)' != ''" Update="Resources\tab_sessions_selected%402x.png">
+      <Link>Resources\tab_sessions_selected%402x.png</Link>
+    </BundleResource>
+    <BundleResource Condition="'$(_ResourcePrefix)' != ''" Update="Resources\icon_blog%402x.png">
+      <Link>Resources\icon_blog%402x.png</Link>
+    </BundleResource>
+    <BundleResource Condition="'$(_ResourcePrefix)' != ''" Update="Resources\icon_facebook%403x.png">
+      <Link>Resources\icon_facebook%403x.png</Link>
+    </BundleResource>
+    <BundleResource Condition="'$(_ResourcePrefix)' != ''" Update="Resources\toolbar_share%403x.png">
+      <Link>Resources\toolbar_share%403x.png</Link>
+    </BundleResource>
+    <BundleResource Condition="'$(_ResourcePrefix)' != ''" Update="Resources\icon_website%402x.png">
+      <Link>Resources\icon_website%402x.png</Link>
+    </BundleResource>
+    <BundleResource Condition="'$(_ResourcePrefix)' != ''" Update="Resources\toolbar_overflow%402x.png">
+      <Link>Resources\toolbar_overflow%402x.png</Link>
+    </BundleResource>
+    <BundleResource Condition="'$(_ResourcePrefix)' != ''" Update="Resources\icon_twitter%402x.png">
+      <Link>Resources\icon_twitter%402x.png</Link>
+    </BundleResource>
+    <BundleResource Condition="'$(_ResourcePrefix)' != ''" Update="Resources\icon_retweet%403x.png">
+      <Link>Resources\icon_retweet%403x.png</Link>
+    </BundleResource>
+    <BundleResource Condition="'$(_ResourcePrefix)' != ''" Update="Resources\icon_retweet%402x.png">
+      <Link>Resources\icon_retweet%402x.png</Link>
+    </BundleResource>
+    <BundleResource Condition="'$(_ResourcePrefix)' != ''" Update="Resources\icon_twitter%403x.png">
+      <Link>Resources\icon_twitter%403x.png</Link>
+    </BundleResource>
+    <BundleResource Condition="'$(_ResourcePrefix)' != ''" Update="Resources\toolbar_overflow%403x.png">
+      <Link>Resources\toolbar_overflow%403x.png</Link>
+    </BundleResource>
+    <BundleResource Condition="'$(_ResourcePrefix)' != ''" Update="Resources\icon_website%403x.png">
+      <Link>Resources\icon_website%403x.png</Link>
+    </BundleResource>
+    <BundleResource Condition="'$(_ResourcePrefix)' != ''" Update="Resources\icon_code%402x.png">
+      <Link>Resources\icon_code%402x.png</Link>
+    </BundleResource>
+    <BundleResource Condition="'$(_ResourcePrefix)' != ''" Update="Resources\icon_heart%402x.png">
+      <Link>Resources\icon_heart%402x.png</Link>
+    </BundleResource>
+    <BundleResource Condition="'$(_ResourcePrefix)' != ''" Update="Resources\icon_vkontakte%403x.png">
+      <Link>Resources\icon_vkontakte%403x.png</Link>
+    </BundleResource>
+    <BundleResource Condition="'$(_ResourcePrefix)' != ''" Update="Resources\icon_view%402x.png">
+      <Link>Resources\icon_view%402x.png</Link>
+    </BundleResource>
+    <BundleResource Condition="'$(_ResourcePrefix)' != ''" Update="Resources\tab_about%402x.png">
+      <Link>Resources\tab_about%402x.png</Link>
+    </BundleResource>
+    <BundleResource Condition="'$(_ResourcePrefix)' != ''" Update="Resources\tab_sessions%403x.png">
+      <Link>Resources\tab_sessions%403x.png</Link>
+    </BundleResource>
+    <BundleResource Condition="'$(_ResourcePrefix)' != ''" Update="Resources\icon_linkedin%403x.png">
+      <Link>Resources\icon_linkedin%403x.png</Link>
+    </BundleResource>
+    <BundleResource Condition="'$(_ResourcePrefix)' != ''" Update="Resources\tab_events%403x.png">
+      <Link>Resources\tab_events%403x.png</Link>
+    </BundleResource>
+    <BundleResource Condition="'$(_ResourcePrefix)' != ''" Update="Resources\tab_events%402x.png">
+      <Link>Resources\tab_events%402x.png</Link>
+    </BundleResource>
+    <BundleResource Condition="'$(_ResourcePrefix)' != ''" Update="Resources\icon_linkedin%402x.png">
+      <Link>Resources\icon_linkedin%402x.png</Link>
+    </BundleResource>
+    <BundleResource Condition="'$(_ResourcePrefix)' != ''" Update="Resources\tab_sessions%402x.png">
+      <Link>Resources\tab_sessions%402x.png</Link>
+    </BundleResource>
+    <BundleResource Condition="'$(_ResourcePrefix)' != ''" Update="Resources\tab_about%403x.png">
+      <Link>Resources\tab_about%403x.png</Link>
+    </BundleResource>
+    <BundleResource Condition="'$(_ResourcePrefix)' != ''" Update="Resources\icon_view%403x.png">
+      <Link>Resources\icon_view%403x.png</Link>
+    </BundleResource>
+    <BundleResource Condition="'$(_ResourcePrefix)' != ''" Update="Resources\icon_vkontakte%402x.png">
+      <Link>Resources\icon_vkontakte%402x.png</Link>
+    </BundleResource>
+    <BundleResource Condition="'$(_ResourcePrefix)' != ''" Update="Resources\icon_heart%403x.png">
+      <Link>Resources\icon_heart%403x.png</Link>
+    </BundleResource>
+    <BundleResource Condition="'$(_ResourcePrefix)' != ''" Update="Resources\icon_code%403x.png">
+      <Link>Resources\icon_code%403x.png</Link>
+    </BundleResource>
+    <BundleResource Condition="'$(_ResourcePrefix)' != ''" Update="Resources\icon_presentation%402x.png">
+      <Link>Resources\icon_presentation%402x.png</Link>
+    </BundleResource>
+    <BundleResource Condition="'$(_ResourcePrefix)' != ''" Update="Resources\icon_video%402x.png">
+      <Link>Resources\icon_video%402x.png</Link>
+    </BundleResource>
+    <BundleResource Condition="'$(_ResourcePrefix)' != ''" Update="Resources\tab_about_selected%403x.png">
+      <Link>Resources\tab_about_selected%403x.png</Link>
+    </BundleResource>
+    <BundleResource Condition="'$(_ResourcePrefix)' != ''" Update="Resources\tab_feed_selected%402x.png">
+      <Link>Resources\tab_feed_selected%402x.png</Link>
+    </BundleResource>
+    <BundleResource Condition="'$(_ResourcePrefix)' != ''" Update="Resources\icon_github%403x.png">
+      <Link>Resources\icon_github%403x.png</Link>
+    </BundleResource>
+    <BundleResource Condition="'$(_ResourcePrefix)' != ''" Update="Resources\tab_sponsors%402x.png">
+      <Link>Resources\tab_sponsors%402x.png</Link>
+    </BundleResource>
+    <BundleResource Condition="'$(_ResourcePrefix)' != ''" Update="Resources\tab_speakers%403x.png">
+      <Link>Resources\tab_speakers%403x.png</Link>
+    </BundleResource>
+    <BundleResource Condition="'$(_ResourcePrefix)' != ''" Update="Resources\tab_feed%403x.png">
+      <Link>Resources\tab_feed%403x.png</Link>
+    </BundleResource>
+    <BundleResource Condition="'$(_ResourcePrefix)' != ''" Update="Resources\tab_speakers%402x.png">
+      <Link>Resources\tab_speakers%402x.png</Link>
+    </BundleResource>
+    <BundleResource Condition="'$(_ResourcePrefix)' != ''" Update="Resources\tab_feed%402x.png">
+      <Link>Resources\tab_feed%402x.png</Link>
+    </BundleResource>
+    <BundleResource Condition="'$(_ResourcePrefix)' != ''" Update="Resources\tab_sponsors%403x.png">
+      <Link>Resources\tab_sponsors%403x.png</Link>
+    </BundleResource>
+    <BundleResource Condition="'$(_ResourcePrefix)' != ''" Update="Resources\icon_github%402x.png">
+      <Link>Resources\icon_github%402x.png</Link>
+    </BundleResource>
+    <BundleResource Condition="'$(_ResourcePrefix)' != ''" Update="Resources\tab_feed_selected%403x.png">
+      <Link>Resources\tab_feed_selected%403x.png</Link>
+    </BundleResource>
+    <BundleResource Condition="'$(_ResourcePrefix)' != ''" Update="Resources\icon_video%403x.png">
+      <Link>Resources\icon_video%403x.png</Link>
+    </BundleResource>
+    <BundleResource Condition="'$(_ResourcePrefix)' != ''" Update="Resources\tab_about_selected%402x.png">
+      <Link>Resources\tab_about_selected%402x.png</Link>
+    </BundleResource>
+    <BundleResource Condition="'$(_ResourcePrefix)' != ''" Update="Resources\icon_presentation%403x.png">
+      <Link>Resources\icon_presentation%403x.png</Link>
+    </BundleResource>
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\tab_events_selected.png" />
-    <BundleResource Include="Resources\tab_events_selected%402x.png" />
-    <BundleResource Include="Resources\tab_events_selected%403x.png" />
-    <BundleResource Include="Resources\toolbar_share.png" />
-    <BundleResource Include="Resources\toolbar_share%402x.png" />
-    <BundleResource Include="Resources\toolbar_share%403x.png" />
-    <BundleResource Include="Resources\tab_about_selected.png" />
-    <BundleResource Include="Resources\tab_about_selected%402x.png" />
-    <BundleResource Include="Resources\tab_about_selected%403x.png" />
-    <BundleResource Include="Resources\tab_feed_selected.png" />
-    <BundleResource Include="Resources\tab_feed_selected%402x.png" />
-    <BundleResource Include="Resources\tab_feed_selected%403x.png" />
-    <BundleResource Include="Resources\tab_about.png" />
-    <BundleResource Include="Resources\tab_about%402x.png" />
-    <BundleResource Include="Resources\tab_about%403x.png" />
-    <BundleResource Include="Resources\tab_events.png" />
-    <BundleResource Include="Resources\tab_events%402x.png" />
-    <BundleResource Include="Resources\tab_events%403x.png" />
-    <BundleResource Include="Resources\tab_feed.png" />
-    <BundleResource Include="Resources\tab_feed%402x.png" />
-    <BundleResource Include="Resources\tab_feed%403x.png" />
-    <BundleResource Include="Resources\tab_sessions_selected.png" />
-    <BundleResource Include="Resources\tab_sessions_selected%402x.png" />
-    <BundleResource Include="Resources\tab_sessions_selected%403x.png" />
-    <BundleResource Include="Resources\tab_sessions.png" />
-    <BundleResource Include="Resources\tab_sessions%402x.png" />
-    <BundleResource Include="Resources\tab_sessions%403x.png" />
-    <BundleResource Include="Resources\toolbar_overflow.png" />
-    <BundleResource Include="Resources\toolbar_overflow%402x.png" />
-    <BundleResource Include="Resources\toolbar_overflow%403x.png" />
-    <BundleResource Include="Resources\tab_speakers.png" />
-    <BundleResource Include="Resources\tab_speakers%402x.png" />
-    <BundleResource Include="Resources\tab_speakers%403x.png" />
-    <BundleResource Include="Resources\tab_sponsors.png" />
-    <BundleResource Include="Resources\tab_sponsors%402x.png" />
-    <BundleResource Include="Resources\tab_sponsors%403x.png" />
-    <BundleResource Include="Resources\icon_website.png" />
-    <BundleResource Include="Resources\icon_website%402x.png" />
-    <BundleResource Include="Resources\icon_website%403x.png" />
-    <BundleResource Include="Resources\icon_blog.png" />
-    <BundleResource Include="Resources\icon_blog%402x.png" />
-    <BundleResource Include="Resources\icon_blog%403x.png" />
-    <BundleResource Include="Resources\icon_linkedin.png" />
-    <BundleResource Include="Resources\icon_linkedin%402x.png" />
-    <BundleResource Include="Resources\icon_linkedin%403x.png" />
-    <BundleResource Include="Resources\icon_facebook.png" />
-    <BundleResource Include="Resources\icon_facebook%402x.png" />
-    <BundleResource Include="Resources\icon_facebook%403x.png" />
-    <BundleResource Include="Resources\icon_twitter.png" />
-    <BundleResource Include="Resources\icon_twitter%402x.png" />
-    <BundleResource Include="Resources\icon_twitter%403x.png" />
-    <BundleResource Include="Resources\icon_presentation.png" />
-    <BundleResource Include="Resources\icon_presentation%402x.png" />
-    <BundleResource Include="Resources\icon_presentation%403x.png" />
-    <BundleResource Include="Resources\icon_video.png" />
-    <BundleResource Include="Resources\icon_video%402x.png" />
-    <BundleResource Include="Resources\icon_video%403x.png" />
-    <BundleResource Include="Resources\icon_heart.png" />
-    <BundleResource Include="Resources\icon_heart%402x.png" />
-    <BundleResource Include="Resources\icon_heart%403x.png" />
-    <BundleResource Include="Resources\icon_retweet.png" />
-    <BundleResource Include="Resources\icon_retweet%402x.png" />
-    <BundleResource Include="Resources\icon_retweet%403x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\Contents.json">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\Icon-1024.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\Icon-120.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\Icon-152.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\Icon-167.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\Icon-180.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\Icon-20.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\Icon-29.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\Icon-40.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\Icon-58.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\Icon-60.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\Icon-76.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\Icon-80.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\Icon-87.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <None Include="Info.plist">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Entitlements.plist" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Helpers\Toaster.cs" />
-    <Compile Include="Localize.cs" />
-    <Compile Include="Main.cs" />
-    <Compile Include="AppDelegate.cs" />
-    <Compile Include="Renderers\AlwaysScrollViewRenderer.cs" />
-    <Compile Include="Renderers\NonScrollableListViewRenderer.cs" />
-    <Compile Include="Renderers\SelectedTabPageRenderer.cs" />
-    <Compile Include="Helpers\LaunchTwitter.cs" />
-    <Compile Include="Helpers\LaunchFacebook.cs" />
-    <Compile Include="ShortcutIdentifier.cs" />
-    <Compile Include="ViewController.cs" />
-    <Compile Include="ViewController.designer.cs">
-      <DependentUpon>ViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PlatformFeatures\ProActiveSuggestions\SessionUserActivity.cs" />
-    <Compile Include="PlatformFeatures\ProActiveSuggestions\SpeakerUserActivity.cs" />
-  </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
-  <ItemGroup>
-    <ProjectReference Include="..\DotNetRu.Clients.UI\DotNetRu.Clients.UI.csproj">
-      <Project>{CD2623BD-3609-4BE9-80EF-0974F3A1A27D}</Project>
-      <Name>DotNetRu.Clients.UI</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DotNetRu.DataStore.Audit\DotNetRu.DataStore.Audit.csproj">
-      <Project>{7B4C73DF-8A4A-4AD1-92D9-A064065CDD71}</Project>
-      <Name>DotNetRu.DataStore.Audit</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DotNetRu.Utils\DotNetRu.Utils.csproj">
-      <Project>{DFA0F0F6-C396-412E-86A9-E9095F71CC36}</Project>
-      <Name>DotNetRu.Utils</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DotNetRu.AppUtils\DotNetRu.AppUtils.csproj">
-      <Name>DotNetRu.AppUtils</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <InterfaceDefinition Include="Resources\LaunchScreen~ipad.xib" />
-    <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
-    <InterfaceDefinition Include="LaunchScreen.storyboard" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\icon_code.png" />
-    <BundleResource Include="Resources\icon_code%402x.png" />
-    <BundleResource Include="Resources\icon_code%403x.png" />
-    <BundleResource Include="Resources\friends.png" />
-    <BundleResource Include="Resources\ic_splash.png" />
-    <BundleResource Include="Resources\loading_apple.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="FodyWeavers.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\icon_github.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\icon_github%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\icon_github%403x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\icon_vkontakte.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\icon_vkontakte%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\icon_vkontakte%403x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\icon_view.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\icon_view%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\icon_view%403x.png" />
+    <ProjectReference Include="..\DotNetRu.AppUtils\DotNetRu.AppUtils.csproj" />
+    <ProjectReference Include="..\DotNetRu.Clients.UI\DotNetRu.Clients.UI.csproj" />
+    <ProjectReference Include="..\DotNetRu.Utils\DotNetRu.Utils.csproj" />
+    <ProjectReference Include="..\DotNetRu.DataStore.Audit\DotNetRu.DataStore.Audit.csproj" />
   </ItemGroup>
 </Project>
