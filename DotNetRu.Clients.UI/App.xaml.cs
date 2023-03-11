@@ -4,7 +4,7 @@ using DotNetRu.Clients.UI.Localization;
 
 namespace DotNetRu.Clients.UI
 {
-    public partial class App
+    public partial class App : Application
     {
         private static ILogger logger;
 
