@@ -1,0 +1,301 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net7.0;net7.0-ios;</TargetFrameworks>
+    <UseMaui>true</UseMaui>
+    <OutputType>Exe</OutputType>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <SingleProject>true</SingleProject>
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.0</SupportedOSPlatformVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Speakers\speaker_placeholder.png">
+      <LogicalName>speaker_placeholder.png</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Flurl.Http" Version="3.2.0" />
+    <PackageReference Include="FormsToolkit" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AppCenter" Version="3.4.3" />
+    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="3.4.3" />
+    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="3.4.3" />
+    <PackageReference Include="Microsoft.AppCenter.Push" Version="3.4.3" />
+    <PackageReference Include="Plugin.Permissions" Version="6.0.1" />
+    <PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
+    <PackageReference Include="Xam.Plugins.Forms.ImageCircle" Version="3.0.0.5" />
+    <PackageReference Include="Xam.Plugins.Notifier" Version="3.0.1" />
+    <PackageReference Include="Xamarin.FFImageLoading" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.Forms.BehaviorsPack" Version="3.0.0" />
+    <PackageReference Include="CClarke.Plugin.Calendars" Version="1.0.14" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DotNetRu.DataStore.Audit\DotNetRu.DataStore.Audit.csproj" />
+    <ProjectReference Include="..\DotNetRu.Utils\DotNetRu.Utils.csproj" />
+    <ProjectReference Include="..\DotNetRu.AppUtils\DotNetRu.AppUtils.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="About\AboutPage.xaml.cs">
+      <DependentUpon>AboutPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Localization\AppResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AppResources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Meetups\MeetupDetailsPage.xaml.cs">
+      <DependentUpon>MeetupDetailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="News\SocialPostCell.xaml.cs">
+      <DependentUpon>SocialPostCell.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="News\SocialPostImagePage.xaml.cs">
+      <DependentUpon>SocialPostImagePage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Localization\AppResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+      <LogicalName>AppResources.resx</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="AppShell.xaml">
+      <LogicalName>AppShell.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Localization\AppResources.ru.resx">
+      <LogicalName>AppResources.ru.resx</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="App.xaml">
+      <LogicalName>App.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Meetups\MeetupsPage.xaml">
+      <LogicalName>MeetupsPage.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Meetups\MeetupDetailsPage.xaml">
+      <LogicalName>MeetupDetailsPage.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Meetups\TalkPage.xaml">
+      <LogicalName>TalkPage.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Meetups\FilterSessionsPage.xaml">
+      <LogicalName>FilterSessionsPage.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Speakers\SpeakerFacePage.xaml">
+      <LogicalName>SpeakerFacePage.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Speakers\SpeakerCell.xaml">
+      <LogicalName>SpeakerCell.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Speakers\SpeakerDetailsPage.xaml">
+      <LogicalName>SpeakerDetailsPage.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Speakers\SpeakersPage.xaml">
+      <LogicalName>SpeakersPage.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="About\AboutPage.xaml">
+      <LogicalName>AboutPage.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="About\TechnologiesUsedPage.xaml">
+      <LogicalName>TechnologiesUsedPage.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="About\Subscriptions\SubscriptionsPage.xaml">
+      <LogicalName>SubscriptionsPage.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="About\Subscriptions\SubscriptionCell.xaml">
+      <LogicalName>SubscriptionCell.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="About\Friends\FriendsPage.xaml">
+      <LogicalName>FriendsPage.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="About\Friends\FriendCell.xaml">
+      <LogicalName>FriendCell.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="About\Friends\FriendDetailsPage.xaml">
+      <LogicalName>FriendDetailsPage.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Feedback\Rating3Control.xaml">
+      <LogicalName>Rating3Control.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Feedback\FeedbackPage.xaml">
+      <LogicalName>FeedbackPage.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Feedback\CategoryCellView.xaml">
+      <LogicalName>CategoryCellView.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Feedback\RatingControl.xaml">
+      <LogicalName>RatingControl.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Feedback\ConferenceFeedbackPage.xaml">
+      <LogicalName>ConferenceFeedbackPage.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Controls\SectionDivider.xaml">
+      <LogicalName>SectionDivider.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Controls\FooterDivider.xaml">
+      <LogicalName>FooterDivider.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Controls\LabelSection.xaml">
+      <LogicalName>LabelSection.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Controls\HeaderDivider.xaml">
+      <LogicalName>HeaderDivider.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="News\SocialPostCell.xaml">
+      <LogicalName>SocialPostCell.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="News\SocialPostImagePage.xaml">
+      <LogicalName>SocialPostImagePage.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="News\NewsPage.xaml">
+      <LogicalName>NewsPage.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="BasePages\EvolveGroupHeaderView.xaml">
+      <LogicalName>EvolveGroupHeaderView.xaml</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="About\CommunityViewCell.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="About\Friends\FriendCell.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <LogicalName>FriendCell.xaml</LogicalName>
+    </None>
+    <None Update="About\Friends\FriendDetailsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <LogicalName>FriendDetailsPage.xaml</LogicalName>
+    </None>
+    <None Update="About\Friends\FriendsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <LogicalName>FriendsPage.xaml</LogicalName>
+    </None>
+      <None Update="About\Subscriptions\SubscriptionCell.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="About\Subscriptions\SubscriptionsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+      <None Update="About\SettingsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="About\Subscriptions\SubscriptionCell.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <LogicalName>SubscriptionCell.xaml</LogicalName>
+    </None>
+    <None Update="About\Subscriptions\SubscriptionsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <LogicalName>SubscriptionsPage.xaml</LogicalName>
+    </None>
+    <None Update="About\TechnologiesUsedPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <LogicalName>TechnologiesUsedPage.xaml</LogicalName>
+    </None>
+    <None Update="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <LogicalName>App.xaml</LogicalName>
+    </None>
+    <None Update="BasePages\EvolveGroupHeaderView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <LogicalName>EvolveGroupHeaderView.xaml</LogicalName>
+    </None>
+    <None Update="Controls\FooterDivider.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <LogicalName>FooterDivider.xaml</LogicalName>
+    </None>
+    <None Update="Controls\HeaderDivider.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <LogicalName>HeaderDivider.xaml</LogicalName>
+    </None>
+    <None Update="Controls\LabelSection.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <LogicalName>LabelSection.xaml</LogicalName>
+    </None>
+    <None Update="Controls\Rating3Control.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Controls\RatingControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Controls\SectionDivider.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <LogicalName>SectionDivider.xaml</LogicalName>
+    </None>
+    <None Update="Feedback\CategoryCellView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <LogicalName>CategoryCellView.xaml</LogicalName>
+    </None>
+    <None Update="Feedback\ConferenceFeedbackPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <LogicalName>ConferenceFeedbackPage.xaml</LogicalName>
+    </None>
+    <None Update="Feedback\FeedbackPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <LogicalName>FeedbackPage.xaml</LogicalName>
+    </None>
+    <None Update="Feedback\Rating3Control.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <LogicalName>Rating3Control.xaml</LogicalName>
+    </None>
+    <None Update="Feedback\RatingControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <LogicalName>RatingControl.xaml</LogicalName>
+    </None>
+    <None Update="Meetups\FilterSessionsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <LogicalName>FilterSessionsPage.xaml</LogicalName>
+    </None>
+    <None Update="Meetups\MeetupDetailsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <LogicalName>MeetupDetailsPage.xaml</LogicalName>
+    </None>
+    <None Update="Meetups\MeetupFriendCellView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Meetups\MeetupsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <LogicalName>MeetupsPage.xaml</LogicalName>
+    </None>
+    <None Update="Meetups\SessionCell.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Meetups\TalkPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <LogicalName>TalkPage.xaml</LogicalName>
+    </None>
+    <None Update="News\NewsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <LogicalName>NewsPage.xaml</LogicalName>
+    </None>
+    <None Update="News\SocialPostCell.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <LogicalName>SocialPostCell.xaml</LogicalName>
+    </None>
+    <None Update="News\SocialPostImagePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <LogicalName>SocialPostImagePage.xaml</LogicalName>
+    </None>
+    <None Update="Pages\BottomTabbedPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Speakers\SpeakerCell.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <LogicalName>SpeakerCell.xaml</LogicalName>
+    </None>
+    <None Update="Speakers\SpeakerDetailsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <LogicalName>SpeakerDetailsPage.xaml</LogicalName>
+    </None>
+    <None Update="Speakers\SpeakerDetailsPageUWP.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Speakers\SpeakerFacePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <LogicalName>SpeakerFacePage.xaml</LogicalName>
+    </None>
+    <None Update="Speakers\SpeakersPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <LogicalName>SpeakersPage.xaml</LogicalName>
+    </None>
+  </ItemGroup>
+</Project>

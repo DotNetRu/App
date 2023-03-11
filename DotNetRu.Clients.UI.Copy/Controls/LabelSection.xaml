@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="DotNetRu.Clients.UI.Controls.LabelSection">
+    <ContentView.Padding>
+        <OnPlatform x:TypeArguments="Thickness" Android="16,16,16,4" iOS="16,24,16,4" WinPhone="16,16,16,4"/>
+    </ContentView.Padding>
+    <ContentView.Content>
+         <Label 
+            Style="{DynamicResource SectionLabelTextStyle}"
+            x:Name="Section">
+        </Label>            
+    </ContentView.Content>
+</ContentView>

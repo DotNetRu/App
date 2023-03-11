@@ -1,0 +1,144 @@
+<pages:BasePage
+    x:Class="DotNetRu.Clients.UI.Pages.Friends.FriendDetailsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:DotNetRu.Clients.UI.Controls;assembly=DotNetRu.Clients.UI"
+    xmlns:converters="clr-namespace:DotNetRu.Clients.UI.Converters;assembly=DotNetRu.Clients.UI"
+    xmlns:imagecircle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+    xmlns:pages="clr-namespace:DotNetRu.Clients.UI.Pages;assembly=DotNetRu.Clients.UI"
+    xmlns:toolkit="clr-namespace:FormsToolkit;assembly=FormsToolkit"
+    Title="{Binding Resources[Friend]}"
+    BackgroundColor="{DynamicResource WindowBackgroundTable}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <toolkit:HasDataConverter x:Key="GenericIsVisibleConverter" />
+            <converters:CommunityIDToImageSourceConverter x:Key="CommunityIDToImageSourceConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <controls:AlwaysScrollView>
+        <StackLayout Spacing="0">
+            <StackLayout
+                Padding="{DynamicResource CardPadding}"
+                BackgroundColor="{DynamicResource WindowBackgroundTable}"
+                Spacing="{DynamicResource CardSpacing}">
+                <controls:CardView>
+                    <StackLayout
+                        Padding="0"
+                        BackgroundColor="White"
+                        Spacing="0">
+                        <controls:HeaderDivider />
+                        <StackLayout Padding="{StaticResource StandardPadding}">
+                            <StackLayout Padding="32,16,32,0">
+                                <Image
+                                    Aspect="AspectFit"
+                                    HeightRequest="150"
+                                    HorizontalOptions="FillAndExpand"
+                                    Source="{Binding FriendModel.Logo}"
+                                    StyleId="SponsorDetailImage"
+                                    VerticalOptions="FillAndExpand" />
+                            </StackLayout>
+                            <StackLayout Spacing="0">
+                                <!--<Label Text="{Binding FriendModel.Name}" Style="{DynamicResource EvolveListItemTextStyle}" StyleId="SponsorDetailName"/>-->
+                                <Label
+                                    Style="{DynamicResource EvolveListItemDetailTextStyle}"
+                                    StyleId="SponsorDetailLevel"
+                                    Text="{Binding FriendModel.SponsorLevel.Name, StringFormat='{0} Sponsor'}" />
+                            </StackLayout>
+                            <StackLayout Padding="0,16">
+                                <Label
+                                    Style="{DynamicResource EvolveListItemTextStyle}"
+                                    StyleId="SponsorDetailDescription"
+                                    Text="{Binding FriendModel.Description}" />
+                            </StackLayout>
+                        </StackLayout>
+                        <controls:FooterDivider />
+                    </StackLayout>
+                </controls:CardView>
+
+                <controls:CardView IsVisible="{Binding FollowItems, Converter={StaticResource GenericIsVisibleConverter}}">
+                    <StackLayout Spacing="0">
+                        <controls:LabelSection Text="{Binding Resources[Links]}" />
+                        <controls:HeaderDivider />
+                        <controls:NonScrollableListView
+                            x:Name="ListViewFollow"
+                            ItemsSource="{Binding FollowItems}"
+                            RowHeight="44"
+                            SelectedItem="{Binding SelectedFollowItem, Mode=TwoWay}"
+                            StyleId="SponsorDetailLinks"
+                            VerticalOptions="Start">
+                            <controls:NonScrollableListView.SeparatorColor>
+                                <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ListSeparator}" />
+                            </controls:NonScrollableListView.SeparatorColor>
+                            <controls:NonScrollableListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell StyleId="disclosure">
+                                        <Grid ColumnDefinitions="Auto, *" ColumnSpacing="{StaticResource StandardSpacing}">
+                                            <Grid.Padding>
+                                                <OnPlatform
+                                                    x:TypeArguments="Thickness"
+                                                    Android="16,8"
+                                                    iOS="16,12" />
+                                            </Grid.Padding>
+                                            <Image Source="{Binding Icon}" VerticalOptions="Center" />
+                                            <Label
+                                                Grid.Column="1"
+                                                Style="{DynamicResource EvolveListItemTextStyle}"
+                                                Text="{Binding Name}"
+                                                VerticalOptions="Center" />
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </controls:NonScrollableListView.ItemTemplate>
+                        </controls:NonScrollableListView>
+                        <controls:FooterDivider />
+                    </StackLayout>
+                </controls:CardView>
+
+                <!--  Meetups  -->
+                <controls:CardView IsVisible="{Binding FriendModel.Meetups, Converter={StaticResource GenericIsVisibleConverter}}">
+                    <StackLayout Spacing="0">
+                        <controls:LabelSection Text="{Binding Resources[Meetups]}" />
+                        <controls:HeaderDivider />
+                        <controls:NonScrollableListView
+                            x:Name="ListViewMeetups"
+                            ItemsSource="{Binding FriendModel.Meetups}"
+                            RowHeight="44"
+                            StyleId="SponsorDetailLinks">
+                            <controls:NonScrollableListView.SeparatorColor>
+                                <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ListSeparator}" />
+                            </controls:NonScrollableListView.SeparatorColor>
+                            <controls:NonScrollableListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell StyleId="disclosure">
+                                        <Grid ColumnDefinitions="Auto, Auto" ColumnSpacing="{StaticResource StandardSpacing}">
+                                            <Grid.Padding>
+                                                <OnPlatform
+                                                    x:TypeArguments="Thickness"
+                                                    Android="16,8"
+                                                    iOS="16,12" />
+                                            </Grid.Padding>
+                                            <imagecircle:CircleImage
+                                                Grid.Column="0"
+                                                Aspect="AspectFill"
+                                                HeightRequest="29"
+                                                Source="{Binding CommunityID, Converter={StaticResource CommunityIDToImageSourceConverter}}"
+                                                VerticalOptions="Center"
+                                                WidthRequest="29" />
+                                            <Label
+                                                Grid.Column="1"
+                                                HeightRequest="29"
+                                                Style="{DynamicResource EvolveListItemTextStyle}"
+                                                Text="{Binding Title}"
+                                                VerticalOptions="Center" />
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </controls:NonScrollableListView.ItemTemplate>
+                        </controls:NonScrollableListView>
+                        <controls:FooterDivider />
+                    </StackLayout>
+                </controls:CardView>
+            </StackLayout>
+        </StackLayout>
+    </controls:AlwaysScrollView>
+</pages:BasePage>

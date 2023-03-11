@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pages:BasePage
+    x:Class="DotNetRu.Clients.UI.Pages.Friends.FriendsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:cells="clr-namespace:DotNetRu.Clients.UI.Cells;assembly=DotNetRu.Clients.UI"
+    xmlns:pages="clr-namespace:DotNetRu.Clients.UI.Pages;assembly=DotNetRu.Clients.UI"
+    x:Name="SponsorsPage"
+    Title="{Binding Resources[Friends]}"
+    BackgroundColor="{DynamicResource WindowBackground}"
+    Icon="tab_sponsors.png">
+    <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <ListView
+            x:Name="ListViewFriends"
+            AbsoluteLayout.LayoutBounds="0,0,1,1"
+            AbsoluteLayout.LayoutFlags="All"
+            CachingStrategy="RetainElement"
+            HasUnevenRows="true"
+            IsPullToRefreshEnabled="false"
+            IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+            IsVisible="{Binding IsNotBusy}"
+            ItemsSource="{Binding Friends}"
+            RowHeight="120">
+            <ListView.Effects>
+                <OnPlatform x:TypeArguments="Effect" Android="{StaticResource ListViewSelectionOnTopEffect}" />
+            </ListView.Effects>
+            <ListView.SeparatorColor>
+                <OnPlatform
+                    x:TypeArguments="Color"
+                    Android="Transparent"
+                    iOS="{StaticResource ListSeparator}" />
+            </ListView.SeparatorColor>
+            <ListView.GroupHeaderTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.Height>
+                            <OnPlatform x:TypeArguments="x:Double" iOS="28" />
+                        </ViewCell.Height>
+                        <cells:EvolveGroupHeaderView />
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.GroupHeaderTemplate>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell StyleId="disclosure">
+                        <cells:FriendCell HeightRequest="120" />
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <StackLayout
+            AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            IsVisible="{Binding IsBusy}">
+            <StackLayout.Orientation>
+                <OnPlatform x:TypeArguments="StackOrientation" iOS="Horizontal" />
+            </StackLayout.Orientation>
+            <ActivityIndicator IsRunning="{Binding IsBusy}">
+                <ActivityIndicator.Color>
+                    <OnPlatform x:TypeArguments="Color" Android="{StaticResource Accent}" />
+                </ActivityIndicator.Color>
+            </ActivityIndicator>
+            <Label
+                HorizontalOptions="Center"
+                Style="{DynamicResource EvolveListItemTextStyle}"
+                Text="{Binding Resources[LoadingFriends]}" />
+        </StackLayout>
+    </AbsoluteLayout>
+</pages:BasePage>

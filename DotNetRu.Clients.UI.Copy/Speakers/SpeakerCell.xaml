@@ -1,0 +1,28 @@
+<ContentView
+    x:Class="DotNetRu.Clients.UI.Cells.SpeakerCellView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:DotNetRu.Clients.UI.Converters;assembly=DotNetRu.Clients.UI"
+    xmlns:imagecircle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin">
+    <ContentView.Content>
+        <Grid
+            Padding="16,5"
+            ColumnDefinitions="Auto, *"
+            ColumnSpacing="{StaticResource StandardSpacing}">
+            <imagecircle:CircleImage
+                Aspect="AspectFill"
+                FillColor="{DynamicResource Primary}"
+                HeightRequest="44"
+                Source="{Binding AvatarSmallURL}"
+                VerticalOptions="Center"
+                WidthRequest="44" />
+            <StackLayout
+                Grid.Column="1"
+                Spacing="{StaticResource SmallSpacing}"
+                VerticalOptions="Center">
+                <Label Style="{DynamicResource EvolveListItemTextStyle}" Text="{Binding FullName}" />
+                <Label Style="{DynamicResource EvolveListItemDetailTextStyle}" Text="{Binding Title}" />
+            </StackLayout>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

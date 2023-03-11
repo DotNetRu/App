@@ -1,0 +1,15 @@
+<pages:BasePage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:DotNetRu.Clients.UI.Pages;assembly=DotNetRu.Clients.UI"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"     
+    x:Class="DotNetRu.Clients.UI.Pages.Speakers.SpeakerFacePage">
+    <ContentPage.Content>
+        <ffimageloading:CachedImage 
+			        Source="{Binding AvatarURL}"
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    LoadingPlaceholder="loading_apple.gif">
+        </ffimageloading:CachedImage>
+    </ContentPage.Content>
+</pages:BasePage>

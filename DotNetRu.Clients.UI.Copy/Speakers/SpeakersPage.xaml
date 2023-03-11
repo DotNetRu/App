@@ -1,0 +1,114 @@
+<pages:BasePage
+    x:Class="DotNetRu.Clients.UI.Pages.Speakers.SpeakersPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:abstractions="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+    xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:cells="clr-namespace:DotNetRu.Clients.UI.Cells;assembly=DotNetRu.Clients.UI"
+    xmlns:handlers="clr-namespace:DotNetRu.Clients.UI.Handlers;assembly=DotNetRu.Clients.UI"
+    xmlns:models="clr-namespace:DotNetRu.DataStore.Audit.Models;assembly=DotNetRu.DataStore.Audit"
+    xmlns:pages="clr-namespace:DotNetRu.Clients.UI.Pages;assembly=DotNetRu.Clients.UI"
+    x:Name="SpeakersScreen"
+    Title="{Binding Resources[Speakers]}"
+    BackgroundColor="{DynamicResource WindowBackground}"
+    Icon="tab_speakers.png">
+    <Shell.SearchHandler>
+        <handlers:SpeakersSearchHandler
+            DisplayMemberName="{Binding FullName}"
+            ItemsSource="{Binding Speakers}"
+            Placeholder="{Binding Resources[Enter speaker fullname]}"
+            ShowsResults="True">
+            <handlers:SpeakersSearchHandler.ItemTemplate>
+                <DataTemplate>
+                    <Grid
+                        Padding="16,5"
+                        ColumnDefinitions="Auto, *"
+                        ColumnSpacing="{StaticResource StandardSpacing}"
+                        VerticalOptions="Center">
+                        <abstractions:CircleImage
+                            Aspect="AspectFill"
+                            FillColor="{DynamicResource Primary}"
+                            HeightRequest="44"
+                            Source="{Binding AvatarSmallURL}"
+                            VerticalOptions="Start"
+                            WidthRequest="44" />
+                        <StackLayout
+                            Grid.Column="1"
+                            Spacing="{StaticResource SmallSpacing}"
+                            VerticalOptions="Center">
+                            <Label Style="{DynamicResource EvolveListItemTextStyle}" Text="{Binding FullName}" />
+                            <Label Style="{DynamicResource EvolveListItemDetailTextStyle}" Text="{Binding Title}" />
+                        </StackLayout>
+                    </Grid>
+                </DataTemplate>
+            </handlers:SpeakersSearchHandler.ItemTemplate>
+        </handlers:SpeakersSearchHandler>
+    </Shell.SearchHandler>
+    <ContentPage.Content>
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <ListView
+                x:Name="ListViewSpeakers"
+                android:ListView.IsFastScrollEnabled="True"
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                GroupDisplayBinding="{Binding Key}"
+                GroupShortNameBinding="{Binding Key}"
+                HasUnevenRows="true"
+                IsGroupingEnabled="true"
+                IsPullToRefreshEnabled="false"
+                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                IsVisible="{Binding IsNotBusy}"
+                ItemsSource="{Binding Speakers}"
+                RowHeight="90">
+                <ListView.Effects>
+                    <OnPlatform x:TypeArguments="Effect" Android="{StaticResource ListViewSelectionOnTopEffect}" />
+                </ListView.Effects>
+                <ListView.SeparatorColor>
+                    <OnPlatform
+                        x:TypeArguments="Color"
+                        Android="Transparent"
+                        iOS="{StaticResource ListSeparator}" />
+                </ListView.SeparatorColor>
+                <ListView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <ViewCell Height="25">
+                            <StackLayout
+                                Padding="5"
+                                BackgroundColor="{StaticResource Primary}"
+                                VerticalOptions="FillAndExpand">
+                                <Label
+                                    Text="{Binding Key}"
+                                    TextColor="White"
+                                    VerticalOptions="Center" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.GroupHeaderTemplate>
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="models:SpeakerModel">
+                        <ViewCell StyleId="disclosure">
+                            <cells:SpeakerCellView />
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <StackLayout
+                AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                IsVisible="{Binding IsBusy}">
+                <StackLayout.Orientation>
+                    <OnPlatform x:TypeArguments="StackOrientation" iOS="Horizontal" />
+                </StackLayout.Orientation>
+                <ActivityIndicator IsRunning="{Binding IsBusy}">
+                    <ActivityIndicator.Color>
+                        <OnPlatform x:TypeArguments="Color" Android="{StaticResource Accent}" />
+                    </ActivityIndicator.Color>
+                </ActivityIndicator>
+                <Label
+                    HorizontalOptions="Center"
+                    Style="{DynamicResource EvolveListItemTextStyle}"
+                    Text="{Binding Resources[LoadingSpeakers]}" />
+            </StackLayout>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</pages:BasePage>

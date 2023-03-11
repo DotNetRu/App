@@ -1,0 +1,377 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About" xml:space="preserve">
+    <value>О проекте</value>
+  </data>
+  <data name="AboutText" xml:space="preserve">
+    <value>Всероссийское .NET сообщество DotNetRu - группа независимых сообществ .NET разработчиков со всей России. Мы объединяем людей вокруг .NET платформы, чтобы способствовать обмену опытом и знаниями. Проводим регулярные встречи, чтобы делиться новостями и лучшими практиками в разработке программных продуктов. Больше информации на сайте </value>
+  </data>
+  <data name="Abstract" xml:space="preserve">
+    <value>Аннотация</value>
+  </data>
+  <data name="Biography" xml:space="preserve">
+    <value>О докладчике</value>
+  </data>
+  <data name="CreatedBy" xml:space="preserve">
+    <value>Сделано командой DotNetRu</value>
+  </data>
+  <data name="Follow" xml:space="preserve">
+    <value>Подписаться</value>
+  </data>
+  <data name="Friends" xml:space="preserve">
+    <value>Друзья</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Язык</value>
+  </data>
+  <data name="Materials" xml:space="preserve">
+    <value>Материалы</value>
+  </data>
+  <data name="Meetups" xml:space="preserve">
+    <value>Встречи</value>
+  </data>
+  <data name="News" xml:space="preserve">
+    <value>Новости</value>
+  </data>
+  <data name="OpenSourceNotice" xml:space="preserve">
+    <value>Уведомление об Open Source</value>
+  </data>
+  <data name="PresentationSlides" xml:space="preserve">
+    <value>Слайды</value>
+  </data>
+  <data name="PrivacyPolicy" xml:space="preserve">
+    <value>Конфиденциальность</value>
+  </data>
+  <data name="Social" xml:space="preserve">
+    <value>Социальные сети</value>
+  </data>
+  <data name="Speakers" xml:space="preserve">
+    <value>Докладчики</value>
+  </data>
+  <data name="Talk" xml:space="preserve">
+    <value>Доклад</value>
+  </data>
+  <data name="TalkRecording" xml:space="preserve">
+    <value>Видео</value>
+  </data>
+  <data name="TechnologyUsed" xml:space="preserve">
+    <value>Используемые технологии</value>
+  </data>
+  <data name="TermsOfUse" xml:space="preserve">
+    <value>Правила использования</value>
+  </data>
+  <data name="Thanks" xml:space="preserve">
+    <value>Огромный респект Джеймсу Монтемагно</value>
+  </data>
+  <data name="Venue" xml:space="preserve">
+    <value>Место проведения</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Версия</value>
+  </data>
+  <data name="IssueTracker" xml:space="preserve">
+    <value>Сообщить об ошибке</value>
+  </data>
+  <data name="Friend" xml:space="preserve">
+    <value>Партнер</value>
+  </data>
+  <data name="Links" xml:space="preserve">
+    <value>Ссылки</value>
+  </data>
+  <data name="AllDay" xml:space="preserve">
+    <value>Весь день</value>
+  </data>
+  <data name="ToBeAnnounced" xml:space="preserve">
+    <value>Будет аннонсировано позже</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>Сегодня</value>
+  </data>
+  <data name="Tomorrow" xml:space="preserve">
+    <value>Завтра</value>
+  </data>
+  <data name="Yesterday" xml:space="preserve">
+    <value>Вчера</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Загрузка...</value>
+  </data>
+  <data name="Share" xml:space="preserve">
+    <value>Поделиться</value>
+  </data>
+  <data name="SpeakerInfo" xml:space="preserve">
+    <value>Докладчик</value>
+  </data>
+  <data name="Meetup" xml:space="preserve">
+    <value>Митап</value>
+  </data>
+  <data name="Talks" xml:space="preserve">
+    <value>Доклады</value>
+  </data>
+  <data name="LoadingMeetups" xml:space="preserve">
+    <value>Загрузка встреч...</value>
+  </data>
+  <data name="LoadingTalks" xml:space="preserve">
+    <value>Загрузка докладов...</value>
+  </data>
+  <data name="NoTalksFound" xml:space="preserve">
+    <value>Доклады не найдены</value>
+  </data>
+  <data name="OurCommunities" xml:space="preserve">
+    <value>Наши сообщества</value>
+  </data>
+  <data name="KryDotNet" xml:space="preserve">
+    <value>Красноярск</value>
+  </data>
+  <data name="MskDotNet" xml:space="preserve">
+    <value>Москва</value>
+  </data>
+  <data name="SpbDotNet" xml:space="preserve">
+    <value>Санкт-Петербург</value>
+  </data>
+  <data name="SarDotNet" xml:space="preserve">
+    <value>Саратов</value>
+  </data>
+  <data name="AboutApp" xml:space="preserve">
+    <value>О приложении</value>
+  </data>
+  <data name="AboutDotNetRu" xml:space="preserve">
+    <value>О DotNetRu</value>
+  </data>
+  <data name="SelectLanguage" xml:space="preserve">
+    <value>Выберите язык</value>
+  </data>
+  <data name="CodeFromSession" xml:space="preserve">
+    <value>Примеры кода</value>
+  </data>
+  <data name="KznDotNet" xml:space="preserve">
+    <value>Казань</value>
+  </data>
+  <data name="Credits" xml:space="preserve">
+    <value>Мобильное приложение DotNetRu App создано командой DotNetRu с помощью Xamarin.Forms.
+
+Команда DotNetRu
+
+Павел Федотовский
+Анатолий Кулаков
+Юрий Белоусов
+Сергей Полежаев
+Николай Чеботов</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="NskDotNet" xml:space="preserve">
+    <value>Новосибирск</value>
+  </data>
+  <data name="SeeAlso" xml:space="preserve">
+    <value>См. также</value>
+  </data>
+  <data name="CopiedToClipboard" xml:space="preserve">
+    <value>Скопировано в буфер обмена</value>
+  </data>
+  <data name="OmsDotNet" xml:space="preserve">
+    <value>Омск</value>
+  </data>
+  <data name="NnvDotNet" xml:space="preserve">
+    <value>Нижний Новгород</value>
+  </data>
+  <data name="SamDotNet" xml:space="preserve">
+    <value>Самара</value>
+  </data>
+  <data name="UfaDotNet" xml:space="preserve">
+    <value>Уфа</value>
+  </data>
+  <data name="PnzDotNet" xml:space="preserve">
+    <value>Пенза</value>
+  </data>
+  <data name="Subscriptions" xml:space="preserve">
+    <value>Подписки</value>
+  </data>
+  <data name="AddedToCalendar" xml:space="preserve">
+    <value>Добавлено в календарь</value>
+  </data>
+  <data name="AddToCalendar" xml:space="preserve">
+    <value>Добавить в календарь</value>
+  </data>
+  <data name="Calendar" xml:space="preserve">
+    <value>Календарь</value>
+  </data>
+  <data name="ErrorOccured" xml:space="preserve">
+    <value>Произошла ошибка</value>
+  </data>
+  <data name="RemovedFromCalendar" xml:space="preserve">
+    <value>Удалено из календаря</value>
+  </data>
+  <data name="RemoveFromCalendar" xml:space="preserve">
+    <value>Удалить из календаря</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="LoadingFriends" xml:space="preserve">
+    <value>Загрузка друзей...</value>
+  </data>
+  <data name="LoadingSpeakers" xml:space="preserve">
+    <value>Загрузка спикеров...</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Подтвердить</value>
+  </data>
+  <data name="EkbDotNet" xml:space="preserve">
+    <value>Екатеринбург</value>
+  </data>
+  <data name="Enter search term" xml:space="preserve">
+    <value>Введите поисковый запрос</value>
+  </data>
+  <data name="Enter speaker fullname" xml:space="preserve">
+    <value>Введите имя спикера</value>
+  </data>
+  <data name="SaveSubscriptions" xml:space="preserve">
+    <value>Сохранить подписки</value>
+  </data>
+  <data name="SubscriptionsSavedMessage" xml:space="preserve">
+    <value>Параметры подписки на новости сообществ были сохранены.</value>
+  </data>
+  <data name="Copied" xml:space="preserve">
+    <value>Скопировано</value>
+  </data>
+  <data name="SubscriptionsLabel" xml:space="preserve">
+    <value>Здесь вы можете выбрать список групп сообществ, из которых вы хотите получать новости. Также можно указать, сколько новостных постов выводить для каждой группы (от 0 до 100).</value>
+  </data>
+  <data name="ResetSubscriptions" xml:space="preserve">
+    <value>Сбросить подписки</value>
+  </data>
+  <data name="SubscriptionsResetedMessage" xml:space="preserve">
+    <value>Параметры подписки на новости сообществ были сброшены.</value>
+  </data>
+  <data name="LoadingSubscriptions" xml:space="preserve">
+    <value>Загрузка подписок...</value>
+  </data>
+  <data name="KrdDotNet" xml:space="preserve">
+    <value>Краснодар</value>
+  </data>
+  <data name="Krasnoyarsk" xml:space="preserve">
+    <value>Красноярск</value>
+  </data>
+  <data name="DotNetRu" xml:space="preserve">
+    <value>DotNetRu</value>
+  </data>
+</root>

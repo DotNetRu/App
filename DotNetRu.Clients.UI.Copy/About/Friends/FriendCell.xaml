@@ -1,0 +1,45 @@
+<ContentView
+    x:Class="DotNetRu.Clients.UI.Cells.FriendCell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:DotNetRu.Clients.UI.Controls;assembly=DotNetRu.Clients.UI"
+    xmlns:converters="clr-namespace:DotNetRu.Clients.UI.Converters;assembly=DotNetRu.Clients.UI">
+    <StackLayout HeightRequest="120" Spacing="0">
+        <StackLayout.Padding>
+            <OnPlatform
+                x:TypeArguments="Thickness"
+                Android="0,4"
+                iOS="0" />
+        </StackLayout.Padding>
+        <controls:CardView HeightRequest="120">
+            <Grid
+                Padding="16"
+                BackgroundColor="White"
+                ColumnDefinitions="*, *"
+                ColumnSpacing="16">
+                <Image
+                    Aspect="AspectFit"
+                    HorizontalOptions="FillAndExpand"
+                    Source="{Binding LogoSmall}"
+                    StyleId="SponsorImage"
+                    VerticalOptions="FillAndExpand" />
+                <StackLayout
+                    Grid.Column="1"
+                    Spacing="0"
+                    StyleId="SponsorCell"
+                    VerticalOptions="Center">
+                    <Label
+                        Style="{DynamicResource EvolveListItemTextStyle}"
+                        StyleId="SponsorName"
+                        Text="{Binding Name}" />
+                    <Label
+                        Style="{DynamicResource EvolveListItemDetailTextStyle}"
+                        StyleId="SponsorLevel"
+                        Text="{Binding SponsorLevel.Name, StringFormat='{0} Sponsor'}" />
+                </StackLayout>
+
+            </Grid>
+        </controls:CardView>
+    </StackLayout>
+</ContentView>
+
