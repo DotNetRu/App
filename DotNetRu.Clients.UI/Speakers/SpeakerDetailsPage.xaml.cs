@@ -1,16 +1,11 @@
-using System;
 using DotNetRu.Clients.Portable.Model;
 using DotNetRu.Clients.Portable.ViewModel;
 using DotNetRu.Clients.UI.Helpers;
 using DotNetRu.Clients.UI.Pages.Sessions;
 using DotNetRu.Clients.UI.Pages.Speakers;
-using DotNetRu.DataStore.Audit.Models;
-using Microsoft.Maui;
-using Microsoft.Maui.Controls.Xaml;
 
 namespace DotNetRu.Clients.UI.Speakers
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SpeakerDetailsPage
     {
         public SpeakerDetailsPage()

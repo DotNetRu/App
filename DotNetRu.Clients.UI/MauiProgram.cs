@@ -1,3 +1,5 @@
+// [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
+
 namespace DotNetRu.Clients.UI;
 
 public static class MauiProgram

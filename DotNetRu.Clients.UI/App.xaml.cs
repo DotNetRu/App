@@ -1,19 +1,6 @@
-using System.Globalization;
-
 using DotNetRu.Clients.Portable.Services;
 using DotNetRu.Clients.Portable.ViewModel;
 using DotNetRu.Clients.UI.Localization;
-using DotNetRu.DataStore.Audit.Services;
-
-using Microsoft.AppCenter;
-using Microsoft.AppCenter.Analytics;
-using Microsoft.AppCenter.Crashes;
-using Microsoft.AppCenter.Push;
-using Realms.Sync;
-using DotNetRu.AppUtils.Logging;
-using DotNetRu.AppUtils.Config;
-
-[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 
 namespace DotNetRu.Clients.UI
 {

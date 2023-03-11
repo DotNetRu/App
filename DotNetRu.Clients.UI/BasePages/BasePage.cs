@@ -1,13 +1,8 @@
-using System.Diagnostics;
-
 namespace DotNetRu.Clients.UI.Pages
 {
-    using System;
-
+    using System.Diagnostics;
     using DotNetRu.Clients.Portable.Interfaces;
     using DotNetRu.Clients.Portable.Model;
-
-    using Microsoft.Maui;
 
     public abstract class BasePage : ContentPage, IProvidePageInfo
     {
