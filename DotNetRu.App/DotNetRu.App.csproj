@@ -9,7 +9,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 
 		<!-- Display name -->
-		<ApplicationTitle>DotNetRu.App</ApplicationTitle>
+		<ApplicationTitle>DotNetRu</ApplicationTitle>
 
 		<!-- App Identifier -->
 		<ApplicationId>com.pfedotovsky.dotnetru</ApplicationId>
@@ -44,6 +44,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+		<PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
 	</ItemGroup>
 
 </Project>
