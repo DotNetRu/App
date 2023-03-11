@@ -1,11 +1,9 @@
-﻿namespace DotNetRu.Clients.Portable.Model
+using System.Windows.Input;
+
+using MvvmHelpers;
+
+namespace DotNetRu.Clients.Portable.Model
 {
-    using System.Windows.Input;
-
-    using MvvmHelpers;
-
-    using Microsoft.Maui;
-
     public class MenuItem : ObservableObject
     {
         private string name;

@@ -39,11 +39,6 @@
     <Compile Update="About\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Localization\AppResources.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>AppResources.resx</DependentUpon>
-    </Compile>
     <Compile Update="Meetups\MeetupDetailsPage.xaml.cs">
       <DependentUpon>MeetupDetailsPage.xaml</DependentUpon>
     </Compile>
@@ -55,16 +50,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Update="Localization\AppResources.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
-      <LogicalName>AppResources.resx</LogicalName>
-    </EmbeddedResource>
     <EmbeddedResource Update="AppShell.xaml">
       <LogicalName>AppShell.xaml</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Localization\AppResources.ru.resx">
-      <LogicalName>AppResources.ru.resx</LogicalName>
     </EmbeddedResource>
     <EmbeddedResource Update="App.xaml">
       <LogicalName>App.xaml</LogicalName>

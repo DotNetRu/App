@@ -46,4 +46,23 @@
 		<PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Compile Update="Localization\AppResources.Designer.cs">
+	    <DependentUpon>AppResources.resx</DependentUpon>
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Update="Localization\AppResources.resx">
+	    <LogicalName>AppResources.resx</LogicalName>
+	    <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+	    <Generator>PublicResXFileCodeGenerator</Generator>
+	  </EmbeddedResource>
+	  <EmbeddedResource Update="Localization\AppResources.ru.resx">
+	    <LogicalName>AppResources.ru.resx</LogicalName>
+	  </EmbeddedResource>
+	</ItemGroup>
+
 </Project>
