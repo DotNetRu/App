@@ -1,11 +1,7 @@
 using System;
-using DotNetRu.AppUtils.Logging;
-using Xamarin.Forms;
 using System.Collections.Generic;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
-
-[assembly: Dependency(typeof(DotNetRuLogger))]
 
 namespace DotNetRu.AppUtils.Logging
 {

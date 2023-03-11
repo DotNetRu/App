@@ -2,7 +2,7 @@ namespace DotNetRu.Clients.Portable.Helpers
 {
     using System.ComponentModel;
     using DotNetRu.App.Localization;
-//    using DotNetRu.AppUtils;
+    using DotNetRu.AppUtils;
     using DotNetRu.Clients.Portable.Interfaces;
 
     public class LocalizedResources : INotifyPropertyChanged
@@ -25,7 +25,7 @@ namespace DotNetRu.Clients.Portable.Helpers
             DependencyService.Get<ILocalize>().SetLocale(cultureChangedMessage.NewCultureInfo);
 
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Item"));
-            // MessagingCenter.Send(this, MessageKeys.LanguageChanged);
+            MessagingCenter.Send(this, MessageKeys.LanguageChanged);
         }
     }
 }
