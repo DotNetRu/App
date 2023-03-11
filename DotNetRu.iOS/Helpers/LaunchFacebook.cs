@@ -3,7 +3,7 @@ using DotNetRu.Clients.Portable.Interfaces;
 using DotNetRu.iOS.Helpers;
 using Foundation;
 using UIKit;
-using Xamarin.Forms;
+using Microsoft.Maui;
 
 [assembly: Dependency(typeof(LaunchFacebook))]
 

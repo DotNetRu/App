@@ -3,7 +3,7 @@ using System.Threading;
 using DotNetRu.Clients.Portable.Interfaces;
 using Foundation;
 
-using Xamarin.Forms;
+using Microsoft.Maui;
 
 [assembly: Dependency(typeof(DotNetRu.iOS.Localize))]
 

@@ -7,55 +7,34 @@ namespace DotNetRu.iOS
     using DotNetRu.AppUtils.Logging;
     using DotNetRu.Clients.Portable.Model;
     using DotNetRu.Clients.UI;
-    using DotNetRu.iOS.Renderers;
     using DotNetRu.Utils;
     using DotNetRu.Utils.Helpers;
-    using FFImageLoading.Forms.Platform;
     using FFImageLoading.Transformations;
 
     using FormsToolkit;
-    using FormsToolkit.iOS;
 
     using Foundation;
-
-    using ImageCircle.Forms.Plugin.iOS;
-
     using Social;
 
     using UIKit;
 
-    using Xamarin.Forms;
-    using Xamarin.Forms.Platform.iOS;
+    using Microsoft.Maui;
+    using Microsoft.Maui.Hosting;
+    using Microsoft.Maui.Controls.Compatibility.Platform.iOS;
 
     [Register("AppDelegate")]
-    public partial class AppDelegate : FormsApplicationDelegate
+    public partial class AppDelegate : MauiUIApplicationDelegate
     {
         private static UIColor primaryColor;
+
+        // TODO: MauiProgram.CreateMauiApp();
+        protected override MauiApp CreateMauiApp() => throw new NotImplementedException();
 
         /// <inheritdoc />
         public override void WillEnterForeground(UIApplication uiApplication)
         {
             base.WillEnterForeground(uiApplication);
             ((App)Xamarin.Forms.Application.Current).SecondOnResume();
-        }
-
-        /// <inheritdoc />
-        public override void ReceivedRemoteNotification(UIApplication app, NSDictionary userInfo)
-        {
-            // Process a notification received while the app was already open
-            this.ProcessNotification(userInfo);
-        }
-
-        /// <inheritdoc />
-        public override bool HandleOpenURL(UIApplication application, NSUrl url)
-        {
-            if (!string.IsNullOrEmpty(url.AbsoluteString))
-            {
-                ((App)Xamarin.Forms.Application.Current).SendOnAppLinkRequestReceived(new Uri(url.AbsoluteString));
-                return true;
-            }
-
-            return false;
         }
 
         /// <inheritdoc />
@@ -71,36 +50,18 @@ namespace DotNetRu.iOS
         }
 
         /// <inheritdoc />
-        public override bool OpenUrl(
-            UIApplication application,
-            NSUrl url,
-            string sourceApplication,
-            NSObject annotation)
-        {
-            if (!string.IsNullOrEmpty(url.AbsoluteString))
-            {
-                ((App)Xamarin.Forms.Application.Current).SendOnAppLinkRequestReceived(new Uri(url.AbsoluteString));
-                return true;
-            }
-
-            return false;
-        }
-
-        /// <inheritdoc />
         public override bool FinishedLaunching(UIApplication uiApplication, NSDictionary launchOptions)
         {
-            Forms.Init();
-
-            this.SetMinimumBackgroundFetchInterval();
-
-            InitializeDependencies();
-
-            this.LoadApplication(new App());
+            // TODO return init of dependencies
+            // InitializeDependencies();
 
             InitializeThemeColors();
 
-            // Process any potential notification data from launch
-            this.ProcessNotification(launchOptions);
+            // this is needed to tell linker to keep this type. See https://github.com/luberda-molinet/FFImageLoading/issues/462
+            var ignore = new CircleTransformation();
+
+            // this is needed to tell linker to keep this type
+            var dummy = new DateTimeOffsetConverter();
 
             NSNotificationCenter.DefaultCenter.AddObserver(UIApplication.DidBecomeActiveNotification, this.DidBecomeActive);
 
@@ -114,22 +75,16 @@ namespace DotNetRu.iOS
             return base.FinishedLaunching(uiApplication, launchOptions); // && shouldPerformAdditionalDelegateHandling;
         }
 
-        private static void InitializeDependencies()
-        {
-            Toolkit.Init();
+        //private static void InitializeDependencies()
+        //{
+        //    Toolkit.Init();
 
-            ImageCircleRenderer.Init();
-            NonScrollableListViewRenderer.Initialize();
-            SelectedTabPageRenderer.Initialize();
+        //    ImageCircleRenderer.Init();
+        //    NonScrollableListViewRenderer.Initialize();
+        //    SelectedTabPageRenderer.Initialize();
 
-            CachedImageRenderer.Init();
-
-            // this is needed to tell linker to keep this type. See https://github.com/luberda-molinet/FFImageLoading/issues/462
-            var ignore = new CircleTransformation();
-
-            // this is needed to tell linker to keep this type
-            var dummy = new DateTimeOffsetConverter();
-        }
+        //    CachedImageRenderer.Init();
+        //}
 
         private static void InitializeThemeColors()
         {
@@ -153,44 +108,6 @@ namespace DotNetRu.iOS
             ((App)Xamarin.Forms.Application.Current).SecondOnResume();
         }
 
-        private void ProcessNotification(NSDictionary userInfo)
-        {
-            if (userInfo == null)
-            {
-                return;
-            }
-
-            Console.WriteLine("Received Notification");
-
-            var apsKey = new NSString("aps");
-
-            if (userInfo.ContainsKey(apsKey))
-            {
-                var alertKey = new NSString("alert");
-
-                var aps = (NSDictionary)userInfo.ObjectForKey(apsKey);
-
-                if (aps.ContainsKey(alertKey))
-                {
-                    var alert = (NSString)aps.ObjectForKey(alertKey);
-
-                    var uiAlertView = new UIAlertView($"{AboutThisApp.AppName} Update", alert, (IUIAlertViewDelegate)null, "OK", null);
-
-                    try
-                    {
-                        uiAlertView.Show();
-
-                    }
-                    catch (Exception)
-                    {
-                        // ignored
-                    }
-
-                    Console.WriteLine("Notification: " + alert);
-                }
-            }
-        }
-
         #region Quick Action
 
         public UIApplicationShortcutItem LaunchedShortcutItem { get; set; }
@@ -202,33 +119,8 @@ namespace DotNetRu.iOS
             // Handle any shortcut item being selected
             this.HandleShortcutItem(this.LaunchedShortcutItem);
 
-
-
             // Clear shortcut after it's been handled
             this.LaunchedShortcutItem = null;
-        }
-
-        void CheckForAppLink(NSUserActivity userActivity)
-        {
-            var link = string.Empty;
-
-            switch (userActivity.ActivityType)
-            {
-                case "NSUserActivityTypeBrowsingWeb":
-                    link = userActivity.WebPageUrl.AbsoluteString;
-                    break;
-                case "com.apple.corespotlightitem":
-                    if (userActivity.UserInfo.ContainsKey(CSSearchableItem.ActivityIdentifier))
-                        link = userActivity.UserInfo.ObjectForKey(CSSearchableItem.ActivityIdentifier).ToString();
-                    break;
-                default:
-                    if (userActivity.UserInfo.ContainsKey(new NSString("link")))
-                        link = userActivity.UserInfo[new NSString("link")].ToString();
-                    break;
-            }
-
-            if (!string.IsNullOrEmpty(link))
-                ((App)Xamarin.Forms.Application.Current).SendOnAppLinkRequestReceived(new Uri(link));
         }
 
         // if app is already running
@@ -318,57 +210,6 @@ namespace DotNetRu.iOS
             MessagingService.Current.SendMessage(
                 "DeepLinkPage",
                 new DeepLinkPage { Page = page, Id = id });
-        }
-
-        /// <inheritdoc />
-        public override void UserActivityUpdated(UIApplication application, NSUserActivity userActivity)
-        {
-            this.CheckForAppLink(userActivity);
-        }
-
-        /// <inheritdoc />
-        public override bool ContinueUserActivity(
-            UIApplication application,
-            NSUserActivity userActivity,
-            UIApplicationRestorationHandler completionHandler)
-        {
-            this.CheckForAppLink(userActivity);
-            return true;
-        }
-
-        #endregion
-
-        #region Background Refresh
-
-        private void SetMinimumBackgroundFetchInterval()
-        {
-            UIApplication.SharedApplication.SetMinimumBackgroundFetchInterval(MINIMUM_BACKGROUND_FETCH_INTERVAL);
-        }
-
-        // Minimum number of seconds between a background refresh this is shorter than Android because it is easily killed off.
-        // 20 minutes = 20 * 60 = 1200 seconds
-        private const double MINIMUM_BACKGROUND_FETCH_INTERVAL = 1200;
-
-        // Called whenever your app performs a background fetch
-        public override void PerformFetch(UIApplication application, Action<UIBackgroundFetchResult> completionHandler)
-        {
-            // Do Background Fetch
-            var downloadSuccessful = false;
-
-            try
-            {
-                Forms.Init(); // need for dependency services
-            }
-            catch (Exception ex)
-            {
-                ex.Data["Method"] = "PerformFetch";
-                DotNetRuLogger.Report(ex);
-            }
-
-            // If you don't call this, your application will be terminated by the OS.
-            // Allows OS to collect stats like data cost and power consumption
-            var resultFlag = downloadSuccessful ? UIBackgroundFetchResult.NewData : UIBackgroundFetchResult.Failed;
-            completionHandler(resultFlag);
         }
 
         #endregion
