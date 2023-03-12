@@ -1,7 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
-    <ProduceReferenceAssembly>True</ProduceReferenceAssembly>
   </PropertyGroup>
   <ItemGroup>
     <EmbeddedResource Include="Speakers\speaker_placeholder.png">
@@ -56,13 +55,11 @@
     <EmbeddedResource Update="Localization\AppResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+      <LogicalName>DotNetRu.Clients.UI.Localization.AppResources.resources</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Update="AppShell.xaml">
-      <LogicalName>AppShell.xaml</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Localization\AppResources.ru.resx">
-      <LogicalName>AppResources.ru.resx</LogicalName>
-    </EmbeddedResource>
+   <EmbeddedResource Update="Localization\AppResources.ru.resx">
+      <LogicalName>DotNetRu.Clients.UI.Localization.AppResources.ru.resources</LogicalName>
+   </EmbeddedResource>      
   </ItemGroup>
   <ItemGroup>
     <None Update="About\CommunityViewCell.xaml">
