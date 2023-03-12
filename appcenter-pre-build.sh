@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
 echo "Pre-build script executing..."
+echo "CPU architecture: $(uname -m)"
+echo "dotnet version: $(dotnet --version)"
 
 cp $APPCENTER_SOURCE_DIRECTORY/DotNetRu.AppUtils/Config/config.$Environment.json $APPCENTER_SOURCE_DIRECTORY/DotNetRu.AppUtils/Config/config.json
 
