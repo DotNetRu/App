@@ -2,7 +2,6 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <SolutionDir>..\</SolutionDir>
-    <ProduceReferenceAssembly>True</ProduceReferenceAssembly>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="DotNetRuOffline.realm" />

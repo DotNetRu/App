@@ -1,7 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
-    <ProduceReferenceAssembly>True</ProduceReferenceAssembly>
   </PropertyGroup>
   <ItemGroup>
     <EmbeddedResource Include="Speakers\speaker_placeholder.png">
@@ -56,12 +55,100 @@
     <EmbeddedResource Update="Localization\AppResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+      <LogicalName>AppResources.resx</LogicalName>
     </EmbeddedResource>
     <EmbeddedResource Update="AppShell.xaml">
       <LogicalName>AppShell.xaml</LogicalName>
     </EmbeddedResource>
     <EmbeddedResource Update="Localization\AppResources.ru.resx">
       <LogicalName>AppResources.ru.resx</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="App.xaml">
+      <LogicalName>App.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Meetups\MeetupsPage.xaml">
+      <LogicalName>MeetupsPage.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Meetups\MeetupDetailsPage.xaml">
+      <LogicalName>MeetupDetailsPage.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Meetups\TalkPage.xaml">
+      <LogicalName>TalkPage.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Meetups\FilterSessionsPage.xaml">
+      <LogicalName>FilterSessionsPage.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Speakers\SpeakerFacePage.xaml">
+      <LogicalName>SpeakerFacePage.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Speakers\SpeakerCell.xaml">
+      <LogicalName>SpeakerCell.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Speakers\SpeakerDetailsPage.xaml">
+      <LogicalName>SpeakerDetailsPage.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Speakers\SpeakersPage.xaml">
+      <LogicalName>SpeakersPage.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="About\AboutPage.xaml">
+      <LogicalName>AboutPage.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="About\TechnologiesUsedPage.xaml">
+      <LogicalName>TechnologiesUsedPage.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="About\Subscriptions\SubscriptionsPage.xaml">
+      <LogicalName>SubscriptionsPage.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="About\Subscriptions\SubscriptionCell.xaml">
+      <LogicalName>SubscriptionCell.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="About\Friends\FriendsPage.xaml">
+      <LogicalName>FriendsPage.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="About\Friends\FriendCell.xaml">
+      <LogicalName>FriendCell.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="About\Friends\FriendDetailsPage.xaml">
+      <LogicalName>FriendDetailsPage.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Feedback\Rating3Control.xaml">
+      <LogicalName>Rating3Control.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Feedback\FeedbackPage.xaml">
+      <LogicalName>FeedbackPage.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Feedback\CategoryCellView.xaml">
+      <LogicalName>CategoryCellView.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Feedback\RatingControl.xaml">
+      <LogicalName>RatingControl.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Feedback\ConferenceFeedbackPage.xaml">
+      <LogicalName>ConferenceFeedbackPage.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Controls\SectionDivider.xaml">
+      <LogicalName>SectionDivider.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Controls\FooterDivider.xaml">
+      <LogicalName>FooterDivider.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Controls\LabelSection.xaml">
+      <LogicalName>LabelSection.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Controls\HeaderDivider.xaml">
+      <LogicalName>HeaderDivider.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="News\SocialPostCell.xaml">
+      <LogicalName>SocialPostCell.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="News\SocialPostImagePage.xaml">
+      <LogicalName>SocialPostImagePage.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="News\NewsPage.xaml">
+      <LogicalName>NewsPage.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="BasePages\EvolveGroupHeaderView.xaml">
+      <LogicalName>EvolveGroupHeaderView.xaml</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
