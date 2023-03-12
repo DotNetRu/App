@@ -52,16 +52,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Update="Localization\AppResources.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
-      <LogicalName>AppResources.resx</LogicalName>
-    </EmbeddedResource>
     <EmbeddedResource Update="AppShell.xaml">
       <LogicalName>AppShell.xaml</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Localization\AppResources.ru.resx">
-      <LogicalName>AppResources.ru.resx</LogicalName>
     </EmbeddedResource>
     <EmbeddedResource Update="App.xaml">
       <LogicalName>App.xaml</LogicalName>
@@ -149,6 +141,10 @@
     </EmbeddedResource>
     <EmbeddedResource Update="BasePages\EvolveGroupHeaderView.xaml">
       <LogicalName>EvolveGroupHeaderView.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Localization\AppResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
