@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
+echo "Call global pre-build script"
 
-cp $APPCENTER_SOURCE_DIRECTORY/DotNetRu.Utils/Config/config.$Environment.json $APPCENTER_SOURCE_DIRECTORY/DotNetRu.Utils/Config/config.json
+source ../appcenter-pre-build.sh
