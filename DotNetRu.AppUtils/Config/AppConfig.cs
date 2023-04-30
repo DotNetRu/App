@@ -1,5 +1,4 @@
-namespace DotNetRu.AppUtils.Config
-{
+namespace DotNetRu.AppUtils.Config;
 
 using System.Text;
 using Newtonsoft.Json;    
@@ -24,5 +23,4 @@ public class AppConfig
         var configBytesAsString = Encoding.UTF8.GetString(configBytes);
         return JsonConvert.DeserializeObject<AppConfig>(configBytesAsString);
     }
-}
 }

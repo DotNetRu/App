@@ -1,5 +1,4 @@
-namespace DotNetRu.AppUtils.Logging
-{
+namespace DotNetRu.AppUtils.Logging;
 
 using System;
 using System.Collections.Generic;
@@ -15,5 +14,4 @@ public interface ILogger
     void Track(string trackIdentifier, IDictionary<string, string> values);
 
     void TrackTimeSpent(string page, string id, TimeSpan time);
-}
 }

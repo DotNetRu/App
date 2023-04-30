@@ -7,8 +7,8 @@ using Microsoft.AppCenter.Crashes;
 
 [assembly: Dependency(typeof(DotNetRuLogger))]
 
-namespace DotNetRu.AppUtils.Logging
-{
+namespace DotNetRu.AppUtils.Logging;
+
 
 public class DotNetRuLogger : ILogger
 {
@@ -45,5 +45,4 @@ public class DotNetRuLogger : ILogger
     {
         Crashes.TrackError(exception);
     }
-}
 }
