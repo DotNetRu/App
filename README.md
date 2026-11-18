@@ -40,6 +40,8 @@
 * Android (>= 5)
 
 ## Как собрать приложение
+Для запуска Xamarin-версии на Mac с Apple Silicon см. инструкции для [Android](Tools/Android-local.md) и [iOS](Tools/iOS-local.md). Описание структуры кода и состояния миграции находится в [руководстве по проекту](docs/PROJECT.md).
+
 *подробная инструкция по установке visual studio доступна на сайте [xamarin](https://developer.xamarin.com/guides/cross-platform/getting_started/installation/windows/)*
 * Установить [visual studio](https://www.visualstudio.com/vs/whatsnew/) или [visual studio for mac](https://www.visualstudio.com/vs/visual-studio-mac/) в любой из редакций
 * Выбрать **Мобильная разработка с .Net (Mobile development with .NET)** из рабочих сценариев при установке
