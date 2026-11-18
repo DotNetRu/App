@@ -312,7 +312,10 @@
     <Compile Include="PlatformFeatures\ProActiveSuggestions\SessionUserActivity.cs" />
     <Compile Include="PlatformFeatures\ProActiveSuggestions\SpeakerUserActivity.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <PropertyGroup>
+    <XamarinIosTargets Condition="'$(XamarinIosTargets)' == ''">$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets</XamarinIosTargets>
+  </PropertyGroup>
+  <Import Project="$(XamarinIosTargets)" />
   <ItemGroup>
     <ProjectReference Include="..\DotNetRu.Clients.UI\DotNetRu.Clients.UI.csproj">
       <Project>{CD2623BD-3609-4BE9-80EF-0974F3A1A27D}</Project>

@@ -398,5 +398,8 @@
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </AndroidResource>
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+  <PropertyGroup>
+    <XamarinAndroidTargets Condition="'$(XamarinAndroidTargets)' == ''">$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets</XamarinAndroidTargets>
+  </PropertyGroup>
+  <Import Project="$(XamarinAndroidTargets)" />
 </Project>
