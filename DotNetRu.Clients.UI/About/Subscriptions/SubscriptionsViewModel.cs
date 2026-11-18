@@ -11,7 +11,6 @@ namespace DotNetRu.Clients.Portable.ViewModel
     using DotNetRu.AppUtils.Logging;
     using DotNetRu.DataStore.Audit.Helpers;
     using DotNetRu.DataStore.Audit.Models;
-    using DotNetRu.Models.Social;
     using FormsToolkit;
     using MvvmHelpers;
     using Xamarin.Forms;
@@ -66,14 +65,9 @@ namespace DotNetRu.Clients.Portable.ViewModel
 
         private async Task HandleSelection(SubscriptionModel item)
         {
-            switch (item.Type)
+            if (item?.Community != null)
             {
-                case SocialMediaType.Vkontakte:
-                    await ExecuteLaunchBrowserAsync(item.Community.VkUrl ?? new Uri($"https://vk.com/{item.Community.Name}"));
-                    break;
-                case SocialMediaType.Twitter:
-                    await ExecuteLaunchBrowserAsync(item.Community.TwitterUrl ?? new Uri($"https://twitter.com/{item.Community.Name}"));
-                    break;
+                await ExecuteLaunchBrowserAsync(item.Community.VkUrl ?? new Uri($"https://vk.com/{item.Community.Name}"));
             }
         }
 

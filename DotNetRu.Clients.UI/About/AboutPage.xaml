@@ -15,7 +15,6 @@
     <pages:BasePage.Resources>
         <ResourceDictionary>
             <converters:TranslateConverter x:Key="TranslateConverter" />
-            <converters:SocialMediaTypeConverter x:Key="SocialMediaTypeConverter" />
 
             <DataTemplate x:Key="settingsTemplate">
                 <ViewCell>

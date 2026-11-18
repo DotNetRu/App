@@ -2,12 +2,8 @@
     x:Class="DotNetRu.Clients.UI.Cells.SocialPostCell"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:converters="clr-namespace:DotNetRu.Clients.UI.Converters;assembly=DotNetRu.Clients.UI"
     xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations">
-    <ContentView.Resources>
-        <converters:SocialMediaTypeConverter x:Key="SocialMediaTypeConverter" />
-    </ContentView.Resources>
     <ContentView.Content>
         <Grid
             Padding="0,10,5,10"
@@ -108,10 +104,9 @@
                     <Image
                         Margin="0,0,5,0"
                         HeightRequest="20"
-                        IsVisible="{Binding SocialMediaType, Converter={StaticResource SocialMediaTypeConverter}}"
                         Source="icon_view.png"
                         WidthRequest="20" />
-                    <Label IsVisible="{Binding SocialMediaType, Converter={StaticResource SocialMediaTypeConverter}}" Text="{Binding NumberOfViews}" />
+                    <Label Text="{Binding NumberOfViews}" />
                 </StackLayout>
             </Grid>
         </Grid>

@@ -1,9 +1,6 @@
-using System;
 using System.Linq;
 using DotNetRu.Clients.Portable.Model;
 using DotNetRu.Clients.Portable.ViewModel;
-using DotNetRu.DataStore.Audit.Models;
-using DotNetRu.Models.Social;
 using Xamarin.Forms;
 
 namespace DotNetRu.Clients.UI.Pages.Subscriptions
@@ -16,21 +13,6 @@ namespace DotNetRu.Clients.UI.Pages.Subscriptions
         {
             this.InitializeComponent();
             this.BindingContext = new SubscriptionsViewModel(this.Navigation);
-
-            this.ListViewSubscriptions.ItemSelected += async (sender, e) =>
-            {
-                if (!(this.ListViewSubscriptions.SelectedItem is SubscriptionModel subscription))
-                {
-                    return;
-                }
-
-                await (this.BindingContext as SubscriptionsViewModel)?.ExecuteLaunchBrowserAsync(
-                    subscription.Type == SocialMediaType.Vkontakte
-                        ? subscription.Community?.VkUrl ?? new Uri($"https://vk.com/{subscription.Community.Name}")
-                        : subscription.Community?.TwitterUrl ?? new Uri($"https://twitter.com/{subscription.Community.Name}"));
-
-                this.ListViewSubscriptions.SelectedItem = null;
-            };
         }
 
         public SubscriptionsViewModel SubscriptionsViewModel =>

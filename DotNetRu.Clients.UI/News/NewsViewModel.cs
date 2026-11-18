@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using DotNetRu.Models.Social;
 
 namespace DotNetRu.Clients.Portable.ViewModel
@@ -42,8 +41,6 @@ namespace DotNetRu.Clients.Portable.ViewModel
         private ICommand buyTicketNowCommand;
 
         private ICommand loadSessionsCommand;
-
-        private ISocialPost selectedSocialPost;
 
         private bool socialError;
 
@@ -143,24 +140,6 @@ namespace DotNetRu.Clients.Portable.ViewModel
         {
             get => this.socialError;
             set => this.SetProperty(ref this.socialError, value);
-        }
-
-        public ISocialPost SelectedSocialPost
-        {
-            get => this.selectedSocialPost;
-            set
-            {
-                this.selectedSocialPost = value;
-                this.OnPropertyChanged();
-                if (this.selectedSocialPost == null)
-                {
-                    return;
-                }
-
-                this.LaunchBrowserCommand.Execute(this.selectedSocialPost.Url);
-
-                this.SelectedSocialPost = null;
-            }
         }
 
         public TalkModel SelectedTalkModel
@@ -271,20 +250,11 @@ namespace DotNetRu.Clients.Portable.ViewModel
             try
             {
                 this.SocialError = false;
-                var socialPosts = new List<ISocialPost>();
-
-                var tweets = await TweetService.GetTweetsAsync(Helpers.Settings.CommunitySubscriptions
-                    .Where(x => x.IsSelected && x.Type == SocialMediaType.Twitter).Select(x => x.Community.Name)
-                    .ToList());
-                socialPosts.AddRange(tweets);
-
-                var vkontaktePosts = await VkontakteService.GetVkPostsAsync(Helpers.Settings
-                    .CommunitySubscriptions
-                    .Where(x => x.IsSelected && x.Type == SocialMediaType.Vkontakte && x.LoadedPosts > 0)
-                    .ToDictionary(x => x.Community.Name, x => x.LoadedPosts));
-                socialPosts.AddRange(vkontaktePosts);
-
-                this.SocialPosts.ReplaceRange(socialPosts.OrderByDescending(x => x.CreatedDate));
+                var communities = Helpers.Settings.CommunitySubscriptions
+                    .Where(x => x.IsSelected && x.LoadedPosts > 0)
+                    .ToDictionary(x => x.Community.Name, x => x.LoadedPosts, StringComparer.OrdinalIgnoreCase);
+                var posts = await VkontakteService.GetVkPostsAsync(communities);
+                this.SocialPosts.ReplaceRange(posts.OrderByDescending(x => x.CreatedDate));
             }
             catch (Exception ex)
             {

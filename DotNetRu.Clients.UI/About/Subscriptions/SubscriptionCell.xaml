@@ -7,7 +7,6 @@
     xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
     <ContentView.Resources>
         <converters:TranslateConverter x:Key="TranslateConverter" />
-        <converters:SocialMediaTypeConverter x:Key="SocialMediaTypeConverter" />
     </ContentView.Resources>
     <StackLayout HeightRequest="40" Spacing="0">
         <StackLayout.Padding>
@@ -25,7 +24,7 @@
                 Margin="5,0,10,0"
                 FlexLayout.Basis="10%"
                 HeightRequest="40"
-                Source="{Binding Path=Type, Converter={StaticResource SocialMediaTypeConverter}}"
+                Source="icon_vkontakte.png"
                 VerticalOptions="Center" />
             <Label
                 FlexLayout.Basis="40%"
@@ -41,7 +40,6 @@
                 HeightRequest="40"
                 HorizontalOptions="Center"
                 HorizontalTextAlignment="Center"
-                IsVisible="{Binding Path=Type, Converter={StaticResource SocialMediaTypeConverter}}"
                 Text="{Binding Source={x:Reference LoadedPosts}, Path=Value}"
                 VerticalOptions="Center"
                 VerticalTextAlignment="Center" />
@@ -49,7 +47,6 @@
                 x:Name="LoadedPosts"
                 FlexLayout.Basis="30%"
                 HeightRequest="30"
-                IsVisible="{Binding Path=Type, Converter={StaticResource SocialMediaTypeConverter}}"
                 Maximum="100"
                 MaximumTrackColor="Green"
                 Minimum="0"

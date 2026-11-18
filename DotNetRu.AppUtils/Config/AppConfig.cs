@@ -9,8 +9,6 @@ public class AppConfig
 
     public string AppCenteriOSKey { get; set; }
 
-    public string TweetFunctionUrl { get; set; }
-
     public string VkontakteFunctionUrl { get; set; }
 
     public string RealmDatabase { get; set; }
