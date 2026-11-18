@@ -9,20 +9,17 @@ namespace DotNetRu.Azure
     {
         private readonly ILogger logger;
 
-        private readonly RealmSettings realmSettings;
         private readonly TweetSettings tweetSettings;
         private readonly PushSettings pushSettings;
         private readonly VkontakteSettings vkontakteSettings;
 
         public DiagnosticsController(
             ILogger<DiagnosticsController> logger,
-            RealmSettings realmSettings,
             TweetSettings tweetSettings,
             VkontakteSettings vkontakteSettings,
             PushSettings pushSettings)
         {
             this.logger = logger;
-            this.realmSettings = realmSettings;
             this.tweetSettings = tweetSettings;
             this.vkontakteSettings = vkontakteSettings;
             this.pushSettings = pushSettings;
@@ -34,7 +31,6 @@ namespace DotNetRu.Azure
         {
             return new ObjectResult(new
             {
-                RealmSettings = realmSettings,
                 TweetSettings = tweetSettings,
                 VkontakteSettings = vkontakteSettings,
                 pushSettings = pushSettings

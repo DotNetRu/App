@@ -15,4 +15,4 @@ This checkout contains the Xamarin.Forms app for the DotNetRu .NET user groups. 
 - Use the runbooks for local builds. The historical `appcenter-pre-build.sh` replaces the embedded app configuration and edits the installed Mono `msbuild` launcher.
 - Check for existing SDKs and running virtual devices before installing tools or creating devices. Target DotNetRu's device explicitly when more than one simulator or emulator is running.
 - For a launch smoke test, verify that the app renders its own UI after startup. The Meetups tab can check the bundled archive without a working live feed. Report the platform and device, the screen verified, and any behavior that still needs testing.
-- `DotNetRu.RealmTests` is a .NET Core 3.1 console program that exercises offline initialization and cloud sync. Use it only when its runtime and service dependencies are available.
+- `DotNetRu.RealmTests` is a .NET Core 3.1 console program that exercises offline initialization. Use it only when its runtime is available.

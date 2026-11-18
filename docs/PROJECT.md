@@ -11,7 +11,7 @@ DotNetRu is a Xamarin.Forms app for Russian-speaking .NET user groups. The share
 | Android host | [`MainActivity.cs`](../DotNetRu.Android/MainActivity.cs) initializes Xamarin.Forms and loads the shared app. |
 | iOS host | [`Main.cs`](../DotNetRu.iOS/Main.cs) enters UIKit. [`AppDelegate.cs`](../DotNetRu.iOS/AppDelegate.cs) initializes Xamarin.Forms and loads the shared app. |
 | Runtime configuration | [`AppConfig.cs`](../DotNetRu.AppUtils/Config/AppConfig.cs) reads `config.json` embedded in `DotNetRu.AppUtils`. The project also contains `config.DEV.json` and `config.PROD.json` for App Center builds. |
-| Models and offline data | [`DotNetRu.Models`](../DotNetRu.Models) contains Realm entities. [`RealmService.cs`](../DotNetRu.DataStore.Audit/Services/RealmService.cs) initializes the mobile store from the embedded `DotNetRuOffline.realm` and handles cloud sync. [`RealmUpdateLibrary`](../RealmUpdateLibrary) contains the audit import and update logic. |
+| Models and offline data | [`DotNetRu.Models`](../DotNetRu.Models) contains Realm entities. [`RealmService.cs`](../DotNetRu.DataStore.Audit/Services/RealmService.cs) initializes the mobile store from the embedded `DotNetRuOffline.realm`. [`RealmUpdateLibrary`](../RealmUpdateLibrary) contains the audit import and update logic. |
 | Backend | [`DotNetRuBackend.sln`](../DotNetRuBackend.sln) contains the .NET 7 ASP.NET Core [`DotNetRu.AppService`](../DotNetRu.AppService), including feed, Realm, and push notification controllers. [`RealmController.cs`](../DotNetRu.AppService/Controllers/RealmController.cs) includes the offline Realm generation endpoint. |
 
 The bundled Realm records [DotNetRu/Audit revision `65e8ba4`](https://github.com/DotNetRu/Audit/commit/65e8ba444d2526f476bb6e10ed21b4ae1ef42067) in its `AuditVersion` row. It contains 204 meetups, including Встреча SpbDotNet №119 on May 27, 2026.
@@ -27,7 +27,7 @@ The recipes assume Xamarin and the older SDK are already installed on this Apple
 | Android | Built a signed debug APK, cold launched on a Pixel 5 ARM64 emulator running API 33, and opened Meetups with archived events. News rendered with an empty feed. | [Android](../Tools/Android-local.md) |
 | iOS | Built an x86_64 simulator bundle, launched on an iPhone 17 running the iOS 26.5 Universal runtime, and saw News, the tab bar, and the notification prompt. The simulator boots as ARM64 and translates the Xamarin app through Rosetta. | [iOS](../Tools/iOS-local.md) |
 
-These checks cover local packaging and startup. The backend, live feeds, Realm sync, push delivery, and physical devices still need separate verification. [`DotNetRu.RealmTests`](../DotNetRu.RealmTests/Program.cs) is a .NET Core 3.1 console utility that initializes Realm and attempts configured cloud sync.
+These checks cover local packaging and startup. The backend, live feeds, push delivery, and physical devices still need separate verification. [`DotNetRu.RealmTests`](../DotNetRu.RealmTests/Program.cs) is a .NET Core 3.1 console utility that exercises offline Realm initialization.
 
 ## Migration references
 
