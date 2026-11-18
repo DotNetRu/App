@@ -14,6 +14,8 @@ DotNetRu is a Xamarin.Forms app for Russian-speaking .NET user groups. The share
 | Models and offline data | [`DotNetRu.Models`](../DotNetRu.Models) contains Realm entities. [`RealmService.cs`](../DotNetRu.DataStore.Audit/Services/RealmService.cs) initializes the mobile store from the embedded `DotNetRuOffline.realm` and handles cloud sync. [`RealmUpdateLibrary`](../RealmUpdateLibrary) contains the audit import and update logic. |
 | Backend | [`DotNetRuBackend.sln`](../DotNetRuBackend.sln) contains the .NET 7 ASP.NET Core [`DotNetRu.AppService`](../DotNetRu.AppService), including feed, Realm, and push notification controllers. [`RealmController.cs`](../DotNetRu.AppService/Controllers/RealmController.cs) includes the offline Realm generation endpoint. |
 
+The bundled Realm records [DotNetRu/Audit revision `65e8ba4`](https://github.com/DotNetRu/Audit/commit/65e8ba444d2526f476bb6e10ed21b4ae1ef42067) in its `AuditVersion` row. It contains 204 meetups, including Встреча SpbDotNet №119 on May 27, 2026.
+
 English and Russian strings live in [`DotNetRu.Clients.UI/Localization`](../DotNetRu.Clients.UI/Localization). The project file sets explicit resource names so loading works with the .NET SDK on macOS.
 
 ## Verified local development baseline
