@@ -32,70 +32,24 @@ namespace DotNetRu.DataStore.Audit.Helpers
             })).ToList();
         }
 
-        private static IList<SubscriptionModel> _defaultCommunitySubscriptions;
-
-        public static IList<SubscriptionModel> DefaultCommunitySubscriptions
+        public static IList<SubscriptionModel> DefaultCommunitySubscriptions => new List<SubscriptionModel>
         {
-            get
+            new SubscriptionModel
             {
-                return _defaultCommunitySubscriptions ??= new List<SubscriptionModel>
+                IsSelected = true,
+                LoadedPosts = 100,
+                Community = new CommunityModel
                 {
-                    //ToDo: получать из настроек (для теста пока так)
-                    new SubscriptionModel
-                    {
-                        IsSelected = true,
-                        LoadedPosts = 0,
-                        Community = new CommunityModel
-                        {
-                            Name = "DotNetRu",
-                            City = "Общие",
-                            LogoUrl = new Uri(
-                                "https://raw.githubusercontent.com/AnatolyKulakov/SpbDotNet/master/Swag/dotnetru-squared-logo-bordered/dotnetru-squared-logo-br-200.png"),
-                            VkUrl = new Uri("https://vk.com/DotNetRu"),
-                            TwitterUrl = new Uri("https://twitter.com/dotnetru"),
-                            TelegramChannelUrl = new Uri("https://t.me/DotNetRu"),
-                            TelegramChatUrl = new Uri("https://t.me/DotNetRuChat")
-                        },
-                        Type = SocialMediaType.Twitter
-                    },
-                    new SubscriptionModel
-                    {
-                        IsSelected = true,
-                        LoadedPosts = 0,
-                        Community = new CommunityModel
-                        {
-                            Name = "SpbDotNet",
-                            City = "Санкт-Петербург",
-                            LogoUrl = new Uri(
-                                "https://raw.githubusercontent.com/AnatolyKulakov/SpbDotNet/master/Swag/spbdotnet-squared-logo-bordered/spbdotnet-squared-logo-br-200.png"),
-                            VkUrl = new Uri("https://vk.com/SpbDotNet"),
-                            TwitterUrl = new Uri("https://twitter.com/SpbDotNet"),
-                            TelegramChannelUrl = new Uri("https://t.me/SpbDotNet"),
-                            TelegramChatUrl = new Uri("https://t.me/SpbDotNetChat"),
-                            MeetupComUrl = new Uri("https://www.meetup.com/SpbDotNet"),
-                            TimePadUrl = new Uri("https://SpbDotNet.timepad.ru")
-                        },
-                        Type = SocialMediaType.Twitter
-                    },
-                    new SubscriptionModel
-                    {
-                        IsSelected = true,
-                        LoadedPosts = 100,
-                        Community = new CommunityModel
-                        {
-                            Name = "DotNetRu",
-                            City = "Общие",
-                            LogoUrl = new Uri(
-                                "https://raw.githubusercontent.com/AnatolyKulakov/SpbDotNet/master/Swag/dotnetru-squared-logo-bordered/dotnetru-squared-logo-br-200.png"),
-                            VkUrl = new Uri("https://vk.com/DotNetRu"),
-                            TwitterUrl = new Uri("https://twitter.com/dotnetru"),
-                            TelegramChannelUrl = new Uri("https://t.me/DotNetRu"),
-                            TelegramChatUrl = new Uri("https://t.me/DotNetRuChat")
-                        },
-                        Type = SocialMediaType.Vkontakte
-                    }
-                };
+                    Name = "DotNetRu",
+                    City = "Общие",
+                    LogoUrl = new Uri(
+                        "https://raw.githubusercontent.com/AnatolyKulakov/SpbDotNet/master/Swag/dotnetru-squared-logo-bordered/dotnetru-squared-logo-br-200.png"),
+                    VkUrl = new Uri("https://vk.com/DotNetRu"),
+                    TelegramChannelUrl = new Uri("https://t.me/DotNetRu"),
+                    TelegramChatUrl = new Uri("https://t.me/DotNetRuChat")
+                },
+                Type = SocialMediaType.Vkontakte
             }
-        }
+        };
     }
 }

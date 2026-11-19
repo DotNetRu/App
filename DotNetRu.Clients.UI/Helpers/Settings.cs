@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using DotNetRu.DataStore.Audit.Helpers;
 using DotNetRu.DataStore.Audit.Models;
+using DotNetRu.Models.Social;
 using Newtonsoft.Json;
 
 namespace DotNetRu.Clients.Portable.Helpers
@@ -46,9 +47,19 @@ namespace DotNetRu.Clients.Portable.Helpers
         {
             get
             {
-                var defaultCommunitySubscriptions = SubscriptionsHelper.GetDefaultCommunitySubscriptions();
-                string communitySubscriptions = Preferences.Get(nameof(CommunitySubscriptions), JsonConvert.SerializeObject(defaultCommunitySubscriptions));
-                return JsonConvert.DeserializeObject<IList<SubscriptionModel>>(communitySubscriptions);
+                string communitySubscriptions = Preferences.Get(nameof(CommunitySubscriptions), null);
+                if (communitySubscriptions == null)
+                {
+                    return SubscriptionsHelper.GetDefaultCommunitySubscriptions();
+                }
+
+                var subscriptions = JsonConvert.DeserializeObject<List<SubscriptionModel>>(communitySubscriptions);
+                if (subscriptions.RemoveAll(x => x?.Type != SocialMediaType.Vkontakte) > 0)
+                {
+                    CommunitySubscriptions = subscriptions;
+                }
+
+                return subscriptions;
             }
 
             set

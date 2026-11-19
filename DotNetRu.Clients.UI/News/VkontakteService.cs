@@ -1,34 +1,26 @@
-namespace DotNetRu.Clients.Portable.Services
-{
-
-using System.Linq;
-using DotNetRu.Models.Social;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using DotNetRu.AppUtils.Config;
-using DotNetRu.AppUtils.Logging;
+using DotNetRu.Models.Social;
 using Flurl.Http;
 
-public static class VkontakteService
+namespace DotNetRu.Clients.Portable.Services
 {
-    public static async Task<IList<ISocialPost>> GetVkPostsAsync(IDictionary<string, byte> communities)
+    public static class VkontakteService
     {
-        try
+        public static async Task<IEnumerable<VkontaktePost>> GetVkPostsAsync(IDictionary<string, byte> communities)
         {
-            var config = AppConfig.GetConfig();
+            if (communities.Count == 0)
+            {
+                return Array.Empty<VkontaktePost>();
+            }
 
-            var vkontaktePosts = await config.VkontakteFunctionUrl
-                .GetJsonAsync<List<VkontaktePost>>();
-
-            return vkontaktePosts.Cast<ISocialPost>().ToList();
+            var posts = await AppConfig.GetConfig().VkontakteFunctionUrl.GetJsonAsync<List<VkontaktePost>>();
+            return posts.Where(post => post.CommunityGroupId != null && communities.ContainsKey(post.CommunityGroupId))
+                .GroupBy(post => post.CommunityGroupId, StringComparer.OrdinalIgnoreCase)
+                .SelectMany(group => group.OrderByDescending(post => post.CreatedDate).Take(communities[group.Key]));
         }
-        catch (Exception e)
-        {
-            DotNetRuLogger.Report(e);
-        }
-
-        return new List<ISocialPost>();
     }
-}
 }

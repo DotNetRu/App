@@ -54,8 +54,7 @@
             IsRefreshing="{Binding IsBusy, Mode=OneWay}"
             IsVisible="{Binding NotLoadingSocial}"
             ItemsSource="{Binding SocialPosts}"
-            RefreshCommand="{Binding RefreshCommand}"
-            SelectedItem="{Binding SelectedSocialPost, Mode=TwoWay}">
+            RefreshCommand="{Binding RefreshCommand}">
             <ListView.SeparatorColor>
                 <OnPlatform x:TypeArguments="Color" iOS="{StaticResource ListSeparator}" />
             </ListView.SeparatorColor>
