@@ -23,9 +23,6 @@ namespace DotNetRu.AzureService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var realmSettings = new RealmSettings();
-            Configuration.Bind("RealmOptions", realmSettings);
-
             var tweetSettings = new TweetSettings();
             Configuration.Bind("TweetOptions", tweetSettings);
 
@@ -35,7 +32,6 @@ namespace DotNetRu.AzureService
             var pushSettings = new PushSettings();
             Configuration.Bind("PushOptions", pushSettings);
 
-            services.AddSingleton(realmSettings);
             services.AddSingleton(tweetSettings);
             services.AddSingleton(vkontakteSettings);
             services.AddSingleton(pushSettings);

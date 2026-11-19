@@ -11,10 +11,6 @@ public class AppConfig
 
     public string VkontakteFunctionUrl { get; set; }
 
-    public string RealmDatabase { get; set; }
-
-    public string RealmServerUrl { get; set; }
-
     public static AppConfig GetConfig()
     {
         var configBytes = ResourceHelper.ExtractResource("config.json");

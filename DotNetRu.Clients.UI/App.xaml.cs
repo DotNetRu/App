@@ -14,7 +14,6 @@ using Microsoft.AppCenter.Push;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using System.Collections.Generic;
-using Realms.Sync;
 using DotNetRu.AppUtils.Logging;
 using DotNetRu.AppUtils.Config;
 
@@ -32,12 +31,6 @@ namespace DotNetRu.Clients.UI
 
         public App()
         {
-            // workaround for https://github.com/realm/realm-dotnet/issues/1967
-            if (Xamarin.Forms.Device.RuntimePlatform != Xamarin.Forms.Device.iOS)
-            {
-                SyncConfigurationBase.Initialize(UserPersistenceMode.NotEncrypted);
-            }
-
             VersionTracking.Track();
 
             var language = LanguageService.GetCurrentLanguage();
@@ -67,7 +60,7 @@ namespace DotNetRu.Clients.UI
             this.OnAppLinkRequestReceived(uri);
         }
 
-        protected override async void OnStart()
+        protected override void OnStart()
         {
             if (IsOnStartCalled)
             {
@@ -86,12 +79,8 @@ namespace DotNetRu.Clients.UI
                 {
                     {nameof(config.AppCenterAndroidKey), config.AppCenterAndroidKey },
                     {nameof(config.AppCenteriOSKey), config.AppCenteriOSKey },
-                    {nameof(config.RealmServerUrl), config.RealmServerUrl },
-                    {nameof(config.RealmDatabase), config.RealmDatabase },
                     {"TimeZone", TimeZoneInfo.Local.ToSerializedString()}
                 });
-
-            await RealmService.InitializeCloudSync(config.RealmServerUrl, config.RealmDatabase);
 
             IsOnStartCalled = true;
         }
